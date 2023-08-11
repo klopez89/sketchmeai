@@ -13,6 +13,19 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
+
+.custom-dark-gray-bg {
+  background-color: rgb(43, 45, 49);
+}
+
+.custom-mid-gray-bg {
+  background-color: rgb(49, 51, 56);
+}
+
+.custom-light-gray-bg {
+  background-color: rgb(117, 117, 117);
+}
+
 .modal-wrapper {
   position: absolute;
   left: 50%;

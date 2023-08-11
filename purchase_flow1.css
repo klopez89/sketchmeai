@@ -1,0 +1,68 @@
+
+.upload-entry-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.image-upload-entry {
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 100%;
+}
+
+.image-upload-entry p {
+  position: absolute;
+  bottom: 0; 
+  width: 100%;
+  background-color: rgba(215, 215, 215, 0.9);
+  font-size: 0.9rem;
+  font-weight: normal;
+  padding: 5px;
+}
+
+.upload-preview-image {
+  position: absolute;
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-upload-button {
+  background-color: transparent;
+  border: none;
+  color: grey;
+  font-size: 1.0rem;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.remove-upload-button:hover {
+  color: black;
+}
+
+
+
+.upload-width-sizing {
+    width: calc(20% - 0.5rem);
+    min-width: 100px;
+}
+
+/* On screens that are 992px or less */
+@media screen and (max-width: 1024px) {
+    .upload-width-sizing {
+        width: calc(20% - 0.5rem);
+        min-width: 100px;
+    }
+}
+
+/* On screens that are 600px or less */
+@media screen and (max-width: 600px) {
+    .upload-width-sizing {
+        width: calc(20% - 0.5rem);
+        min-width: 100px;
+    }
+}

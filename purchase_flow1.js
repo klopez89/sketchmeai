@@ -98,57 +98,80 @@ function renderFirebaseAuthUI() {
   ui.start('#firebaseui-auth-container', uiConfig);
 }
 
+function validateUserAuth(userInfo) {
+	let action = "https://whollyai-5k3b37mzsa-ue.a.run.app/gayi/users/create"
+	$.ajax({
+		url: action,
+		method: "POST",
+		data: JSON.stringify(userInfo),
+		contentType: "application/json",
+		dataType: "json",
+		success: function (response) {
+			let userRecId = response['user_rec_id'];
+			if (userRecId == null) {
+				console.log('Failed to retrieve or create a user in our database, needs dev review. Falling back to login view');
+				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+			} else {
+				console.log('Successfully got a user rec id reference: ', userRecId);
+				// validatePurchase(userRecId);
+			}
+		},
+		error: function (msg) {
+			console.log("Fell into failure block for action - users/create, with msg: ", msg);
+		},
+  	});
+}
 
 function beginNewModelCreation() {
 	const url_params = new URLSearchParams(window.location.search);
-  const price_id = url_params.get('priceId', null);
+	const price_id = url_params.get('priceId', null);
 
-  if (price_id == null) {
-  	console.log('Dont have a price_id so wont kick off new model creation. Needs investigation.')
-  	return;
-  }
+	if (price_id == null) {
+	console.log('Dont have a price_id so wont kick off new model creation. Needs investigation.')
+	return;
+	}
 
-  let action = "https://whollyai-5k3b37mzsa-ue.a.run.app/gayi/model/create"
-  let currentUser = firebase.auth().currentUser;
-  let uid = currentUser.uid;
-  let email = currentUser.email;
-  let displayName = currentUser.displayName;
+	let action = "https://whollyai-5k3b37mzsa-ue.a.run.app/gayi/model/create"
+	let currentUser = firebase.auth().currentUser;
+	let uid = currentUser.uid;
+	let email = currentUser.email;
+	let displayName = currentUser.displayName;
 	let files = getUploadedFiles();
 
 	let jsonObject = {
-	    memberId: uid,
-	    email : email,
-	    displayName : displayName,
-	    price_id : price_id,
-	    files: files,
+		memberId: uid,
+		email : email,
+		displayName : displayName,
+		price_id : price_id,
+		files: files,
 	}
 
 	console.log("The json to be sent for model creation is: ", jsonObject);
 
 	$.ajax({
-    url: action,
-    method: "POST",
-    data: JSON.stringify(jsonObject),
-    contentType: "application/json",
-    dataType: "json",
-    success: function (response) {
-      console.log('new model endpoint hit success, w/ response: ', response);
-      showCheckmarkOnUploadButton();
-      changePurchaseContext(PURCHASE_CONTEXT.SUMMARY);
-    },
-    error: function (msg) {
-      console.log("Fell into failure block for new model creation! msg: ", msg);
-      hideLoadingOnUploadButton();
-      toggleUploadButtonInteraction();
-    },
-  });
+		url: action,
+		method: "POST",
+		data: JSON.stringify(jsonObject),
+		contentType: "application/json",
+		dataType: "json",
+		success: function (response) {
+			console.log('new model endpoint hit success, w/ response: ', response);
+			showCheckmarkOnUploadButton();
+			changePurchaseContext(PURCHASE_CONTEXT.SUMMARY);
+		},
+		error: function (msg) {
+			console.log("Fell into failure block for new model creation! msg: ", msg);
+			hideLoadingOnUploadButton();
+			toggleUploadButtonInteraction();
+		},
+  	});
 }
 
 
 function handlePaymentNavigation(uid) {
 	// removeUrlParameter
-	const url_params = new URLSearchParams(window.location.search);
-	const did_complete_payment_param = url_params.get('didCompletePayment', null);
+  const url_params = new URLSearchParams(window.location.search);
+  const did_complete_payment_param = url_params.get('didCompletePayment', null);
   const price_id = url_params.get('priceId', null);
   const quantity = url_params.get('quantity', null);
 
@@ -181,7 +204,7 @@ function handlePaymentNavigation(uid) {
       let status_code = response['status_code'];
       let msg = response['msg'];
       let delivery_state = response['delivery_state'];
-      let prdocut_name = response['product_name'];
+      let product_name = response['product_name'];
 
       if (status_code === 'ALREADY_PURCHASED') {
       	console.log(`Product is already purchased, so lets check delivery state to see where we should route user to next. Delivery state: ${delivery_state}`);
@@ -616,11 +639,15 @@ window.onload = (event) => {
   	console.log(`does firebase have a pending request: ${ui.isPendingRedirect()}`);
 
     if (user) {
-      var uid = user.uid;
-      var email = user.email;
-      // console.log('Recognized a state change where we have a user');
-      // changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
-      handlePaymentNavigation(uid);
+      var user_info = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        providerId: user.providerData[0].providerId
+      };
+      
+	  validateUserAuth(user_info)
+    //   handlePaymentNavigation(uid);
       // }
     } else {
       // User is signed out

@@ -113,13 +113,18 @@ function validateUserAuth(userInfo) {
 				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 			} else {
 				console.log('Successfully got a user rec id reference: ', userRecId);
-				// validatePurchase(userRecId);
+				storeUserRecId(userRecId);
+				handlePaymentNavigation(userRecId);
 			}
 		},
 		error: function (msg) {
 			console.log("Fell into failure block for action - users/create, with msg: ", msg);
 		},
   	});
+}
+
+function storeUserRecId(userRecId) {
+    localStorage.setItem('userRecId', userRecId);
 }
 
 function beginNewModelCreation() {
@@ -168,7 +173,7 @@ function beginNewModelCreation() {
 }
 
 
-function handlePaymentNavigation(uid) {
+function handlePaymentNavigation(user_rec_id) {
 	// removeUrlParameter
   const url_params = new URLSearchParams(window.location.search);
   const did_complete_payment_param = url_params.get('didCompletePayment', null);
@@ -186,7 +191,7 @@ function handlePaymentNavigation(uid) {
 
   const action = "https://whollyai-5k3b37mzsa-ue.a.run.app/purchase/save"
 	let json_payload = {
-    member_id   : uid,
+    user_rec_id   : user_rec_id,
     price_id 		: price_id,
     quantity		: quantity
   };
@@ -634,24 +639,31 @@ function resizeUploadThumbnailHeights() {
 
 window.onload = (event) => {
   console.log("page is fully loaded");
-  firebase.auth().onAuthStateChanged((user) => {
-
-  	console.log(`does firebase have a pending request: ${ui.isPendingRedirect()}`);
-
-    if (user) {
-      var user_info = {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        providerId: user.providerData[0].providerId
-      };
-      
-	  validateUserAuth(user_info)
-    //   handlePaymentNavigation(uid);
-      // }
-    } else {
-      // User is signed out
-      changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-    }
-  });
+  handleAuthStateChange();
 };
+
+function handleAuthStateChange() {
+	firebase.auth().onAuthStateChanged((user) => {
+  
+	  console.log(`does firebase have a pending request: ${ui.isPendingRedirect()}`);
+  
+	  if (user) {
+		var user_info = {
+		  uid: user.uid,
+		  email: user.email,
+		  displayName: user.displayName,
+		  providerId: user.providerData[0].providerId
+		};
+		
+		let userRecId = localStorage.getItem('userRecId');
+		if (userRecId) {
+		  handlePaymentNavigation(userRecId);
+		} else {
+		  validateUserAuth(user_info);
+		}
+	  } else { // User is signed out
+		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+	  }
+	});
+  }
+

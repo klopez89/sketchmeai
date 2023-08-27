@@ -99,7 +99,7 @@ function renderFirebaseAuthUI() {
 }
 
 function validateUserAuth(userInfo) {
-	let action = "https://whollyai-5k3b37mzsa-ue.a.run.app/gayi/users/create"
+	let action = "https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/users/create"
 	$.ajax({
 		url: action,
 		method: "POST",

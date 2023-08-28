@@ -626,7 +626,7 @@ function breadcrumbID(context) {
 // Window Events
 
 window.onresize = (event) => {
-	resizeUploadThumbnailHeights();
+	// resizeUploadThumbnailHeights();
 };
 
 function resizeUploadThumbnailHeights() {

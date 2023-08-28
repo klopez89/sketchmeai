@@ -28,7 +28,10 @@ const PURCHASE_CONTEXT = {
     SUMMARY: 3,
 };
 
+const BASE_URL = "https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/";
+
 var current_context = null;
+
 
 // Functions
 
@@ -99,7 +102,7 @@ function renderFirebaseAuthUI() {
 }
 
 function validateUserAuth(userInfo) {
-	let action = "https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/users/create"
+	let action = `${BASE_URL}users/create`
 	$.ajax({
 		url: action,
 		method: "POST",
@@ -172,9 +175,56 @@ function beginNewModelCreation() {
   	});
 }
 
+function validatePurchase(userRecId, priceId, quantity) {
+	const action = `${BASE_URL}purchase/save`
+	let json_payload = {
+		user_rec_id : userRecId,
+		price_id 	: priceId,
+		quantity	: quantity
+  };
+
+	console.log(`about to hit the purchase save endpoint: ${action}, and json_payload: ${JSON.stringify(json_payload)}`);
+	$.ajax({
+	url: action,
+	method: "POST",
+	data: JSON.stringify(json_payload),
+	contentType: "application/json",
+	dataType: "json",
+	success: function (response) {
+	
+		console.log(`The save purchase endpoint response is: ${JSON.stringify(response)}`);
+		let status_code = response['status_code'];
+		let msg = response['msg'];
+		let delivery_state = response['delivery_state'];
+		let product_name = response['product_name'];
+
+		if (status_code === 'ALREADY_PURCHASED') {
+			console.log(`Product is already purchased, so lets check delivery state to see where we should route user to next. Delivery state: ${delivery_state}`);
+			if (delivery_state === 'Just Paid') {
+				console.log('Take user to upload context');
+				changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
+			} else if (delivery_state === 'Generating Model') {
+				console.log('Take user to Summary context and let them know that their purchase is in the Model Generation step');
+			} else if (delivery_state === 'Generating Images') {
+				console.log('Take user to Summary context and let them know that their purchase is in the Image Generation step');
+			} else if (delivery_state === 'Delivered') {
+				console.log('Take user to Summary context and let them know that their purchase is ready for them and provide them w/ the link');
+			}
+		} else if (status_code === 'NO_PRODUCT_FOUND') {
+			console.log(`Present the error to user that something went wrong w/ purchase saving, msg: ${msg}`);
+		} else if (status_code === 'PURCHASE_SAVED') {
+			console.log(`The purchase was successfully saved so we can take the user to the Upload context`);
+			changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
+		}
+	},
+	error: function (msg) {
+		console.log("Fell into failure block for saving the Stripe success purchase: ", msg);
+	},
+	});
+}
+
 
 function handlePaymentNavigation(user_rec_id) {
-	// removeUrlParameter
   const url_params = new URLSearchParams(window.location.search);
   const did_complete_payment_param = url_params.get('didCompletePayment', null);
   const price_id = url_params.get('priceId', null);
@@ -186,54 +236,9 @@ function handlePaymentNavigation(user_rec_id) {
 
   if (is_destination_default_payment_context == true) {
   	changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
-  	return
+  } else {
+	validatePurchase(user_rec_id, price_id, quantity);
   }
-
-  const action = "https://whollyai-5k3b37mzsa-ue.a.run.app/purchase/save"
-	let json_payload = {
-    user_rec_id   : user_rec_id,
-    price_id 		: price_id,
-    quantity		: quantity
-  };
-
-  console.log(`about to hit the purchase save endpoint: ${action}, and json_payload: ${JSON.stringify(json_payload)}`);
-  $.ajax({
-    url: action,
-    method: "POST",
-    data: JSON.stringify(json_payload),
-    contentType: "application/json",
-    dataType: "json",
-    success: function (response) {
-      // handle all possible status codes and delivery states
-      console.log(`The save purchase endpoint response is: ${JSON.stringify(response)}`);
-      let status_code = response['status_code'];
-      let msg = response['msg'];
-      let delivery_state = response['delivery_state'];
-      let product_name = response['product_name'];
-
-      if (status_code === 'ALREADY_PURCHASED') {
-      	console.log(`Product is already purchased, so lets check delivery state to see where we should route user to next. Delivery state: ${delivery_state}`);
-      	if (delivery_state === 'Just Paid') {
-      		console.log('Take user to upload context');
-      		changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
-      	} else if (delivery_state === 'Generating Model') {
-      		console.log('Take user to Summary context and let them know that their purchase is in the Model Generation step');
-      	} else if (delivery_state === 'Generating Images') {
-      		console.log('Take user to Summary context and let them know that their purchase is in the Image Generation step');
-      	} else if (delivery_state === 'Delivered') {
-      		console.log('Take user to Summary context and let them know that their purchase is ready for them and provide them w/ the link');
-      	}
- 			} else if (status_code === 'NO_PRODUCT_FOUND') {
- 				console.log(`Present the error to user that something went wrong w/ purchase saving, msg: ${msg}`);
- 			} else if (status_code === 'PURCHASE_SAVED') {
- 				console.log(`The purchase was successfully saved so we can take the user to the Upload context`);
- 				changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
- 			}
-    },
-    error: function (msg) {
-      console.log("Fell into failure block for saving the Stripe success purchase: ", msg);
-    },
-  });
 }
 
 // Upload related functions
@@ -625,28 +630,12 @@ function breadcrumbID(context) {
 
 // Window Events
 
-window.onresize = (event) => {
-	// resizeUploadThumbnailHeights();
-};
-
-function resizeUploadThumbnailHeights() {
-	let upload_img_width = $('.purchase-context-div').find('div img').width();
-	$('.purchase-context-div').find('div img').height(upload_img_width);
-
-	let upload_container_width = $('.purchase-context-div').find('li.flex.flex-col').width();
-	$('.purchase-context-div').find('li.flex.flex-col').height(upload_container_width);
-}
-
 window.onload = (event) => {
-  console.log("page is fully loaded");
   handleAuthStateChange();
 };
 
 function handleAuthStateChange() {
 	firebase.auth().onAuthStateChanged((user) => {
-  
-	  console.log(`does firebase have a pending request: ${ui.isPendingRedirect()}`);
-  
 	  if (user) {
 		var user_info = {
 		  uid: user.uid,

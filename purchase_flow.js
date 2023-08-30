@@ -688,6 +688,7 @@ function handleAuthStateChange() {
 		}
 		toggleLogoutButton(true);
 	  } else { // User is signed out
+		console.log('Calling adapt from onAuthStateChanged');
 		adaptToSignOutState();
 	  }
 	});
@@ -695,6 +696,7 @@ function handleAuthStateChange() {
 
   function signOutUser() {
     firebase.auth().signOut().then(() => {
+		console.log('Calling adapt from signOutSure');
 		adaptToSignOutState();
     }).catch((error) => {
       console.error('Error signing out: ', error);

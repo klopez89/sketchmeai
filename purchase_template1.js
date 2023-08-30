@@ -65,6 +65,9 @@ function purchaseContextContainer_HTML() {
 		<div class="mx-auto max-w-3xl">
 			<!-- Content goes here -->
 			<div class="purchase-context-div" style="min-height: 500px; background-color: white; border-radius: 5px; position: relative;"></div>
+			<button class="float-right mt-4 bg-transparent hover:bg-gray-200 text-gray-400 font-bold py-2 px-4 rounded border border-blue-500 hover:border-transparent" id="logout">
+            Logout
+			</button>
 		</div>
 	</div>
 	`;

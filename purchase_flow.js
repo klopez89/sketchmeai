@@ -184,6 +184,10 @@ function storeUserRecId(userRecId) {
     localStorage.setItem('userRecId', userRecId);
 }
 
+function removeUserRecId() {
+    localStorage.removeItem('userRecId');
+}
+
 function beginNewModelCreation() {
 	const url_params = new URLSearchParams(window.location.search);
 	const price_id = url_params.get('priceId', null);
@@ -519,6 +523,13 @@ function toggleUploadButtonInteraction() {
 	}
 }
 
+function toggleLogoutButton(visibility) {
+    let logoutButton = document.getElementById('logout');
+    if (logoutButton != null) {
+        logoutButton.style.display = visibility ? '' : 'none';
+    }
+}
+
 function showLoadingOnUploadButton() {
 	let uploadButtonTextElement = $('#uploadToServerButton p')[0];
 	uploadButtonTextElement.style.color = "transparent";
@@ -663,21 +674,31 @@ function handleAuthStateChange() {
 	firebase.auth().onAuthStateChanged((user) => {
 	  if (user) {
 		var user_info = {
-		  uid: user.uid,
-		  email: user.email,
-		  displayName: user.displayName,
-		  providerId: user.providerData[0].providerId
+			uid: user.uid,
+			email: user.email,
+			displayName: user.displayName,
+			providerId: user.providerData[0].providerId
 		};
 		
 		let userRecId = localStorage.getItem('userRecId');
 		if (userRecId) {
-		  handlePaymentNavigation(userRecId);
+			handlePaymentNavigation(userRecId);
 		} else {
-		  validateUserAuth(user_info);
+			validateUserAuth(user_info);
 		}
+		toggleLogoutButton(true);
 	  } else { // User is signed out
 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+		toggleLogoutButton(false);
 	  }
 	});
   }
 
+  function signOutUser() {
+    firebase.auth().signOut().then(() => {
+	  removeUserRecId();
+      toggleLogoutButton(false);
+    }).catch((error) => {
+      console.error('Error signing out: ', error);
+    });
+  }

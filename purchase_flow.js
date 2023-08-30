@@ -688,17 +688,21 @@ function handleAuthStateChange() {
 		}
 		toggleLogoutButton(true);
 	  } else { // User is signed out
-		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-		toggleLogoutButton(false);
+		adaptToSignOutState();
 	  }
 	});
   }
 
   function signOutUser() {
     firebase.auth().signOut().then(() => {
-	  removeUserRecId();
-      toggleLogoutButton(false);
+		adaptToSignOutState();
     }).catch((error) => {
       console.error('Error signing out: ', error);
     });
+  }
+
+  function adaptToSignOutState() {
+	removeUserRecId();
+	changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+	toggleLogoutButton(false);
   }

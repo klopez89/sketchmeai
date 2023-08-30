@@ -28,6 +28,19 @@ const PURCHASE_CONTEXT = {
     SUMMARY: 3,
 };
 
+const PURCHASE_RESULT = {
+	PURCHASE_EXISTS: 'PURCHASE_EXISTS',
+	PURCHASE_CREATED: 'PURCHASE_CREATED',
+	FAILED: 'FAILED'
+}
+const DELIVERY_STATE = {
+    JUST_PAID: 'JUST_PAID',
+    GENERATING_MODEL: 'GENERATING_MODEL',
+    GENERATING_IMAGES: 'GENERATING_IMAGES',
+    EMAILED_LINK: 'EMAILED_LINK'
+}
+
+
 const BASE_URL = "https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/";
 
 var current_context = null;
@@ -126,6 +139,47 @@ function validateUserAuth(userInfo) {
   	});
 }
 
+function validatePurchase(userRecId, priceId, quantity) {
+	const action = `${BASE_URL}purchase/save`
+	let json_payload = {
+		user_rec_id : userRecId,
+		price_id 	: priceId,
+		quantity	: quantity
+	};
+
+	console.log(`about to hit the purchase save endpoint: ${action}, and json_payload: ${JSON.stringify(json_payload)}`);
+	$.ajax({
+		url: action,
+		method: "POST",
+		data: JSON.stringify(json_payload),
+		contentType: "application/json",
+		dataType: "json",
+		success: function (response) {
+			console.log(`The save purchase endpoint response is: ${JSON.stringify(response)}`);
+			let purchase_result = PURCHASE_RESULT[response['purchase_result']];
+			let delivery_state = DELIVERY_STATE[response['delivery_state']];
+			switch(purchase_result) {
+				case PURCHASE_RESULT.PURCHASE_EXISTS:
+					navigateWithDeliveryState(delivery_state);
+					break;
+				case PURCHASE_RESULT.PURCHASE_CREATED:
+					changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
+					break;
+				case PURCHASE_RESULT.FAILED:
+					console.log('Purchase failed');
+					changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
+					break;
+				default:
+					console.log('Unknown purchase result');
+					changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
+			}
+		},
+		error: function (msg) {
+			console.log("Fell into failure block for saving the Stripe success purchase: ", msg);
+		},
+	});
+}
+
 function storeUserRecId(userRecId) {
     localStorage.setItem('userRecId', userRecId);
 }
@@ -175,52 +229,23 @@ function beginNewModelCreation() {
   	});
 }
 
-function validatePurchase(userRecId, priceId, quantity) {
-	const action = `${BASE_URL}purchase/save`
-	let json_payload = {
-		user_rec_id : userRecId,
-		price_id 	: priceId,
-		quantity	: quantity
-  };
 
-	console.log(`about to hit the purchase save endpoint: ${action}, and json_payload: ${JSON.stringify(json_payload)}`);
-	$.ajax({
-	url: action,
-	method: "POST",
-	data: JSON.stringify(json_payload),
-	contentType: "application/json",
-	dataType: "json",
-	success: function (response) {
-	
-		console.log(`The save purchase endpoint response is: ${JSON.stringify(response)}`);
-		let status_code = response['status_code'];
-		let msg = response['msg'];
-		let delivery_state = response['delivery_state'];
-		let product_name = response['product_name'];
-
-		if (status_code === 'ALREADY_PURCHASED') {
-			console.log(`Product is already purchased, so lets check delivery state to see where we should route user to next. Delivery state: ${delivery_state}`);
-			if (delivery_state === 'Just Paid') {
-				console.log('Take user to upload context');
-				changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
-			} else if (delivery_state === 'Generating Model') {
-				console.log('Take user to Summary context and let them know that their purchase is in the Model Generation step');
-			} else if (delivery_state === 'Generating Images') {
-				console.log('Take user to Summary context and let them know that their purchase is in the Image Generation step');
-			} else if (delivery_state === 'Delivered') {
-				console.log('Take user to Summary context and let them know that their purchase is ready for them and provide them w/ the link');
-			}
-		} else if (status_code === 'NO_PRODUCT_FOUND') {
-			console.log(`Present the error to user that something went wrong w/ purchase saving, msg: ${msg}`);
-		} else if (status_code === 'PURCHASE_SAVED') {
-			console.log(`The purchase was successfully saved so we can take the user to the Upload context`);
+function navigateWithDeliveryState(delivery_state) {
+	switch (delivery_state) {
+		case DELIVERY_STATE.JUST_PAID:
+			console.log('Take user to upload context');
 			changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
-		}
-	},
-	error: function (msg) {
-		console.log("Fell into failure block for saving the Stripe success purchase: ", msg);
-	},
-	});
+			break;
+		case DELIVERY_STATE.GENERATING_MODEL:
+			console.log('Take user to Summary context and let them know that their purchase is in the Model Generation step');
+			break;
+		case DELIVERY_STATE.GENERATING_IMAGES:
+			console.log('Take user to Summary context and let them know that their purchase is in the Image Generation step');
+			break;
+		case DELIVERY_STATE.EMAILED_LINK:
+			console.log('Take user to Summary context and let them know that their purchase is ready for them and provide them w/ the link');
+			break;
+	}
 }
 
 

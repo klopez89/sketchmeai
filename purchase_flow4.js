@@ -668,6 +668,15 @@ function breadcrumbID(context) {
 
 // Window Events
 
+function isComginFromStripeRedirect() {
+	const url_params = new URLSearchParams(window.location.search);
+	const did_complete_payment_param = url_params.get('didCompletePayment', null);
+	const price_id = url_params.get('priceId', null);
+	const quantity = url_params.get('quantity', null);
+  
+	const did_not_arrive_from_stripe_redirect = (did_complete_payment_param == null) && (price_id == null) && (quantity == null)
+}
+
 window.onload = (event) => {
   handleAuthStateChange();
 };
@@ -690,8 +699,9 @@ function handleAuthStateChange() {
 		}
 		toggleLogoutButton(true);
 	  } else { // User is signed out
-		console.log('Calling adapt from onAuthStateChanged');
-		adaptToSignOutState();
+		console.log('In user is signed out path, calling adapt from onAuthStateChanged');
+		console.log('and the current page URL:', window.location.href);
+		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 	  }
 	});
   }

@@ -710,17 +710,16 @@ function handleAuthStateChange() {
 	showLoader();
     firebase.auth().signOut().then(() => {
 		console.log('Calling adapt from signOutSure');
-		setTimeout(function() {
-			adaptToSignOutState();
-		}, 500);
-		
+		adaptToSignOutState();
     }).catch((error) => {
       console.error('Error signing out: ', error);
     });
   }
 
   function adaptToSignOutState() {
-	removeUserRecId();
-	changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-	toggleLogoutButton(false);
+	setTimeout(function() {
+		removeUserRecId();
+		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+		toggleLogoutButton(false);
+	}, 1000);
   }

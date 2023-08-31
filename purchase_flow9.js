@@ -722,10 +722,10 @@ function handleAuthStateChange() {
   }
 
   function adaptToSignOutState() {
+	toggleLogoutButton(false);
 	setTimeout(function() {
 		removeUserRecId();
 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-		toggleLogoutButton(false);
 		logoutPressed = false;
-	}, 1000);
+	}, 800);
   }

@@ -22,6 +22,7 @@ $('.purchase-context-div').append(loader_element);
 
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(auth);
+var logoutPressed = false;
 
 const PURCHASE_CONTEXT = {
     LOGIN: 0,
@@ -683,6 +684,7 @@ window.onload = (event) => {
 
 function handleAuthStateChange() {
 	firebase.auth().onAuthStateChanged((user) => {
+		
 	  if (user) {
 		var user_info = {
 			uid: user.uid,
@@ -698,15 +700,18 @@ function handleAuthStateChange() {
 			validateUserAuth(user_info);
 		}
 		toggleLogoutButton(true);
-	  } else { // User is signed out
-		console.log('In user is signed out path, calling adapt from onAuthStateChanged');
-		console.log('and the current page URL:', window.location.href);
-		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+	  } else { // User is signed out or is signing out
+		if (logoutPressed === false) {
+			console.log('In user is signed out path, calling adapt from onAuthStateChanged');
+			console.log('and the current page URL:', window.location.href);
+			changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+		}
 	  }
 	});
   }
 
   function signOutUser() {
+	logoutPressed = true;
 	showLoader();
     firebase.auth().signOut().then(() => {
 		console.log('Calling adapt from signOutSure');
@@ -721,5 +726,6 @@ function handleAuthStateChange() {
 		removeUserRecId();
 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 		toggleLogoutButton(false);
+		logoutPressed = false;
 	}, 1000);
   }

@@ -710,7 +710,6 @@ function handleAuthStateChange() {
 	showLoader();
     firebase.auth().signOut().then(() => {
 		console.log('Calling adapt from signOutSure');
-		adaptToSignOutState();
 		setTimeout(function() {
 			adaptToSignOutState();
 		}, 500);

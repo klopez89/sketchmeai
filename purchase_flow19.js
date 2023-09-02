@@ -706,13 +706,14 @@ function handleAuthStateChange() {
 				validateUserAuth(user_info);
 			}
 			toggleLogoutButton(true);
-		} else { // User is signed out or is signing out
-			if (logoutPressed === false) {
-				console.log('In user is signed out path, calling adapt from onAuthStateChanged');
-				console.log('and the current page URL:', window.location.href);
-				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-			}
-		}
+		} 
+		// else { // User is signed out or is signing out
+		// 	if (logoutPressed === false) {
+		// 		console.log('In user is signed out path, calling adapt from onAuthStateChanged');
+		// 		console.log('and the current page URL:', window.location.href);
+		// 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+		// 	}
+		// }
 	});
 }
 

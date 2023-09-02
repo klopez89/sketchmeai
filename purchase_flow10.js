@@ -32,6 +32,7 @@ const PURCHASE_CONTEXT = {
 };
 
 const PURCHASE_RESULT = {
+	STRIPE_PRODUCT_NOT_FOUND: 'STRIPE_PRODUCT_NOT_FOUND',
 	PURCHASE_EXISTS: 'PURCHASE_EXISTS',
 	PURCHASE_CREATED: 'PURCHASE_CREATED',
 	FAILED: 'FAILED'
@@ -162,6 +163,9 @@ function validatePurchase(userRecId, priceId, quantity) {
 			let purchase_result = PURCHASE_RESULT[response['purchase_result']];
 			let delivery_state = DELIVERY_STATE[response['delivery_state']];
 			switch(purchase_result) {
+				case STRIPE_PRODUCT_NOT_FOUND:
+					console.log('Stripe product not found try again later');
+					changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
 				case PURCHASE_RESULT.PURCHASE_EXISTS:
 					navigateWithDeliveryState(delivery_state);
 					break;
@@ -669,15 +673,6 @@ function breadcrumbID(context) {
 
 // Window Events
 
-function isComginFromStripeRedirect() {
-	const url_params = new URLSearchParams(window.location.search);
-	const did_complete_payment_param = url_params.get('didCompletePayment', null);
-	const price_id = url_params.get('priceId', null);
-	const quantity = url_params.get('quantity', null);
-  
-	const did_not_arrive_from_stripe_redirect = (did_complete_payment_param == null) && (price_id == null) && (quantity == null)
-}
-
 window.onload = (event) => {
   handleAuthStateChange();
 };
@@ -708,9 +703,9 @@ function handleAuthStateChange() {
 		}
 	  }
 	});
-  }
+}
 
-  function signOutUser() {
+function signOutUser() {
 	logoutPressed = true;
 	showLoader();
     firebase.auth().signOut().then(() => {
@@ -721,11 +716,11 @@ function handleAuthStateChange() {
     });
   }
 
-  function adaptToSignOutState() {
+function adaptToSignOutState() {
 	toggleLogoutButton(false);
 	setTimeout(function() {
 		removeUserRecId();
 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 		logoutPressed = false;
 	}, 800);
-  }
+}

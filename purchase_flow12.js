@@ -1,4 +1,3 @@
-
 // Configure HTML
 $('body').attr('id','bodyDiv');
 
@@ -8,7 +7,7 @@ $('body').append(breadcrumb_element);
 
 console.log('about to laod the purchase context container html into the body');
 
-let purchaseContextContainer_html = purchaseContextContainer_HTML();
+let purchaseContextContainer_html = purchaseContextContainer_HTML(firebase.auth().isSignedIn);
 let purchaseContextContainer_element = $($.parseHTML(purchaseContextContainer_html));
 $('body').append(purchaseContextContainer_element);
 
@@ -173,11 +172,11 @@ function validatePurchase(userRecId, priceId, quantity) {
 					changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
 					break;
 				case PURCHASE_RESULT.FAILED:
-					console.log('Purchase failed');
+					console.log('Purchase save failed');
 					changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
 					break;
 				default:
-					console.log('Unknown purchase result');
+					console.log('Unknown result in saving the purchase');
 					changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
 			}
 		},
@@ -193,6 +192,10 @@ function storeUserRecId(userRecId) {
 
 function removeUserRecId() {
     localStorage.removeItem('userRecId');
+}
+
+function isSignedIn() {
+
 }
 
 function beginNewModelCreation() {
@@ -593,6 +596,11 @@ function resetCurrentContextIfPossible() {
 	document.querySelector('.purchase-context-div').innerHTML = loader.outerHTML.replace(/\\"/g, '"');
 }
 
+function removeQueryParamsFromUrl() {
+    let url = window.location.href.split('?')[0];
+    window.history.replaceState({}, document.title, url);
+}
+
 function configureForNewContext(new_context) {
 	// add new context to purchase-context-div
 	addUIForNewContext(new_context);
@@ -635,8 +643,8 @@ function addUIForNewContext(new_context) {
 function kickOffContextProcess(new_context) {
 		switch (new_context) {
 		case PURCHASE_CONTEXT.LOGIN:
-      renderFirebaseAuthUI();
-      break
+			renderFirebaseAuthUI();
+			break
 		case PURCHASE_CONTEXT.PAYMENT:
 		case PURCHASE_CONTEXT.UPLOAD:
 			configureNewModelUploadArea();

@@ -59,13 +59,13 @@ function firebaseUI_HTML() {
 	return firebase_ui_html
 }
 
-function purchaseContextContainer_HTML() {
+function purchaseContextContainer_HTML(should_show_logout_button) {
 	let html = `
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8" style="margin-top: 20px;">
 		<div class="mx-auto max-w-3xl">
 			<!-- Content goes here -->
 			<div class="purchase-context-div min-h-[520px] bg-white rounded relative"></div>
-			<button class="float-right mt-4 bg-transparent hover:bg-gray-200 text-gray-400 font-bold py-2 px-4 rounded border border-blue-500 hover:border-transparent" id="logout" onclick="signOutUser()" style="display: none;">
+			<button class="float-right mt-4 bg-transparent hover:bg-gray-200 text-gray-400 font-bold py-2 px-4 rounded border border-blue-500 hover:border-transparent" id="logout" onclick="signOutUser()" style="display: ${should_show_logout_button ? '' : 'none'};">
             Logout
 			</button>
 		</div>

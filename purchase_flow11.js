@@ -163,7 +163,7 @@ function validatePurchase(userRecId, priceId, quantity) {
 			let purchase_result = PURCHASE_RESULT[response['purchase_result']];
 			let delivery_state = DELIVERY_STATE[response['delivery_state']];
 			switch(purchase_result) {
-				case STRIPE_PRODUCT_NOT_FOUND:
+				case PURCHASE_RESULT.STRIPE_PRODUCT_NOT_FOUND:
 					console.log('Stripe product not found try again later');
 					changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
 				case PURCHASE_RESULT.PURCHASE_EXISTS:

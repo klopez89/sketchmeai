@@ -81,13 +81,15 @@ function renderFirebaseAuthUI() {
           // console.log(`detected the user is not new so just signing in again, email: ${email}, uid: ${uid}, displayName: ${displayName}`);
         }
 
+		console.log('Successfully logged in');
+
         // Return type determines whether we continue the redirect automatically
         // or whether we leave that to developer to handle.
         return false;
       },
       uiShown: function() {
         // The widget is rendered.
-        // console.log(`Ui  shown function is called, isPendingRequest: ${ui.isPendingRedirect()}`);
+        console.log(`Ui  shown function is called, isPendingRequest: ${ui.isPendingRedirect()}`);
         if (ui.isPendingRedirect() == false) {
         	console.log(`just before calling hideLoader in uishown, isPendingRequest: ${ui.isPendingRedirect()}`);
 	        hideLoader();

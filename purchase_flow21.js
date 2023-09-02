@@ -685,6 +685,7 @@ window.onload = (event) => {
 
 function handleAuthStateChange() {
 	firebase.auth().onAuthStateChanged((user) => {
+		console.log('In onAuthStateChanged, user is: ', user);
 		let isSignedIntoFirebase = user != null;
 		let logoutButton = document.getElementById('logout');
 		if (logoutButton != null) {

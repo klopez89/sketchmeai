@@ -684,6 +684,16 @@ window.onload = (event) => {
 };
 
 function handleAuthStateChange() {
+	firebase.auth().getRedirectResult().then((result) => {
+		if (result.user) {
+		  console.log('User just signed in through redirect.');
+		} else {
+		  console.log('No user signed in through redirect.');
+		}
+	}).catch((error) => {
+		console.error('Error during sign-in: ', error);
+	});
+
 	firebase.auth().onAuthStateChanged((user) => {
 		console.log('In onAuthStateChanged, user is: ', user);
 		let isSignedIntoFirebase = user != null;

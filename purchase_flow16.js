@@ -1,24 +1,10 @@
-// Configure HTML
-$('body').attr('id','bodyDiv');
 
-let breadcrumb_html = breadcrumb_HTML();
-let breadcrumb_element = $($.parseHTML(breadcrumb_html));
-$('body').append(breadcrumb_element);
 
-console.log('about to laod the purchase context container html into the body');
-let isSignedIntoFirebase = firebase.auth().user != null;
-console.log('isSignedIn value: ', isSignedIntoFirebase);
-let purchaseContextContainer_html = purchaseContextContainer_HTML(isSignedIntoFirebase);
-let purchaseContextContainer_element = $($.parseHTML(purchaseContextContainer_html));
-$('body').append(purchaseContextContainer_element);
+firebase.auth().onAuthStateChanged(function(user) {
+	let isSignedIntoFirebase = user != null;
+	initiaizePage(isSignedIntoFirebase);	
+});
 
-// let firebaseui_html = firebaseUI_HTML();
-// let firebaseui_element = $($.parseHTML(firebaseui_html));
-// $('.purchase-context-div').append(firebaseui_element);
-
-let loader_html = centeredLoader_HTML();
-let loader_element = $($.parseHTML(loader_html));
-$('.purchase-context-div').append(loader_element);
 
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(auth);
@@ -51,6 +37,23 @@ var current_context = null;
 
 
 // Functions
+
+function initiaizePage(isSignedIntoFirebase) {
+	$('body').attr('id','bodyDiv');
+
+	let breadcrumb_html = breadcrumb_HTML();
+	let breadcrumb_element = $($.parseHTML(breadcrumb_html));
+	$('body').append(breadcrumb_element);
+	
+	let purchaseContextContainer_html = purchaseContextContainer_HTML(isSignedIntoFirebase);
+	let purchaseContextContainer_element = $($.parseHTML(purchaseContextContainer_html));
+	$('body').append(purchaseContextContainer_element);
+
+
+	let loader_html = centeredLoader_HTML();
+	let loader_element = $($.parseHTML(loader_html));
+	$('.purchase-context-div').append(loader_element);
+}
 
 function renderFirebaseAuthUI() {
   var uiConfig = {

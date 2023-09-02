@@ -6,9 +6,9 @@ let breadcrumb_element = $($.parseHTML(breadcrumb_html));
 $('body').append(breadcrumb_element);
 
 console.log('about to laod the purchase context container html into the body');
-let isSignedIn = firebase.auth().user != null;
-console.log('isSignedIn value: ', isSignedIn);
-let purchaseContextContainer_html = purchaseContextContainer_HTML(isSignedIn);
+let isSignedIntoFirebase = firebase.auth().user != null;
+console.log('isSignedIn value: ', isSignedIntoFirebase);
+let purchaseContextContainer_html = purchaseContextContainer_HTML(isSignedIntoFirebase);
 let purchaseContextContainer_element = $($.parseHTML(purchaseContextContainer_html));
 $('body').append(purchaseContextContainer_element);
 

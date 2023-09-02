@@ -1,12 +1,5 @@
 
 initiaizePage();
-firebase.auth().onAuthStateChanged(function(user) {
-	let isSignedIntoFirebase = user != null;
-	let logoutButton = document.getElementById('logout');
-	if (logoutButton != null) {
-		logoutButton.style.display = isSignedIntoFirebase ? '' : 'none';
-	}
-});
 
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(auth);
@@ -692,29 +685,34 @@ window.onload = (event) => {
 
 function handleAuthStateChange() {
 	firebase.auth().onAuthStateChanged((user) => {
-		
-	  if (user) {
-		var user_info = {
-			uid: user.uid,
-			email: user.email,
-			displayName: user.displayName,
-			providerId: user.providerData[0].providerId
-		};
-		
-		let userRecId = localStorage.getItem('userRecId');
-		if (userRecId) {
-			handlePaymentNavigation(userRecId);
-		} else {
-			validateUserAuth(user_info);
+		let isSignedIntoFirebase = user != null;
+		let logoutButton = document.getElementById('logout');
+		if (logoutButton != null) {
+			logoutButton.style.display = isSignedIntoFirebase ? '' : 'none';
 		}
-		toggleLogoutButton(true);
-	  } else { // User is signed out or is signing out
-		if (logoutPressed === false) {
-			console.log('In user is signed out path, calling adapt from onAuthStateChanged');
-			console.log('and the current page URL:', window.location.href);
-			changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+
+		if (user) {
+			var user_info = {
+				uid: user.uid,
+				email: user.email,
+				displayName: user.displayName,
+				providerId: user.providerData[0].providerId
+			};
+			
+			let userRecId = localStorage.getItem('userRecId');
+			if (userRecId) {
+				handlePaymentNavigation(userRecId);
+			} else {
+				validateUserAuth(user_info);
+			}
+			toggleLogoutButton(true);
+		} else { // User is signed out or is signing out
+			if (logoutPressed === false) {
+				console.log('In user is signed out path, calling adapt from onAuthStateChanged');
+				console.log('and the current page URL:', window.location.href);
+				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+			}
 		}
-	  }
 	});
 }
 

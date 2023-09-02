@@ -1,5 +1,5 @@
 
-initiaizePage();
+initializePage();
 
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(auth);
@@ -33,7 +33,7 @@ var current_context = null;
 
 // Functions
 
-function initiaizePage() {
+function initializePage() {
 	$('body').attr('id','bodyDiv');
 
 	let breadcrumb_html = breadcrumb_HTML();
@@ -707,13 +707,13 @@ function handleAuthStateChange() {
 			}
 			toggleLogoutButton(true);
 		} 
-		// else { // User is signed out or is signing out
-		// 	if (logoutPressed === false) {
-		// 		console.log('In user is signed out path, calling adapt from onAuthStateChanged');
-		// 		console.log('and the current page URL:', window.location.href);
-		// 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-		// 	}
-		// }
+		else { // User is signed out or is signing out
+			if (logoutPressed === false) {
+				console.log('In user is signed out path, calling adapt from onAuthStateChanged');
+				console.log('and the current page URL:', window.location.href);
+				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+			}
+		}
 	});
 }
 

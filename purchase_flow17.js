@@ -1,10 +1,12 @@
 
-
+initiaizePage();
 firebase.auth().onAuthStateChanged(function(user) {
 	let isSignedIntoFirebase = user != null;
-	initiaizePage(isSignedIntoFirebase);	
+	let logoutButton = document.getElementById('logout');
+	if (logoutButton != null) {
+		logoutButton.style.display = isSignedIntoFirebase ? '' : 'none';
+	}
 });
-
 
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(auth);
@@ -38,17 +40,16 @@ var current_context = null;
 
 // Functions
 
-function initiaizePage(isSignedIntoFirebase) {
+function initiaizePage() {
 	$('body').attr('id','bodyDiv');
 
 	let breadcrumb_html = breadcrumb_HTML();
 	let breadcrumb_element = $($.parseHTML(breadcrumb_html));
 	$('body').append(breadcrumb_element);
 	
-	let purchaseContextContainer_html = purchaseContextContainer_HTML(isSignedIntoFirebase);
+	let purchaseContextContainer_html = purchaseContextContainer_HTML();
 	let purchaseContextContainer_element = $($.parseHTML(purchaseContextContainer_html));
 	$('body').append(purchaseContextContainer_element);
-
 
 	let loader_html = centeredLoader_HTML();
 	let loader_element = $($.parseHTML(loader_html));

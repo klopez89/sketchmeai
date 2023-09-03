@@ -686,15 +686,6 @@ window.onload = (event) => {
 };
 
 function handleAuthStateChange() {
-	firebase.auth().getRedirectResult().then((result) => {
-		if (result.user) {
-		  console.log('User just signed in through redirect.');
-		} else {
-		  console.log('No user signed in through redirect.');
-		}
-	}).catch((error) => {
-		console.error('Error during sign-in: ', error);
-	});
 
 	firebase.auth().onAuthStateChanged((user) => {
 		console.log('In onAuthStateChanged, user is: ', user);
@@ -718,6 +709,7 @@ function handleAuthStateChange() {
 			} else {
 				validateUserAuth(user_info);
 			}
+			console.log('About to make the logout button visible');
 			toggleLogoutButton(true);
 		} 
 		else { // User is signed out or is signing out

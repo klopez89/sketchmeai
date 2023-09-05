@@ -57,8 +57,7 @@ function renderFirebaseAuthUI() {
         var currentUrl = window.location.href;
         var urlParams = new URLSearchParams(window.location.search);
         firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in, now redirect back with the original URL parameters
+          if (user && !urlParams.has('priceId')) {
             window.location.href = currentUrl + '?' + urlParams.toString();
           }
         });

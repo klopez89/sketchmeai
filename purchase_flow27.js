@@ -137,17 +137,25 @@ function validateUserAuth(userInfo) {
 		dataType: "json",
 		success: function (response) {
 			let userDict = response['user'];
-			let userRecId = userDict['user_rec_id'];
-			let purchasesDict = userDict['purchases'];
+
+			let userRecId = userDict.hasOwnProperty('user_rec_id') ? userDict['user_rec_id'] : null;
+			let purchasesDict = userDict.hasOwnProperty('purchases') ? userDict['purchases'] : null;
+
+			if (purchasesDict != null) {
+				saveUserPurchasesToLocalStorage(purchasesDict);
+			}
+			if (userRecId != null) {
+				storeUserRecId(userRecId);
+			}
 
 			let priceId = getPriceIdFromUrl();
 
+			// Navigate to the appropriate context
 			let purchase_rec_id = null;
 			if (purchasesDict.hasOwnProperty(priceId)) {
 				purchase_rec_id = purchasesDict[priceId];
 				validatePreviousPurchase(purchase_rec_id);
 			} else if (userRecId != null) {
-				storeUserRecId(userRecId);
 				handlePaymentNavigation(userRecId);
 			} else {
 				console.log('Failed to retrieve or create a user in our database, needs dev review. Falling back to login view');
@@ -159,6 +167,15 @@ function validateUserAuth(userInfo) {
 		},
   	});
 }
+
+function saveUserPurchasesToLocalStorage(purchasesDict) {
+    localStorage.setItem('userPurchases', JSON.stringify(purchasesDict));
+}
+
+function deleteUserPurchasesFromLocalStorage() {
+    localStorage.removeItem('userPurchases');
+}
+
 
 function validatePreviousPurchase(purchase_rec_id) {
 	const action = `${BASE_URL}purchase/validate`
@@ -308,19 +325,7 @@ function navigateWithDeliveryState(delivery_state) {
 	}
 }
 
-function handlePaymentNavigation(user_rec_id, purchase_rec_id=None) {
-
-
-  const priceIdFromUrl = getPriceIdFromUrl();
-  if (purchase_rec_id === priceIdFromUrl) {
-    console.log('Purchase record ID matches the price ID from URL');
-  } else {
-    console.log('Purchase record ID does not match the price ID from URL');
-  }
-
-
-
-
+function handlePaymentNavigation(user_rec_id) {
   const url_params = new URLSearchParams(window.location.search);
   const did_complete_payment_param = url_params.get('didCompletePayment', null);
   const price_id = url_params.get('priceId', null);
@@ -753,19 +758,28 @@ function handleAuthStateChange() {
 				providerId: user.providerData[0].providerId
 			};
 			
+			// Get reference to any local storage data for fast navgiation for returning users
 			let userRecId = localStorage.getItem('userRecId');
-			if (userRecId) {
+			let purchasesDict = localStorage.getItem('userPurchases');
+
+			let priceId = getPriceIdFromUrl();
+
+			// Navigate to the appropriate context
+			if (purchasesDict && purchasesDict.hasOwnProperty(priceId)) {
+				purchase_rec_id = purchasesDict[priceId];
+				validatePreviousPurchase(purchase_rec_id);
+			} else if (userRecId) {
 				handlePaymentNavigation(userRecId);
 			} else {
 				validateUserAuth(user_info);
 			}
+
 			console.log('About to make the logout button visible');
 			toggleLogoutButton(true);
 		} 
 		else { // User is signed out or is signing out
 			if (logoutPressed === false) {
-				console.log('In user is signed out path, calling adapt from onAuthStateChanged');
-				console.log('and the current page URL:', window.location.href);
+				console.log('In user is in signed out path, calling adapt from onAuthStateChanged');
 				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 			}
 		}

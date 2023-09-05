@@ -56,8 +56,9 @@ function renderFirebaseAuthUI() {
         // Preserve the query parameters in the URL after sign in unless we already have the priceId
         var currentUrl = window.location.href;
         var urlParams = new URLSearchParams(window.location.search);
+		let hasPriceIDInUrl = urlParams.has('priceId');
         firebase.auth().onAuthStateChanged(function(user) {
-        	if (user && !urlParams.has('priceId')) {
+        	if (user && !hasPriceIDInUrl) {
             window.location.href = currentUrl + '?' + urlParams.toString();
           }
         });

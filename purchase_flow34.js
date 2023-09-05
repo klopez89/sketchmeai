@@ -753,6 +753,18 @@ function breadcrumbID(context) {
 
 // Window Events
 
+window.onresize = (event) => {
+	resizeUploadThumbnailHeights();
+};
+
+function resizeUploadThumbnailHeights() {
+	let upload_img_width = $('.purchase-context-div').find('div img').width();
+	$('.purchase-context-div').find('div img').height(upload_img_width);
+
+	let upload_container_width = $('.purchase-context-div').find('li.flex.flex-col').width();
+	$('.purchase-context-div').find('li.flex.flex-col').height(upload_container_width);
+}
+
 window.onload = (event) => {
   handleAuthStateChange();
 };

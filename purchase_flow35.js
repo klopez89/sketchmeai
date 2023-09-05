@@ -372,6 +372,7 @@ function configureNewModelUploadArea() {
 		localUploadInput.addEventListener("change", () => {
 			console.log('Trigger change event of local upload input');
 		 	const files = localUploadInput.files;
+			
 			handleFileUploads(files);
 		});
 
@@ -489,6 +490,9 @@ function handleFileUploads(files) {
 function updateUploadAreaTitle() {
 	let numberOfFilesLeftToUpload = (numberOfUploadedFiles() <= 10) ? (10 - numberOfUploadedFiles()) : 0;
 	document.getElementById("upload-caption").innerHTML = "Drag or click to upload " + numberOfFilesLeftToUpload + " images";
+	if (numberOfFilesLeftToUpload === getMaxUploadCount()) {
+		document.getElementById('localUploadInput').value = "";
+	}
 }
 
 function numberOfUploadedFiles() {
@@ -542,27 +546,26 @@ function addFileUploadDivToDOM(file) {
 	let is_first_file = upload_count === 0;
 
 	let upload_entry = uploadEntryDiv(file, is_first_file);
-  let upload_entry_element = $($.parseHTML(upload_entry));
+	let upload_entry_element = $($.parseHTML(upload_entry));
 
+	let delete_button = upload_entry_element.find(".remove-upload-button")[0];
+	delete_button.addEventListener('click', function(event) {
+		event.preventDefault();
 
-  let delete_button = upload_entry_element.find(".remove-upload-button")[0];
-  delete_button.addEventListener('click', function(event) {
-  	event.preventDefault();
-
-  	let entry_is_inside_padding_container = upload_entry_element.parent('div').length > 0
-  	if (entry_is_inside_padding_container) {
-  		upload_entry_element.parent('div').remove();
-  	} else {
-  		upload_entry_element.remove();
-  	}
+		let entry_is_inside_padding_container = upload_entry_element.parent('div').length > 0
+		if (entry_is_inside_padding_container) {
+			upload_entry_element.parent('div').remove();
+		} else {
+			upload_entry_element.remove();
+		}
 
 		updateUploadAreaTitle();
 		toggleUploadAreaVisibility();
 		toggleUploadButtonInteraction();
 	});
 
-  $('#uploadEntryContainer').prepend(upload_entry_element);
-  resizeUploadThumbnailHeights()
+	$('#uploadEntryContainer').prepend(upload_entry_element);
+	resizeUploadThumbnailHeights()
 
 	upload_entry_element.find('#uploadedImage')[0].src = file.data;
 	updateUploadAreaTitle();

@@ -117,6 +117,16 @@ function renderFirebaseAuthUI() {
   ui.start('#firebaseui-auth-container', uiConfig);
 }
 
+function getPriceIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const priceId = urlParams.get('priceId');
+    if (!priceId) {
+        console.error('No priceId found in the URL query parameters.');
+        return null;
+    }
+    return priceId;
+}
+
 function validateUserAuth(userInfo) {
 	let action = `${BASE_URL}users/create`
 	$.ajax({
@@ -126,20 +136,52 @@ function validateUserAuth(userInfo) {
 		contentType: "application/json",
 		dataType: "json",
 		success: function (response) {
-			let userRecId = response['user_rec_id'];
-			if (userRecId == null) {
-				console.log('Failed to retrieve or create a user in our database, needs dev review. Falling back to login view');
-				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-			} else {
-				console.log('Successfully got a user rec id reference: ', userRecId);
+			let userDict = response['user'];
+			let userRecId = userDict['user_rec_id'];
+			let purchasesDict = userDict['purchases'];
+
+			let priceId = getPriceIdFromUrl();
+
+			let purchase_rec_id = null;
+			if (purchasesDict.hasOwnProperty(priceId)) {
+				purchase_rec_id = purchasesDict[priceId];
+				validatePreviousPurchase(purchase_rec_id);
+			} else if (userRecId != null) {
 				storeUserRecId(userRecId);
 				handlePaymentNavigation(userRecId);
+			} else {
+				console.log('Failed to retrieve or create a user in our database, needs dev review. Falling back to login view');
+				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 			}
 		},
 		error: function (msg) {
 			console.log("Fell into failure block for action - users/create, with msg: ", msg);
 		},
   	});
+}
+
+function validatePreviousPurchase(purchase_rec_id) {
+	const action = `${BASE_URL}purchase/validate`
+	let json_payload = {
+		purchase_rec_id : purchase_rec_id
+	};
+	console.log(`about to hit the validate purchase endpoint: ${action}, and json_payload: ${JSON.stringify(json_payload)}`);
+	$.ajax({
+		url: action,
+		method: "POST",
+		data: JSON.stringify(json_payload),
+		contentType: "application/json",
+		dataType: "json",
+		success: function (response) {
+			console.log(`The validate purchase endpoint response is: ${JSON.stringify(response)}`);
+			let purchase_result = PURCHASE_RESULT[response['purchase_result']];
+			let delivery_state = DELIVERY_STATE[response['delivery_state']];
+			handlePurchaseResponse(purchase_result, delivery_state);
+		},
+		error: function (msg) {
+			console.log("Fell into failure block for validating existing purchase: ", msg);
+		},
+	});
 }
 
 function validatePurchase(userRecId, priceId, quantity) {
@@ -161,29 +203,33 @@ function validatePurchase(userRecId, priceId, quantity) {
 			console.log(`The save purchase endpoint response is: ${JSON.stringify(response)}`);
 			let purchase_result = PURCHASE_RESULT[response['purchase_result']];
 			let delivery_state = DELIVERY_STATE[response['delivery_state']];
-			switch(purchase_result) {
-				case PURCHASE_RESULT.STRIPE_PRODUCT_NOT_FOUND:
-					console.log('Stripe product not found try again later');
-					changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
-				case PURCHASE_RESULT.PURCHASE_EXISTS:
-					navigateWithDeliveryState(delivery_state);
-					break;
-				case PURCHASE_RESULT.PURCHASE_CREATED:
-					changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
-					break;
-				case PURCHASE_RESULT.FAILED:
-					console.log('Purchase save failed');
-					changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
-					break;
-				default:
-					console.log('Unknown result in saving the purchase');
-					changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
-			}
+			handlePurchaseResponse(purchase_result, delivery_state);
 		},
 		error: function (msg) {
 			console.log("Fell into failure block for saving the Stripe success purchase: ", msg);
 		},
 	});
+}
+
+function handlePurchaseResponse(purchase_result, delivery_state) {
+	switch(purchase_result) {
+		case PURCHASE_RESULT.STRIPE_PRODUCT_NOT_FOUND:
+			console.log('Stripe product not found try again later');
+			changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
+		case PURCHASE_RESULT.PURCHASE_EXISTS:
+			navigateWithDeliveryState(delivery_state);
+			break;
+		case PURCHASE_RESULT.PURCHASE_CREATED:
+			changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
+			break;
+		case PURCHASE_RESULT.FAILED:
+			console.log('Purchase save failed');
+			changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
+			break;
+		default:
+			console.log('Unknown result in saving the purchase');
+			changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
+	}
 }
 
 function storeUserRecId(userRecId) {
@@ -262,8 +308,19 @@ function navigateWithDeliveryState(delivery_state) {
 	}
 }
 
+function handlePaymentNavigation(user_rec_id, purchase_rec_id=None) {
 
-function handlePaymentNavigation(user_rec_id) {
+
+  const priceIdFromUrl = getPriceIdFromUrl();
+  if (purchase_rec_id === priceIdFromUrl) {
+    console.log('Purchase record ID matches the price ID from URL');
+  } else {
+    console.log('Purchase record ID does not match the price ID from URL');
+  }
+
+
+
+
   const url_params = new URLSearchParams(window.location.search);
   const did_complete_payment_param = url_params.get('didCompletePayment', null);
   const price_id = url_params.get('priceId', null);

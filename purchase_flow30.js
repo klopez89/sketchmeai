@@ -53,7 +53,7 @@ function renderFirebaseAuthUI() {
   var uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-        // Preserve the query parameters in the URL after sign in
+        // Preserve the query parameters in the URL after sign in unless we already have the priceId
         var currentUrl = window.location.href;
         var urlParams = new URLSearchParams(window.location.search);
         firebase.auth().onAuthStateChanged(function(user) {

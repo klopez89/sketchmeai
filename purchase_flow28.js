@@ -801,6 +801,7 @@ function adaptToSignOutState() {
 	toggleLogoutButton(false);
 	setTimeout(function() {
 		removeUserRecId();
+		deleteUserPurchasesFromLocalStorage();
 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 		logoutPressed = false;
 	}, 800);

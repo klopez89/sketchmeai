@@ -53,6 +53,16 @@ function renderFirebaseAuthUI() {
   var uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        // Preserve the query parameters in the URL after sign in
+        var currentUrl = window.location.href;
+        var urlParams = new URLSearchParams(window.location.search);
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in, now redirect back with the original URL parameters
+            window.location.href = currentUrl + '?' + urlParams.toString();
+          }
+        });
+		
         // showLoader();
 
         // User successfully signed in.
@@ -121,7 +131,7 @@ function getPriceIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const priceId = urlParams.get('priceId');
     if (!priceId) {
-        console.error('No priceId found in the URL query parameters.');
+        console.log('No priceId found in the URL query parameters.');
         return null;
     }
     return priceId;

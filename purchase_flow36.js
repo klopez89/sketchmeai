@@ -263,34 +263,34 @@ function storeUserRecId(userRecId) {
     localStorage.setItem('userRecId', userRecId);
 }
 
-function removeUserRecId() {
-    localStorage.removeItem('userRecId');
+function getUserRecId() {
+    return localStorage.getItem('userRecId');
 }
 
-function isSignedIn() {
-
+function removeUserRecId() {
+    localStorage.removeItem('userRecId');
 }
 
 function beginNewModelCreation() {
 	const url_params = new URLSearchParams(window.location.search);
 	const price_id = url_params.get('priceId', null);
+	const currentUser = firebase.auth().currentUser;
+	const user_rec_id = getUserRecId();
 
-	if (price_id == null) {
-	console.log('Dont have a price_id so wont kick off new model creation. Needs investigation.')
-	return;
+	if (price_id == null || currentUser == null || user_rec_id == null) {
+		console.log('Dont have a price_id nor a current signed in firebase user nor a stored user rec id so wont kick off new model creation. Needs investigation.')
+		return;
 	}
 
-	let action = "https://whollyai-5k3b37mzsa-ue.a.run.app/gayi/model/create"
-	let currentUser = firebase.auth().currentUser;
-	let uid = currentUser.uid;
+	let action = `${BASE_URL}model/create`
 	let email = currentUser.email;
-	let displayName = currentUser.displayName;
+	let display_name = currentUser.displayName;
 	let files = getUploadedFiles();
 
 	let jsonObject = {
-		memberId: uid,
+		user_rec_id: user_rec_id,
 		email : email,
-		displayName : displayName,
+		display_name : display_name,
 		price_id : price_id,
 		files: files,
 	}

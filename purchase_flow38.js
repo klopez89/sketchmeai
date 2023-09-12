@@ -149,10 +149,10 @@ function validateUserAuth(userInfo) {
 			let userDict = response['user'];
 
 			let userRecId = userDict.hasOwnProperty('user_rec_id') ? userDict['user_rec_id'] : null;
-			let purchasesDict = userDict.hasOwnProperty('purchases') ? userDict['purchases'] : null;
+			let purchasesSummary = userDict.hasOwnProperty('purchases_summary') ? userDict['purchases_summary'] : null;
 
-			if (purchasesDict != null) {
-				saveUserPurchasesToLocalStorage(purchasesDict);
+			if (purchasesSummary != null) {
+				saveUserPurchasesToLocalStorage(purchasesSummary);
 			}
 			if (userRecId != null) {
 				storeUserRecId(userRecId);
@@ -162,8 +162,8 @@ function validateUserAuth(userInfo) {
 
 			// Navigate to the appropriate context
 			let purchase_rec_id = null;
-			if (purchasesDict.hasOwnProperty(priceId)) {
-				purchase_rec_id = purchasesDict[priceId];
+			if (purchasesSummary.hasOwnProperty(priceId)) {
+				purchase_rec_id = purchasesSummary[priceId];
 				validatePreviousPurchase(purchase_rec_id);
 			} else if (userRecId != null) {
 				handlePaymentNavigation(userRecId);
@@ -171,6 +171,7 @@ function validateUserAuth(userInfo) {
 				console.log('Failed to retrieve or create a user in our database, needs dev review. Falling back to login view');
 				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 			}
+
 		},
 		error: function (msg) {
 			console.log("Fell into failure block for action - users/create, with msg: ", msg);
@@ -186,7 +187,7 @@ function deleteUserPurchasesFromLocalStorage() {
     localStorage.removeItem('userPurchases');
 }
 
-
+// this is really about getting the purchase delivery state in order to determine next navigation path
 function validatePreviousPurchase(purchase_rec_id) {
 	const action = `${BASE_URL}purchase/validate`
 	let json_payload = {
@@ -271,18 +272,27 @@ function removeUserRecId() {
     localStorage.removeItem('userRecId');
 }
 
+function getPurchaseRecIdFromLocalStorage() {
+    let userPurchases = JSON.parse(localStorage.getItem('userPurchases'));
+    let priceId = getPriceIdFromUrl();
+    if (userPurchases && userPurchases.hasOwnProperty(priceId)) {
+        return userPurchases[priceId];
+    }
+    return null;
+}
+
 function beginNewModelCreation() {
 	const url_params = new URLSearchParams(window.location.search);
-	const price_id = url_params.get('priceId', null);
 	const currentUser = firebase.auth().currentUser;
 	const user_rec_id = getUserRecId();
+	const purchase_rec_id = getPurchaseRecIdFromLocalStorage();
 
-	if (price_id == null || currentUser == null || user_rec_id == null) {
-		console.log('Dont have a price_id nor a current signed in firebase user nor a stored user rec id so wont kick off new model creation. Needs investigation.')
+	if (purchase_rec_id == null || currentUser == null || user_rec_id == null) {
+		console.log('Dont have a purchase_rec_id nor a current signed in firebase user nor a stored user rec id so wont kick off new model creation. Needs investigation.')
 		return;
 	}
 
-	let action = `${BASE_URL}model/create`
+	let action = `${BASE_URL}img_package/kickoff`
 	let email = currentUser.email;
 	let display_name = currentUser.displayName;
 	let files = getUploadedFiles();
@@ -291,7 +301,7 @@ function beginNewModelCreation() {
 		user_rec_id: user_rec_id,
 		email : email,
 		display_name : display_name,
-		price_id : price_id,
+		purchase_rec_id : purchase_rec_id,
 		files: files,
 	}
 

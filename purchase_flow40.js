@@ -353,8 +353,11 @@ function handlePaymentNavigation(user_rec_id) {
 
   const did_not_arrive_from_stripe_redirect = (did_complete_payment_param == null) && (price_id == null) && (quantity == null)
   const did_not_complete_payment = did_complete_payment_param === 'false'
+  console.log("Value for did_not_complete_payment: ", did_not_complete_payment);
+  
   const is_destination_default_payment_context = did_not_arrive_from_stripe_redirect || did_not_complete_payment
-
+  console.log("Value for is_destination_default_payment_context: ", is_destination_default_payment_context);
+	
   if (is_destination_default_payment_context == true) {
   	changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
   } else {

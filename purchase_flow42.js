@@ -351,13 +351,13 @@ function handlePaymentNavigation(user_rec_id) {
   const price_id = url_params.get('priceId', null);
   const quantity = url_params.get('quantity', null);
 
-  const did_not_arrive_from_stripe_redirect = (did_complete_payment_param == null) && (price_id == null) && (quantity == null)
-  console.log("Value for did_not_arrive_from_stripe_redirect: ", did_not_arrive_from_stripe_redirect);
+  const did_arrive_from_stripe_redirect = (did_complete_payment_param != null) && (price_id != null) && (quantity != null)
+  console.log("Value for did_not_arrive_from_stripe_redirect: ", did_arrive_from_stripe_redirect);
 
   const did_not_complete_payment = did_complete_payment_param === 'false'
   console.log("Value for did_not_complete_payment: ", did_not_complete_payment);
   
-  const is_destination_default_payment_context = did_not_arrive_from_stripe_redirect || did_not_complete_payment
+  const is_destination_default_payment_context = did_arrive_from_stripe_redirect === false || did_not_complete_payment
   console.log("Value for is_destination_default_payment_context: ", is_destination_default_payment_context);
 	
   if (is_destination_default_payment_context == true) {

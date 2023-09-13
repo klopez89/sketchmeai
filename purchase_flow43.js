@@ -231,6 +231,14 @@ function validatePurchase(userRecId, priceId, quantity) {
 			console.log(`The save purchase endpoint response is: ${JSON.stringify(response)}`);
 			let purchase_result = PURCHASE_RESULT[response['purchase_result']];
 			let delivery_state = DELIVERY_STATE[response['delivery_state']];
+
+			let purchasesSummary = response['purchases_summary'];
+			let userPurchases = JSON.parse(localStorage.getItem('userPurchases'));
+			for (let key in purchasesSummary) {
+				userPurchases[key] = purchasesSummary[key];
+			}
+			localStorage.setItem('userPurchases', JSON.stringify(userPurchases));
+
 			handlePurchaseResponse(purchase_result, delivery_state);
 		},
 		error: function (msg) {

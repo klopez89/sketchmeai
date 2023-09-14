@@ -368,6 +368,13 @@ function handlePaymentNavigation(user_rec_id) {
 	console.log("Value for did_arrive_from_stripe_redirect: ", did_arrive_from_stripe_redirect);
 
 	if (did_arrive_from_stripe_redirect === true && did_complete_payment === 'true') {
+	  const urlParams = new URLSearchParams(window.location.search);
+	  const priceId = urlParams.get('priceId');
+	  const newUrl = window.location.origin + window.location.pathname + '?priceId=' + priceId;
+	  window.history.replaceState({}, document.title, newUrl);
+	}
+
+	if (did_arrive_from_stripe_redirect === true && did_complete_payment === 'true') {
 		validatePurchase(user_rec_id, price_id, quantity);
 	} else {
 		changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);

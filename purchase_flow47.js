@@ -360,6 +360,10 @@ function handlePaymentNavigation(user_rec_id) {
 	const price_id = url_params.get('priceId', null);
 	const quantity = url_params.get('quantity', null);
 
+
+	console.log('did_complete_payment: ', did_complete_payment, ', price_id: ', price_id, ', quantity: ', quantity);
+
+	
 	const did_arrive_from_stripe_redirect = (did_complete_payment != null) && (price_id != null) && (quantity != null)
 	console.log("Value for did_arrive_from_stripe_redirect: ", did_arrive_from_stripe_redirect);
 

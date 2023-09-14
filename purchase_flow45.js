@@ -359,7 +359,7 @@ function handlePaymentNavigation(user_rec_id) {
 	const price_id = url_params.get('priceId', null);
 	const quantity = url_params.get('quantity', null);
 
-	const did_arrive_from_stripe_redirect = (did_complete_payment_param != null) && (price_id != null) && (quantity != null)
+	const did_arrive_from_stripe_redirect = (did_complete_payment != null) && (price_id != null) && (quantity != null)
 	console.log("Value for did_arrive_from_stripe_redirect: ", did_arrive_from_stripe_redirect);
 
 	if (did_arrive_from_stripe_redirect === true && did_complete_payment === 'true') {

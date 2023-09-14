@@ -166,6 +166,7 @@ function validateUserAuth(userInfo) {
 				purchase_rec_id = purchasesSummary[priceId];
 				validatePreviousPurchase(purchase_rec_id);
 			} else if (userRecId != null) {
+				console.log('Gonna hit handlePaymentNavigation from validateUserAuth success block');
 				handlePaymentNavigation(userRecId);
 			} else {
 				console.log('Failed to retrieve or create a user in our database, needs dev review. Falling back to login view');
@@ -811,6 +812,7 @@ function handleAuthStateChange() {
 				purchase_rec_id = purchasesDict[priceId];
 				validatePreviousPurchase(purchase_rec_id);
 			} else if (userRecId) {
+				console.log('Gonna hit handlePaymentNavigation from onAuthStateChanged');
 				handlePaymentNavigation(userRecId);
 			} else {
 				validateUserAuth(user_info);

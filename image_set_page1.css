@@ -1,0 +1,506 @@
+/*  Brainstorm CSS */
+
+
+.download-all-btn {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  align-items: center ;
+}
+
+.download-faves-btn {
+  background-color: plum;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  align-items: center ;
+}
+
+.heart-button {
+    position: relative;
+    /* top: 0; */
+    /* right: 0; */
+    /* font-size: 2rem; */
+    color: #b5b4b5;
+    background-color: rgba(255, 255, 255, 0.89);
+    padding: 0.7rem;
+    border-radius: calc(1.5rem);
+    transition: background-color 0.2s ease-in;
+}
+
+.heart-button.selected {
+  color: #ff70a6; 
+}
+
+#heartButton:active .heart-button {
+  background-color: white; 
+}
+
+.like-button {
+    position: relative;
+    /* font-size: 2rem; */
+    color: #b5b4b5;
+    background-color: rgba(255, 255, 255, 0.89);
+    padding: 0.7rem;
+    border-radius: calc(1.5rem);
+    transition: background-color 0.2s ease-in;
+}
+
+.like-button.selected {
+  color: #70a4ff;
+}
+
+#likeButton:active .like-button {
+  background-color: white; 
+}
+
+.flag-button {
+    position: relative;
+    /* font-size: 2rem; */
+    color: #b5b4b5;
+    background-color: rgba(255, 255, 255, 0.89);
+    padding: 0.7rem;
+    border-radius: calc(1.5rem);
+    transition: background-color 0.2s ease-in;
+}
+
+.flag-button.selected {
+  color: #fc5b5b;
+}
+
+#flagButton:active .flag-button {
+  background-color: white; 
+}
+
+.prompt-social-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    height: 100%;
+    align-items: flex-end;
+    padding-left: 16px;
+    padding-bottom: 16px;
+    font-size: 1.5rem;
+}
+
+
+
+.promptList-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.prompt-div {
+  position: relative;
+  flex-basis: calc(33.33% - 0px);
+  margin: 0px;
+  box-sizing: border-box;
+  background-color: lightGrey;
+  transition: flex-basis 0.3s ease-in;
+}
+
+.prompt-div::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.prompt-div .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+}
+
+.prompt-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.prompt-history-metadata-div {
+  position: absolute;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+
+  opacity: 0;
+  background-color: rgba(59, 59, 59, 0.8);
+
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .prompt-div:hover>.content>.prompt-history-metadata-div {
+    opacity: 50;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+  }
+}
+
+@media not all and (hover: hover) and (pointer: fine) {
+  .prompt-history-metadata-div {
+    pointer-events: none;
+  }
+}
+
+.metadata-prompt-text {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.metadata-prompt-date {
+  color: lightGrey;
+  display: flex;
+}
+
+.metadata-prompt-date .copy-button {
+  width: 40px;
+  height: 40px;
+  background-color: transparent; 
+  color: white;
+  border-style: solid;
+  border-width: 1px;
+  borde-color: white;
+  border-radius: 5px;
+}
+
+.prog-container {
+  position: absolute;
+
+  padding-left: 15px;
+  padding-right: 15px;
+  height: auto;
+  width: 100%;
+  background-color: clear;
+
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Column structures */
+
+.prompt-entry-column {
+  display: none;
+  float: left;
+  background-color: clear;
+}
+
+.prompt-list-column {
+  display: block;
+}
+
+.main-prompting-row {
+  background-color: clear;
+  padding-top: 0px;
+}
+
+
+.prompt-entry-container {
+  display: block;
+  background-color: transparent;
+  width: 100%;
+  padding: 20px;
+  /* padding-bottom: 20px; */
+}
+
+.generate-form {
+  width: 550px;
+  margin: auto;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  background-color: whiteSmoke;
+  box-shadow: 0 2px 8px lightGrey;
+  border-radius: 5px;
+}
+
+.negetive_prompt_input {
+  display: block;
+  font-size: 1rem;
+  height: calc(1rem + 20px);
+  box-shadow: 0 2px 8px lightgrey; 
+  width: 100%; /* make the input full width */
+  border: none; /* remove the borders */
+  border-radius: 5px; /* add a border radius of 5px */
+  padding-left: 10px; /* add left padding of 5px for the text */
+  margin-top: 5px; /* add a top margin of 15px */
+}
+
+.prompt-input-field {
+  overflow: hidden;
+  resize: vertical;
+  display: block;
+  width: 100%;
+  min-height: 2rem;
+  max-height: 16rem;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #333333;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 0.5px solid transparent;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px lightGrey;
+}
+
+.prompt-input-field:focus {
+  outline: none !important;
+  border: 0.5px solid black;
+}
+
+.prompt-field-label {
+  display: block;
+  margin-top: 15px;
+  font-size: 1rem;
+  color: black;
+  margin-bottom: 5px;
+}
+
+.prompt-field-label.first {
+    margin-top: -5px;
+}
+
+.prompt-field-label.second {
+    margin-top: -5px;
+}
+
+.checkmarkInput {
+  color: lightgrey;
+  font-size: 1rem;
+  background-color: transparent;
+}
+
+.checkmarkInput.fa-check-square {
+  color: black;
+}
+
+.new-model-drop-area {
+  width: 100%;
+  height: 100px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  border-radius: 5px;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: lightgray;
+}
+
+.new-model-drop-area.highlight {
+  border-color: cornflowerblue;
+}
+
+.new-model-drop-area p {
+  text-align: center;
+  margin-bottom: 10px;
+  color: grey;
+}
+
+.new-model-drop-area i {
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  color: grey;
+}
+
+.upload-entry-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.image-upload-entry {
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 100%;
+}
+
+.image-upload-entry p {
+  position: absolute;
+  bottom: 0; 
+  width: 100%;
+  background-color: rgba(215, 215, 215, 0.9);
+  font-size: 0.9rem;
+  font-weight: normal;
+  padding: 5px;
+}
+
+.upload-preview-image {
+  position: absolute;
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-upload-button {
+  background-color: transparent;
+  border: none;
+  color: grey;
+  font-size: 1.0rem;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.remove-upload-button:hover {
+  color: black;
+}
+
+
+
+
+/* Adds a placeholder to my editable span for prompt text */
+[contenteditable][placeholder]:empty::before {
+  content: attr(placeholder);
+  color: gray;
+  background-color: transparent;
+}
+
+.prompt-submit-button {
+  display: inline-block;
+  padding: 9px 15px;
+  background-color: silver;
+  color: white;
+  border: 0;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.shadow-style {
+  box-shadow: 0 2px 8px lightGrey;
+}
+
+.num-images {
+  width: 70px;
+  height: 32px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+  margin-left: 5px;
+}
+
+.model-dropdown {
+  border: none;
+  box-shadow: 0 2px 8px lightgrey;
+  font-size: 1rem !important;
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Chips (aka Art Styles) related */
+
+.art-style-title-label {
+  padding-top: 20px;
+  padding-left: 2px;
+  font-size: 0.9rem;
+  color: grey;
+}
+
+.chipbutton {
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparent;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #1d1d1d;
+  white-space: nowrap;
+  display: inline-block;
+  padding: 9px 15px;
+  border: 0;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 8px Gainsboro;
+}
+
+ .chips-div {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+}
+
+/* Media Queries */
+
+
+/* On screens that are 992px or less */
+@media screen and (max-width: 992px) {
+  .prompt-div {
+    position: relative;
+    flex-basis: calc(33.33% - 0px);
+    margin: 0px;
+    box-sizing: border-box;
+    transition: flex-basis 0.3s ease-in;
+  }
+  
+  .prompt-entry-column {
+    display: none;
+    float: none;
+  }
+   
+}
+
+/* On screens that are 600px or less */
+@media screen and (max-width: 750px) {
+  .prompt-div {
+    position: relative;
+    flex-basis: calc(50% - 0px);
+    margin: 0px;
+    box-sizing: border-box;
+    transition: flex-basis 0.3s ease-in;
+  }
+  
+  .prompt-entry-column {
+    display: none;
+    float: none;
+  }
+
+  .prompt-social-container {
+    font-size: 1.2rem; 
+    transition: font-size 0.3 ease-in;
+  }
+    
+    .heart-button, .like-button, .flag-button {
+      padding: 0.5rem;
+    }
+}

@@ -251,7 +251,7 @@ function beginInitialDOMConstruction() {
   addBaseRow();
   addBothColumns();
   addPromptEntryContainerToLeftColumn();
-  addPromptEntryFormToContainer();
+  // addPromptEntryFormToContainer();
 
   addDownloadAllButton();
   addDownloadFavesbutton();

@@ -3,6 +3,7 @@ const BASE_URL = "https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/";
 
 // Configurations
 $('body').attr('id','bodyDiv');
+beginInitialDOMConstruction();
 
 // Initial API requests
 // Slightly delays (even with 0) initial project data in order to mostly have memberstack id readily available but still not 100% realiable. Needs revisiting before launch.
@@ -492,7 +493,7 @@ function appendPrompts_onDOM(prediction_list) {
 
   for (let x in prediction_list) {
     let prediction = prediction_list[x];
-    let imageSrc = prediction['signed_img_url'];
+
     var predictionJson = {
       imageUrl : prediction['signed_img_url'],
       promptId : prediction['rec_id'], 

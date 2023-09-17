@@ -1,4 +1,3 @@
-import "tw-elements";
 
 const BASE_URL = "https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/";
 

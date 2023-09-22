@@ -2,7 +2,7 @@
 initializePage();
 
 // Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(auth);
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var logoutPressed = false;
 
 const PURCHASE_CONTEXT = {
@@ -164,7 +164,7 @@ function validateUserAuth(userInfo) {
 			let purchase_rec_id = null;
 			if (purchasesSummary.hasOwnProperty(priceId)) {
 				purchase_rec_id = purchasesSummary[priceId];
-				validatePreviousPurchase(purchase_rec_id);
+				validatePreviousPurchase(userRecId, purchase_rec_id);
 			} else if (userRecId != null) {
 				console.log('Gonna hit handlePaymentNavigation from validateUserAuth success block');
 				handlePaymentNavigation(userRecId);
@@ -189,10 +189,11 @@ function deleteUserPurchasesFromLocalStorage() {
 }
 
 // this is really about getting the purchase delivery state in order to determine next navigation path
-function validatePreviousPurchase(purchase_rec_id) {
+function validatePreviousPurchase(user_rec_id, purchase_rec_id) {
 	const action = `${BASE_URL}purchase/validate`
 	let json_payload = {
-		purchase_rec_id : purchase_rec_id
+		purchase_rec_id : purchase_rec_id,
+		user_rec_id : user_rec_id,
 	};
 	console.log(`about to hit the validate purchase endpoint: ${action}, and json_payload: ${JSON.stringify(json_payload)}`);
 	$.ajax({
@@ -205,7 +206,8 @@ function validatePreviousPurchase(purchase_rec_id) {
 			console.log(`The validate purchase endpoint response is: ${JSON.stringify(response)}`);
 			let purchase_result = PURCHASE_RESULT[response['purchase_result']];
 			let delivery_state = DELIVERY_STATE[response['delivery_state']];
-			handlePurchaseResponse(purchase_result, delivery_state);
+			let image_set_link = response['image_set_link'];
+			handlePurchaseResponse(purchase_result, delivery_state, image_set_link);
 		},
 		error: function (msg) {
 			console.log("Fell into failure block for validating existing purchase: ", msg);
@@ -248,13 +250,13 @@ function validatePurchase(userRecId, priceId, quantity) {
 	});
 }
 
-function handlePurchaseResponse(purchase_result, delivery_state) {
+function handlePurchaseResponse(purchase_result, delivery_state, image_set_link = null) {
 	switch(purchase_result) {
 		case PURCHASE_RESULT.STRIPE_PRODUCT_NOT_FOUND:
 			console.log('Stripe product not found try again later');
 			changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
 		case PURCHASE_RESULT.PURCHASE_EXISTS:
-			navigateWithDeliveryState(delivery_state);
+			navigateWithDeliveryState(delivery_state, image_set_link);
 			break;
 		case PURCHASE_RESULT.PURCHASE_CREATED:
 			changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
@@ -291,7 +293,6 @@ function getPurchaseRecIdFromLocalStorage() {
 }
 
 function beginNewModelCreation() {
-	const url_params = new URLSearchParams(window.location.search);
 	const currentUser = firebase.auth().currentUser;
 	const user_rec_id = getUserRecId();
 	const purchase_rec_id = getPurchaseRecIdFromLocalStorage();
@@ -336,7 +337,7 @@ function beginNewModelCreation() {
 }
 
 
-function navigateWithDeliveryState(delivery_state) {
+function navigateWithDeliveryState(delivery_state, image_set_link=null) {
 	switch (delivery_state) {
 		case DELIVERY_STATE.JUST_PAID:
 			console.log('Take user to upload context');
@@ -349,7 +350,7 @@ function navigateWithDeliveryState(delivery_state) {
 			console.log('Take user to Summary context and let them know that their purchase is in the Image Generation step');
 			break;
 		case DELIVERY_STATE.EMAILED_LINK:
-			console.log('Take user to Summary context and let them know that their purchase is ready for them and provide them w/ the link');
+			console.log('Take user to Summary context and let them know that their purchase is ready for them and provide them w/ the link: ', image_set_link);
 			break;
 	}
 }
@@ -814,14 +815,11 @@ function handleAuthStateChange() {
 			
 			// Get reference to any local storage data for fast navgiation for returning users
 			let userRecId = localStorage.getItem('userRecId');
-			let purchasesDict = localStorage.getItem('userPurchases');
-
-			let priceId = getPriceIdFromUrl();
+			let purchaseRecId = getPurchaseRecIdFromLocalStorage();
 
 			// Navigate to the appropriate context
-			if (purchasesDict && purchasesDict.hasOwnProperty(priceId)) {
-				purchase_rec_id = purchasesDict[priceId];
-				validatePreviousPurchase(purchase_rec_id);
+			if (purchaseRecId != null) {
+				validatePreviousPurchase(userRecId, purchaseRecId);
 			} else if (userRecId) {
 				console.log('Gonna hit handlePaymentNavigation from onAuthStateChanged');
 				handlePaymentNavigation(userRecId);

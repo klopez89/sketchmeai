@@ -1,5 +1,8 @@
 /*  Brainstorm CSS */
-
+body { 
+  padding-right: 0 !important; 
+  overflow-x: hidden;
+}
 
 .download-all-btn {
   background-color: #4caf50; /* Green */
@@ -92,26 +95,20 @@
     font-size: 1.5rem;
 }
 
-
-
 .promptList-container {
     display: flex;
     flex-wrap: wrap;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 .prompt-div {
   position: relative;
-  flex-basis: calc(33.33% - 0px);
-  margin: 0px;
+  flex-basis: calc(33.33% - 10px);
+  margin-right: 10px;
+  margin-bottom: 10px;
   box-sizing: border-box;
   background-color: lightGrey;
-  transition: flex-basis 0.3s ease-in;
-}
-
-.prompt-div::before {
-  content: '';
-  display: block;
-  padding-top: 100%;
 }
 
 .prompt-div .content {
@@ -467,10 +464,10 @@
 @media screen and (max-width: 992px) {
   .prompt-div {
     position: relative;
-    flex-basis: calc(33.33% - 0px);
-    margin: 0px;
+    flex-basis: calc(33.33% - 10px);
+    margin-right: 10px;
+    margin-bottom: 10px;
     box-sizing: border-box;
-    transition: flex-basis 0.3s ease-in;
   }
   
   .prompt-entry-column {
@@ -484,10 +481,10 @@
 @media screen and (max-width: 750px) {
   .prompt-div {
     position: relative;
-    flex-basis: calc(50% - 0px);
-    margin: 0px;
+    flex-basis: calc(50% - 10px);
+    margin-right: 10px;
+    margin-bottom: 10px;
     box-sizing: border-box;
-    transition: flex-basis 0.3s ease-in;
   }
   
   .prompt-entry-column {

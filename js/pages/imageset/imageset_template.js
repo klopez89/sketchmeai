@@ -1,34 +1,32 @@
 // Brainstorm HTML Templates
 
-function mainPromptRow() {
+function imageRowDiv() {
+return `
+  <div class="image-row flex"></div>
+`
+}
+
+//promptList-container
+function startingElements() {
   let row =
   `
-  <div
-    data-te-lightbox-init
-    class="flex flex-col space-y-5 lg:flex-row lg:space-x-5 lg:space-y-0">
-    <div class="h-full w-full">
-      <img
-        src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/1.webp"
-        data-te-img="https://mdbcdn.b-cdn.net/img/Photos/Slides/1.webp"
-        alt="Table Full of Spices"
-        class="w-full cursor-zoom-in data-[te-lightbox-disabled]:cursor-auto" />
-    </div>
-    <div class="h-full w-full">
-      <img
-        src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/2.webp"
-        data-te-img="https://mdbcdn.b-cdn.net/img/Photos/Slides/2.webp"
-        alt="Winter Landscape"
-        class="w-full cursor-zoom-in data-[te-lightbox-disabled]:cursor-auto" />
-    </div>
-    <div class="h-full w-full">
-      <img
-        src="https://mdbcdn.b-cdn.net/img/Photos/Thumbnails/Slides/3.webp"
-        data-te-img="https://mdbcdn.b-cdn.net/img/Photos/Slides/3.webp"
-        alt="View of the City in the Mountains"
-        class="w-full cursor-zoom-in data-[te-lightbox-disabled]:cursor-auto" />
+  <div class="border-b border-gray-200 py-5 px-5 sm:flex sm:items-center sm:justify-between">
+    <h3 class="text-2xl leading-6 font-black text-gray-800">Image Set 1</h3>
+    <div class="mt-3 flex sm:ml-4 sm:mt-0">
+      <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="downloadAllButton" onclick="downloadAll()">Download All</button>
+      <button type="button" class="select-to-share-button ml-3 inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="toggleImageSelectability()">Select to Share</button>
     </div>
   </div>
-  <div class="main-prompting-row" id="mainPromptingRow">
+  <div data-te-lightbox-init data-te-infinite-scroll-init class="promptList-container overflow-y-scroll" id="promptListContainer">
+  </div>
+  <div id="infiniteLoader" class="text-4xl h-full w-full flex bg-transparent flex flex-col items-center pt-4 pb-5">
+		<i class="fa fa-spinner fa-spin"></i>
+	</div>
+  <div class="selection-bar fixed bottom-0 w-full right-0 py-5 px-5 bg-white bg-opacity-70 z-50 hidden">
+    <div class="float-right space-x-4">
+      <button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm bg-white bg-opacity-80 text-gray-500 hover:bg-gray-200" onclick="toggleImageSelectability()">Cancel</button>
+      <button type="button" class="share-button ml-3 inline-flex items-center rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-white shadow-sm" onclick="shareButtonPressed()">Share</button>
+    </div>
   </div>
   `;
   return row
@@ -59,15 +57,6 @@ function promptEntryContainer() {
   </div>
   `;
   return container;
-}
-
-function promptListContainer() {
-  let container = 
-  `
-  <div class="promptList-container" id="promptListContainer">
-  </div>
-  `;
-  return container
 }
 
 function promptGenerationForm(inputTitle,inputPlaceholder) {
@@ -157,28 +146,23 @@ function uploadEntryDiv(file) {
 
 function promptDiv(promptJson, shouldLazyLoad) {
   var placeHolderImg = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
-  var dataImageSrc = '';
 
-  if (shouldLazyLoad == true) {
-    dataImageSrc = promptJson.imageUrl;
-  } else {
-    placeHolderImg = promptJson.imageUrl;
-  }
-  
   let promptId = promptJson.promptId;
   let recipeTheme = promptJson.recipeTheme;
+  let thumbnailUrl = promptJson.thumbnailImageUrl;
+  let imageUrl = promptJson.imageUrl;
 
   let div = 
   `
-  <div class="prompt-div" id="${promptId}">
-    <div class="content">
-
-      <!-- lightbox -->
-      <a href="${dataImageSrc}" data-lightbox="prompts" 
-      data-title='${recipeTheme}' data-prompt-id=${promptId}>
-        <img class="lazy prompt-image" src="${placeHolderImg}" data-src="${dataImageSrc}" alt="">
-      </a>
-
+  <div class="prompt-div overflow-hidden rounded-md selectable relative" id=${promptId}>
+    <img
+      src = "${imageUrl}"
+      data-te-img="${imageUrl}"
+      alt="${recipeTheme}"
+      class="object-cover cursor-zoom-in data-[te-lightbox-disabled]:cursor-auto">
+    <div class="selection-overlay absolute inset-0 cursor-pointer pointer-events-none">
+      <div class="overlay-bg h-full w-full"></div>
+      <i class="fa fa-circle checkbox hidden absolute top-2 right-2 cursor-pointer text-gray-800 text-3xl"></i>
     </div>
   </div>
   `;

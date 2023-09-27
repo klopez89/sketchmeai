@@ -10,9 +10,9 @@ function loader() {
 
 function centeredLoader_HTML(loadingText = '') {
 	let loaderHTML = `
-	<div id="loader" class="absolute top-0 left-0 flex items-center justify-center h-full w-full bg-white">
-		<div class="flex flex-col items-center gap-4">
-			<p class="text-2xl">${loadingText}</p>
+	<div id="loader" class="absolute top-0 left-0 flex items-center justify-center h-full w-full bg-white z-[50]">
+		<div class="flex flex-col items-center gap-6">
+			<p class="text-xl font-semibold">${loadingText}</p>
 			<i class="text-4xl fa fa-spinner fa-spin"></i>
 		</div>
 	</div>

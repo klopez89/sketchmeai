@@ -4,6 +4,7 @@ initializePage();
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var logoutPressed = false;
+var wasJustPendingRequest = false;
 
 const PURCHASE_CONTEXT = {
     LOGIN: 0,
@@ -50,6 +51,7 @@ function initializePage() {
 }
 
 function renderFirebaseAuthUI() {
+  console.log('renderFirebaseAuthUI called');
   var uiConfig = {
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
@@ -100,7 +102,8 @@ function renderFirebaseAuthUI() {
       uiShown: function() {
         // The widget is rendered.
         console.log(`Ui  shown function is called, isPendingRequest: ${ui.isPendingRedirect()}`);
-        if (ui.isPendingRedirect() == false) {
+        wasJustPendingRequest = ui.isPendingRedirect();
+		if (ui.isPendingRedirect() === false) {
         	console.log(`just before calling hideLoader in uishown, isPendingRequest: ${ui.isPendingRedirect()}`);
 	        hideLoader();
         }
@@ -146,6 +149,7 @@ function validateUserAuth(userInfo) {
 		contentType: "application/json",
 		dataType: "json",
 		success: function (response) {
+			console.log('users/create endpoint hit success, w/ response: ', response);
 			let userDict = response['user'];
 
 			let userRecId = userDict.hasOwnProperty('user_rec_id') ? userDict['user_rec_id'] : null;
@@ -251,6 +255,7 @@ function validatePurchase(userRecId, priceId, quantity) {
 }
 
 function handlePurchaseResponse(purchase_result, delivery_state, image_set_link = null) {
+	console.log('about to hit handlePurchaseResponse with purchase_result');
 	switch(purchase_result) {
 		case PURCHASE_RESULT.STRIPE_PRODUCT_NOT_FOUND:
 			console.log('Stripe product not found try again later');
@@ -338,18 +343,31 @@ function beginNewModelCreation() {
 
 
 function navigateWithDeliveryState(delivery_state, image_set_link=null) {
+	email = firebase.auth().currentUser.email;
 	switch (delivery_state) {
 		case DELIVERY_STATE.JUST_PAID:
 			console.log('Take user to upload context');
 			changePurchaseContext(PURCHASE_CONTEXT.UPLOAD);
 			break;
 		case DELIVERY_STATE.GENERATING_MODEL:
+			title = 'Purchase Completed'
+			subtitle = 'The AI is now being trained on your uploaded images.';
+			callToAction = `You'll receive an email 30-45 mins after completing previous step.<br>It will be sent to ${email}`;
+			changePurchaseContextToSummary(title, subtitle, callToAction);
 			console.log('Take user to Summary context and let them know that their purchase is in the Model Generation step');
 			break;
 		case DELIVERY_STATE.GENERATING_IMAGES:
+			title = 'Purchase Completed';
+			subtitle = 'The AI is now generating your images.';
+			callToAction = `You'll receive an email 30-45 mins after completing previous step.<br>It will be sent to ${email}`;
+			changePurchaseContextToSummary(title, subtitle, callToAction);
 			console.log('Take user to Summary context and let them know that their purchase is in the Image Generation step');
-			break;
+			break;	
 		case DELIVERY_STATE.EMAILED_LINK:
+			title = 'Purchase Completed';
+			subtitle = 'Great news, your image set is ready!';
+			callToAction = `We have emailed you a link to your image set,<br>but click below to view it now.`;
+			changePurchaseContextToSummary(title, subtitle, callToAction, image_set_link);
 			console.log('Take user to Summary context and let them know that their purchase is ready for them and provide them w/ the link: ', image_set_link);
 			break;
 	}
@@ -363,7 +381,6 @@ function handlePaymentNavigation(user_rec_id) {
 
 
 	console.log('did_complete_payment: ', did_complete_payment, ', price_id: ', price_id, ', quantity: ', quantity);
-
 	
 	const did_arrive_from_stripe_redirect = (did_complete_payment != null) && (price_id != null) && (quantity != null)
 	console.log("Value for did_arrive_from_stripe_redirect: ", did_arrive_from_stripe_redirect);
@@ -373,14 +390,31 @@ function handlePaymentNavigation(user_rec_id) {
 	  const priceId = urlParams.get('priceId');
 	  const newUrl = window.location.origin + window.location.pathname + '?priceId=' + priceId;
 	  window.history.replaceState({}, document.title, newUrl);
-	}
-
-	if (did_arrive_from_stripe_redirect === true && did_complete_payment === 'true') {
+	  validatePurchase(user_rec_id, price_id, quantity);
+	} else if (hasPurchaseRecordFromUserInfo() === true) {
 		validatePurchase(user_rec_id, price_id, quantity);
 	} else {
 		changePurchaseContext(PURCHASE_CONTEXT.PAYMENT);
 	}
 }
+
+function hasPurchaseRecordFromUserInfo() {
+    const priceId = getPriceIdFromUrl();
+    if (!priceId) {
+        console.log('No priceId found in the URL query parameters.');
+        return false;
+    }
+    let purchase_rec_id = getPurchaseRecIdFromLocalStorage();
+	console.log('the purchase_rec_id in hasPurchaseRecordFromUserInfo is: ', purchase_rec_id);
+
+    if (purchase_rec_id != null) {
+        console.log('Found purchase_rec_id in the local storage purchase summary.');
+        return true;
+    }
+    console.log('Did not find priceId in the local storage purchase summary.');
+    return false;
+}
+
 
 // Upload related functions
 
@@ -606,15 +640,15 @@ function addFileUploadDivToDOM(file) {
 function toggleUploadAreaVisibility() {
 	let shouldShow = !isReadyToBeginNewModelCreation();
 	let $upload_area_button = $($('#uploadAreaButton')[0]);
-	if (isReadyToBeginNewModelCreation() === true && $upload_area_button.children('i').is('.fa-check') === false) {
-		$upload_area_button.children('i').removeClass('fa-images');
-		$upload_area_button.children('i').addClass('fa-check');
-		$upload_area_button.children('span').text('Ready to upload');
+	if (isReadyToBeginNewModelCreation() === true && $upload_area_button.find('i').is('.fa-check') === false) {
+		$upload_area_button.find('i').removeClass('fa-images');
+		$upload_area_button.find('i').addClass('fa-check');
+		$upload_area_button.find('span').text('Ready to upload');
 	}
 
-	if (isReadyToBeginNewModelCreation() === false && $upload_area_button.children('i').is('.fa-check') === true) {
-		$upload_area_button.children('i').addClass('fa-images');
-		$upload_area_button.children('i').removeClass('fa-check');
+	if (isReadyToBeginNewModelCreation() === false && $upload_area_button.find('i').is('.fa-check') === true) {
+		$upload_area_button.find('i').addClass('fa-images');
+		$upload_area_button.find('i').removeClass('fa-check');
 		updateUploadAreaTitle();
 	}
 }
@@ -625,23 +659,23 @@ function toggleUploadButtonInteraction() {
 		$('#uploadToServerButton').removeAttr('disabled');
 		$('#uploadToServerButton').removeClass('bg-gray-200');
 		$('#uploadToServerButton').removeClass('hover:bg-gray-200');
-		$('#uploadToServerButton').addClass('bg-orange-500');
-		$('#uploadToServerButton').addClass('hover:bg-orange-700');
+		$('#uploadToServerButton').addClass('bg-blue-600');
+		$('#uploadToServerButton').addClass('hover:bg-blue-500');
 	} 
 
 	if (sohuldEnable === false && $('#uploadToServerButton').is("[disabled]") === false) {
 		$('#uploadToServerButton').attr('disabled','');
 		$('#uploadToServerButton').addClass('bg-gray-200');
 		$('#uploadToServerButton').addClass('hover:bg-gray-200');
-		$('#uploadToServerButton').removeClass('bg-orange-500');
-		$('#uploadToServerButton').removeClass('hover:bg-orange-700');
+		$('#uploadToServerButton').removeClass('bg-blue-600');
+		$('#uploadToServerButton').removeClass('hover:bg-blue-500');
 	}
 }
 
 function toggleLogoutButton(visibility) {
     let logoutButton = document.getElementById('logout');
     if (logoutButton != null) {
-        logoutButton.style.display = visibility ? '' : 'none';
+        visibility ? logoutButton.classList.remove('hidden') : logoutButton.classList.add('hidden');
     }
 }
 
@@ -672,16 +706,17 @@ function showCheckmarkOnUploadButton() {
 // Loader related
 
 function hideLoader() {
+	console.log('hideLoader called');
 	let loader = document.getElementById('loader');
-	if (loader != null) {
-		loader.style.display = 'none';
+	if (loader != null && !loader.classList.contains('hidden')) {
+		loader.classList.add('hidden');
 	}
 }
 
 function showLoader() {
 	let loader = document.getElementById('loader');
-	if (loader != null) {
-		loader.style.display = 'block';
+	if (loader != null && loader.classList.contains('hidden')) {
+		loader.classList.remove('hidden');
 	}
 }
 
@@ -694,8 +729,8 @@ function resetCurrentContextIfPossible() {
 	// reset breadcrumb's current context back to default, or unselected
 	let bc_context_id = breadcrumbID(current_context);
 	let bc_context_element = document.getElementById(bc_context_id);
-	bc_context_element.classList.remove('text-gray-200');
-	bc_context_element.classList.add('text-gray-400');
+	bc_context_element.classList.remove('text-gray-400');
+	bc_context_element.classList.add('text-gray-300');
 	// empty purchase-context-div except the loader
 	let loader = document.getElementById('loader');
 	document.querySelector('.purchase-context-div').innerHTML = loader.outerHTML.replace(/\\"/g, '"');
@@ -706,43 +741,92 @@ function removeQueryParamsFromUrl() {
     window.history.replaceState({}, document.title, url);
 }
 
-function configureForNewContext(new_context) {
-	// add new context to purchase-context-div
-	addUIForNewContext(new_context);
-
-	// style breadcrumb's new context as selected
-	if (ui.isPendingRedirect() == false) {
-		let bc_context_id = breadcrumbID(new_context);
-		let bc_context_element = document.getElementById(bc_context_id);
-		bc_context_element.classList.remove('text-gray-400');
-		bc_context_element.classList.add('text-gray-200');
-
-		if (new_context != PURCHASE_CONTEXT.LOGIN) { //we don't hide loader here since the uishow callback hides the loader for that context
-			hideLoader();
-		}
-	}
-
-	// kickoff any processes for context after adding UI to DOM. NOTE: The isPendingRequest gets reset after starting the firebaseUI
-	kickOffContextProcess(new_context);
-}
-
 function addUIForNewContext(new_context) {
+	console.log('addUIForNewContext called with new_context: ', new_context)
 	var context_html = null
 	switch (new_context) {
 		case PURCHASE_CONTEXT.LOGIN:
 			context_html = firebaseUI_HTML();
-      break
+			break
 		case PURCHASE_CONTEXT.PAYMENT:
 			context_html = paymentContext_HTML();
 			break
 		case PURCHASE_CONTEXT.UPLOAD:
 			context_html = uploadContext_HTML();
+			break
 		case PURCHASE_CONTEXT.SUMMARY:
+			context_html = summaryContext_HTML();
+			break
 	}
 
+	console.log('the context_html just befored adding and checking: ', context_html)
 	if (context_html == null) { return }
 	let context_element = $($.parseHTML(context_html));
 	$('.purchase-context-div').append(context_element);
+}
+
+function fetchProductInfo() {
+	let priceId = getPriceIdFromUrl();
+	if (priceId == null) { return }
+	
+	const action = `${BASE_URL}purchase/product_info`
+	let json_payload = {
+		price_id : priceId,
+	};
+
+	console.log(`about to hit the purchase/product_info endpoint: ${action}, and json_payload: ${JSON.stringify(json_payload)}`);
+	$.ajax({
+		url: action,
+		method: "POST",
+		data: JSON.stringify(json_payload),
+		contentType: "application/json",
+		dataType: "json",
+		success: function (response) {
+			console.log(`The purchase/product_info endpoint response is: ${JSON.stringify(response)}`);
+			let stripe_product = response['stripe_product'];
+			if (stripe_product == null) {
+				console.log("Didn't find the stripe product info");
+				return;
+			}
+
+			let productFeatureListDiv = document.getElementById('productFeatureList');
+			let productNameDiv = document.getElementById('productName');
+			let productImageCarouselDiv = document.getElementById('productImageCarousel');
+			let paymentButtonDiv = document.getElementById('payButton');
+
+			let productFeatures = stripe_product['product_features'];
+			let productName = stripe_product['name'];
+			let imageSetThemeInfo = stripe_product['image_set_theme_info'];
+			let productPrice = stripe_product['price'];
+			let productStrikethroughPrice = stripe_product['strikethrough_price'];
+
+			let productFeaturesHTML = product_feature_list_html(productFeatures);
+			let paymentButtonHTML = payment_button_html(productPrice, productStrikethroughPrice);
+			let imageSetThemeInfoHTML = image_set_theme_info_html(imageSetThemeInfo);
+
+			productNameDiv.innerHTML = productName;
+			productFeatureListDiv.innerHTML = productFeaturesHTML;
+			paymentButtonDiv.innerHTML = paymentButtonHTML;
+			productImageCarouselDiv.innerHTML = imageSetThemeInfoHTML;
+			
+			hideLoader();
+		},
+		error: function (msg) {
+			console.log("Fell into failure block for validating existing purchase: ", msg);
+		},
+	});
+}
+
+function userWantsToPay() {
+   let form = document.createElement('form');
+   form.method = 'POST';
+   form.action = "https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/create-checkout-session?price-id=price_1NlaTnLBuf172mCOWBlXjIhS";
+   document.body.appendChild(form);
+   form.submit();
+}
+
+function goBackHome() {
+	window.location.href = window.location.origin;
 }
 
 function kickOffContextProcess(new_context) {
@@ -751,24 +835,55 @@ function kickOffContextProcess(new_context) {
 			renderFirebaseAuthUI();
 			break
 		case PURCHASE_CONTEXT.PAYMENT:
+			wasJustPendingRequest = true;
+			fetchProductInfo();
+			break
 		case PURCHASE_CONTEXT.UPLOAD:
 			configureNewModelUploadArea();
 			configureUploadButton();
 			break
 		case PURCHASE_CONTEXT.SUMMARY:
+			break
 	}
 }
 
-function changePurchaseContext(context) {
+function changePurchaseContextToSummary(title, subtitle, callToAction, callToActionLink = null) {
 	showLoader();
 	resetCurrentContextIfPossible();
-	configureForNewContext(context);
-	// if (ui.isPendingRedirect() == false) {
-	// 	console.log(`just before calling hideLoader in changePurchaseContext, isPendingRequest: ${ui.isPendingRedirect()}`);
-	// 	hideLoader();
-	// }
 
-	current_context = context;
+	context_html = summaryContext_HTML(title, subtitle, callToAction, callToActionLink);
+	if (context_html == null) { return }
+	let context_element = $($.parseHTML(context_html));
+	$('.purchase-context-div').append(context_element);
+
+	styleBreadcrumbForContext(PURCHASE_CONTEXT.SUMMARY);
+	console.log('calling hideLoader from changePurchaseContextToSummary');
+	hideLoader();
+	current_context = PURCHASE_CONTEXT.SUMMARY;
+}
+
+function changePurchaseContext(new_context) {
+	showLoader();
+	resetCurrentContextIfPossible();
+	addUIForNewContext(new_context);
+	styleBreadcrumbForContext(new_context);
+	kickOffContextProcess(new_context);
+
+	if (wasJustPendingRequest === true) {
+		wasJustPendingRequest = false;
+	} else {
+		hideLoader();
+	}
+	current_context = new_context;
+}
+
+function styleBreadcrumbForContext(new_context) {
+	if (ui.isPendingRedirect() == false) {
+		let bc_context_id = breadcrumbID(new_context);
+		let bc_context_element = document.getElementById(bc_context_id);
+		bc_context_element.classList.remove('text-gray-300');
+		bc_context_element.classList.add('text-gray-400');
+	}
 }
 
 function breadcrumbID(context) {
@@ -791,11 +906,11 @@ window.onresize = (event) => {
 };
 
 function resizeUploadThumbnailHeights() {
-	let upload_img_width = $('.purchase-context-div').find('div img').width();
-	$('.purchase-context-div').find('div img').height(upload_img_width);
+	// let upload_img_width = $('.purchase-context-div').find('div img').width();
+	// $('.purchase-context-div').find('div img').height(upload_img_width);
 
-	let upload_container_width = $('.purchase-context-div').find('li.flex.flex-col').width();
-	$('.purchase-context-div').find('li.flex.flex-col').height(upload_container_width);
+	// let upload_container_width = $('.purchase-context-div').find('li.flex.flex-col').width();
+	// $('.purchase-context-div').find('li.flex.flex-col').height(upload_container_width);
 }
 
 window.onload = (event) => {
@@ -814,16 +929,18 @@ function handleAuthStateChange() {
 			};
 			
 			// Get reference to any local storage data for fast navgiation for returning users
-			let userRecId = localStorage.getItem('userRecId');
+			let userRecId = getUserRecId();
+			console.log('within onAuthStateChanged, the userRecId from local storage is: ', userRecId);
 			let purchaseRecId = getPurchaseRecIdFromLocalStorage();
 
 			// Navigate to the appropriate context
 			if (purchaseRecId != null) {
 				validatePreviousPurchase(userRecId, purchaseRecId);
-			} else if (userRecId) {
-				console.log('Gonna hit handlePaymentNavigation from onAuthStateChanged');
+			} else if (userRecId != null) {
+				console.log('Gonna hit handlePaymentNavigation from onAuthStateChanged to fast track user since we have some user info');
 				handlePaymentNavigation(userRecId);
 			} else {
+				console.log('dont have any local user info so getting that first before routing')
 				validateUserAuth(user_info);
 			}
 
@@ -831,6 +948,8 @@ function handleAuthStateChange() {
 			toggleLogoutButton(true);
 		} 
 		else { // User is signed out or is signing out
+			isPendingRedirect = ui.isPendingRedirect();
+			console.log('isPendingRedirect from the sign on state check: ', isPendingRedirect);
 			if (logoutPressed === false) {
 				console.log('In user is in signed out path, calling adapt from onAuthStateChanged');
 				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);

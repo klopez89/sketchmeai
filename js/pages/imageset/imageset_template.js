@@ -11,7 +11,7 @@ function startingElements() {
   let row =
   `
   <div class="border-b border-gray-200 py-5 px-5 sm:flex sm:items-center sm:justify-between">
-    <h3 class="text-2xl leading-6 font-black text-gray-800">Image Set 1</h3>
+    <h3 class="text-xl leading-6 font-semibold text-gray-800">Image Set 1</h3>
     <div class="mt-3 flex sm:ml-4 sm:mt-0">
       <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="downloadAllButton" onclick="downloadAll()">Download All</button>
       <button type="button" class="select-to-share-button ml-3 inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="toggleImageSelectability()">Select to Share</button>
@@ -24,7 +24,8 @@ function startingElements() {
 	</div>
   <div class="selection-bar fixed bottom-0 w-full right-0 py-5 px-5 bg-white bg-opacity-70 z-50 hidden">
     <div class="float-right space-x-4">
-      <button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm bg-white bg-opacity-80 text-gray-500 hover:bg-gray-200" onclick="toggleImageSelectability()">Cancel</button>
+      <button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm bg-white bg-opacity-80 text-gray-400 hover:bg-gray-200" onclick="toggleImageSelectability()">Cancel</button>
+      <button type="button" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm bg-gray-300" onclick="downloadSelectedPressed()" id="downloadSelectedButton" disabled="">Download Selected</button>
       <button type="button" class="share-button ml-3 inline-flex items-center rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-white shadow-sm" onclick="shareButtonPressed()">Share</button>
     </div>
   </div>
@@ -121,27 +122,6 @@ function promptGenerationForm(inputTitle,inputPlaceholder) {
   </form> 
   `;
   return form
-}
-
-function uploadEntryDiv(file) {
-  let filename = file.name;
-  let fileSize = file.size;
-  let fileType = file.type;
-
-  let div =
-  `
-  <div class="image-upload-entry" filename="${filename}" filetype="${fileType}">
-    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="upload-preview-image">
-    <p class="label">${filename}, ${fileSize}</p>
-    <button class="remove-upload-button">
-      <span class="fa-stack">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-times fa-stack-1x fa-inverse" style="margin-top: 1px;"></i>
-      </span>
-    </button>
-  </div>
-  `;
-  return div
 }
 
 function promptDiv(promptJson, shouldLazyLoad) {

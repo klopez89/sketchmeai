@@ -28,11 +28,11 @@ function toggleImageSelectability() {
   if (isSelectable) {
       selectionBar.classList.remove("hidden");
       selectToShareButton.classList.remove("bg-blue-600", "text-white", "hover:bg-blue-500");
-      selectToShareButton.classList.add("bg-transparent", "text-gray-500", "hover:bg-gray-200");
+      selectToShareButton.classList.add("bg-transparent", "text-gray-400", "hover:bg-gray-200");
       selectToShareButton.textContent = 'Cancel';
   } else {
       selectionBar.classList.add("hidden");
-      selectToShareButton.classList.remove("bg-transparent", "text-gray-500", "hover:bg-gray-200");
+      selectToShareButton.classList.remove("bg-transparent", "text-gray-400", "hover:bg-gray-200");
       selectToShareButton.classList.add("bg-blue-600", "text-white", "hover:bg-blue-500");
       selectToShareButton.textContent = 'Select to Share';
   }
@@ -42,6 +42,7 @@ function toggleImageSelectability() {
   });
 
   updateShareButton();
+  updateDownloadSelectedButton();
 }
 
 function configureSelectableDiv(div) {
@@ -155,6 +156,7 @@ function fetchNextSetOfImages(last_doc_id) {
       console.log('The response from fetchNextSetOfImages is: ', response);
       let prediction_list = response['predictions'];
       let last_doc_id = response['last_doc_id'];
+      let has_another_page = response['has_another_page'];
 
       if (prediction_list == null) {
         console.log('Didnt find any more images to load. all done paginating!');
@@ -164,6 +166,10 @@ function fetchNextSetOfImages(last_doc_id) {
           isCurrentlyPaginatingPrompts = false;
         }, 50);
         return
+      }
+
+      if (has_another_page === false) {
+        hideInfiniteLoader();
       }
 
       console.log("Got some new images to add to the list, length of new image list is", prediction_list.length);
@@ -302,6 +308,7 @@ function appendPrompts_onDOM(prediction_list) {
         if (isSelectable) {
             $(this).parent().toggleClass("selected");
             updateShareButton();
+            updateDownloadSelectedButton();
             let overlay_bg = $(this).find(".overlay-bg");
             
             const checkbox = $(this).parent().find(".checkbox");
@@ -337,6 +344,21 @@ function updateShareButton() {
     shareButton.prop('disabled', true);
   }
 }
+
+function updateDownloadSelectedButton() {
+  let selectedCount = $('div.selectable.selected').length;
+  let downloadSelectedButton = $('#downloadSelectedButton');
+  if (selectedCount > 0) {
+    downloadSelectedButton.removeClass('text-white bg-gray-300');
+    downloadSelectedButton.addClass('text-gray-800 bg-white hover:bg-gray-50');
+    downloadSelectedButton.prop('disabled', false);
+  } else {
+    downloadSelectedButton.addClass('text-white bg-gray-300');
+    downloadSelectedButton.removeClass('text-gray-800 bg-white hover:bg-gray-50');
+    downloadSelectedButton.prop('disabled', true);
+  }
+}
+
 
 function shareButtonPressed() {
   console.log('Share button pressed!');
@@ -402,3 +424,63 @@ function configureInfiniteScroll() {
   });
 }
 
+function downloadSelectedPressed() {
+  ready_response = checkIfReadyToFetchGeneratedImages()
+  should_fetch_generated_images = ready_response['should_fetch_generated_images']
+
+  if (should_fetch_generated_images === false) {
+    console.log("Encourage the user to try it out themselves, linking back to home page probably");
+    return
+  }
+  
+  // Get divs with 'selectable' and 'selected' classes
+  let selectedDivs = document.querySelectorAll('.selectable.selected');
+  // Get an array of their ids
+  let selectedIds = Array.from(selectedDivs).map(div => div.id);
+  
+  var jsonPayload = {
+    user_rec_id : ready_response['user_rec_id'],
+    image_set_name : ready_response['image_set_name'],
+    short_model_name : ready_response['short_model_name'],
+    prediction_ids_selected : selectedIds
+  }
+
+  let download_selected_button = document.getElementById("downloadSelectedButton");
+  download_selected_button.innerHTML = "Loading...";
+
+  var action = `${BASE_URL}img_package/predictions/zipfile`;
+  console.log("about to hit the endpoint for selected images: ", action);
+  $.ajax({
+    url: action,
+    method: "POST",
+    data: JSON.stringify(jsonPayload),
+    contentType: "application/json",
+    dataType: "json",
+    success: function (response) {
+      // Grab useful info from response
+      let zip_url = response['zip_url'];
+
+      if (zip_url == null) {
+        console.log('Found that the zip file url is null!');
+        return
+      }
+
+      download_selected_button.setAttribute("download-link", zip_url);
+      download_selected_button.innerHTML = "Download Selected";
+
+      console.log("Fell into success block for getting the selected image zip file url: ", zip_url);
+
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = zip_url;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    },
+    error: function (msg) {
+      console.log("Fell into failure block for getting selected image zip file url, msg: ", msg);
+      download_selected_button = document.getElementById("downloadSelectedButton");
+      download_selected_button.innerHTML = "Download Selected";
+    },
+  });
+}

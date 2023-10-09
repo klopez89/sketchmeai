@@ -26,32 +26,10 @@
     <script src="../js/helpers/constants.js"></script>
 
     <script>
-        var firebaseConfig = {}
-        const url = window.location.hostname;
-        const isDev = url.startsWith('dev.');
-
-        if (isDev) {
-            firebaseConfig = {
-                apiKey: "AIzaSyCNR1RyhfAk7AS-ooDzLssHRk1N6VgGbsQ",
-                authDomain: "sketchmeai-dev.firebaseapp.com",
-                projectId: "sketchmeai-dev",
-                storageBucket: "sketchmeai-dev.appspot.com",
-                messagingSenderId: "883089591531",
-                appId: "1:883089591531:web:e729a8ec05be7e0f4942ae",
-                measurementId: "G-F8YZ99D1R3"
-            };
-        } else {
-            firebaseConfig = {
-                apiKey: "AIzaSyDpEQogWUN3p_TZGS6fcrzB9fdgMVrhnOk",
-                authDomain: "sketchmeai-8cd03.firebaseapp.com",
-                projectId: "sketchmeai-8cd03",
-                storageBucket: "sketchmeai-8cd03.appspot.com",
-                messagingSenderId: "537976500685",
-                appId: "1:537976500685:web:df3d5b4172c19db8cc9484",
-                measurementId: "G-9DE6TQDCBK"
-            };
-        }
-
+        // Firebase configuration
+        const firebaseConfig = CONSTANTS.FIREBASE_CONFIG_APP_ID;
+        console.log('The firebase config dict is: ',firebaseConfig);
+        // Firebase configuration
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
     </script>

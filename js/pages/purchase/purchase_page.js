@@ -26,11 +26,7 @@ const DELIVERY_STATE = {
     EMAILED_LINK: 'EMAILED_LINK'
 }
 
-
-const BASE_URL = "https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/";
-
 var current_context = null;
-
 
 // Functions
 
@@ -122,9 +118,9 @@ function renderFirebaseAuthUI() {
       // firebase.auth.PhoneAuthProvider.PROVIDER_ID
     ],
     // Terms of service url.
-    tosUrl: 'https://www.sketchme.ai/login',
+    tosUrl: `https://${CONSTANTS.SITE_URL}/terms-of-service`,
     // Privacy policy url.
-    privacyPolicyUrl: 'https://www.sketchme.ai'
+    privacyPolicyUrl: `https://${CONSTANTS.SITE_URL}/privacy-policy`
   };
 
   ui.start('#firebaseui-auth-container', uiConfig);
@@ -141,7 +137,7 @@ function getPriceIdFromUrl() {
 }
 
 function validateUserAuth(userInfo) {
-	let action = `${BASE_URL}users/create`
+	let action = `${CONSTANTS.BACKEND_URL}users/create`
 	$.ajax({
 		url: action,
 		method: "POST",
@@ -194,7 +190,7 @@ function deleteUserPurchasesFromLocalStorage() {
 
 // this is really about getting the purchase delivery state in order to determine next navigation path
 function validatePreviousPurchase(user_rec_id, purchase_rec_id) {
-	const action = `${BASE_URL}purchase/validate`
+	const action = `${CONSTANTS.BACKEND_URL}purchase/validate`
 	let json_payload = {
 		purchase_rec_id : purchase_rec_id,
 		user_rec_id : user_rec_id,
@@ -220,7 +216,7 @@ function validatePreviousPurchase(user_rec_id, purchase_rec_id) {
 }
 
 function validatePurchase(userRecId, priceId, quantity) {
-	const action = `${BASE_URL}purchase/save`
+	const action = `${CONSTANTS.BACKEND_URL}purchase/save`
 	let json_payload = {
 		user_rec_id : userRecId,
 		price_id 	: priceId,
@@ -307,7 +303,7 @@ function beginNewModelCreation() {
 		return;
 	}
 
-	let action = `${BASE_URL}img_package/kickoff`
+	let action = `${CONSTANTS.BACKEND_URL}img_package/kickoff`
 	let email = currentUser.email;
 	let display_name = currentUser.displayName;
 	let files = getUploadedFiles();
@@ -769,7 +765,7 @@ function fetchProductInfo() {
 	let priceId = getPriceIdFromUrl();
 	if (priceId == null) { return }
 	
-	const action = `${BASE_URL}purchase/product_info`
+	const action = `${CONSTANTS.BACKEND_URL}purchase/product_info`
 	let json_payload = {
 		price_id : priceId,
 	};
@@ -820,7 +816,7 @@ function fetchProductInfo() {
 function userWantsToPay() {
    let form = document.createElement('form');
    form.method = 'POST';
-   form.action = "https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/create-checkout-session?price-id=price_1NlaTnLBuf172mCOWBlXjIhS";
+   form.action = `${CONSTANTS.BACKEND_URL}create-checkout-session?price-id=${CONSTANTS.BASE_BUNDLE_PRICE_ID}`;
    document.body.appendChild(form);
    form.submit();
 }

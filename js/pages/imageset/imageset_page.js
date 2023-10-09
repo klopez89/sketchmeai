@@ -1,6 +1,4 @@
 
-const BASE_URL = "https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/";
-
 let isSelectable = false;
 let isCurrentlyPaginatingPrompts = false;
 
@@ -96,7 +94,7 @@ function fetchInitialImages() {
   }
 
   console.log("img_package/predictions json payload is: ", jsonPayload);
-  var action = `${BASE_URL}img_package/predictions`;
+  var action = `${CONSTANTS.BACKEND_URL}img_package/predictions`;
 
   $.ajax({
     url: action,
@@ -138,7 +136,7 @@ function getLastDocIdFromLocalStorage() {
 
 function fetchNextSetOfImages(last_doc_id) {
   console.log('The last doc id from fetchNextSetOfImages is: ', last_doc_id);
-  var action = `${BASE_URL}img_package/predictions`;
+  var action = `${CONSTANTS.BACKEND_URL}img_package/predictions`;
   var jsonPayload = {
     user_rec_id : ready_response['user_rec_id'],
     image_set_name : ready_response['image_set_name'],
@@ -225,7 +223,7 @@ function downloadAll() {
   let download_all_button = document.getElementById("downloadAllButton");
   download_all_button.innerHTML = "Loading...";
 
-  var action = `${BASE_URL}img_package/predictions/zipfile`;
+  var action = `${CONSTANTS.BACKEND_URL}img_package/predictions/zipfile`;
   console.log("about to hit the endpoint: ", action);
   $.ajax({
     url: action,
@@ -448,7 +446,7 @@ function downloadSelectedPressed() {
   let download_selected_button = document.getElementById("downloadSelectedButton");
   download_selected_button.innerHTML = "Loading...";
 
-  var action = `${BASE_URL}img_package/predictions/zipfile`;
+  var action = `${CONSTANTS.BACKEND_URL}img_package/predictions/zipfile`;
   console.log("about to hit the endpoint for selected images: ", action);
   $.ajax({
     url: action,

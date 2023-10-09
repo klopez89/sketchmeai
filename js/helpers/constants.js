@@ -1,7 +1,7 @@
 const CONSTANTS = (function() {
     if (hasDevSubdomain()) {
         return {
-            SITE_URL: 'https://dev.sketchme.ai',
+            SITE_URL: 'dev.sketchme.ai',
             BASE_BUNDLE_PRICE_ID: 'price_1NlaTnLBuf172mCOWBlXjIhS', // from klopez89@gmail.com account
             BACKEND_URL: 'https://sketchmeaibackend-dev-sxgjpzid6q-uk.a.run.app',
             FIREBASE_CONFIG_APP_ID: {
@@ -16,7 +16,7 @@ const CONSTANTS = (function() {
         };
     } else {
         return {
-            SITE_URL: 'https://sketchme.ai',
+            SITE_URL: 'sketchme.ai',
             BASE_BUNDLE_PRICE_ID: 'price_1NxM0bKaOW6JyAnBPWwV11Vk', // from klopez@sketchme.ai
             BACKEND_URL: 'https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app',
             FIREBASE_CONFIG_APP_ID: {

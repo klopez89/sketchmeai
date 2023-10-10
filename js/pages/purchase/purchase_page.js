@@ -327,7 +327,7 @@ function beginNewModelCreation() {
 		success: function (response) {
 			console.log('new model endpoint hit success, w/ response: ', response);
 			showCheckmarkOnUploadButton();
-			changePurchaseContext(PURCHASE_CONTEXT.SUMMARY);
+			navigateWithDeliveryState(DELIVERY_STATE.GENERATING_MODEL);
 		},
 		error: function (msg) {
 			console.log("Fell into failure block for new model creation! msg: ", msg);
@@ -516,17 +516,17 @@ function handleFileUploads(files) {
 	  console.log("the files to upload are: ", files_to_upload);
 
 		// Read the contents of each file
-    for (var i = 0; i < files_to_upload.length; i++) {
-    	let reader = new FileReader();
-    	let file = files_to_upload[i];
-  		let filename = file.name;
-  		let fileType = file.type;
-  		let fileSize = file.size;
+	for (var i = 0; i < files_to_upload.length; i++) {
+		let reader = new FileReader();
+		let file = files_to_upload[i];
+		let filename = file.name;
+		let fileType = file.type;
+		let fileSize = file.size;
 
-		  if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png') {
-		    // Return early if the file type is not supported
-		    return;
-		  }
+		if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png') {
+			// Return early if the file type is not supported
+			return;
+		}
 
 			reader.addEventListener('load', function(event) {
 				let fileData = event.target.result;
@@ -539,8 +539,8 @@ function handleFileUploads(files) {
 				addFileUploadDivToDOM(fileInfo);
 			});
 
-      reader.readAsDataURL(files[i]);
-    }
+	reader.readAsDataURL(files[i]);
+	}
 	}
 }
 

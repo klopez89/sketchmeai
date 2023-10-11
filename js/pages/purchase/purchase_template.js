@@ -167,7 +167,7 @@ function uploadContext_HTML() {
 		<input id="localUploadInput" type="file" style="display:none;" multiple/>
 	</div>
 
-	<ul role="list" id="uploadEntryContainer" class="flex overflow-x-auto space-x-2 pb-7 pt-6 px-8">
+	<ul role="list" id="uploadEntryContainer" class="flex overflow-x-auto space-x-2 pb-4 pt-6 px-8 mb-5">
 	</ul>
 
 	<div id="uploadToServerButtonContainer" class="px-8 pb-8 flex justify-center">

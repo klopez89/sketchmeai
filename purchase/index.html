@@ -30,8 +30,6 @@
         var firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
         console.log('The firebase config dict is: ',firebaseConfig);
         // Firebase configuration
-        firebase.setLogLevel('debug')
-        firestore.setLogLevel('debug')
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
     </script>

@@ -52,14 +52,7 @@ function renderFirebaseAuthUI() {
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
         // Preserve the query parameters in the URL after sign in unless we already have the priceId
-        var currentUrl = window.location.href;
-        var urlParams = new URLSearchParams(window.location.search);
-		let hasPriceIDInUrl = urlParams.has('priceId');
-        firebase.auth().onAuthStateChanged(function(user) {
-        	if (user && !hasPriceIDInUrl) {
-            window.location.href = currentUrl + '?' + urlParams.toString();
-          }
-        });
+
 		
         // showLoader();
 
@@ -916,7 +909,15 @@ window.onload = (event) => {
 function handleAuthStateChange() {
 
 	firebase.auth().onAuthStateChanged((user) => {
+		var currentUrl = window.location.href;
+        var urlParams = new URLSearchParams(window.location.search);
+		let hasPriceIDInUrl = urlParams.has('priceId');
+
 		if (user) {
+			if (!hasPriceIDInUrl) {
+				window.location.href = currentUrl + '?' + urlParams.toString();
+			}
+
 			var user_info = {
 				uid: user.uid,
 				email: user.email,

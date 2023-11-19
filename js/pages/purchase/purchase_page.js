@@ -5,7 +5,8 @@ initializePage();
 // Listen to change in auth state so it displays the correct UI for when
 // the user is signed in or not.
 firebase.auth().onAuthStateChanged(function(user) {
-	console.log('About to hit handleSignedInUser from onAuthStateChanged');
+	console.log('About to hit handleSignedInUser or handleSignedOutUser from onAuthStateChanged');
+	console.log('The user objects is: ', user);
 	user ? handleSignedInUser(user) : handleSignedOutUser();
 });
 
@@ -888,7 +889,7 @@ window.onload = (event) => {
  */
 var handleSignedOutUser = function() {
 	changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-	ui.start('#firebaseui-container', getUiConfig());
+	ui.start('#firebaseui-auth-container', getUiConfig());
 };
 
 /**

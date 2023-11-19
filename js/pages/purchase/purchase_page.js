@@ -837,7 +837,7 @@ function changePurchaseContext(new_context) {
 	kickOffContextProcess(new_context);
 
 	if (wasJustPendingRequest === true) {
-		wasJustPendingRequest = false;
+		// wasJustPendingRequest = false;
 	} else {
 		hideLoader();
 	}
@@ -899,6 +899,8 @@ var handleSignedOutUser = function() {
 	if (wasJustPendingRequest==false) {
 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 		ui.start('#firebaseui-auth-container', getUiConfig());
+	} else {
+		wasJustPendingRequest = false;
 	}
 };
 

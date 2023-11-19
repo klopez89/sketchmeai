@@ -1,12 +1,7 @@
+initializePage();
 
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
-if (ui.isPendingRedirect()) {
-	renderFirebaseAuthUI();
-}
-
-  initializePage();
-
 var logoutPressed = false;
 var wasJustPendingRequest = false;
 
@@ -920,7 +915,7 @@ window.onload = (event) => {
 function handleAuthStateChange() {
 
 	firebase.auth().onAuthStateChanged((user) => {
-		console.log('In on auth state changed, the user is: ', user);
+		console.log('In onAuthStateChanged, the user is: ', user);
 		if (user) {
 			var user_info = {
 				uid: user.uid,

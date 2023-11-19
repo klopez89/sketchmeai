@@ -59,6 +59,7 @@ function getUiConfig() {
 		'callbacks': {
 			// Called when the user has been successfully signed in.
 			'signInSuccessWithAuthResult': function(authResult, redirectUrl) {
+				console.log('inside of signInSuccessWithAuthResult');
 				if (authResult.additionalUserInfo) {
 					type_of_signed_in_user = authResult.additionalUserInfo.isNewUser ?
 					'New User' : 'Existing User'

@@ -1,4 +1,4 @@
-await firebaseAuth.getRedirectResult()
+
 
 initializePage();
 
@@ -124,6 +124,7 @@ function renderFirebaseAuthUI() {
     privacyPolicyUrl: `https://${CONSTANTS.SITE_URL}/privacy-policy`
   };
 
+  firebase.auth().getRedirectResult();
   ui.start('#firebaseui-auth-container', uiConfig);
 }
 
@@ -918,42 +919,49 @@ function handleAuthStateChange() {
 
 	firebase.auth().onAuthStateChanged((user) => {
 		console.log('In onAuthStateChanged, the user is: ', user);
-		if (user) {
-			var user_info = {
-				uid: user.uid,
-				email: user.email,
-				displayName: user.displayName,
-				providerId: user.providerData[0].providerId
-			};
-			
-			// Get reference to any local storage data for fast navgiation for returning users
-			let userRecId = getUserRecId();
-			console.log('within onAuthStateChanged, the userRecId from local storage is: ', userRecId);
-			let purchaseRecId = getPurchaseRecIdFromLocalStorage();
 
-			// Navigate to the appropriate context
-			if (purchaseRecId != null) {
-				validatePreviousPurchase(userRecId, purchaseRecId);
-			} else if (userRecId != null) {
-				console.log('Gonna hit handlePaymentNavigation from onAuthStateChanged to fast track user since we have some user info');
-				handlePaymentNavigation(userRecId);
+		firebase.auth().getRedirectResult().then(result => {
+			// If user just signed in or already signed in, hide spinner.
+			if (result.user || firebase.auth().currentUser) {
+				navigate_signed_in_user(firebase.auth().currentUser)
 			} else {
-				console.log('dont have any local user info so getting that first before routing')
-				validateUserAuth(user_info);
+				isPendingRedirect = ui.isPendingRedirect();
+				console.log('isPendingRedirect from the sign on state check: ', isPendingRedirect);
+				if (logoutPressed === false) {
+					console.log('In user is in signed out path, calling adapt from onAuthStateChanged');
+					changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+				}
 			}
-
-			console.log('About to make the logout button visible');
-			toggleLogoutButton(true);
-		} 
-		else { // User is signed out or is signing out
-			isPendingRedirect = ui.isPendingRedirect();
-			console.log('isPendingRedirect from the sign on state check: ', isPendingRedirect);
-			if (logoutPressed === false) {
-				console.log('In user is in signed out path, calling adapt from onAuthStateChanged');
-				changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-			}
-		}
+		  });
 	});
+}
+
+function navigate_signed_in_user(user) {
+	var user_info = {
+		uid: user.uid,
+		email: user.email,
+		displayName: user.displayName,
+		providerId: user.providerData[0].providerId
+	};
+	
+	// Get reference to any local storage data for fast navgiation for returning users
+	let userRecId = getUserRecId();
+	console.log('within onAuthStateChanged, the userRecId from local storage is: ', userRecId);
+	let purchaseRecId = getPurchaseRecIdFromLocalStorage();
+
+	// Navigate to the appropriate context
+	if (purchaseRecId != null) {
+		validatePreviousPurchase(userRecId, purchaseRecId);
+	} else if (userRecId != null) {
+		console.log('Gonna hit handlePaymentNavigation from onAuthStateChanged to fast track user since we have some user info');
+		handlePaymentNavigation(userRecId);
+	} else {
+		console.log('dont have any local user info so getting that first before routing')
+		validateUserAuth(user_info);
+	}
+
+	console.log('About to make the logout button visible');
+	toggleLogoutButton(true);
 }
 
 function signOutUser() {

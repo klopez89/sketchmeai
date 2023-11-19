@@ -93,7 +93,7 @@ function renderFirebaseAuthUI() {
     privacyPolicyUrl: `https://${CONSTANTS.SITE_URL}/privacy-policy`
   };
 
-  ui.start('#firebaseui-auth-container', uiConfig);
+  ui.start('#firebaseui-auth-container', getUiConfig());
 }
 
 function getPriceIdFromUrl() {
@@ -883,7 +883,7 @@ function resizeUploadThumbnailHeights() {
 window.onload = (event) => {
 	console.log('the firebase ui is pending a redirect: ', ui.isPendingRedirect());
 	if (ui.isPendingRedirect()) {
-		ui.start('#firebaseui-auth-container', uiConfig);
+		ui.start('#firebaseui-auth-container', getUiConfig());
 	}
 //   handleAuthStateChange();
 };

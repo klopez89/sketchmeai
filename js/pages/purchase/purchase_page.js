@@ -1,11 +1,11 @@
 
-initializePage();
-
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 if (ui.isPendingRedirect()) {
 	ui.start('#firebaseui-auth-container', uiConfig);
   }
+
+  initializePage();
 
 var logoutPressed = false;
 var wasJustPendingRequest = false;

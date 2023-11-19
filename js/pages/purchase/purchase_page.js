@@ -887,7 +887,9 @@ window.onload = (event) => {
 	if (ui.isPendingRedirect()) {
 		wasJustPendingRequest = true;
 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-		ui.start('#firebaseui-auth-container', getUiConfig());
+		setTimeout(function() {
+			ui.start('#firebaseui-auth-container', getUiConfig());
+		}, 500);
 	}
 //   handleAuthStateChange();
 };

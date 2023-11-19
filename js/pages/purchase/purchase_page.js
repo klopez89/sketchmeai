@@ -1,16 +1,8 @@
-// Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
 initializePage();
 
-// Listen to change in auth state so it displays the correct UI for when
-// the user is signed in or not.
-firebase.auth().onAuthStateChanged(function(user) {
-	console.log('The value for does have redirect is: ', ui.isPendingRedirect())
-	console.log('About to hit handleSignedInUser or handleSignedOutUser from onAuthStateChanged');
-	console.log('The user objects is: ', user);
-	user ? handleSignedInUser(user) : handleSignedOutUser();
-});
-
+// Initialize the FirebaseUI Widget using Firebase.
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var logoutPressed = false;
 var wasJustPendingRequest = false;
 
@@ -54,48 +46,84 @@ function initializePage() {
 	$('.purchase-context-div').append(loader_element);
 }
 
-function getUiConfig() {
-	return {
-		'callbacks': {
-			// Called when the user has been successfully signed in.
-			'signInSuccessWithAuthResult': function(authResult, redirectUrl) {
-				console.log('inside of signInSuccessWithAuthResult');
-				if (authResult.additionalUserInfo) {
-					type_of_signed_in_user = authResult.additionalUserInfo.isNewUser ?
-					'New User' : 'Existing User'
-					console.log('Type of signed in user: ', type_of_signed_in_user);
-				}
-				if (authResult.user) {
-					console.log('About to hit handleSignedInUser from signInSuccess');
-					handleSignedInUser(authResult.user);
-				}
-				// Do not redirect.
-				return false;
-			}
-		},
-		'signInOptions': [
-			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-			firebase.auth.EmailAuthProvider.PROVIDER_ID,
-		],
-		tosUrl: `https://${CONSTANTS.SITE_URL}/terms-of-service`,
-		privacyPolicyUrl: `https://${CONSTANTS.SITE_URL}/privacy-policy`,
-	};
-}
-
 function renderFirebaseAuthUI() {
   console.log('renderFirebaseAuthUI called');
-  var currentUrl = window.location.href;
   var uiConfig = {
-	signInSuccessUrl: `${currentUrl}&didSignIn=True`,
+    callbacks: {
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        // Preserve the query parameters in the URL after sign in unless we already have the priceId
+        var currentUrl = window.location.href;
+        var urlParams = new URLSearchParams(window.location.search);
+		let hasPriceIDInUrl = urlParams.has('priceId');
+        firebase.auth().onAuthStateChanged(function(user) {
+        	if (user && !hasPriceIDInUrl) {
+            window.location.href = currentUrl + '?' + urlParams.toString();
+          }
+        });
+		
+        // showLoader();
+
+        // User successfully signed in.
+        var user = authResult.user;
+        var credential = authResult.credential;
+        var isNewUser = authResult.additionalUserInfo.isNewUser;
+        var providerId = authResult.additionalUserInfo.providerId;
+
+        var uid = user.uid;
+        var email = user.email;
+        var displayName = user.displayName;
+        const newUserInfo = {
+          uid : uid,
+          email : email,
+          displayName : displayName,
+          providerId : providerId,
+        }
+
+
+        // Handle new user case
+        if (isNewUser === true) {
+          // signUpNewUser(newUserInfo);
+          // console.log(`detected the user is brand spanking new, email: ${email}, uid: ${uid}, displayName: ${displayName}`);
+        } else {
+          // routeSignedInUser();
+          // console.log(`detected the user is not new so just signing in again, email: ${email}, uid: ${uid}, displayName: ${displayName}`);
+        }
+
+		console.log('Successfully logged in');
+
+        // Return type determines whether we continue the redirect automatically
+        // or whether we leave that to developer to handle.
+        return false;
+      },
+      uiShown: function() {
+        // The widget is rendered.
+        console.log(`Ui  shown function is called, isPendingRequest: ${ui.isPendingRedirect()}`);
+        wasJustPendingRequest = ui.isPendingRedirect();
+		if (ui.isPendingRedirect() === false) {
+        	console.log(`just before calling hideLoader in uishown, isPendingRequest: ${ui.isPendingRedirect()}`);
+	        hideLoader();
+        }
+      }
+    },
+    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+    // signInFlow: 'popup',
+    // signInSuccessUrl: '',
     signInOptions: [
+      // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      // firebase.auth.GithubAuthProvider.PROVIDER_ID,
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      // firebase.auth.PhoneAuthProvider.PROVIDER_ID
     ],
+    // Terms of service url.
     tosUrl: `https://${CONSTANTS.SITE_URL}/terms-of-service`,
+    // Privacy policy url.
     privacyPolicyUrl: `https://${CONSTANTS.SITE_URL}/privacy-policy`
   };
 
-  ui.start('#firebaseui-auth-container', getUiConfig());
+  ui.start('#firebaseui-auth-container', uiConfig);
 }
 
 function getPriceIdFromUrl() {
@@ -800,7 +828,7 @@ function goBackHome() {
 function kickOffContextProcess(new_context) {
 		switch (new_context) {
 		case PURCHASE_CONTEXT.LOGIN:
-			// renderFirebaseAuthUI();
+			renderFirebaseAuthUI();
 			break
 		case PURCHASE_CONTEXT.PAYMENT:
 			wasJustPendingRequest = true;
@@ -838,7 +866,7 @@ function changePurchaseContext(new_context) {
 	kickOffContextProcess(new_context);
 
 	if (wasJustPendingRequest === true) {
-		// wasJustPendingRequest = false;
+		wasJustPendingRequest = false;
 	} else {
 		hideLoader();
 	}
@@ -881,85 +909,14 @@ function resizeUploadThumbnailHeights() {
 	// $('.purchase-context-div').find('li.flex.flex-col').height(upload_container_width);
 }
 
-
 window.onload = (event) => {
-	console.log('the firebase ui is pending a redirect: ', ui.isPendingRedirect());
-	if (ui.isPendingRedirect()) {
-		wasJustPendingRequest = true;
-		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-		setTimeout(function() {
-			ui.start('#firebaseui-auth-container', getUiConfig());
-		}, 500);
-	}
-//   handleAuthStateChange();
+  handleAuthStateChange();
 };
-
-/**
- * Displays the UI for a signed out user.
- */
-var handleSignedOutUser = function() {
-	console.log('The value of wasJustPendingRequest is: ', wasJustPendingRequest);
-	if (wasJustPendingRequest==false) {
-		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-		ui.start('#firebaseui-auth-container', getUiConfig());
-	} else {
-		wasJustPendingRequest = false;
-	}
-};
-
-/**
- * Displays the UI for a signed in user.
- * @param {!firebase.User} user
- */
-var handleSignedInUser = function(user) {
-	// var currentUrl = window.location.href;
-	// var urlParams = new URLSearchParams(window.location.search);
-	// let hasPriceIDInUrl = urlParams.has('priceId');
-
-	// if (!hasPriceIDInUrl) {
-	// 	window.location.href = currentUrl + '?' + urlParams.toString();
-	// }
-
-	var user_info = {
-		uid: user.uid,
-		email: user.email,
-		displayName: user.displayName,
-		providerId: user.providerData[0].providerId
-	};
-	
-	// Get reference to any local storage data for fast navgiation for returning users
-	let userRecId = getUserRecId();
-	console.log('within onAuthStateChanged, the userRecId from local storage is: ', userRecId);
-	let purchaseRecId = getPurchaseRecIdFromLocalStorage();
-
-	// Navigate to the appropriate context
-	if (purchaseRecId != null) {
-		validatePreviousPurchase(userRecId, purchaseRecId);
-	} else if (userRecId != null) {
-		console.log('Gonna hit handlePaymentNavigation from onAuthStateChanged to fast track user since we have some user info');
-		handlePaymentNavigation(userRecId);
-	} else {
-		console.log('dont have any local user info so getting that first before routing')
-		validateUserAuth(user_info);
-	}
-
-	console.log('About to make the logout button visible');
-	toggleLogoutButton(true);
-};
-
 
 function handleAuthStateChange() {
 
 	firebase.auth().onAuthStateChanged((user) => {
-		var currentUrl = window.location.href;
-        var urlParams = new URLSearchParams(window.location.search);
-		let hasPriceIDInUrl = urlParams.has('priceId');
-
 		if (user) {
-			if (!hasPriceIDInUrl) {
-				window.location.href = currentUrl + '?' + urlParams.toString();
-			}
-
 			var user_info = {
 				uid: user.uid,
 				email: user.email,

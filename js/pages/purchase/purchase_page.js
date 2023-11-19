@@ -916,6 +916,7 @@ window.onload = (event) => {
 function handleAuthStateChange() {
 
 	firebase.auth().onAuthStateChanged((user) => {
+		console.log('In on auth state changed, the user is: ', user);
 		if (user) {
 			var user_info = {
 				uid: user.uid,

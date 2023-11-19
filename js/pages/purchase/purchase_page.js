@@ -921,6 +921,7 @@ function handleAuthStateChange() {
 		console.log('In onAuthStateChanged, the user is: ', user);
 
 		firebase.auth().getRedirectResult().then(result => {
+			console.log('the result of the getRedirect: ', result)
 			// If user just signed in or already signed in, hide spinner.
 			if (result.user || firebase.auth().currentUser) {
 				navigate_signed_in_user(firebase.auth().currentUser)

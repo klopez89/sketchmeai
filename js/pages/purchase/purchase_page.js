@@ -1,3 +1,5 @@
+await firebaseAuth.getRedirectResult()
+
 initializePage();
 
 // Initialize the FirebaseUI Widget using Firebase.

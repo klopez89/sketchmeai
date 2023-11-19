@@ -5,6 +5,7 @@ initializePage();
 // Listen to change in auth state so it displays the correct UI for when
 // the user is signed in or not.
 firebase.auth().onAuthStateChanged(function(user) {
+	console.log('The value for does have redirect is: ', ui.isPendingRedirect())
 	console.log('About to hit handleSignedInUser or handleSignedOutUser from onAuthStateChanged');
 	console.log('The user objects is: ', user);
 	user ? handleSignedInUser(user) : handleSignedOutUser();

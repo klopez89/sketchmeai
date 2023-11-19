@@ -894,6 +894,7 @@ window.onload = (event) => {
  * Displays the UI for a signed out user.
  */
 var handleSignedOutUser = function() {
+	console.log('The value of wasJustPendingRequest is: ', wasJustPendingRequest);
 	if (wasJustPendingRequest==false) {
 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 		ui.start('#firebaseui-auth-container', getUiConfig());

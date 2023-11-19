@@ -883,6 +883,7 @@ function resizeUploadThumbnailHeights() {
 window.onload = (event) => {
 	console.log('the firebase ui is pending a redirect: ', ui.isPendingRedirect());
 	if (ui.isPendingRedirect()) {
+		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 		ui.start('#firebaseui-auth-container', getUiConfig());
 	}
 //   handleAuthStateChange();

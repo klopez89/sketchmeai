@@ -883,6 +883,7 @@ function resizeUploadThumbnailHeights() {
 window.onload = (event) => {
 	console.log('the firebase ui is pending a redirect: ', ui.isPendingRedirect());
 	if (ui.isPendingRedirect()) {
+		wasJustPendingRequest = true;
 		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
 		ui.start('#firebaseui-auth-container', getUiConfig());
 	}
@@ -893,8 +894,10 @@ window.onload = (event) => {
  * Displays the UI for a signed out user.
  */
 var handleSignedOutUser = function() {
-	changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
-	ui.start('#firebaseui-auth-container', getUiConfig());
+	if (wasJustPendingRequest==false) {
+		changePurchaseContext(PURCHASE_CONTEXT.LOGIN);
+		ui.start('#firebaseui-auth-container', getUiConfig());
+	}
 };
 
 /**

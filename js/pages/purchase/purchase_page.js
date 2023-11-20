@@ -57,8 +57,8 @@ function renderFirebaseAuthUI() {
 		let hasPriceIDInUrl = urlParams.has('priceId');
         firebase.auth().onAuthStateChanged(function(user) {
         	if (user && !hasPriceIDInUrl) {
-            window.location.href = currentUrl + '?' + urlParams.toString();
-          }
+            	window.location.href = currentUrl + '?' + urlParams.toString();
+          	}
         });
 		
         // showLoader();
@@ -107,7 +107,7 @@ function renderFirebaseAuthUI() {
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     // signInFlow: 'popup',
-    // signInSuccessUrl: '',
+    signInSuccessUrl: `${window.location.href}?signIn=true`,
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,

@@ -29,9 +29,18 @@ function changeActiveMenuPage() {
     });
 }
 
+function updatePageTitle() {
+    var urlParts = window.location.pathname.split('/');
+    if (urlParts[1] === 'console') {
+        var pageTitleDiv = document.getElementById('page-title');
+        pageTitleDiv.innerHTML = urlParts[2].charAt(0).toUpperCase() + urlParts[2].slice(1);
+    }
+}
+
 
 window.onload = function() {
     addConsoleToDOM();
     copyStaticSidebar();
     changeActiveMenuPage();
+    updatePageTitle();
 }

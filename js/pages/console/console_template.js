@@ -96,7 +96,7 @@ function consoleHtml() {
             <div class="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true"></div>
     
             <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-<div class="relative flex flex-1 self-center text-xl font-bold">Generate</div>
+            <div id="page-title" class="relative flex flex-1 self-center text-xl font-bold">Generate</div>
             
             <div class="flex items-center gap-x-4 lg:gap-x-6">
                 

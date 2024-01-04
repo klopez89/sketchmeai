@@ -13,7 +13,7 @@ function copyStaticSidebar() {
 }
 
 function changeActiveMenuPage() {
-    var page = window.location.pathname.split('/')[1];
+    var page = window.location.pathname.split('/')[2];
     console.log("page from url: ", page);
     var links = document.querySelectorAll('#static-sidebar a');
     links.forEach(function(link) {

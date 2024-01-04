@@ -30,3 +30,11 @@ function configureOffCanvasMenu() {
     //     offCanvasMenu.classList.add('leaving');
     // });
 }
+
+window.onload = function() {
+    var staticSidebar = document.getElementById('static-sidebar');
+    var swapDiv = document.querySelector('.swap-for-static-sidebar');
+
+    var clonedSidebar = staticSidebar.cloneNode(true);
+    swapDiv.parentNode.replaceChild(clonedSidebar, swapDiv);
+}

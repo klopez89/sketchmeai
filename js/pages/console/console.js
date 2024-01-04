@@ -1,4 +1,4 @@
-console.log("console.js hit from the top")
+
 function addConsoleToDOM() {
 	let console_html = consoleHtml();
 	let console_div = $($.parseHTML(console_html));
@@ -12,8 +12,22 @@ function copyStaticSidebar() {
     swapDiv.innerHTML = clonedSidebar.innerHTML;
 }
 
+function changeActiveMenuPage() {
+    var page = window.location.pathname.split('/')[1];
+    var links = document.querySelectorAll('#static-sidebar a');
+    links.forEach(function(link) {
+        if (link.href.includes(page)) {
+            link.classList.add('bg-gray-800', 'text-white');
+        } else {
+            link.classList.remove('bg-gray-800', 'text-white');
+            link.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-gray-800');
+        }
+    });
+}
+
+
 window.onload = function() {
-    console.log("console.js loaded on load")
     addConsoleToDOM();
     copyStaticSidebar();
+    changeActiveMenuPage();
 }

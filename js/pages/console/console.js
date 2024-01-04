@@ -1,4 +1,4 @@
-
+console.log("console.js hit from the top")
 function addConsoleToDOM() {
 	let console_html = consoleHtml();
 	let console_div = $($.parseHTML(console_html));
@@ -13,6 +13,7 @@ function copyStaticSidebar() {
 }
 
 window.onload = function() {
+    console.log("console.js loaded on load")
     addConsoleToDOM();
     copyStaticSidebar();
 }

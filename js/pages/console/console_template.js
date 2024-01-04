@@ -36,7 +36,7 @@ function consoleHtml() {
                 <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=500" alt="Your Company">
                 </div>
                 <nav class="flex flex-1 flex-col">
-                <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                <ul id="page-list" role="list" class="flex flex-1 flex-col gap-y-7">
                     <li>
                     <ul role="list" class="-mx-2 space-y-1">
                         <li>

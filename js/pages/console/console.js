@@ -33,7 +33,7 @@ function configureOffCanvasMenu() {
 
 window.onload = function() {
     var staticSidebar = document.getElementById('static-sidebar');
-    var swapDiv = document.querySelector('.swap-for-static-sidebar');
+    var swapDiv = document.getElementById('swap-for-static-sidebar');
 
     var clonedSidebar = staticSidebar.cloneNode(true);
     swapDiv.parentNode.replaceChild(clonedSidebar, swapDiv);

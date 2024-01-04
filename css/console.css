@@ -1,0 +1,31 @@
+/* Off-Canvas */
+
+.off-canvas-menu {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.3s ease-linear, transform 0.3s ease-in-out;
+}
+
+.off-canvas-menu.entering {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.off-canvas-menu.leaving {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+/* Off-Canvas Backdrop */
+.backdrop {
+    opacity: 0;
+    transition: opacity 0.3s ease-linear;
+}
+
+.backdrop.entering {
+    opacity: 1;
+}
+
+.backdrop.leaving {
+    opacity: 0;
+}

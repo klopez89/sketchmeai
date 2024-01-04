@@ -16,7 +16,9 @@ function changeActiveMenuPage() {
     var page = window.location.pathname.split('/')[2];
     console.log("page from url: ", page);
     var links = document.querySelectorAll('#static-sidebar #page-list a');
-    links.forEach(function(link) {
+    var copiedLinks = document.querySelectorAll('#swap-for-static-sidebar #page-list a');
+    var combinedLinks = [...links, ...copiedLinks];
+    combinedLinks.forEach(function(link) {
         console.log("link: ", link.href);
         if (link.href.toLowerCase().includes(page.toLowerCase())) {
             link.classList.add('bg-gray-800', 'text-white');
@@ -31,6 +33,5 @@ function changeActiveMenuPage() {
 window.onload = function() {
     addConsoleToDOM();
     copyStaticSidebar();
-    console.log("about to hit changeActiveMenuPage()");
     changeActiveMenuPage();
 }

@@ -16,6 +16,7 @@ function configureOffCanvasMenu() {
 
     // Add an event listener to the open button
     openButton.addEventListener('click', function() {
+        console.log('open button clicked');
         // Remove the 'leaving' class and add the 'entering' class to the off-canvas menu
         offCanvasMenu.classList.remove('leaving');
         offCanvasMenu.classList.add('entering');
@@ -23,6 +24,7 @@ function configureOffCanvasMenu() {
 
     // Add an event listener to the close button
     closeButton.addEventListener('click', function() {
+        console.log('close button clicked');
         // Remove the 'entering' class and add the 'leaving' class to the off-canvas menu
         offCanvasMenu.classList.remove('entering');
         offCanvasMenu.classList.add('leaving');

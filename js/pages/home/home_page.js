@@ -1,4 +1,3 @@
-console.log('about to run configuration functions');
 configureHomePage();
 configureNavMenuButtons();
 

@@ -30,5 +30,6 @@ function changeActiveMenuPage() {
 window.onload = function() {
     addConsoleToDOM();
     copyStaticSidebar();
+    console.log("about to hit changeActiveMenuPage()");
     changeActiveMenuPage();
 }

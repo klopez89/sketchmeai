@@ -1,7 +1,9 @@
 module.exports = {
-    plugins: [
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [
       require('tailwindcss'),
-      require('@tailwindcss/aspect-ratio'),
       require('autoprefixer'),
-    ]
-  }
+  ]
+}

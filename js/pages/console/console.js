@@ -15,7 +15,7 @@ function copyStaticSidebar() {
 function changeActiveMenuPage() {
     var page = window.location.pathname.split('/')[2];
     console.log("page from url: ", page);
-    var links = document.querySelectorAll('#static-sidebar a');
+    var links = document.querySelectorAll('#static-sidebar #page-list a');
     links.forEach(function(link) {
         if (link.href.toLowerCase().includes(page.toLowerCase())) {
             link.classList.add('bg-gray-800', 'text-white');

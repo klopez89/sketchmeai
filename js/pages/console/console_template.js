@@ -40,13 +40,12 @@ function consoleHtml() {
                     <li>
                     <ul role="list" class="-mx-2 space-y-1">
                         <li>
-                        <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
-                        <a href="/console" class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                            <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
-                                <i class="fa-solid fa-bolt-lightning self-center text-lg" aria-hidden="true"></i>
-                            </div>
-                            Generate&nbsp;
-                        </a>
+                            <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                    <i class="fa-solid fa-bolt-lightning self-center text-lg" aria-hidden="true"></i>
+                                </div>
+                                Generate&nbsp;
+                            </a>
                         </li>
                         <li>
                             <a href="/console/models" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
@@ -61,7 +60,7 @@ function consoleHtml() {
                                 <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-regular fa-images self-center text-lg" aria-hidden="true"></i>
                                 </div>
-                                Images&nbsp;
+                                Collections&nbsp;
                             </a>
                         </li>
                         

@@ -17,7 +17,7 @@ function changeActiveMenuPage() {
     console.log("page from url: ", page);
     var links = document.querySelectorAll('#static-sidebar a');
     links.forEach(function(link) {
-        if (link.href.includes(page)) {
+        if (link.href.toLowerCase().includes(page.toLowerCase())) {
             link.classList.add('bg-gray-800', 'text-white');
         } else {
             link.classList.remove('bg-gray-800', 'text-white');

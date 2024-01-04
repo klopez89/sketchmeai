@@ -36,6 +36,5 @@ window.onload = function() {
     var swapDiv = document.getElementById('swap-for-static-sidebar');
 
     var clonedSidebar = staticSidebar.cloneNode(true);
-    clonedSidebar.classList.remove('hidden');
-    swapDiv.parentNode.replaceChild(clonedSidebar, swapDiv);
+    swapDiv.innerHTML = clonedSidebar.innerHTML;
 }

@@ -14,6 +14,7 @@ function copyStaticSidebar() {
 
 function changeActiveMenuPage() {
     var page = window.location.pathname.split('/')[1];
+    console.log("page from url: ", page);
     var links = document.querySelectorAll('#static-sidebar a');
     links.forEach(function(link) {
         if (link.href.includes(page)) {

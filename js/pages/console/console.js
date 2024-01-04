@@ -10,9 +10,9 @@ function addConsoleToDOM() {
 
 function configureOffCanvasMenu() {
     // Get the off-canvas menu and the buttons that open and close it
-    var offCanvasMenu = document.querySelector('.off-canvas-menu');
-    var openButton = document.querySelector('.off-canvas-open-button'); // replace with your actual open button selector
-    var closeButton = document.querySelector('.off-canvas-close-button');
+    var offCanvasMenu = document.querySelector('#off-canvas-menu');
+    var openButton = document.querySelector('#off-canvas-open-button'); // replace with your actual open button selector
+    var closeButton = document.querySelector('#off-canvas-close-button');
 
     // Add an event listener to the open button
     openButton.addEventListener('click', function() {

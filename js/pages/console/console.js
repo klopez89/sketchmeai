@@ -1,4 +1,9 @@
 
+addConsoleToDOM();
+copyStaticSidebar();
+changeActiveMenuPage();
+updatePageTitle();
+
 function addConsoleToDOM() {
 	let console_html = consoleHtml();
 	let console_div = $($.parseHTML(console_html));
@@ -38,10 +43,10 @@ function updatePageTitle() {
 }
 
 
-window.onload = function() {
-    console.log("window.onload from console page")
-    addConsoleToDOM();
-    copyStaticSidebar();
-    changeActiveMenuPage();
-    updatePageTitle();
-}
+// window.onload = function() {
+//     console.log("window.onload from console page")
+//     addConsoleToDOM();
+//     copyStaticSidebar();
+//     changeActiveMenuPage();
+//     updatePageTitle();
+// }

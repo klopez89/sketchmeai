@@ -39,6 +39,7 @@ function updatePageTitle() {
 
 
 window.onload = function() {
+    console.log("window.onload from console page")
     addConsoleToDOM();
     copyStaticSidebar();
     changeActiveMenuPage();

@@ -23,6 +23,7 @@ module.exports = {
   theme: {},
   corePlugins: {
     aspectRatio: false,
+    preflight: false,
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),

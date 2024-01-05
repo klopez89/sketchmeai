@@ -133,5 +133,5 @@ function consoleHtml() {
         </main>
         </div>
     </div>
-    `
+    `;
 }

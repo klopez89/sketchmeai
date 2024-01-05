@@ -518,8 +518,8 @@ video {
     max-width: 1536px;
   }
 }
-.aspect-h-7 {
-  --tw-aspect-h: 7;
+.aspect-h-10 {
+  --tw-aspect-h: 10;
 }
 .aspect-w-10 {
   position: relative;

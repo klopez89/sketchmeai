@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./js/**/*.js",
-    "./*.html",
-    "./imageset/*.html",
-  ],
+  content: [],
   theme: {},
   corePlugins: {
     aspectRatio: false,
@@ -22,3 +18,6 @@ module.exports = {
   ],
 }
 
+// "./js/**/*.js",
+// "./*.html",
+// "./imageset/*.html",

@@ -83,7 +83,7 @@ function consoleHtml() {
             </div>
         </div>
     
-        <div class="lg:pl-48">
+        <div class="lg:pl-48 h-screen flex flex-col">
         <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="open = true">
             <span class="sr-only">Open sidebar</span>
@@ -126,8 +126,8 @@ function consoleHtml() {
             </div>
         </div>
     
-        <main class="h-screen py-8">
-            <div id="console-content" class="px-4 sm:px-6 lg:px-8">
+        <main class="py-8 grow">
+            <div id="console-content" class="h-full px-4 sm:px-6 lg:px-8">
             <!-- Your content -->
             </div>
         </main>

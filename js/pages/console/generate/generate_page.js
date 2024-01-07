@@ -13,6 +13,7 @@ function addImageGrid() {
 window.onload = function() {
     console.log("window.onload from genrate page");
     addImageGrid();
+    resizeGrid();
 }
 
 window.onresize = function() {

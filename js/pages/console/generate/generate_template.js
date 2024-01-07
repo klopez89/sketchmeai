@@ -44,6 +44,8 @@ function dummyGridHTML() {
                     <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Prompt</label><div class="mt-2">
                     <textarea id="prompt" name="prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></textarea>
                     </div>
+                </div><div class="col-span-full flex justify-center" id="gen-button-container">
+                    <a href="https://dev.sketchme.ai/purchase?priceId=price_1NlaTnLBuf172mCOWBlXjIhS" class="rounded-md flex-grow text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Generate</a>
                 </div>
 
                 <div class="col-span-full" id="neg-prompt-field-container">

@@ -14,3 +14,10 @@ window.onload = function() {
     console.log("window.onload from genrate page");
     addImageGrid();
 }
+
+    window.onresize = function() {
+        // Get the height of the left column
+        const leftColumnHeight = document.getElementById('left-column').clientHeight;
+        // Set the max-height of the collection grid container to the height of the left column
+        document.getElementById('collection-grid-container').style.maxHeight = leftColumnHeight + 'px';
+    }

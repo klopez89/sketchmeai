@@ -1,0 +1,472 @@
+<body class="h-full">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../js/helpers/components.js"></script>
+    <script src="../../js/pages/console/console_template.js"></script>
+    <script src="../../js/pages/console/console.js"></script>
+    <div x-data="{ open: false }" @keydown.window.escape="open = false">
+        <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+        <div x-show="open" class="relative z-50 lg:hidden" x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." x-ref="dialog" aria-modal="true" style="display: none;">
+        <!-- Off-canvas menu backdrop, show/hide based on off-canvas menu state. -->
+        <div x-show="open" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 bg-gray-900/80" x-description="Off-canvas menu backdrop, show/hide based on off-canvas menu state." style="display: none;"></div>
+    
+            <div class="fixed inset-0 flex">
+                <!-- Off-canvas menu, show/hide based on off-canvas menu state. -->
+                <div x-show="open" x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" x-description="Off-canvas menu, show/hide based on off-canvas menu state." class="relative mr-16 flex w-full max-w-52 flex-1" @click.away="open = false" style="display: none;">
+                
+                <!-- Close button, show/hide based on off-canvas menu state. -->
+                <div x-show="open" x-transition:enter="ease-in-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in-out duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Close button, show/hide based on off-canvas menu state." class="absolute left-full top-0 flex w-16 justify-center pt-5" style="display: none;">
+                    <button type="button" class="-m-2.5 p-2.5" @click="open = false">
+                    <span class="sr-only">Close sidebar</span>
+                    <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    </button>
+                </div>
+        
+                <!-- Sidebar component, swap this element with another sidebar if you like -->
+                <div id="swap-for-static-sidebar" class="fixed inset-y-0 flex w-48 flex-col">
+            <!-- Sidebar component, swap this element with another sidebar if you like -->
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
+                <div class="flex h-16 shrink-0 items-center">
+                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=500" alt="Your Company">
+                </div>
+                <nav class="flex flex-1 flex-col">
+                <ul id="page-list" role="list" class="flex flex-1 flex-col gap-y-7">
+                    <li>
+                    <ul role="list" class="-mx-2 space-y-1">
+                        <li>
+                            <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                    <i class="fa-solid fa-bolt-lightning self-center text-lg" aria-hidden="true"></i>
+                                </div>
+                                Generate&nbsp;
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/console/models" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                    <i class="fa-solid fa-layer-group self-center text-lg" aria-hidden="true"></i>
+                                </div>
+                                Models&nbsp;
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/console/collections" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                    <i class="fa-regular fa-images self-center text-lg" aria-hidden="true"></i>
+                                </div>
+                                Collections&nbsp;
+                            </a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                    </li>
+                    
+                    <li class="mt-auto">
+                    <a href="/console/settings" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white">
+                        <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Settings
+                    </a>
+                    </li>
+                </ul>
+                </nav>
+            </div>
+        </div>
+
+            </div>
+        </div>
+        </div>
+    
+        <!-- Static sidebar for desktop -->
+        <div id="static-sidebar" class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-48 lg:flex-col">
+            <!-- Sidebar component, swap this element with another sidebar if you like -->
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
+                <div class="flex h-16 shrink-0 items-center">
+                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=500" alt="Your Company">
+                </div>
+                <nav class="flex flex-1 flex-col">
+                <ul id="page-list" role="list" class="flex flex-1 flex-col gap-y-7">
+                    <li>
+                    <ul role="list" class="-mx-2 space-y-1">
+                        <li>
+                            <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                    <i class="fa-solid fa-bolt-lightning self-center text-lg" aria-hidden="true"></i>
+                                </div>
+                                Generate&nbsp;
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/console/models" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                    <i class="fa-solid fa-layer-group self-center text-lg" aria-hidden="true"></i>
+                                </div>
+                                Models&nbsp;
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/console/collections" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                    <i class="fa-regular fa-images self-center text-lg" aria-hidden="true"></i>
+                                </div>
+                                Collections&nbsp;
+                            </a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                    </li>
+                    
+                    <li class="mt-auto">
+                    <a href="/console/settings" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white">
+                        <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Settings
+                    </a>
+                    </li>
+                </ul>
+                </nav>
+            </div>
+        </div>
+    
+        <div class="lg:pl-48">
+        <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+            <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="open = true">
+            <span class="sr-only">Open sidebar</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+            </svg>
+            </button>
+    
+            <!-- Separator -->
+            <div class="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true"></div>
+    
+            <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+            <div id="page-title" class="relative flex flex-1 self-center text-xl font-bold">Generate</div>
+            
+            <div class="flex items-center gap-x-4 lg:gap-x-6">
+                
+    
+                <!-- Separator -->
+                <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10" aria-hidden="true"></div>
+    
+                <!-- Profile dropdown -->
+                <div x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()" @click.away="onClickAway($event)" class="relative">
+                <button type="button" class="-m-1.5 flex items-center p-1.5" id="user-menu-button" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+                    <span class="sr-only">Open user menu</span>
+                    <img class="h-8 w-8 rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                    <span class="hidden lg:flex lg:items-center">
+                    <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">Tom Cook</span>
+                    <svg class="ml-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+                    </svg>
+                    </span>
+                </button>
+    
+                <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" @keydown.tab="open = false" @keydown.enter.prevent="open = false; focusButton()" @keyup.space.prevent="open = false; focusButton()" style="display: none;">
+                    <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900" x-state:on="Active" x-state:off="Not Active" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton()">Your profile</a>
+                    <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton()">Sign out</a>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+        <main class="h-screen py-8">
+            <div id="console-content" class="px-4 sm:px-6 lg:px-8">
+            <!-- Your content -->
+            
+    <!-- 3 column wrapper -->
+    <div class="mx-auto w-full grow xl:flex">
+
+
+        <div class="bg-gray-200 shrink-0 border-t border-gray-200 px-4 pb-4 pt-4 sm:px-6 xl:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
+        
+            <form class="generate-form" id="generateForm" action="https://whollyai-5k3b37mzsa-ue.a.run.app/generate" method="get">
+
+                <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
+                <div class="col-span-full" id="prompt-field-container">
+                    <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Prompt</label><div class="mt-2">
+                    <textarea id="prompt" name="prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></textarea>
+                    </div>
+                </div><div class="col-span-full flex justify-center" id="gen-button-container">
+                    <a href="https://dev.sketchme.ai/purchase?priceId=price_1NlaTnLBuf172mCOWBlXjIhS" class="rounded-md flex-grow text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Generate</a>
+                </div>
+
+                <div class="col-span-full" id="neg-prompt-field-container">
+                    <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Negative Prompt</label><div class="mt-2">
+                    <textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-3" id="gs-field-container">
+                    <label for="guidance-scale" class="block text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
+                    <div class="mt-2">
+                    <input type="number" name="guidance-scale" id="guidance-scale" min="1.0" max="20.0" step="0.1" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-3" id="seed-field-container">
+                    <div class="flex items-center">
+                        <label for="first-name" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
+                        <button><i class="fa-solid fa-dice" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="mt-2">
+                        <input type="number" name="seed" id="seed" min="-1" max="4294967295" value="-1" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div class="col-span-full" id="igm2img-field-container">
+                    <label for="img2imgurl" class="block text-sm font-medium leading-6 text-gray-900">Image2Image Url</label><div class="mt-2">
+                    <input type="text" name="img-2-img-url" id="img-2-img" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div></div>
+                <div class="sm:col-span-3" id="ps-field-container">
+                    <label for="prompt-strength" class="block text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
+                    <div class="mt-2">
+                    <input type="number" name="prompt-strength" id="prompt-strenth" min="0.0" max="1.0" step="0.1" value="0.8" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div><div class="sm:col-span-3" id="lora-field-container">
+                    <label for="lora-scale" class="block text-sm font-medium leading-6 text-gray-900">Lora Scale</label>
+                    <div class="mt-2">
+                    <input type="number" name="lora-scale" id="lora-scale" min="0.0" max="1.0" step="0.1" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="0.6">
+                    </div>
+                </div><div class="col-span-full" id="models-field-container">
+                    <label for="models" class="block text-sm font-medium leading-6 text-gray-900">Models</label><div class="mt-2">
+                    <select class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="modelDropdown" size="4" multiple="">
+                        <option selected="" id="stb" instkey="" model="stability-ai/stable-diffusion" version="6359a0cab3ca6e4d3320c33d79096161208e9024d174b2311e5a21b6c7e1131c">&nbsp;&nbsp;Stable Diffusion 2.1</option>
+                        <option id="klo_10to5_drw" instkey="zxc" model="klopez89/klo_10to5_drw" version="ae00e4cb912db042646898586e27961b9aeb0705e8bff16b8c9773dadfa42389">&nbsp;&nbsp;Kevin, 10to5_Drawing</option>
+                        <option id="jks_10to5_drw" instkey="zxc" model="klopez89/jks_10to5_drw" version="3db0c81fe691df5303011ec73360a216655d7fd081a473eda55de4048031a24d">&nbsp;&nbsp;James, 10to5_Drawing</option>
+                        <option id="mags_10to5_drw" instkey="zxc" model="klopez89/mags_10to5_drw" version="f61f56370d4616ddb27c3895e55a3ced09f086e2c1a9ba7b1501ea9a869467ec">&nbsp;&nbsp;Mags, 10to5_Drawing</option>
+                        <option id="alb_10to5_drw" instkey="zxc" model="klopez89/b75anpibtft2ra2ckhwbx6jrkug1_drw_model_2983197865" version="3387ce767f1ae4bfbecbf950f39cc93c81d9e15f03c8eca431b9530e3955ed85">&nbsp;&nbsp;Alb, 10to5_Drawing</option>
+                        <option id="ben_10to5_drw" instkey="zxc" model="klopez89/ben_10to5_drw" version="89b7fe0c81e7c78568a7c1601a3715575d0ad09be22cf473c7b7fab04c552bd8">&nbsp;&nbsp;Ben, 10to5_Drawing</option>
+                        <option id="jon_10to5_drw" instkey="zxc" model="klopez89/jon_10to5_drw" version="ada47df35bbea65b739f213dddc764096a418e07724c518189e7a873f1db2a03">&nbsp;&nbsp;Jon, 10to5_Drawing</option>
+                        <option id="alb_10to5_drw_cropped" instkey="zxc" model="klopez89/alb_10to5_drw" version="663756c8e90a471837504178b4c720c767a438e32141052196cc3c9f258431bc">&nbsp;&nbsp;Alb Cropped, 10to5_Drawing</option>
+                    </select>
+                </div></div><div class="col-span-full" id="same-seed-field-container"><div class="relative flex gap-x-3">
+                        <div class="flex h-6 items-center">
+                        <input id="comments" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                        </div>
+                        <div class="text-sm leading-6">
+                        
+                        <p class="text-gray-500">Run all selected models with the same random seed</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+        <!-- Right column area -->
+        <div class="flex-1 xl:flex">
+            <div class="bg-yellow-200 px-0 py-0 xl:flex-1">
+                <div class="bg-gray-100">
+                    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+                        <ul id="collection-grid" role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1614926857083-7be149266cda?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1614705827065-62c3dc488f40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1492724724894-7464c27d0ceb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1614926857083-7be149266cda?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1614705827065-62c3dc488f40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1492724724894-7464c27d0ceb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1614926857083-7be149266cda?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1614705827065-62c3dc488f40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        
+            <li class="relative">
+                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+                    <button type="button" class="absolute inset-0 focus:outline-none">
+                        <span class="sr-only">View details for IMG_4985.HEIC</span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+        </main>
+        </div>
+    </div>
+    
+    <script src="../../js/pages/console/generate/generate_template.js"></script>
+    <script src="../../js/pages/console/generate/generate_page.js"></script>
+    <!-- <script defer src="https://cdn.tailwindcss.com"></script> -->
+
+
+
+</body>

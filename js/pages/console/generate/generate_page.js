@@ -22,6 +22,7 @@ window.onresize = function() {
 
 function resizeGrid() {
     const leftColumnHeight = document.getElementById('generateForm').clientHeight;
+    const adjustedForPaddingHeight = leftColumnHeight + 2 * 16;
     // Set the max-height of the collection grid container to the height of the left column
-    document.getElementById('collection-grid-container').style.maxHeight = leftColumnHeight + 'px';
+    document.getElementById('collection-grid-container').style.maxHeight = adjustedForPaddingHeight + 'px';
 }

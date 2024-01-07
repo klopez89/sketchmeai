@@ -126,7 +126,7 @@ function consoleHtml() {
             </div>
         </div>
     
-        <main class="py-10">
+        <main class="h-screen py-8">
             <div id="console-content" class="px-4 sm:px-6 lg:px-8">
             <!-- Your content -->
             </div>

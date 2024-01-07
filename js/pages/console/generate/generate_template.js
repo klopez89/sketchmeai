@@ -35,6 +35,7 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full grow xl:flex">
 
+
         <div class="bg-gray-200 shrink-0 border-t border-gray-200 px-4 pb-4 pt-4 sm:px-6 xl:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
         
             <form class="generate-form" id="generateForm" action="https://whollyai-5k3b37mzsa-ue.a.run.app/generate" method="get">
@@ -109,16 +110,20 @@ function dummyGridHTML() {
                 </div>
             </form>
         </div>
+
+
+
+
         <!-- Right column area -->
         <div class="flex-1 xl:flex">
-        <div class="bg-yellow-200 px-0 py-0 xl:flex-1">
-            <div class="bg-gray-100">
-            <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-                <ul id="collection-grid" role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-                </ul>
+            <div class="bg-yellow-200 px-0 py-0 xl:flex-1">
+                <div class="bg-gray-100">
+                    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+                        <ul id="collection-grid" role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div><!-- Main area -->
-        </div>
         </div>
     </div>
     `;

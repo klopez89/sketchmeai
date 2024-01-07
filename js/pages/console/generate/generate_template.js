@@ -33,7 +33,7 @@ function dummyGridHTML() {
     inputPlaceholder = "Enter text for the AI to continue";
     return `
     <!-- 3 column wrapper -->
-    <div class="mx-auto w-full grow xl:flex">
+    <div class="mx-auto w-full h-full grow xl:flex">
 
 
         <div class="bg-gray-200 shrink-0 border-t border-gray-200 px-4 pb-4 pt-4 sm:px-6 xl:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">

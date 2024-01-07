@@ -6,7 +6,7 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full grow xl:flex">
 
-        <div class="bg-gray-200 shrink-0 border-t border-gray-200 px-4 py-6 sm:px-6 xl:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
+        <div class="bg-gray-200 shrink-0 border-t border-gray-200 px-4 pb-4 pt-4 sm:px-6 xl:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
         
             <form class="generate-form" id="generateForm" action="https://whollyai-5k3b37mzsa-ue.a.run.app/generate" method="get">
 
@@ -80,7 +80,7 @@ function dummyGridHTML() {
         </div>
         <!-- Right column area -->
         <div class="flex-1 xl:flex">
-        <div class="bg-yellow-200 px-0 py-6 sm:px-6 xl:flex-1">
+        <div class="bg-yellow-200 px-0 py-0 xl:flex-1">
             <div class="bg-gray-100">
             <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
             
@@ -92,8 +92,8 @@ function dummyGridHTML() {
                             <span class="sr-only">View details for IMG_4985.HEIC</span>
                         </button>
                         </div>
-                        <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">IMG_4985.HEIC</p>
-                        <p class="pointer-events-none block text-sm font-medium text-gray-500">3.9 MB</p>
+                        
+                        
                     </li>
                     <li class="relative">
                         <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
@@ -102,8 +102,8 @@ function dummyGridHTML() {
                             <span class="sr-only">View details for IMG_5214.HEIC</span>
                         </button>
                         </div>
-                        <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">IMG_5214.HEIC</p>
-                        <p class="pointer-events-none block text-sm font-medium text-gray-500">4 MB</p>
+                        
+                        
                     </li>
                     <li class="relative">
                         <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
@@ -112,8 +112,8 @@ function dummyGridHTML() {
                             <span class="sr-only">View details for IMG_3851.HEIC</span>
                         </button>
                         </div>
-                        <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">IMG_3851.HEIC</p>
-                        <p class="pointer-events-none block text-sm font-medium text-gray-500">3.8 MB</p>
+                        
+                        
                     </li>
                     <li class="relative">
                         <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
@@ -122,8 +122,8 @@ function dummyGridHTML() {
                             <span class="sr-only">View details for IMG_4278.HEIC</span>
                         </button>
                         </div>
-                        <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">IMG_4278.HEIC</p>
-                        <p class="pointer-events-none block text-sm font-medium text-gray-500">4.1 MB</p>
+                        
+                        
                     </li>
                     <li class="relative">
                         <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
@@ -132,8 +132,8 @@ function dummyGridHTML() {
                             <span class="sr-only">View details for IMG_6842.HEIC</span>
                         </button>
                         </div>
-                        <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">IMG_6842.HEIC</p>
-                        <p class="pointer-events-none block text-sm font-medium text-gray-500">4 MB</p>
+                        
+                        
                     </li>
                     <li class="relative">
                         <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
@@ -142,8 +142,8 @@ function dummyGridHTML() {
                             <span class="sr-only">View details for IMG_3284.HEIC</span>
                         </button>
                         </div>
-                        <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">IMG_3284.HEIC</p>
-                        <p class="pointer-events-none block text-sm font-medium text-gray-500">3.9 MB</p>
+                        
+                        
                     </li>
                     <li class="relative">
                         <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
@@ -152,8 +152,8 @@ function dummyGridHTML() {
                             <span class="sr-only">View details for IMG_4841.HEIC</span>
                         </button>
                         </div>
-                        <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">IMG_4841.HEIC</p>
-                        <p class="pointer-events-none block text-sm font-medium text-gray-500">3.8 MB</p>
+                        
+                        
                     </li>
                     <li class="relative">
                         <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
@@ -162,8 +162,8 @@ function dummyGridHTML() {
                             <span class="sr-only">View details for IMG_5644.HEIC</span>
                         </button>
                         </div>
-                        <p class="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">IMG_5644.HEIC</p>
-                        <p class="pointer-events-none block text-sm font-medium text-gray-500">4 MB</p>
+                        
+                        
                     </li>
                     
                 </ul>

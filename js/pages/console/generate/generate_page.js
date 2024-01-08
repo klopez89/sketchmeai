@@ -12,7 +12,7 @@ window.onresize = function() {
 
 
 function configureGenerateForm() {
-    document.getElementById("generateForm").addEventListener("submit", generateAction, true);
+    document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
 }
 
 function generateButtonPressed(event) {

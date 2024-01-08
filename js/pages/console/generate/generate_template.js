@@ -47,7 +47,7 @@ function dummyGridHTML() {
 
         <div class="bg-gray-200 shrink-0 border-t border-gray-200 px-4 pb-4 pt-4 sm:px-6 xl:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
         
-            <form class="generate-form h-full" id="generateForm">
+            <form class="generate-form h-full" id="generateForm" action="https://whollyai-5k3b37mzsa-ue.a.run.app/generate" method="get">
 
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                 <div class="col-span-full" id="prompt-field-container">
@@ -56,7 +56,7 @@ function dummyGridHTML() {
                     </div>
                 </div>
                 <div class="col-span-full flex justify-center" id="gen-button-container">
-                    <input type="submit" class="rounded-md flex-grow text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Generate</input>
+                    <input type="submit" vlaue="Generate" class="rounded-md flex-grow text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"></input>
                 </div>
 
                 <div class="col-span-full" id="neg-prompt-field-container">

@@ -1,8 +1,8 @@
 
 window.onload = function() {
     console.log("window.onload from genrate page");
-    configureGenerateForm();
     addImageGrid();
+    configureGenerateForm();
     resizeGrid();
 }
 

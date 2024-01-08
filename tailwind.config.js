@@ -14,3 +14,5 @@ module.exports = {
     require('@tailwindcss/forms'),
   ],
 }
+
+// i'm running this locally in my Terminal with the command: npm run build:css

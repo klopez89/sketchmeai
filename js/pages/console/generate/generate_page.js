@@ -1,6 +1,19 @@
 
+window.onload = function() {
+    console.log("window.onload from genrate page");
+    configureGenerateForm();
+    addImageGrid();
+    resizeGrid();
+}
+
+window.onresize = function() {
+    resizeGrid();
+}
 
 
+function configureGenerateForm() {
+    document.getElementById("generateForm").addEventListener("submit", generateAction, true);
+}
 
 function generateButtonPressed(event) {
     event.preventDefault();
@@ -9,10 +22,7 @@ function generateButtonPressed(event) {
     let new_grid_item_html = newGridItemHTML(emptyJson);
     let new_grid_item_div = $($.parseHTML(new_grid_item_html));
     $('#collection-grid').append(new_grid_item_div);
-    return false;
 }
-
-
 
 function addImageGrid() {
     let dummy_grid_html = dummyGridHTML();
@@ -31,19 +41,5 @@ function resizeGrid() {
     document.getElementById('collection-grid-container').style.maxHeight = adjustedForPaddingHeight + 'px';
 }
 
-
-
-
-
-
-window.onload = function() {
-    console.log("window.onload from genrate page");
-    addImageGrid();
-    resizeGrid();
-}
-
-window.onresize = function() {
-    resizeGrid();
-}
 
 

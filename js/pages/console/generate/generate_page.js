@@ -15,8 +15,7 @@ function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
 }
 
-function generateButtonPressed(event) {
-    event.preventDefault();
+function generateButtonPressed() {
     console.log("generateButtonPressed");
     let emptyJson = {};
     let new_grid_item_html = newGridItemHTML(emptyJson);

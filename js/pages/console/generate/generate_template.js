@@ -62,7 +62,7 @@ function dummyGridHTML() {
                 <div class="sm:col-span-2 flex" id="gen-count-field-container">
                     <div class="grow">
                         <select id="gen-count" name="gen-count" autocomplete="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            <optio>1</option>
+                            <option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -107,7 +107,7 @@ function dummyGridHTML() {
                 <div class="sm:col-span-3" id="ps-field-container">
                     <label for="prompt-strength" class="block text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
                     <div class="mt-2">
-                    <input type="number" name="prompt-strength" id="prompt-strenth" min="0.0" max="1.0" step="0.1" value="0.8" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <input type="number" name="prompt-strength" id="prompt-strength" min="0.0" max="1.0" step="0.1" value="0.8" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
                 <div class="sm:col-span-3" id="lora-field-container">

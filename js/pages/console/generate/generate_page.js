@@ -17,6 +17,10 @@ function configureGenerateForm() {
 
 function generateButtonPressed(event) {
     event.preventDefault();
+
+    let promptValues = promptInputValues();
+    console.log("promptValues: ", promptValues);
+
     console.log("generateButtonPressed");
     let emptyJson = {};
     let new_grid_item_html = newGridItemHTML(emptyJson);
@@ -43,50 +47,40 @@ function resizeGrid() {
 
 
 
-function getOtherPromptInputValues() {
-    
-    var numberOfImages = document.getElementById('numImagesInput').value;
-  
-    // Get the text of the negative prompt input with ID 'negPromptInput'
-    let negativePrompt = document.getElementById("negPromptInput").value;
-  
-    // Get the value of the number input with ID 'gscale'
-    var gscale = document.getElementById('gscale').value;
-  
-    // Get the value of the number input with ID 'seed'
-    var seed = document.getElementById('seed').value;
-    var locallyGeneratedSeed = "";
-  
-    let sameRandomSeedSpan = document.getElementById('checkboxForSameRandomSeed');
-    let shouldUseRandomSeedAcrossModels = sameRandomSeedSpan.classList.contains('fa-check-square')
-  
-    // Get the dropdown with ID 'modelDropdown'
-    var dropdown = document.getElementById('modelDropdown');
-  
-    // Get the selected options in the dropdown
-    var selectedOptions = dropdown.selectedOptions;
-  
-    // Create two arrays to store the 'model' and 'version' attributes of the selected options
+function promptInputValues() {
+    let prompt = document.getElementById("prompt").value;
+    let numberOfImages = document.getElementById('gen-count').value;
+    let negativePrompt = document.getElementById("neg-prompt").value;
+    let gscale = document.getElementById('guidance-scale').value;
+    let seed = document.getElementById('seed').value;
+    let img2imgUrl = document.getElementById('img-2-img').value;
+    let promptStrength = document.getElementById('prompt-strength').value;
+    let loraScale = document.getElementById('lora-scale').value;
+    let shouldUseRandomSeedAcrossModels = document.getElementById('same-seed').checked;
+
+    let dropdown = document.getElementById('model-dropdown');
+    let selectedOptions = dropdown.selectedOptions;
     var modelValues = [];
     var versionValues = [];
     var instanceKeys = [];
-  
-    // Loop through the selected options and get their 'model' attribute
     for (var i = 0; i < selectedOptions.length; i++) {
-      modelValues.push(selectedOptions[i].getAttribute('model'));
-      versionValues.push(selectedOptions[i].getAttribute('version'));
-      instanceKeys.push(selectedOptions[i].getAttribute('instkey'));
+        modelValues.push(selectedOptions[i].getAttribute('model'));
+        versionValues.push(selectedOptions[i].getAttribute('version'));
+        instanceKeys.push(selectedOptions[i].getAttribute('instkey'));
     }
   
-    // Return an object containing the values of the inputs
     return {
-      numberOfImages: numberOfImages,
-      negativePrompt: negativePrompt,
-      gscale: gscale,
-      seed: seed,
-      shouldUseRandomSeedAcrossModels: shouldUseRandomSeedAcrossModels,
-      modelValues: modelValues,
-      versionValues: versionValues,
-      instanceKeys: instanceKeys,
+        prompt: prompt,
+        numberOfImages: numberOfImages,
+        negativePrompt: negativePrompt,
+        gscale: gscale,
+        seed: seed,
+        img2imgUrl: img2imgUrl,
+        promptStrength: promptStrength,
+        loraScale: loraScale,
+        shouldUseRandomSeedAcrossModels: shouldUseRandomSeedAcrossModels,
+        modelValues: modelValues,
+        versionValues: versionValues,
+        instanceKeys: instanceKeys,
     }
   }

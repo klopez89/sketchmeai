@@ -21,7 +21,7 @@ function generateButtonPressed(event) {
     let emptyJson = {};
     let new_grid_item_html = newGridItemHTML(emptyJson);
     let new_grid_item_div = $($.parseHTML(new_grid_item_html));
-    $('#collection-grid').prepend(new_grid_item_div);
+    new_grid_item_div.hide().prependTo('#collection-grid').fadeIn();
 }
 
 function addImageGrid() {

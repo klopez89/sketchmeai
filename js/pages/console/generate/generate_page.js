@@ -2,7 +2,8 @@
 
 
 
-function generateButtonPressed() {
+function generateButtonPressed(event) {
+    event.preventDefault();
     console.log("generateButtonPressed");
     let emptyJson = {};
     let new_grid_item_html = newGridItemHTML(emptyJson);

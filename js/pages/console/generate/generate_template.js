@@ -44,9 +44,8 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow xl:flex">
 
-
         <div class="bg-gray-200 shrink-0 border-t border-gray-200 px-4 pb-4 pt-4 sm:px-6 xl:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
-        
+                
             <form class="generate-form h-full" id="generateForm" action="https://whollyai-5k3b37mzsa-ue.a.run.app/generate" method="get">
 
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
@@ -55,12 +54,12 @@ function dummyGridHTML() {
                     <textarea id="prompt" name="prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></textarea>
                     </div>
                 </div>
-                <div class="sm:col-span-4 flex flex-col justify-center" id="gen-button-container">
+                <div class="col-span-full flex flex-col justify-center" id="gen-button-container">
                     <input type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                 </div>
 
-                <div class="sm:col-span-2 flex" id="gen-count-field-container">
-                    <div class="grow">
+                <div class="sm:col-span-3" id="gen-count-field-container">
+                    <label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
                         <select id="gen-count" name="gen-count" autocomplete="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             <option>1</option>
                             <option>2</option>
@@ -74,10 +73,14 @@ function dummyGridHTML() {
                             <option>10</option>
                         </select>
                     </div>
+                </div><div class="sm:col-span-3" id="denoising-steps-field-container">
+                    <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Denoising Steps</label><div class="mt-2">
+                        <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
                 </div>
 
                 <div class="col-span-full" id="neg-prompt-field-container">
-                    <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Negative Prompt</label><div class="mt-2">
+                    <label for="neg-prompt" class="block text-sm font-medium leading-6 text-gray-900">Negative Prompt</label><div class="mt-2">
                     <textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
                     </div>
                 </div>
@@ -90,11 +93,11 @@ function dummyGridHTML() {
                 </div>
                 <div class="sm:col-span-3" id="seed-field-container">
                     <div class="flex items-center">
-                        <label for="first-name" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
+                        <label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
                         <button><i class="fa-solid fa-dice" aria-hidden="true"></i></button>
                     </div>
                     <div class="mt-2">
-                        <input type="number" name="seed" id="seed" min="-1" max="4294967295" value="-1" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="number" name="seed" id="seed" min="-1" max="4294967295" value="-1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 

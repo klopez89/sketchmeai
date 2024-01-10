@@ -18,14 +18,78 @@ function configureGenerateForm() {
 function generateButtonPressed(event) {
     event.preventDefault();
 
+    let userRecId = "12345abcde";
     let promptValues = promptInputValues();
     console.log("promptValues: ", promptValues);
 
-    console.log("generateButtonPressed");
-    let emptyJson = {};
-    let new_grid_item_html = newGridItemHTML(emptyJson);
-    let new_grid_item_div = $($.parseHTML(new_grid_item_html));
-    new_grid_item_div.hide().prependTo('#collection-grid').fadeIn();
+    let prompt = promptValues.prompt;
+    
+    var seedToUse = promptValues.seed;
+    let hasChosenSeed = seedToUse != -1;
+    let numberOfImages = hasChosenSeed ? 1 : promptValues.numberOfImages;
+    let shouldResetSeed = !hasChosenSeed && promptValues.shouldUseRandomSeedAcrossModels
+
+    let modelValues = promptValues.modelValues;
+    let versionValues = promptValues.versionValues;
+    let instanceKeys = promptValues.instanceKeys;
+
+    for (var j = 0; j < numberOfImages; j++) {
+        if (shouldResetSeed) {
+            seedToUse = Math.floor(Math.random() * 4294967296);
+        }
+        for (var i = 0; i < modelValues.length; i++) {
+            let modelName = modelValues[i];
+            let versionName = versionValues[i];
+            let instanceKey = instanceKeys[i];
+
+            let genericPersonId = 'zxc';
+            let personalizedPrompt = prompt.includes(genericPersonId) ? prompt.replace(genericPersonId, instanceKey) : prompt;
+
+            var jsonObject = {
+                userRecId: userRecId,
+                modelName: modelName,
+                modelVersion: versionName,
+                prompt: personalizedPrompt,
+                negativePrompt: promptValues.negativePrompt,
+                gscale: promptValues.gscale,
+                seed: promptValues.seed,
+                img2imgUrl: promptValues.img2imgUrl,
+                promptStrength: promptValues.promptStrength,
+                inferenceSteps: promptValues.inferenceSteps,
+                loraScale: promptValues.loraScale,
+                resWidth: promptValues.resWidth,
+                resHeight: promptValues.resHeight,
+                scheduler: promptValues.scheduler,
+                refine: promptValues.refine,
+                highNoiseFrac: promptValues.highNoiseFrac,
+            };
+
+            fireGenerateCall(jsonObject);
+        }
+    }
+}
+
+function fireGenerateCall(jsonObject) {
+    console.log("fireGenerateCall");
+    let action = `${CONSTANTS.BACKEND_URL}generate/new`
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify(jsonObject),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(data) {
+            console.log("success");
+            console.log(data);
+            let new_grid_item_html = newGridItemHTML(data);
+            let new_grid_item_div = $($.parseHTML(new_grid_item_html));
+            new_grid_item_div.hide().prependTo('#collection-grid').fadeIn();
+        },
+        error: function(data) {
+            console.log("error");
+            console.log(data);
+        }
+    });
 }
 
 function addImageGrid() {
@@ -50,6 +114,7 @@ function resizeGrid() {
 function promptInputValues() {
     let prompt = document.getElementById("prompt").value;
     let numberOfImages = document.getElementById('gen-count').value;
+    let inferenceSteps = document.getElementById('denoising-steps').value;
     let negativePrompt = document.getElementById("neg-prompt").value;
     let gscale = document.getElementById('guidance-scale').value;
     let seed = document.getElementById('seed').value;
@@ -72,6 +137,7 @@ function promptInputValues() {
     return {
         prompt: prompt,
         numberOfImages: numberOfImages,
+        inferenceSteps: inferenceSteps,
         negativePrompt: negativePrompt,
         gscale: gscale,
         seed: seed,

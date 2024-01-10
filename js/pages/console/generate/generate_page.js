@@ -71,6 +71,11 @@ function generateButtonPressed(event) {
 
 function fireGenerateCall(jsonObject) {
     console.log("fireGenerateCall");
+
+    let new_grid_item_html = newGridItemHTML({});
+    let new_grid_item_div = $($.parseHTML(new_grid_item_html));
+    new_grid_item_div.hide().prependTo('#collection-grid').fadeIn();
+
     let action = `${CONSTANTS.BACKEND_URL}generate/new`
     $.ajax({
         type: 'POST',
@@ -81,9 +86,6 @@ function fireGenerateCall(jsonObject) {
         success: function(data) {
             console.log("success");
             console.log(data);
-            let new_grid_item_html = newGridItemHTML(data);
-            let new_grid_item_div = $($.parseHTML(new_grid_item_html));
-            new_grid_item_div.hide().prependTo('#collection-grid').fadeIn();
         },
         error: function(data) {
             console.log("error");

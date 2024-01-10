@@ -46,7 +46,7 @@ function dummyGridHTML() {
 
         <div class="bg-gray-200 shrink-0 border-t border-gray-200 px-4 pb-4 pt-4 sm:px-6 xl:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
                 
-            <form class="generate-form h-full" id="generateForm" action="https://whollyai-5k3b37mzsa-ue.a.run.app/generate" method="get">
+            <form class="generate-form h-full" id="generateForm">
 
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                 <div class="col-span-full" id="prompt-field-container">

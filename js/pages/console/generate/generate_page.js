@@ -144,6 +144,8 @@ function promptInputValues() {
         img2imgUrl: img2imgUrl,
         promptStrength: promptStrength,
         loraScale: loraScale,
+        resWidth: 1024,
+        resHeight: 1024,
         shouldUseRandomSeedAcrossModels: shouldUseRandomSeedAcrossModels,
         modelValues: modelValues,
         versionValues: versionValues,

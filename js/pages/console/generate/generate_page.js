@@ -18,7 +18,7 @@ function configureGenerateForm() {
 function generateButtonPressed(event) {
     event.preventDefault();
 
-    let userRecId = getUserRecId;
+    let userRecId = getUserRecId();
     if (userRecId == null) {
         console.log("User is signed out. Message user to sign in.");
         return;

@@ -18,7 +18,13 @@ function configureGenerateForm() {
 function generateButtonPressed(event) {
     event.preventDefault();
 
-    let userRecId = "12345abcde";
+    let userRecId = getUserRecId;
+    if (userRecId == null) {
+        console.log("User is signed out. Message user to sign in.");
+        return;
+    }
+    console.log('we have userRecId: ', userRecId);
+
     let promptValues = promptInputValues();
     console.log("promptValues: ", promptValues);
 

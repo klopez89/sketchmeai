@@ -272,18 +272,6 @@ function handlePurchaseResponse(purchase_result, delivery_state, image_set_link 
 	}
 }
 
-function storeUserRecId(userRecId) {
-    localStorage.setItem('userRecId', userRecId);
-}
-
-function getUserRecId() {
-    return localStorage.getItem('userRecId');
-}
-
-function removeUserRecId() {
-    localStorage.removeItem('userRecId');
-}
-
 function getPurchaseRecIdFromLocalStorage() {
     let userPurchases = JSON.parse(localStorage.getItem('userPurchases'));
     let priceId = getPriceIdFromUrl();

@@ -10,6 +10,9 @@ window.onresize = function() {
     resizeGrid();
 }
 
+let cold_boot_delay = 180000; // 3 minutes in milliseconds for custom models
+let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models to turn cold w/o use
+var coldBootedModels = {};
 
 function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
@@ -41,7 +44,7 @@ function generateButtonPressed(event) {
 
     for (var j = 0; j < numberOfImages; j++) {
         if (shouldResetSeed) {
-            seedToUse = Math.floor(Math.random() * 4294967296);
+            seedToUse = Math.floor(Math.random() * 429496719);
         }
         for (var i = 0; i < modelValues.length; i++) {
             let modelName = modelValues[i];
@@ -52,6 +55,7 @@ function generateButtonPressed(event) {
             let personalizedPrompt = prompt.includes(genericPersonId) ? prompt.replace(genericPersonId, instanceKey) : prompt;
 
             var jsonObject = {
+                generationId: generateId(),
                 userRecId: userRecId,
                 modelName: modelName,
                 modelVersion: versionName,
@@ -78,7 +82,7 @@ function generateButtonPressed(event) {
 function fireGenerateCall(jsonObject) {
     console.log("fireGenerateCall");
 
-    let new_grid_item_html = newGridItemHTML({});
+    let new_grid_item_html = newGridItemHTML({ generationId: jsonObject.generationId });
     let new_grid_item_div = $($.parseHTML(new_grid_item_html));
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn();
 
@@ -92,12 +96,74 @@ function fireGenerateCall(jsonObject) {
         success: function(data) {
             console.log("success");
             console.log(data);
+            collection_id = data.collection_id;
+            generation_id = data.generation_id;
+            // checkStatusPeriodically(collection_id, generation_id, jsonObject.modelName);
         },
         error: function(data) {
             console.log("error");
             console.log(data);
         }
     });
+}
+
+
+function checkStatusPeriodically(collectionId, generationId, modelName) {
+    if (modelName.includes('stability-ai')) {
+        // Model does not require cold booting, start periodic checks immediately
+        startPeriodicChecks(0);
+    } else if (coldBootedModels[modelName]) {
+        // Model has already been cold booted, reset the cold booting timer
+        clearTimeout(coldBootedModels[modelName].coolingTimer);
+        coldBootedModels[modelName].coolingTimer = setTimeout(function() {
+            delete coldBootedModels[modelName]; // Clear the model from the coldBootedModels after 10 minutes
+        }, cold_booting_time); // 10 minutes in milliseconds
+        startPeriodicChecks(0);
+    } else {
+        // Model requires cold booting, apply the delay and set up cooling timer
+        startPeriodicChecks(cold_boot_delay); // 3 minutes in milliseconds for custom models
+        coldBootedModels[modelName] = {
+            coolingTimer: setTimeout(function() {
+                delete coldBootedModels[modelName]; // Clear the model from the coldBootedModels after 10 minutes
+            }, cold_booting_time) 
+        };
+    }
+
+    function startPeriodicChecks(delay) {
+        setTimeout(function() {
+            var checkingTimer = setInterval(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: `${CONSTANTS.BACKEND_URL}generate/status`,
+                    data: {
+                        collectionId: collectionId,
+                        generationId: generationId
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        
+                        console.log(data);
+                        
+                        if (data.imageUrl) {
+                            const liElement = document.querySelector(`li[generation-id="${generationId}"]`);
+                            liElement.querySelector('img').src = data.imageUrl;
+                        }
+
+                        if (data.status !== 'in_progress' && data.status !== '_being_handled') {
+                            console.log("clearing interval check for generation id: ", generationId);
+                            clearInterval(checkingTimer); // Stop checking on satisfying success
+                        } else {
+                            console.log("generation still in progress for generation id: ", generationId);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Failed to fetch status:", error);
+                        clearInterval(checkingTimer); // Stop checking on error
+                    }
+                });
+            }, 5000); // Check every 5 seconds (adjust interval as needed)
+        }, delay);
+    }
 }
 
 function addImageGrid() {

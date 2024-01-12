@@ -85,7 +85,9 @@ function fireGenerateCall(jsonObject) {
 
     let new_grid_item_html = newGridItemHTML({ generationId: jsonObject.generationId });
     let new_grid_item_div = $($.parseHTML(new_grid_item_html));
-    new_grid_item_div.hide().prependTo('#collection-grid').fadeIn();
+    new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
+        new_grid_item_div.find('#gen-loader').removeClass('hidden');
+    });
 
     let action = `${CONSTANTS.BACKEND_URL}generate/new`
     $.ajax({

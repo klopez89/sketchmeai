@@ -8,7 +8,7 @@
     <title>Generate</title>
     <script src="https://kit.fontawesome.com/f302f79bb4.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <!-- <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script> -->
     <link rel="stylesheet" href="../../css/output.css">
     <link rel="stylesheet" href="../../css/console.css">
 </head>
@@ -20,6 +20,17 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="../../js/helpers/constants.js"></script>
     <script src="../../js/helpers/auth_helper.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
+        console.log('The firebase config dict is: ',firebaseConfig);
+        // Firebase configuration
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        var db = firebase.firestore();
+    </script>
+
     <script src="../../js/helpers/components.js"></script>
     <script src="../../js/pages/console/console_template.js"></script>
     <script src="../../js/pages/console/console.js"></script>

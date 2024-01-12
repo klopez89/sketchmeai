@@ -148,16 +148,16 @@ function checkStatusPeriodically(userRecId, collectionId, generationId, modelNam
                         console.log(data);
                         
                         if (data.gen_url) {
-                            const liElement = document.querySelector(`li[generation-id="${dataObj.generationId}"]`);
+                            const liElement = document.querySelector(`li[generation-id="${data.gen_id}"]`);
                             liElement.querySelector('.loader').classList.add('hidden');
                             liElement.querySelector('img').src = data.gen_url;
                         }
 
                         if (data.status !== 'in_progress' && data.status !== 'being_handled') {
-                            console.log(`clearing interval check for generation id: ${generationId}, and status: ${data.status}`);
+                            console.log(`clearing interval check for generation id: ${data.gen_id}, and status: ${data.status}`);
                             clearInterval(checkingTimer); // Stop checking on satisfying success
                         } else {
-                            console.log(`generation still being worked on with id: ${generationId}, status: ${data.status}`);
+                            console.log(`generation still being worked on with id: ${data.gen_id}, status: ${data.status}`);
                         }
                     },
                     error: function(xhr, status, error) {

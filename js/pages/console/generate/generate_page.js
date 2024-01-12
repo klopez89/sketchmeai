@@ -98,6 +98,7 @@ function fireGenerateCall(jsonObject) {
             console.log(data);
             collection_id = data.collection_id;
             generation_id = data.generation_id;
+            console.log(`the locally created gen id: ${jsonObject.generationId}, and served gen id: ${generation_id}`)
             checkStatusPeriodically(jsonObject.userRecId, collection_id, generation_id, jsonObject.modelName);
         },
         error: function(data) {

@@ -170,6 +170,7 @@ function checkStatusPeriodically(userRecId, collectionId, generationId, modelNam
                     }
                 });
             }, 5000); // Check every 5 seconds (adjust interval as needed)
+            console.log('number of checking timers: ', Object.keys(checkingTimers).length );
         }, delay);
     }
 }

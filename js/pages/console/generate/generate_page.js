@@ -107,72 +107,71 @@ function fireGenerateCall(jsonObject) {
     });
 }
 
+let checkingTimers = {}; // Store all timers
 
 function checkStatusPeriodically(userRecId, collectionId, generationId, modelName) {
     if (modelName.includes('stability-ai')) {
         // Model does not require cold booting, start periodic checks immediately
-        startPeriodicChecks(0);
+        startPeriodicChecks(0, userRecId, collectionId, generationId);
     } else if (coldBootedModels[modelName]) {
         // Model has already been cold booted, reset the cold booting timer
         clearTimeout(coldBootedModels[modelName].coolingTimer);
         coldBootedModels[modelName].coolingTimer = setTimeout(function() {
             delete coldBootedModels[modelName]; // Clear the model from the coldBootedModels after 10 minutes
         }, cold_booting_time); // 10 minutes in milliseconds
-        startPeriodicChecks(0);
+        startPeriodicChecks(0, userRecId, collectionId, generationId);
     } else {
         // Model requires cold booting, apply the delay and set up cooling timer
-        startPeriodicChecks(cold_boot_delay); // 3 minutes in milliseconds for custom models
+        startPeriodicChecks(cold_boot_delay, userRecId, collectionId, generationId);
         coldBootedModels[modelName] = {
             coolingTimer: setTimeout(function() {
                 delete coldBootedModels[modelName]; // Clear the model from the coldBootedModels after 10 minutes
             }, cold_booting_time) 
         };
     }
+}
 
-    let checkingTimers = {}; // Store all timers
-
-    function startPeriodicChecks(delay) {
-        setTimeout(function() {
-            dataObj = {
-                userRecId: userRecId,
-                collectionId: collectionId,
-                generationId: generationId
-            }
-            checkingTimers[generationId] = setInterval(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: `${CONSTANTS.BACKEND_URL}generate/status`,
-                    data: JSON.stringify(dataObj),
-                    contentType: "application/json",
-                    dataType: 'json',
-                    success: function(data) {
-                        
-                        console.log(data);
-                        
-                        if (data.gen_url) {
-                            const liElement = document.querySelector(`li[generation-id="${data.gen_id}"]`);
-                            liElement.querySelector('.loader').classList.add('hidden');
-                            liElement.querySelector('img').src = data.gen_url;
-                        }
-
-                        if (data.status !== 'in_progress' && data.status !== 'being_handled') {
-                            console.log(`clearing interval check for generation id: ${data.gen_id}, and status: ${data.status}`);
-                            clearInterval(checkingTimers[data.gen_id]); // Clear the specific timer
-                            delete checkingTimers[data.gen_id]; // Remove the timer from the object
-                        } else {
-                            console.log(`generation still being worked on with id: ${data.gen_id}, status: ${data.status}`);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Failed to fetch status:", error);
-                        clearInterval(checkingTimers[generationId]); // Clear the specific timer on error
-                        delete checkingTimers[generationId]; // Remove the timer from the object
+function startPeriodicChecks(delay, userRecId, collectionId, generationId) {
+    setTimeout(function() {
+        dataObj = {
+            userRecId: userRecId,
+            collectionId: collectionId,
+            generationId: generationId
+        }
+        checkingTimers[generationId] = setInterval(function() {
+            $.ajax({
+                type: 'POST',
+                url: `${CONSTANTS.BACKEND_URL}generate/status`,
+                data: JSON.stringify(dataObj),
+                contentType: "application/json",
+                dataType: 'json',
+                success: function(data) {
+                    
+                    console.log(data);
+                    
+                    if (data.gen_url) {
+                        const liElement = document.querySelector(`li[generation-id="${data.gen_id}"]`);
+                        liElement.querySelector('.loader').classList.add('hidden');
+                        liElement.querySelector('img').src = data.gen_url;
                     }
-                });
-            }, 5000); // Check every 5 seconds (adjust interval as needed)
-            console.log('number of checking timers: ', Object.keys(checkingTimers).length );
-        }, delay);
-    }
+
+                    if (data.status !== 'in_progress' && data.status !== 'being_handled') {
+                        console.log(`clearing interval check for generation id: ${data.gen_id}, and status: ${data.status}`);
+                        clearInterval(checkingTimers[data.gen_id]); // Clear the specific timer
+                        delete checkingTimers[data.gen_id]; // Remove the timer from the object
+                    } else {
+                        console.log(`generation still being worked on with id: ${data.gen_id}, status: ${data.status}`);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Failed to fetch status:", error);
+                    clearInterval(checkingTimers[generationId]); // Clear the specific timer on error
+                    delete checkingTimers[generationId]; // Remove the timer from the object
+                }
+            });
+        }, 5000); // Check every 5 seconds (adjust interval as needed)
+        console.log('number of checking timers: ', Object.keys(checkingTimers).length );
+    }, delay);
 }
 
 function addImageGrid() {

@@ -1,9 +1,21 @@
+let socket = io.connect(CONSTANTS.BACKEND_URL);
 
 window.onload = function() {
     console.log("window.onload from genrate page");
     addImageGrid();
     configureGenerateForm();
     resizeGrid();
+
+    userRecId = getUserRecId();
+    socket.on('connect', function() {
+        socket.emit('join', {username: userRecId, room: userRecId});
+    });
+    socket.on('response', function(msg) {
+        console.log('Received response message: ' + msg);
+    });
+    socket.on('image_ready', function(msg) {
+        console.log('Received image_ready message: ' + msg);
+    });
 }
 
 window.onresize = function() {

@@ -7,15 +7,15 @@ window.onload = function() {
     resizeGrid();
 
     userRecId = getUserRecId();
-    // socket.on('connect', function() {
-    //     socket.emit('join', {username: userRecId, room: userRecId});
-    // });
-    // socket.on('response', function(msg) {
-    //     console.log('Received response message: ' + msg);
-    // });
-    // socket.on('image_ready', function(msg) {
-    //     console.log('Received image_ready message: ' + msg);
-    // });
+    socket.on('connect', function() {
+        socket.emit('join', {username: userRecId, room: userRecId});
+    });
+    socket.on('response', function(msg) {
+        console.log('Received response message: ' + msg);
+    });
+    socket.on('image_ready', function(msg) {
+        console.log('Received image_ready message: ' + msg);
+    });
 }
 
 window.onresize = function() {

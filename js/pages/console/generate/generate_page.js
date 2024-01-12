@@ -1,4 +1,4 @@
-let socket = io.connect(CONSTANTS.BACKEND_URL + ':' + '8080');
+// let socket = io.connect(CONSTANTS.BACKEND_URL + ':' + '8080');
 
 window.onload = function() {
     console.log("window.onload from generate page");
@@ -6,18 +6,18 @@ window.onload = function() {
     configureGenerateForm();
     resizeGrid();
 
-    userRecId = getUserRecId();
-    socket.on('connect', function() {
-        console.log('userRecId:', userRecId);
-        console.log('Successfully connected to the server');
-        socket.emit('join', {username: userRecId, room: userRecId});
-    });
-    socket.on('response', function(msg) {
-        console.log('Received response message: ' + msg);
-    });
-    socket.on('image_ready', function(msg) {
-        console.log('Received image_ready message: ' + msg);
-    });
+
+    // socket.on('connect', function() {
+    //     console.log('userRecId:', userRecId);
+    //     console.log('Successfully connected to the server');
+    //     socket.emit('join', {username: userRecId, room: userRecId});
+    // });
+    // socket.on('response', function(msg) {
+    //     console.log('Received response message: ' + msg);
+    // });
+    // socket.on('image_ready', function(msg) {
+    //     console.log('Received image_ready message: ' + msg);
+    // });
 }
 
 window.onresize = function() {
@@ -116,12 +116,31 @@ function fireGenerateCall(jsonObject) {
             collection_id = data.collection_id;
             generation_id = data.generation_id;
             console.log(`the locally created gen id: ${jsonObject.generationId}, and served gen id: ${generation_id}`)
-            checkStatusPeriodically(jsonObject.userRecId, collection_id, generation_id, jsonObject.modelName);
+            startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);
+            // checkStatusPeriodically(jsonObject.userRecId, collection_id, generation_id, jsonObject.modelName);
         },
         error: function(data) {
             console.log("error");
             console.log(data);
         }
+    });
+}
+
+function startListeningForGenerationUpdates(userRecId, collectionId, generationId) {
+    console.log('startListeningForGenerationUpdates');
+    db.collection('users').doc(userRecId)
+        .collection('collections').doc(collectionId)
+        .collection('generations').doc(generationId)
+        .onSnapshot((doc) => {
+            var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+        
+            if (source === 'Server') {
+                var data = doc.data();
+                if (data.status === 'ready') {
+                // Update the page with the new image
+                    console.log('ready to update the image element if an image_url is present');
+                }
+            }
     });
 }
 

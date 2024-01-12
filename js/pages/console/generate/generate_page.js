@@ -1,4 +1,4 @@
-let socket = io.connect(CONSTANTS.BACKEND_URL + ':' + '8080');
+let socket = io();
 
 window.onload = function() {
     console.log("window.onload from genrate page");

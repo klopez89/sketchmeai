@@ -141,6 +141,7 @@ function checkStatusPeriodically(userRecId, collectionId, generationId, modelNam
                     type: 'POST',
                     url: `${CONSTANTS.BACKEND_URL}generate/status`,
                     data: JSON.stringify(dataObj),
+                    contentType: "application/json",
                     dataType: 'json',
                     success: function(data) {
                         

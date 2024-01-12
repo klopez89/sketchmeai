@@ -148,7 +148,7 @@ function checkStatusPeriodically(userRecId, collectionId, generationId, modelNam
                         console.log(data);
                         
                         if (data.gen_url) {
-                            const liElement = document.querySelector(`li[generation-id="${generationId}"]`);
+                            const liElement = document.querySelector(`li[generation-id="${dataObj.generationId}"]`);
                             liElement.querySelector('.loader').classList.add('hidden');
                             liElement.querySelector('img').src = data.gen_url;
                         }

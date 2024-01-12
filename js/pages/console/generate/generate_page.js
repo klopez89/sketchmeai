@@ -129,6 +129,8 @@ function checkStatusPeriodically(userRecId, collectionId, generationId, modelNam
         };
     }
 
+    let checkingTimers = {}; // Store all timers
+
     function startPeriodicChecks(delay) {
         setTimeout(function() {
             dataObj = {
@@ -136,7 +138,7 @@ function checkStatusPeriodically(userRecId, collectionId, generationId, modelNam
                 collectionId: collectionId,
                 generationId: generationId
             }
-            var checkingTimer = setInterval(function() {
+            checkingTimers[generationId] = setInterval(function() {
                 $.ajax({
                     type: 'POST',
                     url: `${CONSTANTS.BACKEND_URL}generate/status`,
@@ -155,14 +157,16 @@ function checkStatusPeriodically(userRecId, collectionId, generationId, modelNam
 
                         if (data.status !== 'in_progress' && data.status !== 'being_handled') {
                             console.log(`clearing interval check for generation id: ${data.gen_id}, and status: ${data.status}`);
-                            clearInterval(checkingTimer); // Stop checking on satisfying success
+                            clearInterval(checkingTimers[data.gen_id]); // Clear the specific timer
+                            delete checkingTimers[data.gen_id]; // Remove the timer from the object
                         } else {
                             console.log(`generation still being worked on with id: ${data.gen_id}, status: ${data.status}`);
                         }
                     },
                     error: function(xhr, status, error) {
                         console.error("Failed to fetch status:", error);
-                        clearInterval(checkingTimer); // Stop checking on error
+                        clearInterval(checkingTimers[generationId]); // Clear the specific timer on error
+                        delete checkingTimers[generationId]; // Remove the timer from the object
                     }
                 });
             }, 5000); // Check every 5 seconds (adjust interval as needed)

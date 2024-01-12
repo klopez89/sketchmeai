@@ -138,6 +138,7 @@ function startPeriodicChecks(delay, userRecId, collectionId, generationId) {
             collectionId: collectionId,
             generationId: generationId
         }
+        console.log('about to add a checking timer for generation id: ', generationId);
         checkingTimers[generationId] = setInterval(function() {
             $.ajax({
                 type: 'POST',

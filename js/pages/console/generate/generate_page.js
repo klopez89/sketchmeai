@@ -87,6 +87,7 @@ function fireGenerateCall(jsonObject) {
     let new_grid_item_div = $($.parseHTML(new_grid_item_html));
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
         new_grid_item_div.find('#gen-loader').removeClass('hidden');
+        new_grid_item_div.find('img').first().removeClass('hidden');
     });
 
     let action = `${CONSTANTS.BACKEND_URL}generate/new`

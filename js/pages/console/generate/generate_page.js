@@ -128,20 +128,20 @@ function fireGenerateCall(jsonObject) {
 
 function startListeningForGenerationUpdates(userRecId, collectionId, generationId) {
     console.log('startListeningForGenerationUpdates');
-    // db.collection('users').doc(userRecId)
-    //     .collection('collections').doc(collectionId)
-    //     .collection('generations').doc(generationId)
-    //     .onSnapshot((doc) => {
-    //         var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+    db.collection('users').doc(userRecId)
+        .collection('collections').doc(collectionId)
+        .collection('generations').doc(generationId)
+        .onSnapshot((doc) => {
+            var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
         
-    //         if (source === 'Server') {
-    //             var data = doc.data();
-    //             if (data.status === 'ready') {
-    //             // Update the page with the new image
-    //                 console.log('ready to update the image element if an image_url is present');
-    //             }
-    //         }
-    // });
+            if (source === 'Server') {
+                var data = doc.data();
+                if (data.status === 'ready') {
+                // Update the page with the new image
+                    console.log('ready to update the image element if an image_url is present');
+                }
+            }
+    });
 }
 
 let checkingTimers = {}; // Store all timers

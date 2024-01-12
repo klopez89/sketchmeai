@@ -8,6 +8,7 @@ window.onload = function() {
 
     userRecId = getUserRecId();
     socket.on('connect', function() {
+        console.log('Successfully connected to the server');
         socket.emit('join', {username: userRecId, room: userRecId});
     });
     socket.on('response', function(msg) {

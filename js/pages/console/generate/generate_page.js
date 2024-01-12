@@ -98,7 +98,7 @@ function fireGenerateCall(jsonObject) {
             console.log(data);
             collection_id = data.collection_id;
             generation_id = data.generation_id;
-            // checkStatusPeriodically(collection_id, generation_id, jsonObject.modelName);
+            checkStatusPeriodically(jsonObject.userRecId, collection_id, generation_id, jsonObject.modelName);
         },
         error: function(data) {
             console.log("error");
@@ -108,7 +108,7 @@ function fireGenerateCall(jsonObject) {
 }
 
 
-function checkStatusPeriodically(collectionId, generationId, modelName) {
+function checkStatusPeriodically(userRecId, collectionId, generationId, modelName) {
     if (modelName.includes('stability-ai')) {
         // Model does not require cold booting, start periodic checks immediately
         startPeriodicChecks(0);
@@ -136,6 +136,7 @@ function checkStatusPeriodically(collectionId, generationId, modelName) {
                     type: 'POST',
                     url: `${CONSTANTS.BACKEND_URL}generate/status`,
                     data: {
+                        userRecId: userRecId,
                         collectionId: collectionId,
                         generationId: generationId
                     },
@@ -144,16 +145,17 @@ function checkStatusPeriodically(collectionId, generationId, modelName) {
                         
                         console.log(data);
                         
-                        if (data.imageUrl) {
+                        if (data.gen_url) {
                             const liElement = document.querySelector(`li[generation-id="${generationId}"]`);
-                            liElement.querySelector('img').src = data.imageUrl;
+                            liElement.querySelector('.loader').classList.add('hidden');
+                            liElement.querySelector('img').src = data.gen_url;
                         }
 
-                        if (data.status !== 'in_progress' && data.status !== '_being_handled') {
-                            console.log("clearing interval check for generation id: ", generationId);
+                        if (data.status !== 'in_progress' && data.status !== 'being_handled') {
+                            console.log(`clearing interval check for generation id: ${generationId}, and status: ${data.status}`);
                             clearInterval(checkingTimer); // Stop checking on satisfying success
                         } else {
-                            console.log("generation still in progress for generation id: ", generationId);
+                            console.log(`generation still being worked on with id: ${generationId}, status: ${data.status}`);
                         }
                     },
                     error: function(xhr, status, error) {

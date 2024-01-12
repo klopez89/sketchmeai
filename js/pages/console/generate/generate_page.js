@@ -155,7 +155,7 @@ function makeRequest(dataObj, userRecId, collectionId, generationId) {
             
             if (data.gen_url) {
                 const liElement = document.querySelector(`li[generation-id="${data.gen_id}"]`);
-                liElement.querySelector('.loader').classList.add('hidden');
+                liElement.querySelector('#gen-loader').classList.add('hidden');
                 liElement.querySelector('img').src = data.gen_url;
             }
 

@@ -14,8 +14,10 @@ function newGridItemHTML(promptInfo) {
     return `
     <li class="relative" generation-id="${promptInfo.generationId}">
         <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-            <div class="loader hidden ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
             <img src="" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+            <div id="gen-loader" class="bg-gray-200 flex justify-center items-center">
+                <i class="fa fa-spinner fa-spin text-4xl text-gray-500" aria-hidden="true"></i>
+            </div>
             <button type="button" class="absolute inset-0 focus:outline-none"></button>
         </div>
     </li>

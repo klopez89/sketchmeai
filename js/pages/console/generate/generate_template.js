@@ -13,8 +13,8 @@ const imageUrls = [
 function newGridItemHTML(promptInfo) {
     return `
     <li class="relative rounded-lg" generation-id="${promptInfo.generationId}">
-        <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden">
-            <img src="" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
+        <div class="aspect-h-10 aspect-w-10 block w-full overflow-hidden">
+            <img src="" alt="" class="pointer-events-none object-cover hidden">
             <div id="gen-loader" class="hidden bg-gray-200 flex justify-center items-center">
                 <i class="fa fa-spinner fa-spin text-4xl text-gray-500" aria-hidden="true"></i>
             </div>

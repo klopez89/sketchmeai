@@ -131,15 +131,16 @@ function checkStatusPeriodically(userRecId, collectionId, generationId, modelNam
 
     function startPeriodicChecks(delay) {
         setTimeout(function() {
+            dataObj = {
+                userRecId: userRecId,
+                collectionId: collectionId,
+                generationId: generationId
+            }
             var checkingTimer = setInterval(function() {
                 $.ajax({
                     type: 'POST',
                     url: `${CONSTANTS.BACKEND_URL}generate/status`,
-                    data: {
-                        userRecId: userRecId,
-                        collectionId: collectionId,
-                        generationId: generationId
-                    },
+                    data: JSON.stringify(dataObj),
                     dataType: 'json',
                     success: function(data) {
                         

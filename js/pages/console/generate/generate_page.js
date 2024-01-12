@@ -1,13 +1,14 @@
 let socket = io.connect(CONSTANTS.BACKEND_URL + ':' + '8080');
 
 window.onload = function() {
-    console.log("window.onload from genrate page");
+    console.log("window.onload from generate page");
     addImageGrid();
     configureGenerateForm();
     resizeGrid();
 
     userRecId = getUserRecId();
     socket.on('connect', function() {
+        console.log('userRecId:', userRecId);
         console.log('Successfully connected to the server');
         socket.emit('join', {username: userRecId, room: userRecId});
     });

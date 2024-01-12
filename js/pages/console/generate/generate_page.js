@@ -12,6 +12,7 @@ window.onresize = function() {
 
 let cold_boot_delay = 180000; // 3 minutes in milliseconds for custom models
 let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models to turn cold w/o use
+let status_check_interval = 2500; // 5 seconds in milliseconds
 var coldBootedModels = {};
 
 function configureGenerateForm() {
@@ -167,7 +168,7 @@ function makeRequest(dataObj, userRecId, collectionId, generationId) {
                 console.log(`generation still being worked on with id: ${data.gen_id}, status: ${data.status}`);
                 checkingTimers[generationId] = setTimeout(function() {
                     makeRequest(dataObj, userRecId, collectionId, generationId);
-                }, 5000); // Check again after 5 seconds
+                }, status_check_interval); // Check again after 5 seconds
             }
         },
         error: function(xhr, status, error) {

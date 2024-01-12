@@ -128,6 +128,7 @@ function fireGenerateCall(jsonObject) {
 
 function startListeningForGenerationUpdates(userRecId, collectionId, generationId) {
     console.log('startListeningForGenerationUpdates');
+    console.log(`userRecId: ${userRecId}, collectionId: ${collectionId}, generationId: ${generationId}`);
     db.collection('users').doc(userRecId)
         .collection('collections').doc(collectionId)
         .collection('generations').doc(generationId)

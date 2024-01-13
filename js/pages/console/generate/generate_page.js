@@ -162,10 +162,13 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 gen_element.querySelector('img').src = signed_gen_url;
+                unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.FAILED) {
                 console.log('generation failed');
+                unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.CANCELED) {
                 console.log('generation canceled');
+                unsubscribe(); // Stop listening for updates
             }
 
             console.log(`for gen_id: ${generationId} prediction_status is ${prediction_status}`);

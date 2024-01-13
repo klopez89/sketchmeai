@@ -45,10 +45,16 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             generations.forEach(function(generation) {
                 let new_grid_item_html = newGridItemHTML({ generationId: generation.generationId });
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
-                new_grid_item_div.find('img').attr('src', generation.signed_gen_url);
-                new_grid_item_div.find('#gen-loader').hide();
+
                 new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
                     new_grid_item_div.find('img').first().removeClass('hidden');
+
+                    let actualImage = new Image();
+                    actualImage.onload = function() {
+                        new_grid_item_div.find('img').attr('src', this.src);
+                        new_grid_item_div.find('#gen-loader').hide();
+                    };
+                    actualImage.src = generation.signed_gen_url;
                 });
             });
 

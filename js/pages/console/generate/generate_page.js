@@ -156,7 +156,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             gen_element_ref = gen_element;
 
             if (prediction_status === PredictionStatus.BEING_HANDLED) {
-                gen_element.querySelector('#gen-status').innerHTML = 'generating...';
+                gen_element.querySelector('#gen-status').innerHTML = '...generating';
             }
 
             if (prediction_status === PredictionStatus.SUCCEEDED) {

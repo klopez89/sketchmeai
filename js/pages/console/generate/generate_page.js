@@ -136,18 +136,20 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
         .collection('generations').doc(generationId)
         .onSnapshot((doc) => {
 
-            snapshot_of_generation = doc;
-            console.log('something with the generation changed! Doc: ', doc);
+            snapshot_of_generation = doc; // For debugging only
 
-            var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-        
-            if (source === 'Server') {
-                var data = doc.data();
-                if (data.status === 'ready') {
-                // Update the page with the new image
-                    console.log('ready to update the image element if an image_url is present');
-                }
+            generation_dict = doc.data();
+            prediction_status = generation_dict['prediction_status'];
+            signed_gen_url = generation_dict['signed_gen_url'];
+
+            if (prediction_status === 'succeeded') {
+                const liElement = document.querySelector(`li[generation-id="${generationId}"]`);
+                liElement.querySelector('#gen-loader').classList.add('hidden');
+                liElement.querySelector('img').src = signed_gen_url;
             }
+
+            console.log(`for gen_id: ${generationId} prediction_status is ${prediction_status}`);
+            console.log('something with the generation changed! Doc: ', doc);
     });
 }
 

@@ -38,7 +38,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
         contentType: 'application/json',
         dataType: 'json',
         success: function(data) {
-            console.log(`success hit from generations endpoint, and got data: ${data}`);
+            console.log(`success hit from generations endpoint, and got data: ${JSON.stringify(data)}`);
         },
         error: function(error) {
             console.error('Error:', error);

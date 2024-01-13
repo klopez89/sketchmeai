@@ -6,18 +6,10 @@ window.onload = function() {
     configureGenerateForm();
     resizeGrid();
 
-
-    // socket.on('connect', function() {
-    //     console.log('userRecId:', userRecId);
-    //     console.log('Successfully connected to the server');
-    //     socket.emit('join', {username: userRecId, room: userRecId});
-    // });
-    // socket.on('response', function(msg) {
-    //     console.log('Received response message: ' + msg);
-    // });
-    // socket.on('image_ready', function(msg) {
-    //     console.log('Received image_ready message: ' + msg);
-    // });
+    let userRecId = getUserRecId();
+    let collectionId = 'aHTPJCMl5mVgrZzZhNHP'
+    let lastDocId = null;
+    fetchGenerations(userRecId, collectionId, lastDocId);
 }
 
 window.onresize = function() {
@@ -32,6 +24,31 @@ var coldBootedModels = {};
 function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
 }
+
+
+function fetchGenerations(userRecId, collectionId, lastDocId) {
+    $.ajax({
+        url: CONSTANTS.BACKEND_URL + 'generations',
+        type: 'POST',
+        data: JSON.stringify({
+            userRecId: userRecId,
+            collectionId: collectionId,
+            lastDocId: lastDocId
+        }),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(data) {
+            console.log(`success hit from generations endpoint, and got data: ${data}`);
+        },
+        error: function(error) {
+            console.error('Error:', error);
+        }
+    });
+}
+
+
+
+
 
 function generateButtonPressed(event) {
     event.preventDefault();

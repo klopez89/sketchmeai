@@ -830,6 +830,9 @@ select {
 .-m-2\.5 {
   margin: -0.625rem;
 }
+.m-2 {
+  margin: 0.5rem;
+}
 .m-5 {
   margin: 1.25rem;
 }

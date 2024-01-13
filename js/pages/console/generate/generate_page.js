@@ -126,6 +126,8 @@ function fireGenerateCall(jsonObject) {
     });
 }
 
+var snapshot_of_generation = null;
+
 function startListeningForGenerationUpdates(userRecId, collectionId, generationId) {
     console.log('startListeningForGenerationUpdates');
     console.log(`userRecId: ${userRecId}, collectionId: ${collectionId}, generationId: ${generationId}`);
@@ -134,6 +136,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
         .collection('generations').doc(generationId)
         .onSnapshot((doc) => {
 
+            snapshot_of_generation = doc;
             console.log('something with the generation changed! Doc: ', doc);
 
             var source = doc.metadata.hasPendingWrites ? "Local" : "Server";

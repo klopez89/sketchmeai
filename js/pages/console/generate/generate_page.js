@@ -129,10 +129,19 @@ function fireGenerateCall(jsonObject) {
 var snapshot_of_generation = null;
 var gen_element_ref = null;
 
+const PredictionStatus = {
+    IN_PROGRESS: 'in_progress',
+    BEING_HANDLED: 'being_handled',
+    FAILED: 'failed',
+    SUCCEEDED: 'succeeded',
+    CANCELED: 'canceled'
+};
+
+
 function startListeningForGenerationUpdates(userRecId, collectionId, generationId) {
     console.log('startListeningForGenerationUpdates');
     console.log(`userRecId: ${userRecId}, collectionId: ${collectionId}, generationId: ${generationId}`);
-    db.collection('users').doc(userRecId)
+    let unsubscribe = db.collection('users').doc(userRecId)
         .collection('collections').doc(collectionId)
         .collection('generations').doc(generationId)
         .onSnapshot((doc) => {
@@ -145,11 +154,18 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
 
             const gen_element = document.querySelector(`li[generation-id="${generationId}"]`);
             gen_element_ref = gen_element;
-            gen_element.querySelector('#gen-status').innerHTML = prediction_status;
 
-            if (prediction_status === 'succeeded') {
+            if (prediction_status === PredictionStatus.BEING_HANDLED) {
+                gen_element.querySelector('#gen-status').innerHTML = 'generating...';
+            }
+
+            if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 gen_element.querySelector('img').src = signed_gen_url;
+            } else if (prediction_status === PredictionStatus.FAILED) {
+                console.log('generation failed');
+            } else if (prediction_status === PredictionStatus.CANCELED) {
+                console.log('generation canceled');
             }
 
             console.log(`for gen_id: ${generationId} prediction_status is ${prediction_status}`);

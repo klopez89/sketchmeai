@@ -46,6 +46,8 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 let new_grid_item_html = newGridItemHTML({ generationId: generation.generationId });
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
 
+                new_grid_item_div.find('p').html('');
+
                 new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
                     new_grid_item_div.find('img').first().removeClass('hidden');
 

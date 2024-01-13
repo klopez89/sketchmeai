@@ -134,7 +134,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
         .collection('generations').doc(generationId)
         .onSnapshot((doc) => {
 
-            console.log('something with the generation changed!');
+            console.log('something with the generation changed! Doc: ', doc);
 
             var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
         

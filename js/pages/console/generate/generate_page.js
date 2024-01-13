@@ -127,6 +127,7 @@ function fireGenerateCall(jsonObject) {
 }
 
 var snapshot_of_generation = null;
+var gen_element_ref = null;
 
 function startListeningForGenerationUpdates(userRecId, collectionId, generationId) {
     console.log('startListeningForGenerationUpdates');
@@ -143,6 +144,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             signed_gen_url = generation_dict['signed_gen_url'];
 
             const gen_element = document.querySelector(`li[generation-id="${generationId}"]`);
+            gen_element_ref = gen_element;
             gen_element.querySelector('#gen-status').value = 'prediction_status';
 
             if (prediction_status === 'succeeded') {

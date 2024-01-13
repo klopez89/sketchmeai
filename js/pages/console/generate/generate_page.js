@@ -145,7 +145,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
 
             const gen_element = document.querySelector(`li[generation-id="${generationId}"]`);
             gen_element_ref = gen_element;
-            gen_element.querySelector('#gen-status').value = 'prediction_status';
+            gen_element.querySelector('#gen-status').innerHTML = prediction_status;
 
             if (prediction_status === 'succeeded') {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');

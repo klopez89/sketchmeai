@@ -142,10 +142,12 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             prediction_status = generation_dict['prediction_status'];
             signed_gen_url = generation_dict['signed_gen_url'];
 
+            const gen_element = document.querySelector(`li[generation-id="${generationId}"]`);
+            gen_element.querySelector('#gen-status').value = 'prediction_status';
+
             if (prediction_status === 'succeeded') {
-                const liElement = document.querySelector(`li[generation-id="${generationId}"]`);
-                liElement.querySelector('#gen-loader').classList.add('hidden');
-                liElement.querySelector('img').src = signed_gen_url;
+                gen_element.querySelector('#gen-loader').classList.add('hidden');
+                gen_element.querySelector('img').src = signed_gen_url;
             }
 
             console.log(`for gen_id: ${generationId} prediction_status is ${prediction_status}`);

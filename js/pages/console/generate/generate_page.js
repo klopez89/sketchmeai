@@ -60,6 +60,9 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 });
             });
 
+
+            $('#grid-loader').addClass('hidden');
+
             console.log(`success hit from generations endpoint, and got data: ${JSON.stringify(data)}`);
         },
         error: function(error) {

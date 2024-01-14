@@ -161,7 +161,7 @@ function dummyGridHTML() {
                     <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 overflow-y-auto">
                         <ul id="collection-grid" role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"></ul>
                         <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8">
-                            <div class="w-full h-full flex justify-center items-start">
+                            <div class="bg-gray-100 w-full h-full flex justify-center items-start">
                                 <div class="mt-5">    
                                     <i class="fa fa-spinner fa-spin text-4xl text-gray-500 mt-5" aria-hidden="true"></i>
                                 </div>

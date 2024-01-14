@@ -43,8 +43,8 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             lastDocId = data.last_doc_id;
 
             generations.forEach(function(generation) {
-                console.log(`generation: ${JSON.stringify(generation)}`);
-                let new_grid_item_html = newGridItemHTML({ generationId: generation.generationId });
+                // console.log(`generation: ${JSON.stringify(generation)}`);
+                let new_grid_item_html = newGridItemHTML({ generationId: generation.rec_id });
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
 
                 new_grid_item_div.find('p').html('');
@@ -61,10 +61,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 });
             });
 
-
             $('#grid-loader').addClass('hidden');
-
-            console.log(`success hit from generations endpoint, and got data: ${JSON.stringify(data)}`);
         },
         error: function(error) {
             console.error('Error:', error);

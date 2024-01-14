@@ -43,6 +43,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             lastDocId = data.last_doc_id;
 
             generations.forEach(function(generation) {
+                console.log(`generation: ${generation}`);
                 let new_grid_item_html = newGridItemHTML({ generationId: generation.generationId });
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
 
@@ -159,7 +160,6 @@ function fireGenerateCall(jsonObject) {
             generation_id = data.generation_id;
             console.log(`the locally created gen id: ${jsonObject.generationId}, and served gen id: ${generation_id}`)
             startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);
-            // checkStatusPeriodically(jsonObject.userRecId, collection_id, generation_id, jsonObject.modelName);
         },
         error: function(data) {
             console.log("error");

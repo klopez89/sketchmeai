@@ -168,9 +168,6 @@ function fireGenerateCall(jsonObject) {
     });
 }
 
-var snapshot_of_generation = null;
-var gen_element_ref = null;
-
 const PredictionStatus = {
     IN_PROGRESS: 'in_progress',
     BEING_HANDLED: 'being_handled',
@@ -188,14 +185,11 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
         .collection('generations').doc(generationId)
         .onSnapshot((doc) => {
 
-            snapshot_of_generation = doc; // For debugging only
-
             generation_dict = doc.data();
             prediction_status = generation_dict['prediction_status'];
             signed_gen_url = generation_dict['signed_gen_url'];
 
             const gen_element = document.querySelector(`li[generation-id="${generationId}"]`);
-            gen_element_ref = gen_element;
 
             if (prediction_status === PredictionStatus.BEING_HANDLED) {
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
@@ -214,7 +208,6 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             }
 
             console.log(`for gen_id: ${generationId} prediction_status is ${prediction_status}`);
-            console.log('something with the generation changed! Doc: ', doc);
     });
 }
 
@@ -304,7 +297,6 @@ function resizeGrid() {
     // Set the max-height of the collection grid container to the height of the left column
     document.getElementById('collection-grid-container').style.height = adjustedForPaddingHeight + 'px';
 }
-
 
 
 function promptInputValues() {

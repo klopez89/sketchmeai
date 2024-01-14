@@ -43,7 +43,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             lastDocId = data.last_doc_id;
 
             generations.forEach(function(generation) {
-                console.log(`generation: ${generation}`);
+                console.log(`generation: ${JSON.stringify(generation)}`);
                 let new_grid_item_html = newGridItemHTML({ generationId: generation.generationId });
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
 

@@ -57,7 +57,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             }
 
             generations.forEach(function(generation) {
-                let new_grid_item_html = newGridItemHTML({ generation: generation.generation });
+                let new_grid_item_html = newGridItemHTML(generation);
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
 
                 new_grid_item_div.find('p').html('');

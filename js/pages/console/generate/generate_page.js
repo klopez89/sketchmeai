@@ -1,4 +1,5 @@
 let isCurrentlyPaginatingPrompts = false;
+let collectionId_Test = 'aHTPJCMl5mVgrZzZhNHP'
 
 window.onload = function() {
     console.log("window.onload from generate page");
@@ -8,9 +9,8 @@ window.onload = function() {
     configureInfiniteScroll();
 
     let userRecId = getUserRecId();
-    let collectionId = 'aHTPJCMl5mVgrZzZhNHP'
     let lastDocId = null;
-    fetchGenerations(userRecId, collectionId, lastDocId);
+    fetchGenerations(userRecId, collectionId_Test, lastDocId);
 }
 
 window.onresize = function() {
@@ -227,74 +227,24 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
     });
 }
 
-let checkingTimers = {}; // Store all timers
 
-function checkStatusPeriodically(userRecId, collectionId, generationId, modelName) {
+function checkStatusPeriodically(modelName) {
     if (modelName.includes('stability-ai')) {
         // Model does not require cold booting, start periodic checks immediately
-        startPeriodicChecks(0, userRecId, collectionId, generationId);
     } else if (coldBootedModels[modelName]) {
         // Model has already been cold booted, reset the cold booting timer
         clearTimeout(coldBootedModels[modelName].coolingTimer);
         coldBootedModels[modelName].coolingTimer = setTimeout(function() {
             delete coldBootedModels[modelName]; // Clear the model from the coldBootedModels after 10 minutes
-        }, cold_booting_time); // 10 minutes in milliseconds
-        startPeriodicChecks(0, userRecId, collectionId, generationId);
+        }, cold_booting_time);
     } else {
-        // Model requires cold booting, apply the delay and set up cooling timer
-        startPeriodicChecks(cold_boot_delay, userRecId, collectionId, generationId);
+        // Model requires cold booting, setup cooling timer
         coldBootedModels[modelName] = {
             coolingTimer: setTimeout(function() {
                 delete coldBootedModels[modelName]; // Clear the model from the coldBootedModels after 10 minutes
             }, cold_booting_time) 
         };
     }
-}
-function startPeriodicChecks(delay, userRecId, collectionId, generationId) {
-    setTimeout(function() {
-        dataObj = {
-            userRecId: userRecId,
-            collectionId: collectionId,
-            generationId: generationId
-        }
-        console.log('about to add a checking timer for generation id: ', generationId);
-        makeRequest(dataObj, userRecId, collectionId, generationId);
-    }, delay);
-}
-
-function makeRequest(dataObj, userRecId, collectionId, generationId) {
-    $.ajax({
-        type: 'POST',
-        url: `${CONSTANTS.BACKEND_URL}generate/status`,
-        data: JSON.stringify(dataObj),
-        contentType: "application/json",
-        dataType: 'json',
-        success: function(data) {
-            console.log(data);
-            
-            if (data.gen_url) {
-                const liElement = document.querySelector(`li[generation-id="${data.gen_id}"]`);
-                liElement.querySelector('#gen-loader').classList.add('hidden');
-                liElement.querySelector('img').src = data.gen_url;
-            }
-
-            if (data.status !== 'in_progress' && data.status !== 'being_handled') {
-                console.log(`clearing interval check for generation id: ${data.gen_id}, and status: ${data.status}`);
-                clearInterval(checkingTimers[data.gen_id]); // Clear the specific timer
-                delete checkingTimers[data.gen_id]; // Remove the timer from the object
-            } else {
-                console.log(`generation still being worked on with id: ${data.gen_id}, status: ${data.status}`);
-                checkingTimers[generationId] = setTimeout(function() {
-                    makeRequest(dataObj, userRecId, collectionId, generationId);
-                }, status_check_interval); // Check again after 5 seconds
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error("Failed to fetch status:", error);
-            clearInterval(checkingTimers[generationId]); // Clear the specific timer on error
-            delete checkingTimers[generationId]; // Remove the timer from the object
-        }
-    });
 }
 
 function addImageGrid() {
@@ -320,12 +270,12 @@ function configureInfiniteScroll() {
                 return
             } else {
                 console.log("We are at the bottom of the generation grid!");
-            //   isCurrentlyPaginatingPrompts = true;
                 const last_doc_id = getLastDocIdFromLocalStorage();
                 console.log(`if it isnt null we are ready to fetch next page of images, last_doc_id: ${last_doc_id}`);
-            //   if (last_doc_id != "null") {
-            //     fetchNextSetOfImages(last_doc_id);
-            //   }
+              if (last_doc_id != null) {
+                isCurrentlyPaginatingPrompts = true;
+                fetchGenerations(getUserRecId(), collectionId_Test, last_doc_id);
+              }
             }
         }
     });

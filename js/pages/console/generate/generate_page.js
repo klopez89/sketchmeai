@@ -274,6 +274,7 @@ function configureInfiniteScroll() {
                 console.log(`We are at the bottom of the generation grid! With last_doc_id: ${last_doc_id}`);
                 if (last_doc_id != null) {
                     isCurrentlyPaginatingPrompts = true;
+                    console.log("the value of isCurrentlyPaginatingPrompts is now: ", isCisCurrentlyPaginatingPrompts);
                     fetchGenerations(getUserRecId(), collectionId_Test, last_doc_id);
                 }
             }

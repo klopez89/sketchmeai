@@ -49,7 +49,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             if (generations == null) {
                 console.log('Didnt find any more images to load. all done paginating!');
                 hideInfiniteLoader();
-                saveLastDocIdLocally(null);
+                removeLastDocId();
                 setTimeout(function() {
                   isCurrentlyPaginatingPrompts = false;
                 }, 50);
@@ -292,6 +292,10 @@ function saveLastDocIdLocally(last_doc_id) {
   
 function getLastDocIdFromLocalStorage() {
     return localStorage.getItem('last_doc_id');
+}
+
+function removeLastDocId() {
+    localStorage.removeItem('last_doc_id');
 }
 
 function promptInputValues() {

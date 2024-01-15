@@ -57,6 +57,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             }
 
             if (hasAnotherPage === false) {
+                console.log('reaady to hide the infinite loader');
                 hideInfiniteLoader();
             }
 

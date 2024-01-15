@@ -10,9 +10,10 @@ const imageUrls = [
     "https://images.unsplash.com/photo-1492724724894-7464c27d0ceb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=512&amp;q=80",
 ];
 
-function newGridItemHTML(promptInfo) {
+function newGridItemHTML(generation) {
+    gen_string = JSON.stringify(generation);
     return `
-    <li class="relative rounded-lg overflow-hidden" generation-id="${promptInfo.generationId}">
+    <li class="relative rounded-lg overflow-hidden" generation-id="${generation.rec_id}" gen-info="${gen_string}">
         <div class="group aspect-h-10 aspect-w-10 block w-full">
             <img src="" alt="" class="pointer-events-none object-cover group-hover:opacity-75 hidden">
             <div id="gen-loader" class="bg-gray-200 flex justify-center items-center">

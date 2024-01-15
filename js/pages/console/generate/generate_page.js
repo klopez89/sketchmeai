@@ -56,11 +56,6 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 return
             }
 
-            if (hasAnotherPage === false) {
-                console.log('reaady to hide the infinite loader');
-                hideInfiniteLoader();
-            }
-
             generations.forEach(function(generation) {
                 let new_grid_item_html = newGridItemHTML({ generationId: generation.rec_id });
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
@@ -81,9 +76,14 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
             saveLastDocIdLocally(lastDocId);
             isCurrentlyPaginatingPrompts = false;
-
             $('#grid-loader').addClass('hidden');
-            $('#infiniteLoader').removeClass('hidden');
+            
+            if (hasAnotherPage === false) {
+                console.log('reaady to hide the infinite loader');
+                hideInfiniteLoader();
+            } else {
+                showInfiniteLoader();
+            }
         },
         error: function(error) {
             console.error('Error:', error);
@@ -279,6 +279,10 @@ function configureInfiniteScroll() {
 
 function hideInfiniteLoader() {
     $('#infiniteLoader').addClass('hidden');
+}
+
+function showInfiniteLoader() {
+    $('#infiniteLoader').removeClass('hidden');
 }
 
 function saveLastDocIdLocally(last_doc_id) {

@@ -3,7 +3,7 @@ sample_gen = null;
 
 function newGridItemHTML(generation) {
 
-    if sample_gen == null {
+    if (sample_gen == null) {
         sample_gen = generation;
     }
 

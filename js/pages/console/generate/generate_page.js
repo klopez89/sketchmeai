@@ -5,6 +5,7 @@ window.onload = function() {
     addImageGrid();
     configureGenerateForm();
     resizeGrid();
+    configureInfiniteScroll();
 
     let userRecId = getUserRecId();
     let collectionId = 'aHTPJCMl5mVgrZzZhNHP'

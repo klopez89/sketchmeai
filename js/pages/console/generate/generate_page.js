@@ -41,6 +41,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             generations = data.generations;
             hasAnotherPage = data.has_another_page;
             lastDocId = data.last_doc_id;
+            console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
 
             generations.forEach(function(generation) {
                 // console.log(`generation: ${JSON.stringify(generation)}`);
@@ -69,9 +70,6 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
         }
     });
 }
-
-
-
 
 
 function generateButtonPressed(event) {
@@ -292,6 +290,9 @@ function resizeGrid() {
     document.getElementById('collection-grid-container').style.height = adjustedForPaddingHeight + 'px';
 }
 
+function hideInfiniteLoader() {
+    $('#infiniteLoader').addClass('hidden');
+}
 
 function promptInputValues() {
     let prompt = document.getElementById("prompt").value;

@@ -1,4 +1,4 @@
-// let socket = io.connect(CONSTANTS.BACKEND_URL + ':' + '8080');
+let isCurrentlyPaginatingPrompts = false;
 
 window.onload = function() {
     console.log("window.onload from generate page");
@@ -44,8 +44,23 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             console.log(`data from generations: ${JSON.stringify(data)}`)
             console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
 
+
+
+            if (generations.length === 0) {
+                console.log('Didnt find any more images to load. all done paginating!');
+                hideInfiniteLoader();
+                saveLastDocIdLocally(null);
+                setTimeout(function() {
+                  isCurrentlyPaginatingPrompts = false;
+                }, 50);
+                return
+            }
+
+            if (hasAnotherPage === false) {
+                hideInfiniteLoader();
+            }
+
             generations.forEach(function(generation) {
-                // console.log(`generation: ${JSON.stringify(generation)}`);
                 let new_grid_item_html = newGridItemHTML({ generationId: generation.rec_id });
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
 
@@ -62,6 +77,9 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                     actualImage.src = generation.signed_gen_url;
                 });
             });
+
+            saveLastDocIdLocally(lastDocId);
+            isCurrentlyPaginatingPrompts = false;
 
             $('#grid-loader').addClass('hidden');
             $('#infiniteLoader').removeClass('hidden');
@@ -291,8 +309,40 @@ function resizeGrid() {
     document.getElementById('collection-grid-container').style.height = adjustedForPaddingHeight + 'px';
 }
 
+
+function configureInfiniteScroll() {
+    // Get a scrollable container using an id attribute
+    const scrollableContainer = document.getElementById("collection-grid-container");
+    // Add an event listener to the scrollable container. The event below is triggered when a user scrolls to the end of the container
+    console.log('the scrollableContainer in configureInfiniteScroll is: ', scrollableContainer)
+    
+    scrollableContainer.addEventListener("scroll", () => {
+        if ((scrollableContainer.scrollTop + scrollableContainer.clientHeight) >= scrollableContainer.scrollHeight) {
+            if (isCurrentlyPaginatingPrompts) {
+                console.log("Already paginating prompts, so don't do it again!");
+                return
+            } else {
+                console.log("We are at the bottom of the generation grid!");
+            //   isCurrentlyPaginatingPrompts = true;
+            //   const last_doc_id = getLastDocIdFromLocalStorage();
+            //   if (last_doc_id != "null") {
+            //     fetchNextSetOfImages(last_doc_id);
+            //   }
+            }
+        }
+    });
+  }
+
 function hideInfiniteLoader() {
     $('#infiniteLoader').addClass('hidden');
+}
+
+function saveLastDocIdLocally(last_doc_id) {
+    localStorage.setItem('last_doc_id', last_doc_id);
+  }
+  
+function getLastDocIdFromLocalStorage() {
+    return localStorage.getItem('last_doc_id');
 }
 
 function promptInputValues() {

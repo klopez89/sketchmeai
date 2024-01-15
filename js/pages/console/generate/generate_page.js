@@ -46,7 +46,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
 
 
-            if (generations.length === 0) {
+            if (generations == null) {
                 console.log('Didnt find any more images to load. all done paginating!');
                 hideInfiniteLoader();
                 saveLastDocIdLocally(null);

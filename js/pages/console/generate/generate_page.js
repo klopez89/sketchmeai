@@ -57,7 +57,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             }
 
             generations.forEach(function(generation) {
-                let new_grid_item_html = newGridItemHTML(generation);
+                let new_grid_item_html = newGenItem_FromExistingGen(generation);
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
 
                 new_grid_item_div.find('p').html('');
@@ -202,7 +202,7 @@ function generateButtonPressed(event) {
 function fireGenerateCall(jsonObject) {
     console.log("fireGenerateCall");
 
-    let new_grid_item_html = newGridItemHTML({ generationId: jsonObject.generationId });
+    let new_grid_item_html = newGenItem_FromNewGen(jsonObject.generationId);
     let new_grid_item_div = $($.parseHTML(new_grid_item_html));
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
         new_grid_item_div.find('img').first().removeClass('hidden');

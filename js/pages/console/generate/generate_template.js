@@ -1,15 +1,20 @@
 
 sample_gen = null;
 
-function newGridItemHTML(generation) {
-
+function newGenItem_FromExistingGen(generation) {
     if(sample_gen == null) {
         sample_gen = generation;
     }
-
     gen_string = JSON.stringify(generation);
+    return newGridItemHTML(generation.rec_id, gen_string);
+}
+
+function newGenItem_FromNewGen(generation_id) {
+    return newGridItemHTML(generation_id);
+}
+function newGridItemHTML(gen_id, gen_string="") {
     return `
-    <li class="relative rounded-lg overflow-hidden" generation-id="${generation.rec_id}" gen-info="${gen_string}">
+    <li class="relative rounded-lg overflow-hidden" generation-id="${gen_id}" gen-info="${gen_string}">
         <div class="group aspect-h-10 aspect-w-10 block w-full">
             <img src="" alt="" class="pointer-events-none object-cover group-hover:opacity-75 hidden">
             <div id="gen-loader" class="bg-gray-200 flex justify-center items-center">

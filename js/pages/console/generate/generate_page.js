@@ -41,7 +41,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             generations = data.generations;
             hasAnotherPage = data.has_another_page;
             lastDocId = data.last_doc_id;
-            console.log(`data from generations: ${data}`)
+            console.log(`data from generations: ${JSON.stringify(data)}`)
             console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
 
             generations.forEach(function(generation) {

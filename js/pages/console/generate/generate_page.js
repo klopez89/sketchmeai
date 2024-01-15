@@ -96,6 +96,30 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
     });
 }
 
+function copyPromptInfoFromGen(generation) {
+    // document.getElementById("prompt").value = generation.prompt;
+    // let numberOfImages = document.getElementById('gen-count').value;
+    // let inferenceSteps = document.getElementById('denoising-steps').value;
+    // let negativePrompt = document.getElementById("neg-prompt").value;
+    // let gscale = document.getElementById('guidance-scale').value;
+    // let seed = document.getElementById('seed').value;
+    // let img2imgUrl = document.getElementById('img-2-img').value;
+    // let promptStrength = document.getElementById('prompt-strength').value;
+    // let loraScale = document.getElementById('lora-scale').value;
+    // let shouldUseRandomSeedAcrossModels = document.getElementById('same-seed').checked;
+
+    // let dropdown = document.getElementById('model-dropdown');
+    // let selectedOptions = dropdown.selectedOptions;
+    // var modelValues = [];
+    // var versionValues = [];
+    // var instanceKeys = [];
+    // for (var i = 0; i < selectedOptions.length; i++) {
+    //     modelValues.push(selectedOptions[i].getAttribute('model'));
+    //     versionValues.push(selectedOptions[i].getAttribute('version'));
+    //     instanceKeys.push(selectedOptions[i].getAttribute('instkey'));
+    // }
+}
+
 
 function generateButtonPressed(event) {
     event.preventDefault();

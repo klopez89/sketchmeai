@@ -261,7 +261,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 gen_element.querySelector('img').src = signed_gen_url;
 
-                gen_element.find('button').click(function() {
+                gen_element.querySelector('button').addEventListener('click', function() {
                     copyPromptInfoFromGen(generation_dict);
                     console.log(`clicked on generation button, gen info: ${generation_dict.rec_id}`);
                 });

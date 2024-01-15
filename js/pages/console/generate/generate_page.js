@@ -312,11 +312,7 @@ function resizeGrid() {
 
 
 function configureInfiniteScroll() {
-    // Get a scrollable container using an id attribute
     const scrollableContainer = document.getElementById("collection-grid-container");
-    // Add an event listener to the scrollable container. The event below is triggered when a user scrolls to the end of the container
-    console.log('the scrollableContainer in configureInfiniteScroll is: ', scrollableContainer)
-    
     scrollableContainer.addEventListener("scroll", () => {
         if ((scrollableContainer.scrollTop + scrollableContainer.clientHeight) >= scrollableContainer.scrollHeight) {
             if (isCurrentlyPaginatingPrompts) {
@@ -325,7 +321,8 @@ function configureInfiniteScroll() {
             } else {
                 console.log("We are at the bottom of the generation grid!");
             //   isCurrentlyPaginatingPrompts = true;
-            //   const last_doc_id = getLastDocIdFromLocalStorage();
+                const last_doc_id = getLastDocIdFromLocalStorage();
+                console.log(`if it isnt null we are ready to fetch next page of images, last_doc_id: ${last_doc_id}`);
             //   if (last_doc_id != "null") {
             //     fetchNextSetOfImages(last_doc_id);
             //   }

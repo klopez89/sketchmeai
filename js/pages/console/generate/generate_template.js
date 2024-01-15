@@ -11,7 +11,7 @@ const imageUrls = [
 ];
 
 function newGridItemHTML(generation) {
-    console.log(`the rec_id is ${generation.rec_id}`);
+    console.log(`the rec_id is ${generation['rec_id']}`);
     gen_string = JSON.stringify(generation);
     return `
     <li class="relative rounded-lg overflow-hidden" generation-id="${generation.rec_id}" gen-info="${gen_string}">

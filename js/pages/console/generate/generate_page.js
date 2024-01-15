@@ -46,7 +46,6 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
 
 
-
             if (generations.length === 0) {
                 console.log('Didnt find any more images to load. all done paginating!');
                 hideInfiniteLoader();
@@ -265,17 +264,18 @@ function configureInfiniteScroll() {
     const scrollableContainer = document.getElementById("collection-grid-container");
     scrollableContainer.addEventListener("scroll", () => {
         if ((scrollableContainer.scrollTop + scrollableContainer.clientHeight) >= scrollableContainer.scrollHeight) {
+
+            console.log(`The value of isCurrentlyPaginatingPrompts is: ${isCurrentlyPaginatingPrompts}`)
             if (isCurrentlyPaginatingPrompts) {
                 console.log("Already paginating prompts, so don't do it again!");
                 return
             } else {
-                console.log("We are at the bottom of the generation grid!");
                 const last_doc_id = getLastDocIdFromLocalStorage();
-                console.log(`if it isnt null we are ready to fetch next page of images, last_doc_id: ${last_doc_id}`);
-              if (last_doc_id != null) {
-                isCurrentlyPaginatingPrompts = true;
-                fetchGenerations(getUserRecId(), collectionId_Test, last_doc_id);
-              }
+                console.log(`We are at the bottom of the generation grid! With last_doc_id: ${last_doc_id}`);
+                if (last_doc_id != null) {
+                    isCurrentlyPaginatingPrompts = true;
+                    fetchGenerations(getUserRecId(), collectionId_Test, last_doc_id);
+                }
             }
         }
     });

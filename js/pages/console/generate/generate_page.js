@@ -66,7 +66,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
                 new_grid_item_div.find('p').html('');
 
-                new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
+                new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
                     new_grid_item_div.find('img').first().removeClass('hidden');
 
                     let actualImage = new Image();
@@ -263,8 +263,10 @@ loadedNextPageOnce = false;
 function configureInfiniteScroll() {
     const scrollableContainer = document.getElementById("collection-grid-container");
     scrollableContainer.addEventListener("scroll", () => {
+
+
         console.log(`scrollTop: ${scrollableContainer.scrollTop}, clientHeight: ${scrollableContainer.clientHeight}, scrollHeight: ${scrollableContainer.scrollHeight}`);
-        
+
         if ((scrollableContainer.scrollTop + scrollableContainer.clientHeight) >= scrollableContainer.scrollHeight) {
 
             if (loadedNextPageOnce === false) {

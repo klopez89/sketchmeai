@@ -97,29 +97,45 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 }
 
 function copyPromptInfoFromGen(generation) {
-    // document.getElementById("prompt").value = generation.prompt;
-    // let numberOfImages = document.getElementById('gen-count').value;
-    // let inferenceSteps = document.getElementById('denoising-steps').value;
-    // let negativePrompt = document.getElementById("neg-prompt").value;
-    // let gscale = document.getElementById('guidance-scale').value;
-    // let seed = document.getElementById('seed').value;
-    // let img2imgUrl = document.getElementById('img-2-img').value;
-    // let promptStrength = document.getElementById('prompt-strength').value;
-    // let loraScale = document.getElementById('lora-scale').value;
-    // let shouldUseRandomSeedAcrossModels = document.getElementById('same-seed').checked;
+    document.getElementById("prompt").value = generation.gen_recipe.prompt;
+    document.getElementById("neg-prompt").value = generation.gen_recipe.neg_prompt;
+    document.getElementById('gen-count').value = 1;
+    document.getElementById('denoising-steps').value = generation.gen_recipe.inference_steps;
+    document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
+    document.getElementById('seed').value = generation.gen_recipe.seed;
+    document.getElementById('img-2-img').value = generation.gen_recipe.img2img_url;
+    document.getElementById('prompt-strength').value = generation.gen_recipe.prompt_strength;
+    document.getElementById('lora-scale').value = generation.gen_recipe.lora_scale;
 
-    // let dropdown = document.getElementById('model-dropdown');
-    // let selectedOptions = dropdown.selectedOptions;
-    // var modelValues = [];
-    // var versionValues = [];
-    // var instanceKeys = [];
-    // for (var i = 0; i < selectedOptions.length; i++) {
-    //     modelValues.push(selectedOptions[i].getAttribute('model'));
-    //     versionValues.push(selectedOptions[i].getAttribute('version'));
-    //     instanceKeys.push(selectedOptions[i].getAttribute('instkey'));
-    // }
+    var options = document.getElementById('model-dropdown').options;
+    var selected = false; // Flag to keep track if a matching option was found
+    var potentiallyTweakedPrompt = generation.gen_recipe.prompt;
+    console.log('about to try to set model: ', generation.model_name);
+    for (var i = 0; i < options.length; i++) {
+      if (options[i].getAttribute('model') === generation.model_name) {
+        let instanceKey = options[i].getAttribute('instkey');
+        if (potentiallyTweakedPrompt.includes(instanceKey)) {
+          potentiallyTweakedPrompt = potentiallyTweakedPrompt.replace(instanceKey,'zxc');
+        }
+  
+        options[i].selected = true;
+        selected = true;
+      } else {
+        options[i].selected = false;
+      }
+    }
+  
+    // If no matching option was found, only select the first option and deselect all others
+    if (!selected) {
+      for (var i = 0; i < options.length; i++) {
+        if (i === 0) {
+          options[i].selected = true;
+        } else {
+          options[i].selected = false;
+        }
+      }
+    }
 }
-
 
 function generateButtonPressed(event) {
     event.preventDefault();

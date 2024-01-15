@@ -259,23 +259,28 @@ function resizeGrid() {
     document.getElementById('collection-grid-container').style.height = adjustedForPaddingHeight + 'px';
 }
 
-
+loadedNextPageOnce = false;
 function configureInfiniteScroll() {
     const scrollableContainer = document.getElementById("collection-grid-container");
     scrollableContainer.addEventListener("scroll", () => {
+        console.log(`scrollTop: ${scrollableContainer.scrollTop}, clientHeight: ${scrollableContainer.clientHeight}, scrollHeight: ${scrollableContainer.scrollHeight}`);
+        
         if ((scrollableContainer.scrollTop + scrollableContainer.clientHeight) >= scrollableContainer.scrollHeight) {
 
-            console.log(`The value of isCurrentlyPaginatingPrompts is: ${isCurrentlyPaginatingPrompts}`)
-            if (isCurrentlyPaginatingPrompts) {
-                console.log("Already paginating prompts, so don't do it again!");
-                return
-            } else {
-                const last_doc_id = getLastDocIdFromLocalStorage();
-                console.log(`We are at the bottom of the generation grid! With last_doc_id: ${last_doc_id}`);
-                if (last_doc_id != null) {
-                    isCurrentlyPaginatingPrompts = true;
-                    console.log("the value of isCurrentlyPaginatingPrompts is now: ", isCurrentlyPaginatingPrompts);
-                    fetchGenerations(getUserRecId(), collectionId_Test, last_doc_id);
+            if (loadedNextPageOnce === false) {
+                loadedNextPageOnce = true;
+                console.log(`The value of isCurrentlyPaginatingPrompts is: ${isCurrentlyPaginatingPrompts}`)
+                if (isCurrentlyPaginatingPrompts) {
+                    console.log("Already paginating prompts, so don't do it again!");
+                    return
+                } else {
+                    const last_doc_id = getLastDocIdFromLocalStorage();
+                    console.log(`We are at the bottom of the generation grid! With last_doc_id: ${last_doc_id}`);
+                    if (last_doc_id != null) {
+                        isCurrentlyPaginatingPrompts = true;
+                        console.log("the value of isCurrentlyPaginatingPrompts is now: ", isCurrentlyPaginatingPrompts);
+                        fetchGenerations(getUserRecId(), collectionId_Test, last_doc_id);
+                    }
                 }
             }
         }

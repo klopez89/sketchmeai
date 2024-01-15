@@ -62,6 +62,10 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
                 new_grid_item_div.find('p').html('');
 
+                new_grid_item_div.find('button').click(function() {
+                    console.log(`clicked on generation button, gen info: ${generation.rec_id}`);
+                });
+
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
                     new_grid_item_div.find('img').first().removeClass('hidden');
 

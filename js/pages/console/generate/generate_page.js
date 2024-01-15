@@ -260,6 +260,12 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 gen_element.querySelector('img').src = signed_gen_url;
+
+                gen_element.find('button').click(function() {
+                    copyPromptInfoFromGen(generation_dict);
+                    console.log(`clicked on generation button, gen info: ${generation_dict.rec_id}`);
+                });
+
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.FAILED) {
                 console.log('generation failed');

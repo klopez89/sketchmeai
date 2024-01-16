@@ -65,6 +65,8 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 new_grid_item_div.find('img').first().removeClass('hidden');
 
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
+
+                    let gen_element = document.querySelector(`li[generation-id="${generation.rec_id}"]`);
                 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
                         new_grid_item_div.find('#gen-status').html('...queued');
@@ -75,16 +77,16 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                     } else if (generation.prediction_status === PredictionStatus.CANCELED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
-                        loadGenImage(CANCELED_IMG_URL, new_grid_item_div);
+                        loadGenImage(CANCELED_IMG_URL, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.FAILED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
-                        loadGenImage(FAILED_IMG_URL, new_grid_item_div);
+                        loadGenImage(FAILED_IMG_URL, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.SUCCEEDED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
                         configCopyButton(new_grid_item_div, generation);
-                        loadGenImage(generation.signed_gen_url, new_grid_item_div);
+                        loadGenImage(generation.signed_gen_url, gen_element);
                     }
                 });
             });
@@ -108,12 +110,12 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 }
 
 function loadGenImage(gen_url, new_grid_item_div) {
-    new_grid_item_div.find('img').first().removeClass('hidden');
+    new_grid_item_div.querySelector('img').classList.remove('hidden');
 
     let actualImage = new Image();
     actualImage.onload = function() {
-        new_grid_item_div.find('img').attr('src', this.src);
-        new_grid_item_div.find('#gen-loader').hide();
+        new_grid_item_div.querySelector('img').src = this.src;
+        new_grid_item_div.querySelector('#gen-loader').style.display = 'none';
     };
     actualImage.src = gen_url;
 }

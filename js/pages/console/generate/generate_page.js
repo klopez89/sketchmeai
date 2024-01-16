@@ -1,4 +1,3 @@
-const { config } = require("webpack");
 
 let isCurrentlyPaginatingPrompts = false;
 let collectionId_Test = 'aHTPJCMl5mVgrZzZhNHP'

@@ -272,12 +272,11 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             signed_gen_url = generation_dict['signed_gen_url'];
 
             const gen_element = document.querySelector(`li[generation-id="${generationId}"]`);
-
-            if (prediction_status === PredictionStatus.BEING_HANDLED) {
+            if (prediction_status === PredictionStatus.IN_PROGRESS) {
+                gen_element.querySelector('#gen-status').innerHTML = '...queued';
+            } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
-            }
-
-            if (prediction_status === PredictionStatus.SUCCEEDED) {
+            } else if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 gen_element.querySelector('img').src = signed_gen_url;
 

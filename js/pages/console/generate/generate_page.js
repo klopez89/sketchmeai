@@ -49,6 +49,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
             if (generations == null) {
                 console.log('Didnt find any more images to load. all done paginating!');
+                $('#grid-loader').addClass('hidden');
                 hideInfiniteLoader();
                 removeLastDocId();
                 setTimeout(function() {

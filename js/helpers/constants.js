@@ -32,6 +32,14 @@ const CONSTANTS = (function() {
     }
 })();
 
+const PredictionStatus = {
+    IN_PROGRESS: 'in_progress',
+    BEING_HANDLED: 'being_handled',
+    FAILED: 'failed',
+    SUCCEEDED: 'succeeded',
+    CANCELED: 'canceled'
+};
+
 function hasDevSubdomain() {
     var url = window.location.href;
     var hostname = new URL(url).hostname;

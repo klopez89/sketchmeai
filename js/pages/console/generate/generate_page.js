@@ -1,3 +1,5 @@
+const { config } = require("webpack");
+
 let isCurrentlyPaginatingPrompts = false;
 let collectionId_Test = 'aHTPJCMl5mVgrZzZhNHP'
 
@@ -60,22 +62,26 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 let new_grid_item_html = newGenItem_FromExistingGen(generation);
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
 
-                new_grid_item_div.find('p').html('');
-
-                new_grid_item_div.find('button').click(function() {
-                    copyPromptInfoFromGen(generation);
-                    console.log(`clicked on generation button, gen info: ${generation.rec_id}`);
-                });
-
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
-                    new_grid_item_div.find('img').first().removeClass('hidden');
-
-                    let actualImage = new Image();
-                    actualImage.onload = function() {
-                        new_grid_item_div.find('img').attr('src', this.src);
-                        new_grid_item_div.find('#gen-loader').hide();
-                    };
-                    actualImage.src = generation.signed_gen_url;
+                
+                    if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
+                        new_grid_item_div.find('#gen-status').html('...queued');
+                    } else if (generation.prediction_status === PredictionStatus.BEING_HANDLED) {
+                        new_grid_item_div.find('#gen-status').html('...generating');
+                    } else if (generation.prediction_status === PredictionStatus.CANCELED) {
+                        new_grid_item_div.find('img').first().removeClass('hidden');
+                        new_grid_item_div.find('#gen-status').html('');
+                        loadGenImage("", new_grid_item_div);
+                    } else if (generation.prediction_status === PredictionStatus.FAILED) {
+                        new_grid_item_div.find('img').first().removeClass('hidden');
+                        new_grid_item_div.find('#gen-status').html('');
+                        loadGenImage("", new_grid_item_div);
+                    } else if (generation.prediction_status === PredictionStatus.SUCCEEDED) {
+                        new_grid_item_div.find('img').first().removeClass('hidden');
+                        new_grid_item_div.find('#gen-status').html('');
+                        configCopyButton(new_grid_item_div, generation);
+                        loadGenImage(generation.signed_gen_url, new_grid_item_div);
+                    }
                 });
             });
 
@@ -94,6 +100,24 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
         error: function(error) {
             console.error('Error:', error);
         }
+    });
+}
+
+function loadGenImage(gen_url, new_grid_item_div) {
+    new_grid_item_div.find('img').first().removeClass('hidden');
+
+    let actualImage = new Image();
+    actualImage.onload = function() {
+        new_grid_item_div.find('img').attr('src', this.src);
+        new_grid_item_div.find('#gen-loader').hide();
+    };
+    actualImage.src = gen_url;
+}
+
+function configCopyButton(div, generation) {
+    div.find('button').click(function() {
+        copyPromptInfoFromGen(generation);
+        console.log(`clicked on generation button, gen info: ${generation.rec_id}`);
     });
 }
 
@@ -200,7 +224,7 @@ function generateButtonPressed(event) {
 }
 
 function fireGenerateCall(jsonObject) {
-    console.log("fireGenerateCall");
+    console.log("fireGenerateCall, with jsonObject: ", jsonObject);
 
     let new_grid_item_html = newGenItem_FromNewGen(jsonObject.generationId);
     let new_grid_item_div = $($.parseHTML(new_grid_item_html));
@@ -230,14 +254,6 @@ function fireGenerateCall(jsonObject) {
     });
 }
 
-const PredictionStatus = {
-    IN_PROGRESS: 'in_progress',
-    BEING_HANDLED: 'being_handled',
-    FAILED: 'failed',
-    SUCCEEDED: 'succeeded',
-    CANCELED: 'canceled'
-};
-
 
 function startListeningForGenerationUpdates(userRecId, collectionId, generationId) {
     console.log('startListeningForGenerationUpdates');
@@ -263,7 +279,6 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
 
                 gen_element.querySelector('button').addEventListener('click', function() {
                     copyPromptInfoFromGen(generation_dict);
-                    console.log(`clicked on generation button, gen info: ${generation_dict.rec_id}`);
                 });
 
                 unsubscribe(); // Stop listening for updates

@@ -75,11 +75,11 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                     } else if (generation.prediction_status === PredictionStatus.CANCELED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
-                        loadGenImage("", new_grid_item_div);
+                        loadGenImage(CANCELED_IMG_URL, new_grid_item_div);
                     } else if (generation.prediction_status === PredictionStatus.FAILED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
-                        loadGenImage("", new_grid_item_div);
+                        loadGenImage(FAILED_IMG_URL, new_grid_item_div);
                     } else if (generation.prediction_status === PredictionStatus.SUCCEEDED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');

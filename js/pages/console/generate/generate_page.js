@@ -67,8 +67,10 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
                         new_grid_item_div.find('#gen-status').html('...queued');
+                        startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
                     } else if (generation.prediction_status === PredictionStatus.BEING_HANDLED) {
                         new_grid_item_div.find('#gen-status').html('...generating');
+                        startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
                     } else if (generation.prediction_status === PredictionStatus.CANCELED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');

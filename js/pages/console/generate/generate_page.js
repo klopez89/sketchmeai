@@ -278,8 +278,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
             } else if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
-                gen_element.querySelector('img').src = signed_gen_url;
-
+                loadGenImage(signed_gen_url, gen_element);
                 gen_element.querySelector('button').addEventListener('click', function() {
                     copyPromptInfoFromGen(generation_dict);
                 });
@@ -287,9 +286,11 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.FAILED) {
                 console.log('generation failed');
+                loadGenImage(FAILED_IMG_URL, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.CANCELED) {
                 console.log('generation canceled');
+                loadGenImage(CANCELED_IMG_URL, gen_element);
                 unsubscribe(); // Stop listening for updates
             }
 

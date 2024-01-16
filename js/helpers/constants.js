@@ -40,6 +40,9 @@ const PredictionStatus = {
     CANCELED: 'canceled'
 };
 
+const FAILED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/failed_img.png"
+const CANCELED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/failed_img.png"
+
 function hasDevSubdomain() {
     var url = window.location.href;
     var hostname = new URL(url).hostname;

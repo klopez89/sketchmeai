@@ -58,6 +58,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             }
 
             generations.forEach(function(generation) {
+                console.log(`generation time begun value is ${generation.time_begun}`);
                 let new_grid_item_html = newGenItem_FromExistingGen(generation);
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
 

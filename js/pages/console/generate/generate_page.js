@@ -1,6 +1,6 @@
 
 let isCurrentlyPaginatingPrompts = false;
-let collectionId_Test = 'aHTPJCMl5mVgrZzZhNHP'
+let collectionId_Test = 'VZZnwEopc3TyE7gJV2Oc'
 
 window.onload = function() {
     console.log("window.onload from generate page");

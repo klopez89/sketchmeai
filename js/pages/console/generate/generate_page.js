@@ -130,8 +130,8 @@ function loadGenImage(gen_url, new_grid_item_div) {
         new_grid_item_div.querySelector('img').src = this.src;
         new_grid_item_div.querySelector('#gen-loader').style.display = 'none';
         imgElement.style.display = 'block'; // Display the img element
+        imgElement.classList.add('opacity-100');
         imgElement.classList.remove('opacity-0');
-        imgElement.classList.add('opacity-100'); // Display the img eleme
         // new_grid_item_div.querySelector('#gen-loader').style.display = 'none';
     };
     

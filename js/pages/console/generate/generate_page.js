@@ -128,7 +128,9 @@ function loadGenImage(gen_url, new_grid_item_div) {
     actualImage.style.display = 'none'; 
     actualImage.onload = function() {
         new_grid_item_div.querySelector('img').src = this.src;
-        new_grid_item_div.querySelector('#gen-loader').style.display = 'none';
+        setTimeout(function() {
+            new_grid_item_div.querySelector('#gen-loader').style.display = 'none';
+        }, 100);
     };
     
     actualImage.src = gen_url;

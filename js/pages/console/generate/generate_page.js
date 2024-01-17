@@ -89,16 +89,19 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         new_grid_item_div.find('#gen-status').html('');
                         loadGenImage(CANCELED_IMG_URL, gen_element);
                         configure_main_gen_button(generation, gen_element);
+                        configureCopyButton(generation_dict, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.FAILED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
                         loadGenImage(FAILED_IMG_URL, gen_element);
                         configure_main_gen_button(generation, gen_element);
+                        configureCopyButton(generation_dict, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.SUCCEEDED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
                         loadGenImage(generation.signed_gen_url, gen_element);
                         configure_main_gen_button(generation, gen_element);
+                        configureCopyButton(generation_dict, gen_element);
                     }
                 });
             });
@@ -320,16 +323,19 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 loadGenImage(signed_gen_url, gen_element);
                 configure_main_gen_button(generation_dict, gen_element);
+                configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.FAILED) {
                 console.log('generation failed');
                 loadGenImage(FAILED_IMG_URL, gen_element);
                 configure_main_gen_button(generation_dict, gen_element);
+                configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.CANCELED) {
                 console.log('generation canceled');
                 loadGenImage(CANCELED_IMG_URL, gen_element);
                 configure_main_gen_button(generation_dict, gen_element);
+                configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             }
 
@@ -343,6 +349,13 @@ function configure_main_gen_button(gen_dict, gen_element) {
         copyPromptInfoFromGen(gen_dict);
     });
     main_gen_button.classList.remove('pointer-events-none');
+}
+
+function configureCopyButton(gen_dict, gen_element) {
+    copyButton = gen_element.querySelector('#copy-button');
+    copyButton.addEventListener('click', function() {
+        copyPromptInfoFromGen(gen_dict);
+    });
 }
 
 function checkStatusPeriodically(modelName) {

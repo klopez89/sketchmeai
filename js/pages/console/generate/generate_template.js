@@ -15,7 +15,7 @@ function newGenItem_FromNewGen(generation_id) {
 function newGridItemHTML(gen_id, gen_string="") {
     return `
     <li class="relative rounded-lg overflow-hidden" generation-id="${gen_id}" gen-info="${gen_string}">
-        <div class="group aspect-h-10 aspect-w-10 block w-full">
+        <div class="group aspect-h-10 aspect-w-10 block w-full relative">
             <img src="" alt="" class="pointer-events-none object-cover group-hover:opacity-75 transition opacity-0 duration-500">
             <div id="gen-loader" class="bg-gray-200 flex justify-center items-center">
                 <i class="fa fa-spinner fa-spin text-4xl text-gray-500" aria-hidden="true"></i>
@@ -23,6 +23,9 @@ function newGridItemHTML(gen_id, gen_string="") {
                 <button class="absolute top-0 right-0 p-2 text-xs text-gray-500 hidden" id="cancel-button">Cancel</button>
             </div>
             <button id="main-gen-button" type="button" class="absolute inset-0 focus:outline-none pointer-events-none"></button>
+            <button class="absolute bottom-0 right-0 p-2 text-white border border-white inline-flex items-center justify-center" id="copy-button">
+                <i class="fa fa-copy" aria-hidden="true"></i>
+            </button>
         </div>
     </li>
     `;

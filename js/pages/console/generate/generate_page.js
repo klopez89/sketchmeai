@@ -308,7 +308,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             prediction_status = generation_dict['prediction_status'];
             signed_gen_url = generation_dict['signed_gen_url'];
 
-            console.log(`gen id from snapshot: ${doc.iq}, and from capture: ${generationId}`);
+            
             const gen_element = document.querySelector(`li[generation-id="${generationId}"]`);
             if (prediction_status === PredictionStatus.IN_PROGRESS) {
                 gen_element.querySelector('#gen-status').innerHTML = '...queued';
@@ -316,6 +316,8 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
                 cancel_button = gen_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
+
+                    console.log(`generation_dict: ${generation_dict} vs gen_id: ${generationId}`);
                     gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
 
                     if (generation_dict.replicate_prediction_id == null) {

@@ -266,6 +266,25 @@ function fireGenerateCall(jsonObject) {
     });
 }
 
+function cancelGeneration(generationId) {
+    let action = `${CONSTANTS.BACKEND_URL}generate/cancel`
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify({
+            generationId: generationId
+        }),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(data) {
+            console.log("successlly canceled generation");
+        },
+        error: function(data) {
+            console.log("error cancelling generation");
+            console.log(data);
+        }
+    });
+}
 
 function startListeningForGenerationUpdates(userRecId, collectionId, generationId) {
     console.log('startListeningForGenerationUpdates');
@@ -284,6 +303,9 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-status').innerHTML = '...queued';
             } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
+                gen_element.querySelector('#cancel-button').addEventListener('click', function() {
+                    cancelGeneration(generationId);
+                });
             } else if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 loadGenImage(signed_gen_url, gen_element);

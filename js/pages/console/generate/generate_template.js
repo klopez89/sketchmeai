@@ -16,7 +16,7 @@ function newGridItemHTML(gen_id, gen_string="") {
     return `
     <li class="relative rounded-lg overflow-hidden" generation-id="${gen_id}" gen-info="${gen_string}">
         <div class="group aspect-h-10 aspect-w-10 block w-full">
-            <img src="" alt="" class="pointer-events-none object-cover group-hover:opacity-75 transition opacity-0 duration-1000">
+            <img src="" alt="" class="pointer-events-none object-cover group-hover:opacity-75 transition opacity-0 duration-500">
             <div id="gen-loader" class="bg-gray-200 flex justify-center items-center">
                 <i class="fa fa-spinner fa-spin text-4xl text-gray-500" aria-hidden="true"></i>
                 <p class="absolute bottom-0 right-0 pb-2 pr-2 text-xs text-gray-500" id="gen-status"></p>

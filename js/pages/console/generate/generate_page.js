@@ -123,13 +123,13 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
 function loadGenImage(gen_url, new_grid_item_div) {
     let imgElement = new_grid_item_div.querySelector('img');
-    imgElement.style.display = 'none'; // Hide the img element initially
+    // imgElement.style.display = 'none'; // Hide the img element initially
 
     let actualImage = new Image();
     actualImage.onload = function() {
-        new_grid_item_div.querySelector('img').src = this.src;
+        imgElement.src = this.src;
         new_grid_item_div.querySelector('#gen-loader').style.display = 'none';
-        imgElement.style.display = 'block'; // Display the img element
+        // imgElement.style.display = 'block'; // Display the img element
         imgElement.classList.add('opacity-100');
         imgElement.classList.remove('opacity-0');
         // new_grid_item_div.querySelector('#gen-loader').style.display = 'none';

@@ -23,7 +23,7 @@ function newGridItemHTML(gen_id, gen_string="") {
                 <button class="absolute top-0 right-0 p-2 text-xs text-gray-500 hidden" id="cancel-button">Cancel</button>
             </div>
             <button id="main-gen-button" type="button" class="absolute inset-0 focus:outline-none pointer-events-none"></button>
-            <button class="absolute bottom-0 right-0 p-2 text-white border border-white inline-flex items-center justify-center" id="copy-button">
+            <button class="absolute bottom-0 right-0 p-2 text-white border border-white flex" id="copy-button">
                 <i class="fa fa-copy" aria-hidden="true"></i>
             </button>
         </div>

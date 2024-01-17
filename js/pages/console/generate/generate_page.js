@@ -317,7 +317,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 cancel_button = gen_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
 
-                    console.log(`generation_dict: ${generation_dict} vs gen_id: ${generationId}`);
+                    console.log(`generation_dict: ${JSON.stringify(generation_dict)} vs gen_id: ${generationId}`);
                     gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
 
                     if (generation_dict.replicate_prediction_id == null) {

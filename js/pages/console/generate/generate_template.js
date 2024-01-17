@@ -24,7 +24,7 @@ function newGridItemHTML(gen_id, gen_string="") {
             </div>
             <button id="main-gen-button" type="button" class="absolute inset-0 focus:outline-none pointer-events-none"></button>
             <div id="copy-container" class="bg-transparent pointer-events-none">
-                <button id="copy-button" class="absolute bottom-2 right-2 p-2 text-xl text-white border-2 border-white pointer-events-auto flex items-center justify-center">
+                <button id="copy-button" class="absolute bottom-2 right-2 p-2 text-xl text-white border-2 border-white rounded-lg pointer-events-auto flex items-center justify-center">
                     <i class="fa fa-copy" aria-hidden="true"></i>
                 </button>
             </div>

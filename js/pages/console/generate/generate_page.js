@@ -117,10 +117,12 @@ function loadGenImage(gen_url, new_grid_item_div) {
     new_grid_item_div.querySelector('img').classList.remove('hidden');
 
     let actualImage = new Image();
+    actualImage.style.display = 'none'; 
     actualImage.onload = function() {
         new_grid_item_div.querySelector('img').src = this.src;
         new_grid_item_div.querySelector('#gen-loader').style.display = 'none';
     };
+    
     actualImage.src = gen_url;
 }
 

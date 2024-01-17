@@ -266,18 +266,18 @@ function fireGenerateCall(jsonObject) {
     });
 }
 
-function cancelGeneration(generationId) {
+function cancelGeneration(predictionId) {
     let action = `${CONSTANTS.BACKEND_URL}generate/cancel`
     $.ajax({
         type: 'POST',
         url: action,
         data: JSON.stringify({
-            generationId: generationId
+            replicate_prediction_id: predictionId
         }),
         contentType: "application/json",
         dataType: 'json',
         success: function(data) {
-            console.log("successlly canceled generation");
+            console.log(data);
         },
         error: function(data) {
             console.log("error cancelling generation");
@@ -304,7 +304,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
                 gen_element.querySelector('#cancel-button').addEventListener('click', function() {
-                    cancelGeneration(generationId);
+                    cancelGeneration(generation_dict.prediction_id);
                 });
             } else if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');

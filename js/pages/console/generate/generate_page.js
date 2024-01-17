@@ -304,8 +304,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
         .collection('generations').doc(generationId)
         .onSnapshot((doc) => {
 
-            let docId = doc.id;
-            console.log(`docId: ${docId}`);
+            let gen_rec_id = doc.id;
             generation_dict = doc.data();
             prediction_status = generation_dict['prediction_status'];
             signed_gen_url = generation_dict['signed_gen_url'];
@@ -327,7 +326,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                         return;
                     }
 
-                    console.log(`canceling generation with id: ${generation_dict.replicate_prediction_id}, for gen id: ${generationId}`);
+                    console.log(`canceling generation with id: ${gen_rec_id}, for gen id: ${generationId}`);
                     cancelGeneration(generation_dict.replicate_prediction_id);
                 });
                 cancel_button.classList.remove('hidden');

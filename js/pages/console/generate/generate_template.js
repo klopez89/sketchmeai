@@ -16,7 +16,7 @@ function newGridItemHTML(gen_id, gen_string="") {
     return `
     <li class="relative rounded-lg overflow-hidden" generation-id="${gen_id}" gen-info="${gen_string}">
         <div class="group aspect-h-10 aspect-w-10 block w-full relative">
-            <img src="" alt="" class="pointer-events-none object-cover group-hover:opacity-75 transition opacity-0 duration-500">
+            <img src="" alt="" class="pointer-events-none object-cover group-hover:opacity-75 transition-opacity opacity-0 duration-500">
             <div id="gen-loader" class="bg-gray-200 flex justify-center items-center">
                 <i class="fa fa-spinner fa-spin text-4xl text-gray-500" aria-hidden="true"></i>
                 <p class="absolute bottom-0 right-0 pb-2 pr-2 text-xs text-gray-500" id="gen-status"></p>
@@ -24,7 +24,7 @@ function newGridItemHTML(gen_id, gen_string="") {
             </div>
             <button id="main-gen-button" type="button" class="absolute inset-0 focus:outline-none pointer-events-none"></button>
             <div id="copy-container" class="bg-transparent pointer-events-none group">
-                <button id="copy-button" class="absolute bottom-2 right-2 p-2 text-xl text-white border-2 border-white opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto flex items-center justify-center">
+                <button id="copy-button" class="absolute bottom-2 right-2 p-2 text-xl text-white border-2 border-white opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto flex items-center justify-center transition-opacity duration-200">
                     <i class="fa fa-copy" aria-hidden="true"></i>
                 </button>
             </div>

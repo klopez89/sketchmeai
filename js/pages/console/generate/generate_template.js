@@ -100,7 +100,7 @@ function dummyGridHTML() {
                 <div class="sm:col-span-3" id="seed-field-container">
                     <div class="flex items-center">
                         <label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
-                        <button onclick="randomizeSeed()">
+                        <button onclick="randomizeSeed(event)">
                             <i class="fa-solid fa-dice" aria-hidden="true"></i>
                         </button>
                     </div>

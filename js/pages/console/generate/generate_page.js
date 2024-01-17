@@ -27,7 +27,8 @@ function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
 }
 
-function randomizeSeed() {
+function randomizeSeed(event) {
+    event.preventDefault();
     document.getElementById('seed').value = -1;
 }
 

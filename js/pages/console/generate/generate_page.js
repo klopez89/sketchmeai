@@ -80,7 +80,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         cancel_button = gen_element.querySelector('#cancel-button');
                         cancel_button.addEventListener('click', function() {
                             gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
-                            cancelGeneration(generation_dict.prediction_id);
+                            cancelGeneration(generation.replicate_prediction_id);
                         });
                         cancel_button.classList.remove('hidden');
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
@@ -316,6 +316,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 cancel_button = gen_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
                     gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
+                    console.log('canceling generation with id: ', generation_dict.replicate_prediction_id);
                     cancelGeneration(generation_dict.replicate_prediction_id);
                 });
                 cancel_button.classList.remove('hidden');

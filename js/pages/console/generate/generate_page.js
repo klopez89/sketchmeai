@@ -27,6 +27,9 @@ function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
 }
 
+function randomizeSeed() {
+    document.getElementById('seed').value = -1;
+}
 
 function fetchGenerations(userRecId, collectionId, lastDocId) {
     $.ajax({

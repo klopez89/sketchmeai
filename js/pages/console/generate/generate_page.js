@@ -77,20 +77,27 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
                     } else if (generation.prediction_status === PredictionStatus.BEING_HANDLED) {
                         new_grid_item_div.find('#gen-status').html('...generating');
+                        cancel_button = gen_element.querySelector('#cancel-button');
+                        cancel_button.addEventListener('click', function() {
+                            cancelGeneration(generation_dict.prediction_id);
+                        });
+                        cancel_button.classList.remove('hidden');
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
                     } else if (generation.prediction_status === PredictionStatus.CANCELED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
                         loadGenImage(CANCELED_IMG_URL, gen_element);
+                        configure_main_gen_button(generation, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.FAILED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
                         loadGenImage(FAILED_IMG_URL, gen_element);
+                        configure_main_gen_button(generation, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.SUCCEEDED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
-                        configCopyButton(new_grid_item_div, generation);
                         loadGenImage(generation.signed_gen_url, gen_element);
+                        configure_main_gen_button(generation, gen_element);
                     }
                 });
             });
@@ -303,24 +310,25 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-status').innerHTML = '...queued';
             } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
-                gen_element.querySelector('#cancel-button').addEventListener('click', function() {
+                cancel_button = gen_element.querySelector('#cancel-button');
+                cancel_button.addEventListener('click', function() {
                     cancelGeneration(generation_dict.prediction_id);
                 });
+                cancel_button.classList.remove('hidden');
             } else if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 loadGenImage(signed_gen_url, gen_element);
-                gen_element.querySelector('button').addEventListener('click', function() {
-                    copyPromptInfoFromGen(generation_dict);
-                });
-
+                configure_main_gen_button(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.FAILED) {
                 console.log('generation failed');
                 loadGenImage(FAILED_IMG_URL, gen_element);
+                configure_main_gen_button(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.CANCELED) {
                 console.log('generation canceled');
                 loadGenImage(CANCELED_IMG_URL, gen_element);
+                configure_main_gen_button(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             }
 
@@ -328,6 +336,13 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
     });
 }
 
+function configure_main_gen_button(gen_dict, gen_element) {
+    main_gen_button = gen_element.querySelector('#main-gen-button');
+    main_gen_button.addEventListener('click', function() {
+        copyPromptInfoFromGen(gen_dict);
+    });
+    main_gen_button.classList.remove('pointer-events-none');
+}
 
 function checkStatusPeriodically(modelName) {
     if (modelName.includes('stability-ai')) {

@@ -79,6 +79,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         new_grid_item_div.find('#gen-status').html('...generating');
                         cancel_button = gen_element.querySelector('#cancel-button');
                         cancel_button.addEventListener('click', function() {
+                            gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
                             cancelGeneration(generation_dict.prediction_id);
                         });
                         cancel_button.classList.remove('hidden');
@@ -312,6 +313,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
                 cancel_button = gen_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
+                    gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
                     cancelGeneration(generation_dict.replicate_prediction_id);
                 });
                 cancel_button.classList.remove('hidden');

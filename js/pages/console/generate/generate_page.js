@@ -308,6 +308,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             prediction_status = generation_dict['prediction_status'];
             signed_gen_url = generation_dict['signed_gen_url'];
 
+            console.log(`gen id from snapshot: ${doc.iq}, and from capture: ${generationId}`);
             const gen_element = document.querySelector(`li[generation-id="${generationId}"]`);
             if (prediction_status === PredictionStatus.IN_PROGRESS) {
                 gen_element.querySelector('#gen-status').innerHTML = '...queued';

@@ -304,6 +304,8 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
         .collection('generations').doc(generationId)
         .onSnapshot((doc) => {
 
+            let docId = doc.id;
+            console.log(`docId: ${docId}`);
             generation_dict = doc.data();
             prediction_status = generation_dict['prediction_status'];
             signed_gen_url = generation_dict['signed_gen_url'];

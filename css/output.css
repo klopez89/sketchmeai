@@ -1767,9 +1767,6 @@ select {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-.hover\:opacity-100:hover {
-  opacity: 1;
-}
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -1797,6 +1794,9 @@ select {
 }
 .focus-visible\:outline-blue-600:focus-visible {
   outline-color: #2563eb;
+}
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
 }
 .group:hover .group-hover\:opacity-75 {
   opacity: 0.75;

@@ -305,11 +305,10 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
         .onSnapshot((doc) => {
 
             let gen_rec_id = doc.id;
-            generation_dict = doc.data();
-            prediction_status = generation_dict['prediction_status'];
-            signed_gen_url = generation_dict['signed_gen_url'];
+            let generation_dict = doc.data();
+            let prediction_status = generation_dict['prediction_status'];
+            let signed_gen_url = generation_dict['signed_gen_url'];
 
-            
             const gen_element = document.querySelector(`li[generation-id="${generationId}"]`);
             if (prediction_status === PredictionStatus.IN_PROGRESS) {
                 gen_element.querySelector('#gen-status').innerHTML = '...queued';

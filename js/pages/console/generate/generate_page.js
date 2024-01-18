@@ -1,27 +1,26 @@
 
 let isCurrentlyPaginatingPrompts = false;
 let collectionId_Test = 'VZZnwEopc3TyE7gJV2Oc'
-
-window.onload = function() {
-    console.log("window.onload from generate page");
-    addImageGrid();
-    configureGenerateForm();
-    resizeGrid();
-    configureInfiniteScroll();
-
-    let userRecId = getUserRecId();
-    let lastDocId = null;
-    fetchGenerations(userRecId, collectionId_Test, lastDocId);
-}
-
-window.onresize = function() {
-    resizeGrid();
-}
-
 let cold_boot_delay = 180000; // 3 minutes in milliseconds for custom models
 let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models to turn cold w/o use
 let status_check_interval = 2500; // 5 seconds in milliseconds
 var coldBootedModels = {};
+
+console.log("configuring generatation page");
+addImageGrid();
+configureGenerateForm();
+resizeGrid();
+configureInfiniteScroll();
+
+let userRecId = getUserRecId();
+let lastDocId = null;
+fetchGenerations(userRecId, collectionId_Test, lastDocId);
+
+/////////////////////////////////////////////////////////////////////
+
+window.onresize = function() {
+    resizeGrid();
+}
 
 function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);

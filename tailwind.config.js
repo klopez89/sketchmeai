@@ -4,6 +4,7 @@ module.exports = {
     "./js/**/*.js",
     "./*.html",
     "./imageset/*.html",
+    "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {},
   corePlugins: {
@@ -12,6 +13,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
+    require("tw-elements/dist/plugin.cjs"),
   ],
 }
 

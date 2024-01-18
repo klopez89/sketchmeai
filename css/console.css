@@ -1,3 +1,8 @@
+body { 
+    padding-right: 0 !important; 
+    overflow-x: hidden;
+  }
+
 /* Off-Canvas */
 
 .off-canvas-menu {

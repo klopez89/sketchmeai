@@ -89,19 +89,19 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
                         loadGenImage(CANCELED_IMG_URL, gen_element);
-                        configure_main_gen_button(generation, gen_element);
+                        // configure_main_gen_button(generation, gen_element);
                         configureCopyButton(generation, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.FAILED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
                         loadGenImage(FAILED_IMG_URL, gen_element);
-                        configure_main_gen_button(generation, gen_element);
+                        // configure_main_gen_button(generation, gen_element);
                         configureCopyButton(generation, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.SUCCEEDED) {
                         new_grid_item_div.find('img').first().removeClass('hidden');
                         new_grid_item_div.find('#gen-status').html('');
                         loadGenImage(generation.signed_gen_url, gen_element);
-                        configure_main_gen_button(generation, gen_element);
+                        // configure_main_gen_button(generation, gen_element);
                         configureCopyButton(generation, gen_element);
                     }
                 });
@@ -324,19 +324,19 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             } else if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 loadGenImage(signed_gen_url, gen_element);
-                configure_main_gen_button(generation_dict, gen_element);
+                // configure_main_gen_button(generation_dict, gen_element);
                 configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.FAILED) {
                 console.log('generation failed');
                 loadGenImage(FAILED_IMG_URL, gen_element);
-                configure_main_gen_button(generation_dict, gen_element);
+                // configure_main_gen_button(generation_dict, gen_element);
                 configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.CANCELED) {
                 console.log('generation canceled');
                 loadGenImage(CANCELED_IMG_URL, gen_element);
-                configure_main_gen_button(generation_dict, gen_element);
+                // configure_main_gen_button(generation_dict, gen_element);
                 configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             }

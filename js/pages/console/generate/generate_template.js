@@ -14,7 +14,7 @@ function newGenItem_FromNewGen(generation_id) {
 
 function newGridItemHTML(gen_id, gen_string="") {
     return `
-    <li class="relative rounded-lg overflow-hidden" generation-id="${gen_id}" gen-info="${gen_string}">
+    <div class="relative rounded-lg overflow-hidden" generation-id="${gen_id}" gen-info="${gen_string}">
         <div class="group aspect-h-10 aspect-w-10 block w-full relative">
 
             <img src="" alt="Curry" class="object-cover group-hover:opacity-95 transition-opacity opacity-0 duration-200 cursor-zoom-in data-[te-lightbox-disabled]:cursor-auto">
@@ -32,7 +32,7 @@ function newGridItemHTML(gen_id, gen_string="") {
             </div>
         
         </div>
-    </li>
+    </div>
     `;
 }
 
@@ -172,7 +172,7 @@ function dummyGridHTML() {
             <div class="bg-gray-100 px-0 py-0 xl:flex-1">
                 <div class="bg-gray-100">
                     <div data-te-lightbox-init data-te-infinite-scroll-init id="collection-grid-container" class="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 overflow-y-auto">
-                        <ul id="collection-grid" role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"></ul>
+                        <div id="collection-grid" role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"></div>
                         <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8">
                             <div class="bg-gray-100 w-full h-full flex justify-center items-start">
                                 <div class="mt-5">    

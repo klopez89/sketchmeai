@@ -130,7 +130,7 @@ function loadGenImage(gen_url, new_grid_item_div) {
     let actualImage = new Image();
     actualImage.onload = function() {
         imgElement.src = this.src;
-        new_grid_item_div.querySelector('#gen-loader').style.display = 'none';
+        new_grid_item_div.querySelector('#gen-loader').classList.add('hidden');
         imgElement.classList.add('opacity-100');
         imgElement.classList.remove('opacity-0');
     };

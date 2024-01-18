@@ -81,6 +81,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         cancel_button.addEventListener('click', function() {
                             gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
                             cancelGeneration(generation.replicate_prediction_id);
+                            cancel_button.classList.add('hidden');
                         });
                         cancel_button.classList.remove('hidden');
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
@@ -314,15 +315,9 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
                 cancel_button = gen_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
-
-                    console.log(`generation_dict: ${JSON.stringify(generation_dict)} vs gen_id: ${generationId}`);
                     gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
-
-                    if (generation_dict.replicate_prediction_id == null) {
-                        console.log('replicate_prediction_id is null, so we cant cancel generation');
-                        return;
-                    }
                     cancelGeneration(generation_dict.replicate_prediction_id);
+                    cancel_button.classList.add('hidden');
                 });
                 cancel_button.classList.remove('hidden');
             } else if (prediction_status === PredictionStatus.SUCCEEDED) {

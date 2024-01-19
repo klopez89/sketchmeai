@@ -17,7 +17,7 @@ function newGridItemHTML(gen_id, gen_string="") {
     <div class="relative rounded-lg overflow-hidden" generation-id="${gen_id}" gen-info="${gen_string}">
         <div class="group aspect-h-10 aspect-w-10 block w-full relative">
 
-            <img src="" alt="Curry" class="object-cover group-hover:opacity-95 transition-opacity opacity-0 duration-200 cursor-zoom-in data-[te-lightbox-disabled]:cursor-auto">
+            <img src="" alt="" class="object-cover group-hover:opacity-95 transition-opacity opacity-0 duration-200 cursor-pointer data-[te-lightbox-disabled]:cursor-auto">
             
             <div id="gen-loader" class="bg-gray-200 flex justify-center items-center">
                 <i class="fa fa-spinner fa-spin text-4xl text-gray-500" aria-hidden="true"></i>
@@ -25,9 +25,12 @@ function newGridItemHTML(gen_id, gen_string="") {
                 <button class="absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500 hidden" id="cancel-button">Cancel</button>
             </div>
 
-            <div id="copy-container" class="bg-transparent pointer-events-none group hidden">
+            <div id="action-container" class="bg-transparent pointer-events-none group hidden">
                 <button id="copy-button" class="absolute bottom-2 right-2 p-2 text-xl text-white border-2 border-white opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto flex items-center justify-center transition-opacity duration-200">
                     <i class="fa fa-copy" aria-hidden="true"></i>
+                </button>
+                <button id="gen-menu-button" class="absolute top-2 right-2 p-2 text-xl text-white opacity-100 group-hover:opacity-100 hover:text-gray-200 pointer-events-auto flex items-center justify-center transition-opacity duration-200">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
             </div>
         

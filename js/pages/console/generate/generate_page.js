@@ -31,6 +31,8 @@ function randomizeSeed(event) {
     document.getElementById('seed').value = -1;
 }
 
+var sample_new_grid_item = null;
+
 function fetchGenerations(userRecId, collectionId, lastDocId) {
     $.ajax({
         url: CONSTANTS.BACKEND_URL + 'generations',
@@ -69,7 +71,11 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
-                    Alpine.initializeComponent(new_grid_item_div[0]);
+                    if (sample_new_grid_item == null) {
+                        sample_new_grid_item = new_grid_item_div;
+                    }
+
+                    // Alpine.initializeComponent(new_grid_item_div[0]);
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
                 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {

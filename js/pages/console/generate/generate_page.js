@@ -73,6 +73,9 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
                     console.log(`gen_element: ${gen_element}`);
+
+                    document.body.dispatchEvent(new Event('alpine:mutation', { bubbles: true }));
+
                     setTimeout(function() {
                         Alpine.discoverUninitializedComponents((el) => {
                             console.log('found an uninitialized alpine component');

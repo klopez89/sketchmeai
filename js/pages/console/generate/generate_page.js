@@ -73,7 +73,9 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
                     console.log(`gen_element: ${gen_element}`);
-                    Alpine.initializeComponent(gen_element);
+                    Alpine.discoverUninitializedComponents((el) => {
+                        Alpine.initializeComponent(el);
+                    });
 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
                         new_grid_item_div.find('#gen-status').html('...queued');

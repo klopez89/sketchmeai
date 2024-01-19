@@ -71,13 +71,13 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
-                    if (sample_new_grid_item == null) {
-                        sample_new_grid_item = new_grid_item_div;
-                    }
-
                     // Alpine.initializeComponent(new_grid_item_div[0]);
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
                 
+                    if (sample_new_grid_item == null) {
+                        sample_new_grid_item = gen_element;
+                    }
+
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
                         new_grid_item_div.find('#gen-status').html('...queued');
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);

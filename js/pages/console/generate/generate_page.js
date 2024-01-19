@@ -72,6 +72,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
+                    console.log(`gen_element: ${gen_element}`);
                     Alpine.initializeComponent(gen_element);
 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
@@ -258,7 +259,7 @@ function fireGenerateCall(jsonObject) {
         new_grid_item_div.find('img').first().removeClass('hidden');
     });
 
-    Alpine.initializeComponent(new_grid_item_div[0]);
+    // Alpine.initializeComponent(new_grid_item_div[0]);
 
     let action = `${CONSTANTS.BACKEND_URL}generate/new`
     $.ajax({

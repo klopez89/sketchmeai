@@ -3567,6 +3567,10 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-text-opacity: 1;
   color: rgb(139 139 139 / var(--tw-text-opacity));
 }
+.hover\:text-gray-200:hover {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
 .hover\:text-gray-400:hover {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));

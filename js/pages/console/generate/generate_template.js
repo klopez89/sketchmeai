@@ -29,7 +29,7 @@ function newGridItemHTML(gen_id, gen_string="") {
                 <button id="copy-button" class="absolute bottom-2 right-2 p-2 text-xl text-white border-2 border-white opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto flex items-center justify-center transition-opacity duration-200">
                     <i class="fa fa-copy" aria-hidden="true"></i>
                 </button>
-                <button id="gen-menu-button" class="absolute top-2 right-2 p-2 text-xl text-white opacity-100 group-hover:opacity-100 hover:text-gray-200 pointer-events-auto flex items-center justify-center transition-opacity duration-200">
+                <button id="gen-menu-button" class="absolute top-2 right-2 p-2 text-xl text-white opacity-0 group-hover:opacity-100 hover:text-gray-200 pointer-events-auto flex items-center justify-center transition-opacity duration-200">
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
             </div>

@@ -67,10 +67,9 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
                 new_grid_item_div.find('img').first().removeClass('hidden');
 
-                Alpine.initializeComponent(new_grid_item_div[0]);
-
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
+                    Alpine.initializeComponent(new_grid_item_div[0]);
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
                 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {

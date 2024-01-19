@@ -67,6 +67,8 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
                 new_grid_item_div.find('img').first().removeClass('hidden');
 
+                Alpine.initializeComponent(new_grid_item_div[0]);
+
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
@@ -254,6 +256,8 @@ function fireGenerateCall(jsonObject) {
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
         new_grid_item_div.find('img').first().removeClass('hidden');
     });
+
+    Alpine.initializeComponent(new_grid_item_div[0]);
 
     let action = `${CONSTANTS.BACKEND_URL}generate/new`
     $.ajax({

@@ -75,8 +75,6 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
                     console.log(`gen_element: ${gen_element}`);
 
-
-
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
                         new_grid_item_div.find('#gen-status').html('...queued');
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
@@ -131,6 +129,13 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 }
 
 function loadGenImage(gen_url, new_grid_item_div) {
+    let genCompMenu = new_grid_item_div.querySelector('#gen-comp-menu');
+    let actionContainer = new_grid_item_div.querySelector('#action-container');
+
+    let genCompMenuCopy = genCompMenu.cloneNode(true);
+    genCompMenuCopy.classList.remove('hidden');
+    actionContainer.appendChild(genCompMenuCopy);
+
     let imgElement = new_grid_item_div.querySelector('img');
     let actualImage = new Image();
     actualImage.onload = function() {

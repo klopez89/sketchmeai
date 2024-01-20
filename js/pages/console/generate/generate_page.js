@@ -73,7 +73,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
-                    console.log(`gen_element: ${gen_element}`);
+                    // console.log(`gen_element: ${gen_element}`);
 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
                         new_grid_item_div.find('#gen-status').html('...queued');
@@ -501,6 +501,7 @@ function promptInputValues() {
   }
 
   function genMenuToHide(event) {
+    console.log('about to hide gen menu');
     event.preventDefault();
     var parentElementWithGenerationId = event.target.closest('[generation-id]');
     var genenuShield = parentElementWithGenerationId.querySelector('#gen-menu-shield');

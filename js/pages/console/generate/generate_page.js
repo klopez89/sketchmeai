@@ -508,8 +508,11 @@ function promptInputValues() {
   }
 
   function deleteButtonPressed(event) {
+    if (event == null) { return }
     event.preventDefault();
     var parentElementWithGenerationId = event.target.closest('[generation-id]');
+    var genenuShield = parentElementWithGenerationId.querySelector('#gen-menu-shield');
+    genenuShield.classList.add('hidden');
     generationId = parentElementWithGenerationId.getAttribute('generation-id');
     console.log(`delete button pressed for generationId: ${generationId}`);
   }

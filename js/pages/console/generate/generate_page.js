@@ -492,3 +492,10 @@ function promptInputValues() {
         instanceKeys: instanceKeys,
     }
   }
+
+  function genMenuShowing(event) {
+    event.preventDefault();
+    var parentElementWithGenerationId = event.target.closest('[generation-id]');
+    var genenuShield = parentElementWithGenerationId.querySelector('#gen-menu-shield');
+    genenuShield.classList.remove('hidden');
+  }

@@ -56,9 +56,9 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
 
-        <div class="bg-gray-200 px-4 pb-4 pt-4 md:max-w-80">
+        <div class="bg-gray-200 pb-4 pt-4 md:max-w-80">
                 
-            <form class="generate-form h-full" id="generateForm">
+            <form class="generate-form h-full overflow-y-auto px-4" id="generateForm">
 
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                 <div class="col-span-full" id="prompt-field-container">

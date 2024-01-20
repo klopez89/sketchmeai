@@ -49,8 +49,8 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             generations = data.generations;
             hasAnotherPage = data.has_another_page;
             lastDocId = data.last_doc_id;
-            console.log(`data from generations: ${generations}`)
-            console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
+            // console.log(`data from generations: ${generations}`)
+            // console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
 
 
             if (generations == null) {
@@ -65,7 +65,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             }
 
             generations.forEach(function(generation) {
-                console.log(`generation time begun value is ${generation.time_begun}`);
+                // console.log(`generation time begun value is ${generation.time_begun}`);
                 let new_grid_item_html = newGenItem_FromExistingGen(generation);
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
                 new_grid_item_div.find('img').first().removeClass('hidden');
@@ -511,8 +511,6 @@ function promptInputValues() {
     if (event == null) { return }
     event.preventDefault();
     var parentElementWithGenerationId = event.target.closest('[generation-id]');
-    var genenuShield = parentElementWithGenerationId.querySelector('#gen-menu-shield');
-    genenuShield.classList.add('hidden');
     generationId = parentElementWithGenerationId.getAttribute('generation-id');
     console.log(`delete button pressed for generationId: ${generationId}`);
   }

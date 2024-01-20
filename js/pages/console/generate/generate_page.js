@@ -129,7 +129,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 }
 
 function loadGenImage(gen_url, new_grid_item_div) {
-    let genCompMenu = new_grid_item_div.querySelector('#gen-comp-menu');
+    let genCompMenu = document.querySelector('#console-content #gen-comp-menu');
     let actionContainer = new_grid_item_div.querySelector('#action-container');
 
     let genCompMenuCopy = genCompMenu.cloneNode(true);

@@ -499,3 +499,10 @@ function promptInputValues() {
     var genenuShield = parentElementWithGenerationId.querySelector('#gen-menu-shield');
     genenuShield.classList.remove('hidden');
   }
+
+  function genMenuToHide(event) {
+    event.preventDefault();
+    var parentElementWithGenerationId = event.target.closest('[generation-id]');
+    var genenuShield = parentElementWithGenerationId.querySelector('#gen-menu-shield');
+    genenuShield.classList.add('hidden');
+  }

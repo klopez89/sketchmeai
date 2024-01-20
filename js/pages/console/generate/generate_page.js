@@ -8,6 +8,7 @@ var coldBootedModels = {};
 
 console.log("configuring generatation page");
 addImageGrid();
+addBaseGenMenu();
 configureGenerateForm();
 resizeGrid();
 configureInfiniteScroll();
@@ -74,7 +75,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
                     console.log(`gen_element: ${gen_element}`);
 
-                    
+
 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
                         new_grid_item_div.find('#gen-status').html('...queued');
@@ -390,6 +391,12 @@ function addImageGrid() {
     let dummy_grid_html = dummyGridHTML();
     let dummy_grid_div = $($.parseHTML(dummy_grid_html));
     $('#console-content').append(dummy_grid_div);
+}
+
+function addBaseGenMenu() {
+    let base_gen_menu_html = baseGenMenuHTML();
+    let base_gen_menu_div = $($.parseHTML(base_gen_menu_html));
+    $('#console-content').append(base_gen_menu_div);
 }
 
 function resizeGrid() {

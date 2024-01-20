@@ -515,3 +515,7 @@ function promptInputValues() {
     generationId = parentElementWithGenerationId.getAttribute('generation-id');
     console.log(`delete button pressed for generationId: ${generationId}`);
   }
+
+  function clickedOutsideOfGenMenu(event) {
+    console.log('clicked outside of gen menu');
+  }

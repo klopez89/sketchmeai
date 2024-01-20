@@ -54,9 +54,9 @@ function dummyGridHTML() {
     inputPlaceholder = "Enter text for the AI to continue";
     return `
     <!-- 3 column wrapper -->
-    <div class="mx-auto w-full h-full grow xl:flex">
+    <div class="mx-auto w-full h-full grow md:flex">
 
-        <div class="bg-gray-200 shrink-0 border-t border-gray-200 px-4 pb-4 pt-4 sm:px-6 xl:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
+        <div class="bg-gray-200 shrink-0 px-4 pb-4 pt-4 xl:w-96">
                 
             <form class="generate-form h-full" id="generateForm">
 
@@ -165,7 +165,7 @@ function dummyGridHTML() {
 
 
         <!-- Right column area -->
-        <div class="flex-1 xl:flex">
+        <div class="flex-1 md:flex">
             <div class="bg-gray-100 px-0 py-0 md:flex-1">
                 <div class="bg-gray-100">
                     <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-2 py-6 overflow-y-auto">

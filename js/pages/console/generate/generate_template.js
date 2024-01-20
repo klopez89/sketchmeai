@@ -190,7 +190,7 @@ function dummyGridHTML() {
 
 function baseGenMenuHTML() {
     return `
-    <div id='gen-comp-menu' class="hidden relative pointer-events-auto" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()" @click.away="onClickAway($event)">
+    <div id='gen-comp-menu' class="hidden relative pointer-events-auto min-h-[100px]" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()" @click.away="onClickAway($event)">
         <button type="button" class="absolute text-4xl text-white top-2 right-2 flex items-center p-2" id="gen-menu-button" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
             <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
         </button>

@@ -495,27 +495,26 @@ function promptInputValues() {
 
   function genMenuShowing(event) {
     event.preventDefault();
-    var parentElementWithGenerationId = event.target.closest('[generation-id]');
-    var genenuShield = parentElementWithGenerationId.querySelector('#gen-menu-shield');
-    genenuShield.classList.remove('hidden');
-  }
-
-  function genMenuToHide(event) {
-    console.log('about to hide gen menu');
-    event.preventDefault();
-    var parentElementWithGenerationId = event.target.closest('[generation-id]');
-    var genenuShield = parentElementWithGenerationId.querySelector('#gen-menu-shield');
-    genenuShield.classList.add('hidden');
+    let genElement = event.target.closest('[generation-id]');
+    let genMenuShield = genElement.querySelector('#gen-menu-shield');
+    genMenuShield.classList.remove('hidden');
   }
 
   function deleteButtonPressed(event) {
-    if (event == null) { return }
     event.preventDefault();
-    var parentElementWithGenerationId = event.target.closest('[generation-id]');
-    generationId = parentElementWithGenerationId.getAttribute('generation-id');
+    let genElement = event.target.closest('[generation-id]');
+    hideGenMenuShield(genElement);
+    let generationId = genElement.getAttribute('generation-id');
     console.log(`delete button pressed for generationId: ${generationId}`);
   }
 
   function clickedOutsideOfGenMenu(event) {
     console.log('clicked outside of gen menu');
+    let genElement = event.target.closest('[generation-id]');
+    hideGenMenuShield(genElement);
+  }
+
+  function hideGenMenuShield(genElement) {
+    let genMenuShield = genElement.querySelector('#gen-menu-shield');
+    genMenuShield.classList.add('hidden');
   }

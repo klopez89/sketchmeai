@@ -509,7 +509,7 @@ function promptInputValues() {
   }
 
   function clickedOutsideOfGenMenu(event) {
-    console.log('clicked outside of gen menu');
+    console.log('clicked outside of gen menu', event.target);
     let genElement = event.target.closest('[generation-id]');
     hideGenMenuShield(genElement);
   }

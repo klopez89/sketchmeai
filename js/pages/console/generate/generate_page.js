@@ -491,56 +491,93 @@ function promptInputValues() {
         versionValues: versionValues,
         instanceKeys: instanceKeys,
     }
-  }
+}
 
-  function genMenuShowing(event) {
+function genMenuShowing(event) {
     event.preventDefault();
     closeAnyOpenGenMenus();
     let genElement = event.target.closest('[generation-id]');
     let genMenuShield = genElement.querySelector('#gen-menu-shield');
     genMenuShield.classList.remove('hidden');
-  }
+}
 
-  function deleteButtonPressed(event) {
+function deleteButtonPressed(event) {
     event.preventDefault();
     let genElement = event.target.closest('[generation-id]');
     hideGenMenuShield(genElement);
     let generationId = genElement.getAttribute('generation-id');
     console.log(`delete button pressed for generationId: ${generationId}`);
-  }
+    setGenLoaderToDeleteMode(genElement);
+    fireGenDeletion(generationId, genElement);
+}
 
-  function clickedOutsideOfGenMenu(event) {
-    console.log('clicked outside of gen menu');
+function setGenLoaderToDeleteMode(genElement) {
+    let genLoader = genElement.querySelector('#gen-loader');
+    genLoader.classList.remove('hidden');
+    genLoader.classList.add('bg-opacity-75');
+}
+
+function resetGenLoaderFromDelete(genElement) {
+    let genLoader = genElement.querySelector('#gen-loader');
+    genLoader.classList.add('hidden');
+    genLoader.classList.remove('bg-opacity-75');
+}
+
+function removeGenItem(genElement) {
+    $(genElement).fadeOut(function() {
+        $(this).remove();
+    });
+}
+
+function fireGenDeletion(generationId, genElement) {
+    let action = `${CONSTANTS.BACKEND_URL}generate/delete`
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify({
+            generation_id: generationId
+        }),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (data) {
+            console.log('got success from delete gen endpoint for id: ', generationId);
+            removeGenItem(genElement);
+        },
+        error: function (data) {
+            console.log("error deleting generation with id: ", generationId);
+            console.log('error from endpoint is: ', data);
+            resetGenLoaderFromDelete(genElement);
+        }
+    });
+}
+
+function clickedOutsideOfGenMenu() {
     closeAnyOpenGenMenus();
-  }
+}
 
-  function closeAnyOpenGenMenus() {
+function closeAnyOpenGenMenus() {
     let genCompMenus = document.querySelectorAll('.gen-comp-menu');
     let openMenus = Array.from(genCompMenus).filter(menu => {
         return menu.__x.$data.open;
     });
-
     openMenus.forEach((menu) => {
         menu.__x.$data.open = false;
         let genElement = menu.closest('[generation-id]');
-        console.log('about to hide gen mneu in gen element', genElement);
         hideGenMenuShield(genElement);
     });
-  }
+}
 
-  function hideGenMenuShield(genElement) {
+function hideGenMenuShield(genElement) {
     let genMenuShield = genElement.querySelector('#gen-menu-shield');
     genMenuShield.classList.add('hidden');
-  }
+}
 
-  function tappedGenMenuShield(event) {
+function tappedGenMenuShield(event) {
     let genCompMenu = event.target.parentElement.querySelector('.gen-comp-menu');
-    console.log('gen-comp-menu: ', genCompMenu);
     genCompMenu.__x.$data.open = false;
     event.target.classList.add('hidden');
-  }
+}
 
-  function goingToLightbox() {
-    console.log('going to lightbox');
+function goingToLightbox() {
     closeAnyOpenGenMenus();
-  }
+}

@@ -495,6 +495,7 @@ function promptInputValues() {
 
   function genMenuShowing(event) {
     event.preventDefault();
+    closeAnyOpenGenMenus();
     let genElement = event.target.closest('[generation-id]');
     let genMenuShield = genElement.querySelector('#gen-menu-shield');
     genMenuShield.classList.remove('hidden');
@@ -509,8 +510,11 @@ function promptInputValues() {
   }
 
   function clickedOutsideOfGenMenu(event) {
-    console.log('clicked outside of gen menu', event.target);
+    console.log('clicked outside of gen menu');
+    closeAnyOpenGenMenus();
+  }
 
+  function closeAnyOpenGenMenus() {
     let genCompMenus = document.querySelectorAll('.gen-comp-menu');
     let openMenus = Array.from(genCompMenus).filter(menu => {
         return menu.__x.$data.open;
@@ -522,14 +526,13 @@ function promptInputValues() {
         console.log('about to hide gen mneu in gen element', genElement);
         hideGenMenuShield(genElement);
     });
-
-    // console.log('clicked outside of gen menu', event.target);
-    // let genElement = event.target.closest('[generation-id]');
-    // console.log('about to hide gen mneu in gen element', genElement);
-    // hideGenMenuShield(genElement);
   }
 
   function hideGenMenuShield(genElement) {
     let genMenuShield = genElement.querySelector('#gen-menu-shield');
     genMenuShield.classList.add('hidden');
+  }
+
+  function tappedGenMenuShield(event) {
+    event.target.classList.add('hidden');
   }

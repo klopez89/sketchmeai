@@ -28,7 +28,7 @@ function newGridItemHTML(gen_id, gen_string="") {
                 </button>
             </div>
 
-            <div id="gen-menu-shield" class="bg-gray-900 bg-opacity-50 absolute top-0 left-0 w-full h-full hidden"></div>
+            <div id="gen-menu-shield" class="bg-gray-900 bg-opacity-50 absolute top-0 left-0 w-full h-full hidden" onclick="tappedGenMenuShield(event)"></div>
         
         </div>
     </div>

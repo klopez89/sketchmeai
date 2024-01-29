@@ -534,5 +534,7 @@ function promptInputValues() {
   }
 
   function tappedGenMenuShield(event) {
+    let genCompMenu = event.target.closest('.gen-comp-menu');
+    genCompMenu.__x.$data.open = false;
     event.target.classList.add('hidden');
   }

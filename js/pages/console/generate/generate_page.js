@@ -539,3 +539,8 @@ function promptInputValues() {
     genCompMenu.__x.$data.open = false;
     event.target.classList.add('hidden');
   }
+
+  function goingToLightbox() {
+    console.log('going to lightbox');
+    closeAnyOpenGenMenus();
+  }

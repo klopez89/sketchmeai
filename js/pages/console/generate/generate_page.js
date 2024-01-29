@@ -517,6 +517,7 @@ function promptInputValues() {
     });
 
     openMenus.forEach((menu) => {
+        menu.__x.$data.open = false;
         let genElement = menu.closest('[generation-id]');
         console.log('about to hide gen mneu in gen element', genElement);
         hideGenMenuShield(genElement);

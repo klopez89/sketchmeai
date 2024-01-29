@@ -510,9 +510,22 @@ function promptInputValues() {
 
   function clickedOutsideOfGenMenu(event) {
     console.log('clicked outside of gen menu', event.target);
-    let genElement = event.target.closest('[generation-id]');
-    console.log('about to hide gen mneu in gen element', genElement);
-    hideGenMenuShield(genElement);
+
+    let genCompMenus = document.querySelectorAll('.gen-comp-menu');
+    let openMenus = Array.from(genCompMenus).filter(menu => {
+        return menu.__x.$data.open;
+    });
+
+    openMenus.forEach((menu) => {
+        let genElement = menu.closest('[generation-id]');
+        console.log('about to hide gen mneu in gen element', genElement);
+        hideGenMenuShield(genElement);
+    });
+
+    // console.log('clicked outside of gen menu', event.target);
+    // let genElement = event.target.closest('[generation-id]');
+    // console.log('about to hide gen mneu in gen element', genElement);
+    // hideGenMenuShield(genElement);
   }
 
   function hideGenMenuShield(genElement) {

@@ -535,7 +535,9 @@ function fireGenDeletion(generationId, genElement) {
         type: 'POST',
         url: action,
         data: JSON.stringify({
-            generation_id: generationId
+            generationId: generationId,
+            collectionId: collectionId_Test,
+            userRecId: getUserRecId()
         }),
         contentType: "application/json",
         dataType: 'json',

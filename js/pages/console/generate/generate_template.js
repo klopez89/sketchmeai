@@ -175,7 +175,9 @@ function dummyGridHTML() {
             <div class="bg-gray-100 px-0 py-0 md:flex-1">
                 <div class="bg-gray-100">
                     <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-2 py-6 overflow-y-auto">
-                        <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+
+                        <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" @click.away="clickedOutsideOfGenMenu(event)"></div>
+
                         <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8">
                             <div class="bg-gray-100 w-full h-full flex justify-center items-start">
                                 <div class="mt-5">    
@@ -196,7 +198,7 @@ function dummyGridHTML() {
 
 function baseGenMenuHTML() {
     return `
-    <div id='gen-comp-menu' class="hidden relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()" @click.away="clickedOutsideOfGenMenu(event)">
+    <div id='gen-comp-menu' class="hidden relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
         <button type="button" class="absolute text-2xl text-white top-2 right-2 flex items-center p-2 opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="gen-menu-button" onClick="genMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
             <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
         </button>

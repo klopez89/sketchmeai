@@ -557,6 +557,10 @@ function clickedOutsideOfGenMenu() {
     closeAnyOpenGenMenus();
 }
 
+function clickedOnEmptyPartOfGrid() {
+    console.log('clickedOnEmptyPartOfGrid was called');
+}
+
 function closeAnyOpenGenMenus() {
     let genCompMenus = document.querySelectorAll('.gen-comp-menu');
     let openMenus = Array.from(genCompMenus).filter(menu => {

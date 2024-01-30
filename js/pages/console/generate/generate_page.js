@@ -368,8 +368,9 @@ function configure_main_gen_button(gen_dict, gen_element) {
 function configureCopyButton(gen_dict, gen_element) {
     gen_element.querySelector('#action-container').classList.remove('hidden');
     copyButton = gen_element.querySelector('#copy-button');
-    copyButton.addEventListener('click', function() {
+    copyButton.addEventListener('click', function(event) {
         copyPromptInfoFromGen(gen_dict);
+        event.stopPropagation();
     });
 }
 

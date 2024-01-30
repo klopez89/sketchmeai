@@ -65,7 +65,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             }
 
             generations.forEach(function(generation) {
-                // console.log(`generation time begun value is ${generation.time_begun}`);
+                
                 let new_grid_item_html = newGenItem_FromExistingGen(generation);
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
                 new_grid_item_div.find('img').first().removeClass('hidden');
@@ -73,14 +73,14 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
-                    // console.log(`gen_element: ${gen_element}`);
 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
-                        new_grid_item_div.find('#gen-status').html('...queued');
+                        gen_element.querySelector('#gen-status').innerHTML = '...queued';
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
                     } else if (generation.prediction_status === PredictionStatus.BEING_HANDLED) {
-                        new_grid_item_div.find('#gen-status').html('...generating');
-                        cancel_button = gen_element.querySelector('#cancel-button');
+                        gen_element.querySelector('#gen-status').innerHTML = '...generating';
+                    
+                        let cancel_button = gen_element.querySelector('#cancel-button');
                         cancel_button.addEventListener('click', function() {
                             gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
                             cancelGeneration(generation.replicate_prediction_id);
@@ -89,22 +89,19 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         cancel_button.classList.remove('hidden');
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
                     } else if (generation.prediction_status === PredictionStatus.CANCELED) {
-                        new_grid_item_div.find('img').first().removeClass('hidden');
-                        new_grid_item_div.find('#gen-status').html('');
+                        gen_element.querySelector('img').classList.remove('hidden');
+                        gen_element.querySelector('#gen-status').innerHTML = '';
                         loadGenImage(CANCELED_IMG_URL, gen_element);
-                        // configure_main_gen_button(generation, gen_element);
                         configureCopyButton(generation, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.FAILED) {
-                        new_grid_item_div.find('img').first().removeClass('hidden');
-                        new_grid_item_div.find('#gen-status').html('');
+                        gen_element.querySelector('img').classList.remove('hidden');
+                        gen_element.querySelector('#gen-status').innerHTML = '';
                         loadGenImage(FAILED_IMG_URL, gen_element);
-                        // configure_main_gen_button(generation, gen_element);
                         configureCopyButton(generation, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.SUCCEEDED) {
-                        new_grid_item_div.find('img').first().removeClass('hidden');
-                        new_grid_item_div.find('#gen-status').html('');
+                        gen_element.querySelector('#gen-status').innerHTML = '';
+                        gen_element.querySelector('img').classList.remove('hidden');
                         loadGenImage(generation.signed_gen_url, gen_element);
-                        // configure_main_gen_button(generation, gen_element);
                         configureCopyButton(generation, gen_element);
                     }
                 });
@@ -335,18 +332,21 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 cancel_button.classList.remove('hidden');
             } else if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
+                gen_element.querySelector('#gen-status').innerHTML = '';
                 loadGenImage(signed_gen_url, gen_element);
                 // configure_main_gen_button(generation_dict, gen_element);
                 configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.FAILED) {
                 console.log('generation failed');
+                gen_element.querySelector('#gen-status').innerHTML = '';
                 loadGenImage(FAILED_IMG_URL, gen_element);
                 // configure_main_gen_button(generation_dict, gen_element);
                 configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.CANCELED) {
                 console.log('generation canceled');
+                gen_element.querySelector('#gen-status').innerHTML = '';
                 loadGenImage(CANCELED_IMG_URL, gen_element);
                 // configure_main_gen_button(generation_dict, gen_element);
                 configureCopyButton(generation_dict, gen_element);

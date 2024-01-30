@@ -595,6 +595,7 @@ function tappedGenMenuShield(event) {
 }
 
 function goingToLightbox(event) {
+    console.log('goingToLightbox was called');
     closeAnyOpenGenMenus();
     event.stopPropagation();
 }

@@ -499,6 +499,7 @@ function genMenuShowing(event) {
     let genElement = event.target.closest('[generation-id]');
     let genMenuShield = genElement.querySelector('#gen-menu-shield');
     genMenuShield.classList.remove('hidden');
+    event.stopPropagation();
 }
 
 function deleteButtonPressed(event) {
@@ -509,6 +510,7 @@ function deleteButtonPressed(event) {
     console.log(`delete button pressed for generationId: ${generationId}`);
     setGenLoaderToDeleteMode(genElement);
     fireGenDeletion(generationId, genElement);
+    event.stopPropagation();
 }
 
 function setGenLoaderToDeleteMode(genElement) {
@@ -559,6 +561,7 @@ function clickedOutsideOfGenMenu() {
 
 function clickedOnEmptyPartOfGrid() {
     console.log('clickedOnEmptyPartOfGrid was called');
+    closeAnyOpenGenMenus();
 }
 
 function closeAnyOpenGenMenus() {
@@ -585,6 +588,7 @@ function tappedGenMenuShield(event) {
     event.stopPropagation();
 }
 
-function goingToLightbox() {
+function goingToLightbox(event) {
     closeAnyOpenGenMenus();
+    event.stopPropagation();
 }

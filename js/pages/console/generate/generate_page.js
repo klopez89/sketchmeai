@@ -579,6 +579,7 @@ function hideGenMenuShield(genElement) {
 }
 
 function tappedGenMenuShield(event) {
+    event.preventDefault();
     let genCompMenu = event.target.parentElement.querySelector('.gen-comp-menu');
     genCompMenu.__x.$data.open = false;
     event.target.classList.add('hidden');

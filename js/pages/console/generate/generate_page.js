@@ -132,6 +132,7 @@ function loadGenImage(gen_url, new_grid_item_div) {
     let genCompMenuCopy = genCompMenu.cloneNode(true);
     genCompMenuCopy.classList.remove('hidden');
     actionContainer.appendChild(genCompMenuCopy);
+    actionContainer.classList.remove('hidden');
 
     let imgElement = new_grid_item_div.querySelector('img');
     let actualImage = new Image();
@@ -516,14 +517,18 @@ function deleteButtonPressed(event) {
 
 function setGenLoaderToDeleteMode(genElement) {
     let genLoader = genElement.querySelector('#gen-loader');
+    let actionContainer = genElement.querySelector('#action-container');
     genLoader.classList.remove('hidden');
     genLoader.classList.add('bg-opacity-75');
+    actionContainer.classList.add('hidden');
 }
 
 function resetGenLoaderFromDelete(genElement) {
     let genLoader = genElement.querySelector('#gen-loader');
+    let actionContainer = genElement.querySelector('#action-container');
     genLoader.classList.add('hidden');
     genLoader.classList.remove('bg-opacity-75');
+    actionContainer.classList.remove('hidden');
 }
 
 function removeGenItem(genElement) {

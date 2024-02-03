@@ -189,3 +189,26 @@ function dummyGridHTML() {
     </div>
     `;
 }
+
+function uploadEntryDiv(file, is_first_file) {
+    let filename = file.name;
+    let fileSize = file.size;
+    let fileType = file.type;
+  
+    let html =
+    `
+          <li class="w-[8em] h-[8em] flex flex-none divide-y divide-gray-200 rounded-lg bg-white text-center shadow" filename="${filename}" filetype="${fileType}">
+              <div class="flex flex-col" style="position: relative;">
+                  <img id="uploadedImage" class="w-full h-full rounded-lg object-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="">
+                  <button class="remove-upload-button">
+                <span class="fa-stack" style="width:2.0em;">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-times fa-stack-1x fa-inverse"></i>
+                </span>
+                  </button>
+              </div>
+          </li>
+    `;
+  
+    return html
+  }

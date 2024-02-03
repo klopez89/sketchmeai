@@ -1,7 +1,7 @@
 function dummyGridHTML() {
     return `
     <div class="bg-gray-100 h-full">
-        <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full">
+        <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full hidden">
             <div id="collection-grid" role="list" class="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()">
                 <div class="relative rounded-lg overflow-hidden" generation-id="p5csGOlasuX7syWZNPaP" gen-info="{" blob_path":"i5uwekabqs0uojvecdck="" p5csgolasux7sywznpap_pz2s7wdb37zwg36evyvligr4ti.png","collection_id":null,"gen_recipe":{"guidance_scale":13,"high_noise_frac":0.9,"img2img_url":"","inference_steps":20,"lora_scale":0.6,"neg_prompt":"","prompt":"cartoon="" of="" goofy="" blue="" velociraptor,="" closeup="" near="" the="" right="" half="" face,="" retro,="" shiny="" scales,="" rainforest="" in="" background","prompt_strength":0.8,"refine":"no_refiner","res_height":1024,"res_width":1024,"scheduler":"k_euler","seed":"34941870"},"generation_time":5.540187,"model_name":"stability-ai="" sdxl","model_rec_id":"","model_version":"39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b","prediction_error":null,"prediction_status":"succeeded","rec_id":"p5csgolasux7sywznpap","replicate_prediction_id":"pz2s7wdb37zwg36evyvligr4ti","signed_gen_url":"https:="" storage.googleapis.com="" dev-sketchmeai-prediction-images="" i5uwekabqs0uojvecdck="" 30="" jan="" 2024="" 18:22:06="" gmt","user_rec_id":"i5uwekabqs0uojvecdck"}"="" style="">
 
@@ -30,31 +30,41 @@ function dummyGridHTML() {
         <div id="new-form-container" class="relative mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full">
             <form id="new-form">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
-                    <div class="col-span-full" id="prompt-field-container">
-                        <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Prompt</label><div class="mt-2">
-                        <textarea id="prompt" name="prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></textarea>
+                    <div class="col-span-2" id="name-field-container">
+                        <label for="img2imgurl" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                        <div class="mt-2">
+                            <input type="text" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div><div class="col-span-2" id="model-list-container">
+                        <label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900">Model</label><div class="mt-2">
+                            <select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <option>SDXL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-span-full" id="training-data-container">
+                        <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Training Data</label>
+                        <div class="mt-2">
+                        	<div class="px-0">
+		
+                                <button id="uploadAreaButton" class="relative flex flex-col items-center block w-full rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
+                                    <div class="flex flex-row items-center">		
+                                        <i class="fa fa-images text-base pr-2" aria-hidden="true"></i>
+                                        <span class="mt-0 block text-base font-medium text-gray-400" id="upload-caption">Drag or click to upload 10 images</span>
+                                    </div>
+                                </button>
+		                        <input id="localUploadInput" type="file" style="display:none;" multiple="">
+	                        </div>
+
+                            <ul role="list" id="uploadEntryContainer" class="flex overflow-x-auto space-x-2 pb-4 pt-6 px-8 mb-5">
+                            </ul>
                         </div>
                     </div>
                     <div class="col-span-full flex flex-col justify-center" id="gen-button-container">
                         <input type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                     </div>
 
-                    <div class="sm:col-span-3" id="gen-count-field-container">
-                        <label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
-                            <select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select>
-                        </div>
-                    </div><div class="sm:col-span-3" id="denoising-steps-field-container">
+                    <div class="sm:col-span-3" id="denoising-steps-field-container">
                         <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Denoising Steps</label><div class="mt-2">
                             <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
@@ -84,12 +94,7 @@ function dummyGridHTML() {
                         </div>
                     </div>
 
-                    <div class="col-span-full" id="igm2img-field-container">
-                        <label for="img2imgurl" class="block text-sm font-medium leading-6 text-gray-900">Image2Image Url</label>
-                        <div class="mt-2">
-                            <input type="text" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                        </div>
-                    </div>
+                    
                     <div class="sm:col-span-3" id="ps-field-container">
                         <label for="prompt-strength" class="block text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
                         <div class="mt-2">
@@ -129,7 +134,6 @@ function dummyGridHTML() {
                 </div>
             </form>
         </div>
-
     </div>
     `;
 }

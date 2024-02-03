@@ -220,7 +220,6 @@ function addFileUploadDivToDOM(file) {
 	});
 
 	$('#uploadEntryContainer').prepend(upload_entry_element);
-	resizeUploadThumbnailHeights()
 
 	upload_entry_element.find('#uploadedImage')[0].src = file.data;
 	updateUploadAreaTitle();

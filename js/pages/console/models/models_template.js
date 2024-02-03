@@ -65,7 +65,8 @@ function dummyGridHTML() {
                         <div class="mt-2">
                             <input type="text" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="seed-field-container">
+                    </div>
+                    <div class="col-span-2" id="seed-field-container">
                         <div class="flex items-center">
                             <label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
                             <button onclick="randomizeSeed(event)">
@@ -75,66 +76,80 @@ function dummyGridHTML() {
                         <div class="mt-2">
                             <input type="number" name="seed" id="seed" min="-1" max="4294967295" value="-1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="resolution-field-container">
+                    </div>
+                    <div class="col-span-2" id="resolution-field-container">
                         <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Resolution</label><div class="mt-2">
                             <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="network-rank-field-container">
+                    </div>
+                    <div class="col-span-2" id="network-rank-field-container">
                         <label for="img2imgurl" class="block text-sm font-medium leading-6 text-gray-900">Network Rank</label>
                         <div class="mt-2">
                             <input type="number" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="train-batch-size-field-container">
+                    </div>
+                    <div class="col-span-2" id="train-batch-size-field-container">
                         <label for="img2imgurl" class="block text-sm font-medium leading-6 text-gray-900">Batch Size</label>
                         <div class="mt-2">
                             <input type="number" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="image-repeats-field-container">
+                    </div>
+                    <div class="col-span-2" id="image-repeats-field-container">
                         <label for="img2imgurl" class="block text-sm font-medium leading-6 text-gray-900">Image Repeats</label>
                         <div class="mt-2">
                             <input type="number" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="unet-lr-field-container">
+                    </div>
+                    <div class="col-span-2" id="unet-lr-field-container">
                         <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Unet Learning Rate</label><div class="mt-2">
                             <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="ti-lr-field-container">
+                    </div>
+                    <div class="col-span-2" id="ti-lr-field-container">
                         <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Text Inversion Learning Rate</label><div class="mt-2">
                             <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="lora-lr-field-container">
+                    </div>
+                    <div class="col-span-2" id="lora-lr-field-container">
                         <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Lora Learning Rate</label><div class="mt-2">
                             <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="lr-scheduler-container">
+                    </div>
+                    <div class="col-span-2" id="lr-scheduler-container">
                         <label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900">Learning Rate Scheduler</label><div class="mt-2">
                             <select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 <option>constant</option>
                             </select>
                         </div>
-                    </div><div class="col-span-2" id="scheduler-cycles-field-container">
+                    </div>
+                    <div class="col-span-2" id="scheduler-cycles-field-container">
                         <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Scheduler Cycles</label><div class="mt-2">
                             <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="10" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="warmup-steps-field-container">
+                    </div>
+                    <div class="col-span-2" id="warmup-steps-field-container">
                         <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Warmup Steps</label><div class="mt-2">
                             <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="10" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="validation-epoch-field-container">
+                    </div>
+                    <div class="col-span-2" id="validation-epoch-field-container">
                         <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Validation Epochs</label><div class="mt-2">
                             <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="50" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="max-train-steps-field-container">
+                    </div>
+                    <div class="col-span-2" id="max-train-steps-field-container">
                         <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Max Train Steps</label><div class="mt-2">
                             <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="10" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
-                    </div><div class="col-span-2" id="mixed-precision-container">
+                    </div>
+                    <div class="col-span-2" id="mixed-precision-container">
                         <label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900">Mixed Precision</label><div class="mt-2">
                             <select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 <option>fp16</option>
                             </select>
                         </div>
-                    </div><div class="col-span-2" id="xformers-field-container"><div class="relative flex gap-x-3">
+                    </div>
+                    <div class="col-span-2" id="xformers-field-container"><div class="relative flex gap-x-3">
                             <div class="flex h-6 items-center">
                                 <input id="same-seed" name="same-seed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 </div>
@@ -142,7 +157,8 @@ function dummyGridHTML() {
                                     <p class="text-gray-500">Use xformers</p>
                                 </div>
                             </div>
-                    </div><div class="col-span-2" id="gradient-checkpoint-field-container"><div class="relative flex gap-x-3">
+                    </div>
+                    <div class="col-span-2" id="gradient-checkpoint-field-container"><div class="relative flex gap-x-3">
                             <div class="flex h-6 items-center">
                                 <input id="same-seed" name="same-seed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 </div>
@@ -150,7 +166,8 @@ function dummyGridHTML() {
                                     <p class="text-gray-500">Gradient checkpointing</p>
                                 </div>
                             </div>
-                    </div><div class="col-span-2" id="8bit-adam-field-container"><div class="relative flex gap-x-3">
+                    </div>
+                    <div class="col-span-2" id="8bit-adam-field-container"><div class="relative flex gap-x-3">
                             <div class="flex h-6 items-center">
                                 <input id="same-seed" name="same-seed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 </div>
@@ -158,8 +175,13 @@ function dummyGridHTML() {
                                     <p class="text-gray-500">Use 8bit Adam</p>
                                 </div>
                             </div>
-                    </div><div class="col-span-full flex flex-col justify-center" id="gen-button-container">
-                        <input type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                    </div>
+                    <div class="col-span-full flex flex-col justify-center" id="gen-button-container">
+
+                        <button id="uploadToServerButton" type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" disabled="">
+                            <p>Begin Fine Tuning Model</p>
+                            <i class="fa fa-spinner fa-spin" style="position: absolute; display:none;" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
             </form>

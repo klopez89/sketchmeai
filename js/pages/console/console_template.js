@@ -139,7 +139,7 @@ function consoleHtml() {
         </div>
     
         <main class="py-0 flex-grow overflow-auto">
-            <div id="console-content" class="h-full px-4 sm:px-6 lg:px-8">
+            <div id="console-content" class="h-full">
             <!-- Your content -->
             </div>
         </main>

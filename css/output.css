@@ -1059,6 +1059,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 .order-3 {
   order: 3;
 }
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
 .col-span-full {
   grid-column: 1 / -1;
 }
@@ -2778,6 +2781,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 .text-\[0\.8rem\] {
   font-size: 0.8rem;

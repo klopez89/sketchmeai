@@ -31,7 +31,7 @@ function dummyGridHTML() {
             <form id="new-form" autocomplete="off">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                     <div class="col-span-2" id="name-field-container">
-                        <label for="modelName" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                        <label for="model-name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                         <div class="mt-2">
                             <input type="text" name="model-name" id="model-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
@@ -43,20 +43,20 @@ function dummyGridHTML() {
                         </div>
                     </div>
                     <div class="col-span-1" id="preset-list-container">
-                        <label for="model-selection" class="block text-sm font-medium leading-6 text-gray-900">Training Subject</label><div class="mt-2">
-                            <select id="model-selection" name="model-selection" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                <option selected disabled>Select an option</option>
+                        <label for="trainingSubject" class="block text-sm font-medium leading-6 text-gray-900">Training Subject</label><div class="mt-2">
+                            <select id="training-subject" name="training-subject" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <option selected="" disabled="">Select an option</option>
                                 <option>person</option>
                                 <option>style</option>
                                 <option>object</option>
                             </select>
                         </div>
                     </div><div class="col-span-1" id="object-name-container">
-                        <label for="training-object" class="block text-sm font-medium leading-6 text-gray-900">Object Name</label><div class="mt-2">
+                        <label for="object-name" class="block text-sm font-medium leading-6 text-gray-900">Object Name</label><div class="mt-2">
                             
-                        <input type="text" name="model-name" id="model-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></div>
+                        <input type="text" name="object-name" id="object-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></div>
                     </div><div class="col-span-full" id="training-data-container">
-                        <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Training Data</label>
+                        <label for="localUploadInput" class="block text-sm font-medium leading-6 text-gray-900">Training Data</label>
                         <div class="mt-2">
                             <div class="px-0">
         
@@ -74,7 +74,7 @@ function dummyGridHTML() {
                         </div>
                     </div>
                     <div class="col-span-2" id="token-string-field-container">
-                        <label for="tokenString" class="block text-sm font-medium leading-6 text-gray-900">Token String</label>
+                        <label for="token-string" class="block text-sm font-medium leading-6 text-gray-900">Token String</label>
                         <div class="mt-2">
                             <input type="text" name="token-string" id="token-string" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
@@ -102,61 +102,61 @@ function dummyGridHTML() {
                         </div>
                     </div>
                     <div class="col-span-2" id="train-batch-size-field-container">
-                        <label for="batchSize" class="block text-sm font-medium leading-6 text-gray-900">Batch Size</label>
+                        <label for="batch-size" class="block text-sm font-medium leading-6 text-gray-900">Batch Size</label>
                         <div class="mt-2">
                             <input type="number" name="batch-size" id="batch-size" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="image-repeats-field-container">
-                        <label for="imageRepeats" class="block text-sm font-medium leading-6 text-gray-900">Image Repeats</label>
+                        <label for="image-repeats" class="block text-sm font-medium leading-6 text-gray-900">Image Repeats</label>
                         <div class="mt-2">
                             <input type="number" name="image-repeats" id="image-repeats" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="unet-lr-field-container">
-                        <label for="unetLr" class="block text-sm font-medium leading-6 text-gray-900">Unet Learning Rate</label><div class="mt-2">
+                        <label for="unet-lr" class="block text-sm font-medium leading-6 text-gray-900">Unet Learning Rate</label><div class="mt-2">
                             <input type="number" name="unet-lr" id="unet-lr" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="ti-lr-field-container">
-                        <label for="tiLr" class="block text-sm font-medium leading-6 text-gray-900">Text Inversion Learning Rate</label><div class="mt-2">
+                        <label for="ti-lr" class="block text-sm font-medium leading-6 text-gray-900">Text Inversion Learning Rate</label><div class="mt-2">
                             <input type="number" name="ti-lr" id="ti-lr" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="lora-lr-field-container">
-                        <label for="loraLr" class="block text-sm font-medium leading-6 text-gray-900">Lora Learning Rate</label><div class="mt-2">
+                        <label for="lora-lr" class="block text-sm font-medium leading-6 text-gray-900">Lora Learning Rate</label><div class="mt-2">
                             <input type="number" name="lora-lr" id="lora-lr" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="lr-scheduler-container">
-                        <label for="lrScheduler" class="block text-sm font-medium leading-6 text-gray-900">Learning Rate Scheduler</label><div class="mt-2">
+                        <label for="lr-scheduler" class="block text-sm font-medium leading-6 text-gray-900">Learning Rate Scheduler</label><div class="mt-2">
                             <select id="lr-scheduler" name="lr-scheduler" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 <option>constant</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-span-2" id="scheduler-cycles-field-container">
-                        <label for="schedulerCycles" class="block text-sm font-medium leading-6 text-gray-900">Scheduler Cycles</label><div class="mt-2">
+                        <label for="scheduler-cycles" class="block text-sm font-medium leading-6 text-gray-900">Scheduler Cycles</label><div class="mt-2">
                             <input type="number" name="scheduler-cycles" id="scheduler-cycles" min="1" max="500" value="10" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="warmup-steps-field-container">
-                        <label for="warmupSteps" class="block text-sm font-medium leading-6 text-gray-900">Warmup Steps</label><div class="mt-2">
+                        <label for="warmup-steps" class="block text-sm font-medium leading-6 text-gray-900">Warmup Steps</label><div class="mt-2">
                             <input type="number" name="warmup-steps" id="warmup-steps" min="1" max="500" value="10" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="validation-epoch-field-container">
-                        <label for="validationEpochs" class="block text-sm font-medium leading-6 text-gray-900">Validation Epochs</label><div class="mt-2">
+                        <label for="validation-epochs" class="block text-sm font-medium leading-6 text-gray-900">Validation Epochs</label><div class="mt-2">
                             <input type="number" name="validation-epochs" id="validation-epochs" min="1" max="500" value="50" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="max-train-steps-field-container">
-                        <label for="maxTrainSteps" class="block text-sm font-medium leading-6 text-gray-900">Max Train Steps</label><div class="mt-2">
+                        <label for="max-train-steps" class="block text-sm font-medium leading-6 text-gray-900">Max Train Steps</label><div class="mt-2">
                             <input type="number" name="max-train-steps" id="max-train-steps" min="1" max="500" value="10" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="mixed-precision-container">
-                        <label for="mixedPrecision" class="block text-sm font-medium leading-6 text-gray-900">Mixed Precision</label><div class="mt-2">
+                        <label for="mixed-precision" class="block text-sm font-medium leading-6 text-gray-900">Mixed Precision</label><div class="mt-2">
                             <select id="mixed-precision" name="mixed-precision" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 <option>fp16</option>
                             </select>

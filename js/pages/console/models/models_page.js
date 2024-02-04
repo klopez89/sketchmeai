@@ -327,7 +327,7 @@ function personTrainingPreset() {
     "ti-lr": "0.00005",
     "lora-lr": "0.00005",
     "lr-scheduler": "constant",
-    "scheduler-cycles": "10",
+    "scheduler-cycles": "1",
     "warmup-steps": "0",
     "validation-epochs": "50",
     "max-train-steps": "1000",

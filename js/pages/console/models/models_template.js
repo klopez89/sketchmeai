@@ -63,7 +63,7 @@ function dummyGridHTML() {
                                 <button id="uploadAreaButton" class="relative flex flex-col items-center block w-full rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
                                     <div class="flex flex-row items-center">		
                                         <i class="fa fa-images text-base pr-2" aria-hidden="true"></i>
-                                        <span class="mt-0 block text-base font-medium text-gray-400" id="upload-caption">Drag or click to upload 10 images</span>
+                                        <span class="mt-0 block text-base font-medium text-gray-400" id="upload-caption">Drag or click to upload 3+ images</span>
                                     </div>
                                 </button>
                                 <input id="localUploadInput" type="file" style="display:none;" multiple="">

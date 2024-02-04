@@ -222,7 +222,7 @@ function addFileUploadDivToDOM(file) {
 			upload_entry_element.remove();
 		}
 
-		updateUploadAreaTitle();
+		// updateUploadAreaTitle();
 		toggleUploadAreaVisibility();
 		toggleUploadButtonInteraction();
 	});
@@ -230,7 +230,7 @@ function addFileUploadDivToDOM(file) {
 	$('#uploadEntryContainer').prepend(upload_entry_element);
 
 	upload_entry_element.find('#uploadedImage')[0].src = file.data;
-	updateUploadAreaTitle();
+	// updateUploadAreaTitle();
 	toggleUploadAreaVisibility();
 	toggleUploadButtonInteraction();
 }

@@ -43,7 +43,7 @@ function dummyGridHTML() {
                         </div>
                     </div>
                     <div class="col-span-1" id="preset-list-container">
-                        <label for="trainingSubject" class="block text-sm font-medium leading-6 text-gray-900">Training Subject</label><div class="mt-2">
+                        <label for="training-subject" class="block text-sm font-medium leading-6 text-gray-900">Training Subject</label><div class="mt-2">
                             <select id="training-subject" name="training-subject" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 <option selected="" disabled="">Select an option</option>
                                 <option>person</option>
@@ -96,7 +96,7 @@ function dummyGridHTML() {
                         </div>
                     </div>
                     <div class="col-span-2" id="network-rank-field-container">
-                        <label for="networkRank" class="block text-sm font-medium leading-6 text-gray-900">Network Rank</label>
+                        <label for="network-rank" class="block text-sm font-medium leading-6 text-gray-900">Network Rank</label>
                         <div class="mt-2">
                             <input type="number" name="network-rank" id="network-rank" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>

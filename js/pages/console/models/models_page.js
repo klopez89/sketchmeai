@@ -236,7 +236,7 @@ function addFileUploadDivToDOM(file) {
 }
 
 function toggleUploadAreaVisibility() {
-	let shouldShow = !hasEnoughTrainingData();
+	let shouldShow = hasEnoughTrainingData();
 	let $upload_area_button = $($('#uploadAreaButton')[0]);
 	if (shouldShow === true && $upload_area_button.find('i').is('.fa-check') === false) {
 		$upload_area_button.find('i').removeClass('fa-images');

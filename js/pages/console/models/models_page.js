@@ -93,50 +93,46 @@ function handleDrop(event) {
 }
 
 function handleFileUploads(files) {
-	 let fileList = Array.from(files);
-	 let number_of_new_files = fileList.length;
-	 let number_of_uploaded_files = numberOfUploadedFiles();
-	 let maximum_upload_count = getMinimumUploadCount();
-
-	 console.log(typeof fileList);
-
+    let fileList = Array.from(files);
+    let number_of_uploaded_files = numberOfUploadedFiles();
+    let minimum_upload_count = getMinimumUploadCount();
 
 	if (isReadyToBeginNewModelCreation()) {
-	  console.log("Maximum number of files reached. No more files can be uploaded.");
+        console.log("Maximum number of files reached. No more files can be uploaded.");
 
 	} else {
-	  let remaining_upload_count = maximum_upload_count - number_of_uploaded_files;
-	  let files_to_upload = fileList.slice(0, remaining_upload_count);
+        let remaining_upload_count = minimum_upload_count - number_of_uploaded_files;
+        let files_to_upload = fileList
 
-	  console.log("the remaining upload count is: ", remaining_upload_count);
-	  console.log("the files to upload are: ", files_to_upload);
+        console.log("the remaining upload count is: ", remaining_upload_count);
+        console.log("the files to upload are: ", files_to_upload);
 
 		// Read the contents of each file
-	for (var i = 0; i < files_to_upload.length; i++) {
-		let reader = new FileReader();
-		let file = files_to_upload[i];
-		let filename = file.name;
-		let fileType = file.type;
-		let fileSize = file.size;
+        for (var i = 0; i < files_to_upload.length; i++) {
+            let reader = new FileReader();
+            let file = files_to_upload[i];
+            let filename = file.name;
+            let fileType = file.type;
+            let fileSize = file.size;
 
-		if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png') {
-			// Return early if the file type is not supported
-			return;
-		}
+            if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png') {
+                // Return early if the file type is not supported
+                return;
+            }
 
-			reader.addEventListener('load', function(event) {
-				let fileData = event.target.result;
-				let fileInfo = {
-					name: filename,
-					type: fileType,
-					size: summarizeFileSize(fileSize),
-					data: fileData,
-				};
-				addFileUploadDivToDOM(fileInfo);
-			});
+                reader.addEventListener('load', function(event) {
+                    let fileData = event.target.result;
+                    let fileInfo = {
+                        name: filename,
+                        type: fileType,
+                        size: summarizeFileSize(fileSize),
+                        data: fileData,
+                    };
+                    addFileUploadDivToDOM(fileInfo);
+                });
 
-	reader.readAsDataURL(files[i]);
-	}
+        reader.readAsDataURL(files[i]);
+        }
 	}
 }
 
@@ -144,9 +140,10 @@ function handleFileUploads(files) {
 // Upload related constant functions
 
 function updateUploadAreaTitle() {
-	let numberOfFilesLeftToUpload = (numberOfUploadedFiles() <= 10) ? (10 - numberOfUploadedFiles()) : 0;
+	let minimumUploadCount = getMinimumUploadCount();
+	let numberOfFilesLeftToUpload = (numberOfUploadedFiles() <= minimumUploadCount) ? (minimumUploadCount - numberOfUploadedFiles()) : 0;
 	document.getElementById("upload-caption").innerHTML = "Drag or click to upload " + numberOfFilesLeftToUpload + " images";
-	if (numberOfFilesLeftToUpload === getMinimumUploadCount()) {
+	if (numberOfFilesLeftToUpload >= minimumUploadCount) {
 		document.getElementById('localUploadInput').value = "";
 	}
 }

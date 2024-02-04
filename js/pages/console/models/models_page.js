@@ -142,7 +142,7 @@ function handleFileUploads(files) {
 function updateUploadAreaTitle() {
 	let minimumUploadCount = getMinimumUploadCount();
 	let numberOfFilesLeftToUpload = (numberOfUploadedFiles() <= minimumUploadCount) ? (minimumUploadCount - numberOfUploadedFiles()) : 0;
-	document.getElementById("upload-caption").innerHTML = "Drag or click to upload " + numberOfFilesLeftToUpload + " images";
+	document.getElementById("upload-caption").innerHTML = "Drag or click to upload " + numberOfFilesLeftToUpload + "+ images";
 	if (numberOfFilesLeftToUpload >= minimumUploadCount) {
 		document.getElementById('localUploadInput').value = "";
 	}

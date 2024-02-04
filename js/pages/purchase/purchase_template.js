@@ -192,10 +192,10 @@ function uploadEntryDiv(file, is_first_file) {
 			<div class="flex flex-col" style="position: relative;">
 				<img id="uploadedImage" class="w-full h-full rounded-lg object-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="">
 				<button class="remove-upload-button">
-		      <span class="fa-stack" style="width:2.0em;">
-		        <i class="fa fa-circle fa-stack-2x"></i>
-		        <i class="fa fa-times fa-stack-1x fa-inverse"></i>
-		      </span>
+				<span class="fa-stack" style="width:2.0em;">
+					<i class="fa fa-circle fa-stack-2x"></i>
+					<i class="fa fa-times fa-stack-1x fa-inverse"></i>
+				</span>
 				</button>
 			</div>
 		</li>

@@ -102,3 +102,17 @@ body {
     left: calc(50% - 1rem);
     font-size: 2rem;
 }
+
+.remove-upload-button {
+  background-color: transparent;
+  border: none;
+  color: grey;
+  font-size: 1.0rem;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.remove-upload-button:hover {
+  color: black;
+}

@@ -359,14 +359,17 @@ function configureTrainingSubjectField() {
         switch(selectedSubject) {
             case 'person':
                 preset = personTrainingPreset();
+                hideObjectNameField();
                 console.log('Ready to apply person preset');
                 break;
             case 'style':
                 // preset = styleTrainingPreset();
+                hideObjectNameField();
                 console.log('Ready to apply style preset');
                 break;
             case 'object':
                 // preset = objectTrainingPreset();
+                showObjectNameField();
                 console.log('Ready to apply object preset');
                 break;
             // Add more cases if there are other training subjects
@@ -379,4 +382,12 @@ function configureTrainingSubjectField() {
             applyTrainingPreset(preset);
         }
     });
+}
+
+function showObjectNameField() {
+    document.getElementById('object-name-container').classList.remove('hidden');
+}
+
+function hideObjectNameField() {
+    document.getElementById('object-name-container').classList.add('hidden');
 }

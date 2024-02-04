@@ -51,7 +51,7 @@ function dummyGridHTML() {
                                 <option>object</option>
                             </select>
                         </div>
-                    </div><div class="col-span-1" id="object-name-container">
+                    </div><div class="col-span-1 hidden" id="object-name-container">
                         <label for="object-name" class="block text-sm font-medium leading-6 text-gray-900">Object Name</label><div class="mt-2">
                             
                         <input type="text" name="object-name" id="object-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></div>

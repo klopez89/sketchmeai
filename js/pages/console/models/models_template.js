@@ -45,8 +45,11 @@ function dummyGridHTML() {
                     <div class="col-span-1" id="preset-list-container">
                         <label for="model-selection" class="block text-sm font-medium leading-6 text-gray-900">Training Subject</label><div class="mt-2">
                             <select id="model-selection" name="model-selection" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <option selected disabled>Select an option</option>
                                 <option>person</option>
-                            <option>style</option><option>object</option></select>
+                                <option>style</option>
+                                <option>object</option>
+                            </select>
                         </div>
                     </div><div class="col-span-1" id="object-name-container">
                         <label for="training-object" class="block text-sm font-medium leading-6 text-gray-900">Object Name</label><div class="mt-2">

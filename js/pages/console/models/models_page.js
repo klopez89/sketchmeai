@@ -289,3 +289,63 @@ function showCheckmarkOnUploadButton() {
 	uploadButtonLoadingElement.classList.remove('fa-spinner');
 	uploadButtonLoadingElement.classList.add('fa-check');
 }
+
+function checkTrainingData() {
+    let modelName = document.getElementById('model-name').value;
+    let modelSelection = document.getElementById('model-selection').value;
+    let tokenString = document.getElementById('token-string').value;
+    let seed = document.getElementById('seed').value;
+    let resolution = document.getElementById('resolution').value;
+    let networkRank = document.getElementById('network-rank').value;
+    let batchSize = document.getElementById('batch-size').value;
+    let imageRepeats = document.getElementById('image-repeats').value;
+    let unetLr = document.getElementById('unet-lr').value;
+    let tiLr = document.getElementById('ti-lr').value;
+    let loraLr = document.getElementById('lora-lr').value;
+    let lrScheduler = document.getElementById('lr-scheduler').value;
+    let schedulerCycles = document.getElementById('scheduler-cycles').value;
+    let warmupSteps = document.getElementById('warmup-steps').value;
+    let validationEpochs = document.getElementById('validation-epochs').value;
+    let maxTrainSteps = document.getElementById('max-train-steps').value;
+    let mixedPrecision = document.getElementById('mixed-precision').value;
+    let xformers = document.getElementById('xformers').checked;
+    let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
+    let bitAdam = document.getElementById('8bit-adam').checked;
+}
+
+function personTrainingPreset() {
+    return {
+    "model-selection": "SDXL",
+    "token-string": "zxc",
+    "seed": "0",
+    "resolution": "1024",
+    "network-rank": "64",
+    "batch-size": "1",
+    "image-repeats": "1",
+    "unet-lr": "0.00005",
+    "ti-lr": "0.00005",
+    "lora-lr": "0.00005",
+    "lr-scheduler": "constant",
+    "scheduler-cycles": "10",
+    "warmup-steps": "0",
+    "validation-epochs": "50",
+    "max-train-steps": "1000",
+    "mixed-precision": "fp16",
+    "xformers": false,
+    "gradient-checkpoint": true,
+    "8bit-adam": true
+    }
+}
+
+function applyTrainingPreset(preset) {
+    for (let key in preset) {
+        let element = document.getElementById(key);
+        if (element) {
+            if (element.type === "checkbox") {
+                element.checked = preset[key];
+            } else {
+                element.value = preset[key];
+            }
+        }
+    }
+}

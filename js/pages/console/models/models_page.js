@@ -143,14 +143,21 @@ function updateUploadAreaTitle() {
 	let minimumUploadCount = getMinimumUploadCount();
 	let numberOfFilesLeftToUpload = (numberOfUploadedFiles() <= minimumUploadCount) ? (minimumUploadCount - numberOfUploadedFiles()) : 0;
 	document.getElementById("upload-caption").innerHTML = "Drag or click to upload " + numberOfFilesLeftToUpload + "+ images";
-	if (numberOfFilesLeftToUpload >= minimumUploadCount) {
-		document.getElementById('localUploadInput').value = "";
-	}
+
+	// if (numberOfFilesLeftToUpload >= minimumUploadCount) {
+	// 	document.getElementById('localUploadInput').value = "";
+	// }
 }
 
 function numberOfUploadedFiles() {
 	let uploadedImages = $("#uploadEntryContainer").find("li");
 	return uploadedImages.length;
+}
+
+function hasEnoughTrainingData() {
+    let number_of_uploaded_files = numberOfUploadedFiles();
+	let minimum_upload_count = getMinimumUploadCount();
+    return number_of_uploaded_files >= minimum_upload_count
 }
 
 function isReadyToBeginNewModelCreation() {
@@ -229,15 +236,15 @@ function addFileUploadDivToDOM(file) {
 }
 
 function toggleUploadAreaVisibility() {
-	let shouldShow = !isReadyToBeginNewModelCreation();
+	let shouldShow = !hasEnoughTrainingData();
 	let $upload_area_button = $($('#uploadAreaButton')[0]);
-	if (isReadyToBeginNewModelCreation() === true && $upload_area_button.find('i').is('.fa-check') === false) {
+	if (shouldShow === true && $upload_area_button.find('i').is('.fa-check') === false) {
 		$upload_area_button.find('i').removeClass('fa-images');
 		$upload_area_button.find('i').addClass('fa-check');
 		$upload_area_button.find('span').text('Ready to upload');
 	}
 
-	if (isReadyToBeginNewModelCreation() === false && $upload_area_button.find('i').is('.fa-check') === true) {
+	if (shouldShow === false && $upload_area_button.find('i').is('.fa-check') === true) {
 		$upload_area_button.find('i').addClass('fa-images');
 		$upload_area_button.find('i').removeClass('fa-check');
 		updateUploadAreaTitle();

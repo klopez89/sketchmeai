@@ -352,7 +352,7 @@ function applyTrainingPreset(preset) {
 }
 
 function configureTrainingSubjectField() {
-    document.getElementById('model-selection').addEventListener('change', function() {
+    document.getElementById('training-subject').addEventListener('change', function() {
         let selectedSubject = this.value;
         let preset;
 

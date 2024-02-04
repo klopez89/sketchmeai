@@ -445,7 +445,7 @@ function triggerLocalUploadMenu(event) {
 	event.preventDefault();
 
 	let number_of_uploaded_files = numberOfUploadedFiles();
-	let maximum_upload_count = getMaxUploadCount();
+	let maximum_upload_count = getMinimumUploadCount();
 
 	if (isReadyToBeginNewModelCreation()) {
 		console.log("ready to hit the new endpoint to kick off new model");
@@ -488,7 +488,7 @@ function handleFileUploads(files) {
 	 let fileList = Array.from(files);
 	 let number_of_new_files = fileList.length;
 	 let number_of_uploaded_files = numberOfUploadedFiles();
-	 let maximum_upload_count = getMaxUploadCount();
+	 let maximum_upload_count = getMinimumUploadCount();
 
 	 console.log(typeof fileList);
 
@@ -538,7 +538,7 @@ function handleFileUploads(files) {
 function updateUploadAreaTitle() {
 	let numberOfFilesLeftToUpload = (numberOfUploadedFiles() <= 10) ? (10 - numberOfUploadedFiles()) : 0;
 	document.getElementById("upload-caption").innerHTML = "Drag or click to upload " + numberOfFilesLeftToUpload + " images";
-	if (numberOfFilesLeftToUpload === getMaxUploadCount()) {
+	if (numberOfFilesLeftToUpload === getMinimumUploadCount()) {
 		document.getElementById('localUploadInput').value = "";
 	}
 }
@@ -550,11 +550,11 @@ function numberOfUploadedFiles() {
 
 function isReadyToBeginNewModelCreation() {
 	let number_of_uploaded_files = numberOfUploadedFiles();
-	let maximum_upload_count = getMaxUploadCount();
+	let maximum_upload_count = getMinimumUploadCount();
 	return number_of_uploaded_files >= maximum_upload_count;
 }
 
-function getMaxUploadCount() {
+function getMinimumUploadCount() {
 	return 10;
 }
 

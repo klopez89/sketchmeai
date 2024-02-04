@@ -53,7 +53,7 @@ function triggerLocalUploadMenu(event) {
 	event.preventDefault();
 
 	let number_of_uploaded_files = numberOfUploadedFiles();
-	let maximum_upload_count = getMaxUploadCount();
+	let maximum_upload_count = getMinimumUploadCount();
 
 	if (isReadyToBeginNewModelCreation()) {
 		console.log("ready to hit the new endpoint to kick off new model");
@@ -96,7 +96,7 @@ function handleFileUploads(files) {
 	 let fileList = Array.from(files);
 	 let number_of_new_files = fileList.length;
 	 let number_of_uploaded_files = numberOfUploadedFiles();
-	 let maximum_upload_count = getMaxUploadCount();
+	 let maximum_upload_count = getMinimumUploadCount();
 
 	 console.log(typeof fileList);
 
@@ -146,7 +146,7 @@ function handleFileUploads(files) {
 function updateUploadAreaTitle() {
 	let numberOfFilesLeftToUpload = (numberOfUploadedFiles() <= 10) ? (10 - numberOfUploadedFiles()) : 0;
 	document.getElementById("upload-caption").innerHTML = "Drag or click to upload " + numberOfFilesLeftToUpload + " images";
-	if (numberOfFilesLeftToUpload === getMaxUploadCount()) {
+	if (numberOfFilesLeftToUpload === getMinimumUploadCount()) {
 		document.getElementById('localUploadInput').value = "";
 	}
 }
@@ -158,12 +158,15 @@ function numberOfUploadedFiles() {
 
 function isReadyToBeginNewModelCreation() {
 	let number_of_uploaded_files = numberOfUploadedFiles();
-	let maximum_upload_count = getMaxUploadCount();
-	return number_of_uploaded_files >= maximum_upload_count;
+	let minimum_upload_count = getMinimumUploadCount();
+    let isDataValid = isTrainingDataValid();
+	let isReady = number_of_uploaded_files >= minimum_upload_count && isDataValid;
+    console.log('isTrainingDataValid: ', isDataValid, 'isReadyToBeginNewModelCreation: ', isReady);
+	return isReady;
 }
 
-function getMaxUploadCount() {
-	return 10;
+function getMinimumUploadCount() {
+	return 3;
 }
 
 function getUploadedFiles() {
@@ -291,7 +294,7 @@ function showCheckmarkOnUploadButton() {
 	uploadButtonLoadingElement.classList.add('fa-check');
 }
 
-function checkTrainingData() {
+function isTrainingDataValid() {
     let modelName = document.getElementById('model-name').value;
     let modelSelection = document.getElementById('model-selection').value;
     let tokenString = document.getElementById('token-string').value;
@@ -312,6 +315,33 @@ function checkTrainingData() {
     let xformers = document.getElementById('xformers').checked;
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
     let bitAdam = document.getElementById('8bit-adam').checked;
+
+    let isDataValid = modelName && modelSelection && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && tiLr && loraLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && xformers != null && gradientCheckpoint != null && bitAdam != null;
+
+    let trainingData = {
+        "model-name": modelName,
+        "model-selection": modelSelection,
+        "token-string": tokenString,
+        "seed": seed,
+        "resolution": resolution,
+        "network-rank": networkRank,
+        "batch-size": batchSize,
+        "image-repeats": imageRepeats,
+        "unet-lr": unetLr,
+        "ti-lr": tiLr,
+        "lora-lr": loraLr,
+        "lr-scheduler": lrScheduler,
+        "scheduler-cycles": schedulerCycles,
+        "warmup-steps": warmupSteps,
+        "validation-epochs": validationEpochs,
+        "max-train-steps": maxTrainSteps,
+        "mixed-precision": mixedPrecision,
+        "xformers": xformers,
+        "gradient-checkpoint": gradientCheckpoint,
+        "8bit-adam": bitAdam
+    };
+
+    return isDataValid;
 }
 
 function personTrainingPreset() {
@@ -390,4 +420,23 @@ function showObjectNameField() {
 
 function hideObjectNameField() {
     document.getElementById('object-name-container').classList.add('hidden');
+}
+
+function toggleUploadButtonInteraction() {
+	let sohuldEnable = isReadyToBeginNewModelCreation();
+	if (sohuldEnable === true && $('#uploadToServerButton').is("[disabled]") === true) {
+		$('#uploadToServerButton').removeAttr('disabled');
+		$('#uploadToServerButton').removeClass('bg-gray-200');
+		$('#uploadToServerButton').removeClass('hover:bg-gray-200');
+		$('#uploadToServerButton').addClass('bg-blue-600');
+		$('#uploadToServerButton').addClass('hover:bg-blue-500');
+	} 
+
+	if (sohuldEnable === false && $('#uploadToServerButton').is("[disabled]") === false) {
+		$('#uploadToServerButton').attr('disabled','');
+		$('#uploadToServerButton').addClass('bg-gray-200');
+		$('#uploadToServerButton').addClass('hover:bg-gray-200');
+		$('#uploadToServerButton').removeClass('bg-blue-600');
+		$('#uploadToServerButton').removeClass('hover:bg-blue-500');
+	}
 }

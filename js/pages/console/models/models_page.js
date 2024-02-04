@@ -249,8 +249,11 @@ function toggleUploadAreaVisibility() {
 	if (shouldShow === false && $upload_area_button.find('i').is('.fa-check') === true) {
 		$upload_area_button.find('i').addClass('fa-images');
 		$upload_area_button.find('i').removeClass('fa-check');
-		updateUploadAreaTitle();
 	}
+    
+    if (shouldShow === false){
+        updateUploadAreaTitle();
+    }
 }
 
 function toggleUploadButtonInteraction() {

@@ -1,5 +1,6 @@
 addModelsGrid();
 configureNewModelUploadArea();
+configureTrainingSubjectField();
 
 function addModelsGrid() {
     let dummy_grid_html = dummyGridHTML();
@@ -348,4 +349,34 @@ function applyTrainingPreset(preset) {
             }
         }
     }
+}
+
+function configureTrainingSubjectField() {
+    document.getElementById('model-selection').addEventListener('change', function() {
+        let selectedSubject = this.value;
+        let preset;
+
+        switch(selectedSubject) {
+            case 'person':
+                preset = personTrainingPreset();
+                console.log('Ready to apply person preset');
+                break;
+            case 'style':
+                // preset = styleTrainingPreset();
+                console.log('Ready to apply style preset');
+                break;
+            case 'object':
+                // preset = objectTrainingPreset();
+                console.log('Ready to apply object preset');
+                break;
+            // Add more cases if there are other training subjects
+            default:
+                console.log('No preset found for selected subject');
+                return;
+        }
+
+        if (preset) {
+            applyTrainingPreset(preset);
+        }
+    });
 }

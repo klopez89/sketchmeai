@@ -229,7 +229,7 @@ function toggleUploadAreaVisibility() {
 	if (shouldShow === true && $upload_area_button.find('i').is('.fa-check') === false) {
 		$upload_area_button.find('i').removeClass('fa-images');
 		$upload_area_button.find('i').addClass('fa-check');
-		$upload_area_button.find('span').text('Ready to upload');
+		$upload_area_button.find('span').text('');
 	}
 
 	if (shouldShow === false && $upload_area_button.find('i').is('.fa-check') === true) {

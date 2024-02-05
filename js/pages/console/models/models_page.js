@@ -339,6 +339,10 @@ function isTrainingDataValid() {
     return isDataValid;
 }
 
+function grabTrainingData() {
+    
+}
+
 function personTrainingPreset() {
     return {
     "model-selection": "SDXL",

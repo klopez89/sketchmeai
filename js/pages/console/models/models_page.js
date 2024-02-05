@@ -51,18 +51,9 @@ function configureUploadButton() {
 
 function triggerLocalUploadMenu(event) {
 	event.preventDefault();
-
-	let number_of_uploaded_files = numberOfUploadedFiles();
-	let maximum_upload_count = getMinimumUploadCount();
-
-	if (isReadyToBeginNewModelCreation()) {
-		console.log("ready to hit the new endpoint to kick off new model");
-		// beginNewModelCreation();
-	} else {
-		console.log('time to show local upload flow');
-		let localUploadInput = document.getElementById('localUploadInput');
-		localUploadInput.click();
-	}
+    console.log('time to show local upload flow');
+    let localUploadInput = document.getElementById('localUploadInput');
+    localUploadInput.click();
 }
 
 function handleDragEnter(event) {
@@ -96,44 +87,38 @@ function handleFileUploads(files) {
     let fileList = Array.from(files);
     let number_of_uploaded_files = numberOfUploadedFiles();
     let minimum_upload_count = getMinimumUploadCount();
+    let remaining_upload_count = minimum_upload_count - number_of_uploaded_files;
+    let files_to_upload = fileList
 
-	if (isReadyToBeginNewModelCreation()) {
-        console.log("Maximum number of files reached. No more files can be uploaded.");
+    console.log("the remaining upload count is: ", remaining_upload_count);
+    console.log("the files to upload are: ", files_to_upload);
 
-	} else {
-        let remaining_upload_count = minimum_upload_count - number_of_uploaded_files;
-        let files_to_upload = fileList
+    // Read the contents of each file
+    for (var i = 0; i < files_to_upload.length; i++) {
+        let reader = new FileReader();
+        let file = files_to_upload[i];
+        let filename = file.name;
+        let fileType = file.type;
+        let fileSize = file.size;
 
-        console.log("the remaining upload count is: ", remaining_upload_count);
-        console.log("the files to upload are: ", files_to_upload);
+        if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png') {
+            // Return early if the file type is not supported
+            return;
+        }
 
-		// Read the contents of each file
-        for (var i = 0; i < files_to_upload.length; i++) {
-            let reader = new FileReader();
-            let file = files_to_upload[i];
-            let filename = file.name;
-            let fileType = file.type;
-            let fileSize = file.size;
-
-            if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png') {
-                // Return early if the file type is not supported
-                return;
-            }
-
-                reader.addEventListener('load', function(event) {
-                    let fileData = event.target.result;
-                    let fileInfo = {
-                        name: filename,
-                        type: fileType,
-                        size: summarizeFileSize(fileSize),
-                        data: fileData,
-                    };
-                    addFileUploadDivToDOM(fileInfo);
-                });
+            reader.addEventListener('load', function(event) {
+                let fileData = event.target.result;
+                let fileInfo = {
+                    name: filename,
+                    type: fileType,
+                    size: summarizeFileSize(fileSize),
+                    data: fileData,
+                };
+                addFileUploadDivToDOM(fileInfo);
+            });
 
         reader.readAsDataURL(files[i]);
-        }
-	}
+    }
 }
 
 

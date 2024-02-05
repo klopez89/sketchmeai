@@ -1,8 +1,7 @@
 addModelsGrid();
 configureNewModelUploadArea();
 configureTrainingSubjectField();
-configureTrainingFormForChanges();
-
+configureTrainingForm();
 
 function addModelsGrid() {
     let dummy_grid_html = dummyGridHTML();
@@ -378,13 +377,19 @@ function applyTrainingPreset(preset) {
 }
 
 
-function configureTrainingFormForChanges() {
+
+function configureTrainingForm() {
     document.getElementById('new-form').addEventListener('input', function() {
         console.log('Form has been changed');
         toggleUploadButtonInteraction();
     });
-}
 
+    document.getElementById('new-form').addEventListener('submit', function(event) {
+        // Prevent the form from being submitted
+        event.preventDefault();
+        console.log('Ready to gather form values and training data and hit our new model endpoint');
+    });
+}
 
 function configureTrainingSubjectField() {
     document.getElementById('training-subject').addEventListener('change', function() {

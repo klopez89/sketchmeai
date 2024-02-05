@@ -263,9 +263,7 @@ function fireGenerateCall(jsonObject) {
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
         new_grid_item_div.find('img').first().removeClass('hidden');
     });
-
-    // Alpine.initializeComponent(new_grid_item_div[0]);
-
+    
     let action = `${CONSTANTS.BACKEND_URL}generate/new`
     $.ajax({
         type: 'POST',

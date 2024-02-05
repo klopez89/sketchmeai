@@ -292,6 +292,7 @@ function showCheckmarkOnUploadButton() {
 function isTrainingDataValid() {
     let modelName = document.getElementById('model-name').value;
     let modelSelection = document.getElementById('model-selection').value;
+    let trainingSubject = document.getElementById('training-subject').value;
     let tokenString = document.getElementById('token-string').value;
     let seed = document.getElementById('seed').value;
     let resolution = document.getElementById('resolution').value;
@@ -311,11 +312,38 @@ function isTrainingDataValid() {
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
     let bitAdam = document.getElementById('8bit-adam').checked;
 
-    let isDataValid = modelName && modelSelection && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && tiLr && loraLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && xformers != null && gradientCheckpoint != null && bitAdam != null;
+    let isDataValid = modelName && modelSelection && trainingSubject && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && tiLr && loraLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && xformers != null && gradientCheckpoint != null && bitAdam != null;
+    return isDataValid;
+}
+
+function grabTrainingData() {
+    let modelName = document.getElementById('model-name').value;
+    let modelSelection = document.getElementById('model-selection').value;
+    let trainingSubject = document.getElementById('training-subject').value;
+    let tokenString = document.getElementById('token-string').value;
+    let seed = document.getElementById('seed').value;
+    let resolution = document.getElementById('resolution').value;
+    let networkRank = document.getElementById('network-rank').value;
+    let batchSize = document.getElementById('batch-size').value;
+    let imageRepeats = document.getElementById('image-repeats').value;
+    let unetLr = document.getElementById('unet-lr').value;
+    let tiLr = document.getElementById('ti-lr').value;
+    let loraLr = document.getElementById('lora-lr').value;
+    let lrScheduler = document.getElementById('lr-scheduler').value;
+    let schedulerCycles = document.getElementById('scheduler-cycles').value;
+    let warmupSteps = document.getElementById('warmup-steps').value;
+    let validationEpochs = document.getElementById('validation-epochs').value;
+    let maxTrainSteps = document.getElementById('max-train-steps').value;
+    let mixedPrecision = document.getElementById('mixed-precision').value;
+    let xformers = document.getElementById('xformers').checked;
+    let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
+    let bitAdam = document.getElementById('8bit-adam').checked;
+	let files = getUploadedFiles();
 
     let trainingData = {
         "model-name": modelName,
         "model-selection": modelSelection,
+        "training-subject": trainingSubject,
         "token-string": tokenString,
         "seed": seed,
         "resolution": resolution,
@@ -333,14 +361,10 @@ function isTrainingDataValid() {
         "mixed-precision": mixedPrecision,
         "xformers": xformers,
         "gradient-checkpoint": gradientCheckpoint,
-        "8bit-adam": bitAdam
+        "8bit-adam": bitAdam,
+        "files": files
     };
-
-    return isDataValid;
-}
-
-function grabTrainingData() {
-
+    return trainingData;
 }
 
 function personTrainingPreset() {
@@ -380,7 +404,26 @@ function applyTrainingPreset(preset) {
     }
 }
 
-
+function kickoffModelCreation(trainingData) {
+    console.log("about to kickoff model gen, w/ training data: ", trainingData);
+    let action = `${CONSTANTS.BACKEND_URL}models/new`
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify(trainingData),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(data) {
+            console.log("successfully returned from new model endpoint");
+            console.log(data);
+            // startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);
+        },
+        error: function(data) {
+            console.log("error");
+            console.log(data);
+        }
+    });
+}
 
 function configureTrainingForm() {
     document.getElementById('new-form').addEventListener('input', function() {
@@ -389,9 +432,9 @@ function configureTrainingForm() {
     });
 
     document.getElementById('new-form').addEventListener('submit', function(event) {
-        // Prevent the form from being submitted
         event.preventDefault();
         console.log('Ready to gather form values and training data and hit our new model endpoint');
+        kickoffModelCreation(grabTrainingData());
     });
 }
 

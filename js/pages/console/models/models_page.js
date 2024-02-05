@@ -381,6 +381,7 @@ function applyTrainingPreset(preset) {
 function configureTrainingFormForChanges() {
     document.getElementById('new-form').addEventListener('input', function() {
         console.log('Form has been changed');
+        toggleUploadButtonInteraction();
     });
 }
 

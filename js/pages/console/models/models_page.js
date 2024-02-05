@@ -356,7 +356,7 @@ function personTrainingPreset() {
     "scheduler-cycles": "1",
     "warmup-steps": "0",
     "validation-epochs": "50",
-    "max-train-steps": "1000",
+    "max-train-steps": "auto",
     "mixed-precision": "fp16",
     "xformers": false,
     "gradient-checkpoint": true,

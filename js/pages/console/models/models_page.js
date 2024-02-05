@@ -339,8 +339,10 @@ function grabTrainingData() {
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
     let bitAdam = document.getElementById('8bit-adam').checked;
 	let files = getUploadedFiles();
+    let userRecId = getUserRecId();
 
     let trainingData = {
+        "user-rec-id": userRecId,
         "model-name": modelName,
         "model-selection": modelSelection,
         "training-subject": trainingSubject,

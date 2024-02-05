@@ -213,7 +213,7 @@ function addFileUploadDivToDOM(file) {
 		toggleUploadButtonInteraction();
 	});
 
-	$('#uploadEntryContainer').prepend(upload_entry_element);
+	$('#uploadEntryContainer').children().first().after(upload_entry_element);
 
 	upload_entry_element.find('#uploadedImage')[0].src = file.data;
 	// updateUploadAreaTitle();

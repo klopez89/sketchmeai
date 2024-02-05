@@ -7,9 +7,6 @@ module.exports = {
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {},
-  corePlugins: {
-    aspectRatio: false,
-  },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),

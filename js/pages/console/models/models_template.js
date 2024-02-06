@@ -3,7 +3,7 @@ function dummyGridHTML() {
     <div class="bg-gray-100 h-full">
         <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full">
             <div id="collection-grid" role="list" class="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()">
-                <div id="new-model-button" class="relative rounded-lg overflow-hidden cursor-pointer" onclick="clickedOnNewModelButton()">
+                <div id="new-model-button" class="relative rounded-lg overflow-hidden cursor-pointer" onclick="clickedOnNewModelButton(event)">
                     <div class="aspect-[1/1] bg-gray-300 hover:bg-gray-200">
                         <div class="flex justify-center items-center h-full text-white text-5xl">
                             <i class="fas fa-plus" aria-hidden="true"></i>

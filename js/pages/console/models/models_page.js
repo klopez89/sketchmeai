@@ -502,7 +502,8 @@ function toggleUploadButtonInteraction() {
 	}
 }
 
-function clickedOnNewModelButton() {
+function clickedOnNewModelButton(event) {
+    event.stopPropagation();
     console.log('clicked on new model button');
 }
 

@@ -29,7 +29,6 @@ function dummyGridHTML() {
 
         <!-- New div with a form -->
         <div id="new-form-container" class="absolute opacity-0 mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full w-full bg-gray-100 transform transition-all translate-x-full duration-700 ease-in-out">
-            <button class="mb-2 text-gray-500" onclick="exitNewModelForm(event)">Back</button>
             <form id="new-form" autocomplete="off">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                     <div class="col-span-2" id="name-field-container">
@@ -70,6 +69,18 @@ function dummyGridHTML() {
                                 <input id="localUploadInput" type="file" style="display:none;" multiple="">
                             </ul>
                         </div>
+                    </div>
+                    <div class="col-span-5 flex flex-col justify-center" id="gen-button-container">
+                        <button id="uploadToServerButton" type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-base font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
+                            <p>Start Training</p>
+                            <i class="fa fa-spinner fa-spin" style="position: absolute; display:none;" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="col-span-1" id="cancel-button-container">
+                        <button id="cancelButton" class="rounded-md w-full flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-base font-semibold text-gray-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-300" onclick="exitNewModelForm(event)">
+                            <p>Cancel</p>
+                            <i class="fa fa-spinner fa-spin" style="position: absolute; display:none;" aria-hidden="true"></i>
+                        </button>
                     </div>
                     <div class="col-span-2" id="token-string-field-container">
                         <label for="token-string" class="block text-sm font-medium leading-6 text-gray-900">Token String</label>
@@ -190,13 +201,6 @@ function dummyGridHTML() {
                                     <p class="text-gray-500">Use 8bit Adam</p>
                                 </div>
                             </div>
-                    </div>
-                    <div class="col-span-full flex flex-col justify-center" id="gen-button-container">
-
-                        <button id="uploadToServerButton" type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-base font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
-                            <p>Begin Fine Tuning Model</p>
-                            <i class="fa fa-spinner fa-spin" style="position: absolute; display:none;" aria-hidden="true"></i>
-                        </button>
                     </div>
                 </div>
             </form>

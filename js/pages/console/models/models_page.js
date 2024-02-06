@@ -536,3 +536,4 @@ function exitNewModelForm(event) {
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.add('translate-x-full', 'opacity-0');
 }
+

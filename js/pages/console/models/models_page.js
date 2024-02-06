@@ -542,8 +542,8 @@ function exitNewModelForm(event) {
     newFormContainer.classList.add('transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
     setTimeout(() => {
         newFormContainer.classList.add('opacity-0'); // Add opacity-0 after the translation has started
-    }, 100);
+    }, 500);
     setTimeout(() => {
-        newFormContainer.classList.remove('transform', 'transition-all');
-    }, 100);
+        newFormContainer.classList.remove('transform', 'transition-all', 'translate-x-full');
+    }, 500);
 }

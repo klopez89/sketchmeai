@@ -528,8 +528,9 @@ function exitNewModelForm(event) {
     event.preventDefault();
     event.stopPropagation();
     let collectionGridContainer = document.getElementById('collection-grid-container');
+    collectionGridContainer.classList.remove('hidden');
     setTimeout(() => {
-        collectionGridContainer.classList.remove('opacity-0', 'hidden');
+        collectionGridContainer.classList.remove('opacity-0');
     }, 400);
 
     let newFormContainer = document.getElementById('new-form-container');

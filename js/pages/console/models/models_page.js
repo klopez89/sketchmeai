@@ -544,6 +544,6 @@ function exitNewModelForm(event) {
         newFormContainer.classList.add('opacity-0'); // Add opacity-0 after the translation has started
     }, 100);
     setTimeout(() => {
-        newFormContainer.classList.remove('transform', 'transition-all', 'translate-x-full');
+        newFormContainer.classList.remove('transform', 'transition-all');
     }, 100);
 }

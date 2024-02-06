@@ -530,7 +530,7 @@ function exitNewModelForm(event) {
     let collectionGridContainer = document.getElementById('collection-grid-container');
     setTimeout(() => {
         collectionGridContainer.classList.remove('opacity-0', 'hidden');
-    }, 1000);
+    }, 800);
 
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.add('translate-x-full', 'opacity-0');

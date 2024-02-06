@@ -506,6 +506,10 @@ function clickedOnNewModelButton(event) {
     event.stopPropagation();
     console.log('clicked on new model button');
 
+    let collectionGridContainer = document.getElementById('collection-grid-container');
+    collectionGridContainer.classList.add('opacity-0', 'transform', 'transition-all', 'duration-400', 'ease-in-out');
+    collectionGridContainer.classList.remove('opacity-100');
+
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.add('opacity-0', 'transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
     newFormContainer.classList.remove('translate-x-full', 'opacity-0');

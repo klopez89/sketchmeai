@@ -541,6 +541,6 @@ function exitNewModelForm(event) {
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.add('transform', 'translate-x-full', 'opacity-0', 'transition-all', 'duration-500', 'ease-in-out');
     setTimeout(() => {
-        newFormContainer.classList.remove('transform', 'transition-all');
+        newFormContainer.classList.remove('transform', 'transition-all', 'translate-x-full');
     }, 100);
 }

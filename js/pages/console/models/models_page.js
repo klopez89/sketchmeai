@@ -511,7 +511,7 @@ function clickedOnNewModelButton(event) {
     collectionGridContainer.classList.remove('opacity-100');
 
     let newFormContainer = document.getElementById('new-form-container');
-    newFormContainer.classList.add('opacity-0', 'transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
+    newFormContainer.classList.add('transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
     setTimeout(() => {
         newFormContainer.classList.remove('translate-x-full', 'opacity-0');
     }, 500); // 500ms matches the duration of the transition

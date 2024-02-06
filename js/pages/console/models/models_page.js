@@ -510,7 +510,7 @@ function clickedOnNewModelButton(event) {
     collectionGridContainer.classList.add('opacity-0');
     setTimeout(() => {
         collectionGridContainer.classList.add('hidden');
-    }, 400);
+    }, 100);
 
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.remove('translate-x-full');

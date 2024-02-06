@@ -98,19 +98,19 @@ function dummyGridHTML() {
                     <div class="col-span-2" id="network-rank-field-container">
                         <label for="network-rank" class="block text-sm font-medium leading-6 text-gray-900">Network Rank</label>
                         <div class="mt-2">
-                            <input type="number" name="network-rank" id="network-rank" min="0" max="256" step="1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="number" name="network-rank" id="network-rank" min="0" max="256" step="1" value="64" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="train-batch-size-field-container">
                         <label for="batch-size" class="block text-sm font-medium leading-6 text-gray-900">Batch Size</label>
                         <div class="mt-2">
-                            <input type="number" name="batch-size" id="batch-size" min="1" max="50" step="1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="number" name="batch-size" id="batch-size" min="1" max="50" step="1" value="1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="image-repeats-field-container">
                         <label for="image-repeats" class="block text-sm font-medium leading-6 text-gray-900">Image Repeats</label>
                         <div class="mt-2">
-                            <input type="number" name="image-repeats" id="image-repeats" min="1" max="50" step="1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <input type="number" name="image-repeats" id="image-repeats" min="1" max="50" step="1" value="1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="unet-lr-field-container">
@@ -175,7 +175,7 @@ function dummyGridHTML() {
                     </div>
                     <div class="col-span-2" id="gradient-checkpoint-field-container"><div class="relative flex gap-x-3">
                             <div class="flex h-6 items-center">
-                                <input id="gradient-checkpoint" name="gradient-checkpoint" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                                <input id="gradient-checkpoint" name="gradient-checkpoint" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" checked>
                                 </div>
                                 <div class="text-sm leading-6">
                                     <p class="text-gray-500">Gradient checkpointing</p>
@@ -184,7 +184,7 @@ function dummyGridHTML() {
                     </div>
                     <div class="col-span-2" id="8bit-adam-field-container"><div class="relative flex gap-x-3">
                             <div class="flex h-6 items-center">
-                                <input id="8bit-adam" name="8bit-adam" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                                <input id="8bit-adam" name="8bit-adam" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" checked>
                                 </div>
                                 <div class="text-sm leading-6">
                                     <p class="text-gray-500">Use 8bit Adam</p>

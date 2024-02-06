@@ -28,7 +28,7 @@ function dummyGridHTML() {
         </div>
 
         <!-- New div with a form -->
-        <div id="new-form-container" class="absolute opacity-0 mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full w-full bg-gray-100 transform transition-all translate-x-full duration-400 ease-in-out">
+        <div id="new-form-container" class="absolute opacity-0 mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full w-full bg-gray-100 transform transition-all translate-x-full duration-700 ease-in-out">
             <button class="mb-2 text-gray-500" onclick="exitNewModelForm(event)">Back</button>
             <form id="new-form" autocomplete="off">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">

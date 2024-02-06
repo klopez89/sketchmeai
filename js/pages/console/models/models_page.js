@@ -300,8 +300,7 @@ function isTrainingDataValid() {
     let batchSize = document.getElementById('batch-size').value;
     let imageRepeats = document.getElementById('image-repeats').value;
     let unetLr = document.getElementById('unet-lr').value;
-    let tiLr = document.getElementById('ti-lr').value;
-    let loraLr = document.getElementById('lora-lr').value;
+    let teLr = document.getElementById('te-lr').value;
     let lrScheduler = document.getElementById('lr-scheduler').value;
     let schedulerCycles = document.getElementById('scheduler-cycles').value;
     let warmupSteps = document.getElementById('warmup-steps').value;
@@ -312,7 +311,7 @@ function isTrainingDataValid() {
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
     let bitAdam = document.getElementById('8bit-adam').checked;
 
-    let isDataValid = modelName && modelSelection && trainingSubject && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && tiLr && loraLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && xformers != null && gradientCheckpoint != null && bitAdam != null;
+    let isDataValid = modelName && modelSelection && trainingSubject && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && xformers != null && gradientCheckpoint != null && bitAdam != null;
     return isDataValid;
 }
 
@@ -320,6 +319,7 @@ function grabTrainingData() {
     let modelName = document.getElementById('model-name').value;
     let modelSelection = document.getElementById('model-selection').value;
     let trainingSubject = document.getElementById('training-subject').value;
+    let objectName = document.getElementById('object-name').value;
     let tokenString = document.getElementById('token-string').value;
     let seed = document.getElementById('seed').value;
     let resolution = document.getElementById('resolution').value;
@@ -327,8 +327,7 @@ function grabTrainingData() {
     let batchSize = document.getElementById('batch-size').value;
     let imageRepeats = document.getElementById('image-repeats').value;
     let unetLr = document.getElementById('unet-lr').value;
-    let tiLr = document.getElementById('ti-lr').value;
-    let loraLr = document.getElementById('lora-lr').value;
+    let teLr = document.getElementById('te-lr').value;
     let lrScheduler = document.getElementById('lr-scheduler').value;
     let schedulerCycles = document.getElementById('scheduler-cycles').value;
     let warmupSteps = document.getElementById('warmup-steps').value;
@@ -348,6 +347,7 @@ function grabTrainingData() {
         "model-name": modelName,
         "model-selection": modelSelection,
         "training-subject": trainingSubject,
+        "object-name": objectName,
         "token-string": tokenString,
         "seed": seed,
         "resolution": resolution,
@@ -355,8 +355,7 @@ function grabTrainingData() {
         "batch-size": batchSize,
         "image-repeats": imageRepeats,
         "unet-lr": unetLr,
-        "ti-lr": tiLr,
-        "lora-lr": loraLr,
+        "te-lr": teLr,
         "lr-scheduler": lrScheduler,
         "scheduler-cycles": schedulerCycles,
         "warmup-steps": warmupSteps,
@@ -381,8 +380,7 @@ function personTrainingPreset() {
     "batch-size": "1",
     "image-repeats": "1",
     "unet-lr": "0.00005",
-    "ti-lr": "0.00005",
-    "lora-lr": "0.00005",
+    "te-lr": "0.000005",
     "lr-scheduler": "constant",
     "scheduler-cycles": "1",
     "warmup-steps": "0",

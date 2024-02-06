@@ -517,7 +517,7 @@ function clickedOnNewModelButton(event) {
 
     setTimeout(() => {
         newFormContainer.classList.remove('opacity-0');
-    }, 200);
+    }, 100);
 }
 
 function clickedOnEmptyPartOfGrid() {

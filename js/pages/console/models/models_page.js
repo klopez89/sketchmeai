@@ -517,7 +517,7 @@ function clickedOnNewModelButton(event) {
     newFormContainer.classList.add('transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
     setTimeout(() => {
         newFormContainer.classList.remove('translate-x-full', 'opacity-0');
-    }, 100); // 500ms matches the duration of the transition
+    }, 100);
 }
 
 function clickedOnEmptyPartOfGrid() {
@@ -539,8 +539,8 @@ function exitNewModelForm(event) {
     }, 100);
 
     let newFormContainer = document.getElementById('new-form-container');
-    newFormContainer.classList.remove('transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
+    newFormContainer.classList.add('transform', 'translate-x-full', 'opacity-0', 'transition-all', 'duration-500', 'ease-in-out');
     setTimeout(() => {
-        newFormContainer.classList.add('translate-x-full', 'opacity-0');
-    }, 100); // 500ms matches the duration of the transition
+        newFormContainer.classList.remove('transform', 'transition-all');
+    }, 100);
 }

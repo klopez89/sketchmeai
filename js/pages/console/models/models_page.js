@@ -508,15 +508,13 @@ function clickedOnNewModelButton(event) {
 
     let collectionGridContainer = document.getElementById('collection-grid-container');
     collectionGridContainer.classList.add('opacity-0');
-    collectionGridContainer.classList.remove('opacity-100');
     setTimeout(() => {
         collectionGridContainer.classList.add('hidden');
     }, 100);
 
     let newFormContainer = document.getElementById('new-form-container');
-    newFormContainer.classList.add('translate-x-full');
     setTimeout(() => {
-        newFormContainer.classList.remove('opacity-0');
+        newFormContainer.classList.remove('opacity-0', 'translate-x-full');
     }, 100);
 }
 

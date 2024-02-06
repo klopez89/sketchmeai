@@ -1,32 +1,34 @@
 function dummyGridHTML() {
     return `
-    <div class="bg-gray-100 h-full">
-        <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full">
-            <div id="collection-grid" role="list" class="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()">
-                <div id="new-model-button" class="relative rounded-lg overflow-hidden cursor-pointer" onclick="clickedOnNewModelButton(event)">
-                    <div class="aspect-[1/1] bg-gray-300 hover:bg-gray-200">
-                        <div class="flex justify-center items-center h-full text-white text-5xl">
-                            <i class="fas fa-plus" aria-hidden="true"></i>
+    <div class="bg-gray-100 h-full relative">
+        <div id="collection-grid-container" class="absolute mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full w-full z-10 bg-gray-100">
+            <div class="relative">
+                <div id="collection-grid" role="list" class="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()">
+                    <div id="new-model-button" class="relative rounded-lg overflow-hidden cursor-pointer" onclick="clickedOnNewModelButton(event)">
+                        <div class="aspect-[1/1] bg-gray-300 hover:bg-gray-200">
+                            <div class="flex justify-center items-center h-full text-white text-5xl">
+                                <i class="fas fa-plus" aria-hidden="true"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8 hidden">
-                <div class="bg-gray-100 w-full h-full flex justify-center items-start">
-                    <div class="mt-5">    
-                        <i class="fa fa-spinner fa-spin text-4xl text-gray-500 mt-5" aria-hidden="true"></i>
+                <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8 hidden">
+                    <div class="bg-gray-100 w-full h-full flex justify-center items-start">
+                        <div class="mt-5">    
+                            <i class="fa fa-spinner fa-spin text-4xl text-gray-500 mt-5" aria-hidden="true"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="infiniteLoader" class="text-4xl text-gray-500 w-full flex bg-transparent flex flex-col items-center pt-6 pb-0 hidden">
-                <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-            </div>                 
+                <div id="infiniteLoader" class="text-4xl text-gray-500 w-full flex bg-transparent flex flex-col items-center pt-6 pb-0 hidden">
+                    <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                </div> 
+            </div>
         </div>
 
         <!-- New div with a form -->
-        <div id="new-form-container" class="relative mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full">
+        <div id="new-form-container" class="absolute mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full w-full bg-gray-900">
             <form id="new-form" autocomplete="off">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                     <div class="col-span-2" id="name-field-container">
@@ -190,7 +192,7 @@ function dummyGridHTML() {
                     </div>
                     <div class="col-span-full flex flex-col justify-center" id="gen-button-container">
 
-                        <button id="uploadToServerButton" type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-base font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled>
+                        <button id="uploadToServerButton" type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-base font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
                             <p>Begin Fine Tuning Model</p>
                             <i class="fa fa-spinner fa-spin" style="position: absolute; display:none;" aria-hidden="true"></i>
                         </button>

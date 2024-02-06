@@ -502,6 +502,14 @@ function toggleUploadButtonInteraction() {
 	}
 }
 
+function clickedOnEmptyPartOfGrid() {
+    console.log('clicked on empty part of grid');
+}
+
+function clickedOutsideOfCollectionGrid() {
+    console.log('clicked outside of collection grid');
+}
+
 function clickedOnNewModelButton(event) {
     event.stopPropagation();
     console.log('clicked on new model button');
@@ -518,14 +526,6 @@ function clickedOnNewModelButton(event) {
     setTimeout(() => {
         newFormContainer.classList.remove('opacity-0');
     }, 100);
-}
-
-function clickedOnEmptyPartOfGrid() {
-    console.log('clicked on empty part of grid');
-}
-
-function clickedOutsideOfCollectionGrid() {
-    console.log('clicked outside of collection grid');
 }
 
 function exitNewModelForm(event) {

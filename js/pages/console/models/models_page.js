@@ -522,10 +522,6 @@ function clickedOnNewModelButton(event) {
 
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.remove('translate-x-full', 'opacity-0');
-
-    // setTimeout(() => {
-    //     newFormContainer.classList.remove('opacity-0');
-    // }, 100);
 }
 
 function exitNewModelForm(event) {
@@ -534,7 +530,7 @@ function exitNewModelForm(event) {
     let collectionGridContainer = document.getElementById('collection-grid-container');
     setTimeout(() => {
         collectionGridContainer.classList.remove('opacity-0', 'hidden');
-    }, 100);
+    }, 200);
 
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.add('translate-x-full', 'opacity-0');

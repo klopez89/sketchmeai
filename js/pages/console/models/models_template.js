@@ -1,7 +1,7 @@
 function dummyGridHTML() {
     return `
     <div class="bg-gray-100 h-full relative">
-        <div id="collection-grid-container" class="absolute mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full w-full z-10 bg-gray-100">
+        <div id="collection-grid-container" class="absolute mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full w-full z-10 bg-gray-100 transform transition-all duration-400 ease-in-out">
             <div class="relative">
                 <div id="collection-grid" role="list" class="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" @click.away="clickedOutsideOfCollectionGrid()" onclick="clickedOnEmptyPartOfGrid()">
                     <div id="new-model-button" class="relative rounded-lg overflow-hidden cursor-pointer" onclick="clickedOnNewModelButton(event)">
@@ -28,7 +28,7 @@ function dummyGridHTML() {
         </div>
 
         <!-- New div with a form -->
-        <div id="new-form-container" class="absolute opacity-0 mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full w-full bg-gray-100">
+        <div id="new-form-container" class="absolute opacity-0 mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full w-full bg-gray-100 transform transition-all duration-400 ease-in-out">
             <button class="mb-2 text-gray-500" onclick="exitNewModelForm(event)">Back</button>
             <form id="new-form" autocomplete="off">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">

@@ -507,16 +507,16 @@ function clickedOnNewModelButton(event) {
     console.log('clicked on new model button');
 
     let collectionGridContainer = document.getElementById('collection-grid-container');
-    collectionGridContainer.classList.add('opacity-0', 'transform', 'transition-all', 'duration-400', 'ease-in-out');
+    collectionGridContainer.classList.add('opacity-0');
     collectionGridContainer.classList.remove('opacity-100');
     setTimeout(() => {
         collectionGridContainer.classList.add('hidden');
     }, 100);
 
     let newFormContainer = document.getElementById('new-form-container');
-    newFormContainer.classList.add('transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
+    newFormContainer.classList.add('translate-x-full');
     setTimeout(() => {
-        newFormContainer.classList.remove('translate-x-full', 'opacity-0');
+        newFormContainer.classList.remove('opacity-0');
     }, 100);
 }
 
@@ -532,14 +532,10 @@ function exitNewModelForm(event) {
     event.preventDefault();
     event.stopPropagation();
     let collectionGridContainer = document.getElementById('collection-grid-container');
-    collectionGridContainer.classList.remove('hidden');
-    collectionGridContainer.classList.remove('opacity-0', 'transform', 'transition-all', 'duration-500', 'ease-in-out');
-    // setTimeout(() => {
-    //     collectionGridContainer.classList.add('opacity-100');
-    //     collectionGridContainer.classList.remove('hidden');
-    // }, 500);
+    setTimeout(() => {
+        collectionGridContainer.classList.remove('opacity-0', 'hidden');
+    }, 100);
 
     let newFormContainer = document.getElementById('new-form-container');
-    newFormContainer.classList.add('translate-x-50', 'opacity-0');
-
+    newFormContainer.classList.add('translate-x-full', 'opacity-0');
 }

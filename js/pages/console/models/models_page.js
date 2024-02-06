@@ -521,11 +521,11 @@ function clickedOnNewModelButton(event) {
     }, 100);
 
     let newFormContainer = document.getElementById('new-form-container');
-    newFormContainer.classList.remove('translate-x-full');
+    newFormContainer.classList.remove('translate-x-full', 'opacity-0');
 
-    setTimeout(() => {
-        newFormContainer.classList.remove('opacity-0');
-    }, 100);
+    // setTimeout(() => {
+    //     newFormContainer.classList.remove('opacity-0');
+    // }, 100);
 }
 
 function exitNewModelForm(event) {

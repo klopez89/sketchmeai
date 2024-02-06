@@ -539,6 +539,6 @@ function exitNewModelForm(event) {
     }, 500);
 
     let newFormContainer = document.getElementById('new-form-container');
-    newFormContainer.classList.add('translate-x-full', 'opacity-0');
+    newFormContainer.classList.add('translate-x-50', 'opacity-0');
 
 }

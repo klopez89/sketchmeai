@@ -532,11 +532,12 @@ function exitNewModelForm(event) {
     event.preventDefault();
     event.stopPropagation();
     let collectionGridContainer = document.getElementById('collection-grid-container');
+    collectionGridContainer.classList.remove('hidden');
     collectionGridContainer.classList.remove('opacity-0', 'transform', 'transition-all', 'duration-500', 'ease-in-out');
-    setTimeout(() => {
-        collectionGridContainer.classList.add('opacity-100');
-        collectionGridContainer.classList.remove('hidden');
-    }, 500);
+    // setTimeout(() => {
+    //     collectionGridContainer.classList.add('opacity-100');
+    //     collectionGridContainer.classList.remove('hidden');
+    // }, 500);
 
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.add('translate-x-50', 'opacity-0');

@@ -510,12 +510,14 @@ function clickedOnNewModelButton(event) {
     collectionGridContainer.classList.add('opacity-0');
     setTimeout(() => {
         collectionGridContainer.classList.add('hidden');
-    }, 100);
+    }, 400);
 
     let newFormContainer = document.getElementById('new-form-container');
+    newFormContainer.classList.remove('translate-x-full');
+
     setTimeout(() => {
-        newFormContainer.classList.remove('opacity-0', 'translate-x-full');
-    }, 400);
+        newFormContainer.classList.remove('opacity-0');
+    }, 200);
 }
 
 function clickedOnEmptyPartOfGrid() {

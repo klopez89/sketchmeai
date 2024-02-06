@@ -340,8 +340,10 @@ function grabTrainingData() {
     let bitAdam = document.getElementById('8bit-adam').checked;
 	let files = getUploadedFiles();
     let userRecId = getUserRecId();
+    let modelId = generateId()
 
     let trainingData = {
+        "model-id": modelId,
         "user-rec-id": userRecId,
         "model-name": modelName,
         "model-selection": modelSelection,
@@ -498,4 +500,12 @@ function toggleUploadButtonInteraction() {
 		$('#uploadToServerButton').removeClass('bg-blue-600');
 		$('#uploadToServerButton').removeClass('hover:bg-blue-500');
 	}
+}
+
+function clickedOnNewModelButton() {
+    console.log('clicked on new model button');
+}
+
+function clickedOnEmptyPartOfGrid() {
+    console.log('clicked on empty part of grid');
 }

@@ -539,7 +539,10 @@ function exitNewModelForm(event) {
     }, 100);
 
     let newFormContainer = document.getElementById('new-form-container');
-    newFormContainer.classList.add('transform', 'translate-x-full', 'opacity-0', 'transition-all', 'duration-500', 'ease-in-out');
+    newFormContainer.classList.add('transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
+    setTimeout(() => {
+        newFormContainer.classList.add('opacity-0'); // Add opacity-0 after the translation has started
+    }, 100);
     setTimeout(() => {
         newFormContainer.classList.remove('transform', 'transition-all', 'translate-x-full');
     }, 100);

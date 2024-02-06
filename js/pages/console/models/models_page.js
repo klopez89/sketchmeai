@@ -515,7 +515,7 @@ function clickedOnNewModelButton(event) {
     let newFormContainer = document.getElementById('new-form-container');
     setTimeout(() => {
         newFormContainer.classList.remove('opacity-0', 'translate-x-full');
-    }, 100);
+    }, 400);
 }
 
 function clickedOnEmptyPartOfGrid() {

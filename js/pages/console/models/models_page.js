@@ -532,9 +532,9 @@ function exitNewModelForm(event) {
     event.preventDefault();
     event.stopPropagation();
     let collectionGridContainer = document.getElementById('collection-grid-container');
-    collectionGridContainer.classList.remove('opacity-0', 'transform', 'transition-all', 'duration-400', 'ease-in-out');
-    collectionGridContainer.classList.add('opacity-100');
+    collectionGridContainer.classList.remove('opacity-0', 'transform', 'transition-all', 'duration-500', 'ease-in-out');
     setTimeout(() => {
+        collectionGridContainer.classList.add('opacity-100');
         collectionGridContainer.classList.remove('hidden');
     }, 500);
 

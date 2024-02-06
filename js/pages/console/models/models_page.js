@@ -512,7 +512,9 @@ function clickedOnNewModelButton(event) {
 
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.add('opacity-0', 'transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
-    newFormContainer.classList.remove('translate-x-full', 'opacity-0');
+    setTimeout(() => {
+        newFormContainer.classList.remove('translate-x-full', 'opacity-0');
+    }, 500); // 500ms matches the duration of the transition
 }
 
 function clickedOnEmptyPartOfGrid() {

@@ -129,14 +129,9 @@ function dummyGridHTML() {
                             <input type="number" name="unet-lr" id="unet-lr" step="0.000001" min="0.000004" max="0.001" value="0.00005" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
-                    <div class="col-span-2" id="ti-lr-field-container">
-                        <label for="ti-lr" class="block text-sm font-medium leading-6 text-gray-900">Text Inversion Learning Rate</label><div class="mt-2">
-                            <input type="number" name="ti-lr" id="ti-lr" step="0.000001" min="0.000004" max="0.001" value="0.00005" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                        </div>
-                    </div>
-                    <div class="col-span-2" id="lora-lr-field-container">
-                        <label for="lora-lr" class="block text-sm font-medium leading-6 text-gray-900">Lora Learning Rate</label><div class="mt-2">
-                            <input type="number" name="lora-lr" id="lora-lr" step="0.000001" min="0.000004" max="0.001" value="0.00005" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <div class="col-span-2" id="te-lr-field-container">
+                        <label for="te-lr" class="block text-sm font-medium leading-6 text-gray-900">Text Inversion Learning Rate</label><div class="mt-2">
+                            <input type="number" name="te-lr" id="te-lr" step="0.000001" min="0.000004" max="0.001" value="0.000005" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="col-span-2" id="lr-scheduler-container">

@@ -527,3 +527,20 @@ function clickedOnEmptyPartOfGrid() {
 function clickedOutsideOfCollectionGrid() {
     console.log('clicked outside of collection grid');
 }
+
+function exitNewModelForm(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let collectionGridContainer = document.getElementById('collection-grid-container');
+    collectionGridContainer.classList.remove('opacity-0', 'transform', 'transition-all', 'duration-400', 'ease-in-out');
+    collectionGridContainer.classList.add('opacity-100');
+    setTimeout(() => {
+        collectionGridContainer.classList.remove('hidden');
+    }, 100);
+
+    let newFormContainer = document.getElementById('new-form-container');
+    newFormContainer.classList.remove('transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
+    setTimeout(() => {
+        newFormContainer.classList.add('translate-x-full', 'opacity-0');
+    }, 100); // 500ms matches the duration of the transition
+}

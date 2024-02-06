@@ -505,6 +505,10 @@ function toggleUploadButtonInteraction() {
 function clickedOnNewModelButton(event) {
     event.stopPropagation();
     console.log('clicked on new model button');
+
+    let newFormContainer = document.getElementById('new-form-container');
+    newFormContainer.classList.add('opacity-0', 'transform', 'translate-x-full', 'transition-all', 'duration-500', 'ease-in-out');
+    newFormContainer.classList.remove('translate-x-full', 'opacity-0');
 }
 
 function clickedOnEmptyPartOfGrid() {

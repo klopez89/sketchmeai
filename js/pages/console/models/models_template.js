@@ -34,7 +34,7 @@ function dummyGridHTML() {
                     <div class="col-span-2" id="name-field-container">
                         <div class="flex justify-between items-center">
                             <label for="model-name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
-                            <div class="text-xs text-red-500 italic" id="model-name-validation">
+                            <div class="text-xs text-red-500 italic hidden" id="model-name-validation">
                                 Model name is already taken.
                             </div>
                         </div>

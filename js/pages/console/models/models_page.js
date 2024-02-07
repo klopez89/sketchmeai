@@ -408,6 +408,10 @@ function applyTrainingPreset(preset) {
 
 function kickoffModelCreation(trainingData) {
     console.log("about to kickoff model gen, w/ training data: ", trainingData);
+
+    let modelNameValidationDiv = document.getElementById('model-name-validation');
+    modelNameValidationDiv.classList.add('hidden');
+
     let action = `${CONSTANTS.BACKEND_URL}model/new`
     $.ajax({
         type: 'POST',
@@ -424,6 +428,7 @@ function kickoffModelCreation(trainingData) {
             console.log("error");
             console.log("Status code: ", data.status);
             console.log("Response text: ", data.responseText);
+            modelNameValidationDiv.classList.remove('hidden');
         }
     });
 }

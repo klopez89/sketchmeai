@@ -32,7 +32,12 @@ function dummyGridHTML() {
             <form id="new-form" autocomplete="off">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                     <div class="col-span-2" id="name-field-container">
-                        <label for="model-name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                        <div class="flex justify-between items-center">
+                            <label for="model-name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                            <div class="text-xs text-red-500 italic" id="model-name-validation">
+                                Model name is already taken.
+                            </div>
+                        </div>
                         <div class="mt-2">
                             <input type="text" name="model-name" id="model-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>

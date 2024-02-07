@@ -422,7 +422,8 @@ function kickoffModelCreation(trainingData) {
         },
         error: function(data) {
             console.log("error");
-            console.log(data);
+            console.log("Status code: ", data.status);
+            console.log("Response text: ", data.responseText);
         }
     });
 }

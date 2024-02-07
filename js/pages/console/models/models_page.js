@@ -315,7 +315,7 @@ function isTrainingDataValid() {
     
     shouldUseRegImgs = false;
     if (trainingSubject == 'person') {
-        let shouldUseRegImgs = document.getElementById('use-reg-imgs').checked;
+        shouldUseRegImgs = document.getElementById('use-reg-imgs').checked;
     }
 
     isDataValid = isDataValid && shouldUseRegImgs != null;

@@ -202,6 +202,15 @@ function dummyGridHTML() {
                                 </div>
                             </div>
                     </div>
+                    <div class="col-span-2" id="use-reg-imgs-field-container"><div class="relative flex gap-x-3">
+                            <div class="flex h-6 items-center">
+                                <input id="use-reg-imgs" name="useRegImgs" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                                </div>
+                                <div class="text-sm leading-6">
+                                    <p class="text-gray-500">Use regularization imgs</p>
+                                </div>
+                            </div>
+                    </div>
                 </div>
             </form>
         </div>

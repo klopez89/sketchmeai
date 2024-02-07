@@ -311,7 +311,15 @@ function isTrainingDataValid() {
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
     let bitAdam = document.getElementById('8bit-adam').checked;
 
-    let isDataValid = modelName && modelSelection && trainingSubject && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && xformers != null && gradientCheckpoint != null && bitAdam != null;
+    var isDataValid = modelName && modelSelection && trainingSubject && trainingSubject !== 'Select an option' && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && xformers != null && gradientCheckpoint != null && bitAdam != null;
+    
+    shouldUseRegImgs = false;
+    if (trainingSubject == 'person') {
+        let shouldUseRegImgs = document.getElementById('use-reg-imgs').checked;
+    }
+
+    isDataValid = isDataValid && shouldUseRegImgs != null;
+
     return isDataValid;
 }
 
@@ -367,6 +375,12 @@ function grabTrainingData() {
         "8bit-adam": bitAdam,
         "files": files
     };
+
+    if (trainingSubject == 'person') {
+        let shouldUseRegImgs = document.getElementById('use-reg-imgs').checked;
+        trainingData['use-reg-imgs'] = shouldUseRegImgs;
+    }
+
     return trainingData;
 }
 
@@ -385,7 +399,7 @@ function personTrainingPreset() {
     "scheduler-cycles": "1",
     "warmup-steps": "0",
     "validation-epochs": "50",
-    "max-train-steps": "auto",
+    "max-train-steps": "1000",
     "mixed-precision": "fp16",
     "xformers": false,
     "gradient-checkpoint": true,
@@ -454,17 +468,19 @@ function configureTrainingSubjectField() {
         switch(selectedSubject) {
             case 'person':
                 preset = personTrainingPreset();
-                hideObjectNameField();
+                hideFieldsWithIds(['object-name-container'])
+                showFieldsWithIds(['use-reg-imgs-field-container'])
                 console.log('Ready to apply person preset');
                 break;
             case 'style':
                 // preset = styleTrainingPreset();
-                hideObjectNameField();
+                hideFieldsWithIds(['object-name-container', 'use-reg-imgs-field-container'])
                 console.log('Ready to apply style preset');
                 break;
             case 'object':
                 // preset = objectTrainingPreset();
-                showObjectNameField();
+                showFieldsWithIds(['object-name-container'])
+                hideFieldsWithIds(['use-reg-imgs-field-container'])
                 console.log('Ready to apply object preset');
                 break;
             // Add more cases if there are other training subjects
@@ -485,6 +501,18 @@ function showObjectNameField() {
 
 function hideObjectNameField() {
     document.getElementById('object-name-container').classList.add('hidden');
+}
+
+function showFieldsWithIds(ids) {
+    ids.forEach(id => {
+        document.getElementById(id).classList.remove('hidden');
+    });
+}
+
+function hideFieldsWithIds(ids) {
+    ids.forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+    });
 }
 
 function toggleUploadButtonInteraction() {

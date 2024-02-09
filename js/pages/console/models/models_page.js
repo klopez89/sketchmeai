@@ -1,4 +1,5 @@
 addModelsGrid();
+addBaseModelMenu();
 configureNewModelUploadArea();
 configureTrainingSubjectField();
 configureTrainingForm();

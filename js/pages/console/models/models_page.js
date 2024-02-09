@@ -17,10 +17,10 @@ function startListeningForModelUpdates(userRecId, modelId) {
         .collection('aiModels').doc(modelId)
         .onSnapshot((doc) => {
             let aiModel_dict = doc.data();
-            let generation_time = aiModel_dict['generation_time'];
-            let time_created = aiModel_dict['time_created_est'];
-            let version = aiModel_dict['version'];
-            let status = aiModel_dict['status'];
+            let generation_time = aiModel_dict?.generation_time;
+            let time_created = aiModel_dict?.time_created_est;
+            let version = aiModel_dict?.version;
+            let status = aiModel_dict?.status;
             let error = aiModel_dict['error'];
 
             // const gen_element = document.querySelector(`div[model-id="${modelId}"]`);

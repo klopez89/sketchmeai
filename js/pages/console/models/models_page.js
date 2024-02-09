@@ -21,7 +21,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
             let time_created = aiModel_dict?.time_created_est;
             let version = aiModel_dict?.version;
             let status = aiModel_dict?.status;
-            let error = aiModel_dict['error'];
+            let error = aiModel_dict?.error;
 
             // const gen_element = document.querySelector(`div[model-id="${modelId}"]`);
             if (status === PredictionStatus.IN_PROGRESS) {

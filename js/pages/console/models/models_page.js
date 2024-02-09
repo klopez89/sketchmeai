@@ -27,7 +27,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
             if (status === PredictionStatus.IN_PROGRESS) {
                 console.log('model is in progress');
                 // gen_element.querySelector('#gen-status').innerHTML = '...queued';
-            } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
+            } else if (status === PredictionStatus.BEING_HANDLED) {
                 console.log('model is being handled');
                 // gen_element.querySelector('#gen-status').innerHTML = '...generating';
                 // cancel_button = gen_element.querySelector('#cancel-button');
@@ -37,7 +37,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 //     cancel_button.classList.add('hidden');
                 // });
                 // cancel_button.classList.remove('hidden');
-            } else if (prediction_status === PredictionStatus.SUCCEEDED) {
+            } else if (status === PredictionStatus.SUCCEEDED) {
                 // gen_element.querySelector('#gen-loader').classList.add('hidden');
                 // gen_element.querySelector('#gen-status').innerHTML = '';
                 // loadGenImage(signed_gen_url, gen_element);
@@ -45,14 +45,14 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 // configureCopyButton(generation_dict, gen_element);
                 console.log('model generation succeeded');
                 unsubscribe(); // Stop listening for updates
-            } else if (prediction_status === PredictionStatus.FAILED) {
+            } else if (status === PredictionStatus.FAILED) {
                 console.log('model generation failed');
                 console.log('error: ', error);
                 // gen_element.querySelector('#gen-status').innerHTML = '';
                 // loadGenImage(FAILED_IMG_URL, gen_element);
                 // configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
-            } else if (prediction_status === PredictionStatus.CANCELED) {
+            } else if (status === PredictionStatus.CANCELED) {
                 console.log('model generation canceled');
                 // gen_element.querySelector('#gen-status').innerHTML = '';
                 // loadGenImage(CANCELED_IMG_URL, gen_element);

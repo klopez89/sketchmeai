@@ -9,6 +9,63 @@ function addModelsGrid() {
     $('#console-content').append(dummy_grid_div);
 }
 
+
+function startListeningForModelUpdates(userRecId, modelId) {
+    console.log('startListeningForModelUpdates');
+    console.log(`userRecId: ${userRecId}, modelId: ${modelId}`);
+    let unsubscribe = db.collection('users').doc(userRecId)
+        .collection('aiModels').doc(modelId)
+        .onSnapshot((doc) => {
+            let aiModel_dict = doc.data();
+            let generation_time = aiModel_dict['generation_time'];
+            let time_created = aiModel_dict['time_created_est'];
+            let version = aiModel_dict['version'];
+            let status = aiModel_dict['status'];
+            let error = aiModel_dict['error'];
+
+            // const gen_element = document.querySelector(`div[model-id="${modelId}"]`);
+            if (status === PredictionStatus.IN_PROGRESS) {
+                console.log('model is in progress');
+                // gen_element.querySelector('#gen-status').innerHTML = '...queued';
+            } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
+                console.log('model is being handled');
+                // gen_element.querySelector('#gen-status').innerHTML = '...generating';
+                // cancel_button = gen_element.querySelector('#cancel-button');
+                // cancel_button.addEventListener('click', function() {
+                //     gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
+                //     cancelGeneration(generation_dict.replicate_prediction_id);
+                //     cancel_button.classList.add('hidden');
+                // });
+                // cancel_button.classList.remove('hidden');
+            } else if (prediction_status === PredictionStatus.SUCCEEDED) {
+                // gen_element.querySelector('#gen-loader').classList.add('hidden');
+                // gen_element.querySelector('#gen-status').innerHTML = '';
+                // loadGenImage(signed_gen_url, gen_element);
+                // // configure_main_gen_button(generation_dict, gen_element);
+                // configureCopyButton(generation_dict, gen_element);
+                console.log('model generation succeeded');
+                unsubscribe(); // Stop listening for updates
+            } else if (prediction_status === PredictionStatus.FAILED) {
+                console.log('model generation failed');
+                console.log('error: ', error);
+                // gen_element.querySelector('#gen-status').innerHTML = '';
+                // loadGenImage(FAILED_IMG_URL, gen_element);
+                // configureCopyButton(generation_dict, gen_element);
+                unsubscribe(); // Stop listening for updates
+            } else if (prediction_status === PredictionStatus.CANCELED) {
+                console.log('model generation canceled');
+                // gen_element.querySelector('#gen-status').innerHTML = '';
+                // loadGenImage(CANCELED_IMG_URL, gen_element);
+               
+                // configureCopyButton(generation_dict, gen_element);
+                unsubscribe(); // Stop listening for updates
+            }
+
+            console.log(`for model_id: ${modelId} status is ${status}`);
+    });
+}
+
+
 // Upload related functions
 
 function configureNewModelUploadArea() {
@@ -436,6 +493,7 @@ function kickoffModelCreation(trainingData) {
         success: function(data) {
             console.log("successfully returned from new model endpoint");
             console.log(data);
+            startListeningForModelUpdates(trainingData['user-rec-id'], trainingData['model-id']);
             // startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);
         },
         error: function(data) {

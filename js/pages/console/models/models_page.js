@@ -9,6 +9,12 @@ function addModelsGrid() {
     $('#console-content').append(dummy_grid_div);
 }
 
+function addBaseModelMenu() {
+    let base_model_menu_html = baseModelMenuHTML();
+    let base_model_menu_div = $($.parseHTML(base_model_menu_html));
+    $('#console-content').append(base_model_menu_div);
+}
+
 
 function startListeningForModelUpdates(userRecId, modelId) {
     console.log('startListeningForModelUpdates');
@@ -45,16 +51,22 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 // // configure_main_gen_button(generation_dict, gen_element);
                 // configureCopyButton(generation_dict, gen_element);
                 console.log('model generation succeeded');
+                const model_element = document.querySelector(`div[model-id="${modelId}"]`);
+                configureModelDivPostFinalStatusUpdate(model_element);
                 unsubscribe(); // Stop listening for updates
             } else if (status === PredictionStatus.FAILED) {
                 console.log('model generation failed');
                 console.log('error: ', error);
+                const model_element = document.querySelector(`div[model-id="${modelId}"]`);
+                configureModelDivPostFinalStatusUpdate(model_element);
                 // gen_element.querySelector('#gen-status').innerHTML = '';
                 // loadGenImage(FAILED_IMG_URL, gen_element);
                 // configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (status === PredictionStatus.CANCELED) {
                 console.log('model generation canceled');
+                const model_element = document.querySelector(`div[model-id="${modelId}"]`);
+                configureModelDivPostFinalStatusUpdate(model_element);
                 // gen_element.querySelector('#gen-status').innerHTML = '';
                 // loadGenImage(CANCELED_IMG_URL, gen_element);
                
@@ -478,6 +490,22 @@ function applyTrainingPreset(preset) {
     }
 }
 
+function addNewModelToGrid(modelId) {
+    let new_model_grid_html = newModelEntryDiv(modelId);
+    let new_model_div = $($.parseHTML(new_model_grid_html));
+    new_model_div.hide().insertAfter('#collection-grid div:first-child').fadeIn();
+}
+
+function configureModelDivPostFinalStatusUpdate(model_element) {
+    let modelCompMenu = document.querySelector('#console-content .model-comp-menu');
+    let actionContainer = model_element.querySelector('#action-container');
+
+    let modelCompMenuCopy = modelCompMenu.cloneNode(true);
+    modelCompMenuCopy.classList.remove('hidden');
+    actionContainer.appendChild(modelCompMenuCopy);
+    actionContainer.classList.remove('hidden');
+}
+
 function kickoffModelCreation(trainingData) {
     console.log("about to kickoff model gen, w/ training data: ", trainingData);
 
@@ -494,6 +522,7 @@ function kickoffModelCreation(trainingData) {
         success: function(data) {
             console.log("successfully returned from new model endpoint");
             console.log(data);
+            addNewModelToGrid(trainingData['model-id'])
             animateAwayFromNewModelForm();
             startListeningForModelUpdates(trainingData['user-rec-id'], trainingData['model-id']);
             // startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);

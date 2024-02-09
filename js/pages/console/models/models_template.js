@@ -240,3 +240,45 @@ function uploadEntryDiv(file, is_first_file) {
   
     return html
   }
+
+  function newModelEntryDiv(model_id) {
+    let html = `
+    <div class="relative rounded-lg overflow-hidden" model-id="${model_id}">
+        <div class="group aspect-h-10 aspect-w-10 block w-full relative">
+
+            <div class="aspect-[1/1] bg-gray-300 hover:bg-gray-900">
+                <div class="flex justify-center items-center h-full text-white text-5xl">
+                    <p id="model-name" class="text-black text-2xl"></p>
+                </div>
+            </div>
+            
+            <div id="model-loader" class="bg-gray-200 flex justify-center items-center">
+                <i class="fa fa-spinner fa-spin text-4xl text-gray-500" aria-hidden="true"></i>
+                <p class="absolute bottom-0 right-0 pb-2 pr-2 text-xs text-gray-500" id="gen-status">...fine-tuning</p>
+                <button class="hidden absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500" id="cancel-button">Cancel</button>
+            </div>
+
+            <div id="action-container" class="hidden bg-transparent group-hover:bg-gray-900 group-hover:bg-opacity-10 pointer-events-none group transition-bg-opacity duration-200">
+            </div>
+
+            <div id="model-menu-shield" class="bg-gray-900 bg-opacity-50 absolute top-0 left-0 w-full h-full hidden" onclick="tappedModelMenuShield(event)"></div>
+        
+        </div>
+    </div>
+    `
+  }
+
+  function baseModelMenuHTML() {
+    return `
+    <div class="model-comp-menu hidden relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+        <button type="button" class="absolute text-2xl text-white top-2 right-2 flex items-center p-2 opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="model-menu-button" onclick="modelMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+            <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+        </button>
+
+        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-4 z-10 mt-11 w-32 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="model-menu-button" tabindex="-1" style="display: none;">
+        
+            <a href="#" class="block px-3 py-1 text-sm leading-6 text-red-600" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); deleteButtonPressed(event)">Delete</a>
+        </div>
+    </div>
+    `;
+}

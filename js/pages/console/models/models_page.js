@@ -67,22 +67,32 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 console.log('model generation failed');
                 console.log('error: ', error);
                 model_element.querySelector('#model-status').innerHTML = 'failed';
+                loadModelImage(FAILED_IMG_URL, model_element);
                 configureModelDivPostFinalStatusUpdate(model_element);
-                // gen_element.querySelector('#gen-status').innerHTML = '';
-                // loadGenImage(FAILED_IMG_URL, gen_element);
-                // configureCopyButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (status === PredictionStatus.CANCELED) {
                 console.log('model generation canceled');
                 model_element.querySelector('#model-status').innerHTML = 'cancelled';
                 configureModelDivPostFinalStatusUpdate(model_element);
-                // loadGenImage(CANCELED_IMG_URL, gen_element);
-                // configureCopyButton(generation_dict, gen_element);
+                loadModelImage(CANCELED_IMG_URL, model_element);
                 unsubscribe(); // Stop listening for updates
             }
 
             console.log(`for model_id: ${modelId} status is ${status}`);
     });
+}
+
+function loadModelImage(img_url, new_grid_item_div) {
+    let imgElement = new_grid_item_div.querySelector('img');
+    let actualImage = new Image();
+    actualImage.onload = function() {
+        imgElement.src = this.src;
+        imgElement.setAttribute('data-te-img', this.src);
+        new_grid_item_div.querySelector('#model-loader').classList.add('hidden');
+        imgElement.classList.add('opacity-100');
+        imgElement.classList.remove('opacity-0');
+    };
+    actualImage.src = img_url;
 }
 
 

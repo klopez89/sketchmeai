@@ -494,7 +494,7 @@ function applyTrainingPreset(preset) {
 function addNewModelToGrid(modelId) {
     let new_model_grid_html = newModelEntryDiv(modelId);
     let new_model_div = $($.parseHTML(new_model_grid_html));
-    new_model_div.hide().insertAfter('#collection-grid div:first-child').fadeIn();
+    new_model_div.hide().insertAfter('#collection-grid > div:first-child').fadeIn();
 }
 
 function configureModelDivPostFinalStatusUpdate(model_element) {

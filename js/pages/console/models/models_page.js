@@ -493,6 +493,7 @@ function kickoffModelCreation(trainingData) {
         success: function(data) {
             console.log("successfully returned from new model endpoint");
             console.log(data);
+            animateAwayFromNewModelForm();
             startListeningForModelUpdates(trainingData['user-rec-id'], trainingData['model-id']);
             // startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);
         },
@@ -617,6 +618,10 @@ function clickedOnNewModelButton(event) {
 function exitNewModelForm(event) {
     event.preventDefault();
     event.stopPropagation();
+    animateAwayFromNewModelForm();
+}
+
+function animateAwayFromNewModelForm() {
     let collectionGridContainer = document.getElementById('collection-grid-container');
     collectionGridContainer.classList.remove('hidden');
     setTimeout(() => {
@@ -626,4 +631,3 @@ function exitNewModelForm(event) {
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.add('translate-x-full', 'opacity-0');
 }
-

@@ -95,6 +95,10 @@ function loadModelImage(img_url, new_grid_item_div) {
     actualImage.src = img_url;
 }
 
+function showModelMenu(event) {
+    console.log('pressed on the img element');
+    event.stopPropagation();
+}
 
 // Upload related functions
 

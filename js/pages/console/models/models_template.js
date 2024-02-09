@@ -266,6 +266,7 @@ function uploadEntryDiv(file, is_first_file) {
         </div>
     </div>
     `
+    return html;
   }
 
   function baseModelMenuHTML() {

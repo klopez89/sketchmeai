@@ -14,9 +14,10 @@ function startListeningForModelUpdates(userRecId, modelId) {
     console.log('startListeningForModelUpdates');
     console.log(`userRecId: ${userRecId}, modelId: ${modelId}`);
     let unsubscribe = db.collection('users').doc(userRecId)
-        .collection('aiModels').doc(modelId)
+        .collection('ai_models').doc(modelId)
         .onSnapshot((doc) => {
             let aiModel_dict = doc.data();
+            console.log('ai_model dicts: ', aiModel_dict);
             let generation_time = aiModel_dict?.generation_time;
             let time_created = aiModel_dict?.time_created_est;
             let version = aiModel_dict?.version;

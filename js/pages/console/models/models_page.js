@@ -30,6 +30,17 @@ function startListeningForModelUpdates(userRecId, modelId) {
             let version = aiModel_dict?.version;
             let status = aiModel_dict?.status;
             let error = aiModel_dict?.error;
+            let name = aiModel_dict?.name;
+
+            let shortened_name = null;
+            if (name) {
+                let match = name.match(/\/(.*?)_/);
+                if (match) {
+                    shortened_name = match[1];
+                }
+            }
+
+            console.log('shortened name is: ', shortened_name);
 
             const model_element = document.querySelector(`div[model-id="${modelId}"]`);
             if (status === PredictionStatus.IN_PROGRESS) {
@@ -114,6 +125,33 @@ function configureUploadButton() {
 			beginNewModelCreation();
 		});
 	}
+}
+
+
+function modelMenuShowing(event) {
+    event.preventDefault();
+    closeAnyOpenModelMenus();
+    let modelElement = event.target.closest('[model-id]');
+    let modelMenuShield = modelElement.querySelector('#model-menu-shield');
+    modelMenuShield.classList.remove('hidden');
+    event.stopPropagation();
+}
+
+function closeAnyOpenModelMenus() {
+    let modelCompMenus = document.querySelectorAll('.model-comp-menu');
+    let openMenus = Array.from(modelCompMenus).filter(menu => {
+        return menu.__x.$data.open;
+    });
+    openMenus.forEach((menu) => {
+        menu.__x.$data.open = false;
+        let modelElement = menu.closest('[model-id]');
+        hideModelMenuShield(modelElement);
+    });
+}
+
+function hideModelMenuShield(modelElement) {
+    let modelMenuShield = modelElement.querySelector('#model-menu-shield');
+    modelMenuShield.classList.add('hidden');
 }
 
 function triggerLocalUploadMenu(event) {

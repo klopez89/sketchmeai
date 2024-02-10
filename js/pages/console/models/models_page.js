@@ -83,7 +83,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
 }
 
 function loadModelImage(img_url, new_grid_item_div) {
-    let modelNameContainerElement = new_grid_item_div.querySelector('model-name-container');
+    let modelNameContainerElement = new_grid_item_div.querySelector('#model-name-container');
     modelNameContainerElement.classList.add('hidden');
 
     let imgElement = new_grid_item_div.querySelector('img');

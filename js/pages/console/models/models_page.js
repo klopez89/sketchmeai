@@ -725,3 +725,10 @@ function deleteButtonPressed(event) {
     // fireGenDeletion(generationId, genElement);
     event.stopPropagation();
 }
+
+function tappedModelMenuShield(event) {
+    let modelCompMenu = event.target.parentElement.querySelector('.model-comp-menu');
+    modelCompMenu.__x.$data.open = false;
+    event.target.classList.add('hidden');
+    event.stopPropagation();
+}

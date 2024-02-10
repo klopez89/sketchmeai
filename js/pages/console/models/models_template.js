@@ -248,7 +248,7 @@ function uploadEntryDiv(file, is_first_file) {
 
             <img src="" alt="" class="object-cover group-hover:opacity-95 transition-opacity duration-200 cursor-pointer opacity-100" onclick="showModelMenu(event)">
 
-            <div class="aspect-[1/1] bg-gray-300 hover:bg-gray-900">
+            <div id="model-name-container" class="aspect-[1/1] bg-gray-300 hover:bg-gray-900">
                 <div class="flex justify-center items-center h-full text-white text-5xl">
                     <p id="model-name" class="text-black text-2xl"></p>
                 </div>

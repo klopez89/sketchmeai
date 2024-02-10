@@ -27,20 +27,13 @@ function startListeningForModelUpdates(userRecId, modelId) {
             console.log('ai_model dicts: ', aiModel_dict);
             let generation_time = aiModel_dict?.generation_time;
             let time_created = aiModel_dict?.time_created_est;
+            let replicate_name = aiModel_dict?.replicate_name;
             let version = aiModel_dict?.version;
             let status = aiModel_dict?.status;
             let error = aiModel_dict?.error;
             let name = aiModel_dict?.name;
-
-            let shortened_name = null;
-            if (name) {
-                let match = name.match(/\/(.*?)_/);
-                if (match) {
-                    shortened_name = match[1];
-                }
-            }
-
-            console.log('shortened name is: ', shortened_name);
+       
+            console.log(`user-facing model name is ${name}, w/ replicate_name: ${replicate_name}, and version: ${version}`);
 
             const model_element = document.querySelector(`div[model-id="${modelId}"]`);
             if (status === PredictionStatus.IN_PROGRESS) {

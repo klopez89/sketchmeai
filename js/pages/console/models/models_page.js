@@ -676,10 +676,12 @@ function toggleUploadButtonInteraction() {
 
 function clickedOnEmptyPartOfGrid() {
     console.log('clicked on empty part of grid');
+    closeAnyOpenModelMenus();
 }
 
 function clickedOutsideOfCollectionGrid() {
     console.log('clicked outside of collection grid');
+    closeAnyOpenModelMenus();
 }
 
 function clickedOnNewModelButton(event) {
@@ -711,4 +713,15 @@ function animateAwayFromNewModelForm() {
 
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.add('translate-x-full', 'opacity-0');
+}
+
+function deleteButtonPressed(event) {
+    event.preventDefault();
+    let modelElement = event.target.closest('[model-id]');
+    hideModelMenuShield(modelElement);
+    let modelId = modelElement.getAttribute('model-id');
+    console.log(`delete button pressed for modelId: ${modelId}`);
+    // setGenLoaderToDeleteMode(genElement);
+    // fireGenDeletion(generationId, genElement);
+    event.stopPropagation();
 }

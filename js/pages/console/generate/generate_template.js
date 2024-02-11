@@ -208,6 +208,6 @@ function baseGenMenuHTML() {
 
 function new_model_option(option_id, instkey, model, version, model_name) {
     return `
-    <option id="${option_id}" instkey="${instkey}" model="${model}" version="${version}">&nbsp;&nbsp;${model_name}</option>
+    <option id="${option_id}" instkey="${instkey}" model="${model}" version="${version}" modelName="${model_name}">&nbsp;&nbsp;${model_name}</option>
     `;
 }

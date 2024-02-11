@@ -250,7 +250,7 @@ function uploadEntryDiv(file, is_first_file) {
 
             <div id="model-name-container" class="aspect-[1/1] bg-gray-300 hover:bg-gray-900">
                 <div class="flex justify-center items-center h-full text-white text-5xl">
-                    <p id="model-name" class="text-black text-2xl"></p>
+                    <p id="model-name-label" class="text-black text-2xl"></p>
                 </div>
             </div>
             

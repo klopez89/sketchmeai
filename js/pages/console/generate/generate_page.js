@@ -16,6 +16,7 @@ configureInfiniteScroll();
 let userRecId = getUserRecId();
 let lastDocId = null;
 fetchGenerations(userRecId, collectionId_Test, lastDocId);
+fetchWorkingModels(userRecId);
 
 /////////////////////////////////////////////////////////////////////
 
@@ -31,6 +32,40 @@ function randomizeSeed(event) {
     event.preventDefault();
     document.getElementById('seed').value = -1;
 }
+
+
+
+function fetchWorkingModels(userRecId) {
+    $.ajax({
+        url: CONSTANTS.BACKEND_URL + 'models/working',
+        type: 'POST',
+        data: JSON.stringify({
+            userRecId: userRecId,
+        }),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(data) {
+            models = data.models;
+            models.forEach(function(model) {
+                
+                let model_id = model.rec_id;
+                let model = model.replicate_name;
+                let instKey = "zxc"
+                let long_version = model.version;
+                let short_version = long_version.split(':')[1];
+                let model_name = model.name;
+            
+                let new_model_option = new_model_option(model_id, instKey, model, short_version, model_name);
+                let modelDropdown = document.getElementById('model-dropdown');
+                modelDropdown.appendChild(new_model_option);
+            });
+        },
+        error: function(error) {
+            console.error('Error:', error);
+        }
+    });
+}
+
 
 var sample_new_grid_item = null;
 

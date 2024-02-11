@@ -53,6 +53,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 model_element.querySelector('#model-loader').classList.add('hidden');
                 // loadGenImage(signed_gen_url, gen_element);
                 model_element.querySelector('#model-status').innerHTML = '';
+                model_element.querySelector('#model-name').innerHTML = name;
                 console.log('model generation succeeded');
                 configureModelDivPostFinalStatusUpdate(model_element);
                 unsubscribe(); // Stop listening for updates

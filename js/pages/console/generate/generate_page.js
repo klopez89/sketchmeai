@@ -50,7 +50,7 @@ function fetchWorkingModels(userRecId) {
                 
                 let model_id = model.rec_id;
                 let replicate_name = model.replicate_name;
-                let instKey = "zxc"
+                let instKey = model.token_string ? model.token_string : "zxc";
                 let long_version = model.version;
                 let short_version = long_version.split(':')[1];
                 let model_name = model.name;

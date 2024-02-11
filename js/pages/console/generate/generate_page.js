@@ -202,9 +202,9 @@ function copyPromptInfoFromGen(generation) {
     var options = document.getElementById('model-dropdown').options;
     var selected = false; // Flag to keep track if a matching option was found
     var potentiallyTweakedPrompt = generation.gen_recipe.prompt;
-    console.log('about to try to set model: ', generation.model_name);
+    console.log('about to try to set model: ', generation.model_version);
     for (var i = 0; i < options.length; i++) {
-      if (options[i].getAttribute('model') === generation.model_name) {
+      if (options[i].getAttribute('version') === generation.model_version) {
         let instanceKey = options[i].getAttribute('instkey');
         if (potentiallyTweakedPrompt.includes(instanceKey)) {
           potentiallyTweakedPrompt = potentiallyTweakedPrompt.replace(instanceKey,'zxc');

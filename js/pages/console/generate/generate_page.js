@@ -49,13 +49,13 @@ function fetchWorkingModels(userRecId) {
             models.forEach(function(model) {
                 
                 let model_id = model.rec_id;
-                let model = model.replicate_name;
+                let replicate_name = model.replicate_name;
                 let instKey = "zxc"
                 let long_version = model.version;
                 let short_version = long_version.split(':')[1];
                 let model_name = model.name;
             
-                let new_model_option = new_model_option(model_id, instKey, model, short_version, model_name);
+                let new_model_option = new_model_option(model_id, instKey, replicate_name, short_version, model_name);
                 let modelDropdown = document.getElementById('model-dropdown');
                 modelDropdown.appendChild(new_model_option);
             });

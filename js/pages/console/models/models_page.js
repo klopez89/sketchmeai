@@ -91,16 +91,16 @@ function fetchModels(userRecId, lastDocId) {
                 });
             });
 
-            saveLastDocIdLocally(lastDocId);
+            // saveLastDocIdLocally(lastDocId);
             isCurrentlyPaginatingPrompts = false;
             $('#grid-loader').addClass('hidden');
             
             if (hasAnotherPage === false) {
                 console.log('reaady to hide the infinite loader');
                 // hideInfiniteLoader();
-                removeLastDocId();
+                // removeLastDocId();
             } else {
-                showInfiniteLoader();
+                // showInfiniteLoader();
             }
         },
         error: function(error) {

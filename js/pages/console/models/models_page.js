@@ -43,7 +43,7 @@ function fetchModels(userRecId, lastDocId) {
             if (models == null) {
                 console.log('Didnt find any more images to load. all done paginating!');
                 document.getElementById('grid-loader').classList.add('hidden');
-                hideInfiniteLoader();
+                // hideInfiniteLoader();
                 removeLastDocId();
                 setTimeout(function() {
                   isCurrentlyPaginatingPrompts = false;
@@ -97,7 +97,7 @@ function fetchModels(userRecId, lastDocId) {
             
             if (hasAnotherPage === false) {
                 console.log('reaady to hide the infinite loader');
-                hideInfiniteLoader();
+                // hideInfiniteLoader();
                 removeLastDocId();
             } else {
                 showInfiniteLoader();

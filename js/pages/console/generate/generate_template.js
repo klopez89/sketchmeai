@@ -145,7 +145,6 @@ function dummyGridHTML() {
                     <div class="mt-2">
                         <select id="model-dropdown" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" size="4" multiple="">
                             <option selected="" id="sdxl" instkey="" model="stability-ai/sdxl" version="39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b">&nbsp;&nbsp;Stable Diffusion SDXL</option>
-                            <option id="kevin1" instkey="zxc" model="klopez89/custom_sdxl" version="ddde773bdf465d01c7dc178b022b79a3d517182ddc997e3e5de2dd3384189430">&nbsp;&nbsp;Kevin1</option>
                         </select>
                     </div>
                 </div>

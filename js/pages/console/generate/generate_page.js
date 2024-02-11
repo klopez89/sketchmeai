@@ -55,9 +55,9 @@ function fetchWorkingModels(userRecId) {
                 let short_version = long_version.split(':')[1];
                 let model_name = model.name;
             
-                let new_model_option = new_model_option(model_id, instKey, replicate_name, short_version, model_name);
-                let modelDropdown = document.getElementById('model-dropdown');
-                modelDropdown.appendChild(new_model_option);
+                let new_model_option_html = new_model_option(model_id, instKey, replicate_name, short_version, model_name);
+                let new_model_option_div = $($.parseHTML(new_model_option_html));
+                new_model_option_div.hide().appendTo('#model-dropdown').fadeIn();
             });
         },
         error: function(error) {

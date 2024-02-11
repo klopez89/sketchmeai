@@ -4,6 +4,11 @@ configureNewModelUploadArea();
 configureTrainingSubjectField();
 configureTrainingForm();
 
+let userRecId = getUserRecId();
+let lastDocId = null;
+fetchModels(userRecId, lastDocId);
+
+
 function addModelsGrid() {
     let dummy_grid_html = dummyGridHTML();
     let dummy_grid_div = $($.parseHTML(dummy_grid_html));
@@ -14,6 +19,94 @@ function addBaseModelMenu() {
     let base_model_menu_html = baseModelMenuHTML();
     let base_model_menu_div = $($.parseHTML(base_model_menu_html));
     $('#console-content').append(base_model_menu_div);
+}
+
+
+function fetchModels(userRecId, lastDocId) {
+    $.ajax({
+        url: CONSTANTS.BACKEND_URL + 'models',
+        type: 'POST',
+        data: JSON.stringify({
+            userRecId: userRecId,
+            lastDocId: lastDocId
+        }),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(data) {
+            models = data.models;
+            hasAnotherPage = data.has_another_page;
+            lastDocId = data.last_doc_id;
+            // console.log(`data from generations: ${generations}`)
+            // console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
+
+
+            if (models == null) {
+                console.log('Didnt find any more images to load. all done paginating!');
+                document.getElementById('grid-loader').classList.add('hidden');
+                hideInfiniteLoader();
+                removeLastDocId();
+                setTimeout(function() {
+                  isCurrentlyPaginatingPrompts = false;
+                }, 50);
+                return
+            }
+
+            models.forEach(function(model) {
+                
+                let new_model_grid_html = newModelEntryDiv(model.rec_id);
+                let new_model_div = $($.parseHTML(new_model_grid_html));
+                new_model_div.hide().insertAfter('#collection-grid > div:first-child').fadeIn(function() {
+
+                    let model_element = document.querySelector(`div[model-id="${model.rec_id}"]`);
+
+                    if (model.status === PredictionStatus.IN_PROGRESS) {
+                        model_element.querySelector('#model-status').innerHTML = '...queued';
+                        startListeningForModelUpdates(userRecId, model.rec_id);
+                    } else if (model.status === PredictionStatus.BEING_HANDLED) {
+                        model_element.querySelector('#model-status').innerHTML = '...fine-tuning';
+                    
+                        let cancel_button = model_element.querySelector('#cancel-button');
+                        cancel_button.addEventListener('click', function() {
+                            model_element.querySelector('#model-status').innerHTML = '...cancelling';
+                            cancelGeneration(model.replicate_prediction_id);
+                            cancel_button.classList.add('hidden');
+                        });
+                        cancel_button.classList.remove('hidden');
+                        startListeningForModelUpdates(userRecId, model.rec_id);
+                    } else if (model.status === PredictionStatus.CANCELED) {
+                        model_element.querySelector('#model-status').innerHTML = 'cancelled';
+                        configureModelDivPostFinalStatusUpdate(model_element);
+                        loadModelImage(CANCELED_IMG_URL, model_element);
+                    } else if (model.status === PredictionStatus.FAILED) {
+                        model_element.querySelector('#model-status').innerHTML = 'failed';
+                        loadModelImage(FAILED_IMG_URL, model_element);
+                        configureModelDivPostFinalStatusUpdate(model_element);
+                    } else if (model.status === PredictionStatus.SUCCEEDED) {
+                        model_element.querySelector('#model-loader').classList.add('hidden');
+                        model_element.querySelector('#model-status').innerHTML = '';
+                        model_element.querySelector('#model-name').innerHTML = name;
+                        console.log('model generation succeeded');
+                        configureModelDivPostFinalStatusUpdate(model_element);
+                    }
+                });
+            });
+
+            saveLastDocIdLocally(lastDocId);
+            isCurrentlyPaginatingPrompts = false;
+            $('#grid-loader').addClass('hidden');
+            
+            if (hasAnotherPage === false) {
+                console.log('reaady to hide the infinite loader');
+                hideInfiniteLoader();
+                removeLastDocId();
+            } else {
+                showInfiniteLoader();
+            }
+        },
+        error: function(error) {
+            console.error('Error:', error);
+        }
+    });
 }
 
 
@@ -44,7 +137,6 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 model_element.querySelector('#model-status').innerHTML = '...fine-tuning';
                 // cancel_button = gen_element.querySelector('#cancel-button');
                 // cancel_button.addEventListener('click', function() {
-                //     gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
                 //     cancelGeneration(generation_dict.replicate_prediction_id);
                 //     cancel_button.classList.add('hidden');
                 // });

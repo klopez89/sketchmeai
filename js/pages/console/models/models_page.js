@@ -788,7 +788,7 @@ function clickedOnNewModelButton(event) {
     }, 100);
 
     let newFormContainer = document.getElementById('new-form-container');
-    newFormContainer.classList.remove('translate-x-full', 'opacity-0');
+    newFormContainer.classList.remove('translate-x-full', 'opacity-0', 'hidden');
 }
 
 function exitNewModelForm(event) {
@@ -806,6 +806,9 @@ function animateAwayFromNewModelForm() {
 
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.add('translate-x-full', 'opacity-0');
+    setTimeout(() => {
+        newFormContainer.classList.add('hidden');
+    }, 700);
 }
 
 function deleteButtonPressed(event) {

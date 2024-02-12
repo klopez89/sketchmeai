@@ -549,7 +549,7 @@ function grabTrainingData() {
     let schedulerCycles = document.getElementById('scheduler-cycles').value;
     let warmupSteps = document.getElementById('warmup-steps').value;
     let validationEpochs = document.getElementById('validation-epochs').value;
-    let maxTrainSteps = document.getElementById('max-train-steps').value;
+    var maxTrainSteps = document.getElementById('max-train-steps').value;
     let mixedPrecision = document.getElementById('mixed-precision').value;
     let xformers = document.getElementById('xformers').checked;
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
@@ -557,6 +557,10 @@ function grabTrainingData() {
 	let files = getUploadedFiles();
     let userRecId = getUserRecId();
     let modelId = generateId()
+
+    if (maxTrainSteps === 'auto') {
+        maxTrainSteps = 0;
+    }
 
     let trainingData = {
         "model-id": modelId,

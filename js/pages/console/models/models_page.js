@@ -563,7 +563,7 @@ function grabTrainingData() {
     }
 
     if (mixedPrecision === 'None') {
-        mixedPrecision = None;
+        mixedPrecision = null;
     }
 
     let trainingData = {

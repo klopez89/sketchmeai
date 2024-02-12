@@ -792,6 +792,7 @@ function clickedOnNewModelButton(event) {
     }, 100);
 
     let newFormContainer = document.getElementById('new-form-container');
+    newFormContainer.classList.remove('hidden');
     newFormContainer.classList.remove('translate-x-full', 'opacity-0', 'hidden');
 }
 

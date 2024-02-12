@@ -587,7 +587,7 @@ function grabTrainingData() {
         "gradient-checkpoint": gradientCheckpoint,
         "8bit-adam": bitAdam,
         "files": files,
-        "use-alt-train-steps": true,
+        "use-alt-train-steps": false,
     };
 
     if (trainingSubject == 'person') {

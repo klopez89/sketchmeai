@@ -2,7 +2,7 @@ const CONSTANTS = (function() {
     if (hasDevSubdomain()) {
         return {
             SITE_URL: 'dev.sketchme.ai',
-            BASE_BUNDLE_PRICE_ID: 'price_1NlaTnLBuf172mCOWBlXjIhS', // from klopez89@gmail.com account
+            BASE_BUNDLE_PRICE_ID: 'price_1Oir9XKaOW6JyAnBQ09N5svv', // from klopez@sketchme.ai (test mode)
             BACKEND_URL: 'https://sketchmeaibackend-dev-sxgjpzid6q-uk.a.run.app/',
             FIREBASE_CONFIG: {
                 apiKey: "AIzaSyCNR1RyhfAk7AS-ooDzLssHRk1N6VgGbsQ",

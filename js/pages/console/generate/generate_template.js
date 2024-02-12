@@ -137,7 +137,7 @@ function dummyGridHTML() {
                 <div class="sm:col-span-3" id="lora-field-container">
                     <label for="lora-scale" class="block text-sm font-medium leading-6 text-gray-900">Lora Scale</label>
                     <div class="mt-2">
-                        <input type="number" name="lora-scale" id="lora-scale" min="0.0" max="1.0" step="0.1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="0.6">
+                        <input type="number" name="lora-scale" id="lora-scale" min="0.0" max="1.0" step="0.01" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="0.6">
                     </div>
                 </div>
                 <div class="col-span-full" id="models-field-container">

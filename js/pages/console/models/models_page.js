@@ -550,7 +550,7 @@ function grabTrainingData() {
     let warmupSteps = document.getElementById('warmup-steps').value;
     let validationEpochs = document.getElementById('validation-epochs').value;
     var maxTrainSteps = document.getElementById('max-train-steps').value;
-    let mixedPrecision = document.getElementById('mixed-precision').value;
+    var mixedPrecision = document.getElementById('mixed-precision').value;
     let xformers = document.getElementById('xformers').checked;
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
     let bitAdam = document.getElementById('8bit-adam').checked;
@@ -560,6 +560,10 @@ function grabTrainingData() {
 
     if (maxTrainSteps === 'auto') {
         maxTrainSteps = 0;
+    }
+
+    if (mixedPrecision === 'None') {
+        mixedPrecision = None;
     }
 
     let trainingData = {

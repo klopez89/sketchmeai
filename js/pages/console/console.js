@@ -3,6 +3,7 @@ addConsoleToDOM();
 copyStaticSidebar();
 changeActiveMenuPage();
 updatePageTitle();
+configurePayButton();
 
 function addConsoleToDOM() {
 	let console_html = consoleHtml();
@@ -44,10 +45,28 @@ function updatePageTitle() {
 
 // Payment related functions
 
-function userWantsToPay() {
+function configurePayButton() {
+    let payButton = document.getElementById('pay-button');
+    let creditAmountInput = document.getElementById('credit-amount');
+    creditAmountInput.addEventListener('input', function() {
+        console.log('Credit amount changed to: ', this.value);
+        if (this.value === '') {
+            payButton.setAttribute('disabled', true);
+            payButton.classList.remove('bg-black');
+            payButton.classList.add('bg-gray-500');
+        } else {
+            payButton.removeAttribute('disabled');
+            payButton.classList.remove('bg-gray-500');
+            payButton.classList.add('bg-black');
+        }
+    });
+}
+
+function userWantsToPay(event) {
+    let creditAmount = document.getElementById('credit-amount').value;
     let form = document.createElement('form');
     form.method = 'POST';
-    form.action = `${CONSTANTS.BACKEND_URL}create-checkout-session?price-id=${CONSTANTS.BASE_BUNDLE_PRICE_ID}&unit-amount=20`;
+    form.action = `${CONSTANTS.BACKEND_URL}create-checkout-session?price-id=${CONSTANTS.BASE_BUNDLE_PRICE_ID}&unit-amount=${creditAmount}`;
     document.body.appendChild(form);
     form.submit();
  }

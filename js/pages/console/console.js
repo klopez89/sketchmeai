@@ -49,7 +49,8 @@ function updatePageTitle() {
 
 function handleRecentPaymentRedirect() {
     var url = window.location.href;
-    var params = new URLSearchParams(url);
+    var urlObj = new URL(url);
+    var params = new URLSearchParams(urlObj.search);
     let didCompletePayment = params.get('didCompletePayment');
     let productName = params.get('productName');
     let quantity = params.get('quantity');

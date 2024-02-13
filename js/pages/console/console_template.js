@@ -141,6 +141,7 @@ function consoleHtml() {
         <main class="py-0 flex-grow overflow-auto">
             <div id="console-content" class="h-full">
             <!-- Your content -->
+            <div class="absolute bg-black h-full w-full z-10"></div>
             </div>
         </main>
         </div>

@@ -90,7 +90,10 @@ function thirdCreditOptionClicked() {
 function showPaymentModal() {
     var paymentModal = document.getElementById('payment-modal');
     paymentModal.classList.remove('hidden', 'opacity-0');
-    paymentModal.classList.add('opacity-100');
+    // Delay the addition of the 'opacity-100' class
+    setTimeout(() => {
+        paymentModal.classList.add('opacity-100');
+    }, 50); // delay can be adjusted as needed
 }
 
 function dismissPaymentModal() {

@@ -48,7 +48,7 @@ function updatePageTitle() {
 function stylePayButtonWith(value) {
     let payButton = document.getElementById('pay-button');
     console.log('int value: ', parseInt(value));
-    if (parseInt(value) < 1) {
+    if (parseInt(value) < 1 || parseInt(value) === NaN) {
         payButton.setAttribute('disabled', true);
         payButton.classList.remove('bg-black');
         payButton.classList.add('bg-gray-500');

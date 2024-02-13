@@ -87,15 +87,21 @@ function thirdCreditOptionClicked() {
     creditAmountInput.value = selectedOption.value;
 }
 
- function dismissPaymentModal() {
+function showPaymentModal() {
     var paymentModal = document.getElementById('payment-modal');
-    $(paymentModal).fadeOut();
- }
+    paymentModal.classList.remove('hidden', 'opacity-0');
+    paymentModal.classList.add('opacity-100');
+}
 
- function showPaymentModal() {
+function dismissPaymentModal() {
     var paymentModal = document.getElementById('payment-modal');
-    $(paymentModal).fadeIn();
- }
+    paymentModal.classList.remove('opacity-100');
+    paymentModal.classList.add('opacity-0');
+    // Add 'hidden' class back after transition finishes
+    setTimeout(() => {
+        paymentModal.classList.add('hidden');
+    }, 500); // same duration as the transition
+}
 
 // window.onload = function() {
 //     console.log("window.onload from console page")

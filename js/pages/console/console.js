@@ -89,11 +89,14 @@ function thirdCreditOptionClicked() {
 
 function showPaymentModal() {
     var paymentModal = document.getElementById('payment-modal');
-    paymentModal.classList.remove('hidden', 'opacity-0');
-    // Delay the addition of the 'opacity-100' class
-    setTimeout(() => {
-        paymentModal.classList.add('opacity-100');
-    }, 50); // delay can be adjusted as needed
+    paymentModal.classList.remove('hidden');
+    // Double requestAnimationFrame for browser to have time for a reflow
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            paymentModal.classList.remove('opacity-0');
+            paymentModal.classList.add('opacity-100');
+        });
+    });
 }
 
 function dismissPaymentModal() {

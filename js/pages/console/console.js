@@ -106,13 +106,22 @@ function thirdCreditOptionClicked() {
     handleCreditOptionClick(thirdCreditOption, [firstCreditOption, secondCreditOption]);
 }
 
- function handleCreditOptionClick(selectedOption, otherOptions) {
+function fireInputChange(credit_input_element) {
+    let event = new Event('input', {
+        bubbles: true,
+        cancelable: true,
+    });
+    credit_input_element.dispatchEvent(event);
+}
+
+function handleCreditOptionClick(selectedOption, otherOptions) {
     if (selectedOption) {
         selectedOption.classList.remove('bg-gray-500', 'hover:bg-gray-700');
         selectedOption.classList.add('bg-black');
 
         var creditAmountInput = document.getElementById('credit-amount');
         creditAmountInput.value = selectedOption.value;
+        fireInputChange(creditAmountInput);
     }
 
     otherOptions.forEach(option => {

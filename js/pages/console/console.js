@@ -70,6 +70,8 @@ function configurePayButton() {
             handleCreditOptionClick(secondCreditOption, [firstCreditOption, thirdCreditOption]);
         } else if (this.value === thirdCreditOption.value) {
             handleCreditOptionClick(thirdCreditOption, [firstCreditOption, secondCreditOption]);
+        } else {
+            handleCreditOptionClick(null, [firstCreditOption, secondCreditOption, thirdCreditOption]);
         }
     });
 }
@@ -105,17 +107,20 @@ function thirdCreditOptionClicked() {
 }
 
  function handleCreditOptionClick(selectedOption, otherOptions) {
-    var creditAmountInput = document.getElementById('credit-amount');
+    if (selectedOption) {
+        selectedOption.classList.remove('bg-gray-500', 'hover:bg-gray-700');
+        selectedOption.classList.add('bg-black');
 
-    selectedOption.classList.remove('bg-gray-500', 'hover:bg-gray-700');
-    selectedOption.classList.add('bg-black');
+        var creditAmountInput = document.getElementById('credit-amount');
+        creditAmountInput.value = selectedOption.value;
+    }
 
     otherOptions.forEach(option => {
         option.classList.add('bg-gray-500', 'hover:bg-gray-700');
-        option.classList.remove('bg-black');
+        if (selectedOption) {
+            option.classList.remove('bg-black');
+        }
     });
-
-    creditAmountInput.value = selectedOption.value;
 }
 
 function showPaymentModal() {

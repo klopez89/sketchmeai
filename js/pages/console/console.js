@@ -81,11 +81,13 @@ function configurePayButton() {
     });
 }
 
-function userWantsToPay(event) {
+function userWantsToPay() {
     let creditAmount = document.getElementById('credit-amount').value;
+    let sourcePageUrl = window.location.href.split('?')[0];
     let form = document.createElement('form');
+    let endpoint = "stripe_checkout_session/credits/new";
     form.method = 'POST';
-    form.action = `${CONSTANTS.BACKEND_URL}create-checkout-session?price-id=${CONSTANTS.BASE_BUNDLE_PRICE_ID}&unit-amount=${creditAmount}`;
+    form.action = `${CONSTANTS.BACKEND_URL}${endpoint}?source_page_url=${sourcePageUrl}&unit-amount=${creditAmount}`;
     document.body.appendChild(form);
     form.submit();
  }

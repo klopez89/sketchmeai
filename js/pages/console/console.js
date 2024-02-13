@@ -55,6 +55,11 @@ function userWantsToPay() {
     $(paymentModal).fadeOut();
  }
 
+ function showPaymentModal() {
+    var paymentModal = document.getElementById('payment-modal');
+    $(paymentModal).fadeIn();
+ }
+
 // window.onload = function() {
 //     console.log("window.onload from console page")
 //     addConsoleToDOM();

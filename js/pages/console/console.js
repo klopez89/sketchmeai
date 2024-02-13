@@ -54,6 +54,7 @@ function handleRecentPaymentRedirect() {
     let productName = params.get('productName');
     let quantity = params.get('quantity');
     let unitAmount = params.get('unitAmount');
+    console.log('didCompletePayment: ', didCompletePayment, ', productName: ', productName, ', quantity: ', quantity, ', unitAmount: ', unitAmount);
     if (didCompletePayment === 'true' && productName && quantity && unitAmount) {
         console.log('Payment completed for: ', productName, ' with quantity: ', quantity, ' and unit amount: ', unitAmount);
         var showPaymentButton = document.getElementById('show-payment-button');

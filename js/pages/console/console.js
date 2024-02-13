@@ -50,6 +50,10 @@ function configurePayButton() {
     let creditAmountInput = document.getElementById('credit-amount');
     creditAmountInput.addEventListener('input', function() {
         console.log('Credit amount changed to: ', this.value);
+        var firstCreditOption = document.getElementById('first-credit-option');
+        var secondCreditOption = document.getElementById('second-credit-option');
+        var thirdCreditOption = document.getElementById('third-credit-option');
+
         if (this.value === '') {
             payButton.setAttribute('disabled', true);
             payButton.classList.remove('bg-black');
@@ -58,6 +62,14 @@ function configurePayButton() {
             payButton.removeAttribute('disabled');
             payButton.classList.remove('bg-gray-500');
             payButton.classList.add('bg-black');
+        }
+
+        if (this.value === firstCreditOption.value) {
+            handleCreditOptionClick(firstCreditOption, [secondCreditOption, thirdCreditOption]);
+        } else if (this.value === secondCreditOption.value) {
+            handleCreditOptionClick(secondCreditOption, [firstCreditOption, thirdCreditOption]);
+        } else if (this.value === thirdCreditOption.value) {
+            handleCreditOptionClick(thirdCreditOption, [firstCreditOption, secondCreditOption]);
         }
     });
 }

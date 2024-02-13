@@ -145,28 +145,31 @@ function consoleHtml() {
 
                 <div id="payment-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-10 flex flex-col justify-center"><div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg w-full">
                         <div class="mb-4">
-                            <h2 class="text-3xl text-gray-900">Balance: <span class="">-$0.001</span></h2>
-                            <p>Spend Limit: $30 / hr</p>
-                            <p>Current GPU Cloud Spend: $0.042 / hr</p>
-                            <p class="mb-4">-0 hours left at current spend</p>
+                            <h2 class="text-3xl text-gray-900">Balance: <span class="">$0.00</span></h2>
+                            <p class="mb-4">~500 images left to generate, or 25 custom models to train</p>
                         </div>
 
-                        <div class="mb-6">
+                        <hr class="border-t border-gray-200 my-6">
+
+                        <div class="mb-1">
                             <h3 class="text-lg font-semibold mb-2">Add Credit</h3>
                             <div class="flex space-x-2 mb-4">
-                                <button class="bg-purple-600 text-white px-6 py-2 rounded shadow">+$25</button>
-                                <button class="bg-purple-600 text-white px-6 py-2 rounded shadow">+$50</button>
-                                <button class="bg-purple-600 text-white px-6 py-2 rounded shadow">+$100</button>
+                                <button class="bg-black text-white px-6 py-2 rounded shadow">$5</button>
+                                <button class="bg-black text-white px-6 py-2 rounded shadow">$10</button>
+                                <button class="bg-black text-white px-6 py-2 rounded shadow">$20</button>
                             </div>
-                            <div class="flex space-x-2">
-                                <input type="text" placeholder="$ Amount" class="border-2 border-gray-300 rounded-lg px-4 py-2 w-full">
-                                <button class="bg-purple-600 text-white px-6 py-2 rounded shadow">Pay with Card</button>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                                    <span class="text-gray-400">$</span>
+                                </span>
+                                <input type="text" placeholder="" class="w-[14.7em] border-2 border-gray-400 rounded-lg px-5 py-2">
+                                <button class="bg-black text-white px-6 py-2 rounded shadow ml-2">Pay</button>
                             </div>
                         </div>
 
                         <div class="flex space-x-2">
-                            <button class="flex-1 text-center py-2 rounded bg-purple-600 text-white shadow">💳</button>
-                            <button class="flex-1 text-center py-2 rounded bg-purple-600 text-white shadow">₿</button>
+                            <p class="flex-1 text-left py-0 rounded text-xs text-gray-400">Powered by Stripe</p>
+                            
                         </div>
                     </div>
                 </div>

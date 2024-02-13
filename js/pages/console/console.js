@@ -45,8 +45,20 @@ function updatePageTitle() {
 
 // Payment related functions
 
-function configurePayButton() {
+function stylePayButtonWith(value) {
     let payButton = document.getElementById('pay-button');
+    if (this.value === '') {
+        payButton.setAttribute('disabled', true);
+        payButton.classList.remove('bg-black');
+        payButton.classList.add('bg-gray-500');
+    } else {
+        payButton.removeAttribute('disabled');
+        payButton.classList.remove('bg-gray-500');
+        payButton.classList.add('bg-black');
+    }
+}
+
+function configurePayButton() {
     let creditAmountInput = document.getElementById('credit-amount');
     creditAmountInput.addEventListener('input', function() {
         console.log('Credit amount changed to: ', this.value);
@@ -54,15 +66,7 @@ function configurePayButton() {
         var secondCreditOption = document.getElementById('second-credit-option');
         var thirdCreditOption = document.getElementById('third-credit-option');
 
-        if (this.value === '') {
-            payButton.setAttribute('disabled', true);
-            payButton.classList.remove('bg-black');
-            payButton.classList.add('bg-gray-500');
-        } else {
-            payButton.removeAttribute('disabled');
-            payButton.classList.remove('bg-gray-500');
-            payButton.classList.add('bg-black');
-        }
+        stylePayButtonWith(this.value);
 
         if (this.value === firstCreditOption.value) {
             handleCreditOptionClick(firstCreditOption, [secondCreditOption, thirdCreditOption]);
@@ -106,14 +110,6 @@ function thirdCreditOptionClicked() {
     handleCreditOptionClick(thirdCreditOption, [firstCreditOption, secondCreditOption]);
 }
 
-function fireInputChange(credit_input_element) {
-    let event = new Event('input', {
-        bubbles: true,
-        cancelable: true,
-    });
-    credit_input_element.dispatchEvent(event);
-}
-
 function handleCreditOptionClick(selectedOption, otherOptions) {
     if (selectedOption) {
         selectedOption.classList.remove('bg-gray-500', 'hover:bg-gray-700');
@@ -121,7 +117,7 @@ function handleCreditOptionClick(selectedOption, otherOptions) {
 
         var creditAmountInput = document.getElementById('credit-amount');
         creditAmountInput.value = selectedOption.value;
-        fireInputChange(creditAmountInput);
+        stylePayButtonWith(selectedOption.value);
     }
 
     otherOptions.forEach(option => {

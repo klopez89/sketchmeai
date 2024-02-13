@@ -50,6 +50,10 @@ function userWantsToPay() {
     form.submit();
  }
 
+ function dismissPaymentModal() {
+    var paymentModal = document.getElementById('payment-modal');
+    $(paymentModal).fadeOut();
+ }
 
 // window.onload = function() {
 //     console.log("window.onload from console page")

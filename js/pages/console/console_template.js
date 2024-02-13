@@ -144,7 +144,11 @@ function consoleHtml() {
     
 
                 <div id="payment-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-10 flex flex-col justify-center">
-                    <div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full">
+            
+                    <div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
+                        <button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
                         <div class="mb-4">
                             <h2 class="text-3xl text-gray-900">Balance: <span class="">$0.00</span></h2>
                             <p class="mb-4">~500 images left to generate, or 25 custom models to train</p>
@@ -163,8 +167,8 @@ function consoleHtml() {
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                                     <span class="text-gray-400">$</span>
                                 </span>
-                                <input type="text" placeholder="" class="w-[14.7em] border-1 border-gray-400 rounded-lg px-5 py-2">
-                                <button class="bg-black text-white px-8 py-[0.6em] rounded shadow ml-2">Pay</button>
+                                <input type="text" placeholder="" class="w-[14.7em] border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 py-2" value="10">
+                                <button class="bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2">Pay</button>
                             </div>
                         </div>
 

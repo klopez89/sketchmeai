@@ -48,7 +48,9 @@ function updatePageTitle() {
 function stylePayButtonWith(value) {
     let payButton = document.getElementById('pay-button');
     console.log('int value: ', parseInt(value));
-    if (parseInt(value) < 1 || isNaN(parseInt(value))) {
+    const hasDecimals = parseFloat(value) % 1 != 0;
+
+    if (parseInt(value) < 1 || isNaN(parseInt(value)) || hasDecimals) {
         payButton.setAttribute('disabled', true);
         payButton.classList.remove('bg-black');
         payButton.classList.add('bg-gray-500');

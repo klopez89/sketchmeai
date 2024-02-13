@@ -42,6 +42,8 @@ function updatePageTitle() {
     }
 }
 
+// Payment related functions
+
 function userWantsToPay() {
     let form = document.createElement('form');
     form.method = 'POST';
@@ -49,6 +51,41 @@ function userWantsToPay() {
     document.body.appendChild(form);
     form.submit();
  }
+
+ function firstCreditOptionClicked() {
+    var firstCreditOption = document.getElementById('first-credit-option');
+    var secondCreditOption = document.getElementById('second-credit-option');
+    var thirdCreditOption = document.getElementById('third-credit-option');
+    handleCreditOptionClick(firstCreditOption, [secondCreditOption, thirdCreditOption]);
+}
+
+function secondCreditOptionClicked() {
+    var firstCreditOption = document.getElementById('first-credit-option');
+    var secondCreditOption = document.getElementById('second-credit-option');
+    var thirdCreditOption = document.getElementById('third-credit-option');
+    handleCreditOptionClick(secondCreditOption, [firstCreditOption, thirdCreditOption]);
+}
+
+function thirdCreditOptionClicked() {
+    var firstCreditOption = document.getElementById('first-credit-option');
+    var secondCreditOption = document.getElementById('second-credit-option');
+    var thirdCreditOption = document.getElementById('third-credit-option');
+    handleCreditOptionClick(thirdCreditOption, [firstCreditOption, secondCreditOption]);
+}
+
+ function handleCreditOptionClick(selectedOption, otherOptions) {
+    var creditAmountInput = document.getElementById('credit-amount');
+
+    selectedOption.classList.remove('bg-gray-500', 'hover:bg-gray-700');
+    selectedOption.classList.add('bg-black');
+
+    otherOptions.forEach(option => {
+        option.classList.add('bg-gray-500', 'hover:bg-gray-700');
+        option.classList.remove('bg-black');
+    });
+
+    creditAmountInput.value = selectedOption.value;
+}
 
  function dismissPaymentModal() {
     var paymentModal = document.getElementById('payment-modal');

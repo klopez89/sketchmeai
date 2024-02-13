@@ -33,8 +33,6 @@ function randomizeSeed(event) {
     document.getElementById('seed').value = -1;
 }
 
-
-
 function fetchWorkingModels(userRecId) {
     $.ajax({
         url: CONSTANTS.BACKEND_URL + 'models/working',

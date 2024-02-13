@@ -97,7 +97,7 @@ function consoleHtml() {
     
             <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
             <div id="page-title" class="relative flex flex-1 self-center text-xl font-bold">Generate</div>
-            <button>To Payment</button>
+            <button onclick="userWantsToPay()">To Payment</button>
             <div class="flex items-center gap-x-4 lg:gap-x-6">
                 
     

@@ -42,6 +42,14 @@ function updatePageTitle() {
     }
 }
 
+function userWantsToPay() {
+    let form = document.createElement('form');
+    form.method = 'POST';
+    form.action = `${CONSTANTS.BACKEND_URL}create-checkout-session?price-id=${CONSTANTS.BASE_BUNDLE_PRICE_ID}&unit-amount=20`;
+    document.body.appendChild(form);
+    form.submit();
+ }
+
 
 // window.onload = function() {
 //     console.log("window.onload from console page")

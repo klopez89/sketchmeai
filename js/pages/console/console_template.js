@@ -143,7 +143,7 @@ function consoleHtml() {
             <!-- Your content -->
     
 
-                <div id="payment-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-10 flex flex-col justify-center">
+                <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-10 flex flex-col justify-center">
             
                     <div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
                         <button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissPaymentModal()">
@@ -159,15 +159,15 @@ function consoleHtml() {
                         <div class="mb-1">
                             <h3 class="text-lg font-semibold mb-2">Add Credit</h3>
                             <div class="flex space-x-2 mb-4">
-                                <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="first-credit-option" value="5">$5</button>
-                                <button class="bg-black text-white px-6 py-2 rounded shadow" id="second-credit-option" value="10">$10</button>
-                                <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="third-credit-option" value="20">$20</button>
+                                <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="first-credit-option" value="5" onclick="firstCreditOptionClicked()">$5</button>
+                                <button class="bg-black text-white px-6 py-2 rounded shadow" id="second-credit-option" value="10" onclick="secondCreditOptionClicked()">$10</button>
+                                <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="third-credit-option" value="20" onclick="thirdCreditOptionClicked()">$20</button>
                             </div>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                                     <span class="text-gray-400">$</span>
                                 </span>
-                                <input type="text" placeholder="" class="w-[14.7em] border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 py-2" value="10">
+                                <input id="credit-amount" type="text" placeholder="" class="w-[14.7em] border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 py-2" value="10">
                                 <button class="bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2">Pay</button>
                             </div>
                         </div>

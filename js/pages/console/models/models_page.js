@@ -21,9 +21,6 @@ function addBaseModelMenu() {
     $('#console-content').append(base_model_menu_div);
 }
 
-
-
-
 function fetchModels(userRecId, lastDocId) {
     $.ajax({
         url: CONSTANTS.BACKEND_URL + 'models',

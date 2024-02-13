@@ -89,7 +89,7 @@ function userWantsToPay() {
     let form = document.createElement('form');
     let endpoint = "stripe_checkout_session/credits/new";
     form.method = 'POST';
-    form.action = `${CONSTANTS.BACKEND_URL}${endpoint}?source_page_url=${sourcePageUrl}&unit-amount=${creditAmount}`;
+    form.action = `${CONSTANTS.BACKEND_URL}${endpoint}?source-page-url=${sourcePageUrl}&unit-amount=${creditAmount}`;
     document.body.appendChild(form);
     form.submit();
  }

@@ -4,6 +4,7 @@ copyStaticSidebar();
 changeActiveMenuPage();
 updatePageTitle();
 configurePayButton();
+startListeningForCreditUpdates();
 handleRecentPaymentRedirect();
 
 function addConsoleToDOM() {
@@ -70,6 +71,24 @@ function removeQueryParamsFromUrl() {
     window.history.replaceState({}, document.title, url);
 }
 
+
+
+function startListeningForCreditUpdates() {
+    console.log('startListeningForCreditUpdates');
+    let userRecId = getUserRecId();
+    db.collection('users').doc(userRecId)
+        .onSnapshot((doc) => {
+            if (doc.exists) {
+                let total_credits = doc.data().total_credits;
+                let showPaymentButton = document.getElementById('show-payment-button');
+                showPaymentButton.innerHTML = `Credit: $${total_credits}`;
+            } else {
+                console.log("No such document!");
+            }
+    });
+}
+
+
 function saveSuccessfulCreditPurchase(productName, quantity, unitAmount) {
     let userRecId = getUserRecId();
     let url = `${CONSTANTS.BACKEND_URL}purchase/credits/save`;
@@ -87,9 +106,6 @@ function saveSuccessfulCreditPurchase(productName, quantity, unitAmount) {
         contentType: "application/json",
         dataType: 'json',
         success: function(response) {
-            let new_credit_balance = response.new_credit_balance;
-            let showPaymentButton = document.getElementById('show-payment-button');
-            showPaymentButton.innerHTML = `Credit: $${new_credit_balance}`;
             console.log('Response from purchase/credits/save endpoint: ', response);
         },
         error: function(error) {

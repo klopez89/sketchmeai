@@ -60,7 +60,36 @@ function handleRecentPaymentRedirect() {
         console.log('Payment completed for: ', productName, ' with quantity: ', quantity, ' and unit amount: ', unitAmount);
         var showPaymentButton = document.getElementById('show-payment-button');
         showPaymentButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        saveSuccessfulCreditPurchase(productName, quantity, unitAmount);
     }
+}
+
+function saveSuccessfulCreditPurchase(productName, quantity, unitAmount) {
+    let userRecId = getUserRecId();
+    let url = `${CONSTANTS.BACKEND_URL}purchase/credits/save`;
+    let data = {
+        "user_rec_id": userRecId,
+        "product_name": productName,
+        "quantity": quantity,
+        "unit_amount": unitAmount
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(response) {
+            let new_credit_balance = response.new_credit_balance;
+            let showPaymentButton = document.getElementById('show-payment-button');
+            showPaymentButton.innerHTML = `Credit: $${new_credit_balance}`;
+            console.log('Response from purchase/credits/save endpoint: ', response);
+        },
+        error: function(error) {
+            console.error('Error from saveSuccessfulCreditPurchase endpoint call: ', error);
+        }
+    });
 }
 
 function stylePayButtonWith(value) {

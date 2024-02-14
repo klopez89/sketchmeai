@@ -71,7 +71,15 @@ function removeQueryParamsFromUrl() {
     window.history.replaceState({}, document.title, url);
 }
 
+function updateBalanceInPaymentModal(credit_balance) {
+    let modalCreditBalanceLabel = document.getElementById('modal-credit-balance-label');
+    modalCreditBalanceLabel.innerHTML = `${credit_balance}`;
+}
 
+function updateShowPaymentButton(credit_balance) {
+    let showPaymentButton = document.getElementById('show-payment-button');
+    showPaymentButton.innerHTML = `Credit: $${credit_balance}`;
+}
 
 function startListeningForCreditUpdates() {
     console.log('startListeningForCreditUpdates');
@@ -80,8 +88,8 @@ function startListeningForCreditUpdates() {
         .onSnapshot((doc) => {
             if (doc.exists) {
                 let total_credits = doc.data().total_credits;
-                let showPaymentButton = document.getElementById('show-payment-button');
-                showPaymentButton.innerHTML = `Credit: $${total_credits}`;
+                updateShowPaymentButton(total_credits);
+                updateBalanceInPaymentModal(total_credits);
             } else {
                 console.log("No such document!");
             }

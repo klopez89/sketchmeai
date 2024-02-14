@@ -73,7 +73,7 @@ function removeQueryParamsFromUrl() {
 
 function updateBalanceInPaymentModal(credit_balance) {
     let modalCreditBalanceLabel = document.getElementById('modal-credit-balance-label');
-    modalCreditBalanceLabel.innerHTML = `${credit_balance}`;
+    modalCreditBalanceLabel.innerHTML = `$${credit_balance.toFixed(2)}`;
 }
 
 function updateShowPaymentButton(credit_balance) {

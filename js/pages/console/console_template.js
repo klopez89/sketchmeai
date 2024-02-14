@@ -152,7 +152,7 @@ function consoleHtml() {
                             <i class="fas fa-times" aria-hidden="true"></i>
                         </button>
                         <div class="mb-4">
-                            <h2 class="text-3xl text-gray-900">Balance: <span class="">$0.00</span></h2>
+                            <h2 class="text-3xl text-gray-900">Balance: <span id="modal-credit-balance-label" class="">$0.00</span></h2>
                             <p class="mb-4">~500 images left to generate, or 25 custom models to train</p>
                         </div>
 

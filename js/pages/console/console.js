@@ -62,6 +62,12 @@ function handleRecentPaymentRedirect() {
         showPaymentButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
         saveSuccessfulCreditPurchase(productName, quantity, unitAmount);
     }
+    removeQueryParamsFromUrl();
+}
+
+function removeQueryParamsFromUrl() {
+    let url = window.location.href.split('?')[0];
+    window.history.replaceState({}, document.title, url);
 }
 
 function saveSuccessfulCreditPurchase(productName, quantity, unitAmount) {

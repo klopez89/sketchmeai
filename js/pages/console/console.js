@@ -78,7 +78,7 @@ function updateBalanceInPaymentModal(credit_balance) {
 
 function updateShowPaymentButton(credit_balance) {
     let showPaymentButton = document.getElementById('show-payment-button');
-    showPaymentButton.innerHTML = `Credit: $${credit_balance}`;
+    showPaymentButton.innerHTML = `Credit: $${credit_balance.toFixed(2)}`;
 }
 
 function startListeningForCreditUpdates() {

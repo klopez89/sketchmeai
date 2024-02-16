@@ -817,6 +817,7 @@ function animateAwayFromNewModelForm() {
 
     let newFormContainer = document.getElementById('new-form-container');
     let duration = getDurationFromDiv(newFormContainer);
+    console.log('duration to dismiss new model form: ', duration);
     newFormContainer.classList.remove('opacity-100');
     newFormContainer.classList.remove('opacity-0');
     setTimeout(() => {

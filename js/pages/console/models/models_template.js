@@ -1,6 +1,6 @@
 function dummyGridHTML() {
     return `
-    <div class="bg-gray-100 h-full relative">
+    <div class="bg-gray-100 h-full relative flex justify-center">
         <div id="collection-grid-container" class="absolute mx-auto max-w-7xl px-2 py-6 overflow-y-auto h-full w-full bg-gray-100 transform transition-all duration-200 ease-in-out">
             <div class="relative">
                 <div id="collection-grid" role="list" class="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" @click.away="clickedOutsideOfCollectionGrid()" onclick="clickedOnEmptyPartOfGrid()">

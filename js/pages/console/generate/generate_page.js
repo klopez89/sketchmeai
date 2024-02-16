@@ -313,7 +313,12 @@ function fireGenerateCall(jsonObject) {
             startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);
         },
         error: function(data) {
-            console.log("error");
+            new_grid_item_div.fadeOut(function() {
+                new_grid_item_div.remove();
+            });
+            console.log("error in generate new endpoint call");
+            let responseText = data.responseText;
+            console.log('The type of error for generate new endpoint is: ', responseText);
             console.log(data);
         }
     });

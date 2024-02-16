@@ -679,7 +679,7 @@ function kickoffModelCreation(trainingData) {
             if (data.status === 413) { // model name already taken
                 modelNameValidationDiv.classList.remove('hidden');
             } else if (data.status === 414) { // insufficient credits
-                showPaymentModal();
+                showPaymentModal(true);
             }
         }
     });

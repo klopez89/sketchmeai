@@ -316,13 +316,12 @@ function fireGenerateCall(jsonObject) {
             new_grid_item_div.fadeOut(function() {
                 new_grid_item_div.remove();
             });
-            console.log("error in generate new endpoint call");
             let responseText = data.responseText;
+            let statusCode = data.status;
             console.log('The type of error for generate new endpoint is: ', responseText);
-            if (responseText.includes('Insufficient credits')) {
-                showPaymentModal();
+            if (statusCode === 414) { // insufficient funds
+                showPaymentModal(true);
             }
-            console.log(data);
         }
     });
 }

@@ -67,3 +67,16 @@ function generateId() {
     }
     return id;
   }
+
+  function getDurationFromDiv(div) {
+    let duration = 500; // default duration
+    let classList = Array.from(div.classList);
+    let durationClass = classList.find(className => className.startsWith('duration-'));
+    if (durationClass) {
+        let durationValue = parseInt(durationClass.split('-')[1]);
+        if (!isNaN(durationValue)) {
+            duration = durationValue;
+        }
+    }
+    return duration;
+}

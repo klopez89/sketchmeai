@@ -786,15 +786,20 @@ function clickedOnNewModelButton(event) {
     event.stopPropagation();
     console.log('clicked on new model button');
 
-    let collectionGridContainer = document.getElementById('collection-grid-container');
-    collectionGridContainer.classList.add('opacity-0');
-    setTimeout(() => {
-        collectionGridContainer.classList.add('hidden');
-    }, 100);
+    // let collectionGridContainer = document.getElementById('collection-grid-container');
+    // collectionGridContainer.classList.add('opacity-0');
+    // setTimeout(() => {
+    //     collectionGridContainer.classList.add('hidden');
+    // }, 100);
 
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.remove('hidden');
-    newFormContainer.classList.remove('translate-x-full', 'opacity-0', 'hidden');
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            newFormContainer.classList.remove('opacity-0');
+            newFormContainer.classList.add('opacity-100');
+        });
+    });
 }
 
 function exitNewModelForm(event) {
@@ -804,17 +809,19 @@ function exitNewModelForm(event) {
 }
 
 function animateAwayFromNewModelForm() {
-    let collectionGridContainer = document.getElementById('collection-grid-container');
-    collectionGridContainer.classList.remove('hidden');
-    setTimeout(() => {
-        collectionGridContainer.classList.remove('opacity-0');
-    }, 300);
+    // let collectionGridContainer = document.getElementById('collection-grid-container');
+    // collectionGridContainer.classList.remove('hidden');
+    // setTimeout(() => {
+    //     collectionGridContainer.classList.remove('opacity-0');
+    // }, 300);
 
     let newFormContainer = document.getElementById('new-form-container');
-    newFormContainer.classList.add('translate-x-full', 'opacity-0');
+    let duration = getDurationFromDiv(newFormContainer);
+    newFormContainer.classList.remove('opacity-100');
+    newFormContainer.classList.remove('opacity-0');
     setTimeout(() => {
         newFormContainer.classList.add('hidden');
-    }, 700);
+    }, duration);
 }
 
 function deleteButtonPressed(event) {

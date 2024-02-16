@@ -231,13 +231,19 @@ function showInsufficientCreditLabel() {
     insufficientLabel.classList.remove('hidden');
 }
 
+function hideInsufficientCreditLabel() {
+    let insufficientLabel = document.getElementById('insufficient-credit-label');
+    insufficientLabel.classList.add('hidden');
+}
+
 function dismissPaymentModal() {
-    var paymentModal = document.getElementById('payment-modal');
+    let paymentModal = document.getElementById('payment-modal');
     paymentModal.classList.remove('opacity-100');
     paymentModal.classList.add('opacity-0');
     // Add 'hidden' class back after transition finishes
     setTimeout(() => {
         paymentModal.classList.add('hidden');
+        hideInsufficientCreditLabel();
     }, 500); // same duration as the transition
 }
 

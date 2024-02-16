@@ -172,12 +172,10 @@ function dummyGridHTML() {
                         <label for="mixed-precision" class="block text-sm font-medium leading-6 text-gray-900">Mixed Precision</label><div class="mt-2">
                             <select id="mixed-precision" name="mixed-precision" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 <option>fp16</option>
-                                <option>bf16</option>
-                                <option>None</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-span-2" id="xformers-field-container"><div class="relative flex gap-x-3">
+                    <div class="hidden col-span-2" id="xformers-field-container"><div class="relative flex gap-x-3">
                             <div class="flex h-6 items-center">
                                 <input id="xformers" name="xformers" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 </div>
@@ -204,7 +202,7 @@ function dummyGridHTML() {
                                 </div>
                             </div>
                     </div>
-                    <div class="col-span-2" id="use-reg-imgs-field-container"><div class="relative flex gap-x-3">
+                    <div class="col-span-2 hidden" id="use-reg-imgs-field-container"><div class="relative flex gap-x-3">
                             <div class="flex h-6 items-center">
                                 <input id="use-reg-imgs" name="useRegImgs" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                 </div>

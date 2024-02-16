@@ -513,18 +513,18 @@ function isTrainingDataValid() {
     let validationEpochs = document.getElementById('validation-epochs').value;
     let maxTrainSteps = document.getElementById('max-train-steps').value;
     let mixedPrecision = document.getElementById('mixed-precision').value;
-    let xformers = document.getElementById('xformers').checked;
+    // let xformers = document.getElementById('xformers').checked;
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
     let bitAdam = document.getElementById('8bit-adam').checked;
 
-    var isDataValid = modelName && modelSelection && trainingSubject && trainingSubject !== 'Select an option' && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && xformers != null && gradientCheckpoint != null && bitAdam != null;
+    var isDataValid = modelName && modelSelection && trainingSubject && trainingSubject !== 'Select an option' && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && gradientCheckpoint != null && bitAdam != null;
     
-    shouldUseRegImgs = false;
-    if (trainingSubject == 'person') {
-        shouldUseRegImgs = document.getElementById('use-reg-imgs').checked;
-    }
+    // shouldUseRegImgs = false;
+    // if (trainingSubject == 'person') {
+    //     shouldUseRegImgs = document.getElementById('use-reg-imgs').checked;
+    // }
 
-    isDataValid = isDataValid && shouldUseRegImgs != null;
+    // isDataValid = isDataValid && shouldUseRegImgs != null;
 
     return isDataValid;
 }
@@ -548,7 +548,7 @@ function grabTrainingData() {
     let validationEpochs = document.getElementById('validation-epochs').value;
     var maxTrainSteps = document.getElementById('max-train-steps').value;
     var mixedPrecision = document.getElementById('mixed-precision').value;
-    let xformers = document.getElementById('xformers').checked;
+    // let xformers = document.getElementById('xformers').checked;
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
     let bitAdam = document.getElementById('8bit-adam').checked;
 	let files = getUploadedFiles();
@@ -557,10 +557,6 @@ function grabTrainingData() {
 
     if (maxTrainSteps === 'auto') {
         maxTrainSteps = 0;
-    }
-
-    if (mixedPrecision === 'None') {
-        mixedPrecision = null;
     }
 
     let trainingData = {
@@ -584,17 +580,15 @@ function grabTrainingData() {
         "validation-epochs": validationEpochs,
         "max-train-steps": maxTrainSteps,
         "mixed-precision": mixedPrecision,
-        "xformers": xformers,
         "gradient-checkpoint": gradientCheckpoint,
         "8bit-adam": bitAdam,
         "files": files,
-        "use-alt-train-steps": true,
     };
 
-    if (trainingSubject == 'person') {
-        let shouldUseRegImgs = document.getElementById('use-reg-imgs').checked;
-        trainingData['use-reg-imgs'] = shouldUseRegImgs;
-    }
+    // if (trainingSubject == 'person') {
+    //     let shouldUseRegImgs = document.getElementById('use-reg-imgs').checked;
+    //     trainingData['use-reg-imgs'] = shouldUseRegImgs;
+    // }
 
     return trainingData;
 }

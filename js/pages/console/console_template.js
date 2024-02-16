@@ -156,8 +156,8 @@ function consoleHtml() {
                                 <span id="modal-credit-balance-label" class="">$0.00</span>
                                 <span id="insufficient-credit-label" class="hidden italic text-red-500 text-xs">Insufficient credit.</span>
                             </h2>
-                            <p class="mb-0 text-gray-400">$1+ / fine-tuning a model</p>
-                            <p class="mb-4 text-gray-400">$0.03 / image</p>
+                            <p class="mb-0 text-gray-400">~ $3.40 / fine-tuned model (on 10 images)</p>
+                            <p class="mb-4 text-gray-400">~ $0.03 / image</p>
                         </div>
 
                         <hr class="border-t border-gray-200 my-6">

@@ -701,18 +701,18 @@ function configureTrainingSubjectField() {
             case 'person':
                 preset = personTrainingPreset();
                 hideFieldsWithIds(['object-name-container'])
-                showFieldsWithIds(['use-reg-imgs-field-container'])
+                // showFieldsWithIds(['use-reg-imgs-field-container'])
                 console.log('Ready to apply person preset');
                 break;
             case 'style':
                 // preset = styleTrainingPreset();
-                hideFieldsWithIds(['object-name-container', 'use-reg-imgs-field-container'])
+                hideFieldsWithIds(['object-name-container'])
                 console.log('Ready to apply style preset');
                 break;
             case 'object':
                 // preset = objectTrainingPreset();
                 showFieldsWithIds(['object-name-container'])
-                hideFieldsWithIds(['use-reg-imgs-field-container'])
+                // hideFieldsWithIds(['use-reg-imgs-field-container'])
                 console.log('Ready to apply object preset');
                 break;
             // Add more cases if there are other training subjects

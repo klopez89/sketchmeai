@@ -319,6 +319,9 @@ function fireGenerateCall(jsonObject) {
             console.log("error in generate new endpoint call");
             let responseText = data.responseText;
             console.log('The type of error for generate new endpoint is: ', responseText);
+            if (responseText.includes('Insufficient credits')) {
+                showPaymentModal();
+            }
             console.log(data);
         }
     });

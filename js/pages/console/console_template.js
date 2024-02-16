@@ -154,7 +154,7 @@ function consoleHtml() {
                         <div class="mb-4">
                             <h2 class="text-3xl text-gray-900">Balance: 
                                 <span id="modal-credit-balance-label" class="">$0.00</span>
-                                <span id="insufficient-label" class="hidden italic text-red-500 text-xs">Insufficient credit.</span>
+                                <span id="insufficient-credit-label" class="hidden italic text-red-500 text-xs">Insufficient credit.</span>
                             </h2>
                             <p class="mb-4">~500 images left to generate, or 25 custom models to train</p>
                         </div>

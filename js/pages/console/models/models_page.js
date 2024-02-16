@@ -614,7 +614,7 @@ function personTrainingPreset() {
     "scheduler-cycles": "1",
     "warmup-steps": "0",
     "validation-epochs": "50",
-    "max-train-steps": "1000",
+    "max-train-steps": "auto",
     "mixed-precision": "fp16",
     "xformers": false,
     "gradient-checkpoint": true,
@@ -676,7 +676,11 @@ function kickoffModelCreation(trainingData) {
             console.log("error");
             console.log("Status code: ", data.status);
             console.log("Response text: ", data.responseText);
-            modelNameValidationDiv.classList.remove('hidden');
+            if (data.status === 413) { // model name already taken
+                modelNameValidationDiv.classList.remove('hidden');
+            } else if (data.status === 414) { // insufficient credits
+                showPaymentModal();
+            }
         }
     });
 }

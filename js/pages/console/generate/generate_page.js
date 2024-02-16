@@ -116,7 +116,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         let cancel_button = gen_element.querySelector('#cancel-button');
                         cancel_button.addEventListener('click', function() {
                             gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
-                            cancelGeneration(generation.replicate_prediction_id);
+                            cancelGeneration(generation.replicate_prediction_id, gen_element, generation);
                             cancel_button.classList.add('hidden');
                         });
                         cancel_button.classList.remove('hidden');
@@ -326,7 +326,7 @@ function fireGenerateCall(jsonObject) {
     });
 }
 
-function cancelGeneration(predictionId) {
+function cancelGeneration(predictionId, gen_element, generation) {
     let action = `${CONSTANTS.BACKEND_URL}generate/cancel`
     $.ajax({
         type: 'POST',
@@ -338,6 +338,10 @@ function cancelGeneration(predictionId) {
         dataType: 'json',
         success: function(data) {
             console.log(data);
+            gen_element.querySelector('img').classList.remove('hidden');
+            gen_element.querySelector('#gen-status').innerHTML = '';
+            loadGenImage(CANCELED_IMG_URL, gen_element);
+            configureCopyButton(generation, gen_element);
         },
         error: function(data) {
             console.log("error cancelling generation");
@@ -365,7 +369,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 cancel_button = gen_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
                     gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
-                    cancelGeneration(generation_dict.replicate_prediction_id);
+                    cancelGeneration(generation_dict.replicate_prediction_id, gen_element, generation_dict);
                     cancel_button.classList.add('hidden');
                 });
                 cancel_button.classList.remove('hidden');

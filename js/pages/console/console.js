@@ -210,7 +210,11 @@ function handleCreditOptionClick(selectedOption, otherOptions) {
     });
 }
 
-function showPaymentModal() {
+function showPaymentModal(shouldShowCreditError=false) {
+    if (shouldShowCreditError) {
+        showInsufficientCreditLabel();
+    }
+
     var paymentModal = document.getElementById('payment-modal');
     paymentModal.classList.remove('hidden');
     // Double requestAnimationFrame for browser to have time for a reflow
@@ -220,6 +224,11 @@ function showPaymentModal() {
             paymentModal.classList.add('opacity-100');
         });
     });
+}
+
+function showInsufficientCreditLabel() {
+    let insufficientLabel = document.getElementById('insufficient-credit-label');
+    insufficientLabel.classList.remove('hidden');
 }
 
 function dismissPaymentModal() {

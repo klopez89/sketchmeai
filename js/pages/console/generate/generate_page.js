@@ -40,16 +40,18 @@ function setupAccordion() {
     // const buttonText = accordionButton.childNodes[0]; // Assuming the text node is the first child
 
     accordionButton.addEventListener('click', function() {
-        const accordionContent = document.querySelector('#collapseOne5');
-        const buttonText = accordionButton.childNodes[0]; 
-        console.log('click button of generation settings hit! content classlist: ', accordionContent.classList);
-        if (accordionContent.classList.contains('hidden')) {
-            console.log('about to make it say Show Settings');
-            buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
-        } else {
-            buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');
-            console.log('about to make it say Hide Settings');
-        }
+        setTimeout(() => {
+            const accordionContent = document.querySelector('#collapseOne5');
+            const buttonText = accordionButton.childNodes[0]; 
+            console.log('click button of generation settings hit! content classlist: ', accordionContent.classList);
+            if (accordionContent.classList.contains('hidden')) {
+                console.log('about to make it say Show Settings');
+                buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
+            } else {
+                buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');
+                console.log('about to make it say Hide Settings');
+            }
+        }, 200);
     });
 }
 

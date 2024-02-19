@@ -2024,6 +2024,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 .gap-8 {
   gap: 2rem;
 }
+.gap-x-1 {
+  -moz-column-gap: 0.25rem;
+       column-gap: 0.25rem;
+}
 .gap-x-2 {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
@@ -2043,6 +2047,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 .gap-x-8 {
   -moz-column-gap: 2rem;
        column-gap: 2rem;
+}
+.gap-y-1 {
+  row-gap: 0.25rem;
 }
 .gap-y-10 {
   row-gap: 2.5rem;
@@ -4135,8 +4142,9 @@ input[type="range"]:active::-webkit-slider-thumb {
   --tw-bg-opacity: 1;
   background-color: rgb(59 113 202 / var(--tw-bg-opacity));
 }
-.group[data-te-collapse-collapsed] .group-\[\[data-te-collapse-collapsed\]\]\:fill-\[\#212529\] {
-  fill: #212529;
+.group[data-te-collapse-collapsed] .group-\[\[data-te-collapse-collapsed\]\]\:text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 .group[data-te-datepicker-cell-selected] .group-\[\[data-te-datepicker-cell-selected\]\]\:text-white {
   --tw-text-opacity: 1;

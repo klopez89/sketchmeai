@@ -169,7 +169,7 @@ function dummyGridHTML() {
 												<input id="same-seed" name="same-seed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
 											</div>
 											<div class="text-sm leading-6">
-												<p class="text-gray-500">Run all selected models with the same random seed</p>
+												<p class="text-gray-500">Run selected models with same random seed</p>
 											</div>
 									</div>
 								</div>

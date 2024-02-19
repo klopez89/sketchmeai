@@ -12,6 +12,7 @@ addBaseGenMenu();
 configureGenerateForm();
 resizeGrid();
 configureInfiniteScroll();
+setupAccordion();
 
 let userRecId = getUserRecId();
 let lastDocId = null;
@@ -31,6 +32,24 @@ function configureGenerateForm() {
 function randomizeSeed(event) {
     event.preventDefault();
     document.getElementById('seed').value = -1;
+}
+
+function setupAccordion() {
+    const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
+    const accordionContent = document.querySelector('#collapseOne5');
+
+    accordionButton.addEventListener('click', function() {
+        // Check if the accordion is currently visible
+        if (accordionContent.classList.contains('hidden')) {
+            // If the accordion is not visible, we are about to show it
+            accordionButton.innerHTML = accordionButton.innerHTML.replace('Show Settings', 'Hide Settings');
+            accordionContent.classList.remove('hidden');
+        } else {
+            // If the accordion is visible, we are about to hide it
+            accordionButton.innerHTML = accordionButton.innerHTML.replace('Hide Settings', 'Show Settings');
+            accordionContent.classList.add('hidden');
+        }
+    });
 }
 
 function fetchWorkingModels(userRecId) {

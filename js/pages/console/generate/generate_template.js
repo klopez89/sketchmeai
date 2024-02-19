@@ -59,7 +59,7 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
 
-        <div class="bg-gray-200 pb-4 pt-4 md:max-w-80">
+        <div class="bg-gray-200 pb-4 pt-4 min-w-[400px]">
                 
             <form class="generate-form h-full overflow-y-auto px-4" id="generateForm">
 
@@ -74,24 +74,14 @@ function dummyGridHTML() {
                     <div class="col-span-full flex flex-col justify-center" id="gen-button-container">
                         <input type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                     </div>
-		
-                    <div class="col-span-full" id="same-seed-field-container"><div class="relative flex gap-x-3">
-                        <div class="flex h-6 items-center">
-                            <input id="same-seed" name="same-seed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                            </div>
-                            <div class="text-sm leading-6">
-                                <p class="text-gray-500">Run all selected models with the same random seed</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
 
                 <div id="accordionExample5">
                 	<div class="rounded-t-lg bg-transparent">
                     	<h2 class="mb-0" id="headingOne5">
-                      		<button class="group relative flex w-full items-center rounded-t-[15px] border-0 bg-transparent px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-primary [&amp;:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&amp;:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&amp;:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&amp;:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]" type="button" data-te-collapse-init="" data-te-target="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5" data-te-collapse-collapsed="">
-                        		Advanced Settings
+                      		<button class="group relative flex w-full items-center rounded-t-[15px] border-0 bg-transparent py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-primary [&amp;:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&amp;:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&amp;:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&amp;:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]" type="button" data-te-collapse-init="" data-te-target="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5" data-te-collapse-collapsed="">
+                        		Show Settings
                         		<span class="ml-3 -mr-1 h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
 									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
 										<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>

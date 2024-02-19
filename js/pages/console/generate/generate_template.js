@@ -59,7 +59,7 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
 
-        <div class="bg-gray-200 pb-4 pt-4 min-w-[400px]">
+        <div class="bg-gray-100 pb-4 pt-4 min-w-[400px]">
                 
             <form class="generate-form h-full overflow-y-auto px-4" id="generateForm">
 
@@ -72,7 +72,7 @@ function dummyGridHTML() {
                     </div>
 	
                     <div class="col-span-full flex flex-col justify-center" id="gen-button-container">
-                        <input type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                        <input type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                     </div>
                 </div>
 
@@ -184,9 +184,9 @@ function dummyGridHTML() {
         <div class="flex-1 md:flex">
             <div class="bg-gray-100 px-0 py-0 md:flex-1">
                 <div class="bg-gray-100">
-                    <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-2 py-6 overflow-y-auto">
+                    <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-1 py-1 overflow-y-auto">
 
-                        <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>
+                        <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-1 gap-y-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>
 
                         <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8">
                             <div class="bg-gray-100 w-full h-full flex justify-center items-start">

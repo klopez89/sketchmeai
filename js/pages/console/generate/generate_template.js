@@ -64,87 +64,18 @@ function dummyGridHTML() {
             <form class="generate-form h-full overflow-y-auto px-4" id="generateForm">
 
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
-                <div class="col-span-full" id="prompt-field-container">
-                    <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Prompt</label><div class="mt-2">
-                    <textarea id="prompt" name="prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></textarea>
+                    <div class="col-span-full" id="prompt-field-container">
+                        <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Prompt</label>
+                        <div class="mt-2">
+                            <textarea id="prompt" name="prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="col-span-full flex flex-col justify-center" id="gen-button-container">
-                    <input type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
-                </div>
-
-                <div class="sm:col-span-3" id="gen-count-field-container">
-                    <label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
-                        <select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                        </select>
+	
+                    <div class="col-span-full flex flex-col justify-center" id="gen-button-container">
+                        <input type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                     </div>
-                </div><div class="sm:col-span-3" id="denoising-steps-field-container">
-                    <label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Denoising Steps</label><div class="mt-2">
-                        <input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-
-                <div class="col-span-full" id="neg-prompt-field-container">
-                    <label for="neg-prompt" class="block text-sm font-medium leading-6 text-gray-900">Negative Prompt</label><div class="mt-2">
-                    <textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3" id="gs-field-container">
-                    <label for="guidance-scale" class="block text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
-                    <div class="mt-2">
-                    <input type="number" name="guidance-scale" id="guidance-scale" min="1.0" max="20.0" step="0.1" value="7.5" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-                <div class="sm:col-span-3" id="seed-field-container">
-                    <div class="flex items-center">
-                        <label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
-                        <button onclick="randomizeSeed(event)">
-                            <i class="fa-solid fa-dice" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                    <div class="mt-2">
-                        <input type="number" name="seed" id="seed" min="-1" max="4294967295" value="-1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-
-                <div class="col-span-full" id="igm2img-field-container">
-                    <label for="img2imgurl" class="block text-sm font-medium leading-6 text-gray-900">Image2Image Url</label>
-                    <div class="mt-2">
-                        <input type="text" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-                <div class="sm:col-span-3" id="ps-field-container">
-                    <label for="prompt-strength" class="block text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
-                    <div class="mt-2">
-                    <input type="number" name="prompt-strength" id="prompt-strength" min="0.0" max="1.0" step="0.1" value="0.8" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-                <div class="sm:col-span-3" id="lora-field-container">
-                    <label for="lora-scale" class="block text-sm font-medium leading-6 text-gray-900">Lora Scale</label>
-                    <div class="mt-2">
-                        <input type="number" name="lora-scale" id="lora-scale" min="0.0" max="1.0" step="0.01" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="0.6">
-                    </div>
-                </div>
-                <div class="col-span-full" id="models-field-container">
-                    <label for="models" class="block text-sm font-medium leading-6 text-gray-900">Models</label>
-                    <div class="mt-2">
-                        <select id="model-dropdown" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" size="4" multiple="">
-                            <option selected="" id="sdxl" instkey="" model="stability-ai/sdxl" version="39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b">&nbsp;&nbsp;Stable Diffusion SDXL</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-span-full" id="same-seed-field-container"><div class="relative flex gap-x-3">
+		
+                    <div class="col-span-full" id="same-seed-field-container"><div class="relative flex gap-x-3">
                         <div class="flex h-6 items-center">
                             <input id="same-seed" name="same-seed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                             </div>
@@ -157,146 +88,105 @@ function dummyGridHTML() {
 
 
                 <div id="accordionExample5">
-                  <div
-                    class="rounded-t-lg border border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
-                    <h2 class="mb-0" id="headingOne5">
-                      <button
-                        class="group relative flex w-full items-center rounded-t-[15px] border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
-                        type="button"
-                        data-te-collapse-init
-                        data-te-target="#collapseOne5"
-                        aria-expanded="true"
-                        aria-controls="collapseOne5">
-                        Accordion Item #1
-                        <span
-                          class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="h-6 w-6">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                          </svg>
-                        </span>
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseOne5"
-                      class="!visible"
-                      data-te-collapse-item
-                      data-te-collapse-show
-                      aria-labelledby="headingOne5">
-                      <div class="px-5 py-4">
-                        <strong>This is the first item's accordion body.</strong> It is
-                        shown by default, until the collapse plugin adds the appropriate
-                        classes that we use to style each element. These classes control
-                        the overall appearance, as well as the showing and hiding via CSS
-                        transitions. You can modify any of this with custom CSS or
-                        overriding our default variables. It's also worth noting that just
-                        about any HTML can go within the <code>.accordion-body</code>,
-                        though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="border border-t-0 border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
-                    <h2 class="mb-0" id="headingTwo5">
-                      <button
-                        class="group relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
-                        type="button"
-                        data-te-collapse-init
-                        data-te-collapse-collapsed
-                        data-te-target="#collapseTwo5"
-                        aria-expanded="false"
-                        aria-controls="collapseTwo5">
-                        Accordion Item #2
-                        <span
-                          class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="h-6 w-6">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                          </svg>
-                        </span>
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseTwo5"
-                      class="!visible hidden"
-                      data-te-collapse-item
-                      aria-labelledby="headingTwo5">
-                      <div class="px-5 py-4">
-                        <strong>This is the second item's accordion body.</strong> It is
-                        hidden by default, until the collapse plugin adds the appropriate
-                        classes that we use to style each element. These classes control
-                        the overall appearance, as well as the showing and hiding via CSS
-                        transitions. You can modify any of this with custom CSS or
-                        overriding our default variables. It's also worth noting that just
-                        about any HTML can go within the <code>.accordion-body</code>,
-                        though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="rounded-b-lg border border-t-0 border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
-                    <h2 class="mb-0" id="headingThree5">
-                      <button
-                        class="group relative flex w-full items-center border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)] [&[data-te-collapse-collapsed]]:rounded-b-[15px] [&[data-te-collapse-collapsed]]:transition-none"
-                        type="button"
-                        data-te-collapse-init
-                        data-te-collapse-collapsed
-                        data-te-target="#collapseThree5"
-                        aria-expanded="false"
-                        aria-controls="collapseThree5">
-                        Accordion Item #3
-                        <span
-                          class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="h-6 w-6">
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                          </svg>
-                        </span>
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseThree5"
-                      class="!visible hidden"
-                      data-te-collapse-item
-                      aria-labelledby="headingThree5">
-                      <div class="px-5 py-4">
-                        <strong>This is the third item's accordion body.</strong> It is
-                        hidden by default, until the collapse plugin adds the appropriate
-                        classes that we use to style each element. These classes control
-                        the overall appearance, as well as the showing and hiding via CSS
-                        transitions. You can modify any of this with custom CSS or
-                        overriding our default variables. It's also worth noting that just
-                        about any HTML can go within the <code>.accordion-body</code>,
-                        though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                	<div class="rounded-t-lg bg-transparent">
+                    	<h2 class="mb-0" id="headingOne5">
+                      		<button class="group relative flex w-full items-center rounded-t-[15px] border-0 bg-transparent px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-primary [&amp;:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&amp;:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&amp;:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&amp;:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]" type="button" data-te-collapse-init="" data-te-target="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5" data-te-collapse-collapsed="">
+                        		Advanced Settings
+                        		<span class="ml-3 -mr-1 h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+									</svg>
+                        		</span>
+                      		</button>
+                    	</h2>
+                    	<div id="collapseOne5" class="!visible hidden" aria-labelledby="headingOne5" style="" data-te-collapse-item="">
+                      		<div class="px-0 py-4 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
+								<div class="sm:col-span-3" id="gen-count-field-container">
+									<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
+										<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+											<option>6</option>
+											<option>7</option>
+											<option>8</option>
+											<option>9</option>
+											<option>10</option>
+										</select>
+									</div>
+								</div>
+								<div class="sm:col-span-3" id="denoising-steps-field-container">
+									<label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Denoising Steps</label><div class="mt-2">
+										<input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+									</div>
+								</div>
 
+								<div class="col-span-full" id="neg-prompt-field-container">
+									<label for="neg-prompt" class="block text-sm font-medium leading-6 text-gray-900">Negative Prompt</label><div class="mt-2">
+									<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
+									</div>
+								</div>
+
+								<div class="sm:col-span-3" id="gs-field-container">
+									<label for="guidance-scale" class="block text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
+									<div class="mt-2">
+									<input type="number" name="guidance-scale" id="guidance-scale" min="1.0" max="20.0" step="0.1" value="7.5" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+									</div>
+								</div>
+								<div class="sm:col-span-3" id="seed-field-container">
+									<div class="flex items-center">
+										<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
+										<button onclick="randomizeSeed(event)">
+											<i class="fa-solid fa-dice" aria-hidden="true"></i>
+										</button>
+									</div>
+									<div class="mt-2">
+										<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="-1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+									</div>
+								</div>
+
+								<div class="col-span-full" id="igm2img-field-container">
+									<label for="img2imgurl" class="block text-sm font-medium leading-6 text-gray-900">Image2Image Url</label>
+									<div class="mt-2">
+										<input type="text" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+									</div>
+								</div>
+								<div class="sm:col-span-3" id="ps-field-container">
+									<label for="prompt-strength" class="block text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
+									<div class="mt-2">
+									<input type="number" name="prompt-strength" id="prompt-strength" min="0.0" max="1.0" step="0.1" value="0.8" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+									</div>
+								</div>
+								<div class="sm:col-span-3" id="lora-field-container">
+									<label for="lora-scale" class="block text-sm font-medium leading-6 text-gray-900">Lora Scale</label>
+									<div class="mt-2">
+										<input type="number" name="lora-scale" id="lora-scale" min="0.0" max="1.0" step="0.01" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="0.6">
+									</div>
+								</div>
+								<div class="col-span-full" id="models-field-container">
+									<label for="models" class="block text-sm font-medium leading-6 text-gray-900">Models</label>
+									<div class="mt-2">
+										<select id="model-dropdown" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" size="4" multiple="">
+											<option selected="" id="sdxl" instkey="" model="stability-ai/sdxl" version="39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b">&nbsp;&nbsp;Stable Diffusion SDXL</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-span-full" id="same-seed-field-container">
+									<div class="relative flex gap-x-3">
+											<div class="flex h-6 items-center">
+												<input id="same-seed" name="same-seed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+											</div>
+											<div class="text-sm leading-6">
+												<p class="text-gray-500">Run all selected models with the same random seed</p>
+											</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
             </form>
         </div>
 

@@ -12,7 +12,7 @@ addBaseGenMenu();
 configureGenerateForm();
 resizeGrid();
 configureInfiniteScroll();
-// setupAccordion();
+setupAccordion();
 
 let userRecId = getUserRecId();
 let lastDocId = null;
@@ -39,6 +39,7 @@ function setupAccordion() {
     const accordionContent = document.querySelector('#collapseOne5');
 
     accordionButton.addEventListener('click', function() {
+        console.log('click button of generation settings hit!');
         // Check if the accordion is currently visible
         if (accordionContent.classList.contains('hidden')) {
             // If the accordion is not visible, we are about to show it

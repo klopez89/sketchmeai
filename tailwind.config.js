@@ -6,7 +6,13 @@ module.exports = {
     "./imageset/*.html",
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
-  theme: {},
+  theme: {
+    extend: {
+      maxWidth: {
+        '80': '20rem', // Adjust the value as needed
+      },
+    },
+  },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),

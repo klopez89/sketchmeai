@@ -1,4 +1,3 @@
-
 let isCurrentlyPaginatingPrompts = false;
 let collectionId_Test = 'VZZnwEopc3TyE7gJV2Oc'
 let cold_boot_delay = 180000; // 3 minutes in milliseconds for custom models
@@ -36,14 +35,16 @@ function randomizeSeed(event) {
 
 function setupAccordion() {
     const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
-    // const accordionContent = document.querySelector('#collapseOne5');
-    // const buttonText = accordionButton.childNodes[0]; // Assuming the text node is the first child
+    const accordionContent = document.querySelector('#collapseOne5');
 
     accordionButton.addEventListener('click', function() {
-        setTimeout(() => {
-            const accordionContent = document.querySelector('#collapseOne5');
-            const buttonText = accordionButton.childNodes[0]; 
-            console.log('click button of generation settings hit! content classlist: ', accordionContent.classList);
+        // Listen for the end of the transition on the accordionContent
+        accordionContent.addEventListener('transitionend', function handler(e) {
+            // Ensure the transitionend event is for the property you're interested in, if necessary
+            // For example, if you're only interested in the height property completing its transition:
+            // if (e.propertyName === 'height') {
+            const buttonText = accordionButton.childNodes[0];
+            console.log('Transition ended. Current content classlist: ', accordionContent.classList);
             if (accordionContent.classList.contains('hidden')) {
                 console.log('about to make it say Show Settings');
                 buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
@@ -51,7 +52,10 @@ function setupAccordion() {
                 buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');
                 console.log('about to make it say Hide Settings');
             }
-        }, 200);
+            // Remove this event listener once the transition is complete to avoid it being called multiple times
+            accordionContent.removeEventListener('transitionend', handler);
+            // }
+        });
     });
 }
 

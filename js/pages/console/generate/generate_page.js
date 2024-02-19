@@ -40,15 +40,10 @@ function setupAccordion() {
 
     accordionButton.addEventListener('click', function() {
         console.log('click button of generation settings hit!');
-        // Check if the accordion is currently visible
         if (accordionContent.classList.contains('hidden')) {
-            // If the accordion is not visible, we are about to show it
-            accordionButton.innerHTML = accordionButton.innerHTML.replace('Show Settings', 'Hide Settings');
-            accordionContent.classList.remove('hidden');
+            buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
         } else {
-            // If the accordion is visible, we are about to hide it
-            accordionButton.innerHTML = accordionButton.innerHTML.replace('Hide Settings', 'Show Settings');
-            accordionContent.classList.add('hidden');
+            buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');
         }
     });
 }

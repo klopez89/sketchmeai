@@ -33,3 +33,13 @@ body {
 .backdrop.leaving {
     opacity: 0;
 }
+
+.shadow-right-edge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px; /* Adjust the width of the shadow */
+    height: 100%;
+    box-shadow: 8px 0 15px -3px rgba(0, 0, 0, 0.1); /* Customize the shadow */
+}

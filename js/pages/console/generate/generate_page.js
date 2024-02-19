@@ -12,7 +12,7 @@ addBaseGenMenu();
 configureGenerateForm();
 resizeGrid();
 configureInfiniteScroll();
-setupAccordion();
+// setupAccordion();
 
 let userRecId = getUserRecId();
 let lastDocId = null;

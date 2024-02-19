@@ -42,9 +42,11 @@ function setupAccordion() {
     accordionButton.addEventListener('click', function() {
         console.log('click button of generation settings hit!');
         if (accordionContent.classList.contains('hidden')) {
+            console.log('about to make it say Show Settings');
             buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
         } else {
             buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');
+            console.log('about to make it say Hide Settings');
         }
     });
 }

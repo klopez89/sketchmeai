@@ -2512,6 +2512,17 @@ input[type="range"]:active::-webkit-slider-thumb {
 .bg-opacity-90 {
   --tw-bg-opacity: 0.9;
 }
+.bg-gradient-to-l {
+  background-image: linear-gradient(to left, var(--tw-gradient-stops));
+}
+.from-transparent {
+  --tw-gradient-from: transparent var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.to-black {
+  --tw-gradient-to: #000 var(--tw-gradient-to-position);
+}
 .bg-clip-padding {
   background-clip: padding-box;
 }
@@ -3189,6 +3200,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 }
 .opacity-100 {
   opacity: 1;
+}
+.opacity-25 {
+  opacity: 0.25;
 }
 .opacity-50 {
   opacity: 0.5;

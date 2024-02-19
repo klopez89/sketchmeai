@@ -5281,6 +5281,13 @@ input[type="range"]:active::-webkit-slider-thumb {
 .\[\&\:\:-webkit-scrollbar\]\:w-1::-webkit-scrollbar {
   width: 0.25rem;
 }
+.\[\&\:not\(\[data-te-collapse-collapsed\]\)\]\:bg-transparent:not([data-te-collapse-collapsed]) {
+  background-color: transparent;
+}
+.\[\&\:not\(\[data-te-collapse-collapsed\]\)\]\:text-gray-400:not([data-te-collapse-collapsed]) {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
 .\[\&\:not\(\[data-te-input-placeholder-active\]\)\]\:placeholder\:opacity-0:not([data-te-input-placeholder-active])::-moz-placeholder {
   opacity: 0;
 }

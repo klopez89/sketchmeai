@@ -37,6 +37,7 @@ function randomizeSeed(event) {
 function setupAccordion() {
     const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
     const accordionContent = document.querySelector('#collapseOne5');
+    const buttonText = accordionButton.childNodes[0]; // Assuming the text node is the first child
 
     accordionButton.addEventListener('click', function() {
         console.log('click button of generation settings hit!');

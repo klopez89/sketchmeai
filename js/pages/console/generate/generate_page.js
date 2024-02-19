@@ -43,7 +43,7 @@ function setupAccordion() {
             // Ensure the transitionend event is for the property you're interested in, if necessary
             // For example, if you're only interested in the height property completing its transition:
             // if (e.propertyName === 'height') {
-            const buttonText = accordionButton.childNodes[0];
+            const buttonText = accordionButton.lastChild;
             console.log('Transition ended. Current content classlist: ', accordionContent.classList);
             if (accordionContent.classList.contains('hidden')) {
                 console.log('about to make it say Show Settings');

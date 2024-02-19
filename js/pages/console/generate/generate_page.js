@@ -41,7 +41,7 @@ function setupAccordion() {
 
     accordionButton.addEventListener('click', function() {
         console.log('click button of generation settings hit!');
-        if (accordionContent.classList.contains('!visibile')) {
+        if (accordionContent.classList.contains('hidden')) {
             buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
         } else {
             buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');

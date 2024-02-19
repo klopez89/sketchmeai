@@ -59,12 +59,12 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
 
-        <div class="bg-gray-100 pb-4 pt-4 min-w-[400px]">
+        <div class="bg-gray-100 pb-4 pt-4 min-w-[400px] border-r border-gray-300">
 
 			<div class="absolute top-0 right-0 bottom-0 w-2 bg-gradient-to-l from-transparent to-black opacity-25"></div>
 
                 
-            <form class="generate-form h-full overflow-y-auto px-4" id="generateForm">
+            <form class="generate-form h-full overflow-y-auto px-8" id="generateForm">
 
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                     <div class="col-span-full" id="prompt-field-container">

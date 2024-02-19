@@ -59,7 +59,7 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
 
-        <div class="bg-gray-200 pb-4 pt-4 max-w-80">
+        <div class="bg-gray-200 pb-4 pt-4 md:max-w-80">
                 
             <form class="generate-form h-full overflow-y-auto px-4" id="generateForm">
 

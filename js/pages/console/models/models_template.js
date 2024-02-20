@@ -62,8 +62,12 @@ function dummyGridHTML() {
                         <label for="object-name" class="block text-sm font-medium leading-6 text-gray-900">Object Name</label><div class="mt-2">
                             
                         <input type="text" name="object-name" id="object-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"></div>
-                    </div><div class="col-span-full" id="training-data-container">
-                        <label for="localUploadInput" class="block text-sm font-medium leading-6 text-gray-900">Training Data</label>
+                    </div>
+                    <div class="col-span-full" id="training-data-container">
+                        <div class="flex items-center">
+                            <label for="localUploadInput" class="block text-sm font-medium leading-6 text-gray-900">Training Data</label>
+                            <p class="text-xs text-gray-500 italic pl-1">(10-20 images)</p>
+                        </div>
                         <div class="mt-2">
                             <ul role="list" id="uploadEntryContainer" class="flex overflow-x-auto space-x-2 pt-0 px-0">
                                 <button id="uploadAreaButton" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">

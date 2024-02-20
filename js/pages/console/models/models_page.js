@@ -541,7 +541,7 @@ function isTrainingDataValid() {
     let bitAdam = document.getElementById('8bit-adam').checked;
 
     console.log('modelName: ', modelName);
-    var isDataValid = modelName && modelName != '' && modelSelection && trainingSubject && trainingSubject !== 'Select an option' && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && gradientCheckpoint != null && bitAdam != null;
+    var isDataValid = modelName != '' && modelSelection && trainingSubject && trainingSubject !== 'Select an option' && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && gradientCheckpoint != null && bitAdam != null;
     
     // shouldUseRegImgs = false;
     // if (trainingSubject == 'person') {

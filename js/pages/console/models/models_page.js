@@ -98,16 +98,22 @@ function fetchModels(userRecId, lastDocId) {
                         startListeningForModelUpdates(userRecId, model.rec_id);
                     } else if (model.status === PredictionStatus.CANCELED) {
                         model_element.querySelector('#model-status').innerHTML = 'cancelled';
+                        model_element.setAttribute('replicate-name', model.replicate_name);
+                        model_element.setAttribute('version', model.version);
                         configureModelDivPostFinalStatusUpdate(model_element);
                         loadModelImage(CANCELED_IMG_URL, model_element);
                     } else if (model.status === PredictionStatus.FAILED) {
                         model_element.querySelector('#model-status').innerHTML = 'failed';
+                        model_element.setAttribute('replicate-name', model.replicate_name);
+                        model_element.setAttribute('version', model.version);
                         loadModelImage(FAILED_IMG_URL, model_element);
                         configureModelDivPostFinalStatusUpdate(model_element);
                     } else if (model.status === PredictionStatus.SUCCEEDED) {
                         model_element.querySelector('#model-loader').classList.add('hidden');
                         model_element.querySelector('#model-status').innerHTML = '';
                         model_element.querySelector('#model-name-label').innerHTML = model.name;
+                        model_element.setAttribute('replicate-name', model.replicate_name);
+                        model_element.setAttribute('version', model.version);
                         console.log('model generation succeeded');
                         configureModelDivPostFinalStatusUpdate(model_element);
                     }
@@ -825,20 +831,69 @@ function animateAwayFromNewModelForm() {
     }, duration);
 }
 
-function deleteButtonPressed(event) {
-    event.preventDefault();
-    let modelElement = event.target.closest('[model-id]');
-    hideModelMenuShield(modelElement);
-    let modelId = modelElement.getAttribute('model-id');
-    console.log(`delete button pressed for modelId: ${modelId}`);
-    // setGenLoaderToDeleteMode(genElement);
-    // fireGenDeletion(generationId, genElement);
-    event.stopPropagation();
-}
-
 function tappedModelMenuShield(event) {
     let modelCompMenu = event.target.parentElement.querySelector('.model-comp-menu');
     modelCompMenu.__x.$data.open = false;
     event.target.classList.add('hidden');
     event.stopPropagation();
+}
+
+function deleteButtonPressed(event) {
+    event.preventDefault();
+    let modelElement = event.target.closest('[model-id]');
+    hideModelMenuShield(modelElement);
+    let modelId = modelElement.getAttribute('model-id');
+    let replicateName = modelElement.getAttribute('replicate-name');
+    let modelVersion = modelElement.getAttribute('version');
+    console.log(`delete button pressed for modelId: ${modelId}`);
+    setModelLoaderToDeleteMode(modelElement);
+    fireModelDeletion(modelId, replicateName, modelVersion, modelElement);
+    event.stopPropagation();
+}
+
+function fireModelDeletion(modelId, replicateName, modelVersion, modelElement) {
+    let action = `${CONSTANTS.BACKEND_URL}model/delete`
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify({
+            modelIdId: modelId,
+            replicateName: replicateName,
+            modelVersion: modelVersion,
+            userRecId: getUserRecId()
+        }),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (data) {
+            console.log('got success from delete model endpoint for id: ', modelId);
+            removeModelItem(modelElement);
+        },
+        error: function (data) {
+            console.log("error deleting generation with id: ", modelId);
+            console.log('error from endpoint is: ', data);
+            resetModelLoaderFromDelete(modelElement);
+        }
+    });
+}
+
+function removeModelItem(modelElement) {
+    $(modelElement).fadeOut(function() {
+        $(this).remove();
+    });
+}
+
+function setModelLoaderToDeleteMode(modelElement) {
+    let genLoader = modelElement.querySelector('#model-loader');
+    let actionContainer = modelElement.querySelector('#action-container');
+    genLoader.classList.remove('hidden');
+    genLoader.classList.add('bg-opacity-75');
+    actionContainer.classList.add('hidden');
+}
+
+function resetModelLoaderFromDelete(modelElement) {
+    let genLoader = modelElement.querySelector('#model-loader');
+    let actionContainer = modelElement.querySelector('#action-container');
+    genLoader.classList.add('hidden');
+    genLoader.classList.remove('bg-opacity-75');
+    actionContainer.classList.remove('hidden');
 }

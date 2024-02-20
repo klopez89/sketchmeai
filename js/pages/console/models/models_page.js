@@ -857,7 +857,7 @@ function fireModelDeletion(modelId, replicateName, modelVersion, modelElement) {
         type: 'POST',
         url: action,
         data: JSON.stringify({
-            modelIdId: modelId,
+            modelId: modelId,
             replicateName: replicateName,
             modelVersion: modelVersion,
             userRecId: getUserRecId()

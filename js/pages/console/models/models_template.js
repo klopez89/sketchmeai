@@ -63,7 +63,7 @@ function dummyGridHTML() {
                             
                         <input type="text" name="object-name" id="object-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"></div>
                     </div>
-                    <div class="col-span-full" id="training-data-container">
+                    <div class="col-span-full mt-2" id="training-data-container">
                         <div class="flex items-center">
                             <label for="localUploadInput" class="block text-sm font-medium leading-6 text-gray-900">Training Data</label>
                             <p class="text-xs text-gray-500 italic pl-1">(10-20 images)</p>
@@ -80,13 +80,13 @@ function dummyGridHTML() {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-span-2 flex flex-col justify-center" id="gen-button-container">
+                    <div class="col-span-2 flex flex-col justify-center mt-4" id="gen-button-container">
                         <button id="uploadToServerButton" type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
                             <p>Start Training</p>
                             <i class="fa fa-spinner fa-spin" style="position: absolute; display:none;" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="col-span-1" id="cancel-button-container">
+                    <div class="col-span-1 mt-4" id="cancel-button-container">
                         <button id="cancelButton" class="rounded-md w-full flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-sm font-semibold text-gray-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-300" onclick="exitNewModelForm(event)">
                             <p>Cancel</p>
                         </button>

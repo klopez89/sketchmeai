@@ -540,7 +540,8 @@ function isTrainingDataValid() {
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
     let bitAdam = document.getElementById('8bit-adam').checked;
 
-    var isDataValid = modelName && modelName !== '' && modelSelection && trainingSubject && trainingSubject !== 'Select an option' && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && gradientCheckpoint != null && bitAdam != null;
+    console.log('modelName: ', modelName);
+    var isDataValid = modelName && modelName != '' && modelSelection && trainingSubject && trainingSubject !== 'Select an option' && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && gradientCheckpoint != null && bitAdam != null;
     
     // shouldUseRegImgs = false;
     // if (trainingSubject == 'person') {
@@ -771,8 +772,8 @@ function hideFieldsWithIds(ids) {
 }
 
 function toggleUploadButtonInteraction() {
-	let sohuldEnable = isReadyToBeginNewModelCreation();
-	if (sohuldEnable === true && $('#uploadToServerButton').is("[disabled]") === true) {
+	let shouldEnable = isReadyToBeginNewModelCreation();
+	if (shouldEnable === true && $('#uploadToServerButton').is("[disabled]") === true) {
 		$('#uploadToServerButton').removeAttr('disabled');
 		$('#uploadToServerButton').removeClass('bg-gray-200');
 		$('#uploadToServerButton').removeClass('hover:bg-gray-200');
@@ -780,7 +781,7 @@ function toggleUploadButtonInteraction() {
 		$('#uploadToServerButton').addClass('hover:bg-blue-500');
 	} 
 
-	if (sohuldEnable === false && $('#uploadToServerButton').is("[disabled]") === false) {
+	if (shouldEnable === false && $('#uploadToServerButton').is("[disabled]") === false) {
 		$('#uploadToServerButton').attr('disabled','');
 		$('#uploadToServerButton').addClass('bg-gray-200');
 		$('#uploadToServerButton').addClass('hover:bg-gray-200');

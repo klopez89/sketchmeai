@@ -844,8 +844,12 @@ function deleteButtonPressed(event) {
     hideModelMenuShield(modelElement);
     let modelId = modelElement.getAttribute('model-id');
     let replicateName = modelElement.getAttribute('replicate-name');
-    let modelVersion = modelElement.getAttribute('version');
-    console.log(`delete button pressed for modelId: ${modelId}`);
+    var modelVersion = modelElement.getAttribute('version');
+    if (modelVersion.includes(':')) {
+        modelVersion = modelVersion.split(':')[1];
+    }
+
+    console.log(`delete button pressed for modelId: ${modelId}, and model version: ${modelVersion}`);
     setModelLoaderToDeleteMode(modelElement);
     fireModelDeletion(modelId, replicateName, modelVersion, modelElement);
     event.stopPropagation();

@@ -80,16 +80,15 @@ function dummyGridHTML() {
                             </ul>
                         </div>
                     </div>
-                    <div class="col-span-5 flex flex-col justify-center" id="gen-button-container">
+                    <div class="col-span-2 flex flex-col justify-center" id="gen-button-container">
                         <button id="uploadToServerButton" type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
                             <p>Start Training</p>
                             <i class="fa fa-spinner fa-spin" style="position: absolute; display:none;" aria-hidden="true"></i>
                         </button>
                     </div>
                     <div class="col-span-1" id="cancel-button-container">
-                        <button id="cancelButton" class="rounded-md w-full flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-base font-semibold text-gray-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-300" onclick="exitNewModelForm(event)">
+                        <button id="cancelButton" class="rounded-md w-full flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-sm font-semibold text-gray-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-300" onclick="exitNewModelForm(event)">
                             <p>Cancel</p>
-                            <i class="fa fa-spinner fa-spin" style="position: absolute; display:none;" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>

@@ -32,7 +32,7 @@ function dummyGridHTML() {
             <form id="new-form" autocomplete="off">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                     <div class="col-span-2" id="name-field-container">
-                        <div class="flex justify-between items-center">
+                        <div class="flex items-center">
                             <label for="model-name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                             <p class="text-xs text-gray-500 italic pl-1">(no spaces)</p>
                             <div class="text-xs text-red-500 italic hidden" id="model-name-validation">

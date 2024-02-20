@@ -95,7 +95,7 @@ function dummyGridHTML() {
                 </div>
 
 
-                <div id="advancedSettingsAccordion" class="pt-6">
+                <div id="advancedSettingsAccordion" class="pt-6 hidden">
                 	<div class="rounded-t-lg bg-transparent">
 						<h2 class="mb-2" id="headingOne5">
 								<button class="group relative flex w-full items-center justify-center rounded-t-[15px] border-0 bg-transparent pt-2 text-center text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-transparent [&:not([data-te-collapse-collapsed])]:text-gray-400" type="button" data-te-collapse-init="" data-te-target="#advancedSettings" aria-expanded="false" aria-controls="advancedSettings" data-te-collapse-collapsed="">

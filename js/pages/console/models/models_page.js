@@ -4,6 +4,7 @@ configureNewModelUploadArea();
 configureTrainingSubjectField();
 configureTrainingForm();
 setupAccordion();
+applyTrainingPreset(personTrainingPreset());
 
 let userRecId = getUserRecId();
 let lastDocId = null;

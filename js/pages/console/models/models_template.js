@@ -58,12 +58,17 @@ function dummyGridHTML() {
                                 <!-- <option>object</option> -->
                             </select>
                         </div>
-                    </div><div class="col-span-1 hidden" id="object-name-container">
+                    </div><
+                    div class="col-span-1 hidden" id="object-name-container">
                         <label for="object-name" class="block text-sm font-medium leading-6 text-gray-900">Object Name</label><div class="mt-2">
                             
                         <input type="text" name="object-name" id="object-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"></div>
-                    </div><div class="col-span-full" id="training-data-container">
-                        <label for="localUploadInput" class="block text-sm font-medium leading-6 text-gray-900">Training Data</label>
+                    </div>
+                    <div class="col-span-full" id="training-data-container">
+                        <div class="flex items-center">
+                            <label for="localUploadInput" class="block text-sm font-medium leading-6 text-gray-900">Training Data</label>
+                            <p class="text-xs text-gray-500 italic pl-1">(10-20 images)</p>
+                        </div>
                         <div class="mt-2">
                             <ul role="list" id="uploadEntryContainer" class="flex overflow-x-auto space-x-2 pt-0 px-0">
                                 <button id="uploadAreaButton" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
@@ -77,7 +82,7 @@ function dummyGridHTML() {
                         </div>
                     </div>
                     <div class="col-span-5 flex flex-col justify-center" id="gen-button-container">
-                        <button id="uploadToServerButton" type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-base font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
+                        <button id="uploadToServerButton" type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
                             <p>Start Training</p>
                             <i class="fa fa-spinner fa-spin" style="position: absolute; display:none;" aria-hidden="true"></i>
                         </button>

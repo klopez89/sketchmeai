@@ -75,7 +75,7 @@ function dummyGridHTML() {
                     </div>
 	
                     <div class="col-span-full flex flex-col justify-center" id="gen-button-container">
-                        <input type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                        <input type="submit" value="Generate" class="rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                     </div>
                 </div>
 

@@ -540,7 +540,7 @@ function isTrainingDataValid() {
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;
     let bitAdam = document.getElementById('8bit-adam').checked;
 
-    var isDataValid = modelName && modelSelection && trainingSubject && trainingSubject !== 'Select an option' && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && gradientCheckpoint != null && bitAdam != null;
+    var isDataValid = modelName && modelName !== '' && modelSelection && trainingSubject && trainingSubject !== 'Select an option' && tokenString && seed && resolution && networkRank && batchSize && imageRepeats && unetLr && teLr && lrScheduler && schedulerCycles && warmupSteps && validationEpochs && maxTrainSteps && mixedPrecision && gradientCheckpoint != null && bitAdam != null;
     
     // shouldUseRegImgs = false;
     // if (trainingSubject == 'person') {

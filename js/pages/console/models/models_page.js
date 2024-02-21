@@ -845,11 +845,13 @@ function deleteButtonPressed(event) {
     let modelId = modelElement.getAttribute('model-id');
     let replicateName = modelElement.getAttribute('replicate-name');
     var modelVersion = modelElement.getAttribute('version');
-    if (modelVersion.includes(':')) {
-        modelVersion = modelVersion.split(':')[1];
-    }
 
     console.log(`delete button pressed for modelId: ${modelId}, and model version: ${modelVersion}`);
+
+    if (modelVersion && modelVersion.includes(':')) {
+        modelVersion = modelVersion.split(':')[1];
+    }
+    
     setModelLoaderToDeleteMode(modelElement);
     fireModelDeletion(modelId, replicateName, modelVersion, modelElement);
     event.stopPropagation();

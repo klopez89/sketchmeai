@@ -267,6 +267,13 @@ function generateButtonPressed(event) {
     let promptValues = promptInputValues();
     console.log("promptValues: ", promptValues);
 
+    isUrlExpired = isImageUrlExpired(promptValues.img2imgUrl);
+    if (isUrlExpired) {
+        console.log('url is expired');
+        displayErrorBanner('Reference image url is expired. Try a different a different url. Haha');
+        return;
+    }
+
     let prompt = promptValues.prompt;
     
     var seedToUse = promptValues.seed;

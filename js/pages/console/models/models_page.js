@@ -10,6 +10,8 @@ let userRecId = getUserRecId();
 let lastDocId = null;
 fetchModels(userRecId, lastDocId);
 
+const minimumUploadCount = 10;
+const maximumUploadCount = 20;
 
 function addModelsGrid() {
     let dummy_grid_html = dummyGridHTML();
@@ -323,9 +325,14 @@ function handleDrop(event) {
 function handleFileUploads(files) {
     let fileList = Array.from(files);
     let number_of_uploaded_files = numberOfUploadedFiles();
-    let minimum_upload_count = getMinimumUploadCount();
+    let minimum_upload_count = minimumUploadCount;
     let remaining_upload_count = minimum_upload_count - number_of_uploaded_files;
-    let files_to_upload = fileList
+
+    if (fileList.length + number_of_uploaded_files > getMaximumUploadCount) {
+        fileList = fileList.slice(0, getMaximumUploadCount - number_of_uploaded_files);
+    }
+
+    let files_to_upload = fileList;
 
     console.log("the remaining upload count is: ", remaining_upload_count);
     console.log("the files to upload are: ", files_to_upload);
@@ -361,16 +368,6 @@ function handleFileUploads(files) {
 
 // Upload related constant functions
 
-function updateUploadAreaTitle() {
-	let minimumUploadCount = getMinimumUploadCount();
-	let numberOfFilesLeftToUpload = (numberOfUploadedFiles() <= minimumUploadCount) ? (minimumUploadCount - numberOfUploadedFiles()) : 0;
-	// document.getElementById("upload-caption").innerHTML = "Drag or click to upload " + numberOfFilesLeftToUpload + "+ images";
-
-	// if (numberOfFilesLeftToUpload >= minimumUploadCount) {
-	// 	document.getElementById('localUploadInput').value = "";
-	// }
-}
-
 function numberOfUploadedFiles() {
 	let uploadedImages = $("#uploadEntryContainer").find("li");
 	return uploadedImages.length;
@@ -378,22 +375,19 @@ function numberOfUploadedFiles() {
 
 function hasEnoughTrainingData() {
     let number_of_uploaded_files = numberOfUploadedFiles();
-	let minimum_upload_count = getMinimumUploadCount();
+	let minimum_upload_count = minimumUploadCount;
     return number_of_uploaded_files >= minimum_upload_count
 }
 
 function isReadyToBeginNewModelCreation() {
 	let number_of_uploaded_files = numberOfUploadedFiles();
-	let minimum_upload_count = getMinimumUploadCount();
     let isDataValid = isTrainingDataValid();
-	let isReady = number_of_uploaded_files >= minimum_upload_count && isDataValid;
+	let isReady = number_of_uploaded_files >= minimumUploadCount && number_of_uploaded_files <= maximumUploadCount && isDataValid;
     console.log('isTrainingDataValid: ', isDataValid, 'isReadyToBeginNewModelCreation: ', isReady);
 	return isReady;
 }
 
-function getMinimumUploadCount() {
-	return 3;
-}
+
 
 function getUploadedFiles() {
 	let uploaded_entries = $("#uploadEntryContainer").find("li");
@@ -444,7 +438,6 @@ function addFileUploadDivToDOM(file) {
 			upload_entry_element.remove();
 		}
 
-		// updateUploadAreaTitle();
 		toggleUploadAreaVisibility();
 		toggleUploadButtonInteraction();
 	});
@@ -452,7 +445,6 @@ function addFileUploadDivToDOM(file) {
 	$('#uploadEntryContainer').children().first().after(upload_entry_element);
 
 	upload_entry_element.find('#uploadedImage')[0].src = file.data;
-	// updateUploadAreaTitle();
 	toggleUploadAreaVisibility();
 	toggleUploadButtonInteraction();
 }
@@ -472,10 +464,6 @@ function toggleUploadAreaVisibility() {
 		$upload_area_button.find('i').addClass('fa-images');
 		$upload_area_button.find('i').removeClass('fa-check');
 	}
-    
-    if (shouldShow === false){
-        updateUploadAreaTitle();
-    }
 }
 
 function toggleLogoutButton(visibility) {

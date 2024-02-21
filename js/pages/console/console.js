@@ -51,6 +51,11 @@ function displayErrorBanner(errorMessage) {
     let errorBannerDiv = document.createElement('div');
     errorBannerDiv.innerHTML = errorBannerHtml;
     consoleContent.insertBefore(errorBannerDiv, consoleContent.firstChild);
+
+    console.log('button div: ', errorBannerDiv.querySelector('button'));
+    errorBannerDiv.querySelector('button').onclick = function() {
+        errorBannerDiv.remove();
+    };
 }
 
 

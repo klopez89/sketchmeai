@@ -270,7 +270,7 @@ function generateButtonPressed(event) {
     isUrlExpired = isImageUrlExpired(promptValues.img2imgUrl);
     if (isUrlExpired) {
         console.log('url is expired');
-        displayErrorBanner('Reference image url is expired. Try a different a different url. Haha');
+        displayErrorBanner('Reference image url is expired. Try a different a different url.');
         return;
     }
 

@@ -328,8 +328,8 @@ function handleFileUploads(files) {
     let minimum_upload_count = minimumUploadCount;
     let remaining_upload_count = minimum_upload_count - number_of_uploaded_files;
 
-    if (fileList.length + number_of_uploaded_files > getMaximumUploadCount) {
-        fileList = fileList.slice(0, getMaximumUploadCount - number_of_uploaded_files);
+    if (fileList.length + number_of_uploaded_files > maximumUploadCount) {
+        fileList = fileList.slice(0, maximumUploadCount - number_of_uploaded_files);
     }
 
     let files_to_upload = fileList;

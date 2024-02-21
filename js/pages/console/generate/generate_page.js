@@ -77,6 +77,7 @@ function fetchWorkingModels(userRecId) {
                 let instKey = model.token_string ? model.token_string : "zxc";
                 let long_version = model.version;
                 let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
+                console.log('long version: ', long_version, 'short version: ', short_version);
                 let model_name = model.name;
             
                 let new_model_option_html = new_model_option(model_id, instKey, replicate_name, short_version, model_name);

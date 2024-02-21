@@ -60,9 +60,6 @@ function dummyGridHTML() {
     <div class="mx-auto w-full h-full grow md:flex">
 
         <div class="bg-gray-100 pb-4 pt-4 min-w-[400px] border-r border-gray-300">
-
-			<div class="absolute top-0 right-0 bottom-0 w-2 bg-gradient-to-l from-transparent to-black opacity-25"></div>
-
                 
             <form class="generate-form h-full overflow-y-auto px-8" id="generateForm">
 

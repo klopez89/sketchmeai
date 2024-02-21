@@ -87,7 +87,7 @@ function isImageUrlExpired(url) {
     const googExpires = urlParams.get('X-Goog-Expires');
 
     if (!googDate || !googExpires) {
-        console.error('URL does not contain the required expiration parameters.');
+        console.log('URL does not contain any expiration parameters.');
         return false;
     }
 

@@ -558,7 +558,7 @@ function grabTrainingData() {
     let schedulerCycles = document.getElementById('scheduler-cycles').value;
     let warmupSteps = document.getElementById('warmup-steps').value;
     let validationEpochs = document.getElementById('validation-epochs').value;
-    var maxTrainSteps =  1000// document.getElementById('max-train-steps').value;
+    var maxTrainSteps = 1000; // document.getElementById('max-train-steps').value;
     var mixedPrecision = document.getElementById('mixed-precision').value;
     // let xformers = document.getElementById('xformers').checked;
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;

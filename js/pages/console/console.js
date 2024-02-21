@@ -45,6 +45,15 @@ function updatePageTitle() {
     }
 }
 
+function displayErrorBanner(errorMessage) {
+    let consoleContent = document.getElementById('console-content');
+    let errorBannerHtml = showErrorBanner(errorMessage);
+    let errorBannerDiv = document.createElement('div');
+    errorBannerDiv.innerHTML = errorBannerHtml;
+    consoleContent.insertBefore(errorBannerDiv, consoleContent.firstChild);
+}
+
+
 // Payment related functions
 
 

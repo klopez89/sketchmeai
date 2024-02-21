@@ -80,3 +80,27 @@ function generateId() {
     }
     return duration;
 }
+
+function isImageUrlExpired(url) {
+    const urlParams = new URLSearchParams(url.split('?')[1]);
+    const googDate = urlParams.get('X-Goog-Date');
+    const googExpires = urlParams.get('X-Goog-Expires');
+
+    if (!googDate || !googExpires) {
+        console.error('URL does not contain the required expiration parameters.');
+        return false;
+    }
+
+    // Parse the date and expires values
+    const startDate = Date.parse(googDate.substring(0, 4) + '-' + googDate.substring(4, 6) + '-' + googDate.substring(6, 8) + 'T' + googDate.substring(9, 11) + ':' + googDate.substring(11, 13) + ':' + googDate.substring(13, 15) + 'Z');
+    const expiresInMilliseconds = parseInt(googExpires, 10) * 1000;
+
+    // Calculate the expiration date
+    const expirationDate = new Date(startDate + expiresInMilliseconds);
+
+    // Get the current UTC date
+    const currentDate = new Date();
+
+    // Check if the current date is past the expiration date
+    return currentDate > expirationDate;
+}

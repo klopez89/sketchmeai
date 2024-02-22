@@ -82,7 +82,8 @@ function fetchModels(userRecId, lastDocId) {
 
             models.forEach(function(model) {
                 
-                let new_model_grid_html = newModelEntryDiv(model.rec_id);
+                let bg_color = model.bg_color || '#1f2937';
+                let new_model_grid_html = newModelEntryDiv(model.rec_id, bg_color);
                 let new_model_div = $($.parseHTML(new_model_grid_html));
                 new_model_div.hide().insertAfter('#collection-grid > div:first-child').fadeIn(function() {
 

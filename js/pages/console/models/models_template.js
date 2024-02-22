@@ -72,9 +72,9 @@ function dummyGridHTML() {
                         <div class="mt-2">
                             <ul role="list" id="uploadEntryContainer" class="flex overflow-x-auto space-x-2 pt-0 px-0">
                                 <button id="uploadAreaButton" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
-                                    <div class="flex flex-row items-center">		
+                                    <div class="flex flex-col items-center">		
                                         <i class="fa text-3xl fa-images" aria-hidden="true"></i>
-                                        <span class="mt-0 block text-base font-medium text-gray-400" id="upload-caption"></span>
+                                        <span class="mt-0 block text-xs font-medium text-gray-400" id="upload-caption"></span>
                                     </div>
                                 </button>
                                 <input id="localUploadInput" type="file" style="display:none;" multiple="">

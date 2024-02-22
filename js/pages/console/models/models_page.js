@@ -451,18 +451,20 @@ function addFileUploadDivToDOM(file) {
 
 function toggleUploadAreaVisibility() {
 	let shouldShow = hasEnoughTrainingData();
+    let upload_count = numberOfUploadedFiles();
     console.log('shouldShow: ', shouldShow);
 
 	let $upload_area_button = $($('#uploadAreaButton')[0]);
 	if (shouldShow === true && $upload_area_button.find('i').is('.fa-check') === false) {
 		$upload_area_button.find('i').removeClass('fa-images');
 		$upload_area_button.find('i').addClass('fa-check');
-		$upload_area_button.find('span').text('');
+		$upload_area_button.find('span').text(`${upload_count}`);
 	}
 
 	if (shouldShow === false && $upload_area_button.find('i').is('.fa-check') === true) {
 		$upload_area_button.find('i').addClass('fa-images');
 		$upload_area_button.find('i').removeClass('fa-check');
+        $upload_area_button.find('span').text(`${upload_count}`);
 	}
 }
 

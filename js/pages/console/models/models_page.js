@@ -213,7 +213,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 model_element.querySelector('#model-loader').classList.add('hidden');
                 model_element.querySelector('#model-status').innerHTML = '';
                 model_element.querySelector('#model-name-label').innerHTML = 'Canceled';
-                model_element.querySelector('model-name-container').style.backgroundColor = canceledColor;
+                model_element.querySelector('#model-name-container').style.backgroundColor = canceledColor;
                 configureModelDivPostFinalStatusUpdate(model_element);
                 unsubscribe(); // Stop listening for updates
             }

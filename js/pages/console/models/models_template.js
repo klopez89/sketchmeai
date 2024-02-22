@@ -267,14 +267,14 @@ function uploadEntryDiv(file, is_first_file) {
     return html
   }
 
-  function newModelEntryDiv(model_id) {
+  function newModelEntryDiv(model_id, bgColor) {
     let html = `
     <div class="relative rounded-lg overflow-hidden" model-id="${model_id}">
         <div class="group aspect-h-10 aspect-w-10 block w-full relative">
 
             <img src="" alt="" class="object-cover group-hover:opacity-95 transition-opacity duration-200 cursor-pointer opacity-100" onclick="showModelMenu(event)">
 
-            <div id="model-name-container" class="aspect-[1/1] bg-gray-800">
+            <div id="model-name-container" class="aspect-[1/1]" style="background-color: ${bgColor};">
                 <div class="flex justify-left items-end h-full text-white text-5xl">
                     <p id="model-name-label" class="text-2xl ml-5 mb-4"></p>
                 </div>

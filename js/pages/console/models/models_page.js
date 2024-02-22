@@ -454,17 +454,20 @@ function toggleUploadAreaVisibility() {
     let upload_count = numberOfUploadedFiles();
     console.log('shouldShow: ', shouldShow);
 
-	let $upload_area_button = $($('#uploadAreaButton')[0]);
-	if (shouldShow === true && $upload_area_button.find('i').is('.fa-check') === false) {
-		$upload_area_button.find('i').removeClass('fa-images');
-		$upload_area_button.find('i').addClass('fa-check');
-		$upload_area_button.find('span').text(`${upload_count}`);
+	let uploadAreaButton = document.getElementById('uploadAreaButton');
+	let icon = uploadAreaButton.querySelector('i');
+	let span = uploadAreaButton.querySelector('span');
+
+	if (shouldShow === true && !icon.classList.contains('fa-check')) {
+		icon.classList.remove('fa-images');
+		icon.classList.add('fa-check');
+		span.textContent = `${upload_count}`;
 	}
 
-	if (shouldShow === false && $upload_area_button.find('i').is('.fa-check') === true) {
-		$upload_area_button.find('i').addClass('fa-images');
-		$upload_area_button.find('i').removeClass('fa-check');
-        $upload_area_button.find('span').text(`${upload_count}`);
+	if (shouldShow === false && icon.classList.contains('fa-check')) {
+		icon.classList.add('fa-images');
+		icon.classList.remove('fa-check');
+		span.textContent = `${upload_count}`;
 	}
 }
 

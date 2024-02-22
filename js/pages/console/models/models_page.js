@@ -13,8 +13,6 @@ fetchModels(userRecId, lastDocId);
 const minimumUploadCount = 10;
 const maximumUploadCount = 20;
 
-document.getElementById('model-name').addEventListener('input', enforceNoSpaces);
-
 function enforceNoSpaces(event) {
     event.target.value = event.target.value.replace(/\s/g, '');
 }
@@ -681,6 +679,8 @@ function kickoffModelCreation(trainingData) {
         success: function(data) {
             console.log("successfully returned from new model endpoint");
             console.log(data);
+            let bgColor = data.bg_color;
+            console.log('The color to show for model bg is: ', bgColor);
             addNewModelToGrid(trainingData['model-id'])
             animateAwayFromNewModelForm();
             startListeningForModelUpdates(trainingData['user-rec-id'], trainingData['model-id']);
@@ -710,6 +710,8 @@ function configureTrainingForm() {
         console.log('Ready to gather form values and training data and hit our new model endpoint');
         kickoffModelCreation(grabTrainingData());
     });
+
+    document.getElementById('model-name').addEventListener('input', enforceNoSpaces);
 }
 
 function configureTrainingSubjectField() {

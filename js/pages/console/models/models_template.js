@@ -279,7 +279,7 @@ function uploadEntryDiv(file, is_first_file) {
             </div>
             
             <div id="model-loader" class="bg-transparent flex justify-center items-center">
-                <i class="fa fa-spinner fa-spin text-4xl text-gray-500" aria-hidden="true"></i>
+                <i class="fa fa-spinner fa-spin text-4xl text-gray-200" aria-hidden="true"></i>
                 <p class="absolute bottom-0 right-0 pb-3 pr-3 text-xs text-gray-200" id="model-status"></p>
                 <button class="hidden absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500" id="cancel-button">Cancel</button>
             </div>

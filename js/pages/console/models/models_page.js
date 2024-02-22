@@ -470,6 +470,7 @@ function toggleUploadAreaVisibility() {
         console.log('about to set text to upload count of : ', upload_count);
 	}
 
+    span.textContent = `${upload_count}`;
     if (shouldShow === true) {
         span.classList.add('font-black');
         span.classList.remove('font-medium');

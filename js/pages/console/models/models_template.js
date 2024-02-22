@@ -276,13 +276,13 @@ function uploadEntryDiv(file, is_first_file) {
 
             <div id="model-name-container" class="aspect-[1/1]" style="background-color: ${bgColor};">
                 <div class="flex justify-left items-end h-full text-white text-5xl">
-                    <p id="model-name-label" class="text-2xl ml-5 mb-4"></p>
+                    <p id="model-name-label" class="text-xl ml-3 mb-2"></p>
                 </div>
             </div>
             
-            <div id="model-loader" class="bg-gray-200 flex justify-center items-center">
+            <div id="model-loader" class="bg-transparent flex justify-center items-center">
                 <i class="fa fa-spinner fa-spin text-4xl text-gray-500" aria-hidden="true"></i>
-                <p class="absolute bottom-0 right-0 pb-2 pr-2 text-xs text-gray-500" id="model-status"></p>
+                <p class="absolute bottom-0 right-0 pb-3 pr-3 text-xs text-gray-200" id="model-status"></p>
                 <button class="hidden absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500" id="cancel-button">Cancel</button>
             </div>
 

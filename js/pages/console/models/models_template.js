@@ -13,7 +13,7 @@ function dummyGridHTML() {
                     </div>
                 </div>
 
-                <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8 hidden">
+                <div id="grid-loader" class="absolute top-0 left-0 w-full h-full">
                     <div class="bg-gray-100 w-full h-full flex justify-center items-start">
                         <div class="mt-5">    
                             <i class="fa fa-spinner fa-spin text-4xl text-gray-500 mt-5" aria-hidden="true"></i>

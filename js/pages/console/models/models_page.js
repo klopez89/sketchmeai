@@ -107,14 +107,14 @@ function fetchModels(userRecId, lastDocId) {
                         startListeningForModelUpdates(userRecId, model.rec_id);
                     } else if (model.status === PredictionStatus.CANCELED) {
                         model_element.querySelector('#model-loader').classList.add('hidden');
-                        model_element.querySelector('#model-status').innerHTML = 'cancelled';
+                        model_element.querySelector('#model-status').innerHTML = '';
                         model_element.setAttribute('replicate-name', model.replicate_name);
                         model_element.setAttribute('version', model.version);
                         model_element.querySelector('#model-name-label').innerHTML = 'Canceled';
                         configureModelDivPostFinalStatusUpdate(model_element);
                     } else if (model.status === PredictionStatus.FAILED) {
                         model_element.querySelector('#model-loader').classList.add('hidden');
-                        model_element.querySelector('#model-status').innerHTML = 'failed';
+                        model_element.querySelector('#model-status').innerHTML = '';
                         model_element.setAttribute('replicate-name', model.replicate_name);
                         model_element.setAttribute('version', model.version);
                         model_element.querySelector('#model-name-label').innerHTML = 'Failed';
@@ -203,7 +203,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 console.log('model generation failed');
                 console.log('error: ', error);
                 model_element.querySelector('#model-loader').classList.add('hidden');
-                model_element.querySelector('#model-status').innerHTML = 'failed';
+                model_element.querySelector('#model-status').innerHTML = '';
                 model_element.querySelector('#model-name-label').innerHTML = 'Failed';
                 model_element.querySelector('model-name-container').style.backgroundColor = failedColor;
                 configureModelDivPostFinalStatusUpdate(model_element);
@@ -211,7 +211,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
             } else if (status === PredictionStatus.CANCELED) {
                 console.log('model generation canceled');
                 model_element.querySelector('#model-loader').classList.add('hidden');
-                model_element.querySelector('#model-status').innerHTML = 'cancelled';
+                model_element.querySelector('#model-status').innerHTML = '';
                 model_element.querySelector('#model-name-label').innerHTML = 'Canceled';
                 model_element.querySelector('model-name-container').style.backgroundColor = canceledColor;
                 configureModelDivPostFinalStatusUpdate(model_element);

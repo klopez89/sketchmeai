@@ -849,6 +849,7 @@ function resetNewModalForm() {
     document.getElementById('model-name').value = '';
     document.querySelectorAll("#uploadEntryContainer li").forEach(li => li.remove());
     applyTrainingPreset(personTrainingPreset());
+    toggleUploadAreaVisibility();
 }
 
 function tappedModelMenuShield(event) {

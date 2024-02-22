@@ -12,6 +12,8 @@ fetchModels(userRecId, lastDocId);
 
 const minimumUploadCount = 10;
 const maximumUploadCount = 20;
+const canceledColor = '#801930';
+const failedColor = '#801930';
 
 function enforceNoSpaces(event) {
     event.target.value = event.target.value.replace(/\s/g, '');
@@ -82,7 +84,7 @@ function fetchModels(userRecId, lastDocId) {
 
             models.forEach(function(model) {
                 
-                let bg_color = model.bg_color || '#1f2937';
+                let bg_color = appropriateModelBgColor(model)
                 let new_model_grid_html = newModelEntryDiv(model.rec_id, bg_color);
                 let new_model_div = $($.parseHTML(new_model_grid_html));
                 new_model_div.hide().insertAfter('#collection-grid > div:first-child').fadeIn(function() {
@@ -107,13 +109,13 @@ function fetchModels(userRecId, lastDocId) {
                         model_element.querySelector('#model-status').innerHTML = 'cancelled';
                         model_element.setAttribute('replicate-name', model.replicate_name);
                         model_element.setAttribute('version', model.version);
+                        model_element.querySelector('#model-name-label').innerHTML = 'Canceled';
                         configureModelDivPostFinalStatusUpdate(model_element);
-                        loadModelImage(CANCELED_IMG_URL, model_element);
                     } else if (model.status === PredictionStatus.FAILED) {
                         model_element.querySelector('#model-status').innerHTML = 'failed';
                         model_element.setAttribute('replicate-name', model.replicate_name);
                         model_element.setAttribute('version', model.version);
-                        loadModelImage(FAILED_IMG_URL, model_element);
+                        model_element.querySelector('#model-name-label').innerHTML = 'Failed';
                         configureModelDivPostFinalStatusUpdate(model_element);
                     } else if (model.status === PredictionStatus.SUCCEEDED) {
                         model_element.querySelector('#model-loader').classList.add('hidden');
@@ -143,6 +145,16 @@ function fetchModels(userRecId, lastDocId) {
             console.error('Error:', error);
         }
     });
+}
+
+function appropriateModelBgColor(model) {
+    let bg_color = model.bg_color || '#1f2937';
+    if (model.status === PredictionStatus.CANCELED || model.status === PredictionStatus.FAILED) {
+        bg_color = canceledColor;
+    } else if (model.status === PredictionStatus.FAILED) {
+        bg_color = failedColor;
+    }
+    return bg_color;
 }
 
 
@@ -189,35 +201,21 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 console.log('model generation failed');
                 console.log('error: ', error);
                 model_element.querySelector('#model-status').innerHTML = 'failed';
-                loadModelImage(FAILED_IMG_URL, model_element);
+                model_element.querySelector('#model-name-label').innerHTML = 'Failed';
+                model_element.querySelector('model-name-container').style.backgroundColor = failedColor;
                 configureModelDivPostFinalStatusUpdate(model_element);
                 unsubscribe(); // Stop listening for updates
             } else if (status === PredictionStatus.CANCELED) {
                 console.log('model generation canceled');
                 model_element.querySelector('#model-status').innerHTML = 'cancelled';
+                model_element.querySelector('#model-name-label').innerHTML = 'Canceled';
+                model_element.querySelector('model-name-container').style.backgroundColor = canceledColor;
                 configureModelDivPostFinalStatusUpdate(model_element);
-                loadModelImage(CANCELED_IMG_URL, model_element);
                 unsubscribe(); // Stop listening for updates
             }
 
             console.log(`for model_id: ${modelId} status is ${status}`);
     });
-}
-
-function loadModelImage(img_url, new_grid_item_div) {
-    let modelNameContainerElement = new_grid_item_div.querySelector('#model-name-container');
-    modelNameContainerElement.classList.add('hidden');
-
-    let imgElement = new_grid_item_div.querySelector('img');
-    let actualImage = new Image();
-    actualImage.onload = function() {
-        imgElement.src = this.src;
-        imgElement.setAttribute('data-te-img', this.src);
-        new_grid_item_div.querySelector('#model-loader').classList.add('hidden');
-        imgElement.classList.add('opacity-100');
-        imgElement.classList.remove('opacity-0');
-    };
-    actualImage.src = img_url;
 }
 
 function showModelMenu(event) {

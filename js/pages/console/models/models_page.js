@@ -461,12 +461,14 @@ function toggleUploadAreaVisibility() {
 	if (shouldShow === true && !icon.classList.contains('fa-check')) {
 		icon.classList.remove('fa-images');
 		icon.classList.add('fa-check');
+        console.log('about to set text to upload count of : ', upload_count);
 		span.textContent = `${upload_count}`;
 	}
 
 	if (shouldShow === false && icon.classList.contains('fa-check')) {
 		icon.classList.add('fa-images');
 		icon.classList.remove('fa-check');
+        console.log('about to set text to upload count of : ', upload_count);
 		span.textContent = `${upload_count}`;
 	}
 }

@@ -647,8 +647,8 @@ function applyTrainingPreset(preset) {
     }
 }
 
-function addNewModelToGrid(modelId) {
-    let new_model_grid_html = newModelEntryDiv(modelId);
+function addNewModelToGrid(modelId, bgColor) {
+    let new_model_grid_html = newModelEntryDiv(modelId, bgColor);
     let new_model_div = $($.parseHTML(new_model_grid_html));
     new_model_div.hide().insertAfter('#collection-grid > div:first-child').fadeIn();
 }
@@ -681,7 +681,7 @@ function kickoffModelCreation(trainingData) {
             console.log(data);
             let bgColor = data.bg_color;
             console.log('The color to show for model bg is: ', bgColor);
-            addNewModelToGrid(trainingData['model-id'])
+            addNewModelToGrid(trainingData['model-id'], bgColor)
             animateAwayFromNewModelForm();
             startListeningForModelUpdates(trainingData['user-rec-id'], trainingData['model-id']);
             // startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);

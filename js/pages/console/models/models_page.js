@@ -5,6 +5,7 @@ configureTrainingSubjectField();
 configureTrainingForm();
 setupAccordion();
 applyTrainingPreset(personTrainingPreset());
+preventNavigationGesture(document.getElementById('uploadEntryContainer'));
 
 let userRecId = getUserRecId();
 let lastDocId = null;
@@ -904,4 +905,18 @@ function resetModelLoaderFromDelete(modelElement) {
     genLoader.classList.add('hidden');
     genLoader.classList.remove('bg-opacity-75');
     actionContainer.classList.remove('hidden');
+}
+
+function preventNavigationGesture(carouselElement) {
+    carouselElement.addEventListener('touchstart', function(event) {
+        event.stopPropagation();
+    }, { passive: false });
+
+    carouselElement.addEventListener('touchmove', function(event) {
+        event.stopPropagation();
+    }, { passive: false });
+
+    carouselElement.addEventListener('touchend', function(event) {
+        event.stopPropagation();
+    }, { passive: false });
 }

@@ -841,7 +841,14 @@ function animateAwayFromNewModelForm() {
     newFormContainer.classList.add('opacity-0');
     setTimeout(() => {
         newFormContainer.classList.add('hidden');
+        resetNewModalForm();
     }, duration);
+}
+
+function resetNewModalForm() {
+    document.getElementById('model-name').value = '';
+    document.querySelectorAll("#uploadEntryContainer li").forEach(li => li.remove());
+    applyTrainingPreset(personTrainingPreset());
 }
 
 function tappedModelMenuShield(event) {

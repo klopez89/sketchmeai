@@ -29,6 +29,48 @@ function configureGenerateForm() {
     let promptInput = document.getElementById('prompt')
     promptInput.addEventListener('input', function(event) {
         console.log('promptInput value: ', promptInput.value);
+
+        let promptValues = promptInputValues();
+        let modelNames = promptValues.modelNames;
+     
+        formatAroundModelName(modelNames, promptInput);
+        // Get the first selected model, and get its name to match with prompt value
+        // Make that text bolded
+        // in a different part of the code:then when generation is hit, we replace the name w/ the instance key before sending up to our server
+    });
+}
+
+function formatAroundModelName(modelNames, promptInputDiv) {
+
+    // Extract all substrings wrapped in <b></b> tags
+    const boldedSubstrings = promptInputDiv.innerHTML.match(/<b>(.*?)<\/b>/g);
+
+    // Check if the substrings match the modelName and remove the tags if they don't
+    if (boldedSubstrings) {
+        boldedSubstrings.forEach(substring => {
+            // Extract the text inside the <b></b> tags
+            const textInsideTags = substring.match(/<b>(.*?)<\/b>/)[1];
+
+            // If the text doesn't match the modelName, remove the <b></b> tags
+            if (!modelNames.includes(textInsideTags)) {
+                promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, textInsideTags);
+            }
+        });
+    }
+
+    // Loop through each modelName and apply the bold formatting
+    modelNames.forEach(modelName => {
+        // Escape any special regex characters in modelName
+        const escapedModelName = modelName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    
+        // Create a new RegExp object, dynamically inserting the escaped modelName.   Define a regular expression to match the model name not already wrapped in <b></b> tags
+        const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${escapedModelName}\\b(?!<\/b>)`, 'g');
+    
+        // // Define a regular expression to match "Kevin" not already wrapped in <b></b> tags
+        // const regex = /(?<!<b[^>]*>|<b>)\bKevin\b(?!<\/b>)/g;
+    
+        // Replace instances of "modelName" with wrapping <b> tags, ignoring already bolded ones
+        promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
     });
 }
 
@@ -545,10 +587,12 @@ function promptInputValues() {
     let dropdown = document.getElementById('model-dropdown');
     let selectedOptions = dropdown.selectedOptions;
     var modelValues = [];
+    var modelNames = [];
     var versionValues = [];
     var instanceKeys = [];
     for (var i = 0; i < selectedOptions.length; i++) {
         modelValues.push(selectedOptions[i].getAttribute('model'));
+        modelNames.push(selectedOptions[i].getAttribute('modelname'));
         versionValues.push(selectedOptions[i].getAttribute('version'));
         instanceKeys.push(selectedOptions[i].getAttribute('instkey'));
     }
@@ -570,6 +614,7 @@ function promptInputValues() {
         highNoiseFrac: 0.9,
         shouldUseRandomSeedAcrossModels: shouldUseRandomSeedAcrossModels,
         modelValues: modelValues,
+        modelNames: modelNames,
         versionValues: versionValues,
         instanceKeys: instanceKeys,
     }

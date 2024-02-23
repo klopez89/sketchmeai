@@ -73,7 +73,13 @@ function formatAroundModelName(modelNames, promptInputDiv) {
         }
         const escapedModelName = modelName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${escapedModelName}\\b(?!<\/b>)`, 'g');
-        promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
+        if (promptInputDiv.innerHTML.includes(escapedModelName)) {
+            const modelInBoldRegex = new RegExp(`<b>${escapedModelName}</b>`, 'g');
+            if (!modelInBoldRegex.test(promptInputDiv.innerHTML)) {
+                promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
+            }
+        }
+        // promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
     }
 }
 

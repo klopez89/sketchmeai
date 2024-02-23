@@ -211,7 +211,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 model_element.querySelector('#model-status').innerHTML = '...fine-tuning';
                 let cancel_button = model_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
-                    cancelModelFineTuning(generation_dict.replicate_prediction_id, model_element);
+                    cancelModelFineTuning(aiModel_dict.replicate_prediction_id, model_element);
                     cancel_button.classList.add('hidden');
                 });
                 cancel_button.classList.remove('hidden');

@@ -209,7 +209,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
             } else if (status === PredictionStatus.BEING_HANDLED) {
                 console.log('model is being handled');
                 model_element.querySelector('#model-status').innerHTML = '...fine-tuning';
-                cancel_button = gen_element.querySelector('#cancel-button');
+                let cancel_button = model_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
                     cancelGeneration(generation_dict.replicate_prediction_id);
                     cancel_button.classList.add('hidden');

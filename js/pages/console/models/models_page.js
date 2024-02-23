@@ -53,6 +53,30 @@ function setupAccordion() {
     });
 }
 
+function cancelFineTuning(predictionId, gen_element, generation) {
+    let action = `${CONSTANTS.BACKEND_URL}generate/cancel`
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify({
+            replicate_prediction_id: predictionId
+        }),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            gen_element.querySelector('img').classList.remove('hidden');
+            gen_element.querySelector('#gen-status').innerHTML = '';
+            loadGenImage(CANCELED_IMG_URL, gen_element);
+            configureCopyButton(generation, gen_element);
+        },
+        error: function(data) {
+            console.log("error cancelling generation");
+            console.log(data);
+        }
+    });
+}
+
 function fetchModels(userRecId, lastDocId) {
     $.ajax({
         url: CONSTANTS.BACKEND_URL + 'models',
@@ -185,12 +209,12 @@ function startListeningForModelUpdates(userRecId, modelId) {
             } else if (status === PredictionStatus.BEING_HANDLED) {
                 console.log('model is being handled');
                 model_element.querySelector('#model-status').innerHTML = '...fine-tuning';
-                // cancel_button = gen_element.querySelector('#cancel-button');
-                // cancel_button.addEventListener('click', function() {
-                //     cancelGeneration(generation_dict.replicate_prediction_id);
-                //     cancel_button.classList.add('hidden');
-                // });
-                // cancel_button.classList.remove('hidden');
+                cancel_button = gen_element.querySelector('#cancel-button');
+                cancel_button.addEventListener('click', function() {
+                    cancelGeneration(generation_dict.replicate_prediction_id);
+                    cancel_button.classList.add('hidden');
+                });
+                cancel_button.classList.remove('hidden');
             } else if (status === PredictionStatus.SUCCEEDED) {
                 model_element.querySelector('#model-loader').classList.add('hidden');
                 // loadGenImage(signed_gen_url, gen_element);

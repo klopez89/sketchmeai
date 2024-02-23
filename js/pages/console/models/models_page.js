@@ -121,13 +121,13 @@ function fetchModels(userRecId, lastDocId) {
                     } else if (model.status === PredictionStatus.BEING_HANDLED) {
                         model_element.querySelector('#model-status').innerHTML = '...fine-tuning';
                     
-                        let cancel_button = model_element.querySelector('#cancel-button');
-                        cancel_button.addEventListener('click', function() {
-                            model_element.querySelector('#model-status').innerHTML = '...cancelling';
-                            cancelGeneration(model.replicate_prediction_id);
-                            cancel_button.classList.add('hidden');
-                        });
-                        cancel_button.classList.remove('hidden');
+                        // let cancel_button = model_element.querySelector('#cancel-button');
+                        // cancel_button.addEventListener('click', function() {
+                        //     model_element.querySelector('#model-status').innerHTML = '...cancelling';
+                        //     cancelGeneration(model.replicate_prediction_id);
+                        //     cancel_button.classList.add('hidden');
+                        // });
+                        // cancel_button.classList.remove('hidden');
                         startListeningForModelUpdates(userRecId, model.rec_id);
                     } else if (model.status === PredictionStatus.CANCELED) {
                         model_element.querySelector('#model-loader').classList.add('hidden');

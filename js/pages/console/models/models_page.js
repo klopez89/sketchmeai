@@ -722,6 +722,8 @@ function kickoffModelCreation(trainingData) {
     let modelNameValidationDiv = document.getElementById('model-name-validation');
     modelNameValidationDiv.classList.add('hidden');
 
+    disableNewFineTuneButtons();
+
     let action = `${CONSTANTS.BACKEND_URL}model/new`
     $.ajax({
         type: 'POST',
@@ -738,6 +740,7 @@ function kickoffModelCreation(trainingData) {
             animateAwayFromNewModelForm();
             startListeningForModelUpdates(trainingData['user-rec-id'], trainingData['model-id']);
             hideStartTrainingSpinner();
+            enableNewFineTuneButtons();
         },
         error: function(data) {
             console.log("error");
@@ -749,8 +752,19 @@ function kickoffModelCreation(trainingData) {
                 showPaymentModal(true);
             }
             hideStartTrainingSpinner();
+            enableNewFineTuneButtons();
         }
     });
+}
+
+function disableNewFineTuneButtons() {
+    document.getElementById('uploadToServerButton').disabled = true;
+    document.getElementById('cancelButton').disabled = true;
+}
+
+function enableNewFineTuneButtons() {
+    document.getElementById('uploadToServerButton').disabled = false;
+    document.getElementById('cancelButton').disabled = false;
 }
 
 function configureTrainingForm() {

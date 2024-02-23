@@ -37,9 +37,9 @@ function configureGenerateForm() {
         let promptValues = promptInputValues();
         let modelNames = promptValues.modelNames;
      
-        if (modelNames.length > 0) {
-            formatAroundModelName(modelNames, promptInput);
-        }
+
+        formatAroundModelName(modelNames, promptInput);
+    
    
         // Get the first selected model, and get its name to match with prompt value
         // Make that text bolded
@@ -66,19 +66,15 @@ function formatAroundModelName(modelNames, promptInputDiv) {
     }
 
     // Loop through each modelName and apply the bold formatting
-    modelNames.forEach(modelName => {
-        // Escape any special regex characters in modelName
+    for (let i = 0; i < modelNames.length; i++) {
+        let modelName = modelNames[i];
+        if (modelName == null) {
+            continue;
+        }
         const escapedModelName = modelName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    
-        // Create a new RegExp object, dynamically inserting the escaped modelName.   Define a regular expression to match the model name not already wrapped in <b></b> tags
         const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${escapedModelName}\\b(?!<\/b>)`, 'g');
-    
-        // // Define a regular expression to match "Kevin" not already wrapped in <b></b> tags
-        // const regex = /(?<!<b[^>]*>|<b>)\bKevin\b(?!<\/b>)/g;
-    
-        // Replace instances of "modelName" with wrapping <b> tags, ignoring already bolded ones
         promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
-    });
+    }
 }
 
 function randomizeSeed(event) {

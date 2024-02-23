@@ -82,9 +82,9 @@ function dummyGridHTML() {
                         </div>
                     </div>
                     <div class="col-span-2 flex flex-col justify-center mt-4" id="gen-button-container">
-                        <button id="uploadToServerButton" type="submit" value="Generate" class="relative w-full h-full rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-lg text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
-                            <p id="fine-tune-button-label" class="absolute">Start Training</p>
-                            <i class="fa fa-spinner fa-spin hidden" aria-hidden="true"></i>
+                        <button id="uploadToServerButton" type="submit" value="Generate" class="w-full h-full rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-lg text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
+                            <p id="fine-tune-button-label" class="flex items-center">Start Training</p>
+                            <i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
                         </button>
                     </div>
                     <div class="col-span-1 mt-4" id="cancel-button-container">

@@ -717,6 +717,7 @@ function configureModelDivPostFinalStatusUpdate(model_element) {
 
 function kickoffModelCreation(trainingData) {
     console.log("about to kickoff model gen, w/ training data: ", trainingData);
+    showStartTrainingSpinner();
 
     let modelNameValidationDiv = document.getElementById('model-name-validation');
     modelNameValidationDiv.classList.add('hidden');
@@ -736,7 +737,7 @@ function kickoffModelCreation(trainingData) {
             addNewModelToGrid(trainingData['model-id'], bgColor)
             animateAwayFromNewModelForm();
             startListeningForModelUpdates(trainingData['user-rec-id'], trainingData['model-id']);
-            // startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);
+            hideStartTrainingSpinner();
         },
         error: function(data) {
             console.log("error");
@@ -747,6 +748,7 @@ function kickoffModelCreation(trainingData) {
             } else if (data.status === 414) { // insufficient credits
                 showPaymentModal(true);
             }
+            hideStartTrainingSpinner();
         }
     });
 }
@@ -972,4 +974,18 @@ function resetModelLoaderFromDelete(modelElement) {
     genLoader.classList.add('hidden');
     genLoader.classList.remove('bg-opacity-75');
     actionContainer.classList.remove('hidden');
+}
+
+function showStartTrainingSpinner() {
+    let startTrainingButtonLabel = document.querySelector('#uploadToServerButton p');
+    let startTrainingSpinner = document.querySelector('#uploadToServerButton i');
+    startTrainingButtonLabel.classList.add('hidden');
+    startTrainingSpinner.classList.remove('hidden');
+}
+
+function hideStartTrainingSpinner() {
+    let startTrainingButtonLabel = document.querySelector('#uploadToServerButton p');
+    let startTrainingSpinner = document.querySelector('#uploadToServerButton i');
+    startTrainingButtonLabel.classList.remove('hidden');
+    startTrainingSpinner.classList.add('hidden');
 }

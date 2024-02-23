@@ -27,7 +27,7 @@ window.onresize = function() {
 function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
     let promptInput = document.getElementById('prompt')
-    promptInput.addEventListener('change', function(event) {
+    promptInput.addEventListener('input', function(event) {
         console.log('promptInput value: ', promptInput.value);
     });
 }

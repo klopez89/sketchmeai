@@ -400,7 +400,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-status').innerHTML = '...queued';
             } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
-                cancel_button = gen_element.querySelector('#cancel-button');
+                let cancel_button = gen_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
                     gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
                     cancelGeneration(generation_dict.replicate_prediction_id, gen_element, generation_dict);
@@ -435,7 +435,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
 }
 
 function configure_main_gen_button(gen_dict, gen_element) {
-    main_gen_button = gen_element.querySelector('#main-gen-button');
+    let main_gen_button = gen_element.querySelector('#main-gen-button');
     main_gen_button.addEventListener('click', function() {
         copyPromptInfoFromGen(gen_dict);
     });

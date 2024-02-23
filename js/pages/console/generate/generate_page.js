@@ -26,6 +26,10 @@ window.onresize = function() {
 
 function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
+    let promptInput = document.getElementById('prompt')
+    promptInput.addEventListener('change', function(event) {
+        console.log('promptInput value: ', promptInput.value);
+    });
 }
 
 function randomizeSeed(event) {

@@ -45,7 +45,7 @@ function configureGenerateForm() {
 }
 
 function formatAroundModelName(modelNames, promptInputDiv) {
-
+    console.log('the array of modelNames: ', modelNames);
     // Extract all substrings wrapped in <b></b> tags
     const boldedSubstrings = promptInputDiv.innerHTML.match(/<b>(.*?)<\/b>/g);
 

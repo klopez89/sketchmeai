@@ -211,7 +211,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 model_element.querySelector('#model-status').innerHTML = '...fine-tuning';
                 let cancel_button = model_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
-                    cancelGeneration(generation_dict.replicate_prediction_id);
+                    cancelModelFineTuning(generation_dict.replicate_prediction_id, model_element);
                     cancel_button.classList.add('hidden');
                 });
                 cancel_button.classList.remove('hidden');
@@ -249,6 +249,31 @@ function startListeningForModelUpdates(userRecId, modelId) {
 function showModelMenu(event) {
     console.log('pressed on the img element');
     event.stopPropagation();
+}
+
+function cancelModelFineTuning(predictionId, model_element) {
+    let action = `${CONSTANTS.BACKEND_URL}generate/cancel`
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify({
+            replicate_prediction_id: predictionId
+        }),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function(data) {
+            console.log('succedded in canceling fine tuning', data);
+            model_element.querySelector('#model-loader').classList.add('hidden');
+            model_element.querySelector('#model-status').innerHTML = '';
+            model_element.querySelector('#model-name-label').innerHTML = 'Canceled';
+            model_element.querySelector('#model-name-container').style.backgroundColor = canceledColor;
+            configureModelDivPostFinalStatusUpdate(model_element);
+        },
+        error: function(data) {
+            console.log("error cancelling generation");
+            console.log(data);
+        }
+    });
 }
 
 // Upload related functions

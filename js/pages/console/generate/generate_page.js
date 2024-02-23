@@ -18,6 +18,10 @@ let lastDocId = null;
 fetchGenerations(userRecId, collectionId_Test, lastDocId);
 fetchWorkingModels(userRecId);
 
+document.querySelectorAll('.editable').forEach(function(element){
+    element.contentEditable = true;
+});
+
 /////////////////////////////////////////////////////////////////////
 
 window.onresize = function() {

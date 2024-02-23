@@ -296,8 +296,8 @@ function configureNewModelUploadArea() {
 		localUploadInput.addEventListener("change", () => {
 			console.log('Trigger change event of local upload input');
 		 	const files = localUploadInput.files;
-			
 			handleFileUploads(files);
+            localUploadInput.value = '';
 		});
 
 		localUploadInput.addEventListener("click", () => {
@@ -367,15 +367,15 @@ function handleDragOver(event) {
 }
 
 function handleDrop(event) {
-  // Prevent the default behavior of the event
-  event.preventDefault();
+    // Prevent the default behavior of the event
+    event.preventDefault();
 
-  // Un-highlight the drag-and-drop box
-  // this.classList.remove('highlight');
+    // Un-highlight the drag-and-drop box
+    // this.classList.remove('highlight');
 
-  // Get the files that were dropped and handle them
-  var files = event.dataTransfer.files;
- 	handleFileUploads(files)
+    // Get the files that were dropped and handle them
+    var files = event.dataTransfer.files;
+    handleFileUploads(files)
 }
 
 function handleFileUploads(files) {

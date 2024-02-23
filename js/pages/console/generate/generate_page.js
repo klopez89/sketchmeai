@@ -37,7 +37,10 @@ function configureGenerateForm() {
         let promptValues = promptInputValues();
         let modelNames = promptValues.modelNames;
      
-        formatAroundModelName(modelNames, promptInput);
+        if (modelNames.length > 0) {
+            formatAroundModelName(modelNames, promptInput);
+        }
+   
         // Get the first selected model, and get its name to match with prompt value
         // Make that text bolded
         // in a different part of the code:then when generation is hit, we replace the name w/ the instance key before sending up to our server

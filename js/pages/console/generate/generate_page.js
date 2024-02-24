@@ -80,7 +80,8 @@ function formatAroundModelName(modelNames, promptInputDiv) {
         const escapedModelName = modelName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${escapedModelName}\\b(?!<\/b>)`, 'g');
         if (promptInputDiv.innerHTML.includes(escapedModelName)) {
-            const modelInBoldRegex = new RegExp(`<b>${escapedModelName}</b>`, 'gi');
+            // const modelInBoldRegex = new RegExp(`<b>${escapedModelName}</b>`, 'gi');
+            const modelInBoldRegex = new RegExp(`(<b>[\\s\u00A0]*${escapedModelName}[\\s\u00A0]*<\/b>)`, 'gi');
             let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
             console.log('the current prompt text: ', promptInputDiv.innerHTML, 'doesModelNameHaveBoldTags :', doesModelNameHaveBoldTags);
             if (!modelInBoldRegex.test(promptInputDiv.innerHTML)) {

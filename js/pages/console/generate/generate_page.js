@@ -89,7 +89,8 @@ function formatAroundModelName(modelNames, promptInputDiv) {
                 let modelNameLength = modelName.length;
                 console.log('modelNameIndex: ', modelNameIndex, 'modelNameLength', modelNameLength);
 
-                let caretOffset = promptInputDiv.innerHTML.indexOf(modelName) + modelName.length;
+                // The 3 comes from the number of characters in '<b>' the bold tag
+                let caretOffset = promptInputDiv.innerHTML.indexOf(modelName) - 3 + modelName.length;
                 console.log('the caretOffset is: ', caretOffset)
                 // const newCaretOffset = caretOffset + modelName.length + '<b></b>'.length;
                 // Defer the caret positioning to after the browser's default handling

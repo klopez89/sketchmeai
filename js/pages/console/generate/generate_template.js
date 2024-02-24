@@ -233,7 +233,7 @@ function new_model_option(model) {
 	let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
 	let model_name = model.name;
 	let gender_type = model.gender_type;
-	var training_subject = model.training_subject ? model.training_subject : "Test Subject";
+	var training_subject = model.training_subject ? model.training_subject : "person";
     return `
     <option id="${model_id}" instkey="${instKey}" model="${replicate_name}" version="${short_version}" modelName="${model_name}" trainingSubject="${training_subject}" genderType=${gender_type}>&nbsp;&nbsp;${model_name}</option>
     `;

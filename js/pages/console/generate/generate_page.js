@@ -387,6 +387,7 @@ function generateButtonPressed(event) {
     let trainingSubjects = promptValues.trainingSubjects;
     let genderTypes = promptValues.genderTypes;
 
+    console.log('the modelValues is: ', modelValues);
     let customSdxlModelNamesIncluded = modelValues.some((modelValue, index) => {
         return modelValue.includes('custom_sdxl') && prompt.includes(modelNames[index]);
     });

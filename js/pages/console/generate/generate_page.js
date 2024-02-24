@@ -389,6 +389,7 @@ function generateButtonPressed(event) {
 
     console.log('the modelValues is: ', modelValues);
     let customSdxlModelNamesIncluded = modelValues.some((modelValue, index) => {
+        console.log('modelValue:', modelValue, 'index:', index);
         return modelValue.includes('custom_sdxl') && prompt.includes(modelNames[index]);
     });
 

@@ -12,6 +12,7 @@ configureGenerateForm();
 resizeGrid();
 configureInfiniteScroll();
 setupAccordion();
+configureModelListInput();
 
 let userRecId = getUserRecId();
 let lastDocId = null;
@@ -28,22 +29,23 @@ window.onresize = function() {
     resizeGrid();
 }
 
+function configureModelListInput() {
+    document.getElementById('model-dropdown').addEventListener('change', function() {
+        console.log('Model selection changed.');
+        let promptValues = promptInputValues();
+        let modelNames = promptValues.modelNames;
+        formatAroundModelName(modelNames, promptInput);
+    });
+}
+
 function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
     let promptInput = document.getElementById('prompt')
     promptInput.addEventListener('input', function(event) {
         console.log('promptInput value: ', promptInput.value);
-
         let promptValues = promptInputValues();
         let modelNames = promptValues.modelNames;
-     
-
         formatAroundModelName(modelNames, promptInput);
-    
-   
-        // Get the first selected model, and get its name to match with prompt value
-        // Make that text bolded
-        // in a different part of the code:then when generation is hit, we replace the name w/ the instance key before sending up to our server
     });
 }
 

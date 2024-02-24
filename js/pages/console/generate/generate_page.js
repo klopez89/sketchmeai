@@ -85,6 +85,10 @@ function formatAroundModelName(modelNames, promptInputDiv) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 // Restore the caret position after changing innerHTML
                 console.log('adding tags to model name');
+                let modelNameIndex = promptInputDiv.innerHTML.indexOf(modelName);
+                let modelNameLength = modelName.length;
+                console.log('modelNameIndex: ', modelNameIndex, 'modelNameLength', modelNameLength);
+
                 let caretOffset = promptInputDiv.innerHTML.indexOf(modelName) + modelName.length;
                 console.log('the caretOffset is: ', caretOffset)
                 // const newCaretOffset = caretOffset + modelName.length + '<b></b>'.length;

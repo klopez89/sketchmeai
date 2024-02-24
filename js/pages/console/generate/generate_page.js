@@ -112,13 +112,47 @@ function getCaretCharacterOffsetWithin(element) {
     return caretOffset;
 }
 
+// function setCaretPosition(element, offset) {
+//     let range = document.createRange();
+//     let sel = window.getSelection();
+//     range.setStart(element, offset);
+//     range.collapse(true);
+//     sel.removeAllRanges();
+//     sel.addRange(range);
+// }
+
 function setCaretPosition(element, offset) {
     let range = document.createRange();
     let sel = window.getSelection();
-    range.setStart(element, offset);
-    range.collapse(true);
-    sel.removeAllRanges();
-    sel.addRange(range);
+    let childNodes = element.childNodes;
+    let length = 0;
+    let foundNode = null;
+
+    // Find the text node and the correct offset within that node
+    for (let node of childNodes) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            length += node.length;
+            if (length >= offset) {
+                foundNode = node;
+                offset -= (length - node.length);
+                break;
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            length += node.textContent.length;
+            if (length >= offset) {
+                foundNode = node.childNodes[0]; // Assuming the element node has a single text node
+                offset -= (length - node.textContent.length);
+                break;
+            }
+        }
+    }
+
+    if (foundNode) {
+        range.setStart(foundNode, offset);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
 }
 
 

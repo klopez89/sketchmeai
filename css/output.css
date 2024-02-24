@@ -4989,6 +4989,10 @@ input[type="range"]:active::-webkit-slider-thumb {
     display: flex;
   }
 
+  .md\:max-w-\[400px\] {
+    max-width: 400px;
+  }
+
   .md\:flex-1 {
     flex: 1 1 0%;
   }

@@ -49,6 +49,9 @@ function configureGenerateForm() {
 
 function formatAroundModelName(modelNames, promptInputDiv) {
     console.log('the array of modelNames: ', modelNames);
+    // Save the current caret position before changing innerHTML
+    const caretOffset = getCaretCharacterOffsetWithin(promptInputDiv);
+
     // Extract all substrings wrapped in <b></b> tags
     const boldedSubstrings = promptInputDiv.innerHTML.match(/<b>(.*?)<\/b>/g);
 
@@ -61,6 +64,8 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             // If the text doesn't match the modelName, remove the <b></b> tags
             if (!modelNames.includes(textInsideTags)) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, textInsideTags);
+                // Restore the caret position after changing innerHTML
+                setCaretPosition(promptInputDiv.firstChild, caretOffset);
             }
         });
     }
@@ -77,11 +82,43 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             const modelInBoldRegex = new RegExp(`<b>${escapedModelName}</b>`, 'g');
             if (!modelInBoldRegex.test(promptInputDiv.innerHTML)) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
+                // Restore the caret position after changing innerHTML
+                setCaretPosition(promptInputDiv.firstChild, caretOffset);
             }
         }
         // promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
     }
 }
+
+
+function getCaretCharacterOffsetWithin(element) {
+    let caretOffset = 0;
+    const doc = element.ownerDocument || element.document;
+    const win = doc.defaultView || doc.parentWindow;
+    let sel;
+    if (typeof win.getSelection != "undefined") {
+        sel = win.getSelection();
+        if (sel.rangeCount > 0) {
+            const range = win.getSelection().getRangeAt(0);
+            const preCaretRange = range.cloneRange();
+            preCaretRange.selectNodeContents(element);
+            preCaretRange.setEnd(range.endContainer, range.endOffset);
+            caretOffset = preCaretRange.toString().length;
+        }
+    }
+    return caretOffset;
+}
+
+function setCaretPosition(element, offset) {
+    let range = document.createRange();
+    let sel = window.getSelection();
+    range.setStart(element, offset);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+}
+
+
 
 function randomizeSeed(event) {
     event.preventDefault();

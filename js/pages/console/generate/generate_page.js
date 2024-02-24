@@ -399,6 +399,7 @@ function generateButtonPressed(event) {
             let trainingSubject = trainingSubjects[i];
             let genderType = genderTypes[i];
 
+            console.log('trainingSubject: ', trainingSubject, ' genderType: ', genderType);
             console.log('the model name before prompt tweaking: ', modelName);
             const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');
             let personalizedPrompt = modelNameRegex.test(prompt) ? prompt.replace(modelNameRegex, instanceKey) : prompt;

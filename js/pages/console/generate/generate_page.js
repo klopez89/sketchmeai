@@ -637,8 +637,19 @@ function removeLastDocId() {
     localStorage.removeItem('last_doc_id');
 }
 
+function sanitizePrompt(prompt) {
+    // Remove any HTML tags
+    let sanitizedPrompt = prompt.replace(/<[^>]*>?/gm, '');
+    // Replace &nbsp; with a regular space
+    sanitizedPrompt = sanitizedPrompt.replace(/&nbsp;/g, ' ');
+    // Trim the prompt to remove leading and trailing spaces
+    sanitizedPrompt = sanitizedPrompt.trim();
+    return sanitizedPrompt;
+}
+
 function promptInputValues() {
-    let prompt = document.getElementById("prompt").innerHTML;
+    var prompt = document.getElementById("prompt").innerHTML;
+    prompt = sanitizePrompt(prompt);
     let numberOfImages = document.getElementById('gen-count').value;
     let inferenceSteps = document.getElementById('denoising-steps').value;
     let negativePrompt = document.getElementById("neg-prompt").value;

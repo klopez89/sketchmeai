@@ -62,7 +62,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             const boldedModelName = substring.match(/<b>(.*?)<\/b>/)[1];
 
             // Strip any spaces from the model name
-            const cleanedModelName = boldedModelName.replace(/[\s\u00A0]+/g, '');
+            const cleanedModelName = boldedModelName.replace(/&nbsp;/g, ' ').replace(/\s+/g, '');
 
             console.log('textInsideTags: ', cleanedModelName, ' subString: ', substring);
             // If the text doesn't match the modelName, remove the <b></b> tags

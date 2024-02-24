@@ -384,6 +384,8 @@ function generateButtonPressed(event) {
     let modelNames = promptValues.modelNames;
     let versionValues = promptValues.versionValues;
     let instanceKeys = promptValues.instanceKeys;
+    let trainingSubjects = promptValues.trainingSubjects;
+    let genderTypes = promptValues.genderTypes;
 
     for (var j = 0; j < numberOfImages; j++) {
         if (shouldResetSeed) {
@@ -394,6 +396,8 @@ function generateButtonPressed(event) {
             let modelName = modelNames[i];
             let versionName = versionValues[i];
             let instanceKey = instanceKeys[i];
+            let trainingSubject = trainingSubjects[i];
+            let genderType = genderTypes[i];
 
             console.log('the model name before prompt tweaking: ', modelName);
             const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');

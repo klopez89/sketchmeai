@@ -401,9 +401,20 @@ function generateButtonPressed(event) {
 
             console.log('trainingSubject: ', trainingSubject, ' genderType: ', genderType);
             console.log('the model name before prompt tweaking: ', modelName);
+
+
             const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');
             let personalizedPrompt = modelNameRegex.test(prompt) ? prompt.replace(modelNameRegex, instanceKey) : prompt;
             console.log('The new personalized prompt is: ', personalizedPrompt);
+
+            if (trainingSubject == 'person') {
+                if (!personalizedPrompt.includes(`a ${instanceKey}`) && personalizedPrompt.includes(`${instanceKey}`)) {
+                    personalizedPrompt = personalizedPrompt.replace(instanceKey, `a ${instanceKey}`);
+                }
+                if (!personalizedPrompt.includes(`${instanceKey} ${genderType}`) && personalizedPrompt.includes(`${instanceKey}`)) {
+                    personalizedPrompt = personalizedPrompt.replace(instanceKey, `${instanceKey} ${genderType}`);
+                }
+            }
 
             var jsonObject = {
                 generationId: generateId(),

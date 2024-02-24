@@ -59,11 +59,18 @@ function formatAroundModelName(modelNames, promptInputDiv) {
     if (boldedSubstrings) {
         boldedSubstrings.forEach(substring => {
             // Extract the text inside the <b></b> tags
-            const textInsideTags = substring.match(/<b>(.*?)<\/b>/)[1];
-            console.log('textInsideTags: ', textInsideTags, ' subString: ', substring);
+            const boldedModelName = substring.match(/<b>(.*?)<\/b>/)[1];
+
+            // Strip any spaces from the model name
+            const cleanedModelName = boldedModelName.replace(/[\s\u00A0]+/g, '');
+
+            console.log('textInsideTags: ', cleanedModelName, ' subString: ', substring);
             // If the text doesn't match the modelName, remove the <b></b> tags
-            if (!modelNames.includes(textInsideTags)) {
-                promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, textInsideTags);
+
+
+
+            if (!modelNames.includes(cleanedModelName)) {
+                promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, boldedModelName);
                 // Restore the caret position after changing innerHTML
                 console.log('remove any existins bold tags');
                 // setCaretPosition(promptInputDiv.firstChild, caretOffset);

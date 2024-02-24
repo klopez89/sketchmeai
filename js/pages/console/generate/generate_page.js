@@ -50,7 +50,7 @@ function configureGenerateForm() {
 function formatAroundModelName(modelNames, promptInputDiv) {
     console.log('the array of modelNames: ', modelNames);
     // Save the current caret position before changing innerHTML
-    const caretOffset = getCaretCharacterOffsetWithin(promptInputDiv);
+    // const caretOffset = getCaretCharacterOffsetWithin(promptInputDiv);
 
     // Extract all substrings wrapped in <b></b> tags
     const boldedSubstrings = promptInputDiv.innerHTML.match(/<b>(.*?)<\/b>/g);
@@ -66,7 +66,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, textInsideTags);
                 // Restore the caret position after changing innerHTML
                 console.log('remove any existins bold tags');
-                setCaretPosition(promptInputDiv.firstChild, caretOffset);
+                // setCaretPosition(promptInputDiv.firstChild, caretOffset);
             }
         });
     }

@@ -49,8 +49,8 @@ function configureGenerateForm() {
 
 function formatAroundModelName(modelNames, promptInputDiv) {
     console.log('the array of modelNames: ', modelNames);
-    // Save the current caret position before changing innerHTML
-    // const caretOffset = getCaretCharacterOffsetWithin(promptInputDiv);
+    const initialCaretPos = getInitialCaretPosition(promptInputDiv);
+    console.log('initialCaretPos', initialCaretPos);
 
     // Extract all substrings wrapped in <b></b> tags
     const boldedSubstrings = promptInputDiv.innerHTML.match(/<b>(.*?)<\/b>/g);
@@ -87,8 +87,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
         }
         // const escapedModelName = modelName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${modelName}\\b(?!<\/b>)`, 'g');
-        const initialCaretPos = getInitialCaretPosition(promptInputDiv);
-        console.log('initialCaretPos', initialCaretPos);
+
 
         if (promptInputDiv.innerHTML.includes(modelName)) {
             // const modelInBoldRegex = new RegExp(`<b>${escapedModelName}</b>`, 'gi');

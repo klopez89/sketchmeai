@@ -390,6 +390,7 @@ function generateButtonPressed(event) {
     let shouldResetSeed = !hasChosenSeed && promptValues.shouldUseRandomSeedAcrossModels
 
     let modelValues = promptValues.modelValues;
+    let modelNames = promptValues.modelNames;
     let versionValues = promptValues.versionValues;
     let instanceKeys = promptValues.instanceKeys;
 
@@ -398,11 +399,10 @@ function generateButtonPressed(event) {
             seedToUse = Math.floor(Math.random() * 429496719);
         }
         for (var i = 0; i < modelValues.length; i++) {
+            let replicateModelName = modelValues[i];
             let modelName = modelValues[i];
             let versionName = versionValues[i];
             let instanceKey = instanceKeys[i];
-
-            
 
             const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');
             let personalizedPrompt = modelNameRegex.test(prompt) ? prompt.replace(modelNameRegex, instanceKey) : prompt;
@@ -411,7 +411,7 @@ function generateButtonPressed(event) {
             var jsonObject = {
                 generationId: generateId(),
                 userRecId: userRecId,
-                modelName: modelName,
+                modelName: replicateModelName,
                 modelVersion: versionName,
                 prompt: personalizedPrompt,
                 negativePrompt: promptValues.negativePrompt,

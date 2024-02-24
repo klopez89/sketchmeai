@@ -373,7 +373,7 @@ function generateButtonPressed(event) {
         return;
     }
 
-    let prompt = promptValues.prompt;
+
     
     var seedToUse = promptValues.seed;
     let hasChosenSeed = seedToUse != -1;
@@ -386,6 +386,12 @@ function generateButtonPressed(event) {
     let instanceKeys = promptValues.instanceKeys;
     let trainingSubjects = promptValues.trainingSubjects;
     let genderTypes = promptValues.genderTypes;
+
+    var prompt = promptValues.prompt;
+    for (let modelName of modelNames) {
+        const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');
+        prompt = prompt.replace(modelNameRegex, 'tzk');
+    }
 
     for (var j = 0; j < numberOfImages; j++) {
         if (shouldResetSeed) {
@@ -403,7 +409,7 @@ function generateButtonPressed(event) {
             console.log('the model name before prompt tweaking: ', modelName);
 
 
-            const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');
+            const modelNameRegex = new RegExp(`\\btzk\\b`, 'g');
             let personalizedPrompt = modelNameRegex.test(prompt) ? prompt.replace(modelNameRegex, instanceKey) : prompt;
             console.log('The new personalized prompt is: ', personalizedPrompt);
 

@@ -62,7 +62,7 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
 
-        <div class="bg-gray-100 pb-4 pt-4 min-w-[400px] border-r border-gray-300">
+        <div class="bg-gray-100 pb-4 pt-4 min-w-[400px] md:max-w-[400px] max-w-full border-r border-gray-300">
                 
             <form class="generate-form h-full overflow-y-auto px-8" id="generateForm">
 
@@ -70,7 +70,7 @@ function dummyGridHTML() {
                     <div class="col-span-full" id="prompt-field-container">
                         <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Prompt</label>
                         <div class="mt-2">
-							<div id="prompt" name="prompt" rows="3" class="max-w-full whitespace-normal editable break-words outline-none px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></div>
+							<div id="prompt" name="prompt" rows="3" class="max-w-full whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></div>
                         </div>
                     </div>
 	

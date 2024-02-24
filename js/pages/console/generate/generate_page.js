@@ -179,16 +179,7 @@ function fetchWorkingModels(userRecId) {
         success: function(data) {
             models = data.models;
             models.forEach(function(model) {
-                
-                let model_id = model.rec_id;
-                let replicate_name = model.replicate_name;
-                let instKey = model.token_string ? model.token_string : "zxc";
-                let long_version = model.version;
-                let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
-                console.log('long version: ', long_version, 'short version: ', short_version);
-                let model_name = model.name;
-            
-                let new_model_option_html = new_model_option(model_id, instKey, replicate_name, short_version, model_name);
+                let new_model_option_html = new_model_option(model);
                 let new_model_option_div = $($.parseHTML(new_model_option_html));
                 new_model_option_div.hide().appendTo('#model-dropdown').fadeIn();
             });
@@ -667,11 +658,15 @@ function promptInputValues() {
     var modelNames = [];
     var versionValues = [];
     var instanceKeys = [];
+    var trainingSubjects = [];
+    var genderTypes = [];
     for (var i = 0; i < selectedOptions.length; i++) {
         modelValues.push(selectedOptions[i].getAttribute('model'));
         modelNames.push(selectedOptions[i].getAttribute('modelname'));
         versionValues.push(selectedOptions[i].getAttribute('version'));
         instanceKeys.push(selectedOptions[i].getAttribute('instkey'));
+        trainingSubjects.push(selectedOptions[i].getAttribute('trainingSubject'));
+        genderTypes.push(selectedOptions[i].getAttribute('genderType'));
     }
   
     return {
@@ -694,6 +689,8 @@ function promptInputValues() {
         modelNames: modelNames,
         versionValues: versionValues,
         instanceKeys: instanceKeys,
+        trainingSubjects: trainingSubjects,
+        genderTypes: genderTypes
     }
 }
 

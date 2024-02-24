@@ -83,7 +83,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             if (!modelInBoldRegex.test(promptInputDiv.innerHTML)) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 // Restore the caret position after changing innerHTML
-                setCaretPosition(promptInputDiv.firstChild, caretOffset + '<b></b>'.length);
+                setCaretPosition(promptInputDiv.firstChild, caretOffset - '<b></b>'.length);
             }
         }
         // promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');

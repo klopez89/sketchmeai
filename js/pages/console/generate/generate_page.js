@@ -88,7 +88,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
                 let caretOffset = promptInputDiv.innerHTML.indexOf(modelName) + modelName.length;
                 console.log('the caretOffset is: ', caretOffset)
                 // const newCaretOffset = caretOffset + modelName.length + '<b></b>'.length;
-                setCaretPosition(promptInputDiv, newCaretOffset);
+                setCaretPosition(promptInputDiv, caretOffset);
             }
         }
     }

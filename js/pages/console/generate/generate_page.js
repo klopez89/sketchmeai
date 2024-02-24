@@ -65,6 +65,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             if (!modelNames.includes(textInsideTags)) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, textInsideTags);
                 // Restore the caret position after changing innerHTML
+                console.log('remove any existins bold tags');
                 setCaretPosition(promptInputDiv.firstChild, caretOffset);
             }
         });
@@ -83,6 +84,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             if (!modelInBoldRegex.test(promptInputDiv.innerHTML)) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 // Restore the caret position after changing innerHTML
+                console.log('adding tags to model name');
                 setCaretPosition(promptInputDiv.firstChild, caretOffset - '<b></b>'.length);
             }
         }

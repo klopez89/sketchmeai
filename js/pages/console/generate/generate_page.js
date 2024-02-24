@@ -387,6 +387,14 @@ function generateButtonPressed(event) {
     let trainingSubjects = promptValues.trainingSubjects;
     let genderTypes = promptValues.genderTypes;
 
+    let customSdxlModelNamesIncluded = modelValues.some((modelValue, index) => {
+        return modelValue.includes('custom_sdxl') && prompt.includes(modelNames[index]);
+    });
+
+    if (!customSdxlModelNamesIncluded) {
+        console.error('Error: None of the custom_sdxl models have their model name mentioned in the prompt.');
+    }
+
     var prompt = promptValues.prompt;
     for (let modelName of modelNames) {
         const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');

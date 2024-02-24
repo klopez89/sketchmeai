@@ -400,7 +400,7 @@ function generateButtonPressed(event) {
         }
         for (var i = 0; i < modelValues.length; i++) {
             let replicateModelName = modelValues[i];
-            let modelName = modelValues[i];
+            let modelName = modelNames[i];
             let versionName = versionValues[i];
             let instanceKey = instanceKeys[i];
 

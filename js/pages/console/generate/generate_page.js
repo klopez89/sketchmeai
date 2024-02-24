@@ -30,8 +30,10 @@ window.onresize = function() {
 }
 
 function configureModelListInput() {
+    
     document.getElementById('model-dropdown').addEventListener('change', function() {
         console.log('Model selection changed.');
+        let promptInput = document.getElementById('prompt')
         let promptValues = promptInputValues();
         let modelNames = promptValues.modelNames;
         formatAroundModelName(modelNames, promptInput);

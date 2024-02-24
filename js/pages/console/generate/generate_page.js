@@ -105,12 +105,12 @@ function formatAroundModelName(modelNames, promptInputDiv) {
                 console.log('modelNameIndex: ', modelNameIndex, 'modelNameLength', modelNameLength);
 
                 // The 3 comes from the number of characters in '<b>' the bold tag
-                let caretOffset = promptInputDiv.innerHTML.indexOf(modelName) - 3 + modelName.length;
-                console.log('the caretOffset is: ', caretOffset)
+                // let caretOffset = promptInputDiv.innerHTML.indexOf(modelName) - 3 + modelName.length;
+                console.log('the caretOffset is: ', initialCaretPos)
                 // const newCaretOffset = caretOffset + modelName.length + '<b></b>'.length;
                 // Defer the caret positioning to after the browser's default handling
                 setTimeout(function() {
-                    setCaretPosition(promptInputDiv, caretOffset);
+                    setCaretPosition(promptInputDiv, initialCaretPos);
                 }, 0);
             }
         }

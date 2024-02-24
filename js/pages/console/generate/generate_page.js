@@ -322,7 +322,7 @@ function configCopyButton(div, generation) {
 }
 
 function copyPromptInfoFromGen(generation) {
-    document.getElementById("prompt").value = generation.gen_recipe.prompt;
+    document.getElementById("prompt").innerHTML = generation.gen_recipe.prompt;
     document.getElementById("neg-prompt").value = generation.gen_recipe.neg_prompt;
     document.getElementById('gen-count').value = 1;
     document.getElementById('denoising-steps').value = generation.gen_recipe.inference_steps;
@@ -638,7 +638,7 @@ function removeLastDocId() {
 }
 
 function promptInputValues() {
-    let prompt = document.getElementById("prompt").value;
+    let prompt = document.getElementById("prompt").innerHTML;
     let numberOfImages = document.getElementById('gen-count').value;
     let inferenceSteps = document.getElementById('denoising-steps').value;
     let negativePrompt = document.getElementById("neg-prompt").value;

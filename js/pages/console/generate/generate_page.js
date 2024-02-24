@@ -81,6 +81,8 @@ function formatAroundModelName(modelNames, promptInputDiv) {
         const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${escapedModelName}\\b(?!<\/b>)`, 'g');
         if (promptInputDiv.innerHTML.includes(escapedModelName)) {
             const modelInBoldRegex = new RegExp(`<b>${escapedModelName}</b>`, 'g');
+            let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
+            console.log('the current prompt text: ', promptInputDiv.innerHTML, 'doesModelNameHaveBoldTags :', doesModelNameHaveBoldTags);
             if (!modelInBoldRegex.test(promptInputDiv.innerHTML)) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 // Restore the caret position after changing innerHTML

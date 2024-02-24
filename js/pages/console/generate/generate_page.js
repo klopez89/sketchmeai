@@ -87,6 +87,9 @@ function formatAroundModelName(modelNames, promptInputDiv) {
         }
         // const escapedModelName = modelName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${modelName}\\b(?!<\/b>)`, 'g');
+        const initialCaretPos = getInitialCaretPosition(promptInputDiv);
+        console.log('initialCaretPos', initialCaretPos);
+
         if (promptInputDiv.innerHTML.includes(modelName)) {
             // const modelInBoldRegex = new RegExp(`<b>${escapedModelName}</b>`, 'gi');
             const modelInBoldRegex = new RegExp(`(<b>(?:\\s|&nbsp;)*${modelName}(?:\\s|&nbsp;)*<\/b>)`, 'gi');
@@ -113,6 +116,20 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             }
         }
     }
+}
+
+
+function getInitialCaretPosition(element) {
+    let caretPos = 0;
+    const sel = window.getSelection();
+    if (sel.rangeCount > 0) {
+        const range = sel.getRangeAt(0);
+        const preCaretRange = range.cloneRange();
+        preCaretRange.selectNodeContents(element);
+        preCaretRange.setEnd(range.endContainer, range.endOffset);
+        caretPos = preCaretRange.toString().length;
+    }
+    return caretPos;
 }
 
 function setCaretPosition(element, offset) {

@@ -60,7 +60,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
         boldedSubstrings.forEach(substring => {
             // Extract the text inside the <b></b> tags
             const textInsideTags = substring.match(/<b>(.*?)<\/b>/)[1];
-
+            console.log('textInsideTags: ', textInsideTags, ' subString: ', substring);
             // If the text doesn't match the modelName, remove the <b></b> tags
             if (!modelNames.includes(textInsideTags)) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, textInsideTags);
@@ -70,6 +70,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             }
         });
     }
+// /(<b>[\s ]*Kevin_A[\s ]*<\/b>)/gi
 
     // Loop through each modelName and apply the bold formatting
     for (let i = 0; i < modelNames.length; i++) {
@@ -77,14 +78,15 @@ function formatAroundModelName(modelNames, promptInputDiv) {
         if (modelName == null) {
             continue;
         }
-        const escapedModelName = modelName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${escapedModelName}\\b(?!<\/b>)`, 'g');
-        if (promptInputDiv.innerHTML.includes(escapedModelName)) {
+        // const escapedModelName = modelName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${modelName}\\b(?!<\/b>)`, 'g');
+        if (promptInputDiv.innerHTML.includes(modelName)) {
             // const modelInBoldRegex = new RegExp(`<b>${escapedModelName}</b>`, 'gi');
-            const modelInBoldRegex = new RegExp(`(<b>[\\s\u00A0]*${escapedModelName}[\\s\u00A0]*<\/b>)`, 'gi');
+            const modelInBoldRegex = new RegExp(`(<b>[\\s\u00A0]*${modelName}[\\s\u00A0]*<\/b>)`, 'gi');
             console.log('the model in bold refex: ', modelInBoldRegex);
             let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
             console.log('the current prompt text: ', promptInputDiv.innerHTML, 'doesModelNameHaveBoldTags :', doesModelNameHaveBoldTags);
+           
             if (!modelInBoldRegex.test(promptInputDiv.innerHTML)) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 // Restore the caret position after changing innerHTML

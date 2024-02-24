@@ -85,41 +85,14 @@ function formatAroundModelName(modelNames, promptInputDiv) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 // Restore the caret position after changing innerHTML
                 console.log('adding tags to model name');
-                const newCaretOffset = caretOffset + modelName.length + '<b></b>'.length;
-                setCaretPosition(promptInputDiv.firstChild, newCaretOffset);
+                let caretOffset = promptInputDiv.innerHTML.indexOf(modelName) + modelName.length;
+                console.log('the caretOffset is: ', caretOffset)
+                // const newCaretOffset = caretOffset + modelName.length + '<b></b>'.length;
+                setCaretPosition(promptInputDiv, newCaretOffset);
             }
         }
-        // promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
     }
 }
-
-
-function getCaretCharacterOffsetWithin(element) {
-    let caretOffset = 0;
-    const doc = element.ownerDocument || element.document;
-    const win = doc.defaultView || doc.parentWindow;
-    let sel;
-    if (typeof win.getSelection != "undefined") {
-        sel = win.getSelection();
-        if (sel.rangeCount > 0) {
-            const range = win.getSelection().getRangeAt(0);
-            const preCaretRange = range.cloneRange();
-            preCaretRange.selectNodeContents(element);
-            preCaretRange.setEnd(range.endContainer, range.endOffset);
-            caretOffset = preCaretRange.toString().length;
-        }
-    }
-    return caretOffset;
-}
-
-// function setCaretPosition(element, offset) {
-//     let range = document.createRange();
-//     let sel = window.getSelection();
-//     range.setStart(element, offset);
-//     range.collapse(true);
-//     sel.removeAllRanges();
-//     sel.addRange(range);
-// }
 
 function setCaretPosition(element, offset) {
     let range = document.createRange();

@@ -402,8 +402,11 @@ function generateButtonPressed(event) {
             let versionName = versionValues[i];
             let instanceKey = instanceKeys[i];
 
-            let genericPersonId = 'zxc';
-            let personalizedPrompt = prompt.includes(genericPersonId) ? prompt.replace(genericPersonId, instanceKey) : prompt;
+            
+
+            const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');
+            let personalizedPrompt = modelNameRegex.test(prompt) ? prompt.replace(modelNameRegex, instanceKey) : prompt;
+            console.log('The new personalized prompt is: ', personalizedPrompt);
 
             var jsonObject = {
                 generationId: generateId(),
@@ -425,7 +428,7 @@ function generateButtonPressed(event) {
                 highNoiseFrac: promptValues.highNoiseFrac,
             };
 
-            fireGenerateCall(jsonObject);
+            // fireGenerateCall(jsonObject);
         }
     }
 }

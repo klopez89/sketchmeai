@@ -71,6 +71,9 @@ function formatAroundModelName(modelNames, promptInputDiv) {
 
             if (!modelNames.includes(cleanedModelName)) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, boldedModelName);
+                setTimeout(function() {
+                    setCaretPosition(promptInputDiv, initialCaretPos);
+                }, 0);
                 // Restore the caret position after changing innerHTML
                 console.log('remove any existins bold tags');
                 // setCaretPosition(promptInputDiv.firstChild, caretOffset);

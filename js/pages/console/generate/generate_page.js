@@ -85,7 +85,8 @@ function formatAroundModelName(modelNames, promptInputDiv) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 // Restore the caret position after changing innerHTML
                 console.log('adding tags to model name');
-                setCaretPosition(promptInputDiv.firstChild, caretOffset - '<b></b>'.length);
+                const newCaretOffset = caretOffset + modelName.length + '<b></b>'.length;
+                setCaretPosition(promptInputDiv.firstChild, newCaretOffset);
             }
         }
         // promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');

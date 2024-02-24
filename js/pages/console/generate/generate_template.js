@@ -224,8 +224,16 @@ function baseGenMenuHTML() {
     `;
 }
 
-function new_model_option(option_id, instkey, model, version, model_name) {
+function new_model_option(model) {
+	let model_id = model.rec_id;
+	let replicate_name = model.replicate_name;
+	let instKey = model.token_string ? model.token_string : "zxc";
+	let long_version = model.version;
+	let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
+	let model_name = model.name;
+	let gender_type = model.gender_type;
+	var training_subject = model.get("training_subject", "Test Subject");
     return `
-    <option id="${option_id}" instkey="${instkey}" model="${model}" version="${version}" modelName="${model_name}">&nbsp;&nbsp;${model_name}</option>
+    <option id="${model_id}" instkey="${instKey}" model="${replicate_name}" version="${short_version}" modelName="${model_name}" trainingSubject="${training_subject}" genderType=${gender_type}>&nbsp;&nbsp;${model_name}</option>
     `;
 }

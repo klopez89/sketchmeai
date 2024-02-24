@@ -416,6 +416,9 @@ function generateButtonPressed(event) {
                 }
             }
 
+            console.log('The final personalized prompt is: ', personalizedPrompt);
+
+
             var jsonObject = {
                 generationId: generateId(),
                 userRecId: userRecId,

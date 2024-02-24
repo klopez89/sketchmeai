@@ -48,10 +48,7 @@ function configureGenerateForm() {
 }
 
 function formatAroundModelName(modelNames, promptInputDiv) {
-    console.log('the array of modelNames: ', modelNames);
     const initialCaretPos = getInitialCaretPosition(promptInputDiv);
-    console.log('initialCaretPos', initialCaretPos);
-
     // Extract all substrings wrapped in <b></b> tags
     const boldedSubstrings = promptInputDiv.innerHTML.match(/<b>(.*?)<\/b>/g);
 
@@ -60,66 +57,35 @@ function formatAroundModelName(modelNames, promptInputDiv) {
         boldedSubstrings.forEach(substring => {
             // Extract the text inside the <b></b> tags
             const boldedModelName = substring.match(/<b>(.*?)<\/b>/)[1];
-
-            // Strip any spaces from the model name
+            // Strip any spaces from the model name in order to check against list of selected model names
             const cleanedModelName = boldedModelName.replace(/&nbsp;/g, ' ').replace(/\s+/g, '');
-
-            console.log('textInsideTags: ', cleanedModelName, ' subString: ', substring);
-            // If the text doesn't match the modelName, remove the <b></b> tags
-
-
-
             if (!modelNames.includes(cleanedModelName)) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, boldedModelName);
-                setTimeout(function() {
-                    setCaretPosition(promptInputDiv, initialCaretPos);
-                }, 0);
-                // Restore the caret position after changing innerHTML
-                console.log('remove any existins bold tags');
-                // setCaretPosition(promptInputDiv.firstChild, caretOffset);
+                setCaretPosition(promptInputDiv, initialCaretPos);
             }
         });
     }
-// /(<b>[\s ]*Kevin_A[\s ]*<\/b>)/gi
 
-    // Loop through each modelName and apply the bold formatting
+    // Loop through each modelName and apply the bold formatting to any instance of the model name
     for (let i = 0; i < modelNames.length; i++) {
         let modelName = modelNames[i];
         if (modelName == null) {
             continue;
         }
-        // const escapedModelName = modelName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
         const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${modelName}\\b(?!<\/b>)`, 'g');
 
-
         if (promptInputDiv.innerHTML.includes(modelName)) {
-            // const modelInBoldRegex = new RegExp(`<b>${escapedModelName}</b>`, 'gi');
             const modelInBoldRegex = new RegExp(`(<b>(?:\\s|&nbsp;)*${modelName}(?:\\s|&nbsp;)*<\/b>)`, 'gi');
-            console.log('the model in bold refex: ', modelInBoldRegex);
             let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
-            console.log('the current prompt text: ', promptInputDiv.innerHTML, 'doesModelNameHaveBoldTags :', doesModelNameHaveBoldTags);
            
             if (doesModelNameHaveBoldTags == false) {
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
-                // Restore the caret position after changing innerHTML
-                console.log('adding tags to model name');
-                let modelNameIndex = promptInputDiv.innerHTML.indexOf(modelName);
-                let modelNameLength = modelName.length;
-                console.log('modelNameIndex: ', modelNameIndex, 'modelNameLength', modelNameLength);
-
-                // The 3 comes from the number of characters in '<b>' the bold tag
-                // let caretOffset = promptInputDiv.innerHTML.indexOf(modelName) - 3 + modelName.length;
-                console.log('the caretOffset is: ', initialCaretPos)
-                // const newCaretOffset = caretOffset + modelName.length + '<b></b>'.length;
-                // Defer the caret positioning to after the browser's default handling
-                setTimeout(function() {
-                    setCaretPosition(promptInputDiv, initialCaretPos);
-                }, 0);
+                setCaretPosition(promptInputDiv, initialCaretPos);
             }
         }
     }
 }
-
 
 function getInitialCaretPosition(element) {
     let caretPos = 0;

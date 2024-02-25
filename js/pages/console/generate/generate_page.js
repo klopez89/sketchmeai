@@ -315,7 +315,6 @@ function loadGenImage(gen_url, new_grid_item_div) {
 function configCopyButton(div, generation) {
     div.find('button').click(function() {
         copyPromptInfoFromGen(generation);
-        triggerModelNameInPromptFormatting();
         console.log(`clicked on generation button, gen info: ${generation.rec_id}`);
     });
 }
@@ -605,6 +604,7 @@ function configureCopyButton(gen_dict, gen_element) {
     copyButton = gen_element.querySelector('#copy-button');
     copyButton.addEventListener('click', function(event) {
         copyPromptInfoFromGen(gen_dict);
+        triggerModelNameInPromptFormatting();
         event.stopPropagation();
     });
 }

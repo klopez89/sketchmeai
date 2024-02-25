@@ -537,7 +537,7 @@ function generateButtonPressed(event) {
                 prompt: personalizedPrompt,
                 negativePrompt: promptValues.negativePrompt,
                 gscale: promptValues.gscale,
-                seed: promptValues.seed,
+                seed: seedToUse,
                 img2imgUrl: promptValues.img2imgUrl,
                 promptStrength: promptValues.promptStrength,
                 inferenceSteps: promptValues.inferenceSteps,

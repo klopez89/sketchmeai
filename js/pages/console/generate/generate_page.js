@@ -35,11 +35,12 @@ function configureModelListInput() {
 
     modelDropdown.addEventListener('change', function() {
         const newSelection = modelDropdown.value;
-        console.log('Model selection changed. New selection: ', newSelection);
+        const trimmedNewSelection = newSelection.replace(/\s+/g, '');
+        console.log('Model selection changed. New selection:', trimmedNewSelection);
 
         // Get the modelValue for both previous and new selections
         const previousModelValue = previousSelection && modelDropdown.querySelector(`option[value="${previousSelection}"]`).getAttribute('model');
-        const newModelValue = newSelection && modelDropdown.querySelector(`option[value="${newSelection}"]`).getAttribute('model');
+        const newModelValue = newSelection && modelDropdown.querySelector(`option[value="${trimmedNewSelection}"]`).getAttribute('model');
 
         // Check if both previous and new selections contain 'custom_sdxl'
         if (previousModelValue && previousModelValue.includes('custom_sdxl') &&
@@ -48,7 +49,7 @@ function configureModelListInput() {
             const promptInput = document.getElementById('prompt');
             const promptText = promptInput.textContent || promptInput.innerText;
             const previousModelName = previousSelection && modelDropdown.querySelector(`option[value="${previousSelection}"]`).getAttribute('modelname');
-            const newModelName = newSelection && modelDropdown.querySelector(`option[value="${newSelection}"]`).getAttribute('modelname');
+            const newModelName = newSelection && modelDropdown.querySelector(`option[value="${trimmedNewSelection}"]`).getAttribute('modelname');
 
             if (promptText.includes(previousModelName)) {
                 promptInput.textContent = promptText.replace(previousModelName, newModelName);

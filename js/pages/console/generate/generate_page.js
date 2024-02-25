@@ -402,12 +402,7 @@ function copyPromptInfoFromGen(generation) {
     var potentiallyTweakedPrompt = generation.gen_recipe.prompt;
     console.log('about to try to set model: ', generation.model_version);
     for (var i = 0; i < options.length; i++) {
-      if (options[i].getAttribute('version') === generation.model_version) {
-        // let instanceKey = options[i].getAttribute('instkey');
-        // if (potentiallyTweakedPrompt.includes(instanceKey)) {
-        //   potentiallyTweakedPrompt = potentiallyTweakedPrompt.replace(instanceKey,'zxc');
-        // }
-  
+      if (options[i].getAttribute('version') === generation.model_version) {  
         options[i].selected = true;
         selected = true;
         selectedOption = options[i];
@@ -486,12 +481,12 @@ function generateButtonPressed(event) {
     }
 
     var prompt = promptValues.prompt;
-    let userFacingPrompt = promptValues.prompt;
 
     for (let modelName of modelNames) {
         const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');
         prompt = prompt.replace(modelNameRegex, 'tzk');
     }
+
 
     for (var j = 0; j < numberOfImages; j++) {
         if (shouldResetSeed) {
@@ -509,9 +504,11 @@ function generateButtonPressed(event) {
             console.log('the model name before prompt tweaking: ', modelName);
             console.log('instance key is: ', instanceKey);
 
-            // if (trainingSubject == null) {
-            //     instanceKey = ""
-            // }
+            // Normalize the user facing prompt to be specific to any custom model in a multi-selection scenario
+            var userFacingPrompt = prompt;
+            if (userFacingPrompt.includes('tzk')) {
+                userFacingPrompt = userFacingPrompt.replace(/tzk/g, modelName);
+            }
 
             const modelNameRegex = new RegExp(`\\btzk\\b`, 'g');
             let personalizedPrompt = modelNameRegex.test(prompt) ? prompt.replace(modelNameRegex, instanceKey) : prompt;

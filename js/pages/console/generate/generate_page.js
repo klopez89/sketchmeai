@@ -426,9 +426,9 @@ function generateButtonPressed(event) {
             console.log('the model name before prompt tweaking: ', modelName);
             console.log('instance key is: ', instanceKey);
 
-            if (trainingSubject == null) {
-                instanceKey = ""
-            }
+            // if (trainingSubject == null) {
+            //     instanceKey = ""
+            // }
 
             const modelNameRegex = new RegExp(`\\btzk\\b`, 'g');
             let personalizedPrompt = modelNameRegex.test(prompt) ? prompt.replace(modelNameRegex, instanceKey) : prompt;

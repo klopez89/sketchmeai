@@ -30,14 +30,17 @@ window.onresize = function() {
 }
 
 function configureModelListInput() {
-    
     document.getElementById('model-dropdown').addEventListener('change', function() {
         console.log('Model selection changed.');
-        let promptInput = document.getElementById('prompt')
-        let promptValues = promptInputValues();
-        let modelNames = promptValues.modelNames;
-        formatAroundModelName(modelNames, promptInput);
+        triggerModelNameInPromptFormatting();
     });
+}
+
+function triggerModelNameInPromptFormatting() {
+    let promptInput = document.getElementById('prompt')
+    let promptValues = promptInputValues();
+    let modelNames = promptValues.modelNames;
+    formatAroundModelName(modelNames, promptInput);
 }
 
 function configureGenerateForm() {
@@ -312,6 +315,7 @@ function loadGenImage(gen_url, new_grid_item_div) {
 function configCopyButton(div, generation) {
     div.find('button').click(function() {
         copyPromptInfoFromGen(generation);
+        triggerModelNameInPromptFormatting();
         console.log(`clicked on generation button, gen info: ${generation.rec_id}`);
     });
 }

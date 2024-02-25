@@ -35,7 +35,7 @@ function configureModelListInput() {
 
     modelDropdown.addEventListener('change', function() {
         const newSelection = modelDropdown.value;
-        console.log('Model selection changed.');
+        console.log('Model selection changed. New selection: ', newSelection);
 
         // Get the modelValue for both previous and new selections
         const previousModelValue = previousSelection && modelDropdown.querySelector(`option[value="${previousSelection}"]`).getAttribute('model');

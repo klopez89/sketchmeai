@@ -392,6 +392,7 @@ function generateButtonPressed(event) {
 
 
     let customSdxlModelNamesIncluded = modelValues.some((modelValue, index) => {
+        console.log('Model value is: ', modelValue);
         return modelValue.includes('custom_sdxl') && promptValues.prompt.includes(modelNames[index]);
     });
 
@@ -414,13 +415,17 @@ function generateButtonPressed(event) {
             let replicateModelName = modelValues[i];
             let modelName = modelNames[i];
             let versionName = versionValues[i];
-            let instanceKey = instanceKeys[i];
+            var instanceKey = instanceKeys[i];
             let trainingSubject = trainingSubjects[i];
             let genderType = genderTypes[i];
 
             console.log('trainingSubject: ', trainingSubject, ' genderType: ', genderType);
             console.log('the model name before prompt tweaking: ', modelName);
             console.log('instance key is: ', instanceKey);
+
+            if (trainingSubject == null) {
+                instanceKey = ""
+            }
 
             const modelNameRegex = new RegExp(`\\btzk\\b`, 'g');
             let personalizedPrompt = modelNameRegex.test(prompt) ? prompt.replace(modelNameRegex, instanceKey) : prompt;

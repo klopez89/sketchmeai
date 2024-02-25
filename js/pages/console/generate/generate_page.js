@@ -468,7 +468,7 @@ function generateButtonPressed(event) {
                 highNoiseFrac: promptValues.highNoiseFrac,
             };
 
-            // fireGenerateCall(jsonObject);
+            fireGenerateCall(jsonObject);
         }
     }
 }

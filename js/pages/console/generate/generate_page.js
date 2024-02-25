@@ -317,7 +317,7 @@ function configCopyButton(div, generation) {
 }
 
 function copyPromptInfoFromGen(generation) {
-    document.getElementById("prompt").innerHTML = generation.gen_recipe.prompt;
+    document.getElementById("prompt").innerHTML = generation.gen_recipe.user_facing_prompt || generation.gen_recipe.prompt;
     document.getElementById("neg-prompt").value = generation.gen_recipe.neg_prompt;
     document.getElementById('gen-count').value = 1;
     document.getElementById('denoising-steps').value = generation.gen_recipe.inference_steps;
@@ -405,6 +405,8 @@ function generateButtonPressed(event) {
     }
 
     var prompt = promptValues.prompt;
+    let userFacingPrompt = promptValues.prompt;
+
     for (let modelName of modelNames) {
         const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');
         prompt = prompt.replace(modelNameRegex, 'tzk');
@@ -453,6 +455,7 @@ function generateButtonPressed(event) {
                 userRecId: userRecId,
                 modelName: replicateModelName,
                 modelVersion: versionName,
+                userFacingPrompt: userFacingPrompt,
                 prompt: personalizedPrompt,
                 negativePrompt: promptValues.negativePrompt,
                 gscale: promptValues.gscale,

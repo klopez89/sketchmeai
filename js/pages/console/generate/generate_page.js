@@ -390,6 +390,7 @@ function generateButtonPressed(event) {
     let trainingSubjects = promptValues.trainingSubjects;
     let genderTypes = promptValues.genderTypes;
 
+    const customSdxlCount = modelValues.filter(modelValue => modelValue.includes('custom_sdxl')).length;
 
     let customSdxlModelNamesIncluded = modelValues.some((modelValue, index) => {
         console.log('Model value is: ', modelValue);
@@ -398,7 +399,7 @@ function generateButtonPressed(event) {
 
     console.log('the customSdxlModelNamesIncluded value: ', customSdxlModelNamesIncluded);
 
-    if (!customSdxlModelNamesIncluded) {
+    if (!customSdxlModelNamesIncluded && customSdxlCount > 0) {
         displayErrorBanner('A fine tuned model is selected but not mentioned in the prompt.');
         return;
     }

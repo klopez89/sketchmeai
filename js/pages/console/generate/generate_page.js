@@ -31,7 +31,30 @@ window.onresize = function() {
 
 function configureModelListInput() {
     document.getElementById('model-dropdown').addEventListener('change', function() {
+        const newSelection = modelDropdown.value;
         console.log('Model selection changed.');
+
+        // Get the modelValue for both previous and new selections
+        const previousModelValue = previousSelection && modelDropdown.querySelector(`option[value="${previousSelection}"]`).getAttribute('model');
+        const newModelValue = newSelection && modelDropdown.querySelector(`option[value="${newSelection}"]`).getAttribute('model');
+
+        // Check if both previous and new selections contain 'custom_sdxl'
+        if (previousModelValue && previousModelValue.includes('custom_sdxl') &&
+            newModelValue && newModelValue.includes('custom_sdxl')) {
+            // Swap the modelName in the prompt if it exists
+            const promptInput = document.getElementById('prompt');
+            const promptText = promptInput.textContent || promptInput.innerText;
+            const previousModelName = previousSelection && modelDropdown.querySelector(`option[value="${previousSelection}"]`).getAttribute('modelname');
+            const newModelName = newSelection && modelDropdown.querySelector(`option[value="${newSelection}"]`).getAttribute('modelname');
+
+            if (promptText.includes(previousModelName)) {
+                promptInput.textContent = promptText.replace(previousModelName, newModelName);
+            }
+        }
+
+        // Update the previous selection for the next change event
+        previousSelection = newSelection;
+
         triggerModelNameInPromptFormatting();
     });
 }

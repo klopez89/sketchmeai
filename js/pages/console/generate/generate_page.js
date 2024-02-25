@@ -378,7 +378,6 @@ function generateButtonPressed(event) {
     }
 
 
-    
     var seedToUse = promptValues.seed;
     let hasChosenSeed = seedToUse != -1;
     let numberOfImages = hasChosenSeed ? 1 : promptValues.numberOfImages;
@@ -434,6 +433,8 @@ function generateButtonPressed(event) {
                 if (!personalizedPrompt.includes(`${instanceKey} ${genderType}`) && personalizedPrompt.includes(`${instanceKey}`)) {
                     personalizedPrompt = personalizedPrompt.replace(instanceKey, `${instanceKey} ${genderType}`);
                 }
+            } else if (trainingSubject == null) {
+                personalizedPrompt = personalizedPrompt.replace(instanceKey, 'person');
             }
 
             console.log('The final personalized prompt is: ', personalizedPrompt);

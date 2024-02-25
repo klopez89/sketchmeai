@@ -45,8 +45,11 @@ function configureModelListInput() {
         const previousModelName = previousOption ? previousOption.getAttribute('modelname') : '';
         const newModelName = newOption ? newOption.getAttribute('modelname') : '';
 
+        const previousReplicateName = previousOption.getAttribute('model');
+        const newReplicateName = previousOption.getAttribute('model');
+
         // Check if both previous and new selections contain 'custom_sdxl'
-        if (previousModelName.includes('custom_sdxl') && newModelName.includes('custom_sdxl')) {
+        if (previousReplicateName.includes('custom_sdxl') && newReplicateName.includes('custom_sdxl')) {
             // Swap the modelName in the prompt if it exists
             const promptInput = document.getElementById('prompt');
             const promptText = promptInput.textContent || promptInput.innerText;

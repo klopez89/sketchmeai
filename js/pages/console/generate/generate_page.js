@@ -396,6 +396,8 @@ function generateButtonPressed(event) {
         return modelValue.includes('custom_sdxl') && promptValues.prompt.includes(modelNames[index]);
     });
 
+    console.log('the customSdxlModelNamesIncluded value: ', customSdxlModelNamesIncluded);
+
     if (!customSdxlModelNamesIncluded) {
         displayErrorBanner('A fine tuned model is selected but not mentioned in the prompt.');
         return;

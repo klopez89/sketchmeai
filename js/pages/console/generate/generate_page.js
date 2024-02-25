@@ -30,7 +30,10 @@ window.onresize = function() {
 }
 
 function configureModelListInput() {
-    document.getElementById('model-dropdown').addEventListener('change', function() {
+    const modelDropdown = document.getElementById('model-dropdown');
+    let previousSelection = modelDropdown.value; // Store the initial selection
+
+    modelDropdown.addEventListener('change', function() {
         const newSelection = modelDropdown.value;
         console.log('Model selection changed.');
 

@@ -4,6 +4,7 @@ let cold_boot_delay = 180000; // 3 minutes in milliseconds for custom models
 let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models to turn cold w/o use
 let status_check_interval = 2500; // 5 seconds in milliseconds
 var coldBootedModels = {};
+var previousModelSelectionId = null;
 
 console.log("configuring generatation page");
 addImageGrid();
@@ -31,14 +32,14 @@ window.onresize = function() {
 
 function configureModelListInput() {
     const modelDropdown = document.getElementById('model-dropdown');
-    let previousSelectionId = modelDropdown.options[modelDropdown.selectedIndex].id; // Store the initial selection id
+    previousModelSelectionId = modelDropdown.options[modelDropdown.selectedIndex].id; // Store the initial selection id
 
     modelDropdown.addEventListener('change', function() {
         const newSelectionId = modelDropdown.options[modelDropdown.selectedIndex].id;
-        console.log('Model selection changed. New selection id:', newSelectionId, ", previous selection id: ", previousSelectionId);
+        console.log('Model selection changed. New selection id:', newSelectionId, ", previous selection id: ", previousModelSelectionId);
 
         // Get the option elements for both previous and new selections
-        const previousOption = modelDropdown.querySelector(`option[id="${previousSelectionId}"]`);
+        const previousOption = modelDropdown.querySelector(`option[id="${previousModelSelectionId}"]`);
         const newOption = modelDropdown.querySelector(`option[id="${newSelectionId}"]`);
 
         // Get the modelname attribute values for both previous and new selections
@@ -60,7 +61,7 @@ function configureModelListInput() {
         }
 
         // Update the previous selection id for the next change event
-        previousSelectionId = newSelectionId;
+        previousModelSelectionId = newSelectionId;
 
         triggerModelNameInPromptFormatting();
     });
@@ -394,19 +395,22 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('prompt-strength').value = generation.gen_recipe.prompt_strength;
     document.getElementById('lora-scale').value = generation.gen_recipe.lora_scale;
 
+    let modelDropdown = document.getElementById('model-dropdown');
     var options = document.getElementById('model-dropdown').options;
+    var selectedOption = null;
     var selected = false; // Flag to keep track if a matching option was found
     var potentiallyTweakedPrompt = generation.gen_recipe.prompt;
     console.log('about to try to set model: ', generation.model_version);
     for (var i = 0; i < options.length; i++) {
       if (options[i].getAttribute('version') === generation.model_version) {
-        let instanceKey = options[i].getAttribute('instkey');
-        if (potentiallyTweakedPrompt.includes(instanceKey)) {
-          potentiallyTweakedPrompt = potentiallyTweakedPrompt.replace(instanceKey,'zxc');
-        }
+        // let instanceKey = options[i].getAttribute('instkey');
+        // if (potentiallyTweakedPrompt.includes(instanceKey)) {
+        //   potentiallyTweakedPrompt = potentiallyTweakedPrompt.replace(instanceKey,'zxc');
+        // }
   
         options[i].selected = true;
         selected = true;
+        selectedOption = options[i];
       } else {
         options[i].selected = false;
       }
@@ -417,11 +421,21 @@ function copyPromptInfoFromGen(generation) {
       for (var i = 0; i < options.length; i++) {
         if (i === 0) {
           options[i].selected = true;
+          selectedOption = options[i];
         } else {
           options[i].selected = false;
         }
       }
     }
+
+    // Create a new 'change' event
+    const event = new Event('change', {
+        bubbles: true,
+        cancelable: true,
+    });
+
+    // Dispatch it on the 'model-dropdown' element
+    modelDropdown.dispatchEvent(event);
 }
 
 function generateButtonPressed(event) {

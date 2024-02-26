@@ -30,11 +30,8 @@ function showAuthArea() {
 
 function hideAuthArea() {
     let authAreaDiv = document.getElementById('auth-area');
-    let duration = getDurationFromDiv(authAreaDiv);
     authAreaDiv.classList.add('opacity-0');
-    setTimeout(() => {
-        authAreaDiv.classList.add('hidden');
-    }, duration);
+    authAreaDiv.classList.add('hidden');
 }
 
 function showLoader() {
@@ -168,7 +165,7 @@ function validateUserAuth(userInfo) {
                 if (hasUserFineTunedAModel) {
                     navigateToConsole();
                 } else {
-                    navigateToNewModelForm();
+                    // navigateToNewModelForm();
                 }
 				
 			} else {

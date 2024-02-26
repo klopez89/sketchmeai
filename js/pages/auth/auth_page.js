@@ -4,12 +4,12 @@ var wasJustPendingRequest = false;
 
 addFirebaseUIToDOM();
 renderFirebaseAuthUI();
+handleAuthStateChange();
 
 setTimeout(() => {
     hideLoader();
     showAuthArea();
 }, 1000);
-
 
 function addFirebaseUIToDOM() {
     let firebaseUI_html = firebaseUI_HTML();
@@ -106,4 +106,53 @@ function renderFirebaseAuthUI() {
     };
   
     ui.start('#firebaseui-auth-container', uiConfig);
-  }
+}
+  
+function handleAuthStateChange() {
+  
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            var user_info = {
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                providerId: user.providerData[0].providerId
+            };
+            validateUserAuth(user_info);
+        } else {
+            // User is signed out or is signing out, thus in this case, do nothing.
+        }
+    });
+}
+
+function validateUserAuth(userInfo) {
+	let action = `${CONSTANTS.BACKEND_URL}users/create`
+	$.ajax({
+		url: action,
+		method: "POST",
+		data: JSON.stringify(userInfo),
+		contentType: "application/json",
+		dataType: "json",
+		success: function (response) {
+			console.log('users/create endpoint hit success, w/ response: ', response);
+			let userDict = response['user'];
+
+			let userRecId = userDict.hasOwnProperty('user_rec_id') ? userDict['user_rec_id'] : null;
+			
+			if (userRecId != null) {
+				console.log('We have a valid user and stored it locally');
+                storeUserRecId(userRecId);
+				navigateToConsole();
+			} else {
+				console.log('Failed to retrieve or create a user in our database, needs dev review. Do nothing.');
+			}
+		},
+		error: function (msg) {
+			console.log("Fell into failure block for action - users/create, with msg: ", msg);
+		},
+  	});
+}
+
+function navigateToConsole() {
+    window.location.href = `https://${CONSTANTS.SITE_URL}/console/generate`;
+}

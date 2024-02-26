@@ -165,7 +165,7 @@ function validateUserAuth(userInfo) {
                 if (hasUserFineTunedAModel) {
                     navigateToConsole();
                 } else {
-                    // navigateToNewModelForm();
+                    navigateToNewModelForm();
                 }
 				
 			} else {

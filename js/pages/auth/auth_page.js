@@ -142,7 +142,7 @@ function validateUserAuth(userInfo) {
 			if (userRecId != null) {
 				console.log('We have a valid user and stored it locally');
                 storeUserRecId(userRecId);
-				navigateToConsole();
+				// navigateToConsole();
 			} else {
 				console.log('Failed to retrieve or create a user in our database, needs dev review. Do nothing.');
 			}

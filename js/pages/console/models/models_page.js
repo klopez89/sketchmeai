@@ -5,6 +5,7 @@ configureTrainingSubjectField();
 configureTrainingForm();
 setupAccordion();
 applyTrainingPreset(personTrainingPreset());
+checkForNewModelRedirect();
 
 let userRecId = getUserRecId();
 let lastDocId = null;
@@ -17,6 +18,13 @@ const failedColor = '#801930';
 
 function enforceNoSpaces(event) {
     event.target.value = event.target.value.replace(/\s/g, '');
+}
+
+function checkForNewModelRedirect() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('newForm')) {
+        showNewModelForm();
+    }
 }
 
 function addModelsGrid() {
@@ -868,14 +876,10 @@ function clickedOutsideOfCollectionGrid() {
 
 function clickedOnNewModelButton(event) {
     event.stopPropagation();
-    console.log('clicked on new model button');
+    showNewModelForm();
+}
 
-    // let collectionGridContainer = document.getElementById('collection-grid-container');
-    // collectionGridContainer.classList.add('opacity-0');
-    // setTimeout(() => {
-    //     collectionGridContainer.classList.add('hidden');
-    // }, 100);
-
+function showNewModelForm() {
     let newFormContainer = document.getElementById('new-form-container');
     newFormContainer.classList.remove('hidden');
     requestAnimationFrame(() => {

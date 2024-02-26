@@ -23,7 +23,7 @@ function enforceNoSpaces(event) {
 function checkForNewModelRedirect() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('newForm')) {
-        showNewModelForm();
+        showNewModelFormFast();
     }
 }
 
@@ -890,6 +890,22 @@ function showNewModelForm() {
     });
 }
 
+function showNewModelFormFast() {
+    let newFormContainer = document.getElementById('new-form-container');
+    // Remove any duration class to prevent animation
+    newFormContainer.classList.remove('duration-500');
+    // Make the form visible
+    newFormContainer.classList.remove('hidden');
+    // Trigger reflow to apply the changes immediately
+    // newFormContainer.offsetWidth;
+    // Change the opacity to make the form fully visible
+    newFormContainer.classList.remove('opacity-0');
+    newFormContainer.classList.add('opacity-100');
+    // Add the duration class back for future transitions
+    newFormContainer.classList.add('duration-500');
+}
+
+
 function exitNewModelForm(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -897,12 +913,6 @@ function exitNewModelForm(event) {
 }
 
 function animateAwayFromNewModelForm() {
-    // let collectionGridContainer = document.getElementById('collection-grid-container');
-    // collectionGridContainer.classList.remove('hidden');
-    // setTimeout(() => {
-    //     collectionGridContainer.classList.remove('opacity-0');
-    // }, 300);
-
     let newFormContainer = document.getElementById('new-form-container');
     let duration = getDurationFromDiv(newFormContainer);
     console.log('duration to dismiss new model form: ', duration);

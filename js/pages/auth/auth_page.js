@@ -5,10 +5,37 @@ var wasJustPendingRequest = false;
 addFirebaseUIToDOM();
 renderFirebaseAuthUI();
 
+setTimeout(() => {
+    hideLoader();
+    showAuthArea();
+}, 1000);
+
+
 function addFirebaseUIToDOM() {
     let firebaseUI_html = firebaseUI_HTML();
     let firebaseUI_div = $($.parseHTML(firebaseUI_html));
     $('body').append(firebaseUI_div);
+}
+
+function showAuthArea() {
+    let authAreaDiv = document.getElementById('auth-area');
+    authAreaDiv.classList.remove('hidden');
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            authAreaDiv.classList.remove('opacity-0');
+            authAreaDiv.classList.add('opacity-100');
+        });
+    });
+}
+
+function hideLoader() {
+    let loaderDiv = document.getElementById('loader');
+    let duration = getDurationFromDiv(loaderDiv);
+    loaderDiv.classList.remove('opacity-100');
+    loaderDiv.classList.add('opacity-0');
+    setTimeout(() => {
+        loaderDiv.classList.add('hidden');
+    }, duration);
 }
 
 function renderFirebaseAuthUI() {

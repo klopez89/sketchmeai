@@ -77,7 +77,10 @@ function handleRecentPaymentRedirect() {
         showPaymentButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
         saveSuccessfulCreditPurchase(productName, quantity, unitAmount);
     }
-    removeQueryParamsFromUrl();
+
+    if (didCompletePayment) {
+        removeQueryParamsFromUrl();
+    }
 }
 
 function removeQueryParamsFromUrl() {

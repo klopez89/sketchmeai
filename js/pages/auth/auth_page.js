@@ -1,6 +1,9 @@
 addFirebaseUIToDOM();
 renderFirebaseAuthUI();
 
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+var wasJustPendingRequest = false;
+
 function addFirebaseUIToDOM() {
     let firebaseUI_html = firebaseUI_HTML();
     let firebaseUI_div = $($.parseHTML(firebaseUI_html));

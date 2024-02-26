@@ -166,7 +166,7 @@ function navigateToConsole() {
 }
 
 function navigateToNewModelForm() {
-    let baseUrl = `https://${CONSTANTS.SITE_URL}/console/models/`;
+    let baseUrl = `https://${CONSTANTS.SITE_URL}/console/models`;
     let url = new URL(baseUrl);
     url.searchParams.set('newForm', 'true');
     window.location.href = url.href;

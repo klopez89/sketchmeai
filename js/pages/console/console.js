@@ -262,5 +262,13 @@ function dismissPaymentModal() {
 }
 
 function signOutButtonPressed() {
-    console.log('sign out button press function called');
+    firebase.auth().signOut().then(() => {
+		navigationToHomePage();
+    }).catch((error) => {
+        console.error('Error signing out: ', error);
+    });
+}
+
+function navigationToHomePage() {
+    window.location.href = `https://${CONSTANTS.SITE_URL}`;
 }

@@ -28,6 +28,24 @@ function showAuthArea() {
     });
 }
 
+function hideAuthArea() {
+    let authAreaDiv = document.getElementById('auth-area');
+    let duration = getDurationFromDiv(authAreaDiv);
+    authAreaDiv.classList.add('opacity-0');
+    setTimeout(() => {
+        authAreaDiv.classList.add('hidden');
+    }, duration);
+}
+
+function showLoader() {
+    let loaderDiv = document.getElementById('loader');
+    loaderDiv.classList.remove('hidden');
+    setTimeout(() => {
+        loaderDiv.classList.add('opacity-100');
+    }, 0); // Timeout set to 0 to ensure the class is added after the element is visible
+}
+
+
 function hideLoader() {
     let loaderDiv = document.getElementById('loader');
     let duration = getDurationFromDiv(loaderDiv);
@@ -72,6 +90,8 @@ function renderFirebaseAuthUI() {
           }
 
           console.log('Successfully logged in');
+          hideAuthArea();
+          showLoader();
   
           // Return type determines whether we continue the redirect automatically
           // or whether we leave that to developer to handle.

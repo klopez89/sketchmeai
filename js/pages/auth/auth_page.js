@@ -138,11 +138,19 @@ function validateUserAuth(userInfo) {
 			let userDict = response['user'];
 
 			let userRecId = userDict.hasOwnProperty('user_rec_id') ? userDict['user_rec_id'] : null;
+            let numberOfValidAiModels = userDict.hasOwnProperty('number_of_valid_ai_models') ? userDict['number_of_valid_ai_models'] : null;
 			
 			if (userRecId != null) {
 				console.log('We have a valid user and stored it locally');
                 storeUserRecId(userRecId);
-				// navigateToConsole();
+
+                let hasUserFineTunedAModel = numberOfValidAiModels > 0;
+                if (hasUserFineTunedAModel) {
+                    navigateToConsole();
+                } else {
+                    navigateToNewModelForm();
+                }
+				
 			} else {
 				console.log('Failed to retrieve or create a user in our database, needs dev review. Do nothing.');
 			}
@@ -155,4 +163,8 @@ function validateUserAuth(userInfo) {
 
 function navigateToConsole() {
     window.location.href = `https://${CONSTANTS.SITE_URL}/console/generate`;
+}
+
+function navigateToNewModelForm() {
+    window.location.href = `https://${CONSTANTS.SITE_URL}/console/models/?newForm=true`;
 }

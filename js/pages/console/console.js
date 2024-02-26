@@ -261,10 +261,6 @@ function dismissPaymentModal() {
     }, 500); // same duration as the transition
 }
 
-// window.onload = function() {
-//     console.log("window.onload from console page")
-//     addConsoleToDOM();
-//     copyStaticSidebar();
-//     changeActiveMenuPage();
-//     updatePageTitle();
-// }
+function signOutButtonPressed() {
+    console.log('sign out button press function called');
+}

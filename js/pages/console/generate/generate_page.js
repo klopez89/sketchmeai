@@ -14,6 +14,7 @@ resizeGrid();
 configureInfiniteScroll();
 setupAccordion();
 configureModelListInput();
+configurePromptInputPlaceholder(); 
 
 let userRecId = getUserRecId();
 let lastDocId = null;

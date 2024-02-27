@@ -607,6 +607,25 @@ function isTrainingDataValid() {
     return isDataValid;
 }
 
+function saveToLocalStorage() {
+    let uploadedFiles = getUploadedFiles();
+    let modelName = document.getElementById('model-name').value;
+    localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
+    localStorage.setItem('modelName', modelName);
+}
+
+function retrieveLocalNewFormStorage() {
+    let uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles'));
+    let modelName = localStorage.getItem('modelName');
+    return { uploadedFiles, modelName };
+}
+
+function clearLocalNewFormStorage() {
+    localStorage.removeItem('uploadedFiles');
+    localStorage.removeItem('modelName');
+}
+
+
 function grabTrainingData() {
     let modelName = document.getElementById('model-name').value;
     let modelSelection = document.getElementById('model-selection').value;
@@ -624,7 +643,7 @@ function grabTrainingData() {
     let schedulerCycles = document.getElementById('scheduler-cycles').value;
     let warmupSteps = document.getElementById('warmup-steps').value;
     let validationEpochs = document.getElementById('validation-epochs').value;
-    var maxTrainSteps = 1000; // document.getElementById('max-train-steps').value;
+    var maxTrainSteps = document.getElementById('max-train-steps').value;
     var mixedPrecision = document.getElementById('mixed-precision').value;
     // let xformers = document.getElementById('xformers').checked;
     let gradientCheckpoint = document.getElementById('gradient-checkpoint').checked;

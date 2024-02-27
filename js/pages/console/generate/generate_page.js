@@ -5,6 +5,7 @@ let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models 
 let status_check_interval = 2500; // 5 seconds in milliseconds
 var coldBootedModels = {};
 var previousModelSelectionId = null;
+var promptPlaceholderText = "Example: Drawing of cute dalmation puppy in the backyard, highly detailed";
 
 console.log("configuring generatation page");
 addImageGrid();
@@ -41,7 +42,7 @@ function configurePromptInputPlaceholder() {
 function togglePlaceholder() {
     let promptDiv = document.getElementById('prompt');
     if (!promptDiv.textContent.trim().length ) {
-        promptDiv.textContent = promptDiv.getAttribute('data-placeholder');
+        promptDiv.textContent = promptPlaceholderText;
         promptDiv.classList.remove('text-gray-900');
         promptDiv.classList.add('text-gray-400');
     }
@@ -49,7 +50,7 @@ function togglePlaceholder() {
 
 function removePlaceholder() {
     let promptDiv = document.getElementById('prompt');
-    if (promptDiv.textContent === promptDiv.getAttribute('data-placeholder')) {
+    if (promptDiv.textContent === promptPlaceholderText) {
         promptDiv.textContent = '';
         promptDiv.classList.remove('text-gray-400');
         promptDiv.classList.add('text-gray-900');
@@ -288,9 +289,11 @@ function fetchWorkingModels(userRecId) {
                     let long_version = models[0].version;
                     let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
                     let promptDiv = document.getElementById('prompt');
-                    promptDiv.textContent = `Drawing of ${firstModelName} wearing a sleek black leather jacket`;
+                    promptPlaceholderText = `Drawing of ${firstModelName} wearing a sleek black leather jacket`;
+                    promptDiv.textContent = promptPlaceholderText;
                     selectModelWithVersion(short_version);
                     promptDiv.blur();
+                    
                 }
             }
         },

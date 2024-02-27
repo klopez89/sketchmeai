@@ -79,7 +79,6 @@ function dummyGridHTML() {
                     </div>
                 </div>
 
-
                 <div id="accordionExample5">
                 	<div class="rounded-t-lg bg-transparent">
 						<h2 class="mb-0" id="headingOne5">

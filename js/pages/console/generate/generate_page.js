@@ -282,6 +282,12 @@ function fetchWorkingModels(userRecId) {
                     let new_model_option_div = $($.parseHTML(new_model_option_html));
                     new_model_option_div.hide().appendTo('#model-dropdown').fadeIn();
                 });
+
+                if (models.length == 1) {
+                    let firstModelName = models[0].name;
+                    let promptDiv = document.getElementById('prompt');
+                    promptDiv.textContent = `Drawing of ${firstModelName} wearing a sleek black leather jacket`;
+                }
             }
         },
         error: function(error) {

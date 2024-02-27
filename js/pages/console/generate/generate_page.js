@@ -285,7 +285,7 @@ function fetchWorkingModels(userRecId) {
 
                 if (models.length == 1) {
                     let firstModelName = models[0].name;
-                    let long_version = model.version;
+                    let long_version = models[0].version;
                     let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
                     let promptDiv = document.getElementById('prompt');
                     promptDiv.textContent = `Drawing of ${firstModelName} wearing a sleek black leather jacket`;

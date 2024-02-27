@@ -30,6 +30,31 @@ window.onresize = function() {
     resizeGrid();
 }
 
+function configurePromptInputPlaceholder() {
+    let promptDiv = document.getElementById('prompt');
+    promptDiv.addEventListener('focus', removePlaceholder);
+    promptDiv.addEventListener('blur', togglePlaceholder);
+    togglePlaceholder();
+}
+
+function togglePlaceholder() {
+    let promptDiv = document.getElementById('prompt');
+    if (!promptDiv.textContent.trim().length && !promptDiv.classList.contains('focus:ring-2')) {
+        promptDiv.textContent = promptDiv.getAttribute('data-placeholder');
+        promptDiv.classList.remove('text-gray-900');
+        promptDiv.classList.add('text-gray-400');
+    }
+}
+
+function removePlaceholder() {
+    let promptDiv = document.getElementById('prompt');
+    if (promptDiv.textContent === promptDiv.getAttribute('data-placeholder')) {
+        promptDiv.textContent = '';
+        promptDiv.classList.remove('text-gray-400');
+        promptDiv.classList.add('text-gray-900');
+    }
+}
+
 function configureModelListInput() {
     const modelDropdown = document.getElementById('model-dropdown');
     previousModelSelectionId = modelDropdown.options[modelDropdown.selectedIndex].id; // Store the initial selection id

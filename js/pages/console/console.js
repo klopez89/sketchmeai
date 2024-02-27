@@ -194,6 +194,7 @@ function userWantsToPay() {
         let newFormContainer = document.getElementById('new-form-container');
         if (newFormContainer && !newFormContainer.classList.contains('hidden')) {
             action += '&newForm=true';
+            saveNewModelDataToLocalStorage();
         }
     }
 

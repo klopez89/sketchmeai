@@ -631,6 +631,7 @@ function attemptToReloadSaveNewModelFormData() {
         addFileUploadDivToDOM(file);
     });
     document.getElementById('model-name').value = modelName;
+    toggleUploadButtonInteraction();
 }
 
 function grabTrainingData() {

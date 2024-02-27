@@ -5,7 +5,8 @@ changeActiveMenuPage();
 updatePageTitle();
 configurePayButton();
 startListeningForCreditUpdates();
-handleRecentPaymentRedirect();
+
+setTimeout(handleRecentPaymentRedirect, 200);
 
 function addConsoleToDOM() {
 	let console_html = consoleHtml();
@@ -82,7 +83,7 @@ function handleRecentPaymentRedirect() {
     if (showNewForm) {
         document.getElementById('reload-new-model-form').click();
     }
-    
+
     if (didCompletePayment) {
         removeQueryParamsFromUrl();
     }

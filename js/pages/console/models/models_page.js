@@ -625,6 +625,13 @@ function clearLocalNewFormStorage() {
     localStorage.removeItem('modelName');
 }
 
+function attemptToReloadSaveNewModelFormData() {
+    let { uploadedFiles, modelName } = retrieveLocalNewFormStorage();
+    uploadedFiles.forEach(file => {
+        addFileUploadDivToDOM(file);
+    });
+    document.getElementById('model-name').value = modelName;
+}
 
 function grabTrainingData() {
     let modelName = document.getElementById('model-name').value;

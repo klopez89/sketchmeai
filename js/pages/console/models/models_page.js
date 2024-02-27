@@ -607,26 +607,26 @@ function isTrainingDataValid() {
     return isDataValid;
 }
 
-function saveToLocalStorage() {
+function saveNewModelDataToLocalStorage() {
     let uploadedFiles = getUploadedFiles();
     let modelName = document.getElementById('model-name').value;
     localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
     localStorage.setItem('modelName', modelName);
 }
 
-function retrieveLocalNewFormStorage() {
+function retrieveLocalNewModelFormStorage() {
     let uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles'));
     let modelName = localStorage.getItem('modelName');
     return { uploadedFiles, modelName };
 }
 
-function clearLocalNewFormStorage() {
+function clearLocalNewModelFormStorage() {
     localStorage.removeItem('uploadedFiles');
     localStorage.removeItem('modelName');
 }
 
 function attemptToReloadSaveNewModelFormData() {
-    let { uploadedFiles, modelName } = retrieveLocalNewFormStorage();
+    let { uploadedFiles, modelName } = retrieveLocalNewModelFormStorage();
     uploadedFiles.forEach(file => {
         addFileUploadDivToDOM(file);
     });

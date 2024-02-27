@@ -250,11 +250,13 @@ function fetchWorkingModels(userRecId) {
         dataType: 'json',
         success: function(data) {
             models = data.models;
-            models.forEach(function(model) {
-                let new_model_option_html = new_model_option(model);
-                let new_model_option_div = $($.parseHTML(new_model_option_html));
-                new_model_option_div.hide().appendTo('#model-dropdown').fadeIn();
-            });
+            if (models.length > 0) {
+                models.forEach(function(model) {
+                    let new_model_option_html = new_model_option(model);
+                    let new_model_option_div = $($.parseHTML(new_model_option_html));
+                    new_model_option_div.hide().appendTo('#model-dropdown').fadeIn();
+                });
+            }
         },
         error: function(error) {
             console.error('Error:', error);

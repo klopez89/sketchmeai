@@ -70,6 +70,7 @@ function handleRecentPaymentRedirect() {
     let productName = params.get('productName');
     let quantity = params.get('quantity');
     let unitAmount = params.get('unitAmount');
+    let showNewForm = params.get('newForm');
     console.log('didCompletePayment: ', didCompletePayment, ', productName: ', productName, ', quantity: ', quantity, ', unitAmount: ', unitAmount);
     if (didCompletePayment === 'true' && productName && quantity && unitAmount) {
         console.log('Payment completed for: ', productName, ' with quantity: ', quantity, ' and unit amount: ', unitAmount);
@@ -78,8 +79,11 @@ function handleRecentPaymentRedirect() {
         saveSuccessfulCreditPurchase(productName, quantity, unitAmount);
     }
 
+    if (showNewForm) {
+        attemptToReloadSaveNewModelFormData
+    }
     if (didCompletePayment) {
-        // removeQueryParamsFromUrl();
+        removeQueryParamsFromUrl();
     }
 }
 

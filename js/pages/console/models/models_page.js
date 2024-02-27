@@ -614,19 +614,19 @@ function saveNewModelDataToLocalStorage() {
     localStorage.setItem('modelName', modelName);
 }
 
-function retrieveLocalNewModelFormStorage() {
+function retrieveNewModelDataFromStorage() {
     let uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles'));
     let modelName = localStorage.getItem('modelName');
     return { uploadedFiles, modelName };
 }
 
-function clearLocalNewModelFormStorage() {
+function clearNewModelDataFromLocalStorage() {
     localStorage.removeItem('uploadedFiles');
     localStorage.removeItem('modelName');
 }
 
 function attemptToReloadSaveNewModelFormData() {
-    let { uploadedFiles, modelName } = retrieveLocalNewModelFormStorage();
+    let { uploadedFiles, modelName } = retrieveNewModelDataFromStorage();
     uploadedFiles.forEach(file => {
         addFileUploadDivToDOM(file);
     });
@@ -956,6 +956,7 @@ function resetNewModalForm() {
     document.querySelectorAll("#uploadEntryContainer li").forEach(li => li.remove());
     applyTrainingPreset(personTrainingPreset());
     toggleUploadAreaVisibility();
+    clearNewModelDataFromLocalStorage();
 }
 
 function tappedModelMenuShield(event) {

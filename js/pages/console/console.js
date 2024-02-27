@@ -80,7 +80,7 @@ function handleRecentPaymentRedirect() {
     }
 
     if (showNewForm) {
-        attemptToReloadSaveNewModelFormData
+        attemptToReloadSaveNewModelFormData();
     }
     if (didCompletePayment) {
         removeQueryParamsFromUrl();

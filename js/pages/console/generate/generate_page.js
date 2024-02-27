@@ -260,6 +260,7 @@ function fetchWorkingModels(userRecId) {
                     promptPlaceholderText = `Drawing of ${firstModelName} wearing a sleek black leather jacket`;
                     promptDiv.textContent = promptPlaceholderText;
                     selectModelWithVersion(short_version);
+                    triggerModelNameInPromptFormatting();
                     promptDiv.blur();
                     
                 }

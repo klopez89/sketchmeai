@@ -79,7 +79,7 @@ function handleRecentPaymentRedirect() {
     }
 
     if (didCompletePayment) {
-        removeQueryParamsFromUrl();
+        // removeQueryParamsFromUrl();
     }
 }
 
@@ -179,11 +179,22 @@ function configurePayButton() {
 
 function userWantsToPay() {
     let creditAmount = document.getElementById('credit-amount').value;
-    let sourcePageUrl = window.location.href.split('?')[0];
+    var sourcePageUrl = window.location.href.split('?')[0];
+
+    sourcePageUrl = sourcePageUrl + `?newForm=true`;
     let form = document.createElement('form');
     let endpoint = "stripe_checkout_session/credits/new";
+    var action = `${CONSTANTS.BACKEND_URL}${endpoint}?source-page-url=${sourcePageUrl}&unit-amount=${creditAmount}`
+
+    if (sourcePageUrl.includes('console/models')) {
+        let newFormContainer = document.getElementById('new-form-container');
+        if (newFormContainer && !newFormContainer.classList.contains('hidden')) {
+            action += '&newForm=true';
+        }
+    }
+
     form.method = 'POST';
-    form.action = `${CONSTANTS.BACKEND_URL}${endpoint}?source-page-url=${sourcePageUrl}&unit-amount=${creditAmount}`;
+    form.action = action;
     document.body.appendChild(form);
     form.submit();
  }

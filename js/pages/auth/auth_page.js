@@ -156,10 +156,12 @@ function validateUserAuth(userInfo) {
 
 			let userRecId = userDict.hasOwnProperty('user_rec_id') ? userDict['user_rec_id'] : null;
             let numberOfValidAiModels = userDict.hasOwnProperty('number_of_valid_ai_models') ? userDict['number_of_valid_ai_models'] : null;
-			
+			let lastEditedCollection = userDict.hasOwnProperty('last_edited_collection') ? userDict['last_edited_collection'] : null;
+
 			if (userRecId != null) {
-				console.log('We have a valid user and stored it locally');
+				console.log('We have a valid user and stored it locally, last edited collection id is: ', lastEditedCollection);
                 storeUserRecId(userRecId);
+                storeLastEditedCollection(lastEditedCollection);
 
                 let hasUserFineTunedAModel = numberOfValidAiModels > 0;
                 if (hasUserFineTunedAModel) {
@@ -167,7 +169,6 @@ function validateUserAuth(userInfo) {
                 } else {
                     navigateToNewModelForm();
                 }
-				
 			} else {
 				console.log('Failed to retrieve or create a user in our database, needs dev review. Do nothing.');
 			}

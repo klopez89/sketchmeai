@@ -94,44 +94,12 @@ function configureModelListInput() {
     });
 }
 
-// function configureModelListInput() {
-//     const modelDropdown = document.getElementById('model-dropdown');
-//     let previousSelection = modelDropdown.value; // Store the initial selection
-
-//     modelDropdown.addEventListener('change', function() {
-//         const newSelection = modelDropdown.value;
-//         const trimmedNewSelection = newSelection.replace(/\s+/g, '');
-//         console.log('Model selection changed. New selection:', trimmedNewSelection, ", previous selection: ", previousSelection);
-
-//         // Get the modelValue for both previous and new selections
-//         const previousModelValue = previousSelection && modelDropdown.querySelector(`option[modelName="${previousSelection}"]`).getAttribute('model');
-//         const newModelValue = newSelection && modelDropdown.querySelector(`option[modelName="${trimmedNewSelection}"]`).getAttribute('model');
-
-//         // Check if both previous and new selections contain 'custom_sdxl'
-//         if (previousModelValue && previousModelValue.includes('custom_sdxl') &&
-//             newModelValue && newModelValue.includes('custom_sdxl')) {
-//             // Swap the modelName in the prompt if it exists
-//             const promptInput = document.getElementById('prompt');
-//             const promptText = promptInput.textContent || promptInput.innerText;
-//             const previousModelName = previousSelection && modelDropdown.querySelector(`option[modelName="${previousSelection}"]`).getAttribute('modelname');
-//             const newModelName = newSelection && modelDropdown.querySelector(`option[modelName="${trimmedNewSelection}"]`).getAttribute('modelname');
-
-//             if (promptText.includes(previousModelName)) {
-//                 promptInput.textContent = promptText.replace(previousModelName, newModelName);
-//             }
-//         }
-
-//         // Update the previous selection for the next change event
-//         previousSelection = newSelection;
-
-//         triggerModelNameInPromptFormatting();
-//     });
-// }
-
 function triggerModelNameInPromptFormatting() {
     let promptInput = document.getElementById('prompt')
     let promptValues = promptInputValues();
     let modelNames = promptValues.modelNames;
+    console.log("Model Names:", modelNames);
+    console.log("Prompt Input:", promptInput.textContent);
     formatAroundModelName(modelNames, promptInput);
 }
 
@@ -440,7 +408,6 @@ function copyPromptInfoFromGen(generation) {
 function selectModelWithVersion(version) {
     let modelDropdown = document.getElementById('model-dropdown');
     var options = modelDropdown.options;
-    var selectedOption = null;
     var selected = false; // Flag to keep track if a matching option was found
 
     // Find the first option w/ matching version if not set selection to false
@@ -448,7 +415,6 @@ function selectModelWithVersion(version) {
       if (options[i].getAttribute('version') === version) {  
         options[i].selected = true;
         selected = true;
-        selectedOption = options[i];
         break;
       } else {
         options[i].selected = false;
@@ -460,7 +426,6 @@ function selectModelWithVersion(version) {
       for (var i = 0; i < options.length; i++) {
         if (i === 0) {
           options[i].selected = true;
-          selectedOption = options[i];
         } else {
           options[i].selected = false;
         }

@@ -627,6 +627,9 @@ function clearNewModelDataFromLocalStorage() {
 
 function attemptToReloadSaveNewModelFormData() {
     let { uploadedFiles, modelName } = retrieveNewModelDataFromStorage();
+    if (uploadedFiles.length === 0) {
+        return;
+    }
     uploadedFiles.forEach(file => {
         addFileUploadDivToDOM(file);
     });

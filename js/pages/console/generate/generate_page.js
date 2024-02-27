@@ -40,7 +40,7 @@ function configurePromptInputPlaceholder() {
 
 function togglePlaceholder() {
     let promptDiv = document.getElementById('prompt');
-    if (!promptDiv.textContent.trim().length && !promptDiv.classList.contains('focus:ring-2')) {
+    if (!promptDiv.textContent.trim().length ) {
         promptDiv.textContent = promptDiv.getAttribute('data-placeholder');
         promptDiv.classList.remove('text-gray-900');
         promptDiv.classList.add('text-gray-400');

@@ -539,6 +539,7 @@ function generateButtonPressed(event) {
             var jsonObject = {
                 generationId: generateId(),
                 userRecId: userRecId,
+                collectionId: getLastEditedCollection(),
                 modelName: replicateModelName,
                 modelVersion: versionName,
                 userFacingPrompt: userFacingPrompt,

@@ -1,5 +1,4 @@
 let isCurrentlyPaginatingPrompts = false;
-let collectionId_Test = 'VZZnwEopc3TyE7gJV2Oc'
 let cold_boot_delay = 180000; // 3 minutes in milliseconds for custom models
 let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models to turn cold w/o use
 let status_check_interval = 2500; // 5 seconds in milliseconds
@@ -18,8 +17,9 @@ configureModelListInput();
 configurePromptInputPlaceholder(); 
 
 let userRecId = getUserRecId();
+let collectionId = getLastEditedCollection();
 let lastDocId = null;
-fetchGenerations(userRecId, collectionId_Test, lastDocId);
+fetchGenerations(userRecId, collectionId, lastDocId);
 fetchWorkingModels(userRecId);
 
 document.querySelectorAll('.editable').forEach(function(element){
@@ -260,9 +260,7 @@ function fetchWorkingModels(userRecId) {
                     promptPlaceholderText = `Drawing of ${firstModelName} wearing a sleek black leather jacket`;
                     promptDiv.textContent = promptPlaceholderText;
                     selectModelWithVersion(short_version);
-                    triggerModelNameInPromptFormatting();
                     promptDiv.blur();
-                    
                 }
             }
         },

@@ -29,6 +29,7 @@ function dummyGridHTML() {
 
         <!-- New div with a form -->
         <div id="new-form-container" class="hidden absolute opacity-0 mx-auto max-w-4xl px-8 py-8 overflow-y-auto h-full w-full bg-gray-100 transition duration-500 opacity-0">
+            <button id="reload-new-model-form" class="hidden" onclick="attemptToReloadSaveNewModelFormData()"></button>
             <h2 class="mb-5 text-gray-900 text-2xl">New Custom Model</h2>
             <form id="new-form" autocomplete="off">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">

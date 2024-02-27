@@ -80,8 +80,9 @@ function handleRecentPaymentRedirect() {
     }
 
     if (showNewForm) {
-        attemptToReloadSaveNewModelFormData();
+        document.getElementById('reload-new-model-form').click();
     }
+    
     if (didCompletePayment) {
         removeQueryParamsFromUrl();
     }

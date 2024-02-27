@@ -290,6 +290,7 @@ function fetchWorkingModels(userRecId) {
                     let promptDiv = document.getElementById('prompt');
                     promptDiv.textContent = `Drawing of ${firstModelName} wearing a sleek black leather jacket`;
                     selectModelWithVersion(short_version);
+                    promptDiv.blur();
                 }
             }
         },

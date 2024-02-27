@@ -285,8 +285,11 @@ function fetchWorkingModels(userRecId) {
 
                 if (models.length == 1) {
                     let firstModelName = models[0].name;
+                    let long_version = model.version;
+                    let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
                     let promptDiv = document.getElementById('prompt');
                     promptDiv.textContent = `Drawing of ${firstModelName} wearing a sleek black leather jacket`;
+                    selectModelWithVersion(short_version);
                 }
             }
         },
@@ -295,7 +298,6 @@ function fetchWorkingModels(userRecId) {
         }
     });
 }
-
 
 var sample_new_grid_item = null;
 
@@ -428,18 +430,22 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('img-2-img').value = generation.gen_recipe.img2img_url;
     document.getElementById('prompt-strength').value = generation.gen_recipe.prompt_strength;
     document.getElementById('lora-scale').value = generation.gen_recipe.lora_scale;
+    selectModelWithVersion(generation.model_version);
+}
 
+function selectModelWithVersion(version) {
     let modelDropdown = document.getElementById('model-dropdown');
-    var options = document.getElementById('model-dropdown').options;
+    var options = modelDropdown.options;
     var selectedOption = null;
     var selected = false; // Flag to keep track if a matching option was found
-    var potentiallyTweakedPrompt = generation.gen_recipe.prompt;
-    console.log('about to try to set model: ', generation.model_version);
+
+    // Find the first option w/ matching version if not set selection to false
     for (var i = 0; i < options.length; i++) {
-      if (options[i].getAttribute('version') === generation.model_version) {  
+      if (options[i].getAttribute('version') === version) {  
         options[i].selected = true;
         selected = true;
         selectedOption = options[i];
+        break;
       } else {
         options[i].selected = false;
       }

@@ -741,7 +741,7 @@ function configureInfiniteScroll() {
                 const last_doc_id = getLastDocIdFromLocalStorage();
                 if (last_doc_id != null) {
                     isCurrentlyPaginatingPrompts = true;
-                    fetchGenerations(getUserRecId(), collectionId_Test, last_doc_id);
+                    fetchGenerations(getUserRecId(), getLastEditedCollection(), last_doc_id);
                 }
             }
         }
@@ -882,7 +882,7 @@ function fireGenDeletion(generationId, genElement) {
         url: action,
         data: JSON.stringify({
             generationId: generationId,
-            collectionId: collectionId_Test,
+            collectionId: getLastEditedCollection(),
             userRecId: getUserRecId()
         }),
         contentType: "application/json",

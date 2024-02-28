@@ -431,7 +431,7 @@ function handleFileUploads(files) {
         reader.readAsDataURL(files[i]);
     }
 
-    if (didFindUnsupporedFileType == true) {
+    if (didFindUnsupporedFileType) {
         displayWarningBanner(`File(s) you tried uploading are in an unsupported image type: ${unsupportedFileTypeFound}. Please upload JPG, JPEG, or PNG files.`);
     }
 }

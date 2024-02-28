@@ -181,7 +181,7 @@ function consoleHtml() {
     `;
 }
 
-function showErrorBanner(message) {
+function errorBannerHTML(message) {
     return `
     <div class="rounded-md bg-red-50 p-4" id="errorBanner">
         <div class="flex">
@@ -208,7 +208,7 @@ function showErrorBanner(message) {
     `;
 }
 
-function showWarningBanner(message) {
+function warningBannerHTML(message) {
     return `
     <div class="rounded-md bg-orange-50 p-4" id="warningBanner">
         <div class="flex">

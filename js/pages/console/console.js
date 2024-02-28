@@ -48,7 +48,7 @@ function updatePageTitle() {
 
 function displayErrorBanner(errorMessage) {
     let consoleContent = document.getElementById('console-content');
-    let errorBannerHtml = showErrorBanner(errorMessage);
+    let errorBannerHtml = errorBannerHTML(errorMessage);
     let errorBannerDiv = document.createElement('div');
     errorBannerDiv.innerHTML = errorBannerHtml;
     consoleContent.insertBefore(errorBannerDiv, consoleContent.firstChild);
@@ -56,6 +56,19 @@ function displayErrorBanner(errorMessage) {
     console.log('button div: ', errorBannerDiv.querySelector('button'));
     errorBannerDiv.querySelector('button').onclick = function() {
         errorBannerDiv.remove();
+    };
+}
+
+function displayWarningBanner(warningMessage) {
+    let consoleContent = document.getElementById('console-content');
+    let warningBannerHtml = warningBannerHTML(warningMessage);
+    let warningBannerDiv = document.createElement('div');
+    warningBannerDiv.innerHTML = warningBannerHtml;
+    consoleContent.insertBefore(warningBannerDiv, consoleContent.firstChild);
+
+    console.log('button div: ', warningBannerDiv.querySelector('button'));
+    warningBannerDiv.querySelector('button').onclick = function() {
+        warningBannerDiv.remove();
     };
 }
 

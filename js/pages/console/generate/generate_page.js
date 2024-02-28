@@ -118,6 +118,22 @@ function configureGenerateForm() {
         let estimatedCost = genEstimateCostPerDenoisingStep * denoisingStepsInput.value;
         document.getElementById('training-estimate-label').innerHTML = `Estimated cost: $${estimatedCost.toFixed(2)} (for ${denoisingStepsInput.value} denoising steps)`
     });
+
+    const seedInput = document.getElementById('seed');
+    seedInput.placeholder = 'Random';
+    
+    seedInput.addEventListener('focus', function() {
+        if (seedInput.value === '-1') {
+            seedInput.value = ''; // Clear the input field when focused if the value is the default '-1'
+        }
+    });
+
+    seedInput.addEventListener('blur', function() {
+        if (seedInput.value.trim() === '') {
+            seedInput.value = '-1'; // Reset to default value when input loses focus and is empty
+            seedInput.placeholder = 'Random'; // Reset placeholder
+        }
+    });
 }
 
 function formatAroundModelName(modelNames, promptInputDiv) {

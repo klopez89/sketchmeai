@@ -974,6 +974,10 @@ function exitNewModelForm(event) {
     animateAwayFromNewModelForm();
 }
 
+function backToModelsButtonPressed() {
+    animateAwayFromNewModelForm();
+}
+
 function animateAwayFromNewModelForm() {
     let newFormContainer = document.getElementById('new-form-container');
     let duration = getDurationFromDiv(newFormContainer);

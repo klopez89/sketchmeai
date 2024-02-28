@@ -29,6 +29,12 @@ function dummyGridHTML() {
 
         <!-- New div with a form -->
         <div id="new-form-container" class="hidden absolute opacity-0 mx-auto max-w-4xl px-8 py-8 overflow-y-auto h-full w-full bg-gray-100 transition duration-500 opacity-0">
+        
+            <button id="back-to-models-button" class="text-gray-400 hover:text-gray-600 mb-8" onclick="backToModelsButtonPressed()">
+                <i class="fa-solid fa-arrow-left mr-2" aria-hidden="true"></i>
+                Back to Models
+            </button>
+
             <button id="reload-new-model-form" class="hidden" onclick="attemptToReloadSaveNewModelFormData()"></button>
             <h2 class="mb-5 text-gray-900 text-2xl">New Custom Model</h2>
             <form id="new-form" autocomplete="off">

@@ -70,6 +70,7 @@ function dummyGridHTML() {
                             <label for="localUploadInput" class="block text-sm font-medium leading-6 text-gray-900">Training Data</label>
                             <p class="text-xs text-gray-500 italic pl-1">(10-20 images)</p>
                         </div>
+                        <div class="text-xs text-gray-500">Supported file types: jpg, jpeg, png, heic</div>
                         <div class="mt-2">
                             <ul role="list" id="uploadEntryContainer" class="flex overflow-x-auto space-x-2 pt-0 px-0">
                                 <button id="uploadAreaButton" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">

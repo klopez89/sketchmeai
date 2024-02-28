@@ -15,6 +15,7 @@ const minimumUploadCount = 10;
 const maximumUploadCount = 20;
 const canceledColor = '#801930';
 const failedColor = '#801930';
+const estimatedCostPerTrainingImg = 0.34
 
 function enforceNoSpaces(event) {
     event.target.value = event.target.value.replace(/\s/g, '');
@@ -549,7 +550,7 @@ function addFileUploadDivToDOM(file) {
 
 function updateTrainingCostEstimate() {
     let upload_count = numberOfUploadedFiles();
-    let estimated_cost = 0.34 * upload_count;
+    let estimated_cost = estimatedCostPerTrainingImg * upload_count;
     let estimatedCostDiv = document.getElementById('training-estimate-label');
     estimatedCostDiv.innerHTML = `Estimated cost: $${estimated_cost.toFixed(2)} (based on ${upload_count} images)`;
 }

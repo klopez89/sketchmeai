@@ -115,7 +115,7 @@ function configureGenerateForm() {
     let denoisingStepsInput = document.getElementById('denoising-steps');
     denoisingStepsInput.addEventListener('input', function(event) {
         console.log('The new denoising value is: ', denoisingStepsInput.value);
-    }
+    });
 }
 
 function formatAroundModelName(modelNames, promptInputDiv) {

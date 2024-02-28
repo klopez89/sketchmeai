@@ -551,7 +551,7 @@ function updateTrainingCostEstimate() {
     let upload_count = numberOfUploadedFiles();
     let estimated_cost = 0.34 * upload_count;
     let estimatedCostDiv = document.getElementById('training-estimate-label');
-    estimatedCostDiv.innerHTML = `Estimated cost: $${estimated_cost} (based on ${upload_count} images)`;
+    estimatedCostDiv.innerHTML = `Estimated cost: $${estimated_cost.toFixed(2)} (based on ${upload_count} images)`;
 }
 
 function toggleUploadAreaVisibility() {

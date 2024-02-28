@@ -411,7 +411,7 @@ function handleFileUploads(files) {
         let fileType = file.type;
         let fileSize = file.size;
         console.log('The file type here is: ', fileType);
-        if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png') {
+        if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png' && fileType !== 'image/heic') {
             didFindUnsupporedFileType = true;
             unsupportedFileTypeFound = fileType.split('/')[1];
             console.log('didFindUnsupporedFileType: ', didFindUnsupporedFileType, ' unsupportedFileTypeFound: ', unsupportedFileTypeFound);

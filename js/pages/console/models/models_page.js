@@ -536,6 +536,7 @@ function addFileUploadDivToDOM(file) {
 
 		toggleUploadAreaVisibility();
 		toggleUploadButtonInteraction();
+        updateTrainingCostEstimate();
 	});
 
 	$('#uploadEntryContainer').children().first().after(upload_entry_element);
@@ -543,6 +544,14 @@ function addFileUploadDivToDOM(file) {
 	upload_entry_element.find('#uploadedImage')[0].src = file.data;
 	toggleUploadAreaVisibility();
 	toggleUploadButtonInteraction();
+    updateTrainingCostEstimate();
+}
+
+function updateTrainingCostEstimate() {
+    let upload_count = numberOfUploadedFiles();
+    let estimated_cost = 0.29 * upload_count;
+    let estimatedCostDiv = document.getElementById('training-estimate-label');
+    estimatedCostDiv.innerHTML = `Estimated cost: $${estimated_cost} (based on ${upload_count} images)`;
 }
 
 function toggleUploadAreaVisibility() {

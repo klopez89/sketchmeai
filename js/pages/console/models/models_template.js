@@ -100,6 +100,9 @@ function dummyGridHTML() {
                             <p>Cancel</p>
                         </button>
                     </div>
+                    <div class="col-span-full" id="training-estimate-container">
+                        <p class="text-xs text-gray-400 italic" id="training-estimate-label">Estimated cost: $3.40 (based on 10 images)</p>
+                    </div>
                 </div>
 
 

@@ -64,7 +64,7 @@ function dummyGridHTML() {
 
         <div class="bg-gray-100 pb-4 pt-4 min-w-[400px] md:max-w-[400px] max-w-full border-r border-gray-300">
                 
-            <form class="generate-form h-full overflow-y-auto px-8" id="generateForm">
+            <form class="generate-form h-full overflow-y-auto px-8 flex flex-col" id="generateForm">
 
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                     <div class="col-span-full" id="prompt-field-container">
@@ -182,6 +182,10 @@ function dummyGridHTML() {
 					</div>
 
 				</div>
+
+				<div class="flex-grow"></div>
+				
+				<p class="text-xs text-gray-400 italic" id="training-estimate-label">Estimated cost: $0.03 (for 20 denoising steps)</p>
 
             </form>
         </div>

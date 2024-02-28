@@ -79,6 +79,18 @@ function dummyGridHTML() {
                     </div>
                 </div>
 
+				<div class="px-0 pt-4 pb-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6" id="model-selection-section">
+
+					<div class="col-span-full" id="models-field-container">
+						<label for="models" class="block text-sm font-medium leading-6 text-gray-900">Models</label>
+						<div class="mt-2">
+							<select id="model-dropdown" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" size="6" multiple="">
+								<option selected="" id="sdxl" instkey="zxc" modelname="sdxl" model="stability-ai/sdxl" version="39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b">&nbsp;&nbsp;Stable Diffusion SDXL</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
                 <div id="accordionExample5">
                 	<div class="rounded-t-lg bg-transparent">
 						<h2 class="mb-0" id="headingOne5">
@@ -170,21 +182,10 @@ function dummyGridHTML() {
 				</div>
 
 
-				<div class="px-0 py-4 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6" id="model-selection-section">
 				
-					<div class="col-span-full" id="models-field-container">
-						<label for="models" class="block text-sm font-medium leading-6 text-gray-900">Models</label>
-						<div class="mt-2">
-							<select id="model-dropdown" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" size="6" multiple="">
-								<option selected="" id="sdxl" instkey="zxc" modelname="sdxl" model="stability-ai/sdxl" version="39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b">&nbsp;&nbsp;Stable Diffusion SDXL</option>
-							</select>
-						</div>
-					</div>
-
-				</div>
 
 				<div class="flex-grow"></div>
-				
+
 				<p class="text-xs text-gray-400 italic" id="training-estimate-label">Estimated cost: $0.03 (for 20 denoising steps)</p>
 
             </form>

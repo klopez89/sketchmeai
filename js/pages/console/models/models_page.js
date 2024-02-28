@@ -414,20 +414,19 @@ function handleFileUploads(files) {
         if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png') {
             didFindUnsupporedFileType = true;
             unsupportedFileTypeFound = fileType.split('/')[1];
-            return;
+            continue;
         }
 
-            reader.addEventListener('load', function(event) {
-                let fileData = event.target.result;
-                let fileInfo = {
-                    name: filename,
-                    type: fileType,
-                    size: summarizeFileSize(fileSize),
-                    data: fileData,
-                };
-                addFileUploadDivToDOM(fileInfo);
-            });
-
+        reader.addEventListener('load', function(event) {
+            let fileData = event.target.result;
+            let fileInfo = {
+                name: filename,
+                type: fileType,
+                size: summarizeFileSize(fileSize),
+                data: fileData,
+            };
+            addFileUploadDivToDOM(fileInfo);
+        });
         reader.readAsDataURL(files[i]);
     }
 

@@ -227,7 +227,7 @@ function setCaretPosition(element, offset) {
 
 function randomizeSeed(event) {
     event.preventDefault();
-    document.getElementById('seed').value = -1;
+    document.getElementById('seed').value = "";
 }
 
 function setupAccordion() {
@@ -485,7 +485,7 @@ function generateButtonPressed(event) {
 
 
     var seedToUse = promptValues.seed;
-    let hasChosenSeed = seedToUse != -1;
+    let hasChosenSeed = seedToUse != "";
     let numberOfImages = hasChosenSeed ? 1 : promptValues.numberOfImages;
     let shouldResetSeed = !hasChosenSeed && promptValues.shouldUseRandomSeedAcrossModels
 

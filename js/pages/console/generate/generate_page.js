@@ -687,6 +687,7 @@ function configureCopyButton(gen_dict, gen_element) {
     gen_element.querySelector('#action-container').classList.remove('hidden');
     copyButton = gen_element.querySelector('#copy-button');
     copyButton.addEventListener('click', function(event) {
+        removePlaceholder();
         copyPromptInfoFromGen(gen_dict);
         triggerModelNameInPromptFormatting();
         event.stopPropagation();

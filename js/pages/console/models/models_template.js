@@ -95,7 +95,7 @@ function dummyGridHTML() {
                             <i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="col-span-1 mt-4" id="cancel-button-container">
+                    <div class="col-span-2 md:col-span-1 mt-4" id="cancel-button-container">
                         <button id="cancelButton" class="rounded-md w-full flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-lg text-gray-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-300" onclick="exitNewModelForm(event)">
                             <p>Cancel</p>
                         </button>

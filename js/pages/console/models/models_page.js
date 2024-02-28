@@ -401,6 +401,8 @@ function handleFileUploads(files) {
     console.log("the remaining upload count is: ", remaining_upload_count);
     console.log("the files to upload are: ", files_to_upload);
 
+    var didFindUnsupporedFileType = false;
+    var unsupportedFileTypeFound = null;
     // Read the contents of each file
     for (var i = 0; i < files_to_upload.length; i++) {
         let reader = new FileReader();
@@ -410,7 +412,8 @@ function handleFileUploads(files) {
         let fileSize = file.size;
         console.log('The file type here is: ', fileType);
         if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png') {
-            // Return early if the file type is not supported
+            didFindUnsupporedFileType = true;
+            unsupportedFileTypeFound = fileType.split('/')[1];
             return;
         }
 
@@ -426,6 +429,10 @@ function handleFileUploads(files) {
             });
 
         reader.readAsDataURL(files[i]);
+    }
+
+    if (didFindUnsupporedFileType) {
+        showWarningBanner(`File(s) you tried uploading are in an unsupported image type: ${unsupportedFileTypeFound}. Please upload JPG, JPEG, or PNG files.`);
     }
 }
 

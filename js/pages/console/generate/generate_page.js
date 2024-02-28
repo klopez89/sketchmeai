@@ -960,3 +960,8 @@ function goingToLightbox(event) {
     closeAnyOpenGenMenus();
     event.stopPropagation();
 }
+
+function moreInfoButtonPressed(event) {
+    let parentDivId = event.target.parentElement.id;
+    console.log('Parent Div ID:', parentDivId);
+}

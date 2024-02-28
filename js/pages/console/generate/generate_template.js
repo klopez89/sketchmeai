@@ -119,7 +119,11 @@ function dummyGridHTML() {
 									</div>
 								</div>
 								<div class="sm:col-span-3" id="denoising-steps-field-container">
-									<label for="denoising-steps" class="block text-sm font-medium leading-6 text-gray-900">Denoising Steps</label><div class="mt-2">
+									<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
+									<button id="more-info-button" class="ml-2 text-gray-400" onclick="moreInfoButtonPressed(event)">
+										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+									</button>
+									<div class="mt-2">
 										<input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 									</div>
 								</div>

@@ -2,6 +2,7 @@ let isCurrentlyPaginatingPrompts = false;
 let cold_boot_delay = 180000; // 3 minutes in milliseconds for custom models
 let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models to turn cold w/o use
 let status_check_interval = 2500; // 5 seconds in milliseconds
+const genEstimateCostPerDenoisingStep = 0.0015;
 var coldBootedModels = {};
 var previousModelSelectionId = null;
 var promptPlaceholderText = "Example: Drawing of cute dalmation puppy in the backyard, highly detailed";
@@ -114,7 +115,8 @@ function configureGenerateForm() {
     });
     let denoisingStepsInput = document.getElementById('denoising-steps');
     denoisingStepsInput.addEventListener('input', function(event) {
-        console.log('The new denoising value is: ', denoisingStepsInput.value);
+        let estimatedCost = genEstimateCostPerDenoisingStep * denoisingStepsInput.value;
+        document.getElementById('training-estimate-label').value = `Estimated cost: $${estimatedCost.toFixed(2)} (for ${denoisingStepsInput.value} denoising steps)`
     });
 }
 

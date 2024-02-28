@@ -411,24 +411,49 @@ function handleFileUploads(files) {
         let fileType = file.type;
         let fileSize = file.size;
         console.log('The file type here is: ', fileType);
-        if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png' && fileType !== 'image/heic') {
+
+        if (fileType === 'image/heic') {
+            // Convert HEIC to JPEG using heic2any
+            heic2any({
+                blob: file,
+                toType: "image/jpeg",
+                quality: 0.8 // Adjust quality as needed
+            })
+            .then(function (conversionResult) {
+                let reader = new FileReader();
+                reader.addEventListener('load', function(event) {
+                    let fileData = event.target.result;
+                    let fileInfo = {
+                        name: filename,
+                        type: 'image/jpeg', // Set the type to JPEG after conversion
+                        size: summarizeFileSize(conversionResult.size),
+                        data: fileData,
+                    };
+                    addFileUploadDivToDOM(fileInfo);
+                });
+                reader.readAsDataURL(conversionResult);
+            })
+            .catch(function (error) {
+                console.error('Error converting HEIC to JPEG', error);
+            });
+        } else if (fileType === 'image/jpg' || fileType === 'image/jpeg' || fileType === 'image/png') {
+            // Handle other image types as before
+            let reader = new FileReader();
+            reader.addEventListener('load', function(event) {
+                let fileData = event.target.result;
+                let fileInfo = {
+                    name: filename,
+                    type: fileType,
+                    size: summarizeFileSize(fileSize),
+                    data: fileData,
+                };
+                addFileUploadDivToDOM(fileInfo);
+            });
+            reader.readAsDataURL(file);
+        } else {
             didFindUnsupporedFileType = true;
             unsupportedFileTypeFound = fileType.split('/')[1];
-            console.log('didFindUnsupporedFileType: ', didFindUnsupporedFileType, ' unsupportedFileTypeFound: ', unsupportedFileTypeFound);
-            continue;
         }
-
-        reader.addEventListener('load', function(event) {
-            let fileData = event.target.result;
-            let fileInfo = {
-                name: filename,
-                type: fileType,
-                size: summarizeFileSize(fileSize),
-                data: fileData,
-            };
-            addFileUploadDivToDOM(fileInfo);
-        });
-        reader.readAsDataURL(files[i]);
     }
 
     if (didFindUnsupporedFileType) {

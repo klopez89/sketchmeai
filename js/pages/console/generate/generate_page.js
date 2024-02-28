@@ -967,4 +967,7 @@ function moreInfoButtonPressed(event) {
     let grandparentDivId = event.target.parentElement.parentElement.id;
     console.log('Grandparent Div ID:', grandparentDivId);
     console.log('Parent Div ID:', parentDivId);
+
+    let fieldContainer = event.target.closest('div[id$="-field-container"]');
+    console.log('Next parent div with "-field-container" in its ID:', fieldContainer.id);
 }

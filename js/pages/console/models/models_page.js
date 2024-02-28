@@ -408,7 +408,7 @@ function handleFileUploads(files) {
         let filename = file.name;
         let fileType = file.type;
         let fileSize = file.size;
-
+        console.log('The file type here is: ', fileType);
         if (fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'image/png') {
             // Return early if the file type is not supported
             return;

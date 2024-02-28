@@ -964,5 +964,7 @@ function goingToLightbox(event) {
 function moreInfoButtonPressed(event) {
     event.preventDefault();
     let parentDivId = event.target.parentElement.id;
+    let grandparentDivId = event.target.parentElement.parentElement.id;
+    console.log('Grandparent Div ID:', grandparentDivId);
     console.log('Parent Div ID:', parentDivId);
 }

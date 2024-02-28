@@ -120,7 +120,7 @@ function dummyGridHTML() {
 								</div>
 								<div class="sm:col-span-3" id="denoising-steps-field-container">
 									<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
-									<button id="more-info-button" class="ml-2 text-gray-400" onclick="moreInfoButtonPressed(event)">
+									<button id="more-info-button" data-te-toggle="popover" data-te-title="Popover title" data-te-content="And here's some amazing content. It's very engaging. Right?" class="ml-2 text-gray-400" onclick="moreInfoButtonPressed(event)">
 										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 									</button>
 									<div class="mt-2">

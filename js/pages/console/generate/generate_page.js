@@ -963,11 +963,16 @@ function goingToLightbox(event) {
 
 function moreInfoButtonPressed(event) {
     event.preventDefault();
-    let parentDivId = event.target.parentElement.id;
-    let grandparentDivId = event.target.parentElement.parentElement.id;
-    console.log('Grandparent Div ID:', grandparentDivId);
-    console.log('Parent Div ID:', parentDivId);
-
+    let moreInfoButtonDiv = event.target.parentElement;
     let fieldContainer = event.target.closest('div[id$="-field-container"]');
     console.log('Next parent div with "-field-container" in its ID:', fieldContainer.id);
+    configureforPopup(fieldContainer.id, moreInfoButtonDiv)
+}
+
+function configureforPopup(fieldContainerId, moreInfoButtonDiv) {
+    if (fieldContainerId.includes('denoising')) {
+        // Code to execute if fieldContainerId contains 'denoising'
+        moreInfoButtonDiv.setAttribute('data-te-content', 'Testin caca!');
+        console.log('Field Container ID contains "denoising"');
+    }
 }

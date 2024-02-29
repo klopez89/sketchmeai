@@ -127,7 +127,7 @@ function dummyGridHTML() {
 								</div>
 								<div class="sm:col-span-3" id="denoising-steps-field-container">
 									<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
-									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="${denoisingInfo}" class="ml-2 text-gray-400">
+									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="${denoisingInfo}" class="ml-2 text-gray-300">
 										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 									</button>
 									<div class="mt-2">
@@ -137,7 +137,7 @@ function dummyGridHTML() {
 
 								<div class="col-span-full" id="neg-prompt-field-container">
 									<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-900">Negative Prompt</label>
-									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="${negativePromptInfo}" class="ml-2 text-gray-400">
+									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="${negativePromptInfo}" class="ml-2 text-gray-300">
 										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 									</button>
 									<div class="mt-2">
@@ -147,7 +147,7 @@ function dummyGridHTML() {
 
 								<div class="sm:col-span-3" id="gs-field-container">
 									<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
-									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="${guidanceScaleInfo}" class="ml-2 text-gray-400">
+									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="${guidanceScaleInfo}" class="ml-2 text-gray-300">
 										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 									</button>
 									<div class="mt-2">
@@ -168,7 +168,7 @@ function dummyGridHTML() {
 
 								<div class="col-span-full" id="igm2img-field-container">
 									<label for="img2imgurl" class="text-sm font-medium leading-6 text-gray-900">Image to Image URL</label>
-									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="${imgToImgURLInfo}" class="ml-2 text-gray-400">
+									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="${imgToImgURLInfo}" class="ml-2 text-gray-300">
 										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 									</button>
 									<div class="mt-2">
@@ -177,7 +177,7 @@ function dummyGridHTML() {
 								</div>
 								<div class="sm:col-span-3" id="ps-field-container">
 									<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
-									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Prompt Strength" data-te-content="${promptStrengthInfo}" class="ml-2 text-gray-400">
+									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Prompt Strength" data-te-content="${promptStrengthInfo}" class="ml-2 text-gray-300">
 										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 									</button>
 									<div class="mt-2">
@@ -186,7 +186,7 @@ function dummyGridHTML() {
 								</div>
 								<div class="sm:col-span-3" id="lora-field-container">
 									<label for="lora-scale" class="text-sm font-medium leading-6 text-gray-900">Lora Scale</label>
-									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Lora Scale" data-te-content="${loraScaleInfo}" class="ml-2 text-gray-400">
+									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Lora Scale" data-te-content="${loraScaleInfo}" class="ml-2 text-gray-300">
 										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 									</button>
 									<div class="mt-2">

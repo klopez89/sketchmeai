@@ -680,8 +680,8 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
         .collection('generations').doc(generationId)
         .onSnapshot((doc) => {
             let generation_dict = doc.data();
-            let prediction_status = generation_dict.get('prediction_status', nil);
-            if (prediction_status) {
+            let prediction_status = generation_dict['prediction_status'] || null;
+            if (!prediction_status) {
                 unsubscribe();
                 return;
             }

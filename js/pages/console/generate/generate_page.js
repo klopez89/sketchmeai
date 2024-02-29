@@ -113,6 +113,13 @@ function configureGenerateForm() {
         let modelNames = promptValues.modelNames;
         formatAroundModelName(modelNames, promptInput);
     });
+    promptInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default Enter key behavior
+            generateButtonPressed(event)
+        }
+    });
+
     let denoisingStepsInput = document.getElementById('denoising-steps');
     denoisingStepsInput.addEventListener('input', function(event) {
         let estimatedCost = genEstimateCostPerDenoisingStep * denoisingStepsInput.value;

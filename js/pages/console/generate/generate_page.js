@@ -232,26 +232,33 @@ function randomizeSeed(event) {
 
 function setupAccordion() {
     const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
-    const accordionContent = document.querySelector('#collapseOne5');
+    // const accordionContent = document.querySelector('#collapseOne5');
 
     accordionButton.addEventListener('click', function() {
-        // Listen for the end of the transition on the accordionContent
-        accordionContent.addEventListener('transitionstart', function handler(e) {
 
-            const buttonText = accordionButton.lastChild;
-            console.log('Transition started. Current content: ', accordionContent);
-            console.log('Transition started. Current button text: ', buttonText);
-            if (accordionContent.classList.contains('hidden')) {
-                console.log('about to make it say Show Settings');
-                buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
-            } else {
-                buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');
-                console.log('about to make it say Hide Settings');
-            }
-            // Remove this event listener once the transition is complete to avoid it being called multiple times
-            accordionContent.removeEventListener('transitionend', handler);
-            // }
-        });
+        const buttonText = accordionButton.lastChild;
+        if (buttonText.contains('Hide')) {
+            buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
+        } else {
+            buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');
+        }
+        // Listen for the end of the transition on the accordionContent
+        // accordionContent.addEventListener('transitionstart', function handler(e) {
+
+        //     const buttonText = accordionButton.lastChild;
+        //     console.log('Transition started. Current content: ', accordionContent);
+        //     console.log('Transition started. Current button text: ', buttonText);
+        //     if (accordionContent.classList.contains('hidden')) {
+        //         console.log('about to make it say Show Settings');
+        //         buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
+        //     } else {
+        //         buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');
+        //         console.log('about to make it say Hide Settings');
+        //     }
+        //     // Remove this event listener once the transition is complete to avoid it being called multiple times
+        //     accordionContent.removeEventListener('transitionend', handler);
+        //     // }
+        // });
     });
 }
 

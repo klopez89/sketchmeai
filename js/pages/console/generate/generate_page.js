@@ -240,7 +240,7 @@ function randomizeSeed(event) {
 function setupAccordion() {
     const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
     accordionButton.addEventListener('click', function() {
-        const buttonHTMLElement = accordionButton.lastChild;
+        const buttonHTMLElement = accordionButton.firstChild;
         const buttonText = buttonHTMLElement.nodeValue;
 
         if (buttonText.includes('Hide')) {
@@ -253,7 +253,7 @@ function setupAccordion() {
 
     const img2imgAccordionButton = document.querySelector('[data-te-target="#nestedImg2ImgCollapse"]');
     img2imgAccordionButton.addEventListener('click', function() {
-        const buttonHTMLElement = img2imgAccordionButton.lastChild;
+        const buttonHTMLElement = img2imgAccordionButton.firstChild;
         const buttonText = buttonHTMLElement.nodeValue;
 
         if (buttonText.includes('Hide')) {

@@ -513,6 +513,9 @@ function generateButtonPressed(event) {
     }
 
     // Validate the generation form before proceeding to fire off an API call
+
+    console.log(`inf steps: ${promptValues.inferenceSteps}, gscale: ${promptValues.gscale}, prompt: ${prompt}, lorascale: ${promptValues.loraScale}, img2imgurl: ${promptValues.img2imgUrl}, prompt strength: ${promptValues.promptStrength}`);
+
     let missingFields = [];
     if (promptValues.inferenceSteps == null) missingFields.push('Denoising Steps');
     if (promptValues.gscale == null) missingFields.push('Guidance Scale');

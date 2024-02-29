@@ -194,7 +194,7 @@ function dummyGridHTML() {
 										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 									</button>
 									<div class="mt-2">
-										<input type="number" name="lora-scale" id="lora-scale" min="0.0" max="1.0" step="0.01" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" value="0.8">
+										<input type="number" name="lora-scale" id="lora-scale" placeholder="0.8" min="0.0" max="1.0" step="0.01" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" value="0.8">
 										<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.00 - 1.00</p>
 									</div>
 								</div>

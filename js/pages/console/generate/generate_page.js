@@ -828,11 +828,15 @@ function promptInputValues() {
     let seed = document.getElementById('seed').value;
     let img2imgUrl = document.getElementById('img-2-img').value;
     var promptStrength = document.getElementById('prompt-strength').value;
-    let loraScale = document.getElementById('lora-scale').value;
+    var loraScale = document.getElementById('lora-scale').value;
     let shouldUseRandomSeedAcrossModels = true;
 
     if (promptStrength == '') {
         promptStrength = 0.8;
+    }
+
+    if (loraScale == '') {
+        loraScale = 0.8;
     }
 
     let dropdown = document.getElementById('model-dropdown');

@@ -239,7 +239,7 @@ function setupAccordion() {
         const buttonHTMLElement = accordionButton.lastChild;
         const buttonText = buttonHTMLElement.nodeValue;
 
-        if (buttonText.contains('Hide')) {
+        if (buttonText.includes('Hide')) {
             buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Hide Settings', 'Show Settings');
         } else {
             buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Settings', 'Hide Settings');

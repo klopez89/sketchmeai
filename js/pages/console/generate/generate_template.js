@@ -204,7 +204,7 @@ function dummyGridHTML() {
 									<!-- Start of the new nested accordion for img-2img-url and prompt-strength fields -->
 									<div id="nestedAccordion">
 										<h2 id="nestedHeading">
-											<button class="accordion-button" type="button" data-te-collapse-toggle="" data-te-target="#nestedCollapse" aria-expanded="false" aria-controls="nestedCollapse">
+											<button class="accordion-button" type="button" data-te-collapse-init data-te-collapse-toggle="" data-te-target="#nestedCollapse" aria-expanded="false" aria-controls="nestedCollapse">
 												Additional Image Settings
 											</button>
 										</h2>

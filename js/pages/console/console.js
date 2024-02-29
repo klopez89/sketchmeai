@@ -72,6 +72,21 @@ function displayWarningBanner(warningMessage) {
     };
 }
 
+function removeErrorBanners() {
+    const errorBanners = document.querySelectorAll('#errorBanner');
+    errorBanners.forEach(function(banner) {
+        banner.remove();
+    });
+}
+
+function removeWarningBanners() {
+    const warningBanners = document.querySelectorAll('#warningBanner');
+    warningBanners.forEach(function(banner) {
+        banner.remove();
+    });
+}
+
+
 
 // Payment related functions
 

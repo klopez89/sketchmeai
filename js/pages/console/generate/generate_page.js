@@ -460,6 +460,8 @@ function selectModelWithVersion(version) {
 
 function generateButtonPressed(event) {
     event.preventDefault();
+    removeErrorBanners();
+    removeWarningBanners();
 
     let userRecId = getUserRecId();
     if (userRecId == null) {

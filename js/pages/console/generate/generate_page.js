@@ -477,6 +477,7 @@ function generateButtonPressed(event) {
     if (img2imgUrl) {
         if (isValidImageUrl(img2imgUrl) == false) {
             displayErrorBanner('The provided image to image url does not seem to point to a valid image url. Try a different one.');
+            return;
         }
     }
 

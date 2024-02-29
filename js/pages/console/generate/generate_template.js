@@ -132,6 +132,7 @@ function dummyGridHTML() {
 									</button>
 									<div class="mt-2">
 										<input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+										<p class="text-right text-xs text-gray-400 mt-1 ml-1">1-100, by 1</p>
 									</div>
 								</div>
 

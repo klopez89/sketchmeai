@@ -521,7 +521,7 @@ function generateButtonPressed(event) {
     if (!prompt) missingFields.push('Prompt');
     if (!promptValues.loraScale) missingFields.push('Lora Scale');
 
-    if (!promptValues.img2imgUrl) {
+    if (promptValues.img2imgUrl) {
         if (!promptValues.promptStrength) {
             displayErrorBanner('Prompt strength is required for image-to-image generation.');
             return;

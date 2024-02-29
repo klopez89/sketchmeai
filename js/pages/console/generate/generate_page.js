@@ -841,9 +841,9 @@ function promptInputValues() {
     var prompt = document.getElementById("prompt").innerHTML;
     prompt = sanitizePrompt(prompt);
     let numberOfImages = document.getElementById('gen-count').value;
-    let inferenceSteps = document.getElementById('denoising-steps').value;
+    var inferenceSteps = document.getElementById('denoising-steps').value;
     let negativePrompt = document.getElementById("neg-prompt").value;
-    let gscale = document.getElementById('guidance-scale').value;
+    var gscale = document.getElementById('guidance-scale').value;
     let seed = document.getElementById('seed').value;
     let img2imgUrl = document.getElementById('img-2-img').value;
     var promptStrength = document.getElementById('prompt-strength').value;
@@ -856,6 +856,14 @@ function promptInputValues() {
 
     if (loraScale == '') {
         loraScale = 0.8;
+    }
+
+    if (gscale == '') {
+        gscale = 13;
+    }
+
+    if (inferenceSteps == '') {
+        inferenceSteps = 20;
     }
 
     let dropdown = document.getElementById('model-dropdown');

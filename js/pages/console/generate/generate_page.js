@@ -512,6 +512,24 @@ function generateButtonPressed(event) {
         prompt = prompt.replace(modelNameRegex, 'tzk');
     }
 
+    // Validate the generation form before proceeding to fire off an API call
+    let missingFields = [];
+    if (promptValues.inferenceSteps == null) missingFields.push('Denoising Steps');
+    if (promptValues.gscale == null) missingFields.push('Guidance Scale');
+    if (prompt == null) missingFields.push('Prompt');
+    if (promptValues.loraScale == null) missingFields.push('Lora Scale');
+
+    if (promptValues.img2imgUrl != null && promptValues.img2imgUrl !== "") {
+        if (promptValues.promptStrength == null) {
+            displayErrorBanner('Prompt strength is required for image-to-image generation.');
+            return;
+        }
+    }
+
+    if (missingFields.length > 0) {
+        displayErrorBanner('Missing values for: ' + missingFields.join(', '));
+        return;
+    }
 
     for (var j = 0; j < numberOfImages; j++) {
         if (shouldResetSeed) {

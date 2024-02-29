@@ -807,7 +807,7 @@ function promptInputValues() {
     let img2imgUrl = document.getElementById('img-2-img').value;
     let promptStrength = document.getElementById('prompt-strength').value;
     let loraScale = document.getElementById('lora-scale').value;
-    let shouldUseRandomSeedAcrossModels = document.getElementById('same-seed').checked;
+    let shouldUseRandomSeedAcrossModels = true;
 
     let dropdown = document.getElementById('model-dropdown');
     let selectedOptions = dropdown.selectedOptions;

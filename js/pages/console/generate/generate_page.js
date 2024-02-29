@@ -680,11 +680,11 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
         .collection('generations').doc(generationId)
         .onSnapshot((doc) => {
             let generation_dict = doc.data();
-            let prediction_status = generation_dict['prediction_status'] || null;
-            if (!prediction_status) {
+            if (!generation_dict) {
                 unsubscribe();
                 return;
             }
+            let prediction_status = generation_dict['prediction_status'];
             let signed_gen_url = generation_dict['signed_gen_url'];
 
             const gen_element = document.querySelector(`div[generation-id="${generationId}"]`);

@@ -473,7 +473,14 @@ function generateButtonPressed(event) {
     let promptValues = promptInputValues();
     console.log("promptValues: ", promptValues);
 
-    isUrlExpired = isImageUrlExpired(promptValues.img2imgUrl);
+    let img2imgUrl = promptValues.img2imgUrl;
+    if (img2imgUrl) {
+        if (isValidImageUrl(img2imgUrl) == false) {
+            displayErrorBanner('The provided image to image url does not seem to point to a valid image url. Try a different one.');
+        }
+    }
+
+    let isUrlExpired = isImageUrlExpired(promptValues.img2imgUrl);
     if (isUrlExpired) {
         console.log('url is expired');
         displayErrorBanner('Reference image url is expired. Try a different a different url.');
@@ -816,6 +823,13 @@ function sanitizePrompt(prompt) {
     // Trim the prompt to remove leading and trailing spaces
     sanitizedPrompt = sanitizedPrompt.trim();
     return sanitizedPrompt;
+}
+
+function isValidImageUrl(url) {
+    // This regex looks for the specified image extensions followed by either the end of the string
+    // or a non-word character (like ?, &, or #), which would indicate the start of query parameters or a fragment.
+    const pattern = /\.(jpg|jpeg|png|heic)(\W|$)/i;
+    return pattern.test(url);
 }
 
 function promptInputValues() {

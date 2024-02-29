@@ -236,10 +236,8 @@ function setupAccordion() {
 
     accordionButton.addEventListener('click', function() {
         // Listen for the end of the transition on the accordionContent
-        accordionContent.addEventListener('transitionend', function handler(e) {
-            // Ensure the transitionend event is for the property you're interested in, if necessary
-            // For example, if you're only interested in the height property completing its transition:
-            // if (e.propertyName === 'height') {
+        accordionContent.addEventListener('transitionstart', function handler(e) {
+
             const buttonText = accordionButton.lastChild;
             console.log('Transition ended. Current content classlist: ', accordionContent.classList);
             if (accordionContent.classList.contains('hidden')) {

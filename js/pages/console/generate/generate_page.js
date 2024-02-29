@@ -108,7 +108,7 @@ function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
     let promptInput = document.getElementById('prompt')
     promptInput.addEventListener('input', function(event) {
-        console.log('promptInput value: ', promptInput.value);
+        console.log('promptInput value: ', promptInput.innerHTML);
         let promptValues = promptInputValues();
         let modelNames = promptValues.modelNames;
         formatAroundModelName(modelNames, promptInput);
@@ -232,10 +232,7 @@ function randomizeSeed(event) {
 
 function setupAccordion() {
     const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
-    // const accordionContent = document.querySelector('#collapseOne5');
-
     accordionButton.addEventListener('click', function() {
-
         const buttonHTMLElement = accordionButton.lastChild;
         const buttonText = buttonHTMLElement.nodeValue;
 
@@ -244,23 +241,6 @@ function setupAccordion() {
         } else {
             buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Settings', 'Hide Settings');
         }
-        // Listen for the end of the transition on the accordionContent
-        // accordionContent.addEventListener('transitionstart', function handler(e) {
-
-        //     const buttonText = accordionButton.lastChild;
-        //     console.log('Transition started. Current content: ', accordionContent);
-        //     console.log('Transition started. Current button text: ', buttonText);
-        //     if (accordionContent.classList.contains('hidden')) {
-        //         console.log('about to make it say Show Settings');
-        //         buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
-        //     } else {
-        //         buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');
-        //         console.log('about to make it say Hide Settings');
-        //     }
-        //     // Remove this event listener once the transition is complete to avoid it being called multiple times
-        //     accordionContent.removeEventListener('transitionend', handler);
-        //     // }
-        // });
     });
 }
 

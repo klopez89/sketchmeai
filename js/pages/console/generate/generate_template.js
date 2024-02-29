@@ -198,16 +198,6 @@ function dummyGridHTML() {
 										<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.00 - 1.00</p>
 									</div>
 								</div>
-								<div class="col-span-full" id="same-seed-field-container">
-									<div class="relative flex gap-x-3">
-											<div class="flex h-6 items-center">
-												<input id="same-seed" name="same-seed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-black">
-											</div>
-											<div class="text-sm leading-6">
-												<p class="text-gray-500">Run selected models with same random seed</p>
-											</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>

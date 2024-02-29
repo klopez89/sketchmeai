@@ -132,7 +132,7 @@ function dummyGridHTML() {
 									</button>
 									<div class="mt-2">
 										<input type="number" name="denoising-steps" id="denoising-steps" min="1" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-										<p class="text-right text-xs text-gray-400 mt-1 ml-1">1-100, by 1</p>
+										<p class="text-right text-xs text-gray-400 mt-1 ml-1">1 - 100</p>
 									</div>
 								</div>
 
@@ -153,6 +153,7 @@ function dummyGridHTML() {
 									</button>
 									<div class="mt-2">
 									<input type="number" name="guidance-scale" id="guidance-scale" min="1.0" max="20.0" step="0.1" value="13" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+									<p class="text-right text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
 									</div>
 								</div>
 								<div class="sm:col-span-3" id="seed-field-container">
@@ -164,6 +165,7 @@ function dummyGridHTML() {
 									</div>
 									<div class="mt-2">
 										<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+										<p class="text-right text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
 									</div>
 								</div>
 
@@ -183,6 +185,7 @@ function dummyGridHTML() {
 									</button>
 									<div class="mt-2">
 									<input type="number" name="prompt-strength" id="prompt-strength" min="0.0" max="1.0" step="0.1" value="0.8" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+									<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.0 - 1.0</p>
 									</div>
 								</div>
 								<div class="sm:col-span-3" id="lora-field-container">
@@ -192,6 +195,7 @@ function dummyGridHTML() {
 									</button>
 									<div class="mt-2">
 										<input type="number" name="lora-scale" id="lora-scale" min="0.0" max="1.0" step="0.01" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" value="0.8">
+										<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.00 - 1.00</p>
 									</div>
 								</div>
 								<div class="col-span-full" id="same-seed-field-container">

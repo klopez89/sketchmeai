@@ -56,8 +56,15 @@ function createGridHTML(numCopies) {
 
 
 function dummyGridHTML() {
-    inputTitle = "Prompt";
-    inputPlaceholder = "Enter text for the AI to continue";
+
+
+	const denoisingInfo = "Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details."
+	const negativePromptInfo = "The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result."
+	const guidanceScaleInfo = "Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations."
+	const imgToImgURLInfo = "Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch."
+	const promptStrengthInfo = "Only applicable for image to image generation. A higher value makes the final image adhere more closely to the details of the prompt, while a lower value retains more of the reference image's features."
+	const loraScaleInfo = "Adjusts the extent to which a fine-tuned model's specialized training influences the generated image, blending the base model's knowledge with the fine-tuned nuances."
+
     return `
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
@@ -120,7 +127,7 @@ function dummyGridHTML() {
 								</div>
 								<div class="sm:col-span-3" id="denoising-steps-field-container">
 									<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
-									<button id="more-info-button" data-te-toggle="popover" data-te-title="Popover title" data-te-content="And here's some amazing content. It's very engaging. Right?" class="ml-2 text-gray-400" onclick="moreInfoButtonPressed(event)">
+									<button data-te-trigger="focus" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="${denoisingInfo}" class="ml-2 text-gray-400">
 										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 									</button>
 									<div class="mt-2">
@@ -129,13 +136,20 @@ function dummyGridHTML() {
 								</div>
 
 								<div class="col-span-full" id="neg-prompt-field-container">
-									<label for="neg-prompt" class="block text-sm font-medium leading-6 text-gray-900">Negative Prompt</label><div class="mt-2">
+									<label for="neg-prompt" class="block text-sm font-medium leading-6 text-gray-900">Negative Prompt</label>
+									<button data-te-trigger="focus" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="${negativePromptInfo}" class="ml-2 text-gray-400">
+										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+									</button>
+									<div class="mt-2">
 									<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
 									</div>
 								</div>
 
 								<div class="sm:col-span-3" id="gs-field-container">
 									<label for="guidance-scale" class="block text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
+									<button data-te-trigger="focus" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="${guidanceScaleInfo}" class="ml-2 text-gray-400">
+										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+									</button>
 									<div class="mt-2">
 									<input type="number" name="guidance-scale" id="guidance-scale" min="1.0" max="20.0" step="0.1" value="13" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 									</div>
@@ -153,19 +167,28 @@ function dummyGridHTML() {
 								</div>
 
 								<div class="col-span-full" id="igm2img-field-container">
-									<label for="img2imgurl" class="block text-sm font-medium leading-6 text-gray-900">Image2Image Url</label>
+									<label for="img2imgurl" class="block text-sm font-medium leading-6 text-gray-900">Image to Image URL</label>
+									<button data-te-trigger="focus" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="${imgToImgURLInfo}" class="ml-2 text-gray-400">
+										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+									</button>
 									<div class="mt-2">
 										<input type="text" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 									</div>
 								</div>
 								<div class="sm:col-span-3" id="ps-field-container">
 									<label for="prompt-strength" class="block text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
+									<button data-te-trigger="focus" data-te-toggle="popover" data-te-title="Prompt Strength" data-te-content="${promptStrengthInfo}" class="ml-2 text-gray-400">
+										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+									</button>
 									<div class="mt-2">
 									<input type="number" name="prompt-strength" id="prompt-strength" min="0.0" max="1.0" step="0.1" value="0.8" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 									</div>
 								</div>
 								<div class="sm:col-span-3" id="lora-field-container">
 									<label for="lora-scale" class="block text-sm font-medium leading-6 text-gray-900">Lora Scale</label>
+									<button data-te-trigger="focus" data-te-toggle="popover" data-te-title="Lora Scale" data-te-content="${loraScaleInfo}" class="ml-2 text-gray-400">
+										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+									</button>
 									<div class="mt-2">
 										<input type="number" name="lora-scale" id="lora-scale" min="0.0" max="1.0" step="0.01" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" value="0.8">
 									</div>

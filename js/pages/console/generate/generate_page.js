@@ -827,9 +827,13 @@ function promptInputValues() {
     let gscale = document.getElementById('guidance-scale').value;
     let seed = document.getElementById('seed').value;
     let img2imgUrl = document.getElementById('img-2-img').value;
-    let promptStrength = document.getElementById('prompt-strength').value;
+    var promptStrength = document.getElementById('prompt-strength').value;
     let loraScale = document.getElementById('lora-scale').value;
     let shouldUseRandomSeedAcrossModels = true;
+
+    if (promptStrength == '') {
+        promptStrength = 0.8;
+    }
 
     let dropdown = document.getElementById('model-dropdown');
     let selectedOptions = dropdown.selectedOptions;

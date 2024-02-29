@@ -249,6 +249,19 @@ function setupAccordion() {
             buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Settings', 'Hide Settings');
         }
     });
+
+
+    const img2imgAccordionButton = document.querySelector('[data-te-target="#nestedImg2ImgCollapse"]');
+    img2imgAccordionButton.addEventListener('click', function() {
+        const buttonHTMLElement = img2imgAccordionButton.lastChild;
+        const buttonText = buttonHTMLElement.nodeValue;
+
+        if (buttonText.includes('Hide')) {
+            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Hide Image To Image fields', 'Show Image To Image fields');
+        } else {
+            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Image To Image fields', 'Hide Image To Image fields');
+        }
+    });
 }
 
 function fetchWorkingModels(userRecId) {

@@ -236,11 +236,13 @@ function setupAccordion() {
 
     accordionButton.addEventListener('click', function() {
 
-        const buttonText = accordionButton.lastChild;
-        if (buttonText.nodeValue.contains('Hide')) {
-            buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');
+        const buttonHTMLElement = accordionButton.lastChild;
+        const buttonText = buttonHTMLElement.nodeValue;
+
+        if (buttonText.contains('Hide')) {
+            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Hide Settings', 'Show Settings');
         } else {
-            buttonText.nodeValue = buttonText.nodeValue.replace('Show Settings', 'Hide Settings');
+            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Settings', 'Hide Settings');
         }
         // Listen for the end of the transition on the accordionContent
         // accordionContent.addEventListener('transitionstart', function handler(e) {

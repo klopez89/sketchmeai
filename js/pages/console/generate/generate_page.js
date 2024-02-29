@@ -529,7 +529,7 @@ function generateButtonPressed(event) {
     }
 
     if (missingFields.length > 0) {
-        displayErrorBanner('Missing values for: ' + missingFields.join(', '));
+        displayErrorBanner('Missing value(s) for: ' + missingFields.join(', '));
         return;
     }
 

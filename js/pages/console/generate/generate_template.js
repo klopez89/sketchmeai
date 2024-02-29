@@ -108,7 +108,7 @@ function dummyGridHTML() {
 								</button>
 						</h2>
                     	<div id="collapseOne5" class="!visible hidden" aria-labelledby="headingOne5" style="" data-te-collapse-item="">
-                      		<div class="px-0 py-4 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
+                      		<div class="px-0 py-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
 								<div class="sm:col-span-3" id="gen-count-field-container">
 									<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
 										<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">

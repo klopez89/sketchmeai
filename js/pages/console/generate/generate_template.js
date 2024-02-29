@@ -169,25 +169,7 @@ function dummyGridHTML() {
 									</div>
 								</div>
 
-								<div class="col-span-full" id="igm2img-field-container">
-									<label for="img2imgurl" class="text-sm font-medium leading-6 text-gray-900">Image to Image URL</label>
-									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="${imgToImgURLInfo}" class="ml-2 text-gray-300">
-										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-									</button>
-									<div class="mt-2">
-										<input type="text" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
-									</div>
-								</div>
-								<div class="sm:col-span-3" id="ps-field-container">
-									<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
-									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Prompt Strength" data-te-content="${promptStrengthInfo}" class="ml-2 text-gray-300">
-										<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-									</button>
-									<div class="mt-2">
-									<input type="number" name="prompt-strength" id="prompt-strength" placeholder="0.8" min="0.0" max="1.0" step="0.1" value="0.8" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-									<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.0 - 1.0</p>
-									</div>
-								</div>
+
 								<div class="sm:col-span-3" id="lora-field-container">
 									<label for="lora-scale" class="text-sm font-medium leading-6 text-gray-900">Lora Scale</label>
 									<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Lora Scale" data-te-content="${loraScaleInfo}" class="ml-2 text-gray-300">

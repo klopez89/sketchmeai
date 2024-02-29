@@ -516,13 +516,13 @@ function generateButtonPressed(event) {
 
     console.log(`inf steps (${typeof promptValues.inferenceSteps}): ${promptValues.inferenceSteps}, gscale (${typeof promptValues.gscale}): ${promptValues.gscale}, prompt (${typeof prompt}): ${prompt}, lorascale (${typeof promptValues.loraScale}): ${promptValues.loraScale}, img2imgurl (${typeof promptValues.img2imgUrl}): ${promptValues.img2imgUrl}, prompt strength (${typeof promptValues.promptStrength}): ${promptValues.promptStrength}`);
     let missingFields = [];
-    if (promptValues.inferenceSteps) missingFields.push('Denoising Steps');
-    if (promptValues.gscale) missingFields.push('Guidance Scale');
-    if (prompt) missingFields.push('Prompt');
-    if (promptValues.loraScale) missingFields.push('Lora Scale');
+    if (!promptValues.inferenceSteps) missingFields.push('Denoising Steps');
+    if (!promptValues.gscale) missingFields.push('Guidance Scale');
+    if (!prompt) missingFields.push('Prompt');
+    if (!promptValues.loraScale) missingFields.push('Lora Scale');
 
-    if (promptValues.img2imgUrl) {
-        if (promptValues.promptStrength) {
+    if (!promptValues.img2imgUrl) {
+        if (!promptValues.promptStrength) {
             displayErrorBanner('Prompt strength is required for image-to-image generation.');
             return;
         }

@@ -215,7 +215,7 @@ function dummyGridHTML() {
 											</button>
 										</h2>
 										<div id="nestedImg2ImgCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" data-te-collapse-item="">
-											<div class="accordion-body px-0 py-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
+											<div class="accordion-body px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
 												<!-- img-2img-url field -->
 												<div class="col-span-full" id="igm2img-field-container">
 													<label for="img2imgurl" class="text-sm font-medium leading-6 text-gray-900">Image to Image URL</label>

@@ -239,7 +239,8 @@ function setupAccordion() {
         accordionContent.addEventListener('transitionstart', function handler(e) {
 
             const buttonText = accordionButton.lastChild;
-            console.log('Transition ended. Current content: ', accordionContent);
+            console.log('Transition started. Current content: ', accordionContent);
+            console.log('Transition started. Current button text: ', buttonText);
             if (accordionContent.classList.contains('hidden')) {
                 console.log('about to make it say Show Settings');
                 buttonText.nodeValue = buttonText.nodeValue.replace('Hide Settings', 'Show Settings');

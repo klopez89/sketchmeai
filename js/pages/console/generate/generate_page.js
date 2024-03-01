@@ -602,6 +602,7 @@ function generateButtonPressed(event) {
                 generationId: generateId(),
                 userRecId: userRecId,
                 collectionId: getLastEditedCollection(),
+                userFacingModelName: modelName,
                 modelName: replicateModelName,
                 modelId: modelId,
                 modelVersion: versionName,
@@ -645,7 +646,7 @@ function fireGenerateCall(jsonObject) {
         success: function(data) {
             console.log("success");
             console.log(data);
-            model_name = data.model_name;
+            model_name = jsonObject.userFacingModelName;
             is_warmed = data.is_warmed;
             collection_id = data.collection_id;
             generation_id = data.generation_id;

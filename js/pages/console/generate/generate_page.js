@@ -563,6 +563,7 @@ function generateButtonPressed(event) {
         for (var i = 0; i < modelValues.length; i++) {
             let replicateModelName = modelValues[i];
             let modelName = modelNames[i];
+            let modelId = modelId[i];
             let versionName = versionValues[i];
             var instanceKey = instanceKeys[i];
             let trainingSubject = trainingSubjects[i];
@@ -601,6 +602,7 @@ function generateButtonPressed(event) {
                 userRecId: userRecId,
                 collectionId: getLastEditedCollection(),
                 modelName: replicateModelName,
+                modelId: modelId,
                 modelVersion: versionName,
                 userFacingPrompt: userFacingPrompt,
                 prompt: personalizedPrompt,
@@ -642,10 +644,13 @@ function fireGenerateCall(jsonObject) {
         success: function(data) {
             console.log("success");
             console.log(data);
+            model_name = data.model_name;
+            is_warmed = data.is_warmed;
             collection_id = data.collection_id;
             generation_id = data.generation_id;
             console.log(`the locally created gen id: ${jsonObject.generationId}, and served gen id: ${generation_id}`)
             startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);
+            attemptToShowColdBootingBanner(model_name, is_warmed);
         },
         error: function(data) {
             new_grid_item_div.fadeOut(function() {
@@ -660,6 +665,14 @@ function fireGenerateCall(jsonObject) {
         }
     });
 }
+
+function attemptToShowColdBootingBanner(model_name, is_warmed) {
+    if (!is_warmed) {
+        let warningMessage = `The model, ${model_name}, is likely cold booting which may take 2-5 minutes before generation. You are not charged for cold booting.`;
+        displayWarningBanner(warningMessage);
+    }
+}
+
 
 function cancelGeneration(predictionId, gen_element, generation) {
     let action = `${CONSTANTS.BACKEND_URL}generate/cancel`
@@ -883,6 +896,7 @@ function promptInputValues() {
     let selectedOptions = dropdown.selectedOptions;
     var modelValues = [];
     var modelNames = [];
+    var modelIds = [];
     var versionValues = [];
     var instanceKeys = [];
     var trainingSubjects = [];
@@ -890,6 +904,7 @@ function promptInputValues() {
     for (var i = 0; i < selectedOptions.length; i++) {
         modelValues.push(selectedOptions[i].getAttribute('model'));
         modelNames.push(selectedOptions[i].getAttribute('modelname'));
+        modelIds.push(selectedOptions[i].getAttribute('id'));
         versionValues.push(selectedOptions[i].getAttribute('version'));
         instanceKeys.push(selectedOptions[i].getAttribute('instkey'));
         trainingSubjects.push(selectedOptions[i].getAttribute('trainingSubject'));
@@ -914,6 +929,7 @@ function promptInputValues() {
         shouldUseRandomSeedAcrossModels: shouldUseRandomSeedAcrossModels,
         modelValues: modelValues,
         modelNames: modelNames,
+        modelIds: modelIds,
         versionValues: versionValues,
         instanceKeys: instanceKeys,
         trainingSubjects: trainingSubjects,

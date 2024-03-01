@@ -509,6 +509,7 @@ function generateButtonPressed(event) {
 
     let modelValues = promptValues.modelValues;
     let modelNames = promptValues.modelNames;
+    let modelIds = promptValues.modelIds;
     let versionValues = promptValues.versionValues;
     let instanceKeys = promptValues.instanceKeys;
     let trainingSubjects = promptValues.trainingSubjects;
@@ -563,7 +564,7 @@ function generateButtonPressed(event) {
         for (var i = 0; i < modelValues.length; i++) {
             let replicateModelName = modelValues[i];
             let modelName = modelNames[i];
-            let modelId = modelId[i];
+            let modelId = modelIds[i];
             let versionName = versionValues[i];
             var instanceKey = instanceKeys[i];
             let trainingSubject = trainingSubjects[i];

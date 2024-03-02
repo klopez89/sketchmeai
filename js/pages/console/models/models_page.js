@@ -11,7 +11,7 @@ let userRecId = getUserRecId();
 let lastDocId = null;
 fetchModels(userRecId, lastDocId);
 
-const minimumUploadCount = 10;
+const minimumUploadCount = 3 //10;
 const maximumUploadCount = 20;
 const canceledColor = '#801930';
 const failedColor = '#801930';

@@ -115,7 +115,15 @@ function configureGenerateForm() {
     });
     promptInput.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
-            event.preventDefault(); // Prevent the default Enter key behavior
+            event.preventDefault();
+            generateButtonPressed(event)
+        }
+    });
+    
+    let negativePromptInput = document.getElementById('negative-prompt');
+    negativePromptInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
             generateButtonPressed(event)
         }
     });
@@ -128,13 +136,6 @@ function configureGenerateForm() {
 
     const seedInput = document.getElementById('seed');
     seedInput.placeholder = 'Random';
-    
-    seedInput.addEventListener('focus', function() {
-        // if (seedInput.value === '-1') {
-        //     seedInput.value = ''; // Clear the input field when focused if the value is the default '-1'
-        // }
-    });
-
     seedInput.addEventListener('blur', function() {
         if (seedInput.value.trim() === '') {
             // seedInput.value = '-1'; // Reset to default value when input loses focus and is empty

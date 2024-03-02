@@ -646,13 +646,13 @@ function fireGenerateCall(jsonObject) {
         success: function(data) {
             console.log("success");
             console.log(data);
-            model_name = jsonObject.userFacingModelName;
-            is_warmed = data.is_warmed;
-            collection_id = data.collection_id;
-            generation_id = data.generation_id;
+            let model_name = jsonObject.userFacingModelName;
+            let is_warm = data.is_warm;
+            let collection_id = data.collection_id;
+            let generation_id = data.generation_id;
             console.log(`the locally created gen id: ${jsonObject.generationId}, and served gen id: ${generation_id}`)
             startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);
-            attemptToShowColdBootingBanner(model_name, is_warmed);
+            attemptToShowColdBootingBanner(model_name, is_warm);
         },
         error: function(data) {
             new_grid_item_div.fadeOut(function() {

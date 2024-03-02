@@ -120,7 +120,7 @@ function configureGenerateForm() {
         }
     });
     
-    let negativePromptInput = document.getElementById('negative-prompt');
+    let negativePromptInput = document.getElementById('neg-prompt');
     negativePromptInput.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();

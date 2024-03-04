@@ -232,6 +232,13 @@ function setCaretPosition(element, offset) {
 }
 
 
+function attemptAutoModelSelection() {
+    var url = window.location.href;
+    var urlObj = new URL(url);
+    var params = new URLSearchParams(urlObj.search);
+    let modelVersion = params.get('model_version');
+    selectModelWithVersion(modelVersion);
+}
 
 function randomizeSeed(event) {
     event.preventDefault();
@@ -292,6 +299,8 @@ function fetchWorkingModels(userRecId) {
                     promptDiv.textContent = promptPlaceholderText;
                     selectModelWithVersion(short_version);
                     promptDiv.blur();
+                } else {
+                    attemptAutoModelSelection();
                 }
             }
         },

@@ -5,17 +5,25 @@ function homePageHtml() {
 	let headerSubtitle = 'Using the latest in AI tech, easily train AI to your face and have it generate new images for you. Perfect for refreshing your social media presence, and getting people talking.';
 	let headerButtonTitle = 'Get started';
 
-	let first_feature_title = 'Upload';
-	let first_feature_body = 'Select and upload 10 images of yourself or any other person. Include some variety, ie. face pic, face w/ torso, selfie, different lighting conditions.';
+	let first_feature_title = 'Model Training';
+	let first_feature_body = 'Upload 10 - 20 images of yourself or any other person and train your own AI to generate images. To improve quality of training, aim to include some variety of images, ie. face pic, face w/ torso, selfie, different lighting conditions.';
 
-	let second_feature_title = 'Train';
-	let second_feature_body = 'The AI will train on the images you uploaded. This AI is configure to expect images of a person, so if you deviate from that, results may be unexpected.';
+	let second_feature_title = 'Generation Console';
+	let second_feature_body = 'Here you can kick off as many image generations as you want while tinkering with typical prompt features like guidance scale, lora scale, and image-to-image. You can also fire off a generation for the same prompt across several trained models.';
 
-	let third_feature_title = 'Generate';
-	let third_feature_body = 'Once the AI is trained, we will kick off generating images across a set of themes.';
 
-	let fourth_feature_title = 'Receive';
-	let fourth_feature_body = 'Once all images are generated, we will email you a link to your image set. From there, download, share, and use your new images!';
+	// let third_feature_title = 'Generate';
+	// let third_feature_body = 'Once the AI is trained, we will kick off generating images across a set of themes.';
+
+
+	// let second_feature_title = 'Train';
+	// let second_feature_body = 'Kick off training your custom model  AI will train on the images you uploaded. The .';
+
+	// let third_feature_title = 'Generate';
+	// let third_feature_body = 'Once the AI is trained, we will kick off generating images across a set of themes.';
+
+	// let fourth_feature_title = 'Receive';
+	// let fourth_feature_body = 'Once all images are generated, we will email you a link to your image set. From there, download, share, and use your new images!';
 
 	let timeline_a_title = 'Custom Images';
 	let timeline_a_body = "With custom images, you'll be able to upload any photo & have your custom AI model generate images from it. Sort of like face swapping but you'll have finer control over the results.";
@@ -116,7 +124,7 @@ function homePageHtml() {
 		<div class="bg-white pt-10 pb-10" id="howitworks">
 			<div class="mx-auto max-w-7xl px-6 lg:px-8">
 				<div class="mx-auto max-w-2xl lg:text-center">
-				<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">How It Works</p>
+				<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">What We Offer</p>
 				</div>
 				<div class="mx-auto mt-12 max-w-2xl lg:max-w-4xl">
 				<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
@@ -137,24 +145,6 @@ function homePageHtml() {
 						${second_feature_title}
 					</dt>
 					<dd class="mt-2 text-base leading-7 text-gray-600">${second_feature_body}</dd>
-					</div>
-					<div class="relative pl-16">
-					<dt class="text-base font-semibold leading-7 text-gray-800">
-						<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
-							<p class="font-semibold text-2xl text-white">3</p>
-						</div>
-						${third_feature_title}
-					</dt>
-					<dd class="mt-2 text-base leading-7 text-gray-600">${third_feature_body}</dd>
-					</div>
-					<div class="relative pl-16">
-					<dt class="text-base font-semibold leading-7 text-gray-800">
-						<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
-						<p class="font-semibold text-2xl text-white">4</p>
-						</div>
-						${fourth_feature_title}
-					</dt>
-					<dd class="mt-2 text-base leading-7 text-gray-600">${fourth_feature_body}</dd>
 					</div>
 				</dl>
 				</div>

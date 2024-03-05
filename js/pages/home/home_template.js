@@ -183,7 +183,7 @@ function homePageHtml() {
 						</dt>
 						<dd class="mt-2 pr-12" id="faq-0" x-show="open" style="display: none;">
 							<p class="text-base leading-7 text-gray-600">
-								Image generation and model training both require SketchMeAi credit to use; which can be purchased via Stripe. Cost of generation and training depends denoising steps and amount of training data, respectively. On average, generation costs $0.03/image and trained model costs $3.40/training.
+								Image generation and model training both require SketchMeAi credit to use; which can be purchased via Stripe. Cost of generation and training depends on denoising steps and amount of training data, respectively. On average, generation is ~$0.03/image and training a model is ~$3.40/training.
 							</p>
 						</dd>
 

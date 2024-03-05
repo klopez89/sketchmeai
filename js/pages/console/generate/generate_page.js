@@ -113,6 +113,21 @@ function configureGenerateForm() {
         let modelNames = promptValues.modelNames;
         formatAroundModelName(modelNames, promptInput);
     });
+
+    promptInput.addEventListener('paste', function(e) {
+        // Prevent the default paste behavior
+        e.preventDefault();
+      
+        // Get the text from the clipboard
+        const text = (e.originalEvent || e).clipboardData.getData('text/plain');
+      
+        // Modern approach using the Clipboard API
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return false;
+        selection.deleteFromDocument();
+        selection.getRangeAt(0).insertNode(document.createTextNode(text));
+      });
+
     promptInput.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();

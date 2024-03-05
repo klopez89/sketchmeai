@@ -213,7 +213,7 @@ function homePageHtml() {
 							<dt>
 								<button type="button" x-description="Expand/collapse question button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
 									<span class="text-base font-semibold leading-7">
-										Why is my trained model not generating images that resemble the training data??</span>
+										Why is my trained model not generating images that resemble the training data?</span>
 									<span class="ml-6 flex h-7 items-center">
 										<svg x-description="Icon when question is collapsed." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6" :class="{ 'hidden': open }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path>

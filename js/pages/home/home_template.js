@@ -204,7 +204,7 @@ function homePageHtml() {
 							</dt>
 							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
 								<p class="text-base leading-7 text-gray-600">
-									You are only charged against the execution time of your operations. For example, when kicking off an image generation, w/ 20 denoising steps, we will deduct an estimated amount of credits from your balance and if you cancel mid-generation, you will be refunded half the estimated cost.
+									You are only charged against the execution time of your generations and training. For example, when kicking off an image generation, w/ 20 denoising steps, an estimated cost will be deducted from your credit balance and if you cancel mid-generation, you will be refunded half the estimated cost.
 								</p>
 							</dd>
 						</div>
@@ -226,7 +226,7 @@ function homePageHtml() {
 							</dt>
 							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
 								<p class="text-base leading-7 text-gray-600">
-									You are only charged against the execution time of your generations and training. For example, when kicking off an image generation, w/ 20 denoising steps, we will deduct an estimated amount of credits from your balance and if you cancel mid-generation, you will be refunded half the estimated cost.
+									Resemblance to your training data depends on a number of factors. The first and most impactful is the quality of your training data. High quality images with varied angles and lighting tend to lead to a well-trained model w/ respect to resemblance. The other factors can be found in your prompt settings. While tbe provided default values tend to yield resemblant images, each trained model may need these adjusted to yield best results. The values to adjust are Lora Scale and Guidance Scale. Denoising steps can have some influence too but note that increasing the value may mean an increase in generation cost.
 								</p>
 							</dd>
 						</div>

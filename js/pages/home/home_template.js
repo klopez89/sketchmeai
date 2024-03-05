@@ -9,7 +9,7 @@ function homePageHtml() {
 	let first_feature_body = 'Upload 10 - 20 images of yourself or any other person and train your own AI to generate images. To improve quality of training, aim to include some variety of images, ie. face pic, face w/ torso, selfie, different lighting conditions.';
 
 	let second_feature_title = 'Generation Console';
-	let second_feature_body = 'Here you can kick off as many image generations as you want while tinkering with typical prompt features like guidance scale, lora scale, and image-to-image. You can also fire off a generation for the same prompt across several trained models.';
+	let second_feature_body = 'Kick off as many image generations as you want while tinkering with typical prompt features like guidance scale, lora scale, and image-to-image. You can also fire off a generation for the same prompt across several trained models.';
 
 
 	// let third_feature_title = 'Generate';

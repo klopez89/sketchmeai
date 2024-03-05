@@ -24,22 +24,22 @@ function homePageHtml() {
 
 	// let fourth_feature_title = 'Receive';
 	// let fourth_feature_body = 'Once all images are generated, we will email you a link to your image set. From there, download, share, and use your new images!';
+	
+	let timeline_a_title = 'Collections';
+	let timeline_a_body = "Organize your generated images into collections for distinct projects, allowing for better management and retrieval of your creations.";
+	let timeline_a_date = 'Mar 2024';
 
-	let timeline_a_title = 'Custom Images';
-	let timeline_a_body = "With custom images, you'll be able to upload any photo & have your custom AI model generate images from it. Sort of like face swapping but you'll have finer control over the results.";
-	let timeline_a_date = 'Oct 2023';
+	let timeline_b_title = 'Image Prompt Adapter';
+	let timeline_b_body = "The IP-adapter is an add-on for Stable Diffusion that transforms images into prompts. It empowers you to emulate the style, composition, or specific facial characteristics found in a reference image."
+	let timeline_b_date = 'Apr 2024';
 
-	let timeline_b_title = 'Creative Console';
-	let timeline_b_body = "As your collection of AI images grows and the options for generation expand, you'll need a better way to organize, view, and navigate our site. We're working on a creative console to help you do just that.";
-	let timeline_b_date = 'Oct 2023';
+	let timeline_c_title = 'ControlNet';
+	let timeline_c_body = "ControlNet brings a new level of precision to Stable Diffusion's image generation by conditioning input images and prompts. It will enable more control over the final output, utilizing techniques such as pose manipulation, edge detection, and depth mapping.";
+	let timeline_c_date = 'May 2024';
 
-	let timeline_c_title = 'New Image Sets';
-	let timeline_c_body = "We're working on new image sets to generate from. We're looking to expand to more themes, and more image types. If you have any suggestions, let us know.";
-	let timeline_c_date = 'Nov 2023';
-
-	let timeline_d_title = 'Base Image Library';
-	let timeline_d_body = "Instead of uploading your own images for custom images, you'll be able to select from a library of base images. Aiming to launch with a library of 500+ images!";
-	let timeline_d_date = 'Dec 2023';
+	let timeline_d_title = 'LoRA Mixing';
+	let timeline_d_body = "Each trained model is of a LoRA type, and by combining multiple LoRA you can merge multiple concepts together in new ways, ie. a LoRA of a particular style and a LoRA of your face.";
+	let timeline_d_date = 'Jun 2024';
 
 	let currentYear = new Date().getFullYear().toString();
 

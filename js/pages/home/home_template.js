@@ -168,7 +168,9 @@ function homePageHtml() {
 					<div x-data="{ open: true }" class="pt-6">
 						<dt>
 							<button type="button" x-description="Expand/collapse question button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
-								<span class="text-base font-semibold leading-7">What's the best thing about Switzerland?</span>
+								<span class="text-base font-semibold leading-7">
+									What does it cost to use SketchMeAi?
+								</span>
 								<span class="ml-6 flex h-7 items-center">
 									<svg x-description="Icon when question is collapsed." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6" :class="{ 'hidden': open }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 										<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path>
@@ -180,13 +182,16 @@ function homePageHtml() {
 							</button>
 						</dt>
 						<dd class="mt-2 pr-12" id="faq-0" x-show="open" style="display: none;">
-							<p class="text-base leading-7 text-gray-600">I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</p>
+							<p class="text-base leading-7 text-gray-600">
+								Image generation and model training both require SketchMeAi credit to use; which can be purchased via Stripe. Cost of generation and training depends denoising steps and amount of training data, respectively. On average, generation costs $0.03/image and trained model costs $3.40/training.
+							</p>
 						</dd>
 
 						<div x-data="{ open: false }" class="pt-6">
 							<dt>
 								<button type="button" x-description="Expand/collapse question button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
-									<span class="text-base font-semibold leading-7">What's the best thing about Switzerland?</span>
+									<span class="text-base font-semibold leading-7">
+										What happens if I cancel a generation or training?</span>
 									<span class="ml-6 flex h-7 items-center">
 										<svg x-description="Icon when question is collapsed." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6" :class="{ 'hidden': open }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path>
@@ -198,7 +203,31 @@ function homePageHtml() {
 								</button>
 							</dt>
 							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
-								<p class="text-base leading-7 text-gray-600">I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</p>
+								<p class="text-base leading-7 text-gray-600">
+									You are only charged against the execution time of your operations. For example, when kicking off an image generation, w/ 20 denoising steps, we will deduct an estimated amount of credits from your balance and if you cancel mid-generation, you will be refunded half the estimated cost.
+								</p>
+							</dd>
+						</div>
+
+						<div x-data="{ open: false }" class="pt-6">
+							<dt>
+								<button type="button" x-description="Expand/collapse question button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
+									<span class="text-base font-semibold leading-7">
+										Why is my trained model not generating images that resemble the training data??</span>
+									<span class="ml-6 flex h-7 items-center">
+										<svg x-description="Icon when question is collapsed." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6" :class="{ 'hidden': open }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path>
+										</svg>
+										<svg x-description="Icon when question is expanded." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6 hidden" :class="{ 'hidden': !(open) }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6"></path>
+										</svg>
+									</span>
+								</button>
+							</dt>
+							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
+								<p class="text-base leading-7 text-gray-600">
+									You are only charged against the execution time of your generations and training. For example, when kicking off an image generation, w/ 20 denoising steps, we will deduct an estimated amount of credits from your balance and if you cancel mid-generation, you will be refunded half the estimated cost.
+								</p>
 							</dd>
 						</div>
 					</div>

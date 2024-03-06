@@ -285,7 +285,7 @@ function homePageHtml() {
 			</div>
 		</div>
 
-		<div class="bg-blue-100">
+		<div class="bg-blue-100 border dark:border-white/10">
 			<div class="mx-auto block max-w-md rounded-lg bg-white p-6 shadow-4 dark:bg-surface-dark">
 				<form>
 					<!--Name input-->

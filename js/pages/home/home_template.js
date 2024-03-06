@@ -290,78 +290,46 @@ function homePageHtml() {
 		<div class="bg-blue-100 border dark:border-white/10">
 			<div class="mx-auto block max-w-md rounded-lg bg-white p-6 shadow-4 dark:bg-surface-dark">
 				<form>
-					<!--Name input-->
-					<div class="relative mb-6" data-twe-input-wrapper-init>
-						<input
-							type="text"
-							class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-							id="exampleInput7"
-							placeholder="Name" />
-						<label
-							for="exampleInput7"
-							class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-300 dark:peer-focus:text-primary"
-							>Name
-						</label>
-						<div class="group flex absolute left-0 top-0 w-full max-w-full h-full text-left pointer-events-none" data-twe-input-notch-ref="" dir="ltr">
-							<div class="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full w-2 border-e-0 rounded-s-[0.25rem] group-data-[twe-input-focused]:border-e-0 group-data-[twe-input-state-active]:border-e-0 border-secondary-500 dark:border-neutral-400 group-data-[twe-input-focused]:shadow-notch-1 group-data-[twe-input-focused]:border-primary" data-twe-input-notch-leading-ref="" style="width: 9px;">
+					<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
+
+						<div class="col-span-full" id="name-field-container">
+							<div class="flex items-center">
+								<label for="model-name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+								<p class="text-xs text-gray-500 italic pl-1">(no spaces)</p>
+								
 							</div>
-							<div class="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow-0 shrink-0 basis-auto w-auto max-w-[calc(100%-1rem)] h-full border-e-0 border-s-0 group-data-[twe-input-focused]:border-x-0 group-data-[twe-input-state-active]:border-x-0 group-data-[twe-input-focused]:border-t group-data-[twe-input-state-active]:border-t group-data-[twe-input-focused]:border-solid group-data-[twe-input-state-active]:border-solid group-data-[twe-input-focused]:border-t-transparent group-data-[twe-input-state-active]:border-t-transparent border-secondary-500 dark:border-neutral-400 group-data-[twe-input-focused]:shadow-notch-2 group-data-[twe-input-focused]:border-primary" data-twe-input-notch-middle-ref="" style="width: 42.4px;">
+							<div class="mt-2">
+								<input type="text" name="user-name" id="model-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 							</div>
-							<div class="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-s-0 rounded-e-[0.25rem] group-data-[twe-input-focused]:border-s-0 group-data-[twe-input-state-active]:border-s-0 border-secondary-500 dark:border-neutral-400 group-data-[twe-input-focused]:shadow-notch-3 group-data-[twe-input-focused]:border-primary" data-twe-input-notch-trailing-ref=""></div>
 						</div>
-					</div>
 
-					<!--Email input-->
-					<div class="relative mb-6" data-twe-input-wrapper-init>
-					<input
-						type="email"
-						class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-						id="exampleInput8"
-						placeholder="Email address" />
-					<label
-						for="exampleInput8"
-						class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-300 dark:peer-focus:text-primary"
-						>Email address
-					</label>
-					</div>
+						<div class="col-span-full" id="email-field-container">
+							<div class="flex items-center">
+								<label for="user-email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
+								<p class="text-xs text-gray-500 italic pl-1">(no spaces)</p>
+								
+							</div>
+							<div class="mt-2">
+								<input type="text" name="user-email" id="user-email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+							</div>
+						</div>
 
-					<!--Message textarea-->
-					<div class="relative mb-6" data-twe-input-wrapper-init>
-					<textarea
-						class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-						id="exampleFormControlTextarea13"
-						rows="3"
-						placeholder="Message"></textarea>
-					<label
-						for="exampleFormControlTextarea13"
-						class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-300 dark:peer-focus:text-primary"
-						>Message
-					</label>
-					</div>
+						<div class="col-span-full" id="message-field-container">
+							<div class="flex items-center">
+								<label for="user-message" class="block text-sm font-medium leading-6 text-gray-900">Message</label>
+								<p class="text-xs text-gray-500 italic pl-1">(no spaces)</p>
+								
+							</div>
+							<div class="mt-2">
+								<textarea id="user-message" name="user-message" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 181px;"></textarea>
+							</div>
+						</div>
 
-					<!--Checkbox-->
-					<div
-					class="mb-6 flex min-h-[1.5rem] items-center justify-center ps-[1.5rem]">
-					<input
-						class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary"
-						type="checkbox"
-						value=""
-						id="exampleCheck10" />
-					<label
-						class="inline-block ps-[0.15rem] pt-[0.15rem] hover:cursor-pointer"
-						for="exampleCheck10">
-						Send me a copy of this message
-					</label>
-					</div>
+						<div class="col-span-full flex flex-col justify-center" id="contact-button-container">
+							<input type="submit" value="Send" class="cursor-pointer rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
+						</div>
 
-					<!--Submit button-->
-					<button
-					type="submit"
-					class="inline-block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-					data-twe-ripple-init
-					data-twe-ripple-color="light">
-					Send
-					</button>
+					</div>
 				</form>
 			</div>
 		</div>

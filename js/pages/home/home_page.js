@@ -42,5 +42,29 @@ function configureContactUsForm() {
     let emailValue = document.getElementById('user-email').value;
     let messageValue = document.getElementById('user-message').value;
     console.log('the contact us info before sending is: ', nameValue, emailValue, messageValue);
+    fireContactUsEndpoint(nameValue, emailValue, messageValue);
+  });
+}
+
+function fireContactUsEndpoint(name, email, message) {
+  let url = `${CONSTANTS.BACKEND_URL}contact_us/new`;
+  let data = {
+      "userName": name,
+      "userEmail": email,
+      "userMessage": message,
+  };
+
+  $.ajax({
+      type: 'POST',
+      url: url,
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      dataType: 'json',
+      success: function(response) {
+          console.log('Response from contact_us/new endpoint: ', response);
+      },
+      error: function(error) {
+          console.error('Error from contact_us/new endpoint call: ', error);
+      }
   });
 }

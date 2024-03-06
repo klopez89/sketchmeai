@@ -5,6 +5,7 @@ changeActiveMenuPage();
 updatePageTitle();
 configurePayButton();
 startListeningForCreditUpdates();
+configureUserRelatedUI();
 
 setTimeout(handleRecentPaymentRedirect, 200);
 

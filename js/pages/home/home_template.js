@@ -122,7 +122,7 @@ function homePageHtml() {
 		</div>
 
 		<div class="bg-gray-100" id="howitworks">
-			<div class="my-20 mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="my-24 mx-auto max-w-7xl px-6 lg:px-8">
 				<div class="mx-auto max-w-2xl lg:text-center">
 				<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">What We Offer</p>
 				</div>
@@ -152,11 +152,11 @@ function homePageHtml() {
 		</div>
 
 		<div id="console-screenshot-container" class="mx-auto max-w-7xl px-6 lg:px-8">
-			<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_console_screenshot1.png" class="my-10 shadow-2xl">
+			<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_console_screenshot1.png" class="my-14 shadow-2xl">
 		</div>
 
 		<div id="faq-container" class="px-6 lg:px-8 bg-gray-100">
-			<div class="my-20 mx-auto max-w-4xl divide-y divide-gray-900/10">
+			<div class="my-24 mx-auto max-w-4xl divide-y divide-gray-900/10">
 				<h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
 				<dl class="mt-10 space-y-6 divide-y divide-gray-900/10">
 					<div x-data="{ open: true }" class="pt-6">
@@ -230,7 +230,7 @@ function homePageHtml() {
 		</div>
 	  
 		<div class="bg-white">
-			<div class="my-20 mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="my-4 mx-auto max-w-7xl px-6 lg:px-8">
 				<div class="mx-auto max-w-2xl lg:text-center mb-12">
 					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Roadmap</p>
 				</div>

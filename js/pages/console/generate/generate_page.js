@@ -157,6 +157,24 @@ function configureGenerateForm() {
             seedInput.placeholder = 'Random'; // Reset placeholder
         }
     });
+
+    let img2imgField = document.getElementById('img-2-img');
+    document.getElementById('img-2-img').addEventListener('drop', function(event) {
+        event.preventDefault();
+        const dataTransfer = event.dataTransfer;
+        if (dataTransfer && dataTransfer.items) {
+            for (let item of dataTransfer.items) {
+                if (item.kind === 'file' && item.type.startsWith('image/')) {
+                    const file = item.getAsFile();
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        img2imgField.textContent = e.target.result; // Assuming you want to replace the content
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+    });
 }
 
 function formatAroundModelName(modelNames, promptInputDiv) {

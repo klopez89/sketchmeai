@@ -1,5 +1,6 @@
 configureHomePage();
 configureNavMenuButtons();
+configureContactUsForm();
 
 function configureHomePage() {
 	addHomePageToDOM();
@@ -33,3 +34,13 @@ function configureNavMenuButtons() {
   mobileMenu.style.display = 'none';
 }
 
+function configureContactUsForm() {
+  let sendButton = document.getElementById('contact-us-button');
+  sendButton.addEventListener('click', function(event) { 
+    event.preventDefault();
+    let nameValue = document.getElementById('user-name').value;
+    let emailValue = document.getElementById('user-email').value;
+    let messageValue = document.getElementById('user-message').value;
+    console.log('the contact us info before sending is: ', nameValue, emailValue, messageValue);
+  });
+}

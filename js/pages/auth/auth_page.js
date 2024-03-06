@@ -165,6 +165,7 @@ function validateUserAuth(userInfo) {
                 storeDisplayName(displayName);
                 storeLastEditedCollection(lastEditedCollection);
 
+                console.log('the number of valid ai models: ', numberOfValidAiModels);
                 let hasUserFineTunedAModel = numberOfValidAiModels > 0;
                 if (hasUserFineTunedAModel) {
                     navigateToConsole();

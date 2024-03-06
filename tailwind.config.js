@@ -11,6 +11,13 @@ module.exports = {
       maxWidth: {
         '80': '20rem', // Adjust the value as needed
       },
+      colors: {
+        primary: 'black',
+        secondary: 'gray.800',
+        minor: 'gray.400',
+        dark: 'gray.900',
+        light: 'gray.100',
+      },
     },
   },
   plugins: [

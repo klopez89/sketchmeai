@@ -165,13 +165,19 @@ function configureGenerateForm() {
         const dataTransfer = event.dataTransfer;
         if (dataTransfer && dataTransfer.items) {
             for (let item of dataTransfer.items) {
-                if (item.kind === 'file' && item.type.startsWith('image/')) {
-                    const file = item.getAsFile();
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        img2imgField.textContent = e.target.result; // Assuming you want to replace the content
-                    };
-                    reader.readAsDataURL(file);
+                if (item.kind === 'string' && item.type === 'text/html') {
+                    item.getAsString(function(s) {
+                        // Create a temporary element to parse the HTML string
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = s;
+                        // Attempt to find an img element and retrieve its src
+                        const img = tempDiv.querySelector('img');
+                        if (img && img.src) {
+                            // Now you have the src of the dragged image
+                            console.log('Dragged image src:', img.src);
+                            // You can now use img.src as needed for your application
+                        }
+                    });
                 }
             }
         }

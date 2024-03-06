@@ -295,8 +295,6 @@ function homePageHtml() {
 						<div class="col-span-full" id="name-field-container">
 							<div class="flex items-center">
 								<label for="model-name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
-								<p class="text-xs text-gray-500 italic pl-1">(no spaces)</p>
-								
 							</div>
 							<div class="mt-2">
 								<input type="text" name="user-name" id="model-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
@@ -306,8 +304,6 @@ function homePageHtml() {
 						<div class="col-span-full" id="email-field-container">
 							<div class="flex items-center">
 								<label for="user-email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
-								<p class="text-xs text-gray-500 italic pl-1">(no spaces)</p>
-								
 							</div>
 							<div class="mt-2">
 								<input type="text" name="user-email" id="user-email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
@@ -317,8 +313,6 @@ function homePageHtml() {
 						<div class="col-span-full" id="message-field-container">
 							<div class="flex items-center">
 								<label for="user-message" class="block text-sm font-medium leading-6 text-gray-900">Message</label>
-								<p class="text-xs text-gray-500 italic pl-1">(no spaces)</p>
-								
 							</div>
 							<div class="mt-2">
 								<textarea id="user-message" name="user-message" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 181px;"></textarea>

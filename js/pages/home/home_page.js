@@ -99,6 +99,7 @@ function fireContactUsEndpoint(name, email, message) {
       success: function(response) {
           console.log('Response from contact_us/new endpoint: ', response);
           hideContactUsSpinner();
+          updateContactUsButtonAfterSend();
       },
       error: function(error) {
           console.error('Error from contact_us/new endpoint call: ', error);
@@ -107,10 +108,18 @@ function fireContactUsEndpoint(name, email, message) {
   });
 }
 
+function updateContactUsButtonAfterSend() {
+  let contactUsButton = $('#contact-us-button');
+  contactUsButton.find('p').html('Sent');
+  contactUsButton.prop('disabled', true);
+  contactUsButton.removeClass('bg-black');
+  contactUsButton.addClass('bg-gray-800');
+}
+
 function showContactUsSpinner() {
   let contactUsButtonLabel = document.querySelector('#contact-us-button p');
   let contactUsSpinner = document.querySelector('#contact-us-button i');
-  contactUsButtonLabel.classList.add('hidden');
+  contactUsButtonLabel.classList.add('opacity-0');
   contactUsSpinner.classList.remove('hidden');
   $('#contact-us-button').prop('disabled', true);
 }
@@ -118,7 +127,7 @@ function showContactUsSpinner() {
 function hideContactUsSpinner() {
   let contactUsButtonLabel = document.querySelector('#contact-us-button p');
   let contactUsSpinner = document.querySelector('#contact-us-button i');
-  contactUsButtonLabel.classList.remove('hidden');
+  contactUsButtonLabel.classList.remove('opacity-0');
   contactUsSpinner.classList.add('hidden');
   $('#contact-us-button').prop('disabled', false);
 }

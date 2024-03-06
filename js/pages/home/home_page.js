@@ -114,7 +114,7 @@ function updateContactUsButtonAfterSend() {
   contactUsButton.prop('disabled', true);
   contactUsButton.removeClass('bg-black');
   contactUsButton.addClass('bg-gray-500');
-  contactUsButton.removeClass('hover:bg-gray-200');
+  contactUsButton.removeClass('hover:bg-gray-800');
 }
 
 function showContactUsSpinner() {

@@ -52,6 +52,11 @@ function configureContactUsForm() {
 }
 
 function toggleContactFormButtonState() {
+  let sendButtonText = document.querySelector('#contact-us-button p').innerHTML;
+	if (sendButtonText === 'Message Sent!') {
+		return;
+	}
+  
 	let shouldEnable = isReadyToSubmitContactForm();
 	if (shouldEnable === true && $('#contact-us-button').is("[disabled]") === true) {
 		$('#contact-us-button').removeAttr('disabled');

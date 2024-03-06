@@ -4606,6 +4606,10 @@ input[type="range"]:active::-webkit-slider-thumb {}
     border-color: rgb(82 82 82 / var(--tw-border-opacity));
   }
 
+  .dark\:border-white\/10 {
+    border-color: rgb(255 255 255 / 0.1);
+  }
+
   .dark\:\!bg-neutral-600 {
     --tw-bg-opacity: 1 !important;
     background-color: rgb(82 82 82 / var(--tw-bg-opacity)) !important;

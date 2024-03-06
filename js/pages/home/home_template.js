@@ -299,7 +299,7 @@ function homePageHtml() {
 								<label for="model-name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
 							</div>
 							<div class="mt-2">
-								<input type="text" name="user-name" id="model-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+								<input type="text" name="user-name" id="user-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 							</div>
 						</div>
 
@@ -322,7 +322,7 @@ function homePageHtml() {
 						</div>
 
 						<div class="col-span-full flex flex-col justify-center" id="contact-button-container">
-							<input type="submit" value="Send" class="cursor-pointer rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
+							<input id="contact-us-button" type="submit" value="Send" class="cursor-pointer rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
 						</div>
 
 					</div>

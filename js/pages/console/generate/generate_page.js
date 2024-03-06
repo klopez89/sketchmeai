@@ -175,6 +175,7 @@ function configureGenerateForm() {
                         if (img && img.src) {
                             // Now you have the src of the dragged image
                             console.log('Dragged image src:', img.src);
+                            img2imgField.value = img.src;
                             // You can now use img.src as needed for your application
                         }
                     });

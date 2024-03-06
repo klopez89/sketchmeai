@@ -285,21 +285,30 @@ function homePageHtml() {
 			</div>
 		</div>
 
+
+
 		<div class="bg-blue-100 border dark:border-white/10">
 			<div class="mx-auto block max-w-md rounded-lg bg-white p-6 shadow-4 dark:bg-surface-dark">
 				<form>
 					<!--Name input-->
 					<div class="relative mb-6" data-twe-input-wrapper-init>
-					<input
-						type="text"
-						class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-						id="exampleInput7"
-						placeholder="Name" />
-					<label
-						for="exampleInput7"
-						class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-300 dark:peer-focus:text-primary"
-						>Name
-					</label>
+						<input
+							type="text"
+							class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
+							id="exampleInput7"
+							placeholder="Name" />
+						<label
+							for="exampleInput7"
+							class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-300 dark:peer-focus:text-primary"
+							>Name
+						</label>
+						<div class="group flex absolute left-0 top-0 w-full max-w-full h-full text-left pointer-events-none" data-twe-input-notch-ref="" dir="ltr">
+							<div class="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full w-2 border-e-0 rounded-s-[0.25rem] group-data-[twe-input-focused]:border-e-0 group-data-[twe-input-state-active]:border-e-0 border-secondary-500 dark:border-neutral-400 group-data-[twe-input-focused]:shadow-notch-1 group-data-[twe-input-focused]:border-primary" data-twe-input-notch-leading-ref="" style="width: 9px;">
+							</div>
+							<div class="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow-0 shrink-0 basis-auto w-auto max-w-[calc(100%-1rem)] h-full border-e-0 border-s-0 group-data-[twe-input-focused]:border-x-0 group-data-[twe-input-state-active]:border-x-0 group-data-[twe-input-focused]:border-t group-data-[twe-input-state-active]:border-t group-data-[twe-input-focused]:border-solid group-data-[twe-input-state-active]:border-solid group-data-[twe-input-focused]:border-t-transparent group-data-[twe-input-state-active]:border-t-transparent border-secondary-500 dark:border-neutral-400 group-data-[twe-input-focused]:shadow-notch-2 group-data-[twe-input-focused]:border-primary" data-twe-input-notch-middle-ref="" style="width: 42.4px;">
+							</div>
+							<div class="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-s-0 rounded-e-[0.25rem] group-data-[twe-input-focused]:border-s-0 group-data-[twe-input-state-active]:border-s-0 border-secondary-500 dark:border-neutral-400 group-data-[twe-input-focused]:shadow-notch-3 group-data-[twe-input-focused]:border-primary" data-twe-input-notch-trailing-ref=""></div>
+						</div>
 					</div>
 
 					<!--Email input-->

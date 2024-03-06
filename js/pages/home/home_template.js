@@ -1,7 +1,7 @@
 
 
 function homePageHtml() {
-	let headerTitle = 'Spice up your socials with AI';
+	let headerTitle = 'Explore what you can create with AI';
 	let headerSubtitle = 'Using the latest in AI tech, easily train AI to your face and have it generate new images for you. Perfect for refreshing your social media presence, and getting people talking.';
 	let headerButtonTitle = 'Get started';
 

@@ -14,6 +14,13 @@ function addConsoleToDOM() {
   $('body').append(console_div);
 }
 
+function configureUserRelatedUI() {
+    let displayNameDiv = document.getElementById('display-name-label');
+    displayNameDiv.innerHTML = getDisplayName();
+    let userAvatarCircleDiv = document.getElementById('user-avatar-circle');
+    userAvatarCircleDiv.innerHTML = getDisplayName().charAt(0);
+}
+
 function copyStaticSidebar() {
     var staticSidebar = document.getElementById('static-sidebar');
     var swapDiv = document.getElementById('swap-for-static-sidebar');

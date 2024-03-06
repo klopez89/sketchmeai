@@ -110,10 +110,10 @@ function fireContactUsEndpoint(name, email, message) {
 
 function updateContactUsButtonAfterSend() {
   let contactUsButton = $('#contact-us-button');
-  contactUsButton.find('p').html('Sent');
+  contactUsButton.find('p').html('Message Sent!');
   contactUsButton.prop('disabled', true);
   contactUsButton.removeClass('bg-black');
-  contactUsButton.addClass('bg-gray-800');
+  contactUsButton.addClass('bg-gray-700');
 }
 
 function showContactUsSpinner() {

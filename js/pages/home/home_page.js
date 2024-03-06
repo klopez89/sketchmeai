@@ -113,7 +113,8 @@ function updateContactUsButtonAfterSend() {
   contactUsButton.find('p').html('Message Sent!');
   contactUsButton.prop('disabled', true);
   contactUsButton.removeClass('bg-black');
-  contactUsButton.addClass('bg-gray-700');
+  contactUsButton.addClass('bg-gray-500');
+  contactUsButton.removeClass('hover:bg-gray-200');
 }
 
 function showContactUsSpinner() {

@@ -291,7 +291,7 @@ function homePageHtml() {
 					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Contact Us</p>
 			</div>
 			<div class="mt-8 mb-24 mx-auto block max-w-md rounded-lg bg-transparent px-6 shadow-4 dark:bg-surface-dark">
-				<form>
+				<form id="contact-us-form">
 					<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
 
 						<div class="col-span-full" id="name-field-container">
@@ -322,7 +322,10 @@ function homePageHtml() {
 						</div>
 
 						<div class="col-span-full flex flex-col justify-center" id="contact-button-container">
-							<input id="contact-us-button" type="submit" value="Send" class="cursor-pointer rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
+							<button id="contact-us-button" type="submit" class="w-full h-full flex justify-center items-center rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-lg text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
+								<p id="contact-us-button-label" class="flex items-center">Send</p>
+								<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
+							</button>
 						</div>
 
 					</div>

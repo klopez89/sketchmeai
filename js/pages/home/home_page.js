@@ -35,6 +35,11 @@ function configureNavMenuButtons() {
 }
 
 function configureContactUsForm() {
+  document.getElementById('contact-us-form').addEventListener('input', function() {
+    console.log('Form has been changed');
+    toggleContactFormButtonState();
+  });
+
   let sendButton = document.getElementById('contact-us-button');
   sendButton.addEventListener('click', function(event) { 
     event.preventDefault();
@@ -46,7 +51,38 @@ function configureContactUsForm() {
   });
 }
 
+function toggleContactFormButtonState() {
+	let shouldEnable = isReadyToSubmitContactForm();
+	if (shouldEnable === true && $('#contact-us-button').is("[disabled]") === true) {
+		$('#contact-us-button').removeAttr('disabled');
+		$('#contact-us-button').removeClass('bg-gray-200');
+		$('#contact-us-button').removeClass('hover:bg-gray-200');
+		$('#contact-us-button').addClass('bg-black');
+		$('#contact-us-button').addClass('hover:bg-gray-800');
+	} 
+
+	if (shouldEnable === false && $('#contact-us-button').is("[disabled]") === false) {
+		$('#contact-us-button').attr('disabled','');
+		$('#contact-us-button').addClass('bg-gray-200');
+		$('#contact-us-button').addClass('hover:bg-gray-200');
+		$('#contact-us-button').removeClass('bg-black');
+		$('#contact-us-button').removeClass('hover:bg-gray-800');
+	}
+}
+
+function isReadyToSubmitContactForm() {
+  let nameValue = document.getElementById('user-name').value;
+  let emailValue = document.getElementById('user-email').value;
+  let messageValue = document.getElementById('user-message').value;
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isEmailValid = emailRegex.test(emailValue);
+
+  return isEmailValid == true && nameValue != '' && messageValue != ''
+}
+
 function fireContactUsEndpoint(name, email, message) {
+  showContactUsSpinner();
   let url = `${CONSTANTS.BACKEND_URL}contact_us/new`;
   let data = {
       "userName": name,
@@ -62,9 +98,27 @@ function fireContactUsEndpoint(name, email, message) {
       dataType: 'json',
       success: function(response) {
           console.log('Response from contact_us/new endpoint: ', response);
+          hideContactUsSpinner();
       },
       error: function(error) {
           console.error('Error from contact_us/new endpoint call: ', error);
+          hideContactUsSpinner();
       }
   });
+}
+
+function showContactUsSpinner() {
+  let contactUsButtonLabel = document.querySelector('#contact-us-button p');
+  let contactUsSpinner = document.querySelector('#contact-us-button i');
+  contactUsButtonLabel.classList.add('hidden');
+  contactUsSpinner.classList.remove('hidden');
+  $('#contact-us-button').prop('disabled', true);
+}
+
+function hideContactUsSpinner() {
+  let contactUsButtonLabel = document.querySelector('#contact-us-button p');
+  let contactUsSpinner = document.querySelector('#contact-us-button i');
+  contactUsButtonLabel.classList.remove('hidden');
+  contactUsSpinner.classList.add('hidden');
+  $('#contact-us-button').prop('disabled', false);
 }

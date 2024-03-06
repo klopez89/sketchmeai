@@ -151,7 +151,11 @@ function homePageHtml() {
 			</div>
 		</div>
 
-		<div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+		<div id="console-screenshot-container" class="px-20 py-20">
+			<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_console_screenshot1.png" class="shadow-lg">
+		</div>
+
+		<div id="faq-container" class="mx-auto max-w-7xl px-6 py-20 sm:py-20 lg:px-8 lg:py-32">
 			<div class="mx-auto max-w-4xl divide-y divide-gray-900/10">
 				<h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
 				<dl class="mt-10 space-y-6 divide-y divide-gray-900/10">

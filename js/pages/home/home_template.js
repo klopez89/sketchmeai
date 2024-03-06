@@ -286,9 +286,10 @@ function homePageHtml() {
 		</div>
 
 
-
-		<div class="bg-blue-100 border dark:border-white/10">
-			<div class="mx-auto block max-w-md rounded-lg bg-white p-6 shadow-4 dark:bg-surface-dark">
+		<div id="contact-us-container" class="bg-gray-100 border dark:border-white/10">
+			<div class="mt-24 mx-auto max-w-2xl lg:text-center mb-12">
+					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Contact Us</p>
+				</div><div class="mt-8 mb-24 mx-auto block max-w-md rounded-lg bg-transparent p-6 shadow-4 dark:bg-surface-dark">
 				<form>
 					<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
 
@@ -306,7 +307,7 @@ function homePageHtml() {
 								<label for="user-email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
 							</div>
 							<div class="mt-2">
-								<input type="text" name="user-email" id="user-email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+								<input type="text" name="user-email" id="user-email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocompleted="">
 							</div>
 						</div>
 
@@ -327,6 +328,7 @@ function homePageHtml() {
 				</form>
 			</div>
 		</div>
+		
 
 		<footer class="bg-white">
 		<div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">

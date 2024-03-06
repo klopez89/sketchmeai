@@ -289,7 +289,7 @@ function randomizeSeed(event) {
 function setupAccordion() {
     const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
     accordionButton.addEventListener('click', function() {
-        const buttonHTMLElement = accordionButton.firstChild;
+        const buttonHTMLElement = accordionButton.lastChild;
         const buttonText = buttonHTMLElement.nodeValue;
 
         if (buttonText.includes('Hide')) {

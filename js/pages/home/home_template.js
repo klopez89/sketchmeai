@@ -108,7 +108,7 @@ function homePageHtml() {
 						<h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">${headerTitle}</h1>
 						<p class="mt-6 text-lg leading-8 text-gray-600">${headerSubtitle}</p>
 						<div class="mt-10 flex items-center justify-center gap-x-6">
-							<a href="https://${CONSTANTS.SITE_URL}/auth" class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">${headerButtonTitle}</a>
+							<a href="https://${CONSTANTS.SITE_URL}/auth" class="rounded-md bg-black px-8 py-2.5 text-lg font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">${headerButtonTitle}</a>
 							<a href="#howitworks" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
 						</div>
 					</div>
@@ -157,7 +157,7 @@ function homePageHtml() {
 
 		<div id="faq-container" class="px-6 lg:px-8 bg-gray-100">
 			<div class="my-24 mx-auto max-w-4xl divide-y divide-gray-900/10">
-				<h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
+				<h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Frequently asked questions</h2>
 				<dl class="mt-10 space-y-6 divide-y divide-gray-900/10">
 					<div x-data="{ open: true }" class="pt-6">
 						<dt>

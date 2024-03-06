@@ -160,6 +160,7 @@ function configureGenerateForm() {
 
     let img2imgField = document.getElementById('img-2-img');
     document.getElementById('img-2-img').addEventListener('drop', function(event) {
+        console.log('Received a drop event listener in img2img field');
         event.preventDefault();
         const dataTransfer = event.dataTransfer;
         if (dataTransfer && dataTransfer.items) {

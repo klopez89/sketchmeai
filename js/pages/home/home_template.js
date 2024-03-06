@@ -152,7 +152,7 @@ function homePageHtml() {
 		</div>
 
 		<div id="console-screenshot-container" class="mx-auto max-w-7xl px-6 lg:px-8">
-			<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_console_screenshot1.png" class="shadow-lg">
+			<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_console_screenshot1.png" class="my-10 shadow-2xl">
 		</div>
 
 		<div id="faq-container" class="px-6 lg:px-8 bg-gray-100">

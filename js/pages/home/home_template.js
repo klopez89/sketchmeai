@@ -13,8 +13,7 @@ function homePageHtml() {
 
 
 	let third_feature_title = 'Stable Diffusion Tech';
-	let third_feature_body = "Currently, our training and generation is powered by StabilityAI's Stable Diffusion SDXL. The technology has a lot of community support and add-ons that make this open-source tool powerful and versatile. We plan to bring those add-on features soon (see Roadmap).";
-
+	let third_feature_body = "Currently, our training and generation is powered by StabilityAI's Stable Diffusion SDXL. The technology has a lot of community support and add-ons that make this open-source tool powerful and versatile. We plan to bring those add-on features soon (<a href=\"#roadmap\" class=\"text-black\">see Roadmap</a>)."
 
 	// let second_feature_title = 'Train';
 	// let second_feature_body = 'Kick off training your custom model  AI will train on the images you uploaded. The .';
@@ -238,7 +237,7 @@ function homePageHtml() {
 			</div>
 		</div>
 	  
-		<div class="bg-white">
+		<div id="#roadmap" class="bg-white">
 			<div class="my-4 mx-auto max-w-7xl px-6 lg:px-8">
 				<div class="mx-auto max-w-2xl lg:text-center mb-12">
 					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Roadmap</p>

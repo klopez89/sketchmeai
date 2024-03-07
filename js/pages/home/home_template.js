@@ -237,7 +237,7 @@ function homePageHtml() {
 			</div>
 		</div>
 	  
-		<div id="#roadmap" class="bg-white">
+		<div id="roadmap" class="bg-white">
 			<div class="my-4 mx-auto max-w-7xl px-6 lg:px-8">
 				<div class="mx-auto max-w-2xl lg:text-center mb-12">
 					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Roadmap</p>

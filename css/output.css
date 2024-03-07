@@ -2848,6 +2848,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .text-right {
   text-align: right;
 }
+.text-justify {
+  text-align: justify;
+}
 .align-middle {
   vertical-align: middle;
 }
@@ -3188,6 +3191,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .text-red-800 {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+.text-secondary {
+  color: gray.800;
 }
 .text-white {
   --tw-text-opacity: 1;

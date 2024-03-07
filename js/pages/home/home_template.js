@@ -105,7 +105,7 @@ function homePageHtml() {
 				<div class="lg:flex justify-between mx-auto max-w-7xl px-6 lg:px-8 items-center">
 					<div class="m-5 lg:m-10 mx-auto max-w-2xl text-center min-w-[40%]">
 						<h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">${headerTitle}</h1>
-						<p class="mt-6 text-lg leading-8 text-gray-600">${headerSubtitle}</p>
+						<p class="mt-6 text-lg leading-8 text-secondary text-justify">${headerSubtitle}</p>
 						<div class="mt-10 flex items-center justify-center gap-x-6">
 							<a href="https://${CONSTANTS.SITE_URL}/auth" class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">${headerButtonTitle}</a>
 							<a href="#howitworks" class="text-lg leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>

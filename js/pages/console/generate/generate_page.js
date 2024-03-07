@@ -286,6 +286,8 @@ function randomizeSeed(event) {
     document.getElementById('seed').value = "";
 }
 
+// Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters and craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.
+
 function setupAccordion() {
     const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
     accordionButton.addEventListener('click', function() {

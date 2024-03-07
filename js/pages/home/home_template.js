@@ -12,8 +12,8 @@ function homePageHtml() {
 	let second_feature_body = 'Kick off as many image generations as you want while tinkering with typical prompt features like guidance scale, lora scale, and image-to-image. You can also fire off a generation for the same prompt across several trained models.';
 
 
-	// let third_feature_title = 'Generate';
-	// let third_feature_body = 'Once the AI is trained, we will kick off generating images across a set of themes.';
+	let third_feature_title = 'Stable Diffusion Tech';
+	let third_feature_body = "Currently, our training and generation is powered by StabilityAI's Stable Diffusion SDXL. The technology has a lot of community support and add-ons that make this open-source tool powerful and versatile. We plan to bring those add-on features soon (see Roadmap).";
 
 
 	// let second_feature_title = 'Train';
@@ -109,7 +109,7 @@ function homePageHtml() {
 						<p class="mt-6 text-lg leading-8 text-gray-600">${headerSubtitle}</p>
 						<div class="mt-10 flex items-center justify-center gap-x-6">
 							<a href="https://${CONSTANTS.SITE_URL}/auth" class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">${headerButtonTitle}</a>
-							<a href="#howitworks" class="text-sm leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+							<a href="#howitworks" class="text-lg leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
 						</div>
 					</div>
 					<div class="mt-4 flow-root sm:mt-4">
@@ -129,22 +129,31 @@ function homePageHtml() {
 				<div class="mx-auto mt-12 max-w-2xl lg:max-w-4xl">
 				<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
 					<div class="relative pl-16">
-					<dt class="text-base font-semibold leading-7 text-gray-800">
-						<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
-							<p class="font-semibold text-2xl text-white">1</p>
-						</div>
-						${first_feature_title}
-					</dt>
-					<dd class="mt-2 text-base leading-7 text-gray-600">${first_feature_body}</dd>
+						<dt class="text-base font-semibold leading-7 text-gray-800">
+							<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+								<p class="font-semibold text-2xl text-white">1</p>
+							</div>
+							${first_feature_title}
+						</dt>
+						<dd class="mt-2 text-base leading-7 text-gray-600">${first_feature_body}</dd>
 					</div>
 					<div class="relative pl-16">
-					<dt class="text-base font-semibold leading-7 text-gray-800">
-						<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
-							<p class="font-semibold text-2xl text-white">2</p>
-						</div>
-						${second_feature_title}
-					</dt>
-					<dd class="mt-2 text-base leading-7 text-gray-600">${second_feature_body}</dd>
+						<dt class="text-base font-semibold leading-7 text-gray-800">
+							<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+								<p class="font-semibold text-2xl text-white">2</p>
+							</div>
+							${second_feature_title}
+						</dt>
+						<dd class="mt-2 text-base leading-7 text-gray-600">${second_feature_body}</dd>
+					</div>
+					<div class="relative pl-16">
+						<dt class="text-base font-semibold leading-7 text-gray-800">
+							<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+								<p class="font-semibold text-2xl text-white">3</p>
+							</div>
+							${third_feature_title}
+						</dt>
+						<dd class="mt-2 text-base leading-7 text-gray-600">${third_feature_body}</dd>
 					</div>
 				</dl>
 				</div>

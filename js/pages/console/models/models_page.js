@@ -804,10 +804,7 @@ function configureModelDivPostFinalStatusUpdate(model_element) {
 function kickoffModelCreation(trainingData) {
     console.log("about to kickoff model gen, w/ training data: ", trainingData);
     showStartTrainingSpinner();
-
-    let modelNameValidationDiv = document.getElementById('model-name-validation');
-    modelNameValidationDiv.classList.add('hidden');
-
+    removeErrorBanners();
     disableNewFineTuneButtons();
 
     let action = `${CONSTANTS.BACKEND_URL}model/new`
@@ -833,7 +830,7 @@ function kickoffModelCreation(trainingData) {
             console.log("Status code: ", data.status);
             console.log("Response text: ", data.responseText);
             if (data.status === 413) { // model name already taken
-                modelNameValidationDiv.classList.remove('hidden');
+                displayErrorBanner('Model name is already taken.');
             } else if (data.status === 414) { // insufficient credits
                 showPaymentModal(true);
             }

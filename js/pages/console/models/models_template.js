@@ -43,9 +43,6 @@ function dummyGridHTML() {
                         <div class="flex items-center">
                             <label for="model-name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                             <p class="text-xs text-gray-500 italic pl-1">(no spaces)</p>
-                            <div class="text-xs text-red-500 italic hidden" id="model-name-validation">
-                                Model name is already taken.
-                            </div>
                         </div>
                         <div class="mt-2">
                             <input type="text" name="model-name" id="model-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">

@@ -95,6 +95,33 @@ function removeWarningBanners() {
 }
 
 
+function displaySuccessBanner(successMessage) {
+    let consoleContent = document.getElementById('console-content');
+    let successBannerHtml = successBannerHTML(successMessage);
+    let successBannerDiv = document.createElement('div');
+    successBannerDiv.innerHTML = successBannerHtml;
+    consoleContent.insertBefore(successBannerDiv, consoleContent.firstChild);
+
+    console.log('button div: ', successBannerDiv.querySelector('button'));
+    successBannerDiv.querySelector('button').onclick = function() {
+        successBannerDiv.remove();
+    };
+}
+
+function removeSuccessBanners() {
+    const successBanners = document.querySelectorAll('#successBanner');
+    successBanners.forEach(function(banner) {
+        banner.remove();
+    });
+}
+
+function removeSuccessBanners() {
+    const successBanners = document.querySelectorAll('#successBanner');
+    successBanners.forEach(function(banner) {
+        banner.remove();
+    });
+}
+
 
 // Payment related functions
 

@@ -818,9 +818,12 @@ function kickoffModelCreation(trainingData) {
             console.log("successfully returned from new model endpoint");
             console.log(data);
             let bgColor = data.bg_color;
+            let numberOfImages = data.number_of_imgs;
+            let estimatedTrainingTime = estimatedTimePerTrainingImg * numberOfImages;
             console.log('The color to show for model bg is: ', bgColor);
             addNewModelToGrid(trainingData['model-id'], bgColor)
             animateAwayFromNewModelForm();
+            displaySuccessBanner(`Your model training has been kicked off! You will receive an email when the training is complete, in ~ ${estimatedTrainingTime} mins`);
             startListeningForModelUpdates(trainingData['user-rec-id'], trainingData['model-id']);
             hideStartTrainingSpinner();
             enableNewFineTuneButtons();

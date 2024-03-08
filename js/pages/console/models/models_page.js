@@ -129,7 +129,7 @@ function fetchModels(userRecId, lastDocId) {
                         model_element.querySelector('#model-status').innerHTML = '...queued';
                         startListeningForModelUpdates(userRecId, model.rec_id);
                     } else if (model.status === PredictionStatus.BEING_HANDLED) {
-                        model_element.querySelector('#model-status').innerHTML = '...fine-tuning';
+                        model_element.querySelector('#model-status').innerHTML = '...training';
                     
                         // let cancel_button = model_element.querySelector('#cancel-button');
                         // cancel_button.addEventListener('click', function() {

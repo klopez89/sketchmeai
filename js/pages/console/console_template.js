@@ -152,11 +152,12 @@ function consoleHtml() {
 
                         <div class="mb-1">
                             <h3 class="text-lg font-semibold mb-2">Add Credit</h3>
-                            <div class="flex space-x-2 mb-4">
+                            <div class="flex space-x-2">
                                 <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="first-credit-option" value="5" onclick="firstCreditOptionClicked()">$5</button>
                                 <button class="bg-black text-white px-6 py-2 rounded shadow" id="second-credit-option" value="10" onclick="secondCreditOptionClicked()">$10</button>
                                 <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="third-credit-option" value="20" onclick="thirdCreditOptionClicked()">$20</button>
                             </div>
+                            <div class="mb-4 mt-1 text-xs text-gray-800">Minimum</div>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                                     <span class="text-gray-400">$</span>

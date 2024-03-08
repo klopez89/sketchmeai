@@ -331,7 +331,7 @@ function homePageHtml() {
 
 						<div class="col-span-full flex flex-col justify-center" id="contact-button-container">
 							<button id="contact-us-button" type="submit" class="w-full h-full flex justify-center items-center rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-lg text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
-								<p id="contact-us-button-label" class="flex items-center">Send</p>
+								<p id="contact-us-button-label" class="flex items-center">Sign Up</p>
 								<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 							</button>
 						</div>

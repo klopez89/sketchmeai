@@ -83,7 +83,7 @@ function isReadyToSubmitContactForm() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isEmailValid = emailRegex.test(emailValue);
 
-  return isEmailValid == true && nameValue != '' && messageValue != ''
+  return isEmailValid == true && nameValue != '' // && messageValue != ''
 }
 
 function fireContactUsEndpoint(name, email, message) {

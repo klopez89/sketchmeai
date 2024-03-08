@@ -3,7 +3,7 @@
 function homePageHtml() {
 	let headerTitle = 'Explore what you can create with AI';
 	let headerSubtitle = 'Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters and craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.';
-	let headerButtonTitle = 'Get started';
+	let headerButtonTitle = 'Get Early Access';
 
 	let first_feature_title = 'Model Training';
 	let first_feature_body = 'Upload 10 - 20 images of yourself or any other person and train your own AI to generate images. To improve quality of training, aim to include some variety of images, ie. face pic, face w/ torso, selfie, different lighting conditions.';
@@ -107,7 +107,7 @@ function homePageHtml() {
 						<h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">${headerTitle}</h1>
 						<p class="mt-6 text-lg leading-8 text-secondary text-justify">${headerSubtitle}</p>
 						<div class="mt-10 flex items-center justify-center gap-x-6">
-							<a href="https://${CONSTANTS.SITE_URL}/auth" class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">${headerButtonTitle}</a>
+							<a href="#earlyAccess" class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">${headerButtonTitle}</a>
 							<a href="#howitworks" class="text-lg leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
 						</div>
 					</div>
@@ -294,9 +294,9 @@ function homePageHtml() {
 		</div>
 
 
-		<div id="contact-us-container" class="bg-gray-100 border dark:border-white/10">
+		<div id="early-access" class="bg-gray-100 border dark:border-white/10">
 			<div class="mt-24 mx-auto max-w-2xl lg:text-center mb-12">
-					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Contact Us</p>
+					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Sign Up for Early Access Us</p>
 			</div>
 			<div class="mt-8 mb-24 mx-auto block max-w-md rounded-lg bg-transparent px-6 shadow-4 dark:bg-surface-dark">
 				<form id="contact-us-form">
@@ -320,7 +320,7 @@ function homePageHtml() {
 							</div>
 						</div>
 
-						<div class="col-span-full" id="message-field-container">
+						<div class="col-span-full hidden" id="message-field-container">
 							<div class="flex items-center">
 								<label for="user-message" class="block text-sm font-medium leading-6 text-gray-900">Message</label>
 							</div>

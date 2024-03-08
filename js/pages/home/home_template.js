@@ -296,7 +296,7 @@ function homePageHtml() {
 
 		<div id="early-access" class="bg-gray-100 border dark:border-white/10">
 			<div class="mt-24 mx-auto max-w-2xl lg:text-center mb-12">
-					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Sign Up for Early Access Us</p>
+					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Sign Up for Early Access</p>
 			</div>
 			<div class="mt-8 mb-24 mx-auto block max-w-md rounded-lg bg-transparent px-6 shadow-4 dark:bg-surface-dark">
 				<form id="contact-us-form">

@@ -45,9 +45,9 @@ function configureContactUsForm() {
     event.preventDefault();
     let nameValue = document.getElementById('user-name').value;
     let emailValue = document.getElementById('user-email').value;
-    let messageValue = document.getElementById('user-message').value;
-    console.log('the contact us info before sending is: ', nameValue, emailValue, messageValue);
-    fireContactUsEndpoint(nameValue, emailValue, messageValue);
+    // let messageValue = document.getElementById('user-message').value;
+    // console.log('the contact us info before sending is: ', nameValue, emailValue, messageValue);
+    fireContactUsEndpoint(nameValue, emailValue);
   });
 }
 

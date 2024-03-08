@@ -823,7 +823,7 @@ function kickoffModelCreation(trainingData) {
             console.log('The color to show for model bg is: ', bgColor);
             addNewModelToGrid(trainingData['model-id'], bgColor)
             animateAwayFromNewModelForm();
-            displaySuccessBanner(`Your model training has been kicked off! You will receive an email when the training is complete, in ~ ${estimatedTrainingTime} mins`);
+            displaySuccessBanner(`Your model training has been kicked off! You will receive an email when the training is complete, in ~${estimatedTrainingTime} mins`);
             startListeningForModelUpdates(trainingData['user-rec-id'], trainingData['model-id']);
             hideStartTrainingSpinner();
             enableNewFineTuneButtons();

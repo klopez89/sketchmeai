@@ -186,7 +186,7 @@ function stylePayButtonWith(value) {
     console.log('int value: ', parseInt(value));
     const hasDecimals = parseFloat(value) % 1 != 0;
 
-    if (parseInt(value) < 1 || isNaN(parseInt(value)) || hasDecimals) {
+    if (parseInt(value) < 5 || isNaN(parseInt(value)) || hasDecimals) {
         payButton.setAttribute('disabled', true);
         payButton.classList.remove('bg-black');
         payButton.classList.add('bg-gray-500');

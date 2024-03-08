@@ -53,7 +53,7 @@ function configureContactUsForm() {
 
 function toggleContactFormButtonState() {
   let sendButtonText = document.querySelector('#contact-us-button p').innerHTML;
-	if (sendButtonText === 'Message Sent!') {
+	if (sendButtonText === 'Signed Up!') {
 		return;
 	}
   
@@ -115,7 +115,7 @@ function fireContactUsEndpoint(name, email, message) {
 
 function updateContactUsButtonAfterSend() {
   let contactUsButton = $('#contact-us-button');
-  contactUsButton.find('p').html('Message Sent!');
+  contactUsButton.find('p').html('Signed Up!');
   contactUsButton.prop('disabled', true);
   contactUsButton.removeClass('bg-black');
   contactUsButton.addClass('bg-gray-500');

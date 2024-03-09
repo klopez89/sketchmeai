@@ -727,6 +727,7 @@ function clearNewModelDataFromLocalStorage() {
 async function attemptToReloadSaveNewModelFormData() {
     try {
         const data = await retrieveNewModelDataFromIndexedDB();
+        console.log('grabbed the data from local indexed db for new model', data);
         if (data && data.uploadedFiles && data.uploadedFiles.length > 0) {
             data.uploadedFiles.forEach(file => {
                 addFileUploadDivToDOM(file);

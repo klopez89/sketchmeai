@@ -3,7 +3,7 @@ const DB_NAME = 'sketchMeAiDatabase';
 const DB_VERSION = 1;
 const STORE_NAME = 'modelFormStore';
 
-function openDB() {
+async function openDB() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION);
 

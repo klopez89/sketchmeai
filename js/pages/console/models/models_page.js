@@ -680,9 +680,10 @@ function saveNewModelDataToIndexedDB() {
   function retrieveNewModelDataFromIndexedDB() {
     let modelName = localStorage.getItem('modelName');
     openDB().then(db => {
-      getModelFormImages(db).then(uploadedFiles => {
-        if (uploadedFiles) {
-          console.log('Model form images retrieved from IndexedDB', uploadedFiles);
+      getModelFormImages(db).then(data => {
+        if (data) {
+          console.log('Model form images retrieved from IndexedDB', data);
+          let uploadedFiles = data['uploadedFiles'];
           return { uploadedFiles, modelName };
           
         } else {

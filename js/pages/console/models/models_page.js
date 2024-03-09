@@ -677,7 +677,7 @@ function saveNewModelDataToIndexedDB() {
     });
   }
 
-  function retrieveNewModelDataFromIndexedDB() {
+  async function retrieveNewModelDataFromIndexedDB() {
     let modelName = localStorage.getItem('modelName');
     openDB().then(db => {
       getModelFormImages(db).then(data => {

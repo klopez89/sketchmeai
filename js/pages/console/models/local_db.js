@@ -73,4 +73,4 @@ function removeModelFormImages(db) {
 }
 
 
-export { openDB, getModelFormImages, saveModelFormImages, removeModelFormImages };
+// export { openDB, getModelFormImages, saveModelFormImages, removeModelFormImages };

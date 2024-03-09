@@ -655,34 +655,90 @@ function isTrainingDataValid() {
     return isDataValid;
 }
 
-function saveNewModelDataToLocalStorage() {
+import { openDB, getModelFormImages, saveModelFormImages, removeModelFormImages } from './local_db.js';
+
+function saveNewModelDataToIndexedDB() {
     let uploadedFiles = getUploadedFiles();
     let modelName = document.getElementById('model-name').value;
-    localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
-    localStorage.setItem('modelName', modelName);
-}
+    let data = {
+      id: 'modelFormImages',
+      uploadedFiles: uploadedFiles,
+      modelName: modelName
+    };
+  
+    openDB().then(db => {
+      saveModelFormImages(db, data).then(() => {
+        console.log('Model form images saved to IndexedDB');
+        localStorage.setItem('modelName', modelName);
+        db.close();
+      }).catch(error => {
+        console.error('Could not save model form images to IndexedDB', error);
+      });
+    });
+  }
 
-function retrieveNewModelDataFromStorage() {
-    let uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles'));
-    let modelName = localStorage.getItem('modelName');
-    return { uploadedFiles, modelName };
-}
+  function retrieveNewModelDataFromIndexedDB() {
+    openDB().then(db => {
+      getModelFormImages(db).then(uploadedFiles => {
+        let modelName = localStorage.getItem('modelName');
+        if (uploadedFiles) {
+          console.log('Model form images retrieved from IndexedDB', data);
+          return { uploadedFiles, modelName };
+          
+        } else {
+          console.log('No model form images found in IndexedDB');
+          return { None, modelName };
+        }
+        db.close();
+      }).catch(error => {
+        console.error('Could not retrieve model form images from IndexedDB', error);
+        return { None, modelName };
+      });
+    });
+  }
+
+
+// function saveNewModelDataToLocalStorage() {
+//     let uploadedFiles = getUploadedFiles();
+//     let modelName = document.getElementById('model-name').value;
+//     localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
+//     localStorage.setItem('modelName', modelName);
+// }
+
+// function retrieveNewModelDataFromStorage() {
+//     let uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles'));
+//     let modelName = localStorage.getItem('modelName');
+//     return { uploadedFiles, modelName };
+// }
 
 function clearNewModelDataFromLocalStorage() {
-    localStorage.removeItem('uploadedFiles');
+    openDB().then(db => {
+        removeModelFormImages(db).then(() => {
+          console.log('Model form images removed from IndexedDB');
+          db.close();
+        }).catch(error => {
+          console.error('Could not remove model form images from IndexedDB', error);
+        });
+      });
     localStorage.removeItem('modelName');
 }
 
-function attemptToReloadSaveNewModelFormData() {
-    let { uploadedFiles, modelName } = retrieveNewModelDataFromStorage();
-    if (uploadedFiles.length === 0) {
-        return;
+async function attemptToReloadSaveNewModelFormData() {
+    try {
+        const data = await retrieveNewModelDataFromIndexedDB();
+        if (data && data.uploadedFiles && data.uploadedFiles.length > 0) {
+            data.uploadedFiles.forEach(file => {
+                addFileUploadDivToDOM(file);
+            });
+            document.getElementById('model-name').value = data.modelName;
+            toggleUploadButtonInteraction();
+        } else {
+            // Handle the case where there are no uploaded files
+            console.log('No uploaded files found.');
+        }
+    } catch (error) {
+        console.error('Error retrieving model data from IndexedDB', error);
     }
-    uploadedFiles.forEach(file => {
-        addFileUploadDivToDOM(file);
-    });
-    document.getElementById('model-name').value = modelName;
-    toggleUploadButtonInteraction();
 }
 
 function grabTrainingData() {

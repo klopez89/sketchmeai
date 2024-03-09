@@ -655,7 +655,7 @@ function isTrainingDataValid() {
     return isDataValid;
 }
 
-import { openDB, getModelFormImages, saveModelFormImages, removeModelFormImages } from './local_db.js';
+// import { openDB, getModelFormImages, saveModelFormImages, removeModelFormImages } from './local_db.js';
 
 function saveNewModelDataToIndexedDB() {
     let uploadedFiles = getUploadedFiles();

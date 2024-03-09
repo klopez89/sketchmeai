@@ -679,25 +679,27 @@ function saveNewModelDataToIndexedDB() {
 
   async function retrieveNewModelDataFromIndexedDB() {
     let modelName = localStorage.getItem('modelName');
-    openDB().then(db => {
-      getModelFormImages(db).then(data => {
-        if (data) {
-          console.log('Model form images retrieved from IndexedDB', data);
-          let uploadedFiles = data['uploadedFiles'];
-          db.close();
-          return { uploadedFiles: uploadedFiles, modelName: modelName };
-          
-        } else {
-          console.log('No model form images found in IndexedDB');
-          db.close();
-          return { uploadedFiles: None, modelName: modelName };
-        }
-      }).catch(error => {
-        console.error('Could not retrieve model form images from IndexedDB', error);
-        return { uploadedFiles: None, modelName: modelName };
-      });
+    return new Promise((resolve, reject) => {
+        openDB().then(db => {
+            getModelFormImages(db).then(data => {
+                if (data) {
+                    console.log('Model form images retrieved from IndexedDB', data);
+                    let uploadedFiles = data['uploadedFiles'];
+                    db.close();
+                    resolve({ uploadedFiles: uploadedFiles, modelName: modelName });
+                } else {
+                    console.log('No model form images found in IndexedDB');
+                    db.close();
+                    resolve({ uploadedFiles: [], modelName: modelName });
+                }
+            }).catch(error => {
+                console.error('Could not retrieve model form images from IndexedDB', error);
+                db.close();
+                reject(error);
+            });
+        });
     });
-  }
+}
 
 
 // function saveNewModelDataToLocalStorage() {

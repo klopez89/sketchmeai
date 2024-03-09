@@ -684,13 +684,14 @@ function saveNewModelDataToIndexedDB() {
         if (data) {
           console.log('Model form images retrieved from IndexedDB', data);
           let uploadedFiles = data['uploadedFiles'];
+          db.close();
           return { uploadedFiles: uploadedFiles, modelName: modelName };
           
         } else {
           console.log('No model form images found in IndexedDB');
+          db.close();
           return { uploadedFiles: None, modelName: modelName };
         }
-        db.close();
       }).catch(error => {
         console.error('Could not retrieve model form images from IndexedDB', error);
         return { uploadedFiles: None, modelName: modelName };

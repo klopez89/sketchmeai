@@ -64,7 +64,7 @@ function setupAccordion() {
 }
 
 function cancelFineTuning(predictionId, gen_element, generation) {
-    let action = `${CONSTANTS.BACKEND_URL}generate/cancel`
+    let action = `${CONSTANTS.BACKEND_URL}model/cancel`
     $.ajax({
         type: 'POST',
         url: action,

@@ -144,7 +144,7 @@ function configureGenerateForm() {
     });
 
     let denoisingStepsInput = document.getElementById('denoising-steps');
-    denoisingStepsInput.addEventListener('input', function(event) {
+    denoisingStepsInput.addEventListener('change', function(event) {
         let estimatedCost = genEstimateCostPerDenoisingStep * denoisingStepsInput.value;
         document.getElementById('training-estimate-label').innerHTML = `Estimated cost: $${estimatedCost.toFixed(2)} (for ${denoisingStepsInput.value} denoising steps)`
     });

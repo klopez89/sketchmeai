@@ -144,7 +144,7 @@ function configureGenerateForm() {
     });
 
     let denoisingStepsInput = document.getElementById('denoising-steps');
-    denoisingStepsInput.addEventListener('change', function(event) {
+    denoisingStepsInput.addEventListener('input', function(event) {
         let estimatedCost = genEstimateCostPerDenoisingStep * denoisingStepsInput.value;
         document.getElementById('training-estimate-label').innerHTML = `Estimated cost: $${estimatedCost.toFixed(2)} (for ${denoisingStepsInput.value} denoising steps)`
     });
@@ -484,6 +484,8 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('img-2-img').value = generation.gen_recipe.img2img_url;
     document.getElementById('prompt-strength').value = generation.gen_recipe.prompt_strength;
     document.getElementById('lora-scale').value = generation.gen_recipe.lora_scale;
+    // Trigger some UI updates in the gen form
+    document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
     selectModelWithVersion(generation.model_version);
 }
 

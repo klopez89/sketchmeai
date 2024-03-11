@@ -63,30 +63,6 @@ function setupAccordion() {
     });
 }
 
-function cancelFineTuning(predictionId, gen_element, generation) {
-    let action = `${CONSTANTS.BACKEND_URL}model/cancel`
-    $.ajax({
-        type: 'POST',
-        url: action,
-        data: JSON.stringify({
-            replicate_prediction_id: predictionId
-        }),
-        contentType: "application/json",
-        dataType: 'json',
-        success: function(data) {
-            console.log(data);
-            gen_element.querySelector('img').classList.remove('hidden');
-            gen_element.querySelector('#gen-status').innerHTML = '';
-            loadGenImage(CANCELED_IMG_URL, gen_element);
-            configureCopyButton(generation, gen_element);
-        },
-        error: function(data) {
-            console.log("error cancelling generation");
-            console.log(data);
-        }
-    });
-}
-
 function fetchModels(userRecId, lastDocId) {
     $.ajax({
         url: CONSTANTS.BACKEND_URL + 'models',
@@ -262,7 +238,7 @@ function showModelMenu(event) {
 }
 
 function cancelModelFineTuning(predictionId, model_element) {
-    let action = `${CONSTANTS.BACKEND_URL}generate/cancel`
+    let action = `${CONSTANTS.BACKEND_URL}model/cancel`
     $.ajax({
         type: 'POST',
         url: action,
@@ -285,6 +261,8 @@ function cancelModelFineTuning(predictionId, model_element) {
         }
     });
 }
+
+
 
 // Upload related functions
 

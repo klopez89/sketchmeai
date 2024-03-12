@@ -194,7 +194,7 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 model_element.querySelector('#model-status').innerHTML = '...queued';
             } else if (status === PredictionStatus.BEING_HANDLED) {
                 console.log('model is being handled');
-                model_element.querySelector('#model-status').innerHTML = '...fine-tuning';
+                model_element.querySelector('#model-status').innerHTML = '...training';
                 let cancel_button = model_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
                     cancelModelFineTuning(aiModel_dict.replicate_prediction_id, model_element);

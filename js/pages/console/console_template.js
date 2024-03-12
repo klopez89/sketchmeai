@@ -143,7 +143,7 @@ function consoleHtml() {
                                 <span id="modal-credit-balance-label" class="">$0.00</span>
                                 <span id="insufficient-credit-label" class="hidden italic text-red-500 text-xs">Insufficient credit.</span>
                             </h2>
-                            <p class="mb-0 text-gray-400">~ $3.40 to $6.40 / trained model (for 10 vs 20 images)p>
+                            <p class="mb-0 text-gray-400">~ $3.40 to $6.40 / trained model (for 10 vs 20 images)</p>
                             <p class="mb-1 text-gray-400">~ $0.03 / image</p>
                             <p class="mb-8 text-gray-400 text-xs italic">cost will vary based on model and parameters</p>
                         </div>

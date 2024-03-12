@@ -326,7 +326,7 @@ function fetchWorkingModels(userRecId) {
         dataType: 'json',
         success: function(data) {
             models = data.models;
-            if (models.length > 0) {
+            if (models != null && models.length > 0) {
                 models.forEach(function(model) {
                     let new_model_option_html = new_model_option(model);
                     let new_model_option_div = $($.parseHTML(new_model_option_html));

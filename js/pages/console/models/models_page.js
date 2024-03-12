@@ -373,9 +373,10 @@ function handleFileUploads(files) {
     let remaining_upload_count = minimum_upload_count - number_of_uploaded_files;
 
     if (fileList.length + number_of_uploaded_files > maximumUploadCount) {
+        displayWarningBanner(`You attempted to add more than the max amount of training images, ${maximumUploadCount}. As a result, some of your images were disregarded.`);
         fileList = fileList.slice(0, maximumUploadCount - number_of_uploaded_files);
     }
-
+``
     let files_to_upload = fileList;
 
     console.log("the remaining upload count is: ", remaining_upload_count);

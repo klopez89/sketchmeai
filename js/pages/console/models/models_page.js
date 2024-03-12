@@ -530,12 +530,12 @@ function addFileUploadDivToDOM(file) {
 
 function updateTrainingCostEstimate() {
     let upload_count = numberOfUploadedFiles();
+    let estimatedCostDiv = document.getElementById('training-estimate-label');
     if (upload_count < minimumUploadCount) {
         estimatedCostDiv.innerHTML = 'Estimated cost: $3.40 (based on 10 images)<br>Estimated training time: 30 mins';
     } else {
         let estimated_cost = estimatedCostPerTrainingImg * upload_count;
         let estimatedTime = estimatedTimePerTrainingImg * upload_count;
-        let estimatedCostDiv = document.getElementById('training-estimate-label');
         estimatedCostDiv.innerHTML = `Estimated cost: $${estimated_cost.toFixed(2)} (based on ${upload_count} images)<br>Estimated training time: ${estimatedTime} mins`;
     }
 }

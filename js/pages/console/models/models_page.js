@@ -531,7 +531,7 @@ function addFileUploadDivToDOM(file) {
 function updateTrainingCostEstimate() {
     let upload_count = numberOfUploadedFiles();
     if (upload_count < minimumUploadCount) {
-        'Estimated cost: $3.40 (based on 10 images)<br>Estimated training time: 30 mins'
+        estimatedCostDiv.innerHTML = 'Estimated cost: $3.40 (based on 10 images)<br>Estimated training time: 30 mins';
     } else {
         let estimated_cost = estimatedCostPerTrainingImg * upload_count;
         let estimatedTime = estimatedTimePerTrainingImg * upload_count;

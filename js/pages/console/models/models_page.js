@@ -192,6 +192,9 @@ function startListeningForModelUpdates(userRecId, modelId) {
             if (status === PredictionStatus.IN_PROGRESS) {
                 console.log('model is in progress');
                 model_element.querySelector('#model-status').innerHTML = '...queued';
+                model_element.querySelector('#model-name-label').innerHTML = name;
+                model_element.setAttribute('replicate-name', replicate_name);
+                model_element.setAttribute('version', version);
             } else if (status === PredictionStatus.BEING_HANDLED) {
                 console.log('model is being handled');
                 model_element.querySelector('#model-status').innerHTML = '...training';
@@ -201,11 +204,16 @@ function startListeningForModelUpdates(userRecId, modelId) {
                     cancel_button.classList.add('hidden');
                 });
                 cancel_button.classList.remove('hidden');
+                model_element.querySelector('#model-name-label').innerHTML = name;
+                model_element.setAttribute('replicate-name', replicate_name);
+                model_element.setAttribute('version', version);
             } else if (status === PredictionStatus.SUCCEEDED) {
                 model_element.querySelector('#model-loader').classList.add('hidden');
                 // loadGenImage(signed_gen_url, gen_element);
                 model_element.querySelector('#model-status').innerHTML = '';
                 model_element.querySelector('#model-name-label').innerHTML = name;
+                model_element.setAttribute('replicate-name', replicate_name);
+                model_element.setAttribute('version', version);
                 console.log('model generation succeeded');
                 configureModelDivPostFinalStatusUpdate(model_element);
                 unsubscribe(); // Stop listening for updates
@@ -215,6 +223,8 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 model_element.querySelector('#model-loader').classList.add('hidden');
                 model_element.querySelector('#model-status').innerHTML = '';
                 model_element.querySelector('#model-name-label').innerHTML = 'Failed';
+                model_element.setAttribute('replicate-name', replicate_name);
+                model_element.setAttribute('version', version);
                 model_element.querySelector('model-name-container').style.backgroundColor = failedColor;
                 configureModelDivPostFinalStatusUpdate(model_element);
                 unsubscribe(); // Stop listening for updates
@@ -223,6 +233,8 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 model_element.querySelector('#model-loader').classList.add('hidden');
                 model_element.querySelector('#model-status').innerHTML = '';
                 model_element.querySelector('#model-name-label').innerHTML = 'Canceled';
+                model_element.setAttribute('replicate-name', replicate_name);
+                model_element.setAttribute('version', version);
                 model_element.querySelector('#model-name-container').style.backgroundColor = canceledColor;
                 configureModelDivPostFinalStatusUpdate(model_element);
                 unsubscribe(); // Stop listening for updates

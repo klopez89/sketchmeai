@@ -7,7 +7,8 @@ function homePageHtml() {
 	let earlyAccess = urlParams.get('earlyAccess') || null;
 
 	let headerButtonTitle = earlyAccess ? 'Get started' : 'Get Early Access';
-	let headerButtonUrl = earlyAccess ? `https://${CONSTANTS.SITE_URL}/auth` : '#early-access';
+	let headerButtonUrl = earlyAccess ? `https://${CONSTANTS.SITE_URL}/auth` : '#early-access-section';
+	let contactUsId = earlyAccess ? 'contact-form-section' : 'early-access-section';
 
 	let headerTitle = 'Explore what you can create with AI';
 	let headerSubtitle = 'Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters to craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.';
@@ -302,7 +303,7 @@ function homePageHtml() {
 		</div>
 
 
-		<div id="contact-us-container" class="bg-gray-100 border dark:border-white/10">
+		<div id="${contactUsId}" class="bg-gray-100 border dark:border-white/10">
 			<div class="mt-24 mx-auto max-w-2xl lg:text-center mb-12">
 					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Contact Us</p>
 			</div>

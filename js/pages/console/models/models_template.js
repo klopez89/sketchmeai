@@ -78,12 +78,13 @@ function dummyGridHTML() {
                             <ul role="list" id="uploadEntryContainer" class="flex overflow-x-auto space-x-2 pt-0 px-0">
                                 <button id="uploadAreaButton" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
                                     
-                                    <div class="absolute bg-gray-200 h-full w-full" id="upload-spinner">
-                                        <div class="flex flex-col items-center justify-center">		
-                                            <i id="upload-spinner" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                                    <div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
+                                        <div class="flex flex-col h-full items-center justify-center">		
+                                            <p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
+                                            <i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex flex-col items-center">		
                                         <i id="upload-icon" class="fa text-3xl fa-images" aria-hidden="true"></i>
                                         <span class="mt-0 block text-xs font-medium text-gray-400" id="upload-caption">0</span>

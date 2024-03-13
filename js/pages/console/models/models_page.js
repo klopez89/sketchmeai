@@ -453,7 +453,6 @@ function handleFileUploads(files) {
                     uploadSpinner.classList.add('hidden');
                 }
 
-                let reader = new FileReader();
                 reader.addEventListener('load', function(event) {
                     let fileData = event.target.result;
                     let fileInfo = {
@@ -471,7 +470,6 @@ function handleFileUploads(files) {
             });
         } else if (fileType === 'image/jpg' || fileType === 'image/jpeg' || fileType === 'image/png') {
             // Handle other image types as before
-            let reader = new FileReader();
             reader.addEventListener('load', function(event) {
                 let fileData = event.target.result;
                 let fileInfo = {

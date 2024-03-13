@@ -388,11 +388,11 @@ function resizeImage(file) {
             const ratio = img.width / img.height;
             // Set the canvas dimensions to the desired size while maintaining the aspect ratio
             if (img.width > img.height) {
-                canvas.width = 1024;
-                canvas.height = 1024 / ratio;
-            } else {
-                canvas.height = 1024;
                 canvas.width = 1024 * ratio;
+                canvas.height = 1024;
+            } else {
+                canvas.height = 1024 * ratio;
+                canvas.width = 1024;
             }
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             canvas.toBlob(resolve, 'image/jpeg', 0.8);

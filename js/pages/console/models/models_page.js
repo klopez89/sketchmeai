@@ -378,6 +378,30 @@ function handleDrop(event) {
     handleFileUploads(files)
 }
 
+function resizeImage(file) {
+    return new Promise((resolve, reject) => {
+        const img = document.createElement('img');
+        img.onload = function () {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            // Calculate the ratio of the image's width and height
+            const ratio = img.width / img.height;
+            // Set the canvas dimensions to the desired size while maintaining the aspect ratio
+            if (img.width > img.height) {
+                canvas.width = 1024;
+                canvas.height = 1024 / ratio;
+            } else {
+                canvas.height = 1024;
+                canvas.width = 1024 * ratio;
+            }
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(resolve, 'image/jpeg', 0.8);
+        };
+        img.onerror = reject;
+        img.src = URL.createObjectURL(file);
+    });
+}
+
 function handleFileUploads(files) {
     let fileList = Array.from(files);
     let number_of_uploaded_files = numberOfUploadedFiles();
@@ -397,6 +421,9 @@ function handleFileUploads(files) {
     var didFindUnsupporedFileType = false;
     var unsupportedFileTypeFound = null;
     // Read the contents of each file
+
+    
+    var countBeingConverted = 0;
     for (var i = 0; i < files_to_upload.length; i++) {
         let reader = new FileReader();
         let file = files_to_upload[i];
@@ -408,12 +435,24 @@ function handleFileUploads(files) {
 
         if (fileType === 'image/heic') {
             // Convert HEIC to JPEG using heic2any
+
+            countBeingConverted += 1;
+            let uploadAreaButton = document.getElementById('uploadAreaButton');
+            let uploadSpinner = uploadAreaButton.querySelector('#upload-spinner');
+            uploadSpinner.classList.remove('hidden');
+
             heic2any({
                 blob: file,
                 toType: "image/jpeg",
                 quality: 0.8 // Adjust quality as needed
             })
             .then(function (conversionResult) {
+
+                countBeingConverted -= 1;
+                if (countBeingConverted === 0) {
+                    uploadSpinner.classList.add('hidden');
+                }
+
                 let reader = new FileReader();
                 reader.addEventListener('load', function(event) {
                     let fileData = event.target.result;
@@ -559,8 +598,9 @@ function toggleUploadAreaVisibility() {
     console.log('shouldShow: ', shouldShow);
 
 	let uploadAreaButton = document.getElementById('uploadAreaButton');
-	let icon = uploadAreaButton.querySelector('i');
+	let icon = uploadAreaButton.querySelector('#upload-icon');
 	let span = uploadAreaButton.querySelector('span');
+    let uploadSpinner = uploadAreaButton.querySelector('#upload-spinner');
 
 	if (shouldShow === true && !icon.classList.contains('fa-check')) {
 		icon.classList.remove('fa-images');

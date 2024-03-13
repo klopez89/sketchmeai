@@ -435,7 +435,6 @@ function handleFileUploads(files) {
 
         if (fileType === 'image/heic') {
             // Convert HEIC to JPEG using heic2any
-
             countBeingConverted += 1;
             let uploadAreaButton = document.getElementById('uploadAreaButton');
             let uploadSpinner = uploadAreaButton.querySelector('#upload-spinner');
@@ -447,6 +446,9 @@ function handleFileUploads(files) {
                 quality: 0.8 // Adjust quality as needed
             })
             .then(function (conversionResult) {
+                return resizeImage(conversionResult);
+            })
+            .then(function (resizedImage) {
 
                 countBeingConverted -= 1;
                 if (countBeingConverted === 0) {
@@ -458,12 +460,12 @@ function handleFileUploads(files) {
                     let fileInfo = {
                         name: filename,
                         type: 'image/jpeg', // Set the type to JPEG after conversion
-                        size: summarizeFileSize(conversionResult.size),
+                        size: summarizeFileSize(resizedImage.size),
                         data: fileData,
                     };
                     addFileUploadDivToDOM(fileInfo);
                 });
-                reader.readAsDataURL(conversionResult);
+                reader.readAsDataURL(resizedImage);
             })
             .catch(function (error) {
                 console.error('Error converting HEIC to JPEG', error);

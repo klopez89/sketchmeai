@@ -83,12 +83,19 @@ function isReadyToSubmitContactForm() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isEmailValid = emailRegex.test(emailValue);
 
-  return isEmailValid == true && nameValue != '' && messageValue != ''
+  let urlParams = new URLSearchParams(window.location.search);
+	let earlyAccess = urlParams.get('earlyAccess') || null;
+  
+  return isEmailValid == true && nameValue != '' && (earlyAccess ? true : messageValue != '')
 }
 
 function fireContactUsEndpoint(name, email, message) {
   showContactUsSpinner();
-  let url = `${CONSTANTS.BACKEND_URL}contact_us/new`;
+
+	let urlParams = new URLSearchParams(window.location.search);
+	let earlyAccess = urlParams.get('earlyAccess') || null;
+
+  let url = earlyAccess ? `${CONSTANTS.BACKEND_URL}contact_us/new` : `${CONSTANTS.BACKEND_URL}early_access/new`;
   let data = {
       "userName": name,
       "userEmail": email,

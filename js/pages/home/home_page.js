@@ -83,12 +83,13 @@ function isReadyToSubmitContactForm() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isEmailValid = emailRegex.test(emailValue);
 
-  return isEmailValid == true && nameValue != '' // && messageValue != ''
+  return isEmailValid == true && nameValue != '' && (hasEarlyAccess() ? messageValue != '' : true)
 }
 
 function fireContactUsEndpoint(name, email, message) {
   showContactUsSpinner();
-  let url = `${CONSTANTS.BACKEND_URL}contact_us/new`;
+
+  let url = hasEarlyAccess() ? `${CONSTANTS.BACKEND_URL}contact_us/new` : `${CONSTANTS.BACKEND_URL}early_access/new`;
   let data = {
       "userName": name,
       "userEmail": email,
@@ -115,7 +116,8 @@ function fireContactUsEndpoint(name, email, message) {
 
 function updateContactUsButtonAfterSend() {
   let contactUsButton = $('#contact-us-button');
-  contactUsButton.find('p').html('Signed Up!');
+  let submittedTitle = hasEarlyAccess() ? 'Message Sent!' : 'Signed Up!';
+  contactUsButton.find('p').html(submittedTitle);
   contactUsButton.prop('disabled', true);
   contactUsButton.removeClass('bg-black');
   contactUsButton.addClass('bg-gray-500');

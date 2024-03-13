@@ -2,7 +2,7 @@ let isCurrentlyPaginatingPrompts = false;
 let cold_boot_delay = 180000; // 3 minutes in milliseconds for custom models
 let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models to turn cold w/o use
 let status_check_interval = 2500; // 5 seconds in milliseconds
-const genEstimateCostPerDenoisingStep = 0.0015;
+const genEstimateCostPerDenoisingStep = 0.00128;
 var coldBootedModels = {};
 var previousModelSelectionId = null;
 var promptPlaceholderText = "Example: Drawing of cute dalmation puppy in the backyard, highly detailed";
@@ -326,7 +326,7 @@ function fetchWorkingModels(userRecId) {
         dataType: 'json',
         success: function(data) {
             models = data.models;
-            if (models.length > 0) {
+            if (models != null && models.length > 0) {
                 models.forEach(function(model) {
                     let new_model_option_html = new_model_option(model);
                     let new_model_option_div = $($.parseHTML(new_model_option_html));
@@ -484,6 +484,8 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('img-2-img').value = generation.gen_recipe.img2img_url;
     document.getElementById('prompt-strength').value = generation.gen_recipe.prompt_strength;
     document.getElementById('lora-scale').value = generation.gen_recipe.lora_scale;
+    // Trigger some UI updates in the gen form
+    document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
     selectModelWithVersion(generation.model_version);
 }
 

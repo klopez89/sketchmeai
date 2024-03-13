@@ -63,30 +63,6 @@ function setupAccordion() {
     });
 }
 
-function cancelFineTuning(predictionId, gen_element, generation) {
-    let action = `${CONSTANTS.BACKEND_URL}generate/cancel`
-    $.ajax({
-        type: 'POST',
-        url: action,
-        data: JSON.stringify({
-            replicate_prediction_id: predictionId
-        }),
-        contentType: "application/json",
-        dataType: 'json',
-        success: function(data) {
-            console.log(data);
-            gen_element.querySelector('img').classList.remove('hidden');
-            gen_element.querySelector('#gen-status').innerHTML = '';
-            loadGenImage(CANCELED_IMG_URL, gen_element);
-            configureCopyButton(generation, gen_element);
-        },
-        error: function(data) {
-            console.log("error cancelling generation");
-            console.log(data);
-        }
-    });
-}
-
 function fetchModels(userRecId, lastDocId) {
     $.ajax({
         url: CONSTANTS.BACKEND_URL + 'models',
@@ -216,20 +192,28 @@ function startListeningForModelUpdates(userRecId, modelId) {
             if (status === PredictionStatus.IN_PROGRESS) {
                 console.log('model is in progress');
                 model_element.querySelector('#model-status').innerHTML = '...queued';
+                model_element.querySelector('#model-name-label').innerHTML = name;
+                model_element.setAttribute('replicate-name', replicate_name);
+                model_element.setAttribute('version', version);
             } else if (status === PredictionStatus.BEING_HANDLED) {
                 console.log('model is being handled');
-                model_element.querySelector('#model-status').innerHTML = '...fine-tuning';
+                model_element.querySelector('#model-status').innerHTML = '...training';
                 let cancel_button = model_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
                     cancelModelFineTuning(aiModel_dict.replicate_prediction_id, model_element);
                     cancel_button.classList.add('hidden');
                 });
                 cancel_button.classList.remove('hidden');
+                model_element.querySelector('#model-name-label').innerHTML = name;
+                model_element.setAttribute('replicate-name', replicate_name);
+                model_element.setAttribute('version', version);
             } else if (status === PredictionStatus.SUCCEEDED) {
                 model_element.querySelector('#model-loader').classList.add('hidden');
                 // loadGenImage(signed_gen_url, gen_element);
                 model_element.querySelector('#model-status').innerHTML = '';
                 model_element.querySelector('#model-name-label').innerHTML = name;
+                model_element.setAttribute('replicate-name', replicate_name);
+                model_element.setAttribute('version', version);
                 console.log('model generation succeeded');
                 configureModelDivPostFinalStatusUpdate(model_element);
                 unsubscribe(); // Stop listening for updates
@@ -239,6 +223,8 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 model_element.querySelector('#model-loader').classList.add('hidden');
                 model_element.querySelector('#model-status').innerHTML = '';
                 model_element.querySelector('#model-name-label').innerHTML = 'Failed';
+                model_element.setAttribute('replicate-name', replicate_name);
+                model_element.setAttribute('version', version);
                 model_element.querySelector('model-name-container').style.backgroundColor = failedColor;
                 configureModelDivPostFinalStatusUpdate(model_element);
                 unsubscribe(); // Stop listening for updates
@@ -247,6 +233,8 @@ function startListeningForModelUpdates(userRecId, modelId) {
                 model_element.querySelector('#model-loader').classList.add('hidden');
                 model_element.querySelector('#model-status').innerHTML = '';
                 model_element.querySelector('#model-name-label').innerHTML = 'Canceled';
+                model_element.setAttribute('replicate-name', replicate_name);
+                model_element.setAttribute('version', version);
                 model_element.querySelector('#model-name-container').style.backgroundColor = canceledColor;
                 configureModelDivPostFinalStatusUpdate(model_element);
                 unsubscribe(); // Stop listening for updates
@@ -262,7 +250,7 @@ function showModelMenu(event) {
 }
 
 function cancelModelFineTuning(predictionId, model_element) {
-    let action = `${CONSTANTS.BACKEND_URL}generate/cancel`
+    let action = `${CONSTANTS.BACKEND_URL}model/cancel`
     $.ajax({
         type: 'POST',
         url: action,
@@ -285,6 +273,8 @@ function cancelModelFineTuning(predictionId, model_element) {
         }
     });
 }
+
+
 
 // Upload related functions
 
@@ -388,6 +378,33 @@ function handleDrop(event) {
     handleFileUploads(files)
 }
 
+function resizeImage(file) {
+    return new Promise((resolve, reject) => {
+        const img = document.createElement('img');
+        img.onload = function () {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            // Calculate the ratio of the image's width and height
+            const ratio = img.width / img.height;
+            console.log('the ratio is: ', ratio);
+            // Set the canvas dimensions to the desired size while maintaining the aspect ratio
+            if (img.width > img.height) {
+                console.log('the width is greater than the height');
+                canvas.width = 1024 * ratio;
+                canvas.height = 1024;
+            } else {
+                console.log('the height is greater than the width, or equal');
+                canvas.height = 1024 * (1 / ratio);
+                canvas.width = 1024;
+            }
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(resolve, 'image/jpeg', 0.8);
+        };
+        img.onerror = reject;
+        img.src = URL.createObjectURL(file);
+    });
+}
+
 function handleFileUploads(files) {
     let fileList = Array.from(files);
     let number_of_uploaded_files = numberOfUploadedFiles();
@@ -395,6 +412,7 @@ function handleFileUploads(files) {
     let remaining_upload_count = minimum_upload_count - number_of_uploaded_files;
 
     if (fileList.length + number_of_uploaded_files > maximumUploadCount) {
+        displayWarningBanner(`You attempted to add more than the max amount of training images, ${maximumUploadCount}. As a result, some of your images were disregarded.`);
         fileList = fileList.slice(0, maximumUploadCount - number_of_uploaded_files);
     }
 
@@ -406,52 +424,70 @@ function handleFileUploads(files) {
     var didFindUnsupporedFileType = false;
     var unsupportedFileTypeFound = null;
     // Read the contents of each file
+
+    
+    var countBeingConverted = 0;
     for (var i = 0; i < files_to_upload.length; i++) {
         let reader = new FileReader();
         let file = files_to_upload[i];
         let filename = file.name;
         let fileType = file.type;
         let fileSize = file.size;
-        console.log('The file type here is: ', fileType);
+        console.log('The file type here is: ', fileType, ' and the file size is: ', fileSize);
+        
 
         if (fileType === 'image/heic') {
             // Convert HEIC to JPEG using heic2any
+            countBeingConverted += 1;
+            let uploadAreaButton = document.getElementById('uploadAreaButton');
+            let uploadSpinner = uploadAreaButton.querySelector('#upload-spinner');
+            uploadSpinner.classList.remove('hidden');
+
             heic2any({
                 blob: file,
                 toType: "image/jpeg",
                 quality: 0.8 // Adjust quality as needed
             })
             .then(function (conversionResult) {
-                let reader = new FileReader();
+                return resizeImage(conversionResult);
+            })
+            .then(function (resizedImage) {
+
+                countBeingConverted -= 1;
+                if (countBeingConverted === 0) {
+                    uploadSpinner.classList.add('hidden');
+                }
+
                 reader.addEventListener('load', function(event) {
                     let fileData = event.target.result;
                     let fileInfo = {
                         name: filename,
                         type: 'image/jpeg', // Set the type to JPEG after conversion
-                        size: summarizeFileSize(conversionResult.size),
+                        size: summarizeFileSize(resizedImage.size),
                         data: fileData,
                     };
                     addFileUploadDivToDOM(fileInfo);
                 });
-                reader.readAsDataURL(conversionResult);
+                reader.readAsDataURL(resizedImage);
             })
             .catch(function (error) {
                 console.error('Error converting HEIC to JPEG', error);
             });
         } else if (fileType === 'image/jpg' || fileType === 'image/jpeg' || fileType === 'image/png') {
             // Handle other image types as before
-            let reader = new FileReader();
-            reader.addEventListener('load', function(event) {
-                let fileData = event.target.result;
-                let fileInfo = {
-                    name: filename,
-                    type: fileType,
-                    size: summarizeFileSize(fileSize),
-                    data: fileData,
-                };
-                addFileUploadDivToDOM(fileInfo);
+            resizeImage(file).then(function (resizedImage) {
+                reader.addEventListener('load', function(event) {
+                    let fileData = event.target.result;
+                    let fileInfo = {
+                        name: filename,
+                        type: fileType,
+                        size: resizedImage.size,
+                        data: fileData,
+                    };
+                    addFileUploadDivToDOM(fileInfo);
+                });
+                reader.readAsDataURL(resizedImage);
             });
-            reader.readAsDataURL(file);
         } else {
             didFindUnsupporedFileType = true;
             unsupportedFileTypeFound = fileType.split('/')[1];
@@ -551,12 +587,12 @@ function addFileUploadDivToDOM(file) {
 
 function updateTrainingCostEstimate() {
     let upload_count = numberOfUploadedFiles();
+    let estimatedCostDiv = document.getElementById('training-estimate-label');
     if (upload_count < minimumUploadCount) {
-        'Estimated cost: $3.40 (based on 10 images)<br>Estimated training time: 30 mins'
+        estimatedCostDiv.innerHTML = 'Estimated cost: $3.40 (based on 10 images)<br>Estimated training time: 30 mins';
     } else {
         let estimated_cost = estimatedCostPerTrainingImg * upload_count;
         let estimatedTime = estimatedTimePerTrainingImg * upload_count;
-        let estimatedCostDiv = document.getElementById('training-estimate-label');
         estimatedCostDiv.innerHTML = `Estimated cost: $${estimated_cost.toFixed(2)} (based on ${upload_count} images)<br>Estimated training time: ${estimatedTime} mins`;
     }
 }
@@ -567,8 +603,9 @@ function toggleUploadAreaVisibility() {
     console.log('shouldShow: ', shouldShow);
 
 	let uploadAreaButton = document.getElementById('uploadAreaButton');
-	let icon = uploadAreaButton.querySelector('i');
+	let icon = uploadAreaButton.querySelector('#upload-icon');
 	let span = uploadAreaButton.querySelector('span');
+    let uploadSpinner = uploadAreaButton.querySelector('#upload-spinner');
 
 	if (shouldShow === true && !icon.classList.contains('fa-check')) {
 		icon.classList.remove('fa-images');
@@ -655,34 +692,95 @@ function isTrainingDataValid() {
     return isDataValid;
 }
 
-function saveNewModelDataToLocalStorage() {
+// import { openDB, getModelFormImages, saveModelFormImages, removeModelFormImages } from './local_db.js';
+
+function saveNewModelDataToIndexedDB() {
     let uploadedFiles = getUploadedFiles();
     let modelName = document.getElementById('model-name').value;
-    localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
-    localStorage.setItem('modelName', modelName);
+    let data = {
+      id: 'modelFormImages',
+      uploadedFiles: uploadedFiles,
+      modelName: modelName
+    };
+  
+    openDB().then(db => {
+      saveModelFormImages(db, data).then(() => {
+        console.log('Model form images saved to IndexedDB');
+        localStorage.setItem('modelName', modelName);
+        db.close();
+      }).catch(error => {
+        console.error('Could not save model form images to IndexedDB', error);
+      });
+    });
+  }
+
+  async function retrieveNewModelDataFromIndexedDB() {
+    let modelName = localStorage.getItem('modelName');
+    return new Promise((resolve, reject) => {
+        openDB().then(db => {
+            getModelFormImages(db).then(data => {
+                if (data) {
+                    console.log('Model form images retrieved from IndexedDB', data);
+                    let uploadedFiles = data['uploadedFiles'];
+                    db.close();
+                    resolve({ uploadedFiles: uploadedFiles, modelName: modelName });
+                } else {
+                    console.log('No model form images found in IndexedDB');
+                    db.close();
+                    resolve({ uploadedFiles: [], modelName: modelName });
+                }
+            }).catch(error => {
+                console.error('Could not retrieve model form images from IndexedDB', error);
+                db.close();
+                reject(error);
+            });
+        });
+    });
 }
 
-function retrieveNewModelDataFromStorage() {
-    let uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles'));
-    let modelName = localStorage.getItem('modelName');
-    return { uploadedFiles, modelName };
-}
+
+// function saveNewModelDataToLocalStorage() {
+//     let uploadedFiles = getUploadedFiles();
+//     let modelName = document.getElementById('model-name').value;
+//     localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
+//     localStorage.setItem('modelName', modelName);
+// }
+
+// function retrieveNewModelDataFromStorage() {
+//     let uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles'));
+//     let modelName = localStorage.getItem('modelName');
+//     return { uploadedFiles, modelName };
+// }
 
 function clearNewModelDataFromLocalStorage() {
-    localStorage.removeItem('uploadedFiles');
+    openDB().then(db => {
+        removeModelFormImages(db).then(() => {
+          console.log('Model form images removed from IndexedDB');
+          db.close();
+        }).catch(error => {
+          console.error('Could not remove model form images from IndexedDB', error);
+        });
+      });
     localStorage.removeItem('modelName');
 }
 
-function attemptToReloadSaveNewModelFormData() {
-    let { uploadedFiles, modelName } = retrieveNewModelDataFromStorage();
-    if (uploadedFiles.length === 0) {
-        return;
+async function attemptToReloadSaveNewModelFormData() {
+    try {
+        const data = await retrieveNewModelDataFromIndexedDB();
+        console.log('grabbed the data from local indexed db for new model', data);
+        if (data && data.uploadedFiles && data.uploadedFiles.length > 0) {
+            data.uploadedFiles.forEach(file => {
+                addFileUploadDivToDOM(file);
+            });
+            document.getElementById('model-name').value = data.modelName;
+            toggleUploadButtonInteraction();
+        } else {
+            // Handle the case where there are no uploaded files
+            console.log('No uploaded files found.');
+        }
+    } catch (error) {
+        console.error('Error retrieving model data from IndexedDB', error);
     }
-    uploadedFiles.forEach(file => {
-        addFileUploadDivToDOM(file);
-    });
-    document.getElementById('model-name').value = modelName;
-    toggleUploadButtonInteraction();
 }
 
 function grabTrainingData() {
@@ -1011,6 +1109,7 @@ function resetNewModalForm() {
     document.querySelectorAll("#uploadEntryContainer li").forEach(li => li.remove());
     applyTrainingPreset(personTrainingPreset());
     toggleUploadAreaVisibility();
+    updateTrainingCostEstimate();
     clearNewModelDataFromLocalStorage();
 }
 

@@ -389,9 +389,11 @@ function resizeImage(file) {
             console.log('the ratio is: ', ratio);
             // Set the canvas dimensions to the desired size while maintaining the aspect ratio
             if (img.width > img.height) {
+                console.log('the width is greater than the height');
                 canvas.width = 1024 * ratio;
                 canvas.height = 1024;
             } else {
+                console.log('the height is greater than the width, or equal');
                 canvas.height = 1024 * ratio;
                 canvas.width = 1024;
             }

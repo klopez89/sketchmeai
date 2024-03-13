@@ -48,7 +48,12 @@ function homePageHtml() {
 	let timeline_d_body = "Each trained model is of a LoRA type, and by combining multiple LoRA you can merge multiple concepts together in new ways, ie. a LoRA of a particular style and a LoRA of your face.";
 	let timeline_d_date = 'Jun 2024';
 
+	
+	let contactFormTitle = earlyAccess ? 'Contact Us' : 'Sign Up for Early Access';
+	let contactFormMessageHiddenClass = earlyAccess ? '' : 'hidden';
+
 	let currentYear = new Date().getFullYear().toString();
+
 
 	return `
 	<div class="bg-white flex flex-col gap-y-20">
@@ -305,7 +310,7 @@ function homePageHtml() {
 
 		<div id="${contactUsId}" class="bg-gray-100 border dark:border-white/10">
 			<div class="mt-24 mx-auto max-w-2xl lg:text-center mb-12">
-					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Contact Us</p>
+					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">${contactFormTitle}</p>
 			</div>
 			<div class="mt-8 mb-24 mx-auto block max-w-md rounded-lg bg-transparent px-6 shadow-4 dark:bg-surface-dark">
 				<form id="contact-us-form">
@@ -329,7 +334,7 @@ function homePageHtml() {
 							</div>
 						</div>
 
-						<div class="col-span-full" id="message-field-container">
+						<div class="col-span-full ${contactFormMessageHiddenClass}" id="message-field-container">
 							<div class="flex items-center">
 								<label for="user-message" class="block text-sm font-medium leading-6 text-gray-900">Message</label>
 							</div>

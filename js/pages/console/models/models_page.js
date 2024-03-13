@@ -403,7 +403,8 @@ function handleFileUploads(files) {
         let filename = file.name;
         let fileType = file.type;
         let fileSize = file.size;
-        console.log('The file type here is: ', fileType);
+        console.log('The file type here is: ', fileType, ' and the file size is: ', fileSize);
+        
 
         if (fileType === 'image/heic') {
             // Convert HEIC to JPEG using heic2any

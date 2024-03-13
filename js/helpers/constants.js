@@ -104,3 +104,9 @@ function isImageUrlExpired(url) {
     // Check if the current date is past the expiration date
     return currentDate > expirationDate;
 }
+
+function hasEarlyAccess() {
+    let urlParams = new URLSearchParams(window.location.search);
+	let earlyAccess = urlParams.get('earlyAccess') || null;
+    return earlyAccess;
+}

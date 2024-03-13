@@ -2,7 +2,7 @@
 
 function homePageHtml() {
 	let headerTitle = 'Explore what you can create with AI';
-	let headerSubtitle = 'Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters and craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.';
+	let headerSubtitle = 'Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters to craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.';
 	let headerButtonTitle = 'Get started';
 
 	let first_feature_title = 'Model Training';

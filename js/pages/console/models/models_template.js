@@ -268,7 +268,7 @@ function uploadEntryDiv(file, is_first_file) {
     let html =
     `
           <li class="w-[8em] h-[8em] flex flex-none divide-y divide-gray-200 rounded-lg bg-white text-center shadow" filename="${filename}" filetype="${fileType}">
-              <div class="flex flex-col" style="position: relative;">
+              <div class="flex flex-col w-full h-full" style="position: relative;">
                   <img id="uploadedImage" class="w-full h-full rounded-lg object-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="">
                   <button class="remove-upload-button">
                 <span class="fa-stack" style="width:2.0em;">

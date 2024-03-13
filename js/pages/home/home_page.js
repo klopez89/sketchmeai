@@ -86,7 +86,7 @@ function isReadyToSubmitContactForm() {
   let urlParams = new URLSearchParams(window.location.search);
 	let earlyAccess = urlParams.get('earlyAccess') || null;
   
-  return isEmailValid == true && nameValue != '' && (earlyAccess ? true : messageValue != '')
+  return isEmailValid == true && nameValue != '' && (earlyAccess ? messageValue != '' : true)
 }
 
 function fireContactUsEndpoint(name, email, message) {

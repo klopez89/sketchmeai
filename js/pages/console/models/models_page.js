@@ -386,6 +386,7 @@ function resizeImage(file) {
             const ctx = canvas.getContext('2d');
             // Calculate the ratio of the image's width and height
             const ratio = img.width / img.height;
+            console.log('the ratio is: ', ratio);
             // Set the canvas dimensions to the desired size while maintaining the aspect ratio
             if (img.width > img.height) {
                 canvas.width = 1024 * ratio;

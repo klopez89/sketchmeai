@@ -394,7 +394,7 @@ function resizeImage(file) {
                 canvas.height = 1024;
             } else {
                 console.log('the height is greater than the width, or equal');
-                canvas.height = 1024 * ratio;
+                canvas.height = 1024 * (1 / ratio);
                 canvas.width = 1024;
             }
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);

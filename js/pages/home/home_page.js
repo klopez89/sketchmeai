@@ -83,19 +83,13 @@ function isReadyToSubmitContactForm() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isEmailValid = emailRegex.test(emailValue);
 
-  let urlParams = new URLSearchParams(window.location.search);
-	let earlyAccess = urlParams.get('earlyAccess') || null;
-  
-  return isEmailValid == true && nameValue != '' && (earlyAccess ? messageValue != '' : true)
+  return isEmailValid == true && nameValue != '' && (hasEarlyAccess() ? messageValue != '' : true)
 }
 
 function fireContactUsEndpoint(name, email, message) {
   showContactUsSpinner();
 
-	let urlParams = new URLSearchParams(window.location.search);
-	let earlyAccess = urlParams.get('earlyAccess') || null;
-
-  let url = earlyAccess ? `${CONSTANTS.BACKEND_URL}contact_us/new` : `${CONSTANTS.BACKEND_URL}early_access/new`;
+  let url = hasEarlyAccess() ? `${CONSTANTS.BACKEND_URL}contact_us/new` : `${CONSTANTS.BACKEND_URL}early_access/new`;
   let data = {
       "userName": name,
       "userEmail": email,
@@ -122,7 +116,8 @@ function fireContactUsEndpoint(name, email, message) {
 
 function updateContactUsButtonAfterSend() {
   let contactUsButton = $('#contact-us-button');
-  contactUsButton.find('p').html('Message Sent!');
+  let submittedTitle = hasEarlyAccess() ? 'Message Sent!' : 'Signed Up!';
+  contactUsButton.find('p').html(submittedTitle);
   contactUsButton.prop('disabled', true);
   contactUsButton.removeClass('bg-black');
   contactUsButton.addClass('bg-gray-500');

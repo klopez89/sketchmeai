@@ -2,9 +2,7 @@
 
 function homePageHtml() {
 
-
-	let urlParams = new URLSearchParams(window.location.search);
-	let earlyAccess = urlParams.get('earlyAccess') || null;
+	let earlyAccess = hasEarlyAccess();
 
 	let headerButtonTitle = earlyAccess ? 'Get started' : 'Get Early Access';
 	let headerButtonUrl = earlyAccess ? `https://${CONSTANTS.SITE_URL}/auth` : '#early-access-section';

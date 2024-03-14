@@ -168,18 +168,18 @@ function updateShowPaymentButton(credit_balance) {
 }
 
 function startListeningForCreditUpdates() {
-    console.log('startListeningForCreditUpdates');
-    let userRecId = getUserRecId();
-    db.collection('users').doc(userRecId)
-        .onSnapshot((doc) => {
-            if (doc.exists) {
-                let total_credits = doc.data().total_credits;
-                updateShowPaymentButton(total_credits);
-                updateBalanceInPaymentModal(total_credits);
-            } else {
-                console.log("No such document!");
-            }
-    });
+    // console.log('startListeningForCreditUpdates');
+    // let userRecId = getUserRecId();
+    // db.collection('users').doc(userRecId)
+    //     .onSnapshot((doc) => {
+    //         if (doc.exists) {
+    //             let total_credits = doc.data().total_credits;
+    //             updateShowPaymentButton(total_credits);
+    //             updateBalanceInPaymentModal(total_credits);
+    //         } else {
+    //             console.log("No such document!");
+    //         }
+    // });
 }
 
 
@@ -356,3 +356,17 @@ function signOutButtonPressed() {
 function navigationToHomePage() {
     window.location.href = `https://${CONSTANTS.SITE_URL}`;
 }
+
+
+
+
+// rules_version = '2';
+
+// service cloud.firestore {
+//   match /databases/{database}/documents {
+//     match /users/{userId} {
+//       allow read, update, delete: if request.auth != null && request.auth.uid == userId;
+//       allow create: if request.auth != null;
+//     }
+//   }
+// }

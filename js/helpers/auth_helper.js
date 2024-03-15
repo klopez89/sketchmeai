@@ -1,3 +1,9 @@
+
+// Firebase functions
+function getFirebaseUID() {
+    return firebase.auth().currentUser.uid;
+}
+
 // User Rec Id functions
 function storeUserRecId(userRecId) {
     localStorage.setItem('userRecId', userRecId);

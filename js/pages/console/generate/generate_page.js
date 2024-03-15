@@ -726,7 +726,7 @@ function fireGenerateCall(jsonObject) {
 function attemptToShowColdBootingBanner(model_name, is_warmed) {
     if (!is_warmed) {
         let warningMessage = `The model, ${model_name}, is likely cold booting which may take 2-5 minutes before generation. You are not charged for cold booting.`;
-        displayWarningBanner(warningMessage);
+        // displayWarningBanner(warningMessage);
     }
 }
 

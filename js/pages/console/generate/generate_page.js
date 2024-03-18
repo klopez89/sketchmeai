@@ -5,7 +5,8 @@ let status_check_interval = 2500; // 5 seconds in milliseconds
 const genEstimateCostPerDenoisingStep = 0.00128;
 var coldBootedModels = {};
 var previousModelSelectionId = null;
-var promptPlaceholderText = "Example: Drawing of cute dalmation puppy in the backyard, highly detailed";
+let sdxlPlaceholderText = "Example: Drawing of cute dalmation puppy in the backyard, highly detailed";
+var promptPlaceholderText = sdxlPlaceholderText;
 
 console.log("configuring generatation page");
 addImageGrid();
@@ -84,6 +85,12 @@ function configureModelListInput() {
 
         const previousReplicateName = previousOption.getAttribute('model');
         const newReplicateName = previousOption.getAttribute('model');
+
+        if (newModelName.contains('custom_sdxl')) {
+            promptPlaceholderText = `Drawing of ${newModelName} wearing a sleek black leather jacket`;
+        } else {
+            promptPlaceholderText = sdxlPlaceholderText;
+        }
 
         // Check if both previous and new selections contain 'custom_sdxl'
         if (previousReplicateName.includes('custom_sdxl') && newReplicateName.includes('custom_sdxl')) {

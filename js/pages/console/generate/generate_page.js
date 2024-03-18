@@ -53,6 +53,7 @@ function togglePlaceholder() {
 function removePlaceholder() {
     let promptDiv = document.getElementById('prompt');
 
+    console.log('In remove placeholder, textcontent: ', promptDiv.textContent, ' promptPlaceholderText: ', promptPlaceholderText);
     if (promptDiv.textContent === promptPlaceholderText) {
         if (promptDiv.classList.contains('text-gray-400')) {
             promptDiv.textContent = '';

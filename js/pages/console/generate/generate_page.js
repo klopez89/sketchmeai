@@ -86,7 +86,7 @@ function configureModelListInput() {
         const previousReplicateName = previousOption.getAttribute('model');
         const newReplicateName = previousOption.getAttribute('model');
 
-        if (newModelName.contains('custom_sdxl')) {
+        if (newModelName.includes('custom_sdxl')) {
             promptPlaceholderText = `Drawing of ${newModelName} wearing a sleek black leather jacket`;
         } else {
             promptPlaceholderText = sdxlPlaceholderText;

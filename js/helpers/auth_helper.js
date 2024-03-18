@@ -42,3 +42,16 @@ function getLastEditedCollection() {
 function removeLastEditedCollection() {
     localStorage.removeItem('lastCollectionId');
 }
+
+// Base Prices functions
+function storeBasePrices(basePrices) {
+    localStorage.setItem('basePrices', JSON.stringify(basePrices));
+}
+
+function getBasePrices() {
+    return JSON.parse(localStorage.getItem('basePrices'));
+}
+
+function removeBasePrices() {
+    return localStorage.removeItem('basePrices');
+}

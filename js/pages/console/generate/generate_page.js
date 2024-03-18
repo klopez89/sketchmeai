@@ -145,8 +145,7 @@ function configureGenerateForm() {
 
     let denoisingStepsInput = document.getElementById('denoising-steps');
     denoisingStepsInput.addEventListener('input', function(event) {
-        let estimatedCost = genEstimateCostPerDenoisingStep * denoisingStepsInput.value;
-        document.getElementById('training-estimate-label').innerHTML = `Estimated cost: $${estimatedCost.toFixed(2)} (for ${denoisingStepsInput.value} denoising steps)`
+        updateGenerationEstimateLabel();
     });
 
     const seedInput = document.getElementById('seed');
@@ -347,6 +346,8 @@ function fetchWorkingModels(userRecId) {
                 }
             }
             console.log('the base prices dict is: ', data.base_prices);
+            storeBasePrices(data.base_prices);
+            updateGenerationEstimateLabel();
         },
         error: function(error) {
             console.error('Error:', error);
@@ -1098,4 +1099,19 @@ function goingToLightbox(event) {
     console.log('goingToLightbox was called');
     closeAnyOpenGenMenus();
     event.stopPropagation();
+}
+
+function updateGenerationEstimateLabel() {
+    let basePrices = getBasePrices();
+    let cold_boot_upcharge = basePrices['cold_boot_upcharge'];
+    let warmed_upcharge = basePrices['warmed_upcharge'];
+    let inf_price = basePrices['inference_price'];
+
+    let inference_steps = document.getElementById('denoising-steps').value;
+    let base_price_estimate = inf_price * inference_steps;
+
+    let estimatedColdPrice = base_price_estimate + cold_boot_upcharge;
+    let estimatedWarmedPrice = base_price_estimate + warmed_upcharge;
+    // Est. cost: $0.04 ($0.11 from cold boot)<br>@ 20 denoising steps
+    document.getElementById('generation-estimate-label').innerHTML = `Est. cost: $${estimatedWarmedPrice.toFixed(2)} ($${estimatedColdPrice.toFixed(2)} from cold boot)<br>@ ${inference_steps} denoising steps)`
 }

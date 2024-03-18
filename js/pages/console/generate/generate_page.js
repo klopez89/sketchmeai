@@ -224,6 +224,8 @@ function formatAroundModelName(modelNames, promptInputDiv) {
            
             if (doesModelNameHaveBoldTags == false) {
                 console.log('trying to add bold tags if model name doesnt have em');
+                let newPromptValue = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
+                console.log('newPromptValue: ', newPromptValue);
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 setCaretPosition(promptInputDiv, initialCaretPos);
             }

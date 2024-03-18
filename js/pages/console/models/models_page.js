@@ -592,7 +592,7 @@ function updateTrainingCostEstimate() {
     let upload_count = numberOfUploadedFiles();
     let estimatedCostDiv = document.getElementById('training-estimate-label');
     if (upload_count < minimumUploadCount) {
-        estimatedCostDiv.innerHTML = 'Est. cost: $2.99 (based on 10 images)<br>Est. training time: 30 mins';
+        estimatedCostDiv.innerHTML = 'Estimated cost: $2.99 (based on 10 images)<br>Estimated training time: 30 mins';
     } else {
         let maxTrainSteps = upload_count * 100;
         let basePrices = getBasePrices();
@@ -601,7 +601,7 @@ function updateTrainingCostEstimate() {
         let priceEstimate = trainingPrice * timestepEstimate * maxTrainSteps;
         let timeEstimate =  estimatedTimePerTrainingImg * upload_count;
 
-        estimatedCostDiv.innerHTML = `Estimated cost: $${priceEstimate.toFixed(2)} (based on ${upload_count} images)<br>Est. training time: ${timeEstimate} mins`;
+        estimatedCostDiv.innerHTML = `Estimated cost: $${priceEstimate.toFixed(2)} (based on ${upload_count} images)<br>Estimated training time: ${timeEstimate} mins`;
     }
 }
 

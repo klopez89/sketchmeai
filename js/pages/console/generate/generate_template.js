@@ -86,7 +86,7 @@ function dummyGridHTML() {
                     </div>
                 </div>
 
-				<p class="text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">Est. cost: $0.04 ($0.11 from cold boot)<br>@ 20 denoising steps</p>
+				<p class="text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">Estimated cost: $0.04 ($0.11 from cold boot)<br>@ 20 denoising steps</p>
 
 				<div class="px-0 pt-4 pb-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6" id="model-selection-section">
 

@@ -1113,5 +1113,5 @@ function updateGenerationEstimateLabel() {
     let estimatedColdPrice = base_price_estimate + cold_boot_upcharge;
     let estimatedWarmedPrice = base_price_estimate + warmed_upcharge;
     // Est. cost: $0.04 ($0.11 from cold boot)<br>@ 20 denoising steps
-    document.getElementById('generation-estimate-label').innerHTML = `Est. cost: $${estimatedWarmedPrice.toFixed(2)} ($${estimatedColdPrice.toFixed(2)} from cold boot)<br>@ ${inference_steps} denoising steps)`
+    document.getElementById('generation-estimate-label').innerHTML = `Estimated cost: $${estimatedWarmedPrice.toFixed(2)} ($${estimatedColdPrice.toFixed(2)} from cold boot)<br>@ ${inference_steps} denoising steps`
 }

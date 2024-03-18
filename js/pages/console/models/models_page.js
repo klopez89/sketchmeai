@@ -601,7 +601,7 @@ function updateTrainingCostEstimate() {
         let priceEstimate = trainingPrice * timestepEstimate * maxTrainSteps;
         let timeEstimate =  estimatedTimePerTrainingImg * upload_count;
 
-        estimatedCostDiv.innerHTML = `Est. cost: $${priceEstimate.toFixed(2)} (based on ${upload_count} images)<br>Est. training time: ${timeEstimate} mins`;
+        estimatedCostDiv.innerHTML = `Estimated cost: $${priceEstimate.toFixed(2)} (based on ${upload_count} images)<br>Est. training time: ${timeEstimate} mins`;
     }
 }
 

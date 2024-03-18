@@ -5,6 +5,7 @@ configureTrainingSubjectField();
 configureTrainingForm();
 setupAccordion();
 applyTrainingPreset(personTrainingPreset());
+updateTrainingCostEstimate();
 checkForNewModelRedirect();
 
 let userRecId = getUserRecId();
@@ -589,11 +590,16 @@ function updateTrainingCostEstimate() {
     let upload_count = numberOfUploadedFiles();
     let estimatedCostDiv = document.getElementById('training-estimate-label');
     if (upload_count < minimumUploadCount) {
-        estimatedCostDiv.innerHTML = 'Estimated cost: $3.40 (based on 10 images)<br>Estimated training time: 30 mins';
+        estimatedCostDiv.innerHTML = 'Est. cost: $2.99 (based on 10 images)<br>Est. training time: 30 mins';
     } else {
-        let estimated_cost = estimatedCostPerTrainingImg * upload_count;
-        let estimatedTime = estimatedTimePerTrainingImg * upload_count;
-        estimatedCostDiv.innerHTML = `Estimated cost: $${estimated_cost.toFixed(2)} (based on ${upload_count} images)<br>Estimated training time: ${estimatedTime} mins`;
+        let maxTrainSteps = upload_count * 100;
+        let basePrices = getBasePrices();
+        let trainingPrice = basePrices.training_price;
+        let timestepEstimate = basePrices.timestep_estimate;
+        let priceEstimate = trainingPrice * timestepEstimate * maxTrainSteps;
+        let timeEstimate =  estimatedTimePerTrainingImg * upload_count;
+
+        estimatedCostDiv.innerHTML = `Est. cost: $${priceEstimate.toFixed(2)} (based on ${upload_count} images)<br>Est. training time: ${timeEstimate} mins`;
     }
 }
 

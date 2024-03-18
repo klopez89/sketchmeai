@@ -546,7 +546,7 @@ function selectModelWithVersion(version) {
       if (options[i].getAttribute('version') === version) {  
         options[i].selected = true;
         selected = true;
-        break;
+        // break;
       } else {
         options[i].selected = false;
       }

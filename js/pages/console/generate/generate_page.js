@@ -58,6 +58,11 @@ function removePlaceholder() {
     }
 }
 
+function isPromptInputShowingPlaceholder() {
+    let promptDiv = document.getElementById('prompt');
+    return promptDiv.classList.contains('text-gray-400');
+}
+
 function configureModelListInput() {
     const modelDropdown = document.getElementById('model-dropdown');
     previousModelSelectionId = modelDropdown.options[modelDropdown.selectedIndex].id; // Store the initial selection id
@@ -587,6 +592,13 @@ function generateButtonPressed(event) {
     }
 
     var prompt = promptValues.prompt;
+    if (isPromptInputShowingPlaceholder() == true) {
+        if (prompt.includes('Example: ')) {
+            prompt = prompt.replace('Example: ', '');
+        }
+        document.getElementById('prompt').innerHTML = prompt;
+        removePlaceholder();
+    }
 
     for (let modelName of modelNames) {
         const modelNameRegex = new RegExp(`\\b${modelName}\\b`, 'g');

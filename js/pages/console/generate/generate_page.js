@@ -316,6 +316,17 @@ function randomizeSeed(event) {
 
 // Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters and craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.
 
+function tryShowingPromptSettings() {
+    const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
+    const buttonHTMLElement = accordionButton.lastChild;
+    const buttonText = buttonHTMLElement.nodeValue;
+
+    if (buttonText.includes('Show')) {
+        accordionButton.click();
+    }
+}
+
+
 function setupAccordion() {
     const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
     accordionButton.addEventListener('click', function() {
@@ -861,6 +872,7 @@ function configureCopyButton(gen_dict, gen_element) {
     gen_element.querySelector('#action-container').classList.remove('hidden');
     copyButton = gen_element.querySelector('#copy-button');
     copyButton.addEventListener('click', function(event) {
+        tryShowingPromptSettings();
         removePlaceholder();
         copyPromptInfoFromGen(gen_dict);
         triggerModelNameInPromptFormatting();

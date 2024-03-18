@@ -37,8 +37,13 @@ window.onresize = function() {
 function configurePromptInputPlaceholder() {
     let promptDiv = document.getElementById('prompt');
     promptDiv.addEventListener('focus', removePlaceholder);
-    promptDiv.addEventListener('blur', togglePlaceholder);
+    promptDiv.addEventListener('blur', promptAboutToLoseFocus);
     togglePlaceholder();
+}
+
+function promptAboutToLoseFocus() {
+    togglePlaceholder();
+    triggerModelNameInPromptFormatting();
 }
 
 function togglePlaceholder() {

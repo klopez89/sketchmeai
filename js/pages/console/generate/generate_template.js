@@ -86,6 +86,8 @@ function dummyGridHTML() {
                     </div>
                 </div>
 
+				<p class="text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">Est. cost: $0.04 ($0.11 from cold boot)<br>@ 20 denoising steps</p>
+
 				<div class="px-0 pt-4 pb-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6" id="model-selection-section">
 
 					<div class="col-span-full" id="models-field-container">
@@ -231,13 +233,7 @@ function dummyGridHTML() {
 					</div>
 				</div>
 
-
-				
-
 				<div class="flex-grow"></div>
-
-				<p class="text-xs text-gray-400 italic" id="training-estimate-label">Estimated cost: $0.03 (for 20 denoising steps)</p>
-
             </form>
         </div>
 

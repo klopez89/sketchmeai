@@ -1,3 +1,14 @@
+const minimumUploadCount = 3; //10;
+const maximumUploadCount = 20;
+const canceledColor = '#801930';
+const failedColor = '#801930';
+const estimatedCostPerTrainingImg = 0.34
+const estimatedTimePerTrainingImg = 3 // in minutes per img
+
+let userRecId = getUserRecId();
+let lastDocId = null;
+
+
 addModelsGrid();
 addBaseModelMenu();
 configureNewModelUploadArea();
@@ -7,17 +18,8 @@ setupAccordion();
 applyTrainingPreset(personTrainingPreset());
 updateTrainingCostEstimate();
 checkForNewModelRedirect();
-
-let userRecId = getUserRecId();
-let lastDocId = null;
 fetchModels(userRecId, lastDocId);
 
-const minimumUploadCount = 3; //10;
-const maximumUploadCount = 20;
-const canceledColor = '#801930';
-const failedColor = '#801930';
-const estimatedCostPerTrainingImg = 0.34
-const estimatedTimePerTrainingImg = 3 // in minutes per img
 
 function enforceNoSpaces(event) {
     event.target.value = event.target.value.replace(/\s/g, '');

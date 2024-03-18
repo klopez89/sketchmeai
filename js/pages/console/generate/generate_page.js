@@ -87,6 +87,7 @@ function configureModelListInput() {
         const previousReplicateName = previousOption.getAttribute('model');
         const newReplicateName = previousOption.getAttribute('model');
 
+        console.log('New replicate model name:', newReplicateName);
         if (newReplicateName.includes('custom_sdxl')) {
             promptPlaceholderText = `Drawing of ${newModelName} wearing a sleek black leather jacket`;
         } else {

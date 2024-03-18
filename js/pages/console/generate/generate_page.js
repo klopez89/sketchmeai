@@ -598,6 +598,7 @@ function generateButtonPressed(event) {
         }
         removePlaceholder();
         document.getElementById('prompt').innerHTML = prompt;
+        formatAroundModelName();
     }
 
     for (let modelName of modelNames) {

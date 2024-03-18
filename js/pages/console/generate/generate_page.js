@@ -596,8 +596,8 @@ function generateButtonPressed(event) {
         if (prompt.includes('Example: ')) {
             prompt = prompt.replace('Example: ', '');
         }
-        document.getElementById('prompt').innerHTML = prompt;
         removePlaceholder();
+        document.getElementById('prompt').innerHTML = prompt;
     }
 
     for (let modelName of modelNames) {

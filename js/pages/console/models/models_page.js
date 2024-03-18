@@ -438,12 +438,12 @@ function handleFileUploads(files) {
         let fileSize = file.size;
         console.log('The file type here is: ', fileType, ' and the file size is: ', fileSize);
         
+        let uploadAreaButton = document.getElementById('uploadAreaButton');
+        let uploadSpinner = uploadAreaButton.querySelector('#upload-spinner');
+        countBeingConverted += 1;
 
         if (fileType === 'image/heic') {
             // Convert HEIC to JPEG using heic2any
-            countBeingConverted += 1;
-            let uploadAreaButton = document.getElementById('uploadAreaButton');
-            let uploadSpinner = uploadAreaButton.querySelector('#upload-spinner');
             uploadSpinner.classList.remove('hidden');
 
             heic2any({
@@ -479,6 +479,12 @@ function handleFileUploads(files) {
         } else if (fileType === 'image/jpg' || fileType === 'image/jpeg' || fileType === 'image/png') {
             // Handle other image types as before
             resizeImage(file).then(function (resizedImage) {
+
+                countBeingConverted -= 1;
+                if (countBeingConverted === 0) {
+                    uploadSpinner.classList.add('hidden');
+                }
+
                 reader.addEventListener('load', function(event) {
                     let fileData = event.target.result;
                     let fileInfo = {

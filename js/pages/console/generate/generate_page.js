@@ -94,7 +94,9 @@ function configureModelListInput() {
             promptPlaceholderText = sdxlPlaceholderText;
         }
 
-        // Check if both previous and new selections contain 'custom_sdxl'
+        // Try to swap trained model name with another selected trained model. Else set the appropriate placeholder if in placeholder state 
+        const promptInput = document.getElementById('prompt');
+        
         if (previousReplicateName.includes('custom_sdxl') && newReplicateName.includes('custom_sdxl')) {
             // Swap the modelName in the prompt if it exists
             const promptInput = document.getElementById('prompt');
@@ -103,6 +105,8 @@ function configureModelListInput() {
             if (promptText.includes(previousModelName)) {
                 promptInput.textContent = promptText.replace(previousModelName, newModelName);
             }
+        } else if (isPromptInputShowingPlaceholder()) {
+            promptInput.textContent = promptPlaceholderText;
         }
 
         // Update the previous selection id for the next change event

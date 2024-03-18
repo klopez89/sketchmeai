@@ -598,6 +598,7 @@ function generateButtonPressed(event) {
         }
         removePlaceholder();
         document.getElementById('prompt').innerHTML = prompt;
+        console.log('the prompt after removing placeholder: ', document.getElementById('prompt').innerHTML);
         triggerModelNameInPromptFormatting();
     }
 

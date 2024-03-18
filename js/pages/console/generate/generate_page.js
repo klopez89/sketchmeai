@@ -5,7 +5,7 @@ let status_check_interval = 2500; // 5 seconds in milliseconds
 const genEstimateCostPerDenoisingStep = 0.00128;
 var coldBootedModels = {};
 var previousModelSelectionId = null;
-let sdxlPlaceholderText = "Example: Drawing of cute dalmation puppy in the backyard, highly detailed";
+let sdxlPlaceholderText = "Drawing of cute dalmation puppy in the backyard, highly detailed";
 var promptPlaceholderText = sdxlPlaceholderText;
 
 console.log("configuring generatation page");
@@ -634,9 +634,6 @@ function generateButtonPressed(event) {
 
     var prompt = promptValues.prompt;
     if (isPromptInputShowingPlaceholder() == true) {
-        if (prompt.includes('Example: ')) {
-            prompt = prompt.replace('Example: ', '');
-        }
         removePlaceholder();
         document.getElementById('prompt').innerHTML = prompt;
         console.log('the prompt after removing placeholder: ', document.getElementById('prompt').innerHTML);

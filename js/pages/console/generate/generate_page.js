@@ -227,6 +227,9 @@ function formatAroundModelName(modelNames, promptInputDiv) {
                 let newPromptValue = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 console.log('newPromptValue: ', newPromptValue);
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
+                setTimeout(() => {
+                    setCaretPosition(promptInputDiv, initialCaretPos);
+                }, 0);
                 // setCaretPosition(promptInputDiv, initialCaretPos);
             }
         }

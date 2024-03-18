@@ -85,7 +85,7 @@ function configureModelListInput() {
         const newModelName = newOption ? newOption.getAttribute('modelname') : '';
 
         const previousReplicateName = previousOption.getAttribute('model');
-        const newReplicateName = previousOption.getAttribute('model');
+        const newReplicateName = newOption.getAttribute('model');
 
         console.log('New replicate model name:', newReplicateName);
         if (newReplicateName.includes('custom_sdxl')) {

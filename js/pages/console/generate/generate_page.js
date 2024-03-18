@@ -346,6 +346,7 @@ function fetchWorkingModels(userRecId) {
                     attemptAutoModelSelection();
                 }
             }
+            console.log('the base prices dict is: ', data.base_prices);
         },
         error: function(error) {
             console.error('Error:', error);

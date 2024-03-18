@@ -441,11 +441,10 @@ function handleFileUploads(files) {
         let uploadAreaButton = document.getElementById('uploadAreaButton');
         let uploadSpinner = uploadAreaButton.querySelector('#upload-spinner');
         countBeingConverted += 1;
+        uploadSpinner.classList.remove('hidden');
 
         if (fileType === 'image/heic') {
             // Convert HEIC to JPEG using heic2any
-            uploadSpinner.classList.remove('hidden');
-
             heic2any({
                 blob: file,
                 toType: "image/jpeg",

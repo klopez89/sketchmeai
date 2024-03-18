@@ -598,7 +598,7 @@ function generateButtonPressed(event) {
         }
         removePlaceholder();
         document.getElementById('prompt').innerHTML = prompt;
-        formatAroundModelName();
+        triggerModelNameInPromptFormatting();
     }
 
     for (let modelName of modelNames) {

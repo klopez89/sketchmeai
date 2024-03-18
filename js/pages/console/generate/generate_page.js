@@ -202,6 +202,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             // Strip any spaces from the model name in order to check against list of selected model names
             const cleanedModelName = boldedModelName.replace(/&nbsp;/g, ' ').replace(/\s+/g, '');
             if (!modelNames.includes(cleanedModelName)) {
+                console.log('Removing bold tags from:', boldedModelName);
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, boldedModelName);
                 setCaretPosition(promptInputDiv, initialCaretPos);
             }
@@ -222,6 +223,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
            
             if (doesModelNameHaveBoldTags == false) {
+                console.log('trying to add bold tags if model name doesnt have em');
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 setCaretPosition(promptInputDiv, initialCaretPos);
             }

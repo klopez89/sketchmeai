@@ -407,7 +407,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         cancel_button.addEventListener('click', function() {
                             gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
                             cancelGeneration(generation.replicate_prediction_id, gen_element, generation);
-                            cancel_button.classList.add('hidden');
+                            // cancel_button.classList.add('hidden');
                         });
                         cancel_button.classList.remove('hidden');
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);

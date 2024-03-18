@@ -455,7 +455,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                             cancelGeneration(generation.replicate_prediction_id, gen_element, generation);
                             // cancel_button.classList.add('hidden');
                         });
-                        cancel_button.classList.remove('hidden');
+                        // cancel_button.classList.remove('hidden');
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
                     } else if (generation.prediction_status === PredictionStatus.CANCELED) {
                         gen_element.querySelector('img').classList.remove('hidden');
@@ -835,7 +835,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                     cancelGeneration(generation_dict.replicate_prediction_id, gen_element, generation_dict);
                     // cancel_button.classList.add('hidden');
                 });
-                cancel_button.classList.remove('hidden');
+                // cancel_button.classList.remove('hidden');
             } else if (prediction_status === PredictionStatus.SUCCEEDED) {
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 gen_element.querySelector('#gen-status').innerHTML = '';

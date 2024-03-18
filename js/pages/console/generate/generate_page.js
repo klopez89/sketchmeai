@@ -819,7 +819,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 cancel_button.addEventListener('click', function() {
                     gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
                     cancelGeneration(generation_dict.replicate_prediction_id, gen_element, generation_dict);
-                    cancel_button.classList.add('hidden');
+                    // cancel_button.classList.add('hidden');
                 });
                 cancel_button.classList.remove('hidden');
             } else if (prediction_status === PredictionStatus.SUCCEEDED) {

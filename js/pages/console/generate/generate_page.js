@@ -51,8 +51,12 @@ function togglePlaceholder() {
 
 function removePlaceholder() {
     let promptDiv = document.getElementById('prompt');
-    if (promptDiv.textContent === promptPlaceholderText) {
+
+    if (promptDiv.textContent === promptPlaceholderText && promptDiv.classList.contains('text-gray-400')) {
         promptDiv.textContent = '';
+    }
+
+    if (promptDiv.textContent === promptPlaceholderText) {
         promptDiv.classList.remove('text-gray-400');
         promptDiv.classList.add('text-gray-900');
     }

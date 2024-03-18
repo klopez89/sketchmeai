@@ -118,6 +118,7 @@ function configureModelListInput() {
         previousModelSelectionId = newSelectionId;
 
         triggerModelNameInPromptFormatting();
+        updateGenerationEstimateLabel();
     });
 }
 
@@ -1158,15 +1159,18 @@ function goingToLightbox(event) {
 
 function updateGenerationEstimateLabel() {
     let basePrices = getBasePrices();
-    let cold_boot_upcharge = basePrices['cold_boot_upcharge'];
-    let warmed_upcharge = basePrices['warmed_upcharge'];
     let inf_price = basePrices['inference_price'];
-
     let inference_steps = document.getElementById('denoising-steps').value;
     let base_price_estimate = inf_price * inference_steps;
 
-    let estimatedColdPrice = base_price_estimate + cold_boot_upcharge;
-    let estimatedWarmedPrice = base_price_estimate + warmed_upcharge;
-    // Est. cost: $0.04 ($0.11 from cold boot)<br>@ 20 denoising steps
-    document.getElementById('generation-estimate-label').innerHTML = `Estimated cost: $${estimatedWarmedPrice.toFixed(2)} ($${estimatedColdPrice.toFixed(2)} from cold boot)<br>@ ${inference_steps} denoising steps`
+    if (previousModelSelectionId.includes('sdxl')) {
+        document.getElementById('generation-estimate-label').innerHTML = `Estimated cost: $${base_price_estimate}<br>@ ${inference_steps} denoising steps`
+    } else {
+        let cold_boot_upcharge = basePrices['cold_boot_upcharge'];
+        let warmed_upcharge = basePrices['warmed_upcharge'];
+        let estimatedColdPrice = base_price_estimate + cold_boot_upcharge;
+        let estimatedWarmedPrice = base_price_estimate + warmed_upcharge;
+        document.getElementById('generation-estimate-label').innerHTML = `Estimated cost: $${estimatedWarmedPrice.toFixed(2)} ($${estimatedColdPrice.toFixed(2)} from cold boot)<br>@ ${inference_steps} denoising steps`
+
+    }
 }

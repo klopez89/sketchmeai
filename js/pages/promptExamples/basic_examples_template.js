@@ -120,7 +120,7 @@ function newPromptExample(example_dictionary) {
         <div id="prompt-values" class="md:w-1/2">
             <div id="value-set">
                 <header3 class="text-base font-semibold">Prompt</header3>
-                <div class="text-sm text-black">${example_dictionary.prompt}
+                <div class="text-sm text-black cursor-pointer hover:underline" onclick="navigator.clipboard.writeText('${example_dictionary.prompt}')">${example_dictionary.prompt}
                 </div>
             </div>
             <div id="value-set" class="mt-2">

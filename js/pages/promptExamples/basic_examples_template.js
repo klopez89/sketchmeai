@@ -125,27 +125,27 @@ function newPromptExample(example_dictionary) {
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Negative Prompt</header3>
-                <div class="text-sm text-black">${example_dictionary.negativePrompt}
+                <div class="text-sm text-black cursor-pointer hover:underline" onclick="navigator.clipboard.writeText('${example_dictionary.negativePrompt}')">${example_dictionary.negativePrompt}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Denoising Steps</header3>
-                <div class="text-sm text-black">${example_dictionary.denoisingSteps}
+                <div class="text-sm text-black cursor-pointer hover:underline" onclick="navigator.clipboard.writeText('${example_dictionary.denoisingSteps}')">${example_dictionary.denoisingSteps}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Guidance Scale</header3>
-                <div class="text-sm text-black">${example_dictionary.guidanceScale}
+                <div class="text-sm text-black cursor-pointer hover:underline" onclick="navigator.clipboard.writeText('${example_dictionary.guidanceScale}')">${example_dictionary.guidanceScale}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Lora Scale</header3>
-                <div class="text-sm text-black">${example_dictionary.loraScale}
+                <div class="text-sm text-black cursor-pointer hover:underline" onclick="navigator.clipboard.writeText('${example_dictionary.loraScale}')">${example_dictionary.loraScale}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Seed</header3>
-                <div class="text-sm text-black">${example_dictionary.seed}
+                <div class="text-sm text-black cursor-pointer hover:underline" onclick="navigator.clipboard.writeText('${example_dictionary.seed}')">${example_dictionary.seed}
                 </div>
             </div>
         </div>

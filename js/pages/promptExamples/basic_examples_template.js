@@ -114,38 +114,38 @@ function newPromptExample(example_dictionary) {
     <div class="flex flex-col md:flex-row items-start p-4 gap-4">
         <div class="w-full md:w-1/2">
             <div class="aspect-w-10 aspect-h-10 overflow-hidden">
-                <img src="${example_dictionaries.imageUrl}" alt="Image description" class="object-cover w-full h-full">
+                <img src="${example_dictionary.imageUrl}" alt="Image description" class="object-cover w-full h-full">
             </div>
         </div>
         <div id="prompt-values" class="md:w-1/2">
             <div id="value-set">
                 <header3 class="text-base font-semibold">Prompt</header3>
-                <div class="text-sm text-black">${example_dictionaries.prompt}
+                <div class="text-sm text-black">${example_dictionary.prompt}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Negative Prompt</header3>
-                <div class="text-sm text-black">${example_dictionaries.negativePrompt}
+                <div class="text-sm text-black">${example_dictionary.negativePrompt}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Denoising Steps</header3>
-                <div class="text-sm text-black">${example_dictionaries.denoisingSteps}
+                <div class="text-sm text-black">${example_dictionary.denoisingSteps}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Guidance Scale</header3>
-                <div class="text-sm text-black">${example_dictionaries.guidanceScale}
+                <div class="text-sm text-black">${example_dictionary.guidanceScale}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Lora Scale</header3>
-                <div class="text-sm text-black">${example_dictionaries.loraScale}
+                <div class="text-sm text-black">${example_dictionary.loraScale}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Seed</header3>
-                <div class="text-sm text-black">${example_dictionaries.seed}
+                <div class="text-sm text-black">${example_dictionary.seed}
                 </div>
             </div>
         </div>

@@ -114,38 +114,38 @@ function newPromptExample(example_dictionary) {
     <div class="flex flex-col md:flex-row items-start p-4 gap-4">
         <div class="w-full md:w-1/2">
             <div class="aspect-w-10 aspect-h-10 overflow-hidden">
-                <img src="https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img8.png" alt="Image description" class="object-cover w-full h-full">
+                <img src="${example_dictionaries.imageUrl}" alt="Image description" class="object-cover w-full h-full">
             </div>
         </div>
         <div id="prompt-values" class="md:w-1/2">
             <div id="value-set">
                 <header3 class="text-base font-semibold">Prompt</header3>
-                <div class="text-sm text-black">closeup portrait graphic image of Kevin with soft smile and sleek red-colored leather jacket, style is bold, sharp outlines and solid borders around each shape, reminiscent of cell-shading in classic animation and graphic novels
+                <div class="text-sm text-black">${example_dictionaries.prompt}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Negative Prompt</header3>
-                <div class="text-sm text-black">morbid, photorealistic, ugly, teeth
+                <div class="text-sm text-black">${example_dictionaries.negativePrompt}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Denoising Steps</header3>
-                <div class="text-sm text-black">20
+                <div class="text-sm text-black">${example_dictionaries.denoisingSteps}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Guidance Scale</header3>
-                <div class="text-sm text-black">13
+                <div class="text-sm text-black">${example_dictionaries.guidanceScale}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Lora Scale</header3>
-                <div class="text-sm text-black">0.9
+                <div class="text-sm text-black">${example_dictionaries.loraScale}
                 </div>
             </div>
             <div id="value-set" class="mt-2">
                 <header3 class="text-base font-semibold">Seed</header3>
-                <div class="text-sm text-black">382414040
+                <div class="text-sm text-black">${example_dictionaries.seed}
                 </div>
             </div>
         </div>

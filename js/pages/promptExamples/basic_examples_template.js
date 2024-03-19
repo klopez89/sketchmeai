@@ -25,23 +25,86 @@ const example_dictionaries = [
         "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img8.png"
     },
     {
-        "prompt": "closeup portrait graphic image of Kevin with soft smile and sleek red-colored leather jacket, style is bold, sharp outlines and solid borders around each shape, reminiscent of cell-shading in classic animation and graphic novels",
-        "negativePrompt": "morbid, photorealistic, ugly, teeth",
+        "prompt": "closeup drawing of Kevin with a soft smile, in the style of Olivier Bonhomme, in science lab wearing a white coat, wide-angle view, soft shadows, no contrast, clean sharp focus",
+        "negativePrompt": "morbid, photorealistic, ugly",
         "denoisingSteps": 20,
         "guidanceScale": 13,
         "loraScale": 0.9,
-        "seed": 382414040,
-        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img8.png"
+        "seed": 360946499,
+        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img1.png"
     },
     {
-        "prompt": "closeup portrait graphic image of Kevin with soft smile and sleek red-colored leather jacket, style is bold, sharp outlines and solid borders around each shape, reminiscent of cell-shading in classic animation and graphic novels",
+        "prompt": "closeup colored portrait drawing of Kevin with soft smile and dressed in police uniform in the style of Mordecai Ardon, city street in background, wide-angle view, soft shadows, clean sharp focus",
+        "negativePrompt": "morbid, photorealistic, ugly, teeth",
+        "denoisingSteps": 20,
+        "guidanceScale": 13,
+        "loraScale": 0.95,
+        "seed": 268156152,
+        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img2.png"
+    },
+    {
+        "prompt": "closeup portrait graphic image of Kevin with soft smile and santa hat, style is bold, sharp outlines and solid borders, reminiscent of cell-shading in classic animation and graphic novels",
+        "negativePrompt": "morbid, photorealistic, ugly, teeth",
+        "denoisingSteps": 80,
+        "guidanceScale": 13,
+        "loraScale": 0.98,
+        "seed": 178512442,
+        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img3.png"
+    },
+    {
+        "prompt": "colored portrait drawing of Kevin with a soft smile, wearing a brimmed wizard-hat and wizard-robe, in the style of Christopher Balaskas, castle in background, wide-angle view, soft shadows, clean sharp focus",
         "negativePrompt": "morbid, photorealistic, ugly, teeth",
         "denoisingSteps": 20,
         "guidanceScale": 13,
         "loraScale": 0.9,
-        "seed": 382414040,
-        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img8.png"
-    }
+        "seed": 335962825,
+        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img4.png"
+    },
+    {
+        "prompt": "anime art of Kevin with soft smile, at the beach during sunset, wide-angle view, professional color grading, soft shadows, no contrast, clean sharp focus",
+        "negativePrompt": "morbid, photorealistic, ugly, teeth",
+        "denoisingSteps": 20,
+        "guidanceScale": 13,
+        "loraScale": 0.98,
+        "seed": 220047764,
+        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img5.png"
+    },
+    {
+        "prompt": "drawing of Kevin in the pool with a drink, wearing a speedo",
+        "negativePrompt": "morbid, photorealistic, ugly, teeth",
+        "denoisingSteps": 40,
+        "guidanceScale": 10,
+        "loraScale": 0.9,
+        "seed": 280729989,
+        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img6.png"
+    },
+    {
+        "prompt": "closeup drawing of Kevin with a soft smile, comic and graphic novel style, in space wearing a spacesuit, wide-angle view, soft shadows, no contrast, clean sharp focus",
+        "negativePrompt": "morbid, photorealistic, ugly, teeth",
+        "denoisingSteps": 40,
+        "guidanceScale": 13,
+        "loraScale": 1,
+        "seed": 5212531,
+        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img7.png"
+    },
+    {
+        "prompt": "closeup colored portrait drawing of Kevin with soft smile and silver shirt in the style of Alexander Archipenko, crowd in the background, wide-angle view, soft shadows, clean sharp focus",
+        "negativePrompt": "morbid, photorealistic, ugly, teeth",
+        "denoisingSteps": 20,
+        "guidanceScale": 13,
+        "loraScale": 1,
+        "seed": 119674369,
+        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img9.png"
+    },
+    {
+        "prompt": "anime art of Kevin with soft smile, wearing cowboy hat, farm in background, wide-angle view, professional color grading, soft shadows, no contrast, clean sharp focus",
+        "negativePrompt": "morbid, photorealistic, ugly, teeth",
+        "denoisingSteps": 80,
+        "guidanceScale": 13,
+        "loraScale": 0.98,
+        "seed": 337474749,
+        "imageUrl": "https://storage.googleapis.com/sketchmeai-public/prompt_examples/home_img10.png"
+    },
 ];
 
 

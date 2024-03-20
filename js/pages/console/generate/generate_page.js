@@ -8,13 +8,13 @@ var previousModelSelectionId = null;
 let sdxlPlaceholderText = "Drawing of cute dalmation puppy in the backyard, highly detailed";
 var promptPlaceholderText = sdxlPlaceholderText;
 
-console.log("configuring generatation page");
 addImageGrid();
 addBaseGenMenu();
 configureGenerateForm();
 resizeGrid();
 configureInfiniteScroll();
 setupAccordion();
+showBasicExamplesButton();
 configureModelListInput();
 configurePromptInputPlaceholder(); 
 
@@ -32,6 +32,10 @@ document.querySelectorAll('.editable').forEach(function(element){
 
 window.onresize = function() {
     resizeGrid();
+}
+
+function showBasicExamplesButton() {
+    document.getElementById('basic-examples-button').classList.remove('hidden');
 }
 
 function configurePromptInputPlaceholder() {

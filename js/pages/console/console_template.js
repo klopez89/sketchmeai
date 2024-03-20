@@ -95,9 +95,10 @@ function consoleHtml() {
             <!-- Separator -->
             <div class="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true"></div>
     
-            <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+            <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 items-center">
                 <div id="page-title" class="relative flex flex-1 self-center text-xl font-bold">Generate</div>
-                <button class="cursor-pointer rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-8 py-2.5 text-sm text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">See Prompt Examples</button>                <button id="show-payment-button" onclick="showPaymentModal()" class="rounded-md text-xs text-gray-400 hover:bg-gray-100 px-4 my-2">
+                <button onclick="navigateToBasicPromptExamples()" class="cursor-pointer rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-8 py-2.5 text-sm text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">See Prompt Examples</button>                
+                <button id="show-payment-button" onclick="showPaymentModal()" class="rounded-md text-xs text-gray-400 hover:bg-gray-100 px-4 py-4 my-2">
                     <i class="fas fa-spinner fa-spin"></i>
                 </button>
                 <div class="flex items-center gap-x-4 lg:gap-x-6">

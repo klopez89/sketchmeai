@@ -4,9 +4,9 @@ function homePageHtml() {
 
 	let earlyAccess = hasEarlyAccess();
 
-	let headerButtonTitle = earlyAccess ? 'Get started' : 'Get Early Access';
-	let headerButtonUrl = earlyAccess ? `https://${CONSTANTS.SITE_URL}/auth` : '#early-access-section';
-	let contactUsId = earlyAccess ? 'contact-form-section' : 'early-access-section';
+	let headerButtonTitle = 'Get Started';
+	let headerButtonUrl = `https://${CONSTANTS.SITE_URL}/auth`;
+	let contactUsId = 'contact-form-section';
 
 	let headerTitle = 'Explore what you can create with AI';
 	let headerSubtitle = 'Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters to craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.';
@@ -47,9 +47,7 @@ function homePageHtml() {
 	let timeline_d_date = 'Jun 2024';
 
 	
-	let contactFormTitle = earlyAccess ? 'Contact Us' : 'Sign Up for Early Access';
-	let contactFormMessageHiddenClass = earlyAccess ? '' : 'hidden';
-
+	let contactFormTitle = 'Contact Us';
 	let currentYear = new Date().getFullYear().toString();
 
 
@@ -332,7 +330,7 @@ function homePageHtml() {
 							</div>
 						</div>
 
-						<div class="col-span-full ${contactFormMessageHiddenClass}" id="message-field-container">
+						<div class="col-span-full" id="message-field-container">
 							<div class="flex items-center">
 								<label for="user-message" class="block text-sm font-medium leading-6 text-gray-900">Message</label>
 							</div>
@@ -343,7 +341,7 @@ function homePageHtml() {
 
 						<div class="col-span-full flex flex-col justify-center" id="contact-button-container">
 							<button id="contact-us-button" type="submit" class="w-full h-full flex justify-center items-center rounded-md flex-grow-0 flex-shrink-0 text-center border border-transparent px-3.5 py-2.5 text-lg text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-gray-200 hover:bg-gray-200" disabled="">
-								<p id="contact-us-button-label" class="flex items-center">Sign Up</p>
+								<p id="contact-us-button-label" class="flex items-center">Send Message</p>
 								<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 							</button>
 						</div>

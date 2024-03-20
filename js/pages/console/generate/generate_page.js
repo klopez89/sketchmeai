@@ -578,8 +578,6 @@ function selectModelWithVersion(version) {
     modelDropdown.dispatchEvent(event);
 }
 
-
-
 function generateButtonPressed(event) {
     event.preventDefault();
     removeErrorBanners();

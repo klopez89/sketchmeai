@@ -578,6 +578,8 @@ function selectModelWithVersion(version) {
     modelDropdown.dispatchEvent(event);
 }
 
+
+
 function generateButtonPressed(event) {
     event.preventDefault();
     removeErrorBanners();
@@ -783,7 +785,7 @@ function fireGenerateCall(jsonObject) {
 
 function attemptToShowColdBootingBanner(model_name, is_warmed) {
     if (!is_warmed) {
-        let warningMessage = `The model, ${model_name}, is likely cold booting which may take 2-5 minutes before generation. You are not charged for cold booting.`;
+        let warningMessage = `The model, ${model_name}, is likely cold booting which may take 2-3 minutes before generation. The model will stay warm for a minute.`;
         let existingWarningBanners = document.getElementsByClassName('warning-banner');
         for (let i = 0; i < existingWarningBanners.length; i++) {
             if (existingWarningBanners[i].innerText.includes(model_name)) {

@@ -129,11 +129,10 @@ function consoleHtml() {
             </div>
         </div>
     
-        <main class="py-0 flex-grow overflow-auto">
+        <main id="console-container" class="py-0 flex-grow overflow-auto relative">
             <div id="console-content" class="h-full relative">
             <!-- Your content -->
     
-
                 <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-10 flex flex-col justify-center transition duration-500 opacity-0">
             
                     <div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">

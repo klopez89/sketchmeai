@@ -68,11 +68,12 @@ function displayErrorBanner(errorMessage) {
 }
 
 function displayWarningBanner(warningMessage) {
-    let consoleContent = document.getElementById('console-content');
+    let consoleContainer = document.getElementById('console-container');
     let warningBannerHtml = warningBannerHTML(warningMessage);
     let warningBannerDiv = document.createElement('div');
+    warningBannerDiv.classList.add('absolute', 'z-10', 'w-full', 'bottom-0');
     warningBannerDiv.innerHTML = warningBannerHtml;
-    consoleContent.insertBefore(warningBannerDiv, consoleContent.firstChild);
+    consoleContainer.insertBefore(warningBannerDiv, consoleContainer.firstChild);
 
     console.log('button div: ', warningBannerDiv.querySelector('button'));
     warningBannerDiv.querySelector('button').onclick = function() {

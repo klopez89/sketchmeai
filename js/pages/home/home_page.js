@@ -116,7 +116,7 @@ function fireContactUsEndpoint(name, email, message) {
 
 function updateContactUsButtonAfterSend() {
   let contactUsButton = $('#contact-us-button');
-  let submittedTitle = hasEarlyAccess() ? 'Message Sent!' : 'Signed Up!';
+  let submittedTitle = 'Message Sent!';
   contactUsButton.find('p').html(submittedTitle);
   contactUsButton.prop('disabled', true);
   contactUsButton.removeClass('bg-black');

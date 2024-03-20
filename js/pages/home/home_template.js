@@ -2,8 +2,6 @@
 
 function homePageHtml() {
 
-	let earlyAccess = hasEarlyAccess();
-
 	let headerButtonTitle = 'Get Started';
 	let headerButtonUrl = `https://${CONSTANTS.SITE_URL}/auth`;
 	let contactUsId = 'contact-form-section';

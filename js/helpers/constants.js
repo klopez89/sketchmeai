@@ -106,7 +106,8 @@ function isImageUrlExpired(url) {
 }
 
 function hasEarlyAccess() {
-    let urlParams = new URLSearchParams(window.location.search);
-	let earlyAccess = urlParams.get('earlyAccess') || null;
-    return earlyAccess;
+    return true;
+    // let urlParams = new URLSearchParams(window.location.search);
+	// let earlyAccess = urlParams.get('earlyAccess') || null;
+    // return earlyAccess;
 }

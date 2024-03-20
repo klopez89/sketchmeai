@@ -83,13 +83,13 @@ function isReadyToSubmitContactForm() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isEmailValid = emailRegex.test(emailValue);
 
-  return isEmailValid == true && nameValue != '' && (hasEarlyAccess() ? messageValue != '' : true)
+  return isEmailValid == true && nameValue != '' &&  messageValue != ''
 }
 
 function fireContactUsEndpoint(name, email, message) {
   showContactUsSpinner();
 
-  let url = hasEarlyAccess() ? `${CONSTANTS.BACKEND_URL}contact_us/new` : `${CONSTANTS.BACKEND_URL}early_access/new`;
+  let url = `${CONSTANTS.BACKEND_URL}contact_us/new`;
   let data = {
       "userName": name,
       "userEmail": email,

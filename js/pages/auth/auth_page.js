@@ -143,6 +143,7 @@ function handleAuthStateChange() {
 }
 
 function validateUserAuth(userInfo) {
+    showLoader();
 	let action = `${CONSTANTS.BACKEND_URL}users/create`
 	$.ajax({
 		url: action,
@@ -173,10 +174,12 @@ function validateUserAuth(userInfo) {
                     navigateToNewModelForm();
                 }
 			} else {
+                hideLoader();
 				console.log('Failed to retrieve or create a user in our database, needs dev review. Do nothing.');
 			}
 		},
 		error: function (msg) {
+            hideLoader();
 			console.log("Fell into failure block for action - users/create, with msg: ", msg);
 		},
   	});

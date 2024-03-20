@@ -9,7 +9,7 @@ handleAuthStateChange();
 setTimeout(() => {
     hideLoader();
     showAuthArea();
-}, 1000);
+}, 500);
 
 function addFirebaseUIToDOM() {
     let firebaseUI_html = firebaseUI_HTML();

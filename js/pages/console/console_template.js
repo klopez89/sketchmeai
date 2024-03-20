@@ -97,7 +97,7 @@ function consoleHtml() {
     
             <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 items-center">
                 <div id="page-title" class="relative flex flex-1 self-center text-xl font-bold">Generate</div>
-                <button id="basic-examples-button" onclick="navigateToBasicPromptExamples()" class="hidden cursor-pointer rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-8 py-2.5 text-sm text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">See Prompt Examples</button>                
+                <button id="basic-examples-button" onclick="navigateToBasicPromptExamples()" class="hidden cursor-pointer border-2 border-black rounded-md flex-grow-0 flex-shrink-0 text-center px-8 py-2.5 text-sm text-black shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">See Prompt Examples</button>                
                 <button id="show-payment-button" onclick="showPaymentModal()" class="rounded-md text-xs text-gray-400 hover:bg-gray-100 px-4 py-4 my-2 relative flex items-center justify-center">
                     <span id="credit-balance-label" class="inset-0 flex items-center justify-center text-transparent">Credit: $0.00</span>
                     <i id="balance-spinner" class="fas fa-spinner fa-spin absolute m-auto" aria-hidden="true"></i>

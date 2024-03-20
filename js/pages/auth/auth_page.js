@@ -6,7 +6,7 @@ addFirebaseUIToDOM();
 renderFirebaseAuthUI();
 handleAuthStateChange();
 
-setTimeout(() => {
+let showAuthAreaTimeout = setTimeout(() => {
     hideLoader();
     showAuthArea();
 }, 500);
@@ -143,6 +143,7 @@ function handleAuthStateChange() {
 }
 
 function validateUserAuth(userInfo) {
+    clearTimeout(showAuthAreaTimeout);
     showLoader();
 	let action = `${CONSTANTS.BACKEND_URL}users/create`
 	$.ajax({

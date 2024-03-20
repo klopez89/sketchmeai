@@ -138,8 +138,8 @@ function handleRecentPaymentRedirect() {
     console.log('didCompletePayment: ', didCompletePayment, ', productName: ', productName, ', quantity: ', quantity, ', unitAmount: ', unitAmount);
     if (didCompletePayment === 'true' && productName && quantity && unitAmount) {
         console.log('Payment completed for: ', productName, ' with quantity: ', quantity, ' and unit amount: ', unitAmount);
-        var showPaymentButton = document.getElementById('show-payment-button');
-        showPaymentButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        // var showPaymentButton = document.getElementById('show-payment-button');
+        // showPaymentButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
         saveSuccessfulCreditPurchase(productName, quantity, unitAmount);
     }
 
@@ -163,8 +163,11 @@ function updateBalanceInPaymentModal(credit_balance) {
 }
 
 function updateShowPaymentButton(credit_balance) {
-    let showPaymentButton = document.getElementById('show-payment-button');
-    showPaymentButton.innerHTML = `Credit: $${credit_balance.toFixed(2)}`;
+    let creditBalanceLabel = document.getElementById('credit-balance-label');
+    let balanceSpinner = document.getElementById('balance-spinner');
+    balanceSpinner.classList.add('hidden');
+    creditBalanceLabel.classList.remove('text-transparent');
+    creditBalanceLabel.innerHTML = `Credit: $${credit_balance.toFixed(2)}`;
 }
 
 function startListeningForCreditUpdates() {

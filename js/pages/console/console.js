@@ -357,7 +357,9 @@ function navigationToHomePage() {
     window.location.href = `https://${CONSTANTS.SITE_URL}`;
 }
 
-
+function navigateToBasicPromptExamples() {
+    window.open(`https://${CONSTANTS.SITE_URL}/prompt-examples/basic`, '_blank');
+}
 
 
 // rules_version = '2';

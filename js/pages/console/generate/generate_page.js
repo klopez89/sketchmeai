@@ -35,7 +35,7 @@ window.onresize = function() {
 }
 
 function showBasicExamplesButton() {
-    document.getElementById('basic-examples-button').classList.remove('hidden');
+    // document.getElementById('basic-examples-button').classList.remove('hidden');
 }
 
 function configurePromptInputPlaceholder() {

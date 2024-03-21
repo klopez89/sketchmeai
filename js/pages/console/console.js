@@ -145,7 +145,10 @@ function handleRecentPaymentRedirect() {
     }
 
     if (showNewForm) {
-        document.getElementById('reload-new-model-form').click();
+        let reloadNewModelForm = document.getElementById('reload-new-model-form');
+        if (reloadNewModelForm) {
+            reloadNewModelForm.click();
+        }
     }
 
     if (didCompletePayment) {

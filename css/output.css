@@ -1656,9 +1656,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .min-w-\[310px\] {
   min-width: 310px;
 }
-.min-w-\[320px\] {
-  min-width: 320px;
-}
 .min-w-\[40\%\] {
   min-width: 40%;
 }

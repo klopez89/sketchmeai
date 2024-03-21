@@ -106,7 +106,7 @@ function dummyGridHTML() {
                 <div id="accordionExample5">
                 	<div class="rounded-t-lg bg-transparent">
 						<h2 class="mb-4 mr-1" id="headingOne5">
-								<button class="group relative flex w-full items-center rounded-t-[15px] border-0 bg-transparent pt-2 text-right text-sm underline text-gray-700 hover:text-gray-900 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-transparent [&:not([data-te-collapse-collapsed])]:text-gray-400" type="button" data-te-collapse-init="" data-te-target="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5" data-te-collapse-collapsed="">
+								<button class="group relative flex w-full items-center rounded-t-[15px] border-0 bg-transparent text-right text-sm underline text-gray-700 hover:text-gray-900 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-transparent [&:not([data-te-collapse-collapsed])]:text-gray-400" type="button" data-te-collapse-init="" data-te-target="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5" data-te-collapse-collapsed="">
 									<span class="ml-auto -mr-1 h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:text-gray-900 motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
 									</span>
 									Show Prompt Settings

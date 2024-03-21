@@ -344,9 +344,9 @@ function setupAccordion() {
         const buttonText = buttonHTMLElement.nodeValue;
 
         if (buttonText.includes('Hide')) {
-            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Hide Settings', 'Show Settings');
+            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Hide Prompt Settings', 'Show Prompt Settings');
         } else {
-            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Settings', 'Hide Settings');
+            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Prompt Settings', 'Hide Prompt ettings');
         }
     });
 
@@ -1188,4 +1188,9 @@ function updateGenerationEstimateLabel() {
         document.getElementById('generation-estimate-label').innerHTML = `Estimated cost: $${estimatedWarmedPrice.toFixed(2)} ($${estimatedColdPrice.toFixed(2)} from cold boot)<br>@ ${inference_steps} denoising steps`
 
     }
+}
+
+function basicPromptExampleButtonPressed(event) {
+    event.preventDefault();
+    window.open(`https://${CONSTANTS.SITE_URL}/prompt-examples/basic`, '_blank');
 }

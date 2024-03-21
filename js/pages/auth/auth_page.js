@@ -160,6 +160,7 @@ function validateUserAuth(userInfo) {
             let displayName = userDict.hasOwnProperty('display_name') ? userDict['display_name'] : null;
             let numberOfValidAiModels = userDict.hasOwnProperty('number_of_valid_ai_models') ? userDict['number_of_valid_ai_models'] : null;
 			let lastEditedCollection = userDict.hasOwnProperty('last_edited_collection') ? userDict['last_edited_collection'] : null;
+            console.log('the last edited collection is', lastEditedCollection);
 
 			if (userRecId != null) {
 				console.log('We have a valid user and stored it locally, last edited collection id is: ', lastEditedCollection);

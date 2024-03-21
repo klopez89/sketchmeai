@@ -9,6 +9,12 @@ configureUserRelatedUI();
 
 setTimeout(handleRecentPaymentRedirect, 200);
 
+const unloadCallback = () => {firebase.app().delete()}
+window.addEventListener("beforeunload", unloadCallback);
+return async () => {
+  window.removeEventListener("beforeunload", unloadCallback);
+}
+
 function addConsoleToDOM() {
 	let console_html = consoleHtml();
 	let console_div = $($.parseHTML(console_html));
@@ -368,6 +374,9 @@ function navigationToHomePage() {
 function navigateToBasicPromptExamples() {
     window.open(`https://${CONSTANTS.SITE_URL}/prompt-examples/basic`, '_blank');
 }
+
+
+
 
 
 // rules_version = '2';

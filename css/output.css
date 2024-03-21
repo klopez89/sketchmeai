@@ -1656,11 +1656,11 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .min-w-\[310px\] {
   min-width: 310px;
 }
+.min-w-\[320px\] {
+  min-width: 320px;
+}
 .min-w-\[40\%\] {
   min-width: 40%;
-}
-.min-w-\[400px\] {
-  min-width: 400px;
 }
 .min-w-\[48px\] {
   min-width: 48px;
@@ -3777,6 +3777,10 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .hover\:text-gray-800:hover {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+.hover\:text-gray-900:hover {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 .hover\:text-primary:hover {
   --tw-text-opacity: 1;

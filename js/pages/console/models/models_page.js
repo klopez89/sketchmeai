@@ -22,7 +22,11 @@ fetchModels(userRecId, lastDocId);
 
 
 function enforceNoSpaces(event) {
-    event.target.value = event.target.value.replace(/\s/g, '');
+    // Remove spaces
+    let newValue = event.target.value.replace(/\s/g, '');
+    // Remove emojis
+    newValue = newValue.replace(/[\p{Emoji}]/gu, '');
+    event.target.value = newValue;
 }
 
 function checkForNewModelRedirect() {

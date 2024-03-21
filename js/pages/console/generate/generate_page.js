@@ -782,6 +782,10 @@ function fireGenerateCall(jsonObject) {
 }
 
 function attemptToShowColdBootingBanner(model_name, is_warmed) {
+    if (model_name == 'sdxl') {
+        return;
+    }
+
     if (!is_warmed) {
         let warningMessage = `The model, ${model_name}, is likely cold booting which may take 2-3 minutes before generation. The model will stay warm for a minute.`;
         let existingWarningBanners = document.getElementsByClassName('warning-banner');

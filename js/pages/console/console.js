@@ -11,9 +11,6 @@ setTimeout(handleRecentPaymentRedirect, 200);
 
 const unloadCallback = () => {firebase.app().delete()}
 window.addEventListener("beforeunload", unloadCallback);
-return async () => {
-  window.removeEventListener("beforeunload", unloadCallback);
-}
 
 function addConsoleToDOM() {
 	let console_html = consoleHtml();

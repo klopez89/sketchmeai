@@ -75,7 +75,10 @@ function dummyGridHTML() {
 
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                     <div class="col-span-full" id="prompt-field-container">
-                        <label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Prompt</label>
+						<div class="flex justify-between items-center">
+							<label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Prompt</label>
+							<button onclick="basicPromptExampleButtonPressed()" class="underline text-gray-700 hover:text-gray-900">Example</button>
+						</div>
                         <div class="mt-2">
 							<div id="prompt" name="prompt" rows="3" class="max-w-full overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></div>
                         </div>
@@ -103,10 +106,10 @@ function dummyGridHTML() {
                 <div id="accordionExample5">
                 	<div class="rounded-t-lg bg-transparent">
 						<h2 class="mb-4 mr-1" id="headingOne5">
-								<button class="group relative flex w-full items-center rounded-t-[15px] border-0 bg-transparent pt-2 text-right text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-transparent [&:not([data-te-collapse-collapsed])]:text-gray-400" type="button" data-te-collapse-init="" data-te-target="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5" data-te-collapse-collapsed="">
+								<button class="group relative flex w-full items-center rounded-t-[15px] border-0 bg-transparent pt-2 text-right text-sm text-gray-700 hover:text-gray-900 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-transparent [&:not([data-te-collapse-collapsed])]:text-gray-400" type="button" data-te-collapse-init="" data-te-target="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5" data-te-collapse-collapsed="">
 									<span class="ml-auto -mr-1 h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:text-gray-900 motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
 									</span>
-									Show Settings
+									Show Prompt Settings
 								</button>
 						</h2>
                     	<div id="collapseOne5" class="!visible hidden" aria-labelledby="headingOne5" style="" data-te-collapse-item="">

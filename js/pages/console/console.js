@@ -175,19 +175,19 @@ function updateShowPaymentButton(credit_balance) {
 }
 
 function startListeningForCreditUpdates() {
-    // console.log('startListeningForCreditUpdates');
-    // let userRecId = getUserRecId();
-    // db.collection('users').doc(userRecId)
-    //     .onSnapshot((doc) => {
-    //         console.log('User credit balance updated: ', doc.data());
-    //         if (doc.exists) {
-    //             let total_credits = doc.data().total_credits;
-    //             updateShowPaymentButton(total_credits);
-    //             updateBalanceInPaymentModal(total_credits);
-    //         } else {
-    //             console.log("No such document!");
-    //         }
-    // });
+    console.log('startListeningForCreditUpdates');
+    let userRecId = getUserRecId();
+    db.collection('users').doc(userRecId)
+        .onSnapshot((doc) => {
+            console.log('User credit balance updated: ', doc.data());
+            if (doc.exists) {
+                let total_credits = doc.data().total_credits;
+                updateShowPaymentButton(total_credits);
+                updateBalanceInPaymentModal(total_credits);
+            } else {
+                console.log("No such document!");
+            }
+    });
 }
 
 

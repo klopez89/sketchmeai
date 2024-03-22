@@ -933,6 +933,7 @@ function resizeGrid() {
     const leftColumnHeight = document.getElementById('generateForm').clientHeight;
     const adjustedForPaddingHeight = leftColumnHeight + 2 * 12;
     // Set the max-height of the collection grid container to the height of the left column
+    console.log('adjustedForPaddingHeight: ', adjustedForPaddingHeight)
     document.getElementById('collection-grid-container').style.height = adjustedForPaddingHeight + 'px';
     // } 
     // else {

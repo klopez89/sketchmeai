@@ -929,14 +929,15 @@ function addBaseGenMenu() {
 }
 
 function resizeGrid() {
-    if (window.innerWidth >= 768) { // Tailwind's medium size breakpoint is 768px
-        const leftColumnHeight = document.getElementById('generateForm').clientHeight;
-        const adjustedForPaddingHeight = leftColumnHeight + 2 * 16;
-        // Set the max-height of the collection grid container to the height of the left column
-        document.getElementById('collection-grid-container').style.height = adjustedForPaddingHeight + 'px';
-    } else {
-        document.getElementById('collection-grid-container').style.height = '';
-    }
+    // if (window.innerWidth >= 768) { // Tailwind's medium size breakpoint is 768px
+    const leftColumnHeight = document.getElementById('generateForm').clientHeight;
+    const adjustedForPaddingHeight = leftColumnHeight + 2 * 16;
+    // Set the max-height of the collection grid container to the height of the left column
+    document.getElementById('collection-grid-container').style.height = adjustedForPaddingHeight + 'px';
+    // } 
+    // else {
+    //     document.getElementById('collection-grid-container').style.height = '';
+    // }
 }
 
 function configureInfiniteScroll() {

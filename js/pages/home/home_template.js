@@ -6,8 +6,13 @@ function homePageHtml() {
 	let headerButtonUrl = `https://${CONSTANTS.SITE_URL}/auth`;
 	let contactUsId = 'contact-form-section';
 
-	let headerTitle = 'Explore what you can create with AI';
-	let headerSubtitle = 'Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters to craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.';
+	// LinkedIn profile pic mad old? Let AI help out.
+	// With easy-to-use model training and image generation, SketchMeAi enables you to create new profile photos and more with AI technology. See how you can reimagine yourself.
+// Old Title: Explore what you can create with AI
+// Old Subtitle: Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters to craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.
+
+	let headerTitle = 'LinkedIn profile pic mad old? Let AI help';
+	let headerSubtitle = 'With easy-to-use model training and image generation, SketchMeAi enables you to create new profile photos and more with AI technology. See how you can reimagine yourself.';
 
 	let first_feature_title = 'Model Training';
 	let first_feature_body = 'Upload 10 - 20 images of yourself or any other person and train your own AI to generate images. To improve quality of training, aim to include some variety of images, ie. face pic, face w/ torso, selfie, different lighting conditions.';

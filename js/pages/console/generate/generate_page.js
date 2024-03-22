@@ -947,7 +947,7 @@ function configureInfiniteScroll() {
         console.log("Scroll Top: ", scrollableContainer.scrollTop, 
                     "Client Height: ", scrollableContainer.clientHeight, 
                     "Scroll Height: ", scrollableContainer.scrollHeight);
-        if ((scrollableContainer.scrollTop + scrollableContainer.clientHeight) >= scrollableContainer.scrollHeight) {
+        if ((scrollableContainer.scrollTop + scrollableContainer.clientHeight) >= scrollableContainer.scrollHeight - 5) {
             if (isCurrentlyPaginatingPrompts) {
                 console.log('is currently paginating!');
                 return

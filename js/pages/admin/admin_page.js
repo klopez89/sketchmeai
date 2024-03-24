@@ -1,10 +1,17 @@
+addBaseDashboardToDOM();
 fetchAdminData();
 // addAdminDivsToDOM();
 
-function addAdminDivsToDOM(admin_data) {
-    let admin_dashboard_html = generateDashboardHTML(admin_data);
-    let admin_dashboard_div = $($.parseHTML(admin_dashboard_html));
-    $('body').append(admin_dashboard_div);
+function addBaseDashboardToDOM() {
+    let base_dashboard_html = baseDashboardHTML();
+    let base_dashboard_div = $($.parseHTML(base_dashboard_html));
+    $('body').append(base_dashboard_div);
+}
+
+function addInfoToDashboard(admin_data) {
+    let dashboard_data_html = dashboardDataHTML(admin_data);
+    let dashboard_data_div = $($.parseHTML(dashboard_data_html));
+    $('#admin-dashboard').append(dashboard_data_div);
 }
 
 function fetchAdminData() {
@@ -16,7 +23,7 @@ function fetchAdminData() {
 		contentType: "application/json",
 		dataType: "json",
 		success: function (response) {
-            addAdminDivsToDOM(response);
+            addInfoToDashboard(response);
 			console.log('admin/health endpoint hit success, w/ response: ', response);
 		},
 		error: function (msg) {

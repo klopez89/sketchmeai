@@ -765,7 +765,7 @@ function fireGenerateCall(jsonObject) {
             let generation_id = data.generation_id;
             console.log(`the locally created gen id: ${jsonObject.generationId}, and served gen id: ${generation_id}`)
             startListeningForGenerationUpdates(jsonObject.userRecId, collection_id, generation_id);
-            attemptToShowColdBootingBanner(model_name, is_warm);
+            // attemptToShowColdBootingBanner(model_name, is_warm);
         },
         error: function(data) {
             new_grid_item_div.fadeOut(function() {

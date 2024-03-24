@@ -1,7 +1,20 @@
-function generateDashboardHTML(data) {
-    let html = `
-    <div class="p-5 bg-white rounded shadow-md">
+function baseDashboardHTML() {
+    return `
+    <div id="admin-dashboard" class="p-5 h-full bg-gray-100 rounded shadow-md">
         <h2 class="text-2xl font-bold mb-5">Dashboard</h2>
+        <div id="admin-loader" class="w-full h-full px-4 py-8 sm:px-6 lg:px-8">
+            <div class="bg-gray-100 w-full h-full flex justify-center items-start">
+                <div class="mt-5">    
+                    <i class="fa fa-spinner fa-spin text-4xl text-gray-500 mt-5" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    ;`
+}
+
+function dashboardDataHTML(data) {
+    let html = `
         <div class="grid grid-cols-2 gap-4">
             <div class="p-3 bg-blue-100 rounded">
                 <h3 class="font-semibold">Total Users</h3>
@@ -61,6 +74,6 @@ function generateDashboardHTML(data) {
         }
     });
 
-    html += `</div></div>`;
+    html += `</div>`;
     return html;
 }

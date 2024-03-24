@@ -1114,7 +1114,7 @@ function useAsReferenceImagePressed(event) {
     let imgSrc = imgElement.getAttribute('src');
     document.getElementById('img-2-img').value = imgSrc;
     tryShowingPromptSettings();
-    
+    tryShowingReferenceImageSettings();
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
     event.stopPropagation();
 }

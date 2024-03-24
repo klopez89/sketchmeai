@@ -1,8 +1,8 @@
 fetchAdminData();
 // addAdminDivsToDOM();
 
-function addAdminDivsToDOM() {
-    let admin_dashboard_html = generateDashboardHTML();
+function addAdminDivsToDOM(admin_data) {
+    let admin_dashboard_html = generateDashboardHTML(admin_data);
     let admin_dashboard_div = $($.parseHTML(admin_dashboard_html));
     $('body').append(admin_dashboard_div);
 }
@@ -16,6 +16,7 @@ function fetchAdminData() {
 		contentType: "application/json",
 		dataType: "json",
 		success: function (response) {
+            addAdminDivsToDOM(response);
 			console.log('admin/health endpoint hit success, w/ response: ', response);
 		},
 		error: function (msg) {

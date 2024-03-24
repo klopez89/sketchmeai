@@ -21,15 +21,15 @@ function generateDashboardHTML(data) {
             </div>
             <div class="p-3 bg-blue-100 rounded">
                 <h3 class="font-semibold">Total Training Credit Spend</h3>
-                <p>${data.total_training_credit_spend}</p>
+                <p>${data.total_training_credit_spend.toFixed(2)}</p>
             </div>
             <div class="p-3 bg-blue-100 rounded">
                 <h3 class="font-semibold">Total Image Credit Spend</h3>
-                <p>${data.total_image_credit_spend}</p>
+                <p>${data.total_image_credit_spend.toFixed(2)}</p>
             </div>
             <div class="p-3 bg-blue-100 rounded">
-                <h3 class="font-semibold">Total Credits</h3>
-                <p>${data.total_credits}</p>
+                <h3 class="font-semibold">Total Unused Credits</h3>
+                <p>${data.total_credits.toFixed(2)}</p>
             </div>
         </div>
         <h3 class="text-xl font-bold mt-5">Users without AI models</h3>

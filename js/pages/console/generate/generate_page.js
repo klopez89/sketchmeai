@@ -1096,6 +1096,15 @@ function deleteButtonPressed(event) {
     event.stopPropagation();
 }
 
+function useAsReferenceImagePressed(event) {
+    event.preventDefault();
+    let genElement = event.target.closest('[generation-id]');
+    let generationId = genElement.getAttribute('generation-id');
+    let imgElement = genElement.querySelector('img');
+    let imgSrc = imgElement.getAttribute('src');
+    console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
+}
+
 function setGenLoaderToDeleteMode(genElement) {
     let genLoader = genElement.querySelector('#gen-loader');
     let actionContainer = genElement.querySelector('#action-container');

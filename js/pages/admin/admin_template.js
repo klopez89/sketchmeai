@@ -10,7 +10,7 @@ function baseDashboardHTML() {
             </div>
         </div>
     </div>
-    ;`
+    `;
 }
 
 function dashboardDataHTML(data) {

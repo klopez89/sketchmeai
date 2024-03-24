@@ -12,7 +12,7 @@ function fetchAdminData() {
 	$.ajax({
 		url: action,
 		method: "POST",
-		data: JSON.stringify(userInfo),
+		data: JSON.stringify({}),
 		contentType: "application/json",
 		dataType: "json",
 		success: function (response) {

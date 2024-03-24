@@ -1178,7 +1178,7 @@ function closeAnyOpenGenMenus() {
 
 function hideGenMenuShield(genElement) {
     let genMenuShield = genElement.querySelector('#gen-menu-shield');
-    consolo.log('genMenuShield to hide: ', genMenuShield);
+    console.log('genMenuShield to hide: ', genMenuShield);
     genMenuShield.classList.add('hidden');
 }
 

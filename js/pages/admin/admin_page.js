@@ -14,6 +14,13 @@ function addInfoToDashboard(admin_data) {
     $('#admin-dashboard').append(dashboard_data_div);
 }
 
+function hideLoader() {
+    $('#admin-loader').animate({height: '0px'}, 500, function() {
+        $(this).hide();
+    });
+}
+
+
 function fetchAdminData() {
 	let action = `${CONSTANTS.BACKEND_URL}admin/health`
 	$.ajax({
@@ -23,6 +30,7 @@ function fetchAdminData() {
 		contentType: "application/json",
 		dataType: "json",
 		success: function (response) {
+            hideLoader();
             addInfoToDashboard(response);
 			console.log('admin/health endpoint hit success, w/ response: ', response);
 		},

@@ -324,11 +324,20 @@ function randomizeSeed(event) {
     document.getElementById('seed').value = "";
 }
 
-// Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters and craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.
 
 function tryShowingPromptSettings() {
     const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
     const buttonHTMLElement = accordionButton.lastChild;
+    const buttonText = buttonHTMLElement.nodeValue;
+
+    if (buttonText.includes('Show')) {
+        accordionButton.click();
+    }
+}
+
+function tryShowingReferenceImageSettings() {
+    const accordionButton = document.querySelector('[data-te-target="#nestedImg2ImgCollapse"]');
+    const buttonHTMLElement = accordionButton.firstChild;
     const buttonText = buttonHTMLElement.nodeValue;
 
     if (buttonText.includes('Show')) {
@@ -1105,6 +1114,7 @@ function useAsReferenceImagePressed(event) {
     let imgSrc = imgElement.getAttribute('src');
     document.getElementById('img-2-img').value = imgSrc;
     tryShowingPromptSettings();
+    
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
     event.stopPropagation();
 }
@@ -1178,7 +1188,6 @@ function closeAnyOpenGenMenus() {
 
 function hideGenMenuShield(genElement) {
     let genMenuShield = genElement.querySelector('#gen-menu-shield');
-    console.log('genMenuShield to hide: ', genMenuShield);
     genMenuShield.classList.add('hidden');
 }
 

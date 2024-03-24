@@ -346,7 +346,7 @@ function setupAccordion() {
         if (buttonText.includes('Hide')) {
             buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Hide Prompt Settings', 'Show Prompt Settings');
         } else {
-            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Prompt Settings', 'Hide Prompt ettings');
+            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Prompt Settings', 'Hide Prompt Settings');
         }
     });
 
@@ -1102,6 +1102,8 @@ function useAsReferenceImagePressed(event) {
     let generationId = genElement.getAttribute('generation-id');
     let imgElement = genElement.querySelector('img');
     let imgSrc = imgElement.getAttribute('src');
+    document.getElementById('img-2-img').value = imgSrc;
+    tryShowingPromptSettings();
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
 }
 

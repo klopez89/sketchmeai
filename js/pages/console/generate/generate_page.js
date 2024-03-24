@@ -1099,12 +1099,14 @@ function deleteButtonPressed(event) {
 function useAsReferenceImagePressed(event) {
     event.preventDefault();
     let genElement = event.target.closest('[generation-id]');
+    hideGenMenuShield(genElement);
     let generationId = genElement.getAttribute('generation-id');
     let imgElement = genElement.querySelector('img');
     let imgSrc = imgElement.getAttribute('src');
     document.getElementById('img-2-img').value = imgSrc;
     tryShowingPromptSettings();
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
+    event.stopPropagation();
 }
 
 function setGenLoaderToDeleteMode(genElement) {
@@ -1176,6 +1178,7 @@ function closeAnyOpenGenMenus() {
 
 function hideGenMenuShield(genElement) {
     let genMenuShield = genElement.querySelector('#gen-menu-shield');
+    consolo.log('genMenuShield to hide: ', genMenuShield);
     genMenuShield.classList.add('hidden');
 }
 

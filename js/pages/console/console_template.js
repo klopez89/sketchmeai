@@ -131,9 +131,9 @@ function consoleHtml() {
 
         </div>
     
-        <main id="console-container" class="py-0 flex-grow overflow-auto relative">
+        <main id="console-container" x-data="{ open: false }" class="py-0 flex-grow overflow-auto relative">
 
-            <div id="mobile-sidebar" x-ref="genSettings" x-data="{ open: false }" x-show="open" x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="absolute inset-0 z-50 flex lg:hidden">
+            <div id="mobile-sidebar" x-ref="genSettings" x-show="open" x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="absolute inset-0 z-50 flex lg:hidden">
                 <!-- Off-canvas menu, show/hide based on off-canvas menu state. -->
                 <div class="relative w-full max-w-full flex-grow flex-1">
                     <!-- Close button -->

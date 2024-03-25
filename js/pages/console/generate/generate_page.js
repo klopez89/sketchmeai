@@ -691,12 +691,12 @@ function generateButtonPressed(event) {
         return;
     }
 
-    console.log('the event target is: ', event.target);
-    let generateTarget = event.target;
+    console.log('the event target is: ', event.currentTarget);
+    let generateTarget = event.currentTarget;
+    let generateIcon = generateTarget.querySelector('i');
+    let generateText = generateTarget.querySelector('p');
 
-    if (generateTarget instanceof HTMLButtonElement) {
-        let generateIcon = generateTarget.querySelector('i');
-        let generateText = generateTarget.querySelector('p');
+    if (generateText != null) {
         generateText.classList.add('opacity-0');
         generateIcon.classList.remove('hidden');
     } else {
@@ -817,13 +817,13 @@ function fireGenerateCall(jsonObject, generateTarget) {
 }
 
 function resetGenerateTarget(target) {
-    if (target instanceof HTMLButtonElement) {
-        let generateIcon = generateTarget.querySelector('i');
-        let generateText = generateTarget.querySelector('p');
+    let generateIcon = target.querySelector('i');
+    let generateText = target.querySelector('p');
+    if (generateText != null) {
         generateText.classList.remove('opacity-0');
         generateIcon.classList.add('hidden');
     } else {
-        target.className = 'fa-solid fa-bolt-lightning';
+        generateIcon.className = 'fa-solid fa-bolt-lightning';
     }
 }
 

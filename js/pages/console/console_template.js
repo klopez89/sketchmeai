@@ -281,7 +281,7 @@ function successBannerHTML(message) {
 
 function mobileSideBarHTML() {
     return `
-            <div id="mobile-sidebar" x-ref="genSettings" x-show="open" x-transition:enter="transition ease-in-out duration-300 transform bg-opacity-0" x-transition:enter-start="translate-x-full bg-opacity-50" x-transition:enter-end="translate-x-0 bg-opacity-50" x-transition:leave="transition ease-in-out duration-300 transform bg-opacity-50" x-transition:leave-start="translate-x-0 bg-opacity-50" x-transition:leave-end="translate-x-full bg-opacity-0" class="fixed bg-gray-800 bg-opacity-50 top-0 right-0 w-full h-full overflow-auto z-50 flex lg:hidden">
+            <div id="mobile-sidebar" x-ref="genSettings" x-show="open" x-transition:enter="transition-opacity transition ease-in-out duration-300 transform bg-opacity-0" x-transition:enter-start="translate-x-full opacity-0" x-transition:enter-end="translate-x-0 opacity-50" x-transition:leave="transition-opacity transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0 opacity-50" x-transition:leave-end="translate-x-full opacity-0" class="fixed bg-gray-800 top-0 right-0 w-full h-full overflow-auto z-50 flex lg:hidden">
                 
                 <div class="relative max-w-md ml-auto flex-grow flex-1">
                     

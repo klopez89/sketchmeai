@@ -83,7 +83,7 @@ function consoleHtml() {
             </div>
         </div>
 
-        <div id="mobile-sidebar" class="fixed inset-0 z-50 flex lg:hidden">
+        <div id="mobile-sidebar" class="absolute inset-0 z-50 flex lg:hidden">
             <!-- Off-canvas menu, show/hide based on off-canvas menu state. -->
             <div class="relative w-full max-w-full flex-grow flex-1">
                 <!-- Close button -->

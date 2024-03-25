@@ -145,7 +145,7 @@ function consoleHtml() {
                             <i class="fa-solid fa-wrench" aria-hidden="true"></i>
                         </button>
 
-                        <button class="bg-gray-black text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="generateButtonPressed(event)">
+                        <button class="bg-black text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="generateButtonPressed(event)">
                             <i class="fa-solid fa-bolt-lightning"></i>
                         </button>
                     </div>

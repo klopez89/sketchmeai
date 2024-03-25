@@ -330,7 +330,7 @@ function consoleHtml() {
 
             <!-- Your content -->
     
-                <button class="fixed right-0 bottom-0 m-4 bg-blue-500 text-white p-2 rounded-full z-30">
+                <button class="fixed right-0 bottom-0 m-4 bg-blue-500 text-white p-2 rounded-full z-30 w-12 h-12 flex items-center justify-center">
                     <i class="fa-solid fa-wrench"></i>
                 </button>
 

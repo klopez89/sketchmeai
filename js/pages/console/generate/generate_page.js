@@ -827,6 +827,7 @@ function resetGenerateTarget(target) {
         generateIcon.className = 'fa-solid fa-bolt-lightning';
     }
     target.disabled = false;
+    target.blur();
 }
 
 function attemptToShowColdBootingBanner(model_name, is_warmed) {

@@ -327,8 +327,13 @@ function consoleHtml() {
             </div>
 
             <div id="console-content" class="h-full relative">
+
             <!-- Your content -->
     
+                <button class="fixed right-0 bottom-0 m-4 bg-blue-500 text-white p-2 rounded-full z-30">
+                    <i class="fa-solid fa-wrench"></i>
+                </button>
+
                 <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-10 flex flex-col justify-center transition duration-500 opacity-0">
             
                     <div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">

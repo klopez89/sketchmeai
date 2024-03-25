@@ -316,7 +316,7 @@ function consoleHtml() {
                             <div class="flex-grow"></div>
                         </form>
                         <div class="w-full flex justify-start sticky bottom-0 bg-white p-2 gap-4 border-t border-gray-200" id="gen-button-container">
-                            <button id="back-to-models-button" class="pl-3 text-gray-400 hover:text-gray-600 flex-shrink-0" onclick="backToModelsButtonPressed()">
+                            <button id="back-to-models-button" class="pl-3 text-gray-400 hover:text-gray-600 flex-shrink-0" onclick="dismissMobileSidebar()">
                                 <i class="fa-solid fa-arrow-left mr-2" aria-hidden="true"></i>
                                 Back
                             </button>               

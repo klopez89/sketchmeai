@@ -12,6 +12,7 @@ addImageGrid();
 addBaseGenMenu();
 configureGenerateForm();
 resizeGrid();
+moveForm();
 configureInfiniteScroll();
 setupAccordion();
 showBasicExamplesButton();

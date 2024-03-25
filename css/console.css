@@ -33,3 +33,9 @@ body {
 .backdrop.leaving {
     opacity: 0;
 }
+
+@media (hover: hover) {
+    .hover\:bg-gray-800:hover {
+        background-color: #2d3748;
+    }
+}

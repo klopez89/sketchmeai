@@ -693,6 +693,7 @@ function generateButtonPressed(event) {
 
     console.log('the event target is: ', event.currentTarget);
     let generateTarget = event.currentTarget;
+    generateTarget.disabled = true;
     let generateIcon = generateTarget.querySelector('i');
     let generateText = generateTarget.querySelector('p');
 
@@ -825,6 +826,7 @@ function resetGenerateTarget(target) {
     } else {
         generateIcon.className = 'fa-solid fa-bolt-lightning';
     }
+    target.disabled = false;
 }
 
 function attemptToShowColdBootingBanner(model_name, is_warmed) {

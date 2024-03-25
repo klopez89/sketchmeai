@@ -146,7 +146,7 @@ function consoleHtml() {
                         </button>
 
                         <button class="bg-black text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="generateButtonPressed(event)">
-                            <i class="fa-solid fa-bolt-lightning"></i>
+                            <i id="mobile-gen-icon" class="fa-solid fa-bolt-lightning"></i>
                         </button>
                     </div>
 

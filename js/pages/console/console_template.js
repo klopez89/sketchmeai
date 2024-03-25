@@ -283,7 +283,7 @@ function mobileSideBarHTML() {
     return `
             <div id="mobile-sidebar" x-ref="genSettings" x-show="open" x-transition:enter="transition ease-in-out duration-300 transform opacity-0" x-transition:enter-start="translate-x-full opacity-50" x-transition:enter-end="translate-x-0 opacity-50" x-transition:leave="transition ease-in-out duration-300 transform opacity-50" x-transition:leave-start="translate-x-0 opacity-50" x-transition:leave-end="translate-x-full opacity-0" class="fixed bg-gray-800 top-0 right-0 w-full h-full overflow-auto z-50 flex lg:hidden">
                 
-                <div class="relative w-full max-w-full flex-grow flex-1">
+                <div class="relative max-w-md ml-auto flex-grow flex-1">
                     
                     <!-- Sidebar content -->
                     <div class="h-full overflow-y-auto scrolling-touch bg-gray-100">

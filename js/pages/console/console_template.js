@@ -82,26 +82,6 @@ function consoleHtml() {
                 </nav>
             </div>
         </div>
-
-        <div id="mobile-sidebar" class="absolute inset-0 z-50 flex lg:hidden">
-            <!-- Off-canvas menu, show/hide based on off-canvas menu state. -->
-            <div class="relative w-full max-w-full flex-grow flex-1">
-                <!-- Close button -->
-                <div class="absolute right-0 top-0 mt-2 mr-2">
-                    <button type="button" class="p-2" onclick="dismissMobileSidebar()">
-                        <span class="sr-only">Close sidebar</span>
-                        <svg class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Sidebar content -->
-                <div class="h-full overflow-y-auto scrolling-touch bg-white p-6">
-                    <p class="text-xl font-bold">Generation Settings</p>
-                </div>
-            </div>
-        </div>
     
         <div class="lg:pl-48 h-screen flex flex-col">
         <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
@@ -152,6 +132,27 @@ function consoleHtml() {
         </div>
     
         <main id="console-container" class="py-0 flex-grow overflow-auto relative">
+
+            <div id="mobile-sidebar" class="absolute inset-0 z-50 flex lg:hidden">
+                <!-- Off-canvas menu, show/hide based on off-canvas menu state. -->
+                <div class="relative w-full max-w-full flex-grow flex-1">
+                    <!-- Close button -->
+                    <div class="absolute right-0 top-0 mt-2 mr-2">
+                        <button type="button" class="p-2" onclick="dismissMobileSidebar()">
+                            <span class="sr-only">Close sidebar</span>
+                            <svg class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Sidebar content -->
+                    <div class="h-full overflow-y-auto scrolling-touch bg-white p-6">
+                        <p class="text-xl font-bold">Generation Settings</p>
+                    </div>
+                </div>
+            </div>
+
             <div id="console-content" class="h-full relative">
             <!-- Your content -->
     

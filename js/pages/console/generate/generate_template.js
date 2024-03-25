@@ -1,3 +1,10 @@
+const denoisingInfo = "Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details."
+const negativePromptInfo = "The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result."
+const guidanceScaleInfo = "Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations."
+const imgToImgURLInfo = "Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch."
+const promptStrengthInfo = "Only applicable for image to image generation. A higher value makes the final image adhere more closely to the details of the prompt, while a lower value retains more of the reference image's features."
+const loraScaleInfo = "Adjusts the extent to which a fine-tuned model's specialized training influences the generated image, blending the base model's knowledge with the fine-tuned nuances."
+
 
 function newGenItem_FromExistingGen(generation) {
     gen_string = JSON.stringify(generation);
@@ -57,20 +64,12 @@ function createGridHTML(numCopies) {
 
 function dummyGridHTML() {
 
-
-	const denoisingInfo = "Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details."
-	const negativePromptInfo = "The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result."
-	const guidanceScaleInfo = "Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations."
-	const imgToImgURLInfo = "Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch."
-	const promptStrengthInfo = "Only applicable for image to image generation. A higher value makes the final image adhere more closely to the details of the prompt, while a lower value retains more of the reference image's features."
-	const loraScaleInfo = "Adjusts the extent to which a fine-tuned model's specialized training influences the generated image, blending the base model's knowledge with the fine-tuned nuances."
-
     return `
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
 
         <div id="generate-form-container" class="bg-gray-100 pb-4 pt-4 min-w-80 md:w-[400px] max-w-full border-r border-gray-300">
-		
+
         </div>
 
         <!-- Right column area -->

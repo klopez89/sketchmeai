@@ -68,7 +68,7 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
 
-        <div id="generate-form-container" class="bg-gray-100 pb-4 pt-4 min-w-80 md:w-[400px] max-w-full border-r border-gray-300">
+        <div id="generate-form-container" class="bg-gray-100 pb-4 pt-4 min-w-80 md:w-[400px] max-w-full border-r border-gray-300 hidden md:block">
 
         </div>
 

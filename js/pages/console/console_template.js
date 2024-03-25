@@ -131,7 +131,7 @@ function consoleHtml() {
 
         </div>
     
-        <main id="console-container" x-show="open" x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="absolute inset-0 z-50 flex lg:hidden">
+        <main id="console-container" class="py-0 flex-grow overflow-auto relative">
 
             <div id="mobile-sidebar" class="absolute inset-0 z-50 flex lg:hidden">
                 <!-- Off-canvas menu, show/hide based on off-canvas menu state. -->
@@ -330,7 +330,7 @@ function consoleHtml() {
 
             <!-- Your content -->
     
-                <button id="gen-settings-button" class="fixed right-0 bottom-0 m-4 bg-blue-500 text-white p-2 rounded-full z-30 w-12 h-12 flex items-center justify-center" @click="open = !open">
+                <button class="fixed right-0 bottom-0 m-4 bg-blue-500 text-white rounded-full z-30 w-12 h-12 flex items-center justify-center">
                     <i class="fa-solid fa-wrench"></i>
                 </button>
 

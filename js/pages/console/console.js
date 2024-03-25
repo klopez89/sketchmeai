@@ -20,7 +20,7 @@ function addConsoleToDOM() {
 }
 
 function addMobileSidebar() {
-    let mobileSidebarHtml = mobileSidebarHTML();
+    let mobileSidebarHtml = mobileSideBarHTML();
     let mobileSidebarDiv = $($.parseHTML(mobileSidebarHtml));
     $('#console-group').append(mobileSidebarDiv);
 }

@@ -141,8 +141,8 @@ function consoleHtml() {
 
                 <!-- Your content -->
         
-                    <button class="md:hidden fixed right-0 bottom-0 m-4 bg-blue-500 text-white rounded-full z-30 w-12 h-12 flex items-center justify-center" @click="open = !open">
-                        <i class="fa-solid fa-wrench"></i>
+                    <button class="md:hidden fixed right-0 bottom-0 m-4 bg-gray-100 text-black shadow-lg rounded-full z-30 w-12 h-12 flex items-center justify-center" @click="open = !open">
+                        <i class="fa-solid fa-wrench" aria-hidden="true"></i>
                     </button>
 
                     <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-10 flex flex-col justify-center transition duration-500 opacity-0">

@@ -32,6 +32,17 @@ document.querySelectorAll('.editable').forEach(function(element){
 
 window.onresize = function() {
     resizeGrid();
+    moveForm()
+}
+
+
+function moveForm() {
+    var form = document.getElementById('generate-form');
+    if (window.innerWidth >= 768) { // Tailwind's 'md' breakpoint
+        document.getElementById('generate-form-container').appendChild(form);
+    } else {
+        document.getElementById('sidebar-gen-form-container').appendChild(form);
+    }
 }
 
 function showBasicExamplesButton() {

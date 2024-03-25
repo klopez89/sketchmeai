@@ -372,7 +372,10 @@ function navigateToBasicPromptExamples() {
     window.open(`https://${CONSTANTS.SITE_URL}/prompt-examples/basic`, '_blank');
 }
 
-
+function dismissMobileSidebar() {
+    let mobileSidebar = document.getElementById('mobile-sidebar');
+    mobileSidebar.classList.add('hidden');
+}
 
 // rules_version = '2';
 

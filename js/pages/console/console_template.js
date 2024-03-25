@@ -293,7 +293,9 @@ function mobileSideBarHTML() {
                                 <i class="fa-solid fa-arrow-left mr-2" aria-hidden="true"></i>
                                 Back
                             </button>               
-                            <button class="cursor-pointer rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">Generate</button>
+
+                            <button class="cursor-pointer rounded-md flex-grow text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">Generate</button>
+                            
                         </div>
                     </div>
                 </div>

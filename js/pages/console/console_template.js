@@ -148,7 +148,7 @@ function consoleHtml() {
 
             <!-- Sidebar content -->
             <div class="h-full overflow-y-auto scrolling-touch bg-white">
-                <p class="text-xl font-bold">Generation Settings</p>
+                <p class="text-xl font-bold p-6">Generation Settings</p>
                 <form class="generate-form h-full overflow-y-auto flex flex-col p-6" id="generateForm">
 
                     <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">

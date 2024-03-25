@@ -692,8 +692,8 @@ function generateButtonPressed(event) {
     }
 
     console.log('the event target is: ', event.target);
-    // var generateIcon = event.target;
-    // generateIcon.className = 'fa-solid fa-spinner fa-spin'; // Change to spinner
+    let generateIcon = event.target;
+    generateIcon.className = 'fa-solid fa-spinner fa-spin'; // Change to spinner
 
     for (var j = 0; j < numberOfImages; j++) {
         if (shouldResetSeed) {
@@ -760,12 +760,12 @@ function generateButtonPressed(event) {
                 highNoiseFrac: promptValues.highNoiseFrac,
             };
 
-            fireGenerateCall(jsonObject);
+            fireGenerateCall(jsonObject, generateIcon);
         }
     }
 }
 
-function fireGenerateCall(jsonObject) {
+function fireGenerateCall(jsonObject, generateIcon) {
     console.log("fireGenerateCall, with jsonObject: ", jsonObject);
 
     let new_grid_item_html = newGenItem_FromNewGen(jsonObject.generationId);
@@ -784,7 +784,7 @@ function fireGenerateCall(jsonObject) {
         success: function(data) {
             console.log("success");
             console.log(data);
-            // generateIcon.className = 'fa-solid fa-bolt-lightning';
+            generateIcon.className = 'fa-solid fa-bolt-lightning';
             let model_name = jsonObject.userFacingModelName;
             let is_warm = data.is_warm;
             let collection_id = data.collection_id;
@@ -794,7 +794,7 @@ function fireGenerateCall(jsonObject) {
             // attemptToShowColdBootingBanner(model_name, is_warm);
         },
         error: function(data) {
-            // generateIcon.className = 'fa-solid fa-bolt-lightning';
+            generateIcon.className = 'fa-solid fa-bolt-lightning';
             new_grid_item_div.fadeOut(function() {
                 new_grid_item_div.remove();
             });

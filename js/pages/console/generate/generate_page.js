@@ -41,7 +41,7 @@ function moveForm() {
     if (window.innerWidth >= 768) { // Tailwind's 'md' breakpoint
         document.getElementById('generate-form-container').appendChild(form);
     } else {
-        document.getElementById('sidebar-gen-form-container').appendChild(form);
+        document.getElementById('sidebar-gen-form-container').prepend(form);
     }
 }
 

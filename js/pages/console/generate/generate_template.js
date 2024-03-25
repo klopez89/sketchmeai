@@ -124,7 +124,7 @@ function generate_form_html() {
 	return `
 	<form class="generate-form h-full overflow-y-auto flex flex-col px-6 py-4" id="generateForm">
 
-		<p class="text-xl font-bold mb-4">Generation Settings</p>
+		<p class="text-xl font-bold mb-4 md:hidden">Generation Settings</p>
 
 		<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
 			<div class="col-span-full" id="prompt-field-container">
@@ -137,8 +137,8 @@ function generate_form_html() {
 				</div>
 			</div>
 
-			<div class="col-span-full flex flex-col justify-center" id="gen-button-container">
-				<input type="submit" value="Generate" class="cursor-pointer rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+			<div class="col-span-full flex-col justify-center hidden md:flex" id="gen-button-container">
+				<button class="cursor-pointer rounded-md flex-grow-0 flex-shrink-0 text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">Generate</button>
 			</div>
 		</div>
 

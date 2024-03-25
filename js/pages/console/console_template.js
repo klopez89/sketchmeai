@@ -132,10 +132,10 @@ function consoleHtml() {
         </div>
 
 
-        <div id="console-group" class="relative h-screen overflow-auto">
+        <div id="console-group" x-data="{ open: false }" :class="{ 'overflow-hidden': open }" class="relative h-screen overflow-auto">
 
 
-            <main id="console-container" x-data="{ open: false }" :class="{ 'overflow-hidden': open }" class="py-0 flex-grow overflow-auto relative">
+            <main id="console-container" class="py-0 flex-grow overflow-auto relative">
 
                 <div id="console-content" class="h-full relative">
 

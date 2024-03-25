@@ -130,10 +130,156 @@ function consoleHtml() {
             </div>
 
         </div>
-    
-        <main id="console-container" x-data="{ open: false }" :class="{ 'overflow-hidden': open }" class="py-0 flex-grow overflow-auto relative">
 
-            <div id="mobile-sidebar" x-ref="genSettings" x-show="open" x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="sticky inset-0 z-50 flex lg:hidden">
+
+        <div id="console-group" class="relative h-screen overflow-auto">
+
+
+            <main id="console-container" x-data="{ open: false }" :class="{ 'overflow-hidden': open }" class="py-0 flex-grow overflow-auto relative">
+
+                <div id="console-content" class="h-full relative">
+
+                <!-- Your content -->
+        
+                    <button class="fixed right-0 bottom-0 m-4 bg-blue-500 text-white rounded-full z-30 w-12 h-12 flex items-center justify-center" @click="open = !open">
+                        <i class="fa-solid fa-wrench"></i>
+                    </button>
+
+                    <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-10 flex flex-col justify-center transition duration-500 opacity-0">
+                
+                        <div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
+                            <button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissPaymentModal()">
+                                <i class="fas fa-times" aria-hidden="true"></i>
+                            </button>
+                            <div class="mb-4">
+                                <h2 class="text-3xl text-gray-900 mb-2">Balance: 
+                                    <span id="modal-credit-balance-label" class="">$0.00</span>
+                                    <span id="insufficient-credit-label" class="hidden italic text-red-500 text-xs">Insufficient credit.</span>
+                                </h2>
+                                <p class="mb-0 text-gray-400">~ $3.00 to $6.00 / trained model (for 10 vs 20 images)</p>
+                                <p class="mb-1 text-gray-400">~ $0.04 / image ($0.11 from a cold boot)</p>
+                                <p class="mb-8 text-gray-400 text-xs italic">cost will vary based on model and parameters</p>
+                            </div>
+
+                            <hr class="border-t border-gray-200 my-6">
+
+                            <div class="mb-1">
+                                <h3 class="text-lg font-semibold mb-2">Add Credit</h3>
+                                <div class="flex space-x-2">
+                                    <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="first-credit-option" value="5" onclick="firstCreditOptionClicked()">$5</button>
+                                    <button class="bg-black text-white px-6 py-2 rounded shadow" id="second-credit-option" value="10" onclick="secondCreditOptionClicked()">$10</button>
+                                    <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="third-credit-option" value="20" onclick="thirdCreditOptionClicked()">$20</button>
+                                </div>
+                                <div class="mb-4 mt-1 text-xs text-gray-800">Minimum</div>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                                        <span class="text-gray-400">$</span>
+                                    </span>
+                                    <input id="credit-amount" type="number" min="1" step="1" placeholder="" class="w-[14.7em] border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 py-2" value="10">
+                                    <button id="pay-button" class="bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToPay()">Pay</button>
+                                </div>
+                            </div>
+
+                            <div class="flex space-x-2">
+                                <p class="flex-1 text-left py-0 rounded text-xs text-gray-400">Powered by Stripe</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+    
+        </div>
+    </div>
+    `;
+}
+
+function errorBannerHTML(message) {
+    return `
+    <div class="rounded-md bg-red-50 p-4" id="errorBanner">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-red-800">${message}</p>
+            </div>
+            <div class="ml-auto pl-3">
+                <div class="-mx-1.5 -my-1.5">
+                    <button type="button" class="inline-flex rounded-md bg-red-50 p-1.5 text-red-500 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50">
+                        <span class="sr-only">Dismiss</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+}
+
+function warningBannerHTML(message) {
+    return `
+    <div class="rounded-md bg-orange-50 p-4" id="warningBanner">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-orange-800">${message}</p>
+            </div>
+            <div class="ml-auto pl-3">
+                <div class="-mx-1.5 -my-1.5">
+                    <button type="button" class="inline-flex rounded-md bg-orange-50 p-1.5 text-orange-500 hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 focus:ring-offset-orange-50">
+                        <span class="sr-only">Dismiss</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+}
+
+function successBannerHTML(message) {
+    return `
+    <div class="rounded-md bg-green-50 p-4" id="successBanners">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-green-800">${message}</p>
+            </div>
+            <div class="ml-auto pl-3">
+                <div class="-mx-1.5 -my-1.5">
+                    <button type="button" class="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-orange-50">
+                        <span class="sr-only">Dismiss</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+}
+    
+function mobileSideBar() {
+    return `
+            <div id="mobile-sidebar" x-ref="genSettings" x-show="open" x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="absolute top-0 right-0 h-full overflow-auto z-50 flex lg:hidden">
                 
                 <div class="relative w-full max-w-full flex-grow flex-1">
                     
@@ -323,142 +469,5 @@ function consoleHtml() {
                     </div>
                 </div>
             </div>
-
-            <div id="console-content" class="h-full relative">
-
-            <!-- Your content -->
-    
-                <button class="fixed right-0 bottom-0 m-4 bg-blue-500 text-white rounded-full z-30 w-12 h-12 flex items-center justify-center" @click="open = !open">
-                    <i class="fa-solid fa-wrench"></i>
-                </button>
-
-                <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-10 flex flex-col justify-center transition duration-500 opacity-0">
-            
-                    <div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
-                        <button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissPaymentModal()">
-                            <i class="fas fa-times" aria-hidden="true"></i>
-                        </button>
-                        <div class="mb-4">
-                            <h2 class="text-3xl text-gray-900 mb-2">Balance: 
-                                <span id="modal-credit-balance-label" class="">$0.00</span>
-                                <span id="insufficient-credit-label" class="hidden italic text-red-500 text-xs">Insufficient credit.</span>
-                            </h2>
-                            <p class="mb-0 text-gray-400">~ $3.00 to $6.00 / trained model (for 10 vs 20 images)</p>
-                            <p class="mb-1 text-gray-400">~ $0.04 / image ($0.11 from a cold boot)</p>
-                            <p class="mb-8 text-gray-400 text-xs italic">cost will vary based on model and parameters</p>
-                        </div>
-
-                        <hr class="border-t border-gray-200 my-6">
-
-                        <div class="mb-1">
-                            <h3 class="text-lg font-semibold mb-2">Add Credit</h3>
-                            <div class="flex space-x-2">
-                                <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="first-credit-option" value="5" onclick="firstCreditOptionClicked()">$5</button>
-                                <button class="bg-black text-white px-6 py-2 rounded shadow" id="second-credit-option" value="10" onclick="secondCreditOptionClicked()">$10</button>
-                                <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="third-credit-option" value="20" onclick="thirdCreditOptionClicked()">$20</button>
-                            </div>
-                            <div class="mb-4 mt-1 text-xs text-gray-800">Minimum</div>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                                    <span class="text-gray-400">$</span>
-                                </span>
-                                <input id="credit-amount" type="number" min="1" step="1" placeholder="" class="w-[14.7em] border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 py-2" value="10">
-                                <button id="pay-button" class="bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToPay()">Pay</button>
-                            </div>
-                        </div>
-
-                        <div class="flex space-x-2">
-                            <p class="flex-1 text-left py-0 rounded text-xs text-gray-400">Powered by Stripe</p>
-                            
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </main>
-        </div>
-    </div>
-    `;
-}
-
-function errorBannerHTML(message) {
-    return `
-    <div class="rounded-md bg-red-50 p-4" id="errorBanner">
-        <div class="flex">
-            <div class="flex-shrink-0">
-                <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd"></path>
-                </svg>
-            </div>
-            <div class="ml-3">
-                <p class="text-sm font-medium text-red-800">${message}</p>
-            </div>
-            <div class="ml-auto pl-3">
-                <div class="-mx-1.5 -my-1.5">
-                    <button type="button" class="inline-flex rounded-md bg-red-50 p-1.5 text-red-500 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50">
-                        <span class="sr-only">Dismiss</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
-}
-
-function warningBannerHTML(message) {
-    return `
-    <div class="rounded-md bg-orange-50 p-4" id="warningBanner">
-        <div class="flex">
-            <div class="flex-shrink-0">
-                <svg class="h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                </svg>
-            </div>
-            <div class="ml-3">
-                <p class="text-sm font-medium text-orange-800">${message}</p>
-            </div>
-            <div class="ml-auto pl-3">
-                <div class="-mx-1.5 -my-1.5">
-                    <button type="button" class="inline-flex rounded-md bg-orange-50 p-1.5 text-orange-500 hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 focus:ring-offset-orange-50">
-                        <span class="sr-only">Dismiss</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
-}
-
-function successBannerHTML(message) {
-    return `
-    <div class="rounded-md bg-green-50 p-4" id="successBanners">
-        <div class="flex">
-            <div class="flex-shrink-0">
-                <svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-            </div>
-            <div class="ml-3">
-                <p class="text-sm font-medium text-green-800">${message}</p>
-            </div>
-            <div class="ml-auto pl-3">
-                <div class="-mx-1.5 -my-1.5">
-                    <button type="button" class="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-orange-50">
-                        <span class="sr-only">Dismiss</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
     `;
 }

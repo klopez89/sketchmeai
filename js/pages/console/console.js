@@ -1,5 +1,6 @@
 
 addConsoleToDOM();
+addMobileSidebar();
 copyStaticSidebar();
 changeActiveMenuPage();
 updatePageTitle();
@@ -16,6 +17,12 @@ function addConsoleToDOM() {
 	let console_html = consoleHtml();
 	let console_div = $($.parseHTML(console_html));
   $('body').append(console_div);
+}
+
+function addMobileSidebar() {
+    let mobileSidebarHtml = mobileSidebarHTML();
+    let mobileSidebarDiv = $($.parseHTML(mobileSidebarHtml()));
+    $('#console-group').append(mobileSidebarDiv);
 }
 
 function configureUserRelatedUI() {

@@ -692,7 +692,7 @@ function generateButtonPressed(event) {
     }
 
     console.log('the event target is: ', event.target);
-    var generateIcon = event.target.querySelector('i');
+    var generateIcon = event.target;
     generateIcon.className = 'fa-solid fa-spinner fa-spin'; // Change to spinner
 
     for (var j = 0; j < numberOfImages; j++) {

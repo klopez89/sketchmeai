@@ -140,12 +140,12 @@ function consoleHtml() {
                 <div id="console-content" class="h-full relative">
 
                 <!-- Your content -->
-                    <div class="md:hidden fixed right-0 bottom-0 m-4">
-                        <button class="bg-gray-100 text-black shadow-lg rounded-full z-30 w-12 h-12 flex items-center justify-center" @click="open = !open">
+                    <div class="md:hidden fixed right-0 bottom-0 m-4 z-30">
+                        <button class="bg-gray-100 text-black shadow-lg rounded-full w-12 h-12 flex items-center justify-center" @click="open = !open">
                             <i class="fa-solid fa-wrench" aria-hidden="true"></i>
                         </button>
 
-                        <button class="bg-gray-black text-white shadow-lg rounded-full z-30 w-12 h-12 flex items-center justify-center" @click="open = !open">
+                        <button class="bg-gray-black text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center" @click="open = !open">
                             <i class="fa-solid fa-bolt-lightning"></i>
                         </button>
                     </div>

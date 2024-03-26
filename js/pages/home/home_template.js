@@ -197,7 +197,7 @@ function homePageHtml() {
 						</dt>
 						<dd class="mt-2 pr-12" id="faq-0" x-show="open" style="display: none;">
 							<p class="text-base leading-7 text-gray-600">
-								Image generation and model training both require SketchMeAi credit to use; which can be purchased via Stripe. Cost of generation and training depends on denoising steps and amount of training data, respectively. On average, generation is ~$0.04/image and training a model is ~$3.00/training.
+								Image generation and model training both require SketchMeAi credit to use; which can be purchased via Stripe. Cost of generation and training depends on denoising steps and amount of training data, respectively. On average, generation is ~$0.04/image and training a model is ~$1.50/training.
 							</p>
 						</dd>
 
@@ -205,7 +205,8 @@ function homePageHtml() {
 							<dt>
 								<button type="button" x-description="Expand/collapse question button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
 									<span class="text-base font-semibold leading-7">
-										What happens if I cancel a training?</span>
+										How long does it take to train a model?
+									</span>
 									<span class="ml-6 flex h-7 items-center">
 										<svg x-description="Icon when question is collapsed." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6" :class="{ 'hidden': open }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path>
@@ -218,7 +219,7 @@ function homePageHtml() {
 							</dt>
 							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
 								<p class="text-base leading-7 text-gray-600">
-									You are only charged against the active training time. For example, when kicking off a training, w/ 10 images, an estimated cost will be deducted from your credit balance and if you cancel mid-training, you will be refunded half the estimated cost. Image generations currently cannot be canceled once kicked off.
+									Training a custom SDXL model typically takes 25-30 minutes, based on 10 starting images. We'll send you an email to notify you when your model is complete.
 								</p>
 							</dd>
 						</div>
@@ -227,7 +228,8 @@ function homePageHtml() {
 							<dt>
 								<button type="button" x-description="Expand/collapse question button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
 									<span class="text-base font-semibold leading-7">
-										Why is my trained model not generating images that resemble the training data?</span>
+										How long does it take to generate images?
+									</span>
 									<span class="ml-6 flex h-7 items-center">
 										<svg x-description="Icon when question is collapsed." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6" :class="{ 'hidden': open }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path>
@@ -240,7 +242,53 @@ function homePageHtml() {
 							</dt>
 							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
 								<p class="text-base leading-7 text-gray-600">
-									Resemblance to your training data depends on a number of factors. The first and most impactful is the quality of your training data. High quality images with varied angles and lighting tend to lead to a well-trained model w/ respect to resemblance. The other factors can be found in your prompt settings. While tbe provided default values tend to yield resemblant images, each trained model may need these adjusted to yield best results. The values to adjust are Lora Scale and Guidance Scale. Denoising steps can have some influence too but note that increasing the value may mean an increase in generation cost.
+									Image generation takes as little as 10-15 seconds, depending on the number of denoising steps. However, custom models first need to be loaded onto the servers, which can take a couple of minutes; this is called cold booting. Once your model has cold booted, it will remain "warm" on the server for approximately one minute before the cache is cleared and the model needs to be re-booted. We factor this start-up time into the image cost for cold boots.
+								</p>
+							</dd>
+						</div>
+
+						<div x-data="{ open: false }" class="pt-6">
+							<dt>
+								<button type="button" x-description="Expand/collapse question button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
+									<span class="text-base font-semibold leading-7">
+										What happens if I cancel a training?
+									</span>
+									<span class="ml-6 flex h-7 items-center">
+										<svg x-description="Icon when question is collapsed." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6" :class="{ 'hidden': open }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path>
+										</svg>
+										<svg x-description="Icon when question is expanded." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6 hidden" :class="{ 'hidden': !(open) }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6"></path>
+										</svg>
+									</span>
+								</button>
+							</dt>
+							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
+								<p class="text-base leading-7 text-gray-600">
+									If for whatever reason, you decide to cancel a training before it has completed, you will only be charged against the active training time. For example, when kicking off a training, the total estimated cost will be deducted from your credit balance and if you cancel mid-training, the unused portion of that cost will be credited back to your account automatically. Image generations currently cannot be canceled or refunded.
+								</p>
+							</dd>
+						</div>
+
+						<div x-data="{ open: false }" class="pt-6">
+							<dt>
+								<button type="button" x-description="Expand/collapse question button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
+									<span class="text-base font-semibold leading-7">
+										Why is my trained model not generating images that resemble the training data?
+									</span>
+									<span class="ml-6 flex h-7 items-center">
+										<svg x-description="Icon when question is collapsed." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6" :class="{ 'hidden': open }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"></path>
+										</svg>
+										<svg x-description="Icon when question is expanded." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6 hidden" :class="{ 'hidden': !(open) }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6"></path>
+										</svg>
+									</span>
+								</button>
+							</dt>
+							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
+								<p class="text-base leading-7 text-gray-600">
+									Resemblance to your training data depends on a number of factors. The first and most impactful is the quality of your training data; high quality images with varied angles and lighting tend to lead to a well-trained model with respect to resemblance. Prompt settings, particularly Lora Scale and Guidance Scale, can also be adjusted to improve resemblance. We've provided default values which worked well for us, but you may need to play around with these settings to yield the best results for your models and prompts. The number of denoising steps can influence the resemblance and detail of your generated image, but note that increasing denoising steps will increase generation cost. <a class="text-black underline" href="${CONSTANTS.BASE_URL}/example">Basic Prompt Examples</a>
 								</p>
 							</dd>
 						</div>

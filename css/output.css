@@ -2814,6 +2814,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .pl-3 {
   padding-left: 0.75rem;
 }
+.pl-6 {
+  padding-left: 1.5rem;
+}
 .pl-8 {
   padding-left: 2rem;
 }
@@ -2837,6 +2840,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 }
 .pr-3 {
   padding-right: 0.75rem;
+}
+.pr-4 {
+  padding-right: 1rem;
 }
 .pr-\[24px\] {
   padding-right: 24px;
@@ -5196,6 +5202,10 @@ input[type="range"]:active::-webkit-slider-thumb {}
 
   .lg\:pl-48 {
     padding-left: 12rem;
+  }
+
+  .lg\:pr-52 {
+    padding-right: 13rem;
   }
 
   .lg\:text-center {

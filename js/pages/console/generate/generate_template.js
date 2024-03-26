@@ -68,15 +68,15 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
 
-        <div id="generate-form-container" class="bg-gray-100 pb-4 pt-4 min-w-80 md:w-[400px] max-w-full border-r border-gray-300 hidden md:block">
+        <div id="generate-form-container" class="h-full bg-gray-100 pb-4 pt-4 min-w-80 md:w-[400px] max-w-full border-r border-gray-300 hidden md:block">
 
         </div>
 
         <!-- Right column area -->
-        <div class="flex-1 md:flex">
-            <div class="bg-gray-100 px-0 py-0 md:flex-1">
-                <div class="bg-gray-100">
-                    <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-1 py-1 overflow-y-auto">
+        <div class="flex-1 md:flex h-full">
+            <div class="bg-gray-100 px-0 py-0 md:flex-1 h-full">
+                <div class="bg-gray-100 h-full">
+                    <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 py-1 overflow-y-auto">
 
                         <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-1 gap-y-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>
 

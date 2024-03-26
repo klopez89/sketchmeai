@@ -19,16 +19,29 @@ showBasicExamplesButton();
 configureModelListInput();
 configurePromptInputPlaceholder(); 
 
-let isSignedOut = getFirebaseUID() == null;
-if (isSignedOut) {
-    navigationToHomePage();
-}
 
-let userRecId = getUserRecId();
-let collectionId = getLastEditedCollection();
-let lastDocId = null;
-fetchGenerations(userRecId, collectionId, lastDocId);
-fetchWorkingModels(userRecId);
+// navigationToHomePage();
+
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log('User is signed in.');
+        let userRecId = getUserRecId();
+        let collectionId = getLastEditedCollection();
+        let lastDocId = null;
+        fetchGenerations(userRecId, collectionId, lastDocId);
+        fetchWorkingModels(userRecId);
+    } else {
+        console.log('No user is signed in.');
+        navigationToHomePage();
+    }
+});
+
+// let userRecId = getUserRecId();
+// let collectionId = getLastEditedCollection();
+// let lastDocId = null;
+// fetchGenerations(userRecId, collectionId, lastDocId);
+// fetchWorkingModels(userRecId);
 
 document.querySelectorAll('.editable').forEach(function(element){
     element.contentEditable = true;

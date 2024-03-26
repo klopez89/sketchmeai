@@ -1,7 +1,7 @@
 
 // Firebase functions
 function getFirebaseUID() {
-    return firebase.auth().currentUser.uid;
+    return firebase.auth().currentUser ? firebase.auth().currentUser.uid : null;
 }
 
 // User Rec Id functions

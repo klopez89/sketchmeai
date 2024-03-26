@@ -19,6 +19,12 @@ showBasicExamplesButton();
 configureModelListInput();
 configurePromptInputPlaceholder(); 
 
+let isSignedOut = getFirebaseUID() == null;
+if (isSignedOut) {
+    navigationToHomePage();
+    return;
+}
+
 let userRecId = getUserRecId();
 let collectionId = getLastEditedCollection();
 let lastDocId = null;

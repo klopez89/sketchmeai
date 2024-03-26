@@ -22,7 +22,6 @@ configurePromptInputPlaceholder();
 let isSignedOut = getFirebaseUID() == null;
 if (isSignedOut) {
     navigationToHomePage();
-    return;
 }
 
 let userRecId = getUserRecId();

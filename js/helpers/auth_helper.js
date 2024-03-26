@@ -1,6 +1,7 @@
 
 // Firebase functions
 function getFirebaseUID() {
+    console.log('current user: ', firebase.auth().currentUser);
     return firebase.auth().currentUser ? firebase.auth().currentUser.uid : null;
 }
 

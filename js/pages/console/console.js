@@ -5,7 +5,7 @@ copyStaticSidebar();
 changeActiveMenuPage();
 updatePageTitle();
 configurePayButton();
-startListeningForCreditUpdates();
+setTimeout(startListeningForCreditUpdates, 200);
 configureUserRelatedUI();
 
 setTimeout(handleRecentPaymentRedirect, 200);

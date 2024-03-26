@@ -1,7 +1,7 @@
 function consoleHtml() {
 
 	return `
-    <div x-data="{ open: false }" @keydown.window.escape="open = false">
+    <div x-data="{ open: false }" @keydown.window.escape="open = false" class="h-full">
         <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
         <div x-show="open" class="relative z-50 lg:hidden" x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." x-ref="dialog" aria-modal="true">
         <!-- Off-canvas menu backdrop, show/hide based on off-canvas menu state. -->

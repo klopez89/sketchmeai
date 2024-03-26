@@ -55,3 +55,8 @@ function getBasePrices() {
 function removeBasePrices() {
     return localStorage.removeItem('basePrices');
 }
+
+// Remve all local storage data
+function removeAllLocalStorageData() {
+    localStorage.clear();
+}

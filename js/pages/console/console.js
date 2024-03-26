@@ -365,6 +365,7 @@ function dismissPaymentModal() {
 
 function signOutButtonPressed() {
     firebase.auth().signOut().then(() => {
+        removeAllLocalStorageData();
 		navigationToHomePage();
     }).catch((error) => {
         console.error('Error signing out: ', error);

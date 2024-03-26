@@ -185,7 +185,7 @@ function generate_form_html() {
 						</div>
 						<div class="sm:col-span-3" id="denoising-steps-field-container">
 							<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
-							<button onclick="event.preventDefault()" data-te-trigger="focus" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="${denoisingInfo}" class="ml-2 text-gray-300">
+							<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="${denoisingInfo}" class="ml-2 text-gray-300">
 								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">

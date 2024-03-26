@@ -76,7 +76,7 @@ function dummyGridHTML() {
         <div class="flex-1 md:flex h-full">
             <div class="bg-gray-100 px-0 py-0 md:flex-1 h-full">
                 <div class="bg-gray-100 h-full">
-                    <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-1 py-1 overflow-y-auto">
+                    <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 py-1 overflow-y-auto">
 
                         <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-1 gap-y-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>
 
@@ -87,7 +87,7 @@ function dummyGridHTML() {
                                 </div>
                             </div>
                         </div>  
-                        <div id="infiniteLoader" class="hidden text-4xl text-gray-500 w-full flex bg-transparent flex flex-col items-center mt-6 mb-6">
+                        <div id="infiniteLoader" class="hidden text-4xl text-gray-500 w-full h-full flex bg-transparent flex flex-col items-center mt-6 mb-6">
                             <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
                         </div>                 
                     </div>

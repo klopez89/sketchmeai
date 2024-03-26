@@ -75,8 +75,8 @@ function dummyGridHTML() {
         <!-- Right column area -->
         <div class="flex-1 md:flex h-full">
             <div class="bg-gray-100 px-0 py-0 md:flex-1 h-full">
-                <div class="bg-gray-100 h-screen">
-                    <div id="collection-grid-container" class="relative h-dvh mx-auto max-w-7xl px-1 py-1 overflow-y-auto">
+                <div class="bg-gray-100 h-full">
+                    <div id="collection-grid-container" class="relative mx-auto max-w-7xl px-1 py-1 overflow-y-auto">
 
                         <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-1 gap-y-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>
 

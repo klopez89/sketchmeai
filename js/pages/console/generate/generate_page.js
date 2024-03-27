@@ -174,6 +174,16 @@ function triggerModelNameInPromptFormatting() {
 
 function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
+
+    const form = document.getElementById('generateForm');
+    form.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            generateButtonPressed(event);
+        }
+    });
+
+
     let promptInput = document.getElementById('prompt')
     promptInput.addEventListener('input', function(event) {
         console.log('promptInput value: ', promptInput.innerHTML);

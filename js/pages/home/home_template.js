@@ -294,6 +294,7 @@ function homePageHtml() {
 						</div>
 
 					</div>
+					<div class="text-sm leading-7 mt-12">Have more questions? Send me a message using the contact form below.</div>
 				</dl>
 			</div>
 		</div>

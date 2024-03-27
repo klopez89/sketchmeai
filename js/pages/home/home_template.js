@@ -11,7 +11,7 @@ function homePageHtml() {
 // Old Title: Explore what you can create with AI
 // Old Subtitle: Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters to craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.
 
-	let headerTitle = 'LinkedIn pic<br>dated?<br>Let <b>AI</b> help';
+	let headerTitle = 'Profile pic dated?<br>Let <b>AI</b> help';
 	let headerSubtitle = 'With easy-to-use model training and image generation, SketchMeAi enables you to create new profile photos and more with AI technology. See how you can reimagine yourself.';
 
 	let first_feature_title = 'Model Training';
@@ -134,7 +134,7 @@ function homePageHtml() {
 
 		<div class="bg-gray-100" id="howitworks">
 			<div class="my-24 mx-auto max-w-7xl px-6 lg:px-8">
-				<div class="mx-auto max-w-2xl lg:text-center">
+				<div class="mx-auto max-w-2xl text-center">
 				<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">What We Offer</p>
 				</div>
 				<div class="mx-auto mt-12 max-w-2xl lg:max-w-4xl">
@@ -301,7 +301,7 @@ function homePageHtml() {
 	  
 		<div id="roadmap" class="bg-white">
 			<div class="my-4 mx-auto max-w-7xl px-6 lg:px-8">
-				<div class="mx-auto max-w-2xl lg:text-center mb-12">
+				<div class="mx-auto max-w-2xl text-center mb-12">
 					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Roadmap</p>
 				</div>
 				<div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -357,7 +357,7 @@ function homePageHtml() {
 
 
 		<div id="${contactUsId}" class="bg-gray-100 border dark:border-white/10">
-			<div class="mt-24 mx-auto max-w-2xl lg:text-center mb-12">
+			<div class="mt-24 mx-auto max-w-2xl text-center mb-12">
 					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">${contactFormTitle}</p>
 			</div>
 			<div class="mt-8 mb-24 mx-auto block max-w-md rounded-lg bg-transparent px-6 shadow-4 dark:bg-surface-dark">

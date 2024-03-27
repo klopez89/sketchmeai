@@ -18,6 +18,7 @@ setupAccordion();
 showBasicExamplesButton();
 configureModelListInput();
 configurePromptInputPlaceholder(); 
+addBottomGenerationMenu();
 
 
 // navigationToHomePage();
@@ -73,6 +74,12 @@ function configurePromptInputPlaceholder() {
     promptDiv.addEventListener('focus', removePlaceholder);
     promptDiv.addEventListener('blur', promptAboutToLoseFocus);
     togglePlaceholder();
+}
+
+function addBottomGenerationMenu() {
+    let bttomGenMenuHTML = bottom_generation_menu_html();
+    let bottomGenMenuDiv = $($.parseHTML(bttomGenMenuHTML));
+    $('#console-content').append(bottomGenMenuDiv);
 }
 
 function promptAboutToLoseFocus() {

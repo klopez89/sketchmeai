@@ -140,15 +140,6 @@ function consoleHtml() {
                 <div id="console-content" class="h-full relative">
 
                 <!-- Your content -->
-                    <div id="mobile-bottom-menu" class="md:hidden fixed right-0 bottom-0 m-4 z-30 flex gap-4">
-                        <button class="bg-gray-100 text-black shadow-lg rounded-full w-12 h-12 flex items-center justify-center" @click="open = !open">
-                            <i class="fa-solid fa-wrench" aria-hidden="true"></i>
-                        </button>
-
-                        <button class="bg-black text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="generateButtonPressed(event)">
-                            <i id="mobile-gen-icon" class="fa-solid fa-bolt-lightning"></i>
-                        </button>
-                    </div>
 
                     <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-40 px-4 flex flex-col justify-center transition duration-500 opacity-0">
                 
@@ -311,3 +302,4 @@ function mobileSideBarHTML() {
             </div>
     `;
 }
+

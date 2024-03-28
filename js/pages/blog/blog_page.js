@@ -1,5 +1,5 @@
 
-addBasicExamplesHTMLToDOM();
+addBlogListHTMLToDOM();
 generateBlogEntries();
 
 function addBlogListHTMLToDOM() {
@@ -9,5 +9,5 @@ function addBlogListHTMLToDOM() {
 }
 
 function generateBlogEntries() {
-    
+
 }

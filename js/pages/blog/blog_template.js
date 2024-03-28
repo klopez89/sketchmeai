@@ -18,7 +18,7 @@ function blogListHTML() {
 function blogListGridHTML() {
     return `
     <div id="blog-grid" class="grid grid-cols-2 gap-4">
-        <div class="flex flex-col items-start space-y-4 group cursor-pointer">
+        <div class="flex flex-col items-start space-y-4 group cursor-pointer" onclick="window.location.href='https://${CONSTANTS.SITE_URL}/blog/entries/post1'">
             <div class="aspect-w-1 aspect-h-1 w-full">
             <img src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img39.png" alt="Blog Image 1" class="object-cover">
             </div>

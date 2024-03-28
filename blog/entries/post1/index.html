@@ -112,6 +112,30 @@
                         </div>
                     </div>
                 </div>
+                <p class="mt-2">&nbsp;</p>
+                <p class="mt-2">Then edit prompt to:</p>
+                <p class="text-gray-500 italic border-l-2 border-gray-300 ml-4 pl-4 my-2">Drawing of [MODEL_NAME] wearing a sleek black leather jacket, vibrant colors, sharp lines</p>
+                <p class="mt-2">&nbsp;</p>
+                <p class="mt-2">Resulting in a really cool rendering:</p>
+                <div id="single-img" class="py-12">
+                    <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img44.png">
+                        <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img44.png">
+                    </a>
+                </div>
+                <h2 class="text-2xl font-medium mt-4">Editing w/ Negative Prompt</h2>
+                <p class="mt-2">Now the one thing I don't like about this new image is the hand near the shoulder. I want that arm back down, like the original image. In the future, there will be more tools to guide this intent but for now we can rely on the negative prompt field. Edit the negative prompt to:</p>
+                <p class="text-gray-500 italic border-l-2 border-gray-300 ml-4 pl-4 my-2">ugly, morbid, photorealistic, hand</p>
+                <p class="mt-2">&nbsp;</p>
+                <p class="mt-2">Resulting in:</p>
+                <div id="single-img" class="py-12">
+                    <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img42.png">
+                        <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img42.png">
+                    </a>
+                </div>
+                <h2 class="text-2xl font-medium mt-4">Exploring the effects of Guidance Scale</h2>
+                <p class="mt-2">Guidance scale (also known as classifier free guidance or cfg) controls how closely the generation should adhere to the prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations.</p>
+                <p class="mt-2">&nbsp;</p>
+                <p class="mt-2">The default value on SketchMeAi is 13. So let's fire off generations w/ the following guidance scale values to see how our latest image renders across the spectrum of values: 1,3,5,8,10,15,18,20.</p>
 
             </div>
         </div>

@@ -9,5 +9,7 @@ function addBlogListHTMLToDOM() {
 }
 
 function generateBlogEntries() {
-
+    let blog_grid_html = blogListGridHTML();
+    let blog_grid_div = $($.parseHTML(blog_grid_html));
+    $('#blog-list-container').append(blog_grid_div);
 }

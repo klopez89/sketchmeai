@@ -270,6 +270,106 @@
                     </div>
                 </div>
 
+                <p class="mt-2">As you can see, the lora scale at 0 has no resemblance to my training data. Resemblance only begins to kick in around 0.6 for my model and this set of generation settings. As we approach a value of 1, the trained subject begins to get washed out. So where should we settle? I like the sharpness of 0.6 but I think resemblance is better at 0.8. So let's see what something in the middle looks like.</p>
+
+                <div class="py-12">
+                    <div class="grid md:grid-cols-2 gap-4">
+        
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img24.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img24.png">
+                            </a>
+                            <p class="text-sm text-gray-500">0.7</p>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img39.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img39.png">
+                            </a>
+                            <p class="text-sm text-gray-500">0.8 (original)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mt-2">I personally still prefer the one w/ a lora scale of 0.8, so we'll move on to the next generating setting: denoising steps.</p>
+                <p class="mt-2">&nbsp;</p>
+                <h2 class="text-2xl font-medium mt-4">Exploring the effects of Denoising Steps</h2>
+                <p class="mt-2">Each denoising step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop-off where more steps do not result in more details. Let's explore some values to get a better sense of this: 1, 5, 10, 30, 40, 60, 80, 100</p>
+
+                <div class="py-12">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img23.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img23.png">
+                            </a>
+                            <p class="text-sm text-gray-500">1</p>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img21.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img21.png">
+                            </a>
+                            <p class="text-sm text-gray-500">5</p>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img18.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img18.png">
+                            </a>
+                            <p class="text-sm text-gray-500">10</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img39.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img39.png">
+                            </a>
+                            <p class="text-sm text-gray-500">20 (original)</p>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img20.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img20.png">
+                            </a>
+                            <p class="text-sm text-gray-500">30</p>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img17.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img17.png">
+                            </a>
+                            <p class="text-sm text-gray-500">40</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img22.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img22.png">
+                            </a>
+                            <p class="text-sm text-gray-500">60</p>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img19.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img19.png">
+                            </a>
+                            <p class="text-sm text-gray-500">80</p>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img16.png">
+                                <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img16.png">
+                            </a>
+                            <p class="text-sm text-gray-500">100</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <p class="mt-2">You can see that the output is pretty fuzzy up until 20 denoising steps, and after that the area around the face seems to get fuzzy. So I’m going to stick w/ the same base image here (but you may find this to be different for you!). Next, let’s experiment w/ image to image!</p>
+                <p class="mt-2">&nbsp;</p>
+                <h2 class="text-2xl font-medium mt-4">Exploring the effects of Image to Image</h2>
+                <p class="mt-2">Image to image is a technique that provides the model with a starting base image to then generate from. It's a way to direct the AI to modify or build upon an existing image rather than creating one from scratch. Let's start by understanding the effect of the prompt strength field, which is only applicable when a reference image url is provided for img to img.</p>
+                <p class="mt-2">&nbsp;</p>
+                <p class="mt-2">First let's click into our favorite image's menu and select 'Use Reference Image':</p>
+                <div id="single-img" class="pt-2 pb-12">
+                    <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img15.png">
+                        <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img15.png">
+                    </a>
+                </div>
+                <p class="mt-2">Doing so will automatically copy the image url to the Image to Image URL field. Next, change the current seed to any number other than the seed used to generate the favorite image (you can alter one digit, for example). Just make sure you don't have the seed set to Random. Then generate images for the following prompt strength (ps) values: 0.1, 0.2, 0.4, 0.6, 0.7, 0.8, 0.9, 1</p>
 
             </div>
         </div>

@@ -53,6 +53,15 @@ function homePageHtml() {
 	let contactFormTitle = 'Contact Us';
 	let currentYear = new Date().getFullYear().toString();
 
+	// <div class="hidden lg:flex lg:gap-x-12">
+	// 	<a href="#" class="text-sm font-semibold leading-6 text-gray-900 hidden">Product</a>
+	// 	<a href="#" class="text-sm font-semibold leading-6 text-gray-900 hidden">Features</a>
+	// 	<a href="#" class="text-sm font-semibold leading-6 text-gray-900 hidden">Company</a>
+	// </div>
+
+	// <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+	// 	<a href="#" class="text-sm font-semibold leading-6 text-gray-900 hidden">Log in <span aria-hidden="true">→</span></a>
+	// </div>
 
 	return `
 	<div class="bg-white flex flex-col gap-y-20">
@@ -60,25 +69,12 @@ function homePageHtml() {
 			<nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
 				<div class="flex lg:flex-1">
 					<a href="#" class="-m-1.5 p-1.5 flex items-center">
-						<img class="h-8 w-auto pr-2" src="https://storage.googleapis.com/sketchmeai-public/branding/sketchmeai%20logo%403x.png" alt=""><span class="font-medium text-xl pt-1">SketchMeAi</span>
+						<img class="h-8 w-auto pr-2" src="https://storage.googleapis.com/sketchmeai-public/branding/sketchmeai%20logo%403x.png" alt=""><span class="font-medium text-xl pt-1 hidden md:block">SketchMeAi</span>
 					</a>
 				</div>
-				<div class="flex lg:hidden hidden">
-					<button type="button" id="menuButton" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-						<span class="sr-only">Open main menu</span>
-						<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-						</svg>
-					</button>
-				</div>
-				<div class="hidden lg:flex lg:gap-x-12">
-					<a href="#" class="text-sm font-semibold leading-6 text-gray-900 hidden">Product</a>
-					<a href="#" class="text-sm font-semibold leading-6 text-gray-900 hidden">Features</a>
-					<a href="#" class="text-sm font-semibold leading-6 text-gray-900 hidden">Company</a>
-				</div>
-				<div class="hidden lg:flex lg:flex-1 lg:justify-end">
-				<a href="#" class="text-sm font-semibold leading-6 text-gray-900 hidden">Log in <span aria-hidden="true">→</span></a>
-				</div>
+
+				<button id="basic-examples-button" onclick="takeToBlog()" class="cursor-pointer border-2 border-black rounded-md flex-0 float-right text-center px-8 py-2.5 text-sm text-black shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Checkout Our Blog</button>
+				
 			</nav>
 			<!-- Mobile menu, show/hide based on menu open state. -->
 			<div id="mobileMenu" class="lg:hidden hidden" role="dialog" aria-modal="true" style="display: none;">

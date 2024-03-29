@@ -37,7 +37,7 @@
                         <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img48.png">
                     </a>
                 </div>
-                <p class="mt-2">Your first name is a solid choice for your model name, but it can be anything as long as you don't use spaces or emojis 😋. In a future update, you'll be able to train the model on a style and any object. For this training,  you'll train the base SDXL model on a person. Then upload a minimum of 10 images (max: 20).<mark class="bg-yellow-200"><strong> Important:</strong></mark> The quality of images you provide as training data is the biggest driving factor to the quality of the trained model in regards to resemblance.</p>
+                <p class="mt-2">Your first name is a solid choice for your model name, but it can be anything as long as you don't use spaces or emojis 😋. In a future update, you'll be able to train the model on an object or particular style. For this training,  you'll train the base SDXL model on a person. We recommend uploading a minimum of 10 images (max: 20).<mark class="bg-yellow-200"><strong> Important:</strong></mark> The quality of images you provide as training data is the biggest driving factor to the quality of the trained model in regards to resemblance.</p>
                 <p class="mt-2">&nbsp;</p>
                 <div class="mt-2">
                     <p>✅ High quality training images look like:
@@ -64,14 +64,71 @@
                     </ul>
                 </div>
                 <p class="mt-2">&nbsp;</p>
-                <p class="mt-2">Once your uploaded images have processed, click 'Start Training'. Congratulations, you've kicked off your very own AI model training, and when it's done it'll have a good idea about how you look.</p>
+                <p class="mt-2">Once your uploaded images have processed, click 'Start Training'. Congratulations, you've kicked off your very own AI model training!</p>
                 <p class="mt-2">&nbsp;</p>
-                <p class="mt-2">Model training will take about 30 minutes for 10 images (and about 3 mins per image for anything more). Once training is finished, you will receive an email with a link to take you to the generation page with the newly trained model auto-selected.</p>
+                <p class="mt-2">Model training will take about 30 minutes for 10 images (and about 3 mins per image for anything more). Once training is finished, you will receive an an email letting you know your model is ready. Click the provided email link to take you to the generation page with the newly trained model auto-selected.</p>
                 <div id="single-img" class="py-12 md:w-1/2">
                     <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/ScreenRecording2024-03-27at1.28.38PM-ezgif.com-optimize.gif">
                         <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/ScreenRecording2024-03-27at1.28.38PM-ezgif.com-optimize.gif">
                     </a>
                 </div>
+
+                <h2 class="text-2xl font-medium mt-4">Quick Overview of Generation Settings</h2>
+                <p class="mt-2">We'll provide examples below on how varying each generation setting impacts your images, but here's a quick overview of them.</p>
+                <p class="mt-2">&nbsp;</p>
+                <p class="mt-2">We'll provide examples below on how varying each generation setting impacts your images, but here's a quick overview of them.</p>
+
+                <div class="p-6 max-w-lg mx-auto bg-white rounded-xl shadow-md flex flex-col space-y-4">
+                    <div class="flex flex-col">
+                      <span class="font-bold text-xl">Prompt:</span>
+                      <span>defines what should be included in the generation. Referencing the model name is required</span>
+                    </div>
+                    <div class="border-b"></div>
+                  
+                    <div class="flex flex-col">
+                      <span class="font-bold text-xl">Negative Prompt:</span>
+                      <span>defines what should be avoided in the generation</span>
+                    </div>
+                    <div class="border-b"></div>
+                  
+                    <div class="flex flex-col">
+                      <span class="font-bold text-xl">Seed:</span>
+                      <span>determines the amount of noise the generation starts with. Easy way to vary output.</span>
+                    </div>
+                    <div class="border-b"></div>
+                  
+                    <div class="flex flex-col">
+                      <span class="font-bold text-xl">Guidance Scale:</span>
+                      <span>controls how closely the generation will adhere to the prompt text</span>
+                    </div>
+                    <div class="border-b"></div>
+                  
+                    <div class="flex flex-col">
+                      <span class="font-bold text-xl">Lora Scale:</span>
+                      <span>impacts the extent to which the training data (i.e. your resemblance) is pulled into the generation</span>
+                    </div>
+                    <div class="border-b"></div>
+                  
+                    <div class="flex flex-col">
+                      <span class="font-bold text-xl">Denoising Steps:</span>
+                      <span>adds detail and removes noise from generated images</span>
+                    </div>
+                    <div class="border-b"></div>
+                  
+                    <div class="flex flex-col">
+                      <span class="font-bold text-xl">Image to Image:</span>
+                      <span>allows you to use any image as a starting point for generation</span>
+                    </div>
+                    <div class="border-b"></div>
+                  
+                    <div class="flex flex-col">
+                      <span class="font-bold text-xl">Prompt Strength:</span>
+                      <span>only applicable for Image to Image, controls how much the generation pulls from your reference image vs the text prompt</span>
+                    </div>
+                </div>
+                  
+
+
                 <h2 class="text-2xl font-medium mt-4">Generating Your First Images w/ Your Model</h2>
                 <p class="mt-2">Without even modifying a prompt setting value, you can hit 'Generate' and kick off your first image generation (the placeholder prompt will be used). Generate two more images so we can choose one to iterate on. Here are the three I got:
                 </p>

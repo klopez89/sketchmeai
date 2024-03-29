@@ -27,15 +27,6 @@ function blogListGridHTML() {
             <p class="text-sm text-gray-500">Thur, March 28th 2024</p>
             </div>
         </div>
-        <div class="flex flex-col items-start space-y-4">
-            <div class="aspect-w-1 aspect-h-1 w-full">
-            <img src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img45.png" alt="Blog Image 2" class="object-cover">
-            </div>
-            <div>
-            <h2 class="text-xl font-bold">Blog Title 2</h2>
-            <p class="text-sm text-gray-500">Published on: <span class="font-medium">Publishing Date 2</span></p>
-            </div>
-        </div>
     </div>
     `;
 }

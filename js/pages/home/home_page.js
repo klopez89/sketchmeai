@@ -139,3 +139,7 @@ function hideContactUsSpinner() {
   contactUsSpinner.classList.add('hidden');
   $('#contact-us-button').prop('disabled', false);
 }
+
+function takeToBlog() {
+  window.location.href = `https://${CONSTANTS.SITE_URL}/blog`;
+}

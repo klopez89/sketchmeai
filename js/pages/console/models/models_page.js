@@ -21,6 +21,20 @@ checkForNewModelRedirect();
 fetchModels(userRecId, lastDocId);
 
 
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log('User is signed in.');
+        let userRecId = getUserRecId();
+        let collectionId = getLastEditedCollection();
+        let lastDocId = null;
+        fetchGenerations(userRecId, collectionId, lastDocId);
+        fetchWorkingModels(userRecId);
+    } else {
+        console.log('No user is signed in.');
+        navigationToHomePage();
+    }
+});
+
 function enforceNoSpaces(event) {
     // Remove spaces
     let newValue = event.target.value.replace(/\s/g, '');

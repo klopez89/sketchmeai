@@ -56,7 +56,9 @@ function deleteUser() {
 		$.ajax({
 			url: action,
 			method: "POST",
-			data: JSON.stringify({}),
+			data: JSON.stringify({
+				"user_rec_id": user_rec_id
+			}),
 			contentType: "application/json",
 			dataType: "json",
 			success: function (response) {

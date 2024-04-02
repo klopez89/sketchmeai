@@ -1,11 +1,18 @@
 addBaseDashboardToDOM();
+addUserDeleteFormToDOM();
 fetchAdminData();
-// addAdminDivsToDOM();
+
 
 function addBaseDashboardToDOM() {
     let base_dashboard_html = baseDashboardHTML();
     let base_dashboard_div = $($.parseHTML(base_dashboard_html));
     $('body').append(base_dashboard_div);
+}
+
+function addUserDeleteFormToDOM() {
+	let delete_user_form_html = deleteUserFormHTML();
+	let delete_user_form_div = $($.parseHTML(delete_user_form_html));
+	$('#admin-dashboard').append(delete_user_form_div);
 }
 
 function addInfoToDashboard(admin_data) {
@@ -39,4 +46,25 @@ function fetchAdminData() {
 			console.log("Fell into failure block for action - admin/health, with msg: ", msg);
 		},
   	});
+}
+
+function deleteUser() {
+	let user_rec_id = document.getElementById('user_rec_id').value;
+	if (user_rec_id != '') {
+
+	let action = `${CONSTANTS.BACKEND_URL}users/delete`
+		$.ajax({
+			url: action,
+			method: "POST",
+			data: JSON.stringify({}),
+			contentType: "application/json",
+			dataType: "json",
+			success: function (response) {
+				console.log('users/delete endpoint hit success, w/ response: ', response);
+			},
+			error: function (msg) {
+				console.log("Fell into failure block for action - users/delete, with msg: ", msg);
+			},
+		});
+	}
 }

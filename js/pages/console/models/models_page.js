@@ -5,8 +5,6 @@ const failedColor = '#801930';
 const estimatedCostPerTrainingImg = 0.34
 const estimatedTimePerTrainingImg = 3 // in minutes per img
 
-let userRecId = getUserRecId();
-let lastDocId = null;
 
 
 addModelsGrid();
@@ -17,18 +15,14 @@ configureTrainingForm();
 setupAccordion();
 applyTrainingPreset(personTrainingPreset());
 updateTrainingCostEstimate();
-checkForNewModelRedirect();
-fetchModels(userRecId, lastDocId);
-
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log('User is signed in.');
         let userRecId = getUserRecId();
-        let collectionId = getLastEditedCollection();
         let lastDocId = null;
-        fetchGenerations(userRecId, collectionId, lastDocId);
-        fetchWorkingModels(userRecId);
+        fetchModels(userRecId, lastDocId);
+        checkForNewModelRedirect();
     } else {
         console.log('No user is signed in.');
         navigationToHomePage();

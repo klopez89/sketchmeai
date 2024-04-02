@@ -77,3 +77,24 @@ function dashboardDataHTML(data) {
     html += `</div>`;
     return html;
 }
+
+function deleteUserFormHTML() {
+    return `
+    <div class="p-5 h-full bg-gray-100 rounded shadow-md mt-5">
+        <h2 class="text-2xl font-bold mb-5">Delete User</h2>
+        <form id="delete-user-form">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="user_rec_id">
+                    User Record ID
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="user_rec_id" type="text" placeholder="Enter user record ID">
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="deleteUser()">
+                    Delete
+                </button>
+            </div>
+        </form>
+    </div>
+    `;
+}

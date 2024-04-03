@@ -1,5 +1,6 @@
 addBaseDashboardToDOM();
 addUserDeleteFormToDOM();
+addAdminLoaderToDOM();
 fetchAdminData();
 
 
@@ -13,6 +14,12 @@ function addUserDeleteFormToDOM() {
 	let delete_user_form_html = deleteUserFormHTML();
 	let delete_user_form_div = $($.parseHTML(delete_user_form_html));
 	$('#admin-dashboard').append(delete_user_form_div);
+}
+
+function addAdminLoaderToDOM() {
+	let admin_loader_html = adminLoaderHTML();
+	let admin_loader_div = $($.parseHTML(admin_loader_html));
+	$('#admin-dashboard').append(admin_loader_div);
 }
 
 function addInfoToDashboard(admin_data) {

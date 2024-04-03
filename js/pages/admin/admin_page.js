@@ -34,7 +34,6 @@ function hideLoader() {
     });
 }
 
-
 function fetchAdminData() {
 	let action = `${CONSTANTS.BACKEND_URL}admin/health`
 	$.ajax({
@@ -58,8 +57,9 @@ function fetchAdminData() {
 function deleteUser() {
 	let user_rec_id = document.getElementById('user_rec_id').value;
 	if (user_rec_id != '') {
-
-	let action = `${CONSTANTS.BACKEND_URL}users/delete`
+		showLoadingDeleteUserButton();
+		hideUserDeleteResultLabel();
+		let action = `${CONSTANTS.BACKEND_URL}users/delete`
 		$.ajax({
 			url: action,
 			method: "POST",
@@ -69,11 +69,41 @@ function deleteUser() {
 			contentType: "application/json",
 			dataType: "json",
 			success: function (response) {
+				hideLoadingDeleteUserButton();
+				updateUserDeleteResultLabel(`Successfully deleted user with id: ${user_rec_id}`)
 				console.log('users/delete endpoint hit success, w/ response: ', response);
 			},
 			error: function (msg) {
+				hideLoadingDeleteUserButton()
+				updateUserDeleteResultLabel(`Failed to delete user with id: ${user_rec_id}`)
 				console.log("Fell into failure block for action - users/delete, with msg: ", msg);
 			},
 		});
 	}
+}
+
+
+function hideLoadingDeleteUserButton() {
+	let deleteUserButtonTextElement = $('#delete-user-button p')[0];
+	deleteUserButtonTextElement.style.color = "transparent";
+	let deleteUserButtonLoadingElement = $('#delete-user-button i')[0];
+	deleteUserButtonLoadingElement.style.display = '';
+}
+
+function showLoadingDeleteUserButton() {
+	let deleteUserButtonTextElement = $('#delete-user-button p')[0];
+	deleteUserButtonTextElement.style.color = "";
+	let deleteUserButtonLoadingElement = $('#delete-user-button i')[0];
+	deleteUserButtonLoadingElement.style.display = 'none';
+}
+
+function updateUserDeleteResultLabel(result) {
+	let resultLabel = document.getElementById('user-delete-result-label');
+	resultLabel.innerHTML = result;
+	resultLabel.classList.remove('hidden');
+}
+
+function hideUserDeleteResultLabel() {
+	let resultLabel = document.getElementById('user-delete-result-label');
+	resultLabel.classList.add('hidden');
 }

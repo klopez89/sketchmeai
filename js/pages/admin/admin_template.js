@@ -2,11 +2,16 @@ function baseDashboardHTML() {
     return `
     <div id="admin-dashboard" class="p-5 h-full bg-gray-100 rounded shadow-md overflow-y-auto">
         <h2 class="text-2xl font-bold mb-5">Dashboard</h2>
-        <div id="admin-loader" class="w-full px-4 py-8 sm:px-6 lg:px-8">
-            <div class="bg-gray-100 w-full flex justify-center items-start">
-                <div class="mt-5">    
-                    <i class="fa fa-spinner fa-spin text-4xl text-gray-500 mt-5" aria-hidden="true"></i>
-                </div>
+    </div>
+    `;
+}
+
+function adminLoaderHTML() {
+    return `
+    <div id="admin-loader" class="w-full px-4 py-8 sm:px-6 lg:px-8">
+        <div class="bg-gray-100 w-full flex justify-center items-start">
+            <div class="mt-5">    
+                <i class="fa fa-spinner fa-spin text-4xl text-gray-500 mt-5" aria-hidden="true"></i>
             </div>
         </div>
     </div>
@@ -80,9 +85,9 @@ function dashboardDataHTML(data) {
 
 function deleteUserFormHTML() {
     return `
-    <div class="p-5 h-full bg-gray-100 rounded shadow-md mt-5">
+    <div class="p-5 bg-gray-200 mt-5 mb-5">
         <h2 class="text-2xl font-bold mb-5">Delete User</h2>
-        <form id="delete-user-form">
+        <form id="delete-user-form" class="bg-gray-100 p-3 rounded">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="user_rec_id">
                     User Record ID

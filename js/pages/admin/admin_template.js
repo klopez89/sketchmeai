@@ -1,6 +1,6 @@
 function baseDashboardHTML() {
     return `
-    <div id="admin-dashboard" class="p-5 h-full bg-gray-100 rounded shadow-md">
+    <div id="admin-dashboard" class="p-5 h-full bg-gray-100 rounded shadow-md overflow-y-auto">
         <h2 class="text-2xl font-bold mb-5">Dashboard</h2>
         <div id="admin-loader" class="w-full px-4 py-8 sm:px-6 lg:px-8">
             <div class="bg-gray-100 w-full flex justify-center items-start">

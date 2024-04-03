@@ -97,7 +97,7 @@ function deleteUserFormHTML() {
                     <p class="flex items-center">Delete</p>
 					<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
                 </button>
-                <label id="user-delete-result-label" class="block text-black italic text-xs mt-2">
+                <label id="user-delete-result-label" class="block text-black italic text-xs mt-2 hidden">
                     Successfully deleted user with id: 123abc
                 </label>
             </div>

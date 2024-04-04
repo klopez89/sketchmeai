@@ -163,18 +163,20 @@ function configureShareButton() {
 
     shareButton.addEventListener("click", async () => {
 
-        generateFileArray(imageUrls).then(fileArray, async () => {
-
-            try {
-                await navigator.share({
-                    files: fileArray,
-                    title: 'Shared Images',
-                    text: 'Here are some images I thought you might like.'
-                });
-              } catch (err) {
-                console.error("Share failed:", err.message);
-            }
+        var fileArray = null;
+        generateFileArray(imageUrls).then(file_array => {
+            fileArray = file_array;
         });
+
+        try {
+            await navigator.share({
+                files: fileArray,
+                title: 'Shared Images',
+                text: 'Here are some images I thought you might like.'
+            });
+          } catch (err) {
+            console.error("Share failed:", err.message);
+        }
     });
 }
   

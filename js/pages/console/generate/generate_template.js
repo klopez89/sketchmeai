@@ -38,6 +38,11 @@ function newGridItemHTML(gen_id, gen_string="") {
 
             <div id="gen-menu-shield" class="bg-gray-900 bg-opacity-50 absolute top-0 left-0 w-full h-full hidden" onclick="tappedGenMenuShield(event)"></div>
         
+			<div class="selection-overlay absolute inset-0 cursor-pointer pointer-events-none">
+				<div class="overlay-bg h-full w-full"></div>
+				<i class="fa fa-circle checkbox hidden absolute top-2 right-2 cursor-pointer text-gray-800 text-3xl"></i>
+			</div>
+
         </div>
     </div>
     `;
@@ -81,7 +86,16 @@ function dummyGridHTML() {
 						<button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="downloadAllButton" onclick="downloadAll()">Download All</button>
 						<button type="button" class="select-to-share-button ml-3 inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="toggleImageSelectability()">Select to Share</button>
 					</div>
-					
+
+					<div class="selection-bar fixed bottom-0 w-full right-0 py-5 px-5 bg-white bg-opacity-70 z-50 hidden">
+						<div class="float-right space-x-4">
+							<button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm bg-white bg-opacity-80 text-gray-400 hover:bg-gray-200" onclick="toggleImageSelectability()">Cancel</button>
+							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm bg-gray-300" onclick="downloadSelectedPressed()" id="downloadSelectedButton" disabled="">Download Selected</button>
+							<button type="button" class="share-button ml-3 inline-flex items-center rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-white shadow-sm" onclick="shareButtonPressed()">Share</button>
+						</div>
+					</div>
+
+
                     <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 py-1 overflow-y-auto">
 
                         <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-1 gap-y-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>

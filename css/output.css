@@ -1736,6 +1736,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .flex-none {
   flex: none;
 }
+.flex-shrink {
+  flex-shrink: 1;
+}
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -2063,6 +2066,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 }
 .justify-evenly {
   justify-content: space-evenly;
+}
+.gap-2 {
+  gap: 0.5rem;
 }
 .gap-4 {
   gap: 1rem;

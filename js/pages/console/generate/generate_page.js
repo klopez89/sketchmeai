@@ -20,6 +20,7 @@ showBasicExamplesButton();
 configureModelListInput();
 configurePromptInputPlaceholder(); 
 addBottomGenerationMenu();
+configureShareButton();
 
 
 // navigationToHomePage();
@@ -147,31 +148,62 @@ function updateDownloadSelectedButton() {
     }
 }
 
-function shareButtonPressed() {
-    console.log('Share button pressed!');
-    prepareImagesForSharing();
-  }
-  
-function prepareImagesForSharing() {
+// function shareButtonPressed() {
+//     console.log('Share button pressed!');
+//     prepareImagesForSharing();
+// }
+
+
+function configureShareButton() {
+    let shareButton = document.getElementById('share-button');
     let selectedImages = $('div.selectable.selected img');
     let imageUrls = selectedImages.map(function() {
         return $(this).attr('data-te-img');
     }).get();
 
-    if (navigator.share) {
-        generateFileArray(imageUrls).then(fileArray => {
-        console.log(fileArray); // Array of File objects
-        navigator.share({
-            files: fileArray,
-            title: 'Shared Images',
-            text: 'Here are some images I thought you might like.'
-        }).then(() => console.log('Successful share'))
-            .catch((error) => console.log('Error sharing', error));
+    shareButton.addEventListener("click", async () => {
+
+        generateFileArray(imageUrls).then(fileArray, async () => {
+
+            try {
+                await navigator.share({
+                    files: fileArray,
+                    title: 'Shared Images',
+                    text: 'Here are some images I thought you might like.'
+                });
+              } catch (err) {
+                console.error("Share failed:", err.message);
+            }
         });
-    } else {
-        console.log('Web Share API not supported in this browser');
-    }
+    });
 }
+  
+// function prepareImagesForSharing() {
+//     let selectedImages = $('div.selectable.selected img');
+//     let imageUrls = selectedImages.map(function() {
+//         return $(this).attr('data-te-img');
+//     }).get();
+
+//     generateFileArray(imageUrls).then(fileArray => {
+
+
+
+//     });
+
+//     if (navigator.share) {
+//         generateFileArray(imageUrls).then(fileArray => {
+//         console.log(fileArray); // Array of File objects
+//         navigator.share({
+//             files: fileArray,
+//             title: 'Shared Images',
+//             text: 'Here are some images I thought you might like.'
+//         }).then(() => console.log('Successful share'))
+//             .catch((error) => console.log('Error sharing', error));
+//         });
+//     } else {
+//         console.log('Web Share API not supported in this browser');
+//     }
+// }
 
 async function urlToFile(url, filename, mimeType) {
     const response = await fetch(url);

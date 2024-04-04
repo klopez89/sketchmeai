@@ -604,7 +604,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 let new_grid_item_html = newGenItem_FromExistingGen(generation);
                 let new_grid_item_div = $($.parseHTML(new_grid_item_html));
                 new_grid_item_div.find('img').first().removeClass('hidden');
-
+                configureGenDivForSelection(new_grid_item_div);
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
@@ -679,6 +679,46 @@ function loadGenImage(gen_url, new_grid_item_div) {
         imgElement.classList.remove('opacity-0');
     };
     actualImage.src = gen_url;
+}
+
+function configureGenDivForSelection(div) {
+    // Get the nodes from the prompt div in order to stylize for selection state
+    let nodes = $.parseHTML(div);
+
+    // Style the prompt div 'dom element' for selection state
+    if (isSelectable) {
+        let domElement = nodes.find(node => node.nodeType === Node.ELEMENT_NODE);
+        configureSelectableDiv(domElement);
+    }
+
+    let gen_div_element = $(nodes);
+
+    let selection_overlay = gen_div_element.find(".selection-overlay");
+    selection_overlay.on("click", function(event) {
+        console.log("Clicked on a prompt div for selection!");
+        if (isSelectable) {
+            $(this).parent().toggleClass("selected");
+            updateShareButton();
+            updateDownloadSelectedButton();
+            let overlay_bg = $(this).find(".overlay-bg");
+            
+            const checkbox = $(this).parent().find(".checkbox");
+            if ($(this).parent().hasClass("selected")) {
+                console.log('has selected class!');
+                checkbox.removeClass("fa-circle");
+                checkbox.addClass("fa-check-circle");
+                selection_overlay.addClass("bg-opacity-50");
+                overlay_bg.addClass("bg-white opacity-50");
+            } else {
+                console.log('does not have selected class!');
+                checkbox.removeClass("fa-check-circle");
+                checkbox.addClass("fa-circle");
+                overlay_bg.removeClass("bg-white opacity-50");
+            }
+        }
+    });
+
+    return gen_div_element;
 }
 
 function configCopyButton(div, generation) {
@@ -920,6 +960,7 @@ function fireGenerateCall(jsonObject, generateTarget) {
 
     let new_grid_item_html = newGenItem_FromNewGen(jsonObject.generationId);
     let new_grid_item_div = $($.parseHTML(new_grid_item_html));
+    configureGenDivForSelection(new_grid_item_div);
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
         new_grid_item_div.find('img').first().removeClass('hidden');
     });

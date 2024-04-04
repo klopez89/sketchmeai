@@ -4,9 +4,8 @@ var wasJustPendingRequest = false;
 
 addFirebaseUIToDOM();
 renderFirebaseAuthUI();
-setTimeout(() => {
-    handleAuthStateChange();
-}, 200);
+handleAuthStateChange();
+
 
 let showAuthAreaTimeout = setTimeout(() => {
     hideLoader();

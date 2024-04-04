@@ -161,7 +161,7 @@ function configureShareButton() {
         return $(this).attr('data-te-img');
     }).get();
 
-    shareButton.addEventListener("click", function() {
+    shareButton.addEventListener("click", () => {
         generateFileArray(imageUrls).then(file_array => {
             if (navigator.share && navigator.canShare(file_array)) {
                 navigator.share({

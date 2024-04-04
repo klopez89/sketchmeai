@@ -602,9 +602,8 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             generations.forEach(function(generation) {
                 
                 let new_grid_item_html = newGenItem_FromExistingGen(generation);
-                let new_grid_item_div = $($.parseHTML(new_grid_item_html));
+                let new_grid_item_div = configureGenDivForSelection(new_grid_item_html);
                 new_grid_item_div.find('img').first().removeClass('hidden');
-                configureGenDivForSelection(new_grid_item_div);
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
@@ -959,8 +958,8 @@ function fireGenerateCall(jsonObject, generateTarget) {
     console.log("fireGenerateCall, with jsonObject: ", jsonObject);
 
     let new_grid_item_html = newGenItem_FromNewGen(jsonObject.generationId);
-    let new_grid_item_div = $($.parseHTML(new_grid_item_html));
-    configureGenDivForSelection(new_grid_item_div);
+    let new_grid_item_div = configureGenDivForSelection(new_grid_item_html);
+    
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
         new_grid_item_div.find('img').first().removeClass('hidden');
     });

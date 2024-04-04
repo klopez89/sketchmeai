@@ -156,12 +156,15 @@ function updateDownloadSelectedButton() {
 
 function configureShareButton() {
     let shareButton = document.getElementById('share-button');
-    let selectedImages = $('div.selectable.selected img');
-    let imageUrls = selectedImages.map(function() {
-        return $(this).attr('src');
-    }).get();
 
     shareButton.addEventListener("click", () => {
+        let selectedImages = $('div.selectable.selected img');
+        let imageUrls = selectedImages.map(function() {
+            return $(this).attr('src');
+        }).get();
+
+        console.log('Image URLs:', imageUrls);
+
         if (navigator.share) {
             generateFileArray(imageUrls).then(fileArray => {
               console.log(fileArray); // Array of File objects

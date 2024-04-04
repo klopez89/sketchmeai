@@ -28,7 +28,7 @@
         console.log('The firebase config dict is: ',firebaseConfig);
         // Firebase configuration
         console.log('about to initialize firebase app');
-        firebase.initializeApp(firebaseConfig, 'SketchMeAi');
+        firebase.initializeApp(firebaseConfig);
         console.log('about to create auth');
         const auth = firebase.auth();
         console.log('about to initialize firestore');

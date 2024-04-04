@@ -161,7 +161,7 @@ function configureShareButton() {
         return $(this).attr('data-te-img');
     }).get();
 
-    shareButton.addEventListener("click", async () => {
+    shareButton.addEventListener("click", function() {
         generateFileArray(imageUrls).then(file_array => {
             if (navigator.share && navigator.canShare(file_array)) {
                 navigator.share({
@@ -173,6 +173,7 @@ function configureShareButton() {
             } else {
                 console.log('Web Share API not supported in this browser');
             }
+        
         });
     });
 }

@@ -1,8 +1,16 @@
 addBaseDashboardToDOM();
 addUserDeleteFormToDOM();
 addAdminLoaderToDOM();
-fetchAdminData();
 
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user && (user.uid === 'ud8KyII2xkPPrbFU8763bAi40Zz2' || user.uid === 'Vv6tX3E6aNTQNUQHkZEjBXB2S5o2') ) {
+        console.log('User is signed in.');
+        fetchAdminData();
+    } else {
+        console.log('No user is signed in.');
+        navigationToHomePage();
+    }
+});
 
 function addBaseDashboardToDOM() {
     let base_dashboard_html = baseDashboardHTML();

@@ -120,3 +120,7 @@ function hideUserDeleteResultLabel() {
 	resultLabel.classList.add('text-transparent');
 	resultLabel.classList.remove('text-black');
 }
+
+function navigationToHomePage() {
+    window.location.href = `https://${CONSTANTS.SITE_URL}`;
+}

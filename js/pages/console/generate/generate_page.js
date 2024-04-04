@@ -209,20 +209,20 @@ function configureGenerateForm() {
         selection.getRangeAt(0).insertNode(document.createTextNode(text));
       });
 
-    promptInput.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            generateButtonPressed(event)
-        }
-    });
+    // promptInput.addEventListener('keydown', function(event) {
+    //     if (event.key === 'Enter') {
+    //         event.preventDefault();
+    //         generateButtonPressed(event)
+    //     }
+    // });
     
-    let negativePromptInput = document.getElementById('neg-prompt');
-    negativePromptInput.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            generateButtonPressed(event)
-        }
-    });
+    // let negativePromptInput = document.getElementById('neg-prompt');
+    // negativePromptInput.addEventListener('keydown', function(event) {
+    //     if (event.key === 'Enter') {
+    //         event.preventDefault();
+    //         generateButtonPressed(event)
+    //     }
+    // });
 
     let denoisingStepsInput = document.getElementById('denoising-steps');
     denoisingStepsInput.addEventListener('input', function(event) {

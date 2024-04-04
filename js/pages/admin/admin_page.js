@@ -85,16 +85,16 @@ function deleteUser() {
 
 function hideLoadingDeleteUserButton() {
 	let deleteUserButtonTextElement = $('#delete-user-button p')[0];
-	deleteUserButtonTextElement.style.color = "transparent";
+	deleteUserButtonTextElement.classList.remove('text-transparent');
 	let deleteUserButtonLoadingElement = $('#delete-user-button i')[0];
-	deleteUserButtonLoadingElement.style.display = '';
+	deleteUserButtonLoadingElement.classList.add('hidden');
 }
 
 function showLoadingDeleteUserButton() {
 	let deleteUserButtonTextElement = $('#delete-user-button p')[0];
-	deleteUserButtonTextElement.style.color = "";
+	deleteUserButtonTextElement.classList.add('text-transparent');
 	let deleteUserButtonLoadingElement = $('#delete-user-button i')[0];
-	deleteUserButtonLoadingElement.style.display = 'none';
+	deleteUserButtonLoadingElement.classList.remove('hidden');
 }
 
 function updateUserDeleteResultLabel(result) {

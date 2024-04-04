@@ -74,9 +74,12 @@ function deleteUser() {
 				console.log('users/delete endpoint hit success, w/ response: ', response);
 			},
 			error: function (msg) {
+				var failureMsg = `Fell into failure block for action - users/delete, with msg: ${msg}`;
+				if (msg.status == 417) {
+					failureMsg = msg.responseText;
+				}
 				hideLoadingDeleteUserButton()
-				updateUserDeleteResultLabel(`Failed to delete user with id: ${user_rec_id}`)
-				console.log("Fell into failure block for action - users/delete, with msg: ", msg);
+				updateUserDeleteResultLabel(failureMsg);
 			},
 		});
 	}

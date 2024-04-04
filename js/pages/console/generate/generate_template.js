@@ -19,7 +19,7 @@ function newGenItem_FromNewGen(generation_id) {
 function newGridItemHTML(gen_id, gen_string="") {
     const placeholderImageURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY3B0cPoPAAX8A+gBk0h+kgAAAABJRU5ErkJggg==";
     return `
-    <div class="relative rounded-lg overflow-hidden" generation-id="${gen_id}" gen-info="${gen_string}">
+    <div class="relative selectable rounded-lg overflow-hidden" generation-id="${gen_id}" gen-info="${gen_string}">
         <div class="group aspect-h-10 aspect-w-10 block w-full relative">
 
             <img src="${placeholderImageURL}" alt="" class="object-cover group-hover:opacity-95 transition-opacity opacity-0 duration-200 cursor-pointer data-[te-lightbox-disabled]:cursor-auto" onclick="goingToLightbox(event)">

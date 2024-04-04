@@ -93,7 +93,7 @@ function deleteUserFormHTML() {
                     User Record ID
                 </label>
                 <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="user_rec_id" type="text" placeholder="Enter user record ID">
-                <button id="delete-user-button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="deleteUser()">
+                <button id="delete-user-button" class="flex flex-grow justify-center items-center text-center bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="deleteUser()">
                     <p class="flex items-center">Delete</p>
 					<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
                 </button>

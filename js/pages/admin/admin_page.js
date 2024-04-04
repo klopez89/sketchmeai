@@ -100,10 +100,12 @@ function showLoadingDeleteUserButton() {
 function updateUserDeleteResultLabel(result) {
 	let resultLabel = document.getElementById('user-delete-result-label');
 	resultLabel.innerHTML = result;
-	resultLabel.classList.remove('hidden');
+	resultLabel.classList.remove('text-transparent');
+	resultLabel.classList.add('text-black');
 }
 
 function hideUserDeleteResultLabel() {
 	let resultLabel = document.getElementById('user-delete-result-label');
-	resultLabel.classList.add('hidden');
+	resultLabel.classList.add('text-transparent');
+	resultLabel.classList.remove('text-black');
 }

@@ -92,13 +92,14 @@ function deleteUserFormHTML() {
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="user_rec_id">
                     User Record ID
                 </label>
-                <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="user_rec_id" type="text" placeholder="Enter user record ID">
-                <button id="delete-user-button" class="flex flex-grow justify-center items-center text-center bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="deleteUser()">
-                    <p class="flex items-center">Delete</p>
-					<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
-                </button>
-                <label id="user-delete-result-label" class="block text-black italic text-xs mt-2 hidden">
-                    Successfully deleted user with id: 123abc
+                <div class="flex gap-2"
+                    <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="user_rec_id" type="text" placeholder="Enter user record ID">
+                    <button id="delete-user-button" class="flex flex-shrink justify-center items-center text-center bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="deleteUser()">
+                        <p class="flex items-center">Delete</p>
+                        <i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <label id="user-delete-result-label" class="block text-transparent italic text-xs mt-2">
                 </label>
             </div>
         </form>

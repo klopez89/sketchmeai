@@ -76,6 +76,12 @@ function dummyGridHTML() {
         <div class="flex-1 md:flex h-full">
             <div class="bg-gray-100 px-0 py-0 md:flex-1 h-full">
                 <div class="bg-gray-100 h-full">
+
+					<div class="mt-3 flex sm:ml-4 sm:mt-0">
+						<button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="downloadAllButton" onclick="downloadAll()">Download All</button>
+						<button type="button" class="select-to-share-button ml-3 inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="toggleImageSelectability()">Select to Share</button>
+					</div>
+					
                     <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 py-1 overflow-y-auto">
 
                         <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-1 gap-y-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>

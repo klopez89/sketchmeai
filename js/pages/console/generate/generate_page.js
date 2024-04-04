@@ -7,6 +7,7 @@ var coldBootedModels = {};
 var previousModelSelectionId = null;
 let sdxlPlaceholderText = "Drawing of cute dalmation puppy in the backyard, highly detailed";
 var promptPlaceholderText = sdxlPlaceholderText;
+let isSelectable = false;
 
 addImageGrid();
 addBaseGenMenu();
@@ -68,6 +69,123 @@ function moveForm() {
 function showBasicExamplesButton() {
     // document.getElementById('basic-examples-button').classList.remove('hidden');
 }
+
+function toggleImageSelectability() {
+    isSelectable = !isSelectable;
+    const divs = document.querySelectorAll(".selectable");
+    const selectionBar = document.querySelector(".selection-bar");
+    const selectToShareButton = document.querySelector(".select-to-share-button");
+    
+    if (isSelectable) {
+        selectionBar.classList.remove("hidden");
+        selectToShareButton.classList.remove("bg-blue-600", "text-white", "hover:bg-blue-500");
+        selectToShareButton.classList.add("bg-transparent", "text-gray-400", "hover:bg-gray-200");
+        selectToShareButton.textContent = 'Cancel';
+    } else {
+        selectionBar.classList.add("hidden");
+        selectToShareButton.classList.remove("bg-transparent", "text-gray-400", "hover:bg-gray-200");
+        selectToShareButton.classList.add("bg-blue-600", "text-white", "hover:bg-blue-500");
+        selectToShareButton.textContent = 'Select to Share';
+    }
+    
+    divs.forEach(div => {
+      configureSelectableDiv(div);
+    });
+
+    updateShareButton();
+    updateDownloadSelectedButton();
+}
+
+
+function configureSelectableDiv(div) {
+    console.log('The div in configureSelectableDiv is: ', div);
+    const checkbox = div.querySelector(".checkbox");
+    const selectionOverlay = div.querySelector(".selection-overlay");
+  
+    if (isSelectable) {
+        checkbox.classList.remove("hidden"); 
+        selectionOverlay.classList.remove("pointer-events-none");         
+    } else {
+        div.classList.remove("selected");
+        checkbox.classList.add("hidden");
+        checkbox.classList.remove("fa-check-circle");
+        checkbox.classList.add("fa-circle");
+        selectionOverlay.classList.add("pointer-events-none"); 
+        const overlay_bg = div.querySelector(".overlay-bg");
+        overlay_bg.classList.remove("bg-white", "opacity-50");
+    }
+}
+
+function updateShareButton() {
+    let selectedCount = $('div.selectable.selected').length;
+    let shareButton = $('.share-button');
+    if (selectedCount > 0) {
+        shareButton.removeClass('bg-gray-300');
+        shareButton.addClass('bg-blue-600 hover:bg-blue-500');
+        shareButton.prop('disabled', false);
+    } else {
+        shareButton.addClass('bg-gray-300');
+        shareButton.removeClass('bg-blue-600 hover:bg-blue-500');
+        shareButton.prop('disabled', true);
+    }
+}
+
+function updateDownloadSelectedButton() {
+    let selectedCount = $('div.selectable.selected').length;
+    let downloadSelectedButton = $('#downloadSelectedButton');
+    if (selectedCount > 0) {
+        downloadSelectedButton.removeClass('text-white bg-gray-300');
+        downloadSelectedButton.addClass('text-gray-800 bg-white hover:bg-gray-50');
+        downloadSelectedButton.prop('disabled', false);
+    } else {
+        downloadSelectedButton.addClass('text-white bg-gray-300');
+        downloadSelectedButton.removeClass('text-gray-800 bg-white hover:bg-gray-50');
+        downloadSelectedButton.prop('disabled', true);
+    }
+}
+
+function shareButtonPressed() {
+    console.log('Share button pressed!');
+    prepareImagesForSharing();
+  }
+  
+function prepareImagesForSharing() {
+    let selectedImages = $('div.selectable.selected img');
+    let imageUrls = selectedImages.map(function() {
+        return $(this).attr('data-te-img');
+    }).get();
+
+    if (navigator.share) {
+        generateFileArray(imageUrls).then(fileArray => {
+        console.log(fileArray); // Array of File objects
+        navigator.share({
+            files: fileArray,
+            title: 'Shared Images',
+            text: 'Here are some images I thought you might like.'
+        }).then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+        });
+    } else {
+        console.log('Web Share API not supported in this browser');
+    }
+}
+
+async function urlToFile(url, filename, mimeType) {
+    const response = await fetch(url);
+    const data = await response.blob();
+    return new File([data], filename, { type: mimeType });
+}
+  
+async function generateFileArray(imageUrls) {
+    const fileArray = [];
+    for (let url of imageUrls) {
+        const file = await urlToFile(url, 'filename.png', 'image/png');
+        fileArray.push(file);
+    }
+    return fileArray;
+}
+
+
 
 function configurePromptInputPlaceholder() {
     let promptDiv = document.getElementById('prompt');
@@ -208,21 +326,6 @@ function configureGenerateForm() {
         selection.deleteFromDocument();
         selection.getRangeAt(0).insertNode(document.createTextNode(text));
       });
-
-    // promptInput.addEventListener('keydown', function(event) {
-    //     if (event.key === 'Enter') {
-    //         event.preventDefault();
-    //         generateButtonPressed(event)
-    //     }
-    // });
-    
-    // let negativePromptInput = document.getElementById('neg-prompt');
-    // negativePromptInput.addEventListener('keydown', function(event) {
-    //     if (event.key === 'Enter') {
-    //         event.preventDefault();
-    //         generateButtonPressed(event)
-    //     }
-    // });
 
     let denoisingStepsInput = document.getElementById('denoising-steps');
     denoisingStepsInput.addEventListener('input', function(event) {

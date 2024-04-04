@@ -179,7 +179,10 @@ function configureGenerateForm() {
     form.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            generateButtonPressed(event);
+            let genButtonElement = document.getElementById('gen-button');
+            let event = new Event('click', { bubbles: true });
+            genButtonElement.dispatchEvent(event);
+            // generateButtonPressed(event);
         }
     });
 

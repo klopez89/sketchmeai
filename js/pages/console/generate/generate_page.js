@@ -162,21 +162,18 @@ function configureShareButton() {
     }).get();
 
     shareButton.addEventListener("click", async () => {
-
-        var fileArray = null;
         generateFileArray(imageUrls).then(file_array => {
-            fileArray = file_array;
+            if (navigator.share && navigator.canShare(file_array)) {
+                navigator.share({
+                    files: file_array,
+                    title: 'Shared Images',
+                    text: 'Here are some images I thought you might like.'
+                }).then(() => console.log('Shared successfully'))
+                .catch((error) => console.log('Error sharing', error));
+            } else {
+                console.log('Web Share API not supported in this browser');
+            }
         });
-
-        try {
-            await navigator.share({
-                files: fileArray,
-                title: 'Shared Images',
-                text: 'Here are some images I thought you might like.'
-            });
-          } catch (err) {
-            console.error("Share failed:", err.message);
-        }
     });
 }
   

@@ -180,8 +180,8 @@ function configureGenerateForm() {
         if (event.key === 'Enter') {
             event.preventDefault();
             let genButtonElement = document.getElementById('gen-button');
-            let event = new Event('click', { bubbles: true });
-            genButtonElement.dispatchEvent(event);
+            let newEvent = new Event('click', { bubbles: true });
+            genButtonElement.dispatchEvent(newEvent);
             // generateButtonPressed(event);
         }
     });

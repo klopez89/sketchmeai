@@ -1249,7 +1249,7 @@ function configureInfiniteScroll() {
                 if (last_doc_id != null) {
                     console.log('has a last doc id of: ', last_doc_id);
                     isCurrentlyPaginatingPrompts = true;
-                    fetchGenerations(getUserRecId(), getLastEditedCollection(), last_doc_id);
+                    // fetchGenerations(getUserRecId(), getLastEditedCollection(), last_doc_id);
                 } else {
                     console.log('doesnt have a last doc id, so no more things to fetch');
                 }

@@ -83,14 +83,14 @@ function dummyGridHTML() {
                 <div class="bg-gray-100 h-full relative">
 
 					<div class="absolute bg-gray-100 p-2 z-20 flex w-full justify-end border-b border-gray-300">
-						<button type="button" class="select-to-share-button ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm border-[0.2em] border-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-600 bg-gray-100 text-black hover:bg-gray-300" onclick="toggleImageSelectability()">Select</button>
+						<button type="button" class="select-to-share-button min-w-20 ml-3 inline-flex justify-center items-center rounded-md px-3 py-2 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-600 bg-gray-300 text-gray-700 hover:bg-gray-400" onclick="toggleImageSelectability()">Select</button>
 					</div>
 
 					<div class="selection-bar absolute bottom-0 w-full right-0 py-5 px-5 bg-white bg-opacity-70 z-20 hidden">
 						<div class="float-right space-x-4 flex">
 							<button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm bg-white text-gray-400 hover:bg-gray-200" onclick="toggleImageSelectability()">Cancel</button>
 							
-							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm bg-gray-300" onclick="downloadSelectedPressed()" id="downloadSelectedButton" disabled="">Download Selected</button>
+							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm bg-red-500 text-white bg-white hover:bg-gray-50" onclick="downloadSelectedPressed()" id="deleteSelectedButton">Delete</button>
 
 							<button id="share-button" type="button" class="share-button ml-3 flex flex-grow justify-center items-center text-center rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-white shadow-sm">
 								<p id="desktop-gen-button-label" class="flex items-center">Share</p>

@@ -181,7 +181,7 @@ function configureShareButton() {
             });
           } else {
             console.log('Web Share API not supported in this browser');
-            displayWarningBanner('Web Share API not supported in this browser');
+            displayWarningNotification('Unable to Share', 'The web share API is not supported in this browser. Please try from a different browser / device.');
             hideLoaderOnShareButton(shareButton);
           }
     });

@@ -88,11 +88,11 @@ function dummyGridHTML() {
 
 					<div class="selection-bar absolute bottom-0 w-full right-0 py-5 px-5 bg-white bg-opacity-70 z-20 hidden">
 						<div class="float-right space-x-4 flex">
-							<button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm bg-white text-gray-400 hover:bg-gray-200" onclick="toggleImageSelectability()">Cancel</button>
+							<button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm shadow-sm bg-gray-200 text-gray-400 hover:bg-gray-300" onclick="toggleImageSelectability()">Cancel</button>
 							
-							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm bg-red-500 text-white bg-white hover:bg-gray-50" onclick="downloadSelectedPressed()" id="deleteSelectedButton">Delete</button>
+							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm shadow-sm bg-red-500 text-white bg-white hover:bg-gray-50" onclick="downloadSelectedPressed()" id="deleteSelectedButton">Delete</button>
 
-							<button id="share-button" type="button" class="share-button ml-3 flex flex-grow justify-center items-center text-center rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-white shadow-sm">
+							<button id="share-button" type="button" class="share-button ml-3 flex flex-grow justify-center items-center text-center rounded-md bg-gray-300 px-3 py-2 text-sm text-white shadow-sm">
 								<p id="desktop-gen-button-label" class="flex items-center">Share</p>
 								<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 							</button>

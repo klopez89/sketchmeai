@@ -79,13 +79,13 @@ function toggleImageSelectability() {
     
     if (isSelectable) {
         selectionBar.classList.remove("hidden");
-        selectToShareButton.classList.remove("bg-transparent", "text-black", "hover:bg-gray-300", "border-[0.2em]");
+        selectToShareButton.classList.remove("bg-gray-100", "text-black", "hover:bg-gray-300", "border-[0.2em]");
         selectToShareButton.classList.add("bg-gray-200", "text-gray-400", "hover:bg-gray-300", "border-0");
         selectToShareButton.textContent = 'Cancel';
     } else {
         selectionBar.classList.add("hidden");
-        selectToShareButton.classList.remove("bg-transparent", "text-gray-400", "hover:bg-gray-300", "border-0");
-        selectToShareButton.classList.add("bg-gray-200", "text-black", "hover:bg-gray-300", "border-[0.2em]");
+        selectToShareButton.classList.remove("bg-gray-200", "text-gray-400", "hover:bg-gray-300", "border-0");
+        selectToShareButton.classList.add("bg-gray-100", "text-black", "hover:bg-gray-300", "border-[0.2em]");
         selectToShareButton.textContent = 'Select';
     }
     

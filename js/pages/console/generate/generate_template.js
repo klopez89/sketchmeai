@@ -82,8 +82,8 @@ function dummyGridHTML() {
             <div class="bg-gray-100 px-0 py-0 md:flex-1 h-full">
                 <div class="bg-gray-100 h-full relative">
 
-					<div class="absolute bg-gray-100 p-2 z-20 flex w-full justify-end">
-						<button type="button" class="select-to-share-button ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold border-[0.2em] border-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 bg-transparent text-black hover:bg-gray-200" onclick="toggleImageSelectability()">Select</button>
+					<div class="absolute bg-gray-100 p-2 z-20 flex w-full justify-end border-b border-gray-300">
+						<button type="button" class="select-to-share-button ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm border-[0.2em] border-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-600 bg-gray-100 text-black hover:bg-gray-300" onclick="toggleImageSelectability()">Select</button>
 					</div>
 
 					<div class="selection-bar absolute bottom-0 w-full right-0 py-5 px-5 bg-white bg-opacity-70 z-20 hidden">

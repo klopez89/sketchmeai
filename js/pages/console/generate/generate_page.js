@@ -100,6 +100,16 @@ function toggleImageSelectability() {
     updateDeleteSelectedButton();
 }
 
+function showGenTopMenu() {
+    const genTopMenu = document.getElementById('gen-top-menu');
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            genTopMenu.classList.remove('opacity-0');
+            genTopMenu.classList.add('opacity-100');
+        });
+    });
+}
+
 
 function configureSelectableDiv(div) {
     console.log('The div in configureSelectableDiv is: ', div);
@@ -621,9 +631,11 @@ function fetchWorkingModels(userRecId) {
             console.log('the base prices dict is: ', data.base_prices);
             storeBasePrices(data.base_prices);
             updateGenerationEstimateLabel();
+            showGenTopMenu();
         },
         error: function(error) {
             console.error('Error:', error);
+            showGenTopMenu();
         }
     });
 }

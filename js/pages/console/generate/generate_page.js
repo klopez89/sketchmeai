@@ -213,6 +213,23 @@ function hideLoaderOnShareButton(shareButton) {
     buttonLoaderIcon.classList.add('hidden');
     buttonText.classList.remove('text-transparent');
 }
+
+function deleteSelectedPressed() {
+    let selectedDivs = $('div.selectable.selected');
+    let parentDivs = [];
+    selectedDivs.each(function() {
+        let parentDiv = $(this).parent();
+        parentDivs.push(parentDiv);
+    });
+
+    let generationIds = [];
+    parentDivs.forEach(function(parentDiv) {
+        let generationId = parentDiv.attr('generation-id');
+        generationIds.push(generationId);
+    });
+
+    console.log('Generation IDs to delete:', generationIds);
+}
   
 // function prepareImagesForSharing() {
 //     let selectedImages = $('div.selectable.selected img');

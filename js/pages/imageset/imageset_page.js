@@ -40,7 +40,7 @@ function toggleImageSelectability() {
   });
 
   updateShareButton();
-  updateDownloadSelectedButton();
+  updateDeleteSelectedButton();
 }
 
 function configureSelectableDiv(div) {
@@ -306,7 +306,7 @@ function appendPrompts_onDOM(prediction_list) {
         if (isSelectable) {
             $(this).parent().toggleClass("selected");
             updateShareButton();
-            updateDownloadSelectedButton();
+            updateDeleteSelectedButton();
             let overlay_bg = $(this).find(".overlay-bg");
             
             const checkbox = $(this).parent().find(".checkbox");
@@ -343,7 +343,7 @@ function updateShareButton() {
   }
 }
 
-function updateDownloadSelectedButton() {
+function updateDeleteSelectedButton() {
   let selectedCount = $('div.selectable.selected').length;
   let downloadSelectedButton = $('#downloadSelectedButton');
   if (selectedCount > 0) {

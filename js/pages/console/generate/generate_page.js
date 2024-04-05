@@ -148,16 +148,14 @@ function updateDownloadSelectedButton() {
     }
 }
 
-// function shareButtonPressed() {
-//     console.log('Share button pressed!');
-//     prepareImagesForSharing();
-// }
-
 
 function configureShareButton() {
     let shareButton = document.getElementById('share-button');
 
     shareButton.addEventListener("click", () => {
+
+        showLoaderOnShareButton(shareButton);
+          
         let selectedImages = $('div.selectable.selected img');
         let imageUrls = selectedImages.map(function() {
             return $(this).attr('src');
@@ -167,18 +165,40 @@ function configureShareButton() {
 
         if (navigator.share) {
             generateFileArray(imageUrls).then(fileArray => {
-              console.log(fileArray); // Array of File objects
-              navigator.share({
+                console.log(fileArray);
+                navigator.share({
                 files: fileArray,
                 title: 'Shared Images',
                 text: 'Here are some images I thought you might like.'
-              }).then(() => console.log('Successful share'))
-                .catch((error) => console.log('Error sharing', error));
+                }).then(() => {
+                    console.log('Successful share');
+                    hideLoaderOnShareButton(shareButton);
+                })
+                .catch((error) => {
+                    console.log('Error sharing', error);
+                    hideLoaderOnShareButton(shareButton);
+                });
             });
           } else {
             console.log('Web Share API not supported in this browser');
+            displayWarningBanner('Web Share API not supported in this browser');
+            hideLoaderOnShareButton(shareButton);
           }
     });
+}
+
+function showLoaderOnShareButton(shareButton) {
+    let buttonLoaderIcon = shareButton.querySelector('i');
+    let buttonText = shareButton.querySelector('p');
+    buttonLoaderIcon.classList.remove('hidden');
+    buttonText.classList.add('text-transparent');
+}
+
+function hideLoaderOnShareButton(shareButton) {
+    let buttonLoaderIcon = shareButton.querySelector('i');
+    let buttonText = shareButton.querySelector('p');
+    buttonLoaderIcon.classList.add('hidden');
+    buttonText.classList.remove('text-transparent');
 }
   
 // function prepareImagesForSharing() {

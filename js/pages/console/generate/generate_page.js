@@ -80,14 +80,14 @@ function toggleImageSelectability() {
     
     if (isSelectable) {
         selectionBar.classList.remove("hidden");
-        selectToShareButton.classList.remove("bg-gray-100", "text-black", "hover:bg-gray-300", "border-black");
-        selectToShareButton.classList.add("bg-gray-200", "text-gray-400", "hover:bg-gray-300", "border-gray-200");
+        selectToShareButton.classList.remove("bg-gray-300", "text-gray-700", "hover:bg-gray-400");
+        selectToShareButton.classList.add("bg-gray-200", "text-gray-400", "hover:bg-gray-300");
         selectToShareButton.textContent = 'Cancel';
         mobileMenu.classList.add('hidden');
     } else {
         selectionBar.classList.add("hidden");
-        selectToShareButton.classList.remove("bg-gray-200", "text-gray-400", "hover:bg-gray-300", "border-gray-200");
-        selectToShareButton.classList.add("bg-gray-100", "text-black", "hover:bg-gray-300", "border-black");
+        selectToShareButton.classList.remove("bg-gray-200", "text-gray-400", "hover:bg-gray-300");
+        selectToShareButton.classList.add("bg-gray-300", "text-gray-700", "hover:bg-gray-400");
         selectToShareButton.textContent = 'Select';
         mobileMenu.classList.remove('hidden');
     }
@@ -128,11 +128,11 @@ function updateShareButton() {
     let shareButton = $('.share-button');
     if (selectedCount > 0) {
         shareButton.removeClass('bg-gray-300');
-        shareButton.addClass('bg-blue-600 hover:bg-blue-500');
+        shareButton.addClass('bg-black hover:bg-gray-800');
         shareButton.prop('disabled', false);
     } else {
         shareButton.addClass('bg-gray-300');
-        shareButton.removeClass('bg-blue-600 hover:bg-blue-500');
+        shareButton.removeClass('bg-black hover:bg-gray-800');
         shareButton.prop('disabled', true);
     }
 }
@@ -141,12 +141,12 @@ function updateDownloadSelectedButton() {
     let selectedCount = $('div.selectable.selected').length;
     let downloadSelectedButton = $('#downloadSelectedButton');
     if (selectedCount > 0) {
-        downloadSelectedButton.removeClass('text-white bg-gray-300');
-        downloadSelectedButton.addClass('text-gray-800 bg-white hover:bg-gray-50');
+        downloadSelectedButton.removeClass('bg-gray-300');
+        downloadSelectedButton.addClass('bg-red-500 hover:bg-red-700');
         downloadSelectedButton.prop('disabled', false);
     } else {
-        downloadSelectedButton.addClass('text-white bg-gray-300');
-        downloadSelectedButton.removeClass('text-gray-800 bg-white hover:bg-gray-50');
+        downloadSelectedButton.addClass('bg-gray-300');
+        downloadSelectedButton.removeClass('bg-red-500 hover:bg-red-700');
         downloadSelectedButton.prop('disabled', true);
     }
 }

@@ -138,6 +138,14 @@ function displayWarningNotification(warningTitle, warningMessage) {
     let warningNotificationHTML = warningNotification(warningTitle, warningMessage);
     let warningNotificationDiv = $.parseHTML(warningNotificationHTML);
     $('body').append(warningNotificationDiv);
+
+    $(warningNotificationDiv).find('#notif-close-button').on('click', function() {
+        warningNotificationDiv.remove();
+    });
+}
+
+function dismissNotification(event) {
+    event.target.parentNode.remove();
 }
 
 

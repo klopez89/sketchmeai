@@ -140,7 +140,7 @@ function displayWarningNotification(warningTitle, warningMessage) {
     $('body').append(warningNotificationDiv);
 
     $(warningNotificationDiv).find('#notif-close-button').on('click', function() {
-        warningNotificationDiv.remove();
+        $(this).parent().remove();
     });
 }
 

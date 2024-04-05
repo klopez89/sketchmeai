@@ -99,7 +99,7 @@ function dummyGridHTML() {
 						</div>
 					</div>
 
-                    <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 pt-14 overflow-y-auto">
+                    <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 pt-[4.2rem] overflow-y-auto">
                         <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-1 gap-y-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>
 
                         <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8">

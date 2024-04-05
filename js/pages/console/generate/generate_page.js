@@ -1489,6 +1489,7 @@ function fireGenDeletion(generationIds, genElements) {
 }
 
 function clickedOutsideOfGenMenu() {
+    console.log('clickedOutsideOfGenMenu was called');
     closeAnyOpenGenMenus();
 }
 

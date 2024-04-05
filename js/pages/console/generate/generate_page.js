@@ -215,20 +215,22 @@ function hideLoaderOnShareButton(shareButton) {
 }
 
 function deleteSelectedPressed() {
-    let selectedDivs = $('div.selectable.selected');
-    let parentDivs = [];
-    selectedDivs.each(function() {
+    let selectedGenDivs = $('div.selectable.selected');
+    let genElements = [];
+    selectedGenDivs.each(function() {
         let parentDiv = $(this).parent();
-        parentDivs.push(parentDiv);
+        genElements.push(parentDiv);
     });
 
     let generationIds = [];
-    parentDivs.forEach(function(parentDiv) {
-        let generationId = parentDiv.attr('generation-id');
+    genElements.forEach(function(genElement) {
+        let generationId = genElement.attr('generation-id');
         generationIds.push(generationId);
+        configureGenElementforDeletion(genElement);
     });
 
     console.log('Generation IDs to delete:', generationIds);
+    fireGenDeletion(generationIds, genElements);
 }
   
 // function prepareImagesForSharing() {
@@ -1413,12 +1415,15 @@ function genMenuShowing(event) {
 function deleteButtonPressed(event) {
     event.preventDefault();
     let genElement = event.target.closest('[generation-id]');
-    hideGenMenuShield(genElement);
+    configureGenElementforDeletion(genElement);
     let generationId = genElement.getAttribute('generation-id');
-    console.log(`delete button pressed for generationId: ${generationId}`);
-    setGenLoaderToDeleteMode(genElement);
-    fireGenDeletion(generationId, genElement);
+    fireGenDeletion([generationId], [genElement]);
     event.stopPropagation();
+}
+
+function configureGenElementforDeletion(genElement) {
+    hideGenMenuShield(genElement);
+    setGenLoaderToDeleteMode(genElement);
 }
 
 function useAsReferenceImagePressed(event) {
@@ -1457,24 +1462,26 @@ function removeGenItem(genElement) {
     });
 }
 
-function fireGenDeletion(generationId, genElement) {
+function fireGenDeletion(generationIds, genElements) {
     let action = `${CONSTANTS.BACKEND_URL}generate/delete`
     $.ajax({
         type: 'POST',
         url: action,
         data: JSON.stringify({
-            generationId: generationId,
+            generationIds: generationIds,
             collectionId: getLastEditedCollection(),
             userRecId: getUserRecId()
         }),
         contentType: "application/json",
         dataType: 'json',
         success: function (data) {
-            console.log('got success from delete gen endpoint for id: ', generationId);
-            removeGenItem(genElement);
+            console.log('got success from delete gen endpoint for id: ', generationIds);
+            for (let genElement of genElements) {
+                removeGenItem(genElement);
+            }
         },
         error: function (data) {
-            console.log("error deleting generation with id: ", generationId);
+            console.log("error deleting generation with id: ", generationIds);
             console.log('error from endpoint is: ', data);
             resetGenLoaderFromDelete(genElement);
         }

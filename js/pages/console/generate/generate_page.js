@@ -112,7 +112,6 @@ function showGenTopMenu() {
 
 
 function configureSelectableDiv(div) {
-    console.log('The div in configureSelectableDiv is: ', div);
     const checkbox = div.querySelector(".checkbox");
     const selectionOverlay = div.querySelector(".selection-overlay");
     const actionContainer = div.querySelector("#action-container");

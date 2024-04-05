@@ -90,10 +90,10 @@ function dummyGridHTML() {
 					<div class="selection-bar fixed bottom-0 w-full right-0 py-5 px-5 bg-white bg-opacity-70 z-50 hidden">
 						<div class="float-right space-x-4">
 							<button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm bg-white bg-opacity-80 text-gray-400 hover:bg-gray-200" onclick="toggleImageSelectability()">Cancel</button>
-
-							<button type="button" class="ml-3 flex flex-grow justify-center items-center text-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm bg-gray-300" onclick="downloadSelectedPressed()" id="downloadSelectedButton" disabled="">Download Selected</button>
-							<button id="share-button" type="button" class="share-button ml-3 inline-flex items-center rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-white shadow-sm">
-							Share
+							
+							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm bg-gray-300" onclick="downloadSelectedPressed()" id="downloadSelectedButton" disabled="">Download Selected</button>
+							
+							<button id="share-button" type="button" class="share-button ml-3 flex flex-grow justify-center items-center text-center rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-white shadow-sm">
 								<p id="desktop-gen-button-label" class="flex items-center">Share</p>
 								<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 							</button>

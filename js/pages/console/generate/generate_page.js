@@ -214,7 +214,9 @@ function hideLoaderOnShareButton(shareButton) {
     buttonText.classList.remove('text-transparent');
 }
 
-function deleteSelectedPressed() {
+function deleteSelectedPressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
     let selectedGenDivs = $('div.selectable.selected');
     let genElements = [];
     selectedGenDivs.each(function() {
@@ -1512,7 +1514,9 @@ function closeAnyOpenGenMenus() {
 
 function hideGenMenuShield(genElement) {
     let genMenuShield = genElement.querySelector('#gen-menu-shield');
-    genMenuShield.classList.add('hidden');
+    if (genMenuShield) {
+        genMenuShield.classList.add('hidden');
+    }
 }
 
 function tappedGenMenuShield(event) {

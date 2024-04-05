@@ -228,7 +228,7 @@ function deleteSelectedPressed(event) {
     genElements.forEach(function(genElement) {
         let generationId = genElement.attr('generation-id');
         generationIds.push(generationId);
-        configureGenElementforDeletion(genElement);
+        configureGenElementforDeletion(genElement[0]);
     });
 
     console.log('Generation IDs to delete:', generationIds);
@@ -1485,7 +1485,9 @@ function fireGenDeletion(generationIds, genElements) {
         error: function (data) {
             console.log("error deleting generation with id: ", generationIds);
             console.log('error from endpoint is: ', data);
-            resetGenLoaderFromDelete(genElement);
+            for (let genElement of genElements) {
+                resetGenLoaderFromDelete(genElement);
+            }
         }
     });
 }
@@ -1514,9 +1516,7 @@ function closeAnyOpenGenMenus() {
 
 function hideGenMenuShield(genElement) {
     let genMenuShield = genElement.querySelector('#gen-menu-shield');
-    if (genMenuShield) {
-        genMenuShield.classList.add('hidden');
-    }
+    genMenuShield.classList.add('hidden');
 }
 
 function tappedGenMenuShield(event) {

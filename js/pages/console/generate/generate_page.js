@@ -678,7 +678,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             hasAnotherPage = data.has_another_page;
             lastDocId = data.last_doc_id;
             // console.log(`data from generations: ${generations}`)
-            // console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
+            console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
 
 
             if (generations == null) {

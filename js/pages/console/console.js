@@ -135,7 +135,7 @@ function removeSuccessBanners() {
 
 
 function displayWarningNotification(warningTitle, warningMessage) {
-    let warningNotificationHTML = warningNotificationHTML(warningTitle, warningMessage);
+    let warningNotificationHTML = warningNotification(warningTitle, warningMessage);
     let warningNotificationDiv = $.parseHTML(warningNotificationHTML);
     $('body').append(warningNotificationDiv);
 }

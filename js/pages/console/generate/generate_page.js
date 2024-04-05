@@ -97,7 +97,7 @@ function toggleImageSelectability() {
     });
 
     updateShareButton();
-    updateDownloadSelectedButton();
+    updateDeleteSelectedButton();
 }
 
 
@@ -137,17 +137,17 @@ function updateShareButton() {
     }
 }
 
-function updateDownloadSelectedButton() {
+function updateDeleteSelectedButton() {
     let selectedCount = $('div.selectable.selected').length;
-    let downloadSelectedButton = $('#downloadSelectedButton');
+    let deleteSelectedButton = $('#deleteSelectedButton');
     if (selectedCount > 0) {
-        downloadSelectedButton.removeClass('bg-gray-300');
-        downloadSelectedButton.addClass('bg-red-500 hover:bg-red-700');
-        downloadSelectedButton.prop('disabled', false);
+        deleteSelectedButton.removeClass('bg-gray-300');
+        deleteSelectedButton.addClass('bg-red-500 hover:bg-red-700');
+        deleteSelectedButton.prop('disabled', false);
     } else {
-        downloadSelectedButton.addClass('bg-gray-300');
-        downloadSelectedButton.removeClass('bg-red-500 hover:bg-red-700');
-        downloadSelectedButton.prop('disabled', true);
+        deleteSelectedButton.addClass('bg-gray-300');
+        deleteSelectedButton.removeClass('bg-red-500 hover:bg-red-700');
+        deleteSelectedButton.prop('disabled', true);
     }
 }
 
@@ -759,7 +759,7 @@ function configureGenDivForSelection(div) {
         if (isSelectable) {
             $(this).parent().toggleClass("selected");
             updateShareButton();
-            updateDownloadSelectedButton();
+            updateDeleteSelectedButton();
             let overlay_bg = $(this).find(".overlay-bg");
             
             const checkbox = $(this).parent().find(".checkbox");

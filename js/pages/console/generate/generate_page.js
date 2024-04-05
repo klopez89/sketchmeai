@@ -734,6 +734,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 });
             });
 
+            console.log('saving last doc id locally: ', lastDocId);
             saveLastDocIdLocally(lastDocId);
             isCurrentlyPaginatingPrompts = false;
             $('#grid-loader').addClass('hidden');
@@ -1302,6 +1303,7 @@ function showInfiniteLoader() {
 }
 
 function saveLastDocIdLocally(last_doc_id) {
+    console.log('in saving of last doc id: ', last_doc_id);
     localStorage.setItem('last_doc_id', last_doc_id);
   }
   

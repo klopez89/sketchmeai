@@ -82,12 +82,11 @@ function dummyGridHTML() {
             <div class="bg-gray-100 px-0 py-0 md:flex-1 h-full">
                 <div class="bg-gray-100 h-full relative">
 
-					<div class="absolute bg-gray-500 p-2 z-40 flex w-full justify-end">
-						<button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="downloadAllButton" onclick="downloadAll()">Download All</button>
-						<button type="button" class="select-to-share-button ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 bg-blue-600 text-white hover:bg-blue-500" onclick="toggleImageSelectability()">Select to Share</button>
+					<div class="absolute bg-gray-100 p-2 z-20 flex w-full justify-end">
+						<button type="button" class="select-to-share-button ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 bg-white text-black hover:bg-gray-200" onclick="toggleImageSelectability()">Select</button>
 					</div>
 
-					<div class="selection-bar fixed bottom-0 w-full right-0 py-5 px-5 bg-white bg-opacity-70 z-50 hidden">
+					<div class="selection-bar absolute bottom-0 w-full right-0 py-5 px-5 bg-white bg-opacity-70 z-20 hidden">
 						<div class="float-right space-x-4 flex">
 							<button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm bg-white bg-opacity-80 text-gray-400 hover:bg-gray-200" onclick="toggleImageSelectability()">Cancel</button>
 							
@@ -100,9 +99,7 @@ function dummyGridHTML() {
 						</div>
 					</div>
 
-
                     <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 pt-14 overflow-y-auto">
-
                         <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-1 gap-y-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>
 
                         <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8">

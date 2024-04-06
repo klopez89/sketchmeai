@@ -10,7 +10,7 @@
 }
 
 .gradient-diagonal {
-  background: linear-gradient(to bottom right, transparent, #1F2937);
+  background: linear-gradient(to bottom right, transparent, rgba(31, 41, 55, 0.8));
 }
 
 .custom-dark-gray-bg {

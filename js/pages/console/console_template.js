@@ -141,7 +141,7 @@ function consoleHtml() {
 
                 <!-- Your content -->
 
-                    <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-40 px-4 flex flex-col justify-center transition duration-500 opacity-0">
+                    <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-60 px-4 flex flex-col justify-center transition duration-500 opacity-0">
                 
                         <div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
                             <button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissPaymentModal()">
@@ -313,7 +313,7 @@ function warningNotification(messageTitle, messageBody) {
 
 function mobileSideBarHTML() {
     return `
-            <div id="mobile-sidebar" x-show="open" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed bg-gray-800 bg-opacity-50 top-0 right-0 w-full h-full overflow-auto z-35 flex md:hidden">
+            <div id="mobile-sidebar" x-show="open" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed bg-gray-800 bg-opacity-50 top-0 right-0 w-full h-full overflow-auto z-50 flex md:hidden">
                 
                 <div class="relative max-w-md ml-auto flex-grow flex-1" x-show="open" x-transition:enter=" transition ease-in-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
                     

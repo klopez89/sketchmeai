@@ -9,10 +9,6 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-.gradient-diagonal {
-  background: linear-gradient(to bottom right, transparent, rgba(31, 41, 55, 0.8));
-}
-
 .custom-dark-gray-bg {
   background-color: rgb(43, 45, 49);
 }

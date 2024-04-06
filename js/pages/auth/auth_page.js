@@ -56,6 +56,12 @@ function hideLoader() {
 
 function renderFirebaseAuthUI() {
     console.log('renderFirebaseAuthUI called');
+
+    var userAgent = navigator.userAgent;
+    var isDesktop = window.innerWidth > 800;
+    console.log("User agent (browser) is: ", userAgent);
+    console.log("Is desktop: ", isDesktop);
+
     var uiConfig = {
       callbacks: {
         signInSuccessWithAuthResult: function(authResult, redirectUrl) {

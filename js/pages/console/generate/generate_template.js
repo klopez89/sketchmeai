@@ -342,7 +342,7 @@ function bottom_generation_menu_html() {
 		</button>
 
 		<div class="flex flex-col gap-4">
-			<button class="bg-gray-500 text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="newFunction()">
+			<button class="bg-gray-700 text-white text-lg shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="newFunction()">
 				<i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
 			</button>
 

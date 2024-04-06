@@ -87,7 +87,7 @@ function renderFirebaseAuthUI() {
             providerId : providerId,
           }
 
-          console.log('Successfully logged in');
+          console.log('Successfully logged in and newUserInfo is ', newUserInfo);
           hideAuthArea();
           showLoader();
   
@@ -136,6 +136,7 @@ function handleAuthStateChange() {
                 displayName: user.displayName,
                 providerId: user.providerData[0].providerId
             };
+            console.log('User is signed in, user info is: ', user_info);
             validateUserAuth(user_info);
         } else {
             // User is signed out or is signing out, thus in this case, do nothing.
@@ -183,7 +184,7 @@ function validateUserAuth(userInfo) {
 		},
 		error: function (msg) {
             hideLoader();
-			console.log("Fell into failure block for action - users/create, with msg: ", msg);
+			console.log("Fell into failure block for action - users/create, with msg: ", msg.responseText);
 		},
   	});
 }

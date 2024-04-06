@@ -11,8 +11,6 @@
 
 .gradient-diagonal {
   background: linear-gradient(to bottom right, transparent, #1F2937);
-  height: 100%;
-  width: 100%;
 }
 
 .custom-dark-gray-bg {

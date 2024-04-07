@@ -142,6 +142,26 @@ function baseGenMenuHTML() {
     `;
 }
 
+function baseGenGridActionMenuHTML() {
+    return `
+    <div class="gen-grid-action-menu hidden relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+        <button type="button" class="bg-gray-700 text-white text-lg shadow-lg rounded-full w-12 h-12 flex items-center justify-center" id="gen-grid-action-menu-button" onClick="genGridActionMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+            <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+        </button>
+
+		<div class="p-2 absolute right-0 z-10 mt-11 origin-bottom-right">
+
+			<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
+			
+				<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); multiSelectPressed(event)">Select</a>
+
+			</div>
+		</div>
+
+    </div>
+    `;
+}
+
 function generate_form_html() {
 	return `
 	<form class="generate-form overflow-y-auto flex flex-col px-6 py-4" id="generateForm">
@@ -336,15 +356,29 @@ function new_model_option(model) {
 
 function bottom_generation_menu_html() {
 	return `
-	<div id="mobile-bottom-menu" class="md:hidden fixed right-0 bottom-0 m-4 z-30 flex gap-4 items-end gradient-diagonal bg-opacity-50">
+	<div id="mobile-bottom-menu" class="md:hidden fixed right-0 bottom-0 m-4 z-30 flex gap-4 items-end bg-opacity-50">
 		<button class="bg-gray-100 text-black shadow-lg rounded-full w-12 h-12 flex items-center justify-center" @click="open = !open">
 			<i class="fa-solid fa-wrench" aria-hidden="true"></i>
 		</button>
 
 		<div class="flex flex-col gap-4">
-			<button class="bg-gray-700 text-white text-lg shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="newFunction()">
-				<i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
-			</button>
+
+
+			<div class="gen-grid-action-menu hidden relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+				<button type="button" class="bg-gray-700 text-white text-lg shadow-lg rounded-full w-12 h-12 flex items-center justify-center" id="gen-grid-action-menu-button" onClick="genGridActionMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+					<i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+				</button>
+
+				<div class="p-2 absolute right-0 z-10 mt-11 origin-bottom-right">
+
+					<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
+					
+						<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); multiSelectPressed(event)">Select</a>
+
+					</div>
+				</div>
+			</div>
+
 
 			<button class="bg-black text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="generateButtonPressed(event)">
 				<i id="mobile-gen-icon" class="fa-solid fa-bolt-lightning" aria-hidden="true"></i>
@@ -353,3 +387,7 @@ function bottom_generation_menu_html() {
 	</div>
 	`;
 }
+
+{/* <button class="bg-gray-700 text-white text-lg shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="newFunction()">
+<i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+</button> */}

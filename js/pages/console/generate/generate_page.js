@@ -1415,6 +1415,10 @@ function genMenuShowing(event) {
     event.stopPropagation();
 }
 
+function genGridActionMenuShowing(event) {
+    console.log('genGridActionMenuShowing was called');
+}
+
 function deleteButtonPressed(event) {
     event.preventDefault();
     let genElement = event.target.closest('[generation-id]');

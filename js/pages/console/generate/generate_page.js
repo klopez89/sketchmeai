@@ -1419,9 +1419,9 @@ function mobileGenMoreMenuShowing(event) {
     console.log('mobileGenMoreMenuShowing was called');
     let mobileGenMenuBg = document.getElementById('mobile-gen-menu-bg');
     if (mobileGenMenuBg.classList.contains('hidden')) {
-        showMobileGenMoreMenu();
+        showMobileBottomMenuBg();
     } else {
-        hideMobileGenMoreMenu();
+        // hideMobileGenMoreMenu();
     }
 }
 
@@ -1451,12 +1451,6 @@ function tappedMobileBottomMenuBg(event) {
     hideMobileGenMoreMenu();
     event.target.classList.add('hidden');
     event.stopPropagation();
-}
-
-function showMobileGenMoreMenu() {
-    let mobileGenMoreMenu = document.getElementById('mobile-bottom-action-menu');
-    mobileGenMoreMenu.__x.$data.open = true;
-    showMobileBottomMenuBg();
 }
 
 function hideMobileGenMoreMenu() {

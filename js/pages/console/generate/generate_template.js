@@ -357,7 +357,7 @@ function new_model_option(model) {
 function bottom_generation_menu_html() {
 	return `
 	<div id="mobile-bottom-menu" class="md:hidden fixed right-0 bottom-0 m-4 z-30 flex gap-4 items-end bg-opacity-50">
-		<button class="bg-gray-100 text-black shadow-lg rounded-full w-12 h-12 flex items-center justify-center" @click="open = !open">
+		<button id="gen-settings-bottom-button" class="bg-gray-100 text-black shadow-lg rounded-full w-12 h-12 flex items-center justify-center" @click="open = !open">
 			<i class="fa-solid fa-wrench" aria-hidden="true"></i>
 		</button>
 
@@ -380,7 +380,7 @@ function bottom_generation_menu_html() {
 			</div>
 
 
-			<button class="bg-black text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="generateButtonPressed(event)">
+			<button id="generate-bottom-button" class="bg-black text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="generateButtonPressed(event)">
 				<i id="mobile-gen-icon" class="fa-solid fa-bolt-lightning" aria-hidden="true"></i>
 			</button>
 		</div>

@@ -1435,6 +1435,13 @@ function showMobileBottomMenuBg() {
             mobileGenMenuBg.classList.add('opacity-100');
         });
     });
+
+    let generateBottomButton = document.getElementById('generate-bottom-button');
+    let genBottonSettingsButton = document.getElementById('gen-settings-bottom-button');
+    generateBottomButton.classList.add('opacity-25');
+    genBottonSettingsButton.classList.add('opacity-25');
+    generateBottomButton.disabled = true;
+    genBottonSettingsButton.disabled = true;
 }
 
 function hideMobileBottomMenuBg() {
@@ -1445,6 +1452,13 @@ function hideMobileBottomMenuBg() {
     setTimeout(() => {
         mobileGenMenuBg.classList.add('hidden');
     }, 500); // same duration as the transition
+
+    let generateBottomButton = document.getElementById('generate-bottom-button');
+    let genBottonSettingsButton = document.getElementById('gen-settings-bottom-button');
+    generateBottomButton.classList.remove('opacity-25');
+    genBottonSettingsButton.classList.remove('opacity-25');
+    generateBottomButton.disabled = false;
+    genBottonSettingsButton.disabled = false;
 }
 
 function tappedMobileBottomMenuBg(event) {
@@ -1452,6 +1466,8 @@ function tappedMobileBottomMenuBg(event) {
     event.target.classList.add('hidden');
     event.stopPropagation();
 }
+
+
 
 function hideMobileGenMoreMenu() {
     let mobileGenMoreMenu = document.getElementById('mobile-bottom-action-menu');

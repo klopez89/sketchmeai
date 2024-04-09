@@ -123,7 +123,7 @@ function dummyGridHTML() {
 function baseGenMenuHTML() {
     return `
     <div class="gen-comp-menu hidden relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
-        <button type="button" class="absolute text-2xl text-white border-2 border-white rounded-lg w-10 h-10 aspect-w-1 aspect-h-1 top-2 right-2 flex items-center p-4 opacity-100 md:opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="gen-menu-button" onClick="genMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+        <button type="button" class="absolute text-2xl text-white rounded-lg w-12 h-12 aspect-w-1 aspect-h-1 top-2 right-2 flex items-center p-4 opacity-100 md:opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="gen-menu-button" onClick="genMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
 			<span class="flex items-center justify-center">
 				<i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
 			</span>

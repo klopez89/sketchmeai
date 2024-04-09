@@ -1415,8 +1415,8 @@ function genMenuShowing(event) {
     event.stopPropagation();
 }
 
-function genGridActionMenuShowing(event) {
-    console.log('genGridActionMenuShowing was called');
+function mobileGenMoreMenuShowing(event) {
+    console.log('mobileGenMoreMenuShowing was called');
     showMobileBottomMenuBg();
 }
 

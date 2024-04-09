@@ -31,7 +31,7 @@ function newGridItemHTML(gen_id, gen_string="") {
             </div>
 
             <div id="action-container" class="hidden bg-transparent group-hover:bg-gray-900 group-hover:bg-opacity-10 pointer-events-none group transition-bg-opacity duration-200">
-                <button id="copy-button" class="absolute bottom-2 right-2 p-2 text-md text-white border-2 border-white opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto flex items-center justify-center transition-opacity duration-200">
+                <button id="copy-button" class="absolute bottom-2 right-2 p-2 text-md text-white border-2 border-white opacity-100 md:opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto flex items-center justify-center transition-opacity duration-200">
                     <i class="fa fa-copy" aria-hidden="true"></i>
                 </button>
             </div>
@@ -123,7 +123,7 @@ function dummyGridHTML() {
 function baseGenMenuHTML() {
     return `
     <div class="gen-comp-menu hidden relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
-        <button type="button" class="absolute text-2xl text-white top-2 right-2 flex items-center p-2 opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="gen-menu-button" onClick="genMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+        <button type="button" class="absolute text-2xl text-white top-2 right-2 flex items-center p-2 opacity-100 md:opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="gen-menu-button" onClick="genMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
             <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
         </button>
 

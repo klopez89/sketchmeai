@@ -1459,6 +1459,13 @@ function hideMobileGenMoreMenu() {
     hideMobileBottomMenuBg();
 }
 
+function multiSelectPressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleImageSelectability();
+    hideMobileGenMoreMenu();
+}
+
 function deleteButtonPressed(event) {
     event.preventDefault();
     let genElement = event.target.closest('[generation-id]');

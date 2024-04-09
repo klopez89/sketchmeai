@@ -1456,7 +1456,7 @@ function hideMobileBottomMenuBg() {
     // Add 'hidden' class back after transition finishes
     setTimeout(() => {
         mobileGenMenuBg.classList.add('hidden');
-    }, 500); // same duration as the transition
+    }, 300); // same duration as the transition
 
     let generateBottomButton = document.getElementById('generate-bottom-button');
     let genBottonSettingsButton = document.getElementById('gen-settings-bottom-button');
@@ -1468,7 +1468,6 @@ function hideMobileBottomMenuBg() {
 
 function tappedMobileBottomMenuBg(event) {
     hideMobileGenMoreMenu();
-    event.target.classList.add('hidden');
     event.stopPropagation();
 }
 

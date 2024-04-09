@@ -82,7 +82,7 @@ function dummyGridHTML() {
             <div class="bg-gray-100 px-0 py-0 md:flex-1 h-full">
                 <div class="bg-gray-100 h-full relative">
 
-					<div id="gen-top-menu" class="opacity-0 transition-opacity duration-300 absolute bg-gray-100 p-2 z-20 flex w-full justify-end border-b border-gray-300">
+					<div id="gen-top-menu" class="hidden md:flex opacity-0 transition-opacity duration-300 absolute bg-gray-100 p-2 z-20 w-full justify-end border-b border-gray-300">
 						<button type="button" class="select-to-share-button min-w-20 ml-3 inline-flex justify-center items-center rounded-md px-3 py-2 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-600 bg-gray-300 text-gray-700 hover:bg-gray-400" onclick="toggleImageSelectability()">Select</button>
 					</div>
 
@@ -99,7 +99,7 @@ function dummyGridHTML() {
 						</div>
 					</div>
 
-                    <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 pt-[4.2rem] overflow-y-auto">
+                    <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 md:pt-[4.2rem] overflow-y-auto">
                         <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-1 gap-y-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>
 
                         <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8">

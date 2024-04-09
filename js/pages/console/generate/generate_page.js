@@ -1421,7 +1421,7 @@ function mobileGenMoreMenuShowing(event) {
     if (mobileGenMenuBg.classList.contains('hidden')) {
         showMobileBottomMenuBg();
     } else {
-        // hideMobileGenMoreMenu();
+        hideMobileBottomMenuBg();
     }
 }
 

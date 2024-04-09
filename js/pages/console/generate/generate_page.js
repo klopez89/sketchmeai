@@ -1520,6 +1520,7 @@ function copyPromptFromGenMenuPressed(event) {
     let genElement = event.target.closest('[generation-id]');
     let copyButton = genElement.querySelector('#copy-button');
     copyButton.click();
+    hideGenMenuShield(genElement);
 }
 
 function setGenLoaderToDeleteMode(genElement) {

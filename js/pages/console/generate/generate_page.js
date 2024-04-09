@@ -1417,7 +1417,12 @@ function genMenuShowing(event) {
 
 function mobileGenMoreMenuShowing(event) {
     console.log('mobileGenMoreMenuShowing was called');
-    showMobileBottomMenuBg();
+    let mobileGenMenuBg = document.getElementById('mobile-gen-menu-bg');
+    if (mobileGenMenuBg.classList.contains('hidden')) {
+        showMobileBottomMenuBg();
+    } else {
+        hideMobileGenMoreButton();
+    }
 }
 
 function showMobileBottomMenuBg() {
@@ -1443,10 +1448,15 @@ function hideMobileBottomMenuBg() {
 }
 
 function tappedMobileBottomMenuBg(event) {
-    let mobileGenMoreMenu = document.getElementById('mobile-bottom-action-menu');
-    mobileGenMoreMenu.__x.$data.open = false;
+    hideMobileGenMoreButton();
     event.target.classList.add('hidden');
     event.stopPropagation();
+}
+
+function hideMobileGenMoreButton() {
+    let mobileGenMoreMenu = document.getElementById('mobile-bottom-action-menu');
+    mobileGenMoreMenu.__x.$data.open = false;
+    hideMobileBottomMenuBg();
 }
 
 function deleteButtonPressed(event) {

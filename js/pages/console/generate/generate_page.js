@@ -110,6 +110,10 @@ function showGenTopMenu() {
     });
 }
 
+function showMobileBottomGenMenu() {
+    const mobileBottomMenu = document.getElementById('mobile-bottom-menu');
+    mobileBottomMenu.classList.remove('hidden');
+}
 
 function configureSelectableDiv(div) {
     const checkbox = div.querySelector(".checkbox");
@@ -651,11 +655,9 @@ function fetchWorkingModels(userRecId) {
             console.log('the base prices dict is: ', data.base_prices);
             storeBasePrices(data.base_prices);
             updateGenerationEstimateLabel();
-            showGenTopMenu();
         },
         error: function(error) {
-            console.error('Error:', error);
-            showGenTopMenu();
+            console.error('Error in fetching working trained models:', error);
         }
     });
 }
@@ -746,9 +748,12 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             } else {
                 showInfiniteLoader();
             }
+
+            showMobileBottomGenMenu();
+            showGenTopMenu();
         },
         error: function(error) {
-            console.error('Error:', error);
+            console.error('Error in fetching generations:', error);
         }
     });
 }

@@ -1216,7 +1216,7 @@ function configure_main_gen_button(gen_dict, gen_element) {
 
 function configureCopyButton(gen_dict, gen_element) {
     gen_element.querySelector('#action-container').classList.remove('hidden');
-    copyButton = gen_element.querySelector('#copy-button');
+    let copyButton = gen_element.querySelector('#copy-button');
     copyButton.addEventListener('click', function(event) {
         tryShowingPromptSettings();
         removePlaceholder();
@@ -1512,6 +1512,14 @@ function useAsReferenceImagePressed(event) {
     tryShowingReferenceImageSettings();
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
     event.stopPropagation();
+}
+
+function copyPromptFromGenMenuPressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let genElement = event.target.closest('[generation-id]');
+    let copyButton = genElement.querySelector('#copy-button');
+    copyButton.click();
 }
 
 function setGenLoaderToDeleteMode(genElement) {

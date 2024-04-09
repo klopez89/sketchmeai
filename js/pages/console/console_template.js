@@ -141,6 +141,8 @@ function consoleHtml() {
 
                 <!-- Your content -->
 
+                    <div id="mobile-gen-menu-bg" class="absolute bg-black bg-opacity-90 h-full w-full z-[29] px-4 flex flex-col justify-center transition duration-500 opacity-0 hidden" onclick="tappedMobileBottomMenuBg(event)"></div>
+
                     <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-[100] px-4 flex flex-col justify-center transition duration-500 opacity-0">
                 
                         <div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">

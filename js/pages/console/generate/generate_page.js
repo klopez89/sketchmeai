@@ -1417,6 +1417,36 @@ function genMenuShowing(event) {
 
 function genGridActionMenuShowing(event) {
     console.log('genGridActionMenuShowing was called');
+    showMobileBottomMenuBg();
+}
+
+function showMobileBottomMenuBg() {
+    let mobileGenMenuBg = document.getElementById('mobile-gen-menu-bg');
+    mobileGenMenuBg.classList.remove('hidden');
+    // Double requestAnimationFrame for browser to have time for a reflow
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            mobileGenMenuBg.classList.remove('opacity-0');
+            mobileGenMenuBg.classList.add('opacity-100');
+        });
+    });
+}
+
+function hideMobileBottomMenuBg() {
+    let mobileGenMenuBg = document.getElementById('mobile-gen-menu-bg');
+    mobileGenMenuBg.classList.remove('opacity-100');
+    mobileGenMenuBg.classList.add('opacity-0');
+    // Add 'hidden' class back after transition finishes
+    setTimeout(() => {
+        mobileGenMenuBg.classList.add('hidden');
+    }, 500); // same duration as the transition
+}
+
+function tappedMobileBottomMenuBg(event) {
+    let mobileGenMoreMenu = document.getElementById('gen-grid-action-menu');
+    mobileGenMoreMenu.__x.$data.open = false;
+    event.target.classList.add('hidden');
+    event.stopPropagation();
 }
 
 function deleteButtonPressed(event) {

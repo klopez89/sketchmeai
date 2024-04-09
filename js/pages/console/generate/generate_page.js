@@ -1443,7 +1443,7 @@ function hideMobileBottomMenuBg() {
 }
 
 function tappedMobileBottomMenuBg(event) {
-    let mobileGenMoreMenu = document.getElementById('gen-grid-action-menu');
+    let mobileGenMoreMenu = document.getElementById('mobile-bottom-action-menu');
     mobileGenMoreMenu.__x.$data.open = false;
     event.target.classList.add('hidden');
     event.stopPropagation();

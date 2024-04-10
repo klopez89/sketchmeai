@@ -1492,27 +1492,13 @@ function newCollectionPressed(event) {
     let newCollectionModal_HTML = newCollectionModalHTML();
     let newCollectionModalDiv = $($.parseHTML(newCollectionModal_HTML));
     $('#console-content').prepend(newCollectionModalDiv);
-
     let newCollectionModal = document.getElementById('new-collection-modal');
-    newCollectionModal.classList.remove('hidden');
-    // Double requestAnimationFrame for browser to have time for a reflow
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            newCollectionModal.classList.remove('opacity-0');
-            newCollectionModal.classList.add('opacity-100');
-        });
-    });
+    animateIn(newCollectionModal);
 }
 
 function dismissNewCollectionModal() {
     let paymentModal = document.getElementById('new-collection-modal');
-    paymentModal.classList.remove('opacity-100');
-    paymentModal.classList.add('opacity-0');
-    // Add 'hidden' class back after transition finishes
-    setTimeout(() => {
-        paymentModal.classList.add('hidden');
-        hideInsufficientCreditLabel();
-    }, 500); // same duration as the transition
+    animateAway(paymentModal, 500);
 }
 
 function changeCollectionPressed(event) {

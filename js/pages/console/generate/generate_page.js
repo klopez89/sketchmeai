@@ -1488,13 +1488,13 @@ function multiSelectPressed(event) {
 function newCollectionPressed(event) {
     event.preventDefault();
     event.stopPropagation();
-    let newCollectionModalHTML = newCollectionModalHTML();
-    let newCollectionModalDiv = $($.parseHTML(newCollectionModalHTML));
+    let newCollectionModal_HTML = newCollectionModalHTML();
+    let newCollectionModalDiv = $($.parseHTML(newCollectionModal_HTML));
     $('#console-content').append(newCollectionModalDiv);
 }
 
 function dismissNewCollectionModal() {
-    let paymentModal = document.getElementById('payment-modal');
+    let paymentModal = document.getElementById('new-collection-modal');
     paymentModal.classList.remove('opacity-100');
     paymentModal.classList.add('opacity-0');
     // Add 'hidden' class back after transition finishes

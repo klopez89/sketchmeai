@@ -384,7 +384,7 @@ function bottom_generation_menu_html() {
 
 function newCollectionModalHTML() {
 	return `
-	<div id="new-collection-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-100">
+	<div id="new-collection-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
 		<div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
 			<button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissNewCollectionModal()">
 				<i class="fas fa-times" aria-hidden="true"></i>

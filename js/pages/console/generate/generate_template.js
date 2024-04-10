@@ -353,7 +353,7 @@ function bottom_generation_menu_html() {
 					<i class="fa-solid fa-caret-up" aria-hidden="true"></i>
 				</button>
 
-				<div class="p-2 absolute right-0 bottom-0 z-10 mb-12 mr-4 min-w-36">
+				<div class="p-2 absolute right-0 bottom-0 z-10 mb-12 mr-4 min-w-36 w-max">
 
 					<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md overflow-hidden bg-white py-0 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
 					

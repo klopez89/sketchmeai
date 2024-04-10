@@ -1488,9 +1488,20 @@ function multiSelectPressed(event) {
 function newCollectionPressed(event) {
     event.preventDefault();
     event.stopPropagation();
+    hideMobileGenMoreMenu();
     let newCollectionModal_HTML = newCollectionModalHTML();
     let newCollectionModalDiv = $($.parseHTML(newCollectionModal_HTML));
     $('#console-content').append(newCollectionModalDiv);
+
+    let newCollectionModal = document.getElementById('new-collection-modal');
+    paymentModal.classList.remove('hidden');
+    // Double requestAnimationFrame for browser to have time for a reflow
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            paymentModal.classList.remove('opacity-0');
+            paymentModal.classList.add('opacity-100');
+        });
+    });
 }
 
 function dismissNewCollectionModal() {

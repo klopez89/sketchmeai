@@ -1491,7 +1491,7 @@ function newCollectionPressed(event) {
     hideMobileGenMoreMenu();
     let newCollectionModal_HTML = newCollectionModalHTML();
     let newCollectionModalDiv = $($.parseHTML(newCollectionModal_HTML));
-    $('#console-content').append(newCollectionModalDiv);
+    $('#console-content').prepend(newCollectionModalDiv);
 
     let newCollectionModal = document.getElementById('new-collection-modal');
     newCollectionModal.classList.remove('hidden');

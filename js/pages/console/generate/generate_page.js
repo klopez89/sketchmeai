@@ -1515,7 +1515,7 @@ function dismissNewCollectionModal() {
     }, 500); // same duration as the transition
 }
 
-function changeCollectionModalHTML(event) {
+function changeCollectionPressed(event) {
     event.preventDefault();
     event.stopPropagation();
     hideMobileGenMoreMenu();

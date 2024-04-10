@@ -32,6 +32,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         let userRecId = getUserRecId();
         let collectionId = getLastEditedCollection();
         let lastDocId = null;
+        console.log('about to fetch generations initially, with collectionId, ', collectionId);
         fetchGenerations(userRecId, collectionId, lastDocId);
         fetchWorkingModels(userRecId);
     } else {

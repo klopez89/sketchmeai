@@ -1407,7 +1407,17 @@ function userWantsToCreateNewCollection() {
         dataType: 'json',
         success: function (data) {
             console.log('got success from collections create endpoint with data: ', data);
+            let collectionId = data.new_collection_id;
+            storeLastEditedCollection(collectionId);
             hideLoaderOnButton(createButton);
+            dismissNewCollectionModal();
+            // clear the grid
+            hideInfiniteLoader();
+            document.getElementById('collection-grid').innerHTML = '';
+            // show the grid loader
+            $('#grid-loader').removeClass('hidden');
+
+            fetchGenerations(getUserRecId(), collectionId, null);
         },
         error: function (data) {
             let status = data.status;

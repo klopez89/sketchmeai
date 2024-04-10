@@ -372,7 +372,7 @@ function bottom_generation_menu_html() {
 
 			<div id="mobile-bottom-action-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
 				<button type="button" class="bg-gray-700 text-white text-lg shadow-lg rounded-full w-12 h-12 flex items-center justify-center" id="mobile-bottom-action-menu-button" onClick="mobileGenMoreMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
-					<i class="fa-solid fa-bars" aria-hidden="true"></i>
+					<i class="fa-solid fa-caret-up" aria-hidden="true"></i>
 				</button>
 
 				<div class="p-2 absolute right-0 bottom-0 z-10 mb-12 mr-4 min-w-36">

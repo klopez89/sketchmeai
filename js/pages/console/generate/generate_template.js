@@ -363,9 +363,9 @@ function bottom_generation_menu_html() {
 
 						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); newCollectionPressed(event)">New Collection</a>
 
-						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); multiSelectPressed(event)">Change Collection</a>
+						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); changeCollectionModalHTML(event)">Change Collection</a>
 
-						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 2 }" role="menuitem" tabindex="-1" id="user-menu-item-2" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 2)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); multiSelectPressed(event)">Rename Collection</a>
+						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 2 }" role="menuitem" tabindex="-1" id="user-menu-item-2" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 2)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); renameCollectionModalHTML(event)">Rename Collection</a>
 
 						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 3 }" role="menuitem" tabindex="-1" id="user-menu-item-3" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 3)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); multiSelectPressed(event)">Multi-Select</a>
 
@@ -391,6 +391,62 @@ function newCollectionModalHTML() {
 			</button>
 			<div class="mb-4">
 				<h2 class="text-3xl text-gray-900 mb-2">New Collection</h2>
+			</div>
+
+			<div class="mb-1">
+				<label for="new-collection-name" class="block text-sm font-medium leading-6 text-gray-900">Collection Name</label>
+				<div class="relative flex">
+					
+					<input type="text" name="new-collection-name" id="new-collection-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+					<button id="create-new-collection" class="bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToCeateNewCollection()">Create</button>
+				</div>
+			</div>
+
+			<div class="flex space-x-2">
+				<p id="new-collection-error-label" class="flex-1 text-left py-0 rounded text-xs text-red-500">Collection name already taken. Try another.</p>
+			</div>
+		</div>
+	</div>
+	`;
+}
+
+function changeCollectionModalHTML() {
+	return `
+	<div id="change-collection-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-100">
+		<div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
+			<button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissChangeCollectionModal()">
+				<i class="fas fa-times" aria-hidden="true"></i>
+			</button>
+			<div class="mb-4">
+				<h2 class="text-3xl text-gray-900 mb-2">Change Collection</h2>
+			</div>
+
+			<div class="mb-1">
+				<label for="new-collection-name" class="block text-sm font-medium leading-6 text-gray-900">Collection Name</label>
+				<div class="relative flex">
+					
+					<input type="text" name="new-collection-name" id="new-collection-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+					<button id="create-new-collection" class="bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToCeateNewCollection()">Create</button>
+				</div>
+			</div>
+
+			<div class="flex space-x-2">
+				<p id="new-collection-error-label" class="flex-1 text-left py-0 rounded text-xs text-red-500">Collection name already taken. Try another.</p>
+			</div>
+		</div>
+	</div>
+	`;
+}
+
+function renameCollectionModalHTML() {
+	return `
+	<div id="rename-collection-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-100">
+		<div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
+			<button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissRenameCollectionModal()">
+				<i class="fas fa-times" aria-hidden="true"></i>
+			</button>
+			<div class="mb-4">
+				<h2 class="text-3xl text-gray-900 mb-2">Rename Collection</h2>
 			</div>
 
 			<div class="mb-1">

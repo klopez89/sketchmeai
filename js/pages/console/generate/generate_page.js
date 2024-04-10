@@ -1515,6 +1515,21 @@ function dismissNewCollectionModal() {
     }, 500); // same duration as the transition
 }
 
+function changeCollectionModalHTML(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    hideMobileGenMoreMenu();
+    let changeCollectionModal_HTML = changeCollectionModalHTML();
+    let changeCollectionModalDiv = $($.parseHTML(changeCollectionModal_HTML));
+    $('#console-content').prepend(changeCollectionModalDiv);
+}
+
+function dismissChangeCollectionModal() {
+    let changeCollectionModal = document.getElementById('change-collection-modal');
+    animateAway(changeCollectionModal, 500);
+}
+
+
 
 function deleteButtonPressed(event) {
     event.preventDefault();

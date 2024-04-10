@@ -1494,12 +1494,12 @@ function newCollectionPressed(event) {
     $('#console-content').append(newCollectionModalDiv);
 
     let newCollectionModal = document.getElementById('new-collection-modal');
-    paymentModal.classList.remove('hidden');
+    newCollectionModal.classList.remove('hidden');
     // Double requestAnimationFrame for browser to have time for a reflow
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-            paymentModal.classList.remove('opacity-0');
-            paymentModal.classList.add('opacity-100');
+            newCollectionModal.classList.remove('opacity-0');
+            newCollectionModal.classList.add('opacity-100');
         });
     });
 }

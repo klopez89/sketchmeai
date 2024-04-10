@@ -1410,6 +1410,7 @@ function userWantsToCreateNewCollection() {
             console.log('got success from collections create endpoint with data: ', data);
             let collectionId = data.new_collection_id;
             console.log('the new collection id is: ', collectionId);
+            removeLastEditedCollection();
             storeLastEditedCollection(collectionId);
             hideLoaderOnButton(createButton);
             dismissNewCollectionModal();

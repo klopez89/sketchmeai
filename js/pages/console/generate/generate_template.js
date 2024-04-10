@@ -406,7 +406,7 @@ function newCollectionModalHTML() {
 			</div>
 
 			<div class="flex space-x-2">
-				<p id="new-collection-error-label" class="flex-1 text-left py-0 rounded text-xs text-red-500">Collection name already taken. Try another.</p>
+				<p id="new-collection-error-label" class="flex-1 text-left py-0 rounded text-xs text-red-500"></p>
 			</div>
 		</div>
 	</div>

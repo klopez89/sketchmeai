@@ -1517,6 +1517,23 @@ function dismissChangeCollectionModal() {
     animateAway(changeCollectionModal, 500);
 }
 
+function renameCollectionPressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    hideMobileGenMoreMenu();
+    let renameCollectionModal_HTML = renameCollectionModalHTML();
+    let renameCollectionModalDiv = $($.parseHTML(renameCollectionModal_HTML));
+    $('#console-content').prepend(renameCollectionModalDiv);
+    let renameCollectionModal = document.getElementById('rename-collection-modal"');
+    animateIn(renameCollectionModal);
+}
+
+function dismissRenameCollectionModal() {
+    let renameCollectionModal = document.getElementById('rename-collection-modal');
+    animateAway(renameCollectionModal, 500);
+}
+
+
 
 
 function deleteButtonPressed(event) {

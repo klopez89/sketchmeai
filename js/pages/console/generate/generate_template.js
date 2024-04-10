@@ -406,7 +406,7 @@ function newCollectionModalHTML() {
 			</div>
 
 			<div class="flex space-x-2">
-				<p id="new-collection-error-label" class="flex-1 text-left py-0 rounded text-xs text-red-500"></p>
+				<p id="new-collection-error-label" class="flex-1 text-left py-0 rounded text-xs text-red-500">&nbsp;</p>
 			</div>
 		</div>
 	</div>

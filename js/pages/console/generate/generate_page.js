@@ -1522,7 +1522,7 @@ function changeCollectionPressed(event) {
     let changeCollectionModal_HTML = changeCollectionModalHTML();
     let changeCollectionModalDiv = $($.parseHTML(changeCollectionModal_HTML));
     $('#console-content').prepend(changeCollectionModalDiv);
-    let changeCollectionModel = changeCollectionModalDiv[0];
+    let changeCollectionModel = document.getElementById('change-collection-modal');
     animateIn(changeCollectionModel);
 }
 

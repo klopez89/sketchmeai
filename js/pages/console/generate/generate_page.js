@@ -1524,7 +1524,7 @@ function renameCollectionPressed(event) {
     let renameCollectionModal_HTML = renameCollectionModalHTML();
     let renameCollectionModalDiv = $($.parseHTML(renameCollectionModal_HTML));
     $('#console-content').prepend(renameCollectionModalDiv);
-    let renameCollectionModal = document.getElementById('rename-collection-modal"');
+    let renameCollectionModal = document.getElementById('rename-collection-modal');
     animateIn(renameCollectionModal);
 }
 

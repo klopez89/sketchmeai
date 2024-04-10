@@ -33,6 +33,7 @@ function removeDisplayName() {
 
 // Last Edited Collection functions
 function storeLastEditedCollection(collectionId) {
+    console.log('storing last edited collection id: ', collectionId);
     localStorage.setItem('lastCollectionId', collectionId);
 }
 

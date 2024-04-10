@@ -361,7 +361,7 @@ function bottom_generation_menu_html() {
 							<p class="text-xs text-gray-500">Collection</p>Default
 						</div>
 
-						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); multiSelectPressed(event)">New Collection</a>
+						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); newCollectionPressed(event)">New Collection</a>
 
 						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 2 }" role="menuitem" tabindex="-1" id="user-menu-item-2" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 2)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); multiSelectPressed(event)">Change Collection</a>
 
@@ -382,6 +382,44 @@ function bottom_generation_menu_html() {
 	`;
 }
 
-// {/* <button class="bg-gray-700 text-white text-lg shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="newFunction()">
-// <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
-// </button> */}
+function newCollectionModalHTML() {
+	return `
+	<div id="new-collection-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
+		<div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
+			<button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissPaymentModal()">
+				<i class="fas fa-times" aria-hidden="true"></i>
+			</button>
+			<div class="mb-4">
+				<h2 class="text-3xl text-gray-900 mb-2">New Collection</h2>
+				<p class="mb-0 text-gray-400">~ $3.00 to $6.00 / trained model (for 10 vs 20 images)</p>
+				<p class="mb-1 text-gray-400">~ $0.04 / image ($0.11 from a cold boot)</p>
+				<p class="mb-8 text-gray-400 text-xs italic">cost will vary based on model and parameters</p>
+			</div>
+
+			<hr class="border-t border-gray-200 my-6">
+
+			<div class="mb-1">
+				<h3 class="text-lg font-semibold mb-2">Add Credit</h3>
+				<div class="flex space-x-2">
+					<button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="first-credit-option" value="5" onclick="firstCreditOptionClicked()">$5</button>
+					<button class="bg-black text-white px-6 py-2 rounded shadow" id="second-credit-option" value="10" onclick="secondCreditOptionClicked()">$10</button>
+					<button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="third-credit-option" value="20" onclick="thirdCreditOptionClicked()">$20</button>
+				</div>
+				<div class="mb-4 mt-1 text-xs text-gray-800">Minimum</div>
+				<div class="relative">
+					<span class="absolute inset-y-0 left-0 flex items-center pl-2">
+						<span class="text-gray-400">$</span>
+					</span>
+					<input id="credit-amount" type="number" min="1" step="1" placeholder="" class="border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 py-2" value="10">
+					<button id="pay-button" class="bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToPay()">Pay</button>
+				</div>
+			</div>
+
+			<div class="flex space-x-2">
+				<p class="flex-1 text-left py-0 rounded text-xs text-gray-400">Powered by Stripe</p>
+				
+			</div>
+		</div>
+	</div>
+	`;
+}

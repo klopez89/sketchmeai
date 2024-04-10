@@ -1467,11 +1467,10 @@ function hideMobileBottomMenuBg() {
 }
 
 function tappedMobileBottomMenuBg(event) {
-    hideMobileGenMoreMenu();
+    event.preventDefault();
     event.stopPropagation();
+    hideMobileGenMoreMenu();
 }
-
-
 
 function hideMobileGenMoreMenu() {
     let mobileGenMoreMenu = document.getElementById('mobile-bottom-action-menu');
@@ -1485,6 +1484,15 @@ function multiSelectPressed(event) {
     toggleImageSelectability();
     hideMobileGenMoreMenu();
 }
+
+function newCollectionPressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let newCollectionModalHTML = newCollectionModalHTML();
+    let newCollectionModalDiv = $($.parseHTML(newCollectionModalHTML));
+    $('#console-content').append(newCollectionModalDiv);
+}
+
 
 function deleteButtonPressed(event) {
     event.preventDefault();

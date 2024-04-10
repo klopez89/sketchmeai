@@ -17,3 +17,17 @@ function animateIn(element) {
         });
     });
 }
+
+function showLoaderOnButton(button) {
+    let buttonLoaderIcon = button.querySelector('i');
+    let buttonText = button.querySelector('p');
+    buttonLoaderIcon.classList.remove('hidden');
+    buttonText.classList.add('text-transparent');
+}
+
+function hideLoaderOnButton(button) {
+    let buttonLoaderIcon = button.querySelector('i');
+    let buttonText = button.querySelector('p');
+    buttonLoaderIcon.classList.add('hidden');
+    buttonText.classList.remove('text-transparent');
+}

@@ -237,33 +237,7 @@ function deleteSelectedPressed(event) {
     console.log('Generation IDs to delete:', generationIds);
     fireGenDeletion(generationIds, genElements);
 }
-  
-// function prepareImagesForSharing() {
-//     let selectedImages = $('div.selectable.selected img');
-//     let imageUrls = selectedImages.map(function() {
-//         return $(this).attr('data-te-img');
-//     }).get();
 
-//     generateFileArray(imageUrls).then(fileArray => {
-
-
-
-//     });
-
-//     if (navigator.share) {
-//         generateFileArray(imageUrls).then(fileArray => {
-//         console.log(fileArray); // Array of File objects
-//         navigator.share({
-//             files: fileArray,
-//             title: 'Shared Images',
-//             text: 'Here are some images I thought you might like.'
-//         }).then(() => console.log('Successful share'))
-//             .catch((error) => console.log('Error sharing', error));
-//         });
-//     } else {
-//         console.log('Web Share API not supported in this browser');
-//     }
-// }
 
 async function urlToFile(url, filename, mimeType) {
     const response = await fetch(url);
@@ -279,7 +253,6 @@ async function generateFileArray(imageUrls) {
     }
     return fileArray;
 }
-
 
 
 function configurePromptInputPlaceholder() {
@@ -1419,6 +1392,9 @@ function userWantsToCreateNewCollection() {
         return;
     }
 
+    let createButton = document.getElementById('create-new-collection-button');
+    showLoaderOnButton(createButton);
+
     let action = `${CONSTANTS.BACKEND_URL}collections/create`
     $.ajax({
         type: 'POST',
@@ -1430,10 +1406,18 @@ function userWantsToCreateNewCollection() {
         contentType: "application/json",
         dataType: 'json',
         success: function (data) {
-            console.log('got success from collections create endpoint with data: ', data); 
+            console.log('got success from collections create endpoint with data: ', data);
+            hideLoaderOnButton(createButton);
         },
         error: function (data) {
+            let status = data.status;
+            let msg = data.responseText;
+            if (status == 417) {
+                let newCollectionErrorLabel = document.getElementById('new-collection-error-label');
+                newCollectionErrorLabel.innerHTML = msg;
+            }
             console.log('error from new collection endpoint is: ', data);
+            hideLoaderOnButton(createButton);
         }
     });
 }

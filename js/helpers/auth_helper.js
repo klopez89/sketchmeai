@@ -32,17 +32,21 @@ function removeDisplayName() {
 }
 
 // Last Edited Collection functions
-function storeLastEditedCollection(collectionId) {
-    console.log('storing last edited collection id: ', collectionId);
+function storeLastEditedCollection(collectionId, collectionName) {
     localStorage.setItem('lastCollectionId', collectionId);
+    localStorage.setItem('lastCollectionName', collectionName);
 }
 
-function getLastEditedCollection() {
-    return localStorage.getItem('lastCollectionId');
+function getLastEditedCollectionInfo() {
+    return {
+        'collectionId' : localStorage.getItem('lastCollectionId'),
+        'collectionName' : localStorage.getItem('lastCollectionName')
+    };
 }
 
 function removeLastEditedCollection() {
     localStorage.removeItem('lastCollectionId');
+    localStorage.removeItem('lastCollectionName');
 }
 
 // Base Prices functions

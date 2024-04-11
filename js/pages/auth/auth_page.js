@@ -161,17 +161,18 @@ function validateUserAuth(userInfo) {
 			console.log('users/create endpoint hit success, w/ response: ', response);
 			let userDict = response['user'];
 
-			let userRecId = userDict.hasOwnProperty('user_rec_id') ? userDict['user_rec_id'] : null;
-            let displayName = userDict.hasOwnProperty('display_name') ? userDict['display_name'] : null;
-            let numberOfValidAiModels = userDict.hasOwnProperty('number_of_valid_ai_models') ? userDict['number_of_valid_ai_models'] : null;
-			let lastEditedCollection = userDict.hasOwnProperty('last_edited_collection') ? userDict['last_edited_collection'] : null;
+            let userRecId = userDict?.user_rec_id ?? null;
+            let displayName = userDict?.display_name ?? null;
+            let numberOfValidAiModels = userDict?.number_of_valid_ai_models ?? null;
+            let lastEditedCollection = userDict?.last_edited_collection ?? null;
+            let lastEditedCollectionName = userDict?.last_edited_collection_name ?? null;
             console.log('the last edited collection is', lastEditedCollection);
 
 			if (userRecId != null) {
 				console.log('We have a valid user and stored it locally, last edited collection id is: ', lastEditedCollection);
                 storeUserRecId(userRecId);
                 storeDisplayName(displayName);
-                storeLastEditedCollection(lastEditedCollection);
+                storeLastEditedCollection(lastEditedCollection, lastEditedCollectionName);
 
                 console.log('the number of valid ai models: ', numberOfValidAiModels);
                 let hasUserFineTunedAModel = numberOfValidAiModels > 0;

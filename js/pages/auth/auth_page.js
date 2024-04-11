@@ -169,7 +169,7 @@ function validateUserAuth(userInfo) {
             console.log('the last edited collection is', lastEditedCollection);
 
 			if (userRecId != null) {
-				console.log('We have a valid user and stored it locally, last edited collection id is: ', lastEditedCollection);
+				console.log('We have a valid user and stored it locally, last edited collection id is: ', lastEditedCollection, ' and name is: ', lastEditedCollectionName);
                 storeUserRecId(userRecId);
                 storeDisplayName(displayName);
                 storeLastEditedCollection(lastEditedCollection, lastEditedCollectionName);

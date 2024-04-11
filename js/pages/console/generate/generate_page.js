@@ -1449,6 +1449,33 @@ function userWantsToCreateNewCollection() {
     });
 }
 
+function getCollectionList() {
+    let action = `${CONSTANTS.BACKEND_URL}collections`
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify({
+            userRecId: getUserRecId()
+        }),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (data) {
+            console.log('got success from collections endpoint with data: ', data);
+            let collectionsDictionary = data.collections;
+            let collectionListElement = document.getElementById('collection-list');
+            for (let collectionId in collectionsDictionary) {
+                let collectionName = collectionsDictionary[collectionId];
+                let newCollectionOption = document.createElement('option');
+                newCollectionOption.value = collectionId;
+                newCollectionOption.innerHTML = collectionName;
+                collectionListElement.appendChild(newCollectionOption);
+            }
+        },
+        error: function (data) {
+            console.log('error from collections endpoint is: ', data);
+        }
+    });
+}
 
 function deleteButtonPressed(event) {
     event.preventDefault();

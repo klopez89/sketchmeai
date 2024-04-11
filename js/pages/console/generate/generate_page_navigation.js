@@ -90,6 +90,7 @@ function changeCollectionPressed(event) {
     $('#console-content').prepend(changeCollectionModalDiv);
     let changeCollectionModel = document.getElementById('change-collection-modal');
     animateIn(changeCollectionModel);
+    getCollectionList();
 }
 
 function dismissChangeCollectionModal() {

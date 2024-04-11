@@ -1579,6 +1579,9 @@ function goingToLightbox(event) {
 
 function updateGenerationEstimateLabel() {
     let basePrices = getBasePrices();
+    if (basePrices == null) {
+        return;
+    }
     let inf_price = basePrices['inference_price'];
     let inference_steps = document.getElementById('denoising-steps').value;
     let base_price_estimate = inf_price * inference_steps;

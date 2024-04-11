@@ -1517,6 +1517,7 @@ function userWantsToRenameCollection() {
         url: action,
         data: JSON.stringify({
             collectionName: collectionName,
+            collectionId: getLastEditedCollectionInfo().collectionId,
             userRecId: getUserRecId()
         }),
         contentType: "application/json",

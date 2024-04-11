@@ -433,7 +433,7 @@ function changeCollectionModalHTML() {
 						
 					</select>
 
-					<button id="create-new-collection" class="bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToCeateNewCollection()">Create</button>
+					<button id="create-new-collection" class="bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToCeateNewCollection()">Change</button>
 				</div>
 			</div>
 

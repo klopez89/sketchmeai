@@ -1501,6 +1501,49 @@ function userWantsToChangeCollection() {
     updateCurrentCollectionLabels();
 }
 
+function userWantsToRenameCollection() {
+    let collectionName = document.getElementById('rename-collection-name').value;
+    if (collectionName == '') {
+        console.log('Collection name is empty!');
+        return;
+    }
+
+    let renameButton = document.getElementById('rename-new-collection-button');
+    showLoaderOnButton(renameButton);
+
+    let action = `${CONSTANTS.BACKEND_URL}collections/rename`
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify({
+            collectionName: collectionName,
+            userRecId: getUserRecId()
+        }),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (data) {
+            console.log('got success from rename collection endpoint with data: ', data);
+            let collectionId = getLastEditedCollectionInfo().collectionId;
+            console.log('the new collection name is: ', collectionName);
+            removeLastEditedCollection();
+            storeLastEditedCollection(collectionId, collectionName);
+            hideLoaderOnButton(renameButton);
+            dismissRenameCollectionModal();
+            updateCurrentCollectionLabels();
+        },
+        error: function (data) {
+            let status = data.status;
+            let msg = data.responseText;
+            if (status == 417) {
+                let newCollectionErrorLabel = document.getElementById('rename-collection-error-label');
+                newCollectionErrorLabel.innerHTML = msg;
+            }
+            console.log('error from rename collection endpoint is: ', data);
+            hideLoaderOnButton(renameButton);
+        }
+    });
+}
+
 function deleteButtonPressed(event) {
     event.preventDefault();
     let genElement = event.target.closest('[generation-id]');

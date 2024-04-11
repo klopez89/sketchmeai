@@ -400,7 +400,7 @@ function newCollectionModalHTML() {
 					
 					<input type="text" name="new-collection-name" id="new-collection-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
 					<button id="create-new-collection-button" class="flex flex-grow justify-center items-center text-center bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToCreateNewCollection()">
-						<p id="desktop-gen-button-label" class="flex items-center">Create</p>
+						<p id="new-collection-button-label" class="flex items-center">Create</p>
 						<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 					</button>
 				</div>
@@ -457,16 +457,21 @@ function renameCollectionModalHTML() {
 			</div>
 
 			<div class="mb-1">
-				<label for="new-collection-name" class="block text-sm font-medium leading-6 text-gray-900">Collection Name</label>
+				<label for="rename-collection-name" class="block text-sm font-medium leading-6 text-gray-900">Collection Name</label>
 				<div class="relative flex">
 					
-					<input type="text" name="new-collection-name" id="new-collection-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
-					<button id="create-new-collection" class="bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToCeateNewCollection()">Create</button>
+					<input type="text" name="rename-collection-name" id="rename-collection-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+
+					<button id="rename-new-collection-button" class="flex flex-grow justify-center items-center text-center bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToRenameCollection()">
+						<p id="rename-button-label" class="flex items-center">Rename</p>
+						<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
+					</button>
+
 				</div>
 			</div>
 
 			<div class="flex space-x-2">
-				<p id="new-collection-error-label" class="flex-1 text-left py-0 rounded text-xs text-red-500">Collection name already taken. Try another.</p>
+				<p id="rename-collection-error-label" class="flex-1 text-left py-0 rounded text-xs text-red-500">&nbsp;</p>
 			</div>
 		</div>
 	</div>

@@ -1461,14 +1461,19 @@ function getCollectionList() {
         dataType: 'json',
         success: function (data) {
             console.log('got success from collections endpoint with data: ', data);
+
+            let currentCollection = getLastEditedCollectionInfo().collectionId;
+
             let collectionsDictionary = data.collections;
             let collectionListElement = document.getElementById('collection-list');
             for (let collectionId in collectionsDictionary) {
-                let collectionName = collectionsDictionary[collectionId];
-                let newCollectionOption = document.createElement('option');
-                newCollectionOption.value = collectionId;
-                newCollectionOption.innerHTML = collectionName;
-                collectionListElement.appendChild(newCollectionOption);
+                if(collectionId !== currentCollection) {
+                    let collectionName = collectionsDictionary[collectionId];
+                    let newCollectionOption = document.createElement('option');
+                    newCollectionOption.value = collectionId;
+                    newCollectionOption.innerHTML = collectionName;
+                    collectionListElement.appendChild(newCollectionOption);
+                }
             }
         },
         error: function (data) {

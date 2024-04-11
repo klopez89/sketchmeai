@@ -30,11 +30,16 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log('User is signed in.');
         let userRecId = getUserRecId();
-        let collectionId = getLastEditedCollection();
+        let collectionInfo = getLastEditedCollectionInfo();
+        let collectionId = collectionInfo.collectionId;
+        let collectionName = collectionInfo.collectionName;
+        let collectionNameLabel = document.getElementById('collection-name-label');
+        collectionNameLabel.textContent = collectionName;
         let lastDocId = null;
         console.log('about to fetch generations initially, with collectionId, ', collectionId);
         fetchGenerations(userRecId, collectionId, lastDocId);
         fetchWorkingModels(userRecId);
+        updateCurrentCollectionLabels();
     } else {
         console.log('No user is signed in.');
         navigationToHomePage();
@@ -998,11 +1003,12 @@ function generateButtonPressed(event) {
 
             console.log('The final personalized prompt is: ', personalizedPrompt);
 
+            let collectionId = getLastEditedCollectionInfo().collectionId;
 
             var jsonObject = {
                 generationId: generateId(),
                 userRecId: userRecId,
-                collectionId: getLastEditedCollection(),
+                collectionId: collectionId,
                 userFacingModelName: modelName,
                 modelName: replicateModelName,
                 modelId: modelId,
@@ -1265,7 +1271,8 @@ function configureInfiniteScroll() {
                 if (last_doc_id != null) {
                     console.log('has a last doc id of: ', last_doc_id);
                     isCurrentlyPaginatingPrompts = true;
-                    fetchGenerations(getUserRecId(), getLastEditedCollection(), last_doc_id);
+                    let collectionId = getLastEditedCollectionInfo().collectionId;
+                    fetchGenerations(getUserRecId(), collectionId, last_doc_id);
                 } else {
                     console.log('doesnt have a last doc id, so no more things to fetch');
                 }
@@ -1386,6 +1393,11 @@ function promptInputValues() {
     }
 }
 
+function updateCurrentCollectionLabels() {
+    let collectionNameLabel = document.getElementById('collection-name-label');
+    collectionNameLabel.innerHTML = getLastEditedCollectionInfo().collectionName;
+}
+
 
 function userWantsToCreateNewCollection() {
     let collectionName = document.getElementById('new-collection-name').value;
@@ -1412,7 +1424,7 @@ function userWantsToCreateNewCollection() {
             let collectionId = data.new_collection_id;
             console.log('the new collection id is: ', collectionId);
             removeLastEditedCollection();
-            storeLastEditedCollection(collectionId);
+            storeLastEditedCollection(collectionId, collectionName);
             hideLoaderOnButton(createButton);
             dismissNewCollectionModal();
             // clear the grid
@@ -1422,6 +1434,7 @@ function userWantsToCreateNewCollection() {
             $('#grid-loader').removeClass('hidden');
 
             fetchGenerations(getUserRecId(), collectionId, null);
+            updateCurrentCollectionLabels();
         },
         error: function (data) {
             let status = data.status;
@@ -1503,7 +1516,7 @@ function fireGenDeletion(generationIds, genElements) {
         url: action,
         data: JSON.stringify({
             generationIds: generationIds,
-            collectionId: getLastEditedCollection(),
+            collectionId: getLastEditedCollectionInfo().collectionId,
             userRecId: getUserRecId()
         }),
         contentType: "application/json",

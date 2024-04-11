@@ -438,7 +438,7 @@ function changeCollectionModalHTML() {
 			</div>
 
 			<div class="flex space-x-2">
-				<p id="current-collection-label" class="flex-1 text-left py-0 rounded text-xs text-gray-700">Current collection: Default</p>
+				<p id="current-collection-label-in-change" class="flex-1 text-left py-0 rounded text-xs text-gray-700">Current collection: Default</p>
 			</div>
 		</div>
 	</div>

@@ -662,6 +662,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 $('#grid-loader').addClass('hidden');
                 hideInfiniteLoader();
                 removeLastDocId();
+                showMobileBottomGenMenu();
                 setTimeout(function() {
                   isCurrentlyPaginatingPrompts = false;
                 }, 50);

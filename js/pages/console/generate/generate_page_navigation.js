@@ -92,7 +92,7 @@ function changeCollectionPressed(event) {
     animateIn(changeCollectionModel);
     getCollectionList();
     let changeCollectionLabel = document.getElementById('change-collection-name-label');
-    changeCollectionLabel.innerText = `from ${getLastEditedCollectionInfo().collectionName}, to:`;
+    changeCollectionLabel.innerText = `Current collection: ${getLastEditedCollectionInfo().collectionName}`;
 }
 
 function dismissChangeCollectionModal() {
@@ -107,6 +107,10 @@ function renameCollectionPressed(event) {
     let renameCollectionModal_HTML = renameCollectionModalHTML();
     let renameCollectionModalDiv = $($.parseHTML(renameCollectionModal_HTML));
     $('#console-content').prepend(renameCollectionModalDiv);
+
+    let renameFieldLabel = document.getElementById('rename-collection-name-label');
+    renameFieldLabel.innerText = `from ${getLastEditedCollectionInfo().collectionName}, to:`;
+
     let renameCollectionModal = document.getElementById('rename-collection-modal');
     animateIn(renameCollectionModal);
 }

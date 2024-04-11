@@ -1500,7 +1500,8 @@ function userWantsToChangeCollection() {
     fetchGenerations(getUserRecId(), collectionId, null);
     updateCurrentCollectionLabels();
 }
-
+let changeCollectionLabel = document.getElementById('rename-collection-name-label');
+changeCollectionLabel.innerText = `from ${getLastEditedCollectionInfo().collectionName}, to:`;
 function userWantsToRenameCollection() {
     let collectionName = document.getElementById('rename-collection-name').value;
     if (collectionName == '') {

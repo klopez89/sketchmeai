@@ -1482,6 +1482,25 @@ function getCollectionList() {
     });
 }
 
+function userWantsToChangeCollection() {
+    let collectionListElement = document.getElementById('collection-list');
+    let selectedOption = collectionListElement.options[collectionListElement.selectedIndex];
+    let collectionId = selectedOption.value;
+    let collectionName = selectedOption.text;
+
+    removeLastEditedCollection();
+    storeLastEditedCollection(collectionId, collectionName);
+    dismissChangeCollectionModal();
+    // clear the grid
+    hideInfiniteLoader();
+    document.getElementById('collection-grid').innerHTML = '';
+    // show the grid loader
+    $('#grid-loader').removeClass('hidden');
+
+    fetchGenerations(getUserRecId(), collectionId, null);
+    updateCurrentCollectionLabels();
+}
+
 function deleteButtonPressed(event) {
     event.preventDefault();
     let genElement = event.target.closest('[generation-id]');

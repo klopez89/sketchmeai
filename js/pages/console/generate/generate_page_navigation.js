@@ -115,3 +115,8 @@ function dismissRenameCollectionModal() {
     let renameCollectionModal = document.getElementById('rename-collection-modal');
     animateAway(renameCollectionModal, 500);
 }
+
+function dismissChangeCollectionModal() {
+    let changeCollectionModal = document.getElementById('change-collection-modal');
+    animateAway(changeCollectionModal, 500);
+}

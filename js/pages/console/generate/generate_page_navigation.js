@@ -91,8 +91,8 @@ function changeCollectionPressed(event) {
     let changeCollectionModel = document.getElementById('change-collection-modal');
     animateIn(changeCollectionModel);
     getCollectionList();
-    let changeCollectionLabel = document.getElementById('change-collection-name-label');
-    changeCollectionLabel.innerText = `Current collection: ${getLastEditedCollectionInfo().collectionName}`;
+    let changeCollectionLabel = document.getElementById('change-collection-label');
+    changeCollectionLabel.innerText = `from ${getLastEditedCollectionInfo().collectionName}, to:`;
 }
 
 function dismissChangeCollectionModal() {

@@ -421,25 +421,22 @@ function changeCollectionModalHTML() {
 			<button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissChangeCollectionModal()">
 				<i class="fas fa-times" aria-hidden="true"></i>
 			</button>
-			<div class="mb-4">
-				<h2 class="text-3xl text-gray-900 mb-2">Change Collection</h2>
+			<div class="mb-0">
+				<h2 class="text-3xl text-gray-900 mb-4">Change Collection</h2>
 			</div>
 
-			<div class="mb-1">
-				<label for="new-collection-name" class="block text-sm font-medium leading-6 text-gray-900">Collection Name</label>
+			<div class="mb-0">
+				<label id="change-collection-label" class="block text-sm mb-1 font-medium leading-6 text-gray-400">from</label>
 				<div class="relative flex">
 					
 					<select id="collection-list" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 						
 					</select>
 
-					<button id="create-new-collection" class="bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToChangeCollection()">Change</button>
+					<button id="change-collection" class="bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToChangeCollection()">Change</button>
 				</div>
 			</div>
 
-			<div class="flex space-x-2">
-				<p id="current-collection-label-in-change" class="flex-1 text-left py-0 rounded text-xs text-gray-700">Current collection: Default</p>
-			</div>
 		</div>
 	</div>
 	`;
@@ -462,7 +459,7 @@ function renameCollectionModalHTML() {
 					
 					<input type="text" name="rename-collection-name" id="rename-collection-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
 
-					<button id="rename-new-collection-button" class="flex flex-grow justify-center items-center text-center bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToRenameCollection()">
+					<button id="rename-new-collection-button" class="flex flex-grow justify-center items-center text-center bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToRenameCollection()">
 						<p id="rename-button-label" class="flex items-center">Rename</p>
 						<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 					</button>

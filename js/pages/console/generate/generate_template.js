@@ -36,10 +36,13 @@ function newGridItemHTML(gen_id, gen_string="") {
                 </button>
 
 				<button id="favorite-button" class="absolute w-16 h-16 aspect-w-1 aspect-h-1 flex bottom-0 left-0 p-2 text-2xl text-white border-0 border-white opacity-100 md:opacity-0 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
-					<span class="flex items-center justify-center pr-2 pt-2">
-						<i class="fa-regular fa-heart" aria-hidden="true"></i>
-					</span>
-					<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
+
+					<div class="flex flex-grow items-center justify-center text-center">
+						<span class="flex items-center justify-center pr-2 pt-2">
+							<i class="fa-regular fa-heart" aria-hidden="true"></i>
+						</span>
+						<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
+					</div>
 				</button>
 
             </div>

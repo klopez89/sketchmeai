@@ -33,14 +33,14 @@ function hideLoaderOnButton(button) {
 }
 
 function showLoaderOnFavoriteButton(button) {
-    let buttonLoaderIcon = button.querySelector('i');
+    let buttonLoaderIcon = button.querySelector('i.fa-spinner');
     let buttonFavIcon = button.querySelector('span i');
     buttonLoaderIcon.classList.remove('hidden');
     buttonFavIcon.classList.add('text-transparent');
 }
 
 function hideLoaderOnFavoriteButton(button) {
-    let buttonLoaderIcon = button.querySelector('i');
+    let buttonLoaderIcon = button.querySelector('i.fa-spinner');
     let buttonFavIcon = button.querySelector('span i');
     console.log('buttonLoaderIcon: ', buttonLoaderIcon);
     buttonLoaderIcon.classList.add('hidden');

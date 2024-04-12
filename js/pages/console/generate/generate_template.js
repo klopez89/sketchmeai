@@ -98,7 +98,7 @@ function dummyGridHTML() {
 
 
 						<div id="gen-top-collection-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
-							<button type="button" class="flex h-full rounded-md cursor-pointer items-center gap-2 pl-3 pr-8 py-0 text-sm leading-6 bg-gray-200 hover:bg-gray-300 text-gray-700" id="mobile-bottom-action-menu-button" onclick="genTopCollectionMenuShowing()" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="true" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+							<button type="button" class="flex h-full rounded-md cursor-pointer items-center gap-2 pl-3 pr-8 py-0 text-sm leading-6 bg-gray-200 hover:bg-gray-300 text-gray-700" id="mobile-bottom-action-menu-button" onclick="genTopCollectionMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="true" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
 								<p class="text-gray-500">Collection: </p>
 								<p id="gen-top-menu-collection-name">Coma</p>
 							</button>

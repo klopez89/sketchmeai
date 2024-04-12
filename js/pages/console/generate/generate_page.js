@@ -1442,7 +1442,9 @@ function updateCurrentCollectionLabels() {
     genTopMenuCollectionName.innerHTML = getLastEditedCollectionInfo().collectionName;
 }
 
-function genTopCollectionMenuShowing() {
+function genTopCollectionMenuShowing(event) {
+    event.preventDefault();
+    event.stopPropagation();
     console.log('gen top collection menu showing');
 }
 

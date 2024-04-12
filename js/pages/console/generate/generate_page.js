@@ -86,14 +86,14 @@ function toggleImageSelectability() {
     
     if (isSelectable) {
         selectionBar.classList.remove("hidden");
-        selectToShareButton.classList.remove("bg-gray-300", "text-gray-700", "hover:bg-gray-400");
-        selectToShareButton.classList.add("bg-gray-200", "text-gray-400", "hover:bg-gray-300");
+        selectToShareButton.classList.remove("text-gray-500");
+        selectToShareButton.classList.add("text-gray-400");
         selectToShareButton.textContent = 'Cancel';
         mobileMenu.classList.add('hidden');
     } else {
         selectionBar.classList.add("hidden");
-        selectToShareButton.classList.remove("bg-gray-200", "text-gray-400", "hover:bg-gray-300");
-        selectToShareButton.classList.add("bg-gray-300", "text-gray-700", "hover:bg-gray-400");
+        selectToShareButton.classList.remove("text-gray-400");
+        selectToShareButton.classList.add("text-gray-500");
         selectToShareButton.textContent = 'Select';
         mobileMenu.classList.remove('hidden');
     }

@@ -1699,6 +1699,9 @@ function closeAnyOpenGenMenus() {
         let genElement = menu.closest('[generation-id]');
         hideGenMenuShield(genElement);
     });
+
+    let genTopMenu = document.querySelector('#gen-top-collection-menu');
+    genTopMenu.__x.$data.open = false;
 }
 
 function hideGenMenuShield(genElement) {

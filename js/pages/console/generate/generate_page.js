@@ -129,7 +129,7 @@ function configureSelectableDiv(div) {
     if (isSelectable) {
         checkbox.classList.remove("hidden"); 
         selectionOverlay.classList.remove("pointer-events-none");      
-        actionContainer.classList.add("hidden");   
+        // actionContainer.classList.add("hidden");   
     } else {
         div.classList.remove("selected");
         checkbox.classList.add("hidden");
@@ -138,7 +138,7 @@ function configureSelectableDiv(div) {
         selectionOverlay.classList.add("pointer-events-none"); 
         const overlay_bg = div.querySelector(".overlay-bg");
         overlay_bg.classList.remove("bg-white", "opacity-50");
-        actionContainer.classList.remove("hidden"); 
+        // actionContainer.classList.remove("hidden"); 
     }
 }
 

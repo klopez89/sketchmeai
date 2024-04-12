@@ -1437,7 +1437,9 @@ function promptInputValues() {
 
 function updateCurrentCollectionLabels() {
     let collectionNameLabel = document.getElementById('collection-name-label');
+    let genTopMenuCollectionName = document.getElementById('gen-top-menu-collection-name');
     collectionNameLabel.innerHTML = getLastEditedCollectionInfo().collectionName;
+    genTopMenuCollectionName.innerHTML = getLastEditedCollectionInfo().collectionName;
 }
 
 

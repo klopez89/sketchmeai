@@ -93,7 +93,11 @@ function dummyGridHTML() {
             <div class="bg-gray-100 px-0 py-0 md:flex-1 h-full">
                 <div class="bg-gray-100 h-full relative">
 
-					<div id="gen-top-menu" class="hidden md:flex opacity-0 transition-opacity duration-300 absolute bg-gray-100 p-2 z-20 w-full justify-end border-b border-gray-300">
+					<div id="gen-top-menu" class="hidden md:flex opacity-0 transition-opacity duration-300 absolute bg-gray-100 p-2 z-20 w-full justify-between border-b border-gray-300">
+						<div id="collection-name-label-container" class="flex rounded-md cursor-pointer items-center gap-2 pl-3 pr-8 py-0 text-sm leading-6 bg-gray-200 hover:bg-gray-300 text-gray-700">
+							<p class="text-gray-500">Collection: </p>
+							<p id="gen-top-menu-collection-name">Coma</p>
+						</div>
 						<button type="button" class="select-to-share-button min-w-20 ml-3 inline-flex justify-center items-center rounded-md px-3 py-2 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-600 bg-gray-300 text-gray-700 hover:bg-gray-400" onclick="toggleImageSelectability()">Select</button>
 					</div>
 

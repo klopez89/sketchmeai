@@ -702,16 +702,19 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         gen_element.querySelector('#gen-status').innerHTML = '';
                         loadGenImage(CANCELED_IMG_URL, gen_element);
                         configureCopyButton(generation, gen_element);
+                        configureFavoriteButton(generation, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.FAILED) {
                         gen_element.querySelector('img').classList.remove('hidden');
                         gen_element.querySelector('#gen-status').innerHTML = '';
                         loadGenImage(FAILED_IMG_URL, gen_element);
                         configureCopyButton(generation, gen_element);
+                        configureFavoriteButton(generation, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.SUCCEEDED) {
                         gen_element.querySelector('#gen-status').innerHTML = '';
                         gen_element.querySelector('img').classList.remove('hidden');
                         loadGenImage(generation.signed_gen_url, gen_element);
                         configureCopyButton(generation, gen_element);
+                        configureFavoriteButton(generation, gen_element);
                     }
                 });
             });
@@ -1164,22 +1167,22 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 gen_element.querySelector('#gen-status').innerHTML = '';
                 loadGenImage(signed_gen_url, gen_element);
-                // configure_main_gen_button(generation_dict, gen_element);
                 configureCopyButton(generation_dict, gen_element);
+                configureFavoriteButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.FAILED) {
                 console.log('generation failed');
                 gen_element.querySelector('#gen-status').innerHTML = '';
                 loadGenImage(FAILED_IMG_URL, gen_element);
-                // configure_main_gen_button(generation_dict, gen_element);
                 configureCopyButton(generation_dict, gen_element);
+                configureFavoriteButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.CANCELED) {
                 console.log('generation canceled');
                 gen_element.querySelector('#gen-status').innerHTML = '';
                 loadGenImage(CANCELED_IMG_URL, gen_element);
-                // configure_main_gen_button(generation_dict, gen_element);
                 configureCopyButton(generation_dict, gen_element);
+                configureFavoriteButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
             }
 
@@ -1203,6 +1206,14 @@ function configureCopyButton(gen_dict, gen_element) {
         removePlaceholder();
         copyPromptInfoFromGen(gen_dict);
         triggerModelNameInPromptFormatting();
+        event.stopPropagation();
+    });
+}
+
+function configureFavoriteButton(gen_dict, gen_element) {
+    let favoriteButton = gen_element.querySelector('#favorite-button');
+    favoriteButton.addEventListener('click', function(event) {
+        console.log('clicked on favorite button');
         event.stopPropagation();
     });
 }

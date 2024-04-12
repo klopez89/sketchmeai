@@ -83,6 +83,7 @@ function toggleImageSelectability() {
     const selectionBar = document.querySelector(".selection-bar");
     const selectToShareButton = document.querySelector(".select-to-share-button");
     const mobileMenu = document.getElementById('mobile-bottom-menu');
+    const mobileActionMenu = document.getElementById('mobile-bottom-action-menu');
     
     if (isSelectable) {
         selectionBar.classList.remove("hidden");
@@ -90,12 +91,14 @@ function toggleImageSelectability() {
         selectToShareButton.classList.add("text-gray-400");
         selectToShareButton.textContent = 'Cancel';
         mobileMenu.classList.remove('md:flex');
+        mobileActionMenu.classList.add('hidden');
     } else {
         selectionBar.classList.add("hidden");
         selectToShareButton.classList.remove("text-gray-400");
         selectToShareButton.classList.add("text-gray-500");
         selectToShareButton.textContent = 'Select';
         mobileMenu.classList.add('md:flex');
+        mobileActionMenu.classList.remove('hidden');
     }
     
     divs.forEach(div => {

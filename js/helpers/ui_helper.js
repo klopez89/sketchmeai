@@ -46,3 +46,14 @@ function hideLoaderOnFavoriteButton(button) {
     buttonLoaderIcon.classList.add('hidden');
     buttonFavIcon.classList.remove('text-transparent');
 }
+
+function setFavoriteButtonState(button, isFavorite) {
+    let buttonFavIcon = button.querySelector('span i');
+    if (isFavorite) {
+        buttonFavIcon.classList.add('fa-solid');
+        buttonFavIcon.classList.remove('fa-regular');
+    } else {
+        buttonFavIcon.classList.remove('fa-solid');
+        buttonFavIcon.classList.add('fa-regular');
+    }
+}

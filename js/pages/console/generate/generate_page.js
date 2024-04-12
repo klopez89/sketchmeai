@@ -1442,6 +1442,9 @@ function updateCurrentCollectionLabels() {
     genTopMenuCollectionName.innerHTML = getLastEditedCollectionInfo().collectionName;
 }
 
+function genTopCollectionMenuShowing() {
+    console.log('gen top collection menu showing');
+}
 
 function userWantsToCreateNewCollection() {
     let collectionName = document.getElementById('new-collection-name').value;

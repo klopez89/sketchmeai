@@ -124,12 +124,12 @@ function showMobileBottomGenMenu() {
 function configureSelectableDiv(div) {
     const checkbox = div.querySelector(".checkbox");
     const selectionOverlay = div.querySelector(".selection-overlay");
-    const actionContainer = div.querySelector("#action-container");
+    const floatingCopyButton = div.querySelector("#copy-button");
   
     if (isSelectable) {
         checkbox.classList.remove("hidden"); 
         selectionOverlay.classList.remove("pointer-events-none");      
-        // actionContainer.classList.add("hidden");   
+        floatingCopyButton.classList.add("hidden");   
     } else {
         div.classList.remove("selected");
         checkbox.classList.add("hidden");
@@ -138,7 +138,7 @@ function configureSelectableDiv(div) {
         selectionOverlay.classList.add("pointer-events-none"); 
         const overlay_bg = div.querySelector(".overlay-bg");
         overlay_bg.classList.remove("bg-white", "opacity-50");
-        // actionContainer.classList.remove("hidden"); 
+        floatingCopyButton.classList.remove("hidden"); 
     }
 }
 

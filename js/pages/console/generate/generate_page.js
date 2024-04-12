@@ -146,11 +146,11 @@ function updateShareButton() {
     let selectedCount = $('div.selectable.selected').length;
     let shareButton = $('.share-button');
     if (selectedCount > 0) {
-        shareButton.removeClass('bg-gray-300');
+        shareButton.removeClass('bg-gray-200');
         shareButton.addClass('bg-black hover:bg-gray-800');
         shareButton.prop('disabled', false);
     } else {
-        shareButton.addClass('bg-gray-300');
+        shareButton.addClass('bg-gray-200');
         shareButton.removeClass('bg-black hover:bg-gray-800');
         shareButton.prop('disabled', true);
     }
@@ -160,11 +160,11 @@ function updateDeleteSelectedButton() {
     let selectedCount = $('div.selectable.selected').length;
     let deleteSelectedButton = $('#deleteSelectedButton');
     if (selectedCount > 0) {
-        deleteSelectedButton.removeClass('bg-gray-300');
+        deleteSelectedButton.removeClass('bg-gray-200');
         deleteSelectedButton.addClass('bg-red-500 hover:bg-red-700');
         deleteSelectedButton.prop('disabled', false);
     } else {
-        deleteSelectedButton.addClass('bg-gray-300');
+        deleteSelectedButton.addClass('bg-gray-200');
         deleteSelectedButton.removeClass('bg-red-500 hover:bg-red-700');
         deleteSelectedButton.prop('disabled', true);
     }

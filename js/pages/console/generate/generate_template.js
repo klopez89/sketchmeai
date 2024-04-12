@@ -122,13 +122,13 @@ function dummyGridHTML() {
 						<button type="button" class="select-to-share-button min-w-20 ml-3 inline-flex justify-center items-center rounded-md px-3 py-2 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-600 bg-gray-200 text-gray-500 hover:bg-gray-300" onclick="toggleImageSelectability()">Select</button>
 					</div>
 
-					<div class="selection-bar absolute bottom-0 w-full right-0 py-5 px-5 bg-gray-800 bg-opacity-80 z-[35] hidden">
+					<div class="selection-bar absolute bottom-0 w-full right-0 py-5 px-5 bg-white shadow-sm border-t border-gray-200 z-[35] hidden">
 						<div class="float-right space-x-4 flex">
 							<button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm shadow-sm bg-gray-200 text-gray-400 hover:bg-gray-300" onclick="toggleImageSelectability()">Cancel</button>
 							
-							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm shadow-sm text-white bg-gray-300" onclick="deleteSelectedPressed(event)" id="deleteSelectedButton">Delete</button>
+							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm shadow-sm text-white bg-gray-200" onclick="deleteSelectedPressed(event)" id="deleteSelectedButton">Delete</button>
 
-							<button id="share-button" type="button" class="share-button ml-3 flex flex-grow justify-center items-center text-center rounded-md bg-gray-300 px-3 py-2 text-sm text-white shadow-sm">
+							<button id="share-button" type="button" class="share-button ml-3 flex flex-grow justify-center items-center text-center rounded-md bg-gray-200 px-3 py-2 text-sm text-white shadow-sm">
 								<p id="desktop-gen-button-label" class="flex items-center">Share</p>
 								<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 							</button>

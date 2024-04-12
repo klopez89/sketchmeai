@@ -35,7 +35,7 @@ function newGridItemHTML(gen_id, gen_string="") {
                     <i class="fa fa-copy" aria-hidden="true"></i>
                 </button>
 
-				<button id="favorite-button" class="absolute w-16 h-16 aspect-w-1 aspect-h-1 flex items-center bottom-0 left-0 p-2 text-2xl text-white border-0 border-white opacity-100 md:opacity-0 group-hover:bg-opacity-50 hover:bg-gray-200 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
+				<button id="favorite-button" class="absolute w-16 h-16 aspect-w-1 aspect-h-1 flex items-center bottom-0 left-0 p-2 text-2xl text-white border-0 border-white opacity-100 md:opacity-0 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
 					<span class="flex items-center justify-center pr-2 pt-2">
 						<i class="fa-regular fa-heart" aria-hidden="true"></i>
 					</span>

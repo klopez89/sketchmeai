@@ -1228,6 +1228,7 @@ function toggleFavoriteValue(generationId, gen_element, favoriteButton) {
         url: action,
         data: JSON.stringify({
             userRecId: getUserRecId(),
+            collectionId: getLastEditedCollectionInfo().collectionId,
             generationId: generationId
         }),
         contentType: "application/json",

@@ -42,6 +42,7 @@ function showLoaderOnFavoriteButton(button) {
 function hideLoaderOnFavoriteButton(button) {
     let buttonLoaderIcon = button.querySelector('i');
     let buttonFavIcon = button.querySelector('span i');
+    console.log('buttonLoaderIcon: ', buttonLoaderIcon);
     buttonLoaderIcon.classList.add('hidden');
     buttonFavIcon.classList.remove('text-transparent');
 }

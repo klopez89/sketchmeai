@@ -1213,7 +1213,7 @@ function configureCopyButton(gen_dict, gen_element) {
 function configureFavoriteButton(gen_dict, gen_element) {
     let favoriteButton = gen_element.querySelector('#favorite-button');
     favoriteButton.addEventListener('click', function(event) {
-        console.log('clicked on favorite button');
+        console.log('clicked on favorite button with ', gen_dict);
         event.stopPropagation();
     });
 }

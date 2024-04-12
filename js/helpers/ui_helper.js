@@ -31,3 +31,17 @@ function hideLoaderOnButton(button) {
     buttonLoaderIcon.classList.add('hidden');
     buttonText.classList.remove('text-transparent');
 }
+
+function showLoaderOnFavoriteButton(button) {
+    let buttonLoaderIcon = button.querySelector('i');
+    let buttonFavIcon = button.querySelector('span i');
+    buttonLoaderIcon.classList.remove('hidden');
+    buttonFavIcon.classList.add('text-transparent');
+}
+
+function hideLoaderOnFavoriteButton(button) {
+    let buttonLoaderIcon = button.querySelector('i');
+    let buttonFavIcon = button.querySelector('span i');
+    buttonLoaderIcon.classList.add('hidden');
+    buttonFavIcon.classList.remove('text-transparent');
+}

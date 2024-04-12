@@ -89,13 +89,13 @@ function toggleImageSelectability() {
         selectToShareButton.classList.remove("text-gray-500");
         selectToShareButton.classList.add("text-gray-400");
         selectToShareButton.textContent = 'Cancel';
-        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('md:flex');
     } else {
         selectionBar.classList.add("hidden");
         selectToShareButton.classList.remove("text-gray-400");
         selectToShareButton.classList.add("text-gray-500");
         selectToShareButton.textContent = 'Select';
-        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('md:flex');
     }
     
     divs.forEach(div => {

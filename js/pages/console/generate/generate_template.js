@@ -34,6 +34,13 @@ function newGridItemHTML(gen_id, gen_string="") {
                 <button id="copy-button" class="absolute hidden md:flex bottom-2 right-2 p-2 text-md text-white border-2 border-white opacity-100 md:opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
                     <i class="fa fa-copy" aria-hidden="true"></i>
                 </button>
+
+				<button id="favorite-button" class="absolute w-12 h-12 aspect-w-1 aspect-h-1 flex items-center bottom-2 left-2 p-2 text-2xl text-white border-2 border-white opacity-100 md:opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
+					<span class="flex items-center justify-center pr-0 pt-0">
+						<i class="fa fa-heart" aria-hidden="true"></i>
+					</span>
+				</button>
+
             </div>
 
             <div id="gen-menu-shield" class="bg-gray-900 bg-opacity-50 absolute top-0 left-0 w-full h-full hidden" onclick="tappedGenMenuShield(event)"></div>

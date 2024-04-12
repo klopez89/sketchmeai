@@ -1215,12 +1215,13 @@ function configureFavoriteButton(gen_dict, gen_element) {
     favoriteButton.addEventListener('click', function(event) {
         console.log('clicked on favorite button with ', gen_dict);
         let generationId = gen_dict.rec_id;
-        toggleFavoriteValue(generationId, gen_element, favoriteButton);
+        toggleFavoriteValue(generationId, favoriteButton);
         event.stopPropagation();
     });
+    setFavoriteButtonState(favoriteButton, gen_dict.is_favorite);
 }
 
-function toggleFavoriteValue(generationId, gen_element, favoriteButton) {
+function toggleFavoriteValue(generationId, favoriteButton) {
     showLoaderOnFavoriteButton(favoriteButton);
     let action = `${CONSTANTS.BACKEND_URL}generations/favorite`;
     $.ajax({
@@ -1235,6 +1236,8 @@ function toggleFavoriteValue(generationId, gen_element, favoriteButton) {
         dataType: 'json',
         success: function (data) {
             console.log('got success from generations/favorite endpoint with data: ', data);
+            let isFavorite = data.new_favorite_value;
+            setFavoriteButtonState(favoriteButton, isFavorite);
             hideLoaderOnFavoriteButton(favoriteButton);
         },
         error: function (data) {

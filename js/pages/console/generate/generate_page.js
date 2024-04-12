@@ -1214,7 +1214,32 @@ function configureFavoriteButton(gen_dict, gen_element) {
     let favoriteButton = gen_element.querySelector('#favorite-button');
     favoriteButton.addEventListener('click', function(event) {
         console.log('clicked on favorite button with ', gen_dict);
+        let generationId = gen_dict.rec_id;
+        toggleFavoriteValue(generationId, gen_element, favoriteButton);
         event.stopPropagation();
+    });
+}
+
+function toggleFavoriteValue(generationId, gen_element, favoriteButton) {
+    showLoaderOnFavoriteButton(favoriteButton);
+    let action = `${CONSTANTS.BACKEND_URL}generations/favorite`;
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify({
+            userRecId: getUserRecId(),
+            generationId: generationId
+        }),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (data) {
+            console.log('got success from generations/favorite endpoint with data: ', data);
+            hideLoaderOnFavoriteButton(favoriteButton);
+        },
+        error: function (data) {
+            console.log('error from generations/favorite  endpoint is: ', data);
+            hideLoaderOnFavoriteButton(favoriteButton);
+        }
     });
 }
 

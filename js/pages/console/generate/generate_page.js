@@ -580,11 +580,11 @@ function setupAccordion() {
         const buttonHTMLElement = img2imgAccordionButton.firstChild;
         const buttonText = buttonHTMLElement.nodeValue;
 
-        if (buttonText.includes('Hide')) {
-            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Hide Image To Image fields', 'Show Image To Image fields');
-        } else {
-            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Image To Image fields', 'Hide Image To Image fields');
-        }
+        // if (buttonText.includes('Hide')) {
+        //     buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Hide Image To Image fields', 'Show Image To Image fields');
+        // } else {
+        //     buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Image To Image fields', 'Hide Image To Image fields');
+        // }
     });
 }
 

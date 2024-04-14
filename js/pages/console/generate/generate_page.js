@@ -574,18 +574,6 @@ function tryShowingReferenceImageSettings() {
 
 
 function setupAccordion() {
-    const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
-    accordionButton.addEventListener('click', function() {
-        const buttonHTMLElement = accordionButton.lastChild;
-        const buttonText = buttonHTMLElement.nodeValue;
-
-        if (buttonText.includes('Hide')) {
-            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Hide Prompt Settings', 'Show Prompt Settings');
-        } else {
-            buttonHTMLElement.nodeValue = buttonHTMLElement.nodeValue.replace('Show Prompt Settings', 'Hide Prompt Settings');
-        }
-    });
-
 
     const img2imgAccordionButton = document.querySelector('[data-te-target="#nestedImg2ImgCollapse"]');
     img2imgAccordionButton.addEventListener('click', function() {

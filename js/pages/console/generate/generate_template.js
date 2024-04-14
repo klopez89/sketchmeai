@@ -221,136 +221,117 @@ function generate_form_html() {
 			</div>
 		</div>
 
-		<div id="accordionExample5">
-			<div class="rounded-t-lg bg-transparent">
-				<h2 class="mb-4 mr-1" id="headingOne5">
-						<button class="group relative flex w-full items-center rounded-t-[15px] border-0 bg-transparent text-right text-sm underline text-gray-700 hover:text-gray-900 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-transparent [&:not([data-te-collapse-collapsed])]:text-gray-400" type="button" data-te-collapse-init="" data-te-target="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5" data-te-collapse-collapsed="">
-							<span class="ml-auto -mr-1 h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:text-gray-900 motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+
+		<div class="px-0 pt-4 pb-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6" id="rest-gen-settiongs-section">
+			<div class="sm:col-span-3" id="gen-count-field-container">
+				<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
+					<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+				</div>
+			</div>
+			<div class="sm:col-span-3" id="denoising-steps-field-container">
+					<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
+					<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
+						<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+					</button>
+					<div class="mt-2">
+						<input type="number" name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<p class="text-right text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
+					</div>
+			</div>
+			<div class="col-span-full" id="neg-prompt-field-container">
+				<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-900">Negative Prompt</label>
+				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
+					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+				</button>
+				<div class="mt-2">
+				<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;">ugly, morbid, photorealistic</textarea>
+				</div>
+			</div>
+			<div class="sm:col-span-3" id="gs-field-container">
+				<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
+				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
+					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+				</button>
+				<div class="mt-2">
+				<input type="number" name="guidance-scale" id="guidance-scale" placeholder="13" min="1.0" max="20.0" step="0.1" value="13" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+				<p class="text-right text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
+				</div>
+			</div>
+			<div class="sm:col-span-3" id="seed-field-container">
+				<div class="flex items-center">
+					<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
+					<button onclick="randomizeSeed(event)" title="Random seed">
+						<i class="fa-solid fa-dice-three text-gray-500" aria-hidden="true"></i>
+					</button>
+				</div>
+				<div class="mt-2">
+					<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" placeholder="Random">
+					<p class="text-right text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
+				</div>
+			</div>
+			<div class="sm:col-span-3" id="lora-field-container">
+				<label for="lora-scale" class="text-sm font-medium leading-6 text-gray-900">Lora Scale</label>
+				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Lora Scale" data-te-content="Adjusts the extent to which a fine-tuned model's specialized training influences the generated image, blending the base model's knowledge with the fine-tuned nuances." class="ml-2 text-gray-300" data-te-original-title="" title="">
+					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+				</button>
+				<div class="mt-2">
+					<input type="number" name="lora-scale" id="lora-scale" placeholder="0.8" min="0.0" max="1.0" step="0.01" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" value="0.8">
+					<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.00 - 1.00</p>
+				</div>
+			</div>
+
+			<div class="col-span-full">
+				<!-- Start of the new nested accordion for img-2img-url and prompt-strength fields -->
+				<div id="nestedAccordion">
+					<h2 id="nestedHeading">
+						<button class="group relative underline flex items-center rounded-t-[15px] border-0 bg-transparent pt-2 text-right text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-400" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">Hide Image To Image fields
+
+							<span class="ml-2 mt-0 h-4 w-4 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+								</svg>
 							</span>
-							Show Prompt Settings
+
 						</button>
-				</h2>
-				<div id="collapseOne5" class="!visible hidden" aria-labelledby="headingOne5" style="" data-te-collapse-item="">
-					<div class="px-0 py-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
-						<div class="sm:col-span-3" id="gen-count-field-container">
-							<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
-								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-									<option>9</option>
-									<option>10</option>
-								</select>
-							</div>
-						</div>
-						<div class="sm:col-span-3" id="denoising-steps-field-container">
-							<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
-							<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="${denoisingInfo}" class="ml-2 text-gray-300">
-								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-							</button>
-							<div class="mt-2">
-								<input type="number" name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-								<p class="text-right text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
-							</div>
-						</div>
-
-						<div class="col-span-full" id="neg-prompt-field-container">
-							<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-900">Negative Prompt</label>
-							<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="${negativePromptInfo}" class="ml-2 text-gray-300">
-								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-							</button>
-							<div class="mt-2">
-							<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;">ugly, morbid, photorealistic</textarea>
-							</div>
-						</div>
-
-						<div class="sm:col-span-3" id="gs-field-container">
-							<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
-							<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="${guidanceScaleInfo}" class="ml-2 text-gray-300">
-								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-							</button>
-							<div class="mt-2">
-							<input type="number" name="guidance-scale" id="guidance-scale" placeholder="13" min="1.0" max="20.0" step="0.1" value="13" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-							<p class="text-right text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
-							</div>
-						</div>
-						<div class="sm:col-span-3" id="seed-field-container">
-							<div class="flex items-center">
-								<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
-								<button onclick="randomizeSeed(event)" title="Random seed">
-									<i class="fa-solid fa-dice-three text-gray-500" aria-hidden="true"></i>
+					</h2>
+					<div id="nestedImg2ImgCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
+						<div class="accordion-body px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
+							<!-- img-2img-url field -->
+							<div class="col-span-full" id="igm2img-field-container">
+								<label for="img2imgurl" class="text-sm font-medium leading-6 text-gray-900">Image to Image URL</label>
+								<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 text-gray-300" data-te-original-title="" title="">
+									<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 								</button>
-							</div>
-							<div class="mt-2">
-								<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-								<p class="text-right text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
-							</div>
-						</div>
-
-
-						<div class="sm:col-span-3" id="lora-field-container">
-							<label for="lora-scale" class="text-sm font-medium leading-6 text-gray-900">Lora Scale</label>
-							<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Lora Scale" data-te-content="${loraScaleInfo}" class="ml-2 text-gray-300">
-								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-							</button>
-							<div class="mt-2">
-								<input type="number" name="lora-scale" id="lora-scale" placeholder="0.8" min="0.0" max="1.0" step="0.01" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" value="0.8">
-								<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.00 - 1.00</p>
-							</div>
-						</div>
-
-
-						<div class="col-span-full">
-							<!-- Start of the new nested accordion for img-2img-url and prompt-strength fields -->
-							<div id="nestedAccordion">
-								<h2 id="nestedHeading">
-									<button class="group relative underline flex items-center rounded-t-[15px] border-0 bg-transparent pt-2 text-right text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-400" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">Show Image To Image fields
-
-										<span class="ml-2 mt-0 h-4 w-4 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-											<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
-											<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-											</svg>
-										</span>
-
-									</button>
-								</h2>
-								<div id="nestedImg2ImgCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" data-te-collapse-item="">
-									<div class="accordion-body px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
-										<!-- img-2img-url field -->
-										<div class="col-span-full" id="igm2img-field-container">
-											<label for="img2imgurl" class="text-sm font-medium leading-6 text-gray-900">Image to Image URL</label>
-											<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 text-gray-300" data-te-original-title="" title="">
-												<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-											</button>
-											<div class="mt-2">
-												<input type="text" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
-											</div>
-										</div>
-										<!-- prompt-strength field -->
-										<div class="sm:col-span-3" id="ps-field-container">
-											<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
-											<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Prompt Strength" data-te-content="Only applicable for image to image generation. A higher value makes the final image adhere more closely to the details of the prompt, while a lower value retains more of the reference image's features." class="ml-2 text-gray-300" data-te-original-title="" title="">
-												<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-											</button>
-											<div class="mt-2">
-												<input type="number" name="prompt-strength" id="prompt-strength" placeholder="0.8" min="0.1" max="1.0" step="0.1" value="0.8" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-												<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.1 - 1.0</p>
-											</div>
-										</div>
-									</div>
+								<div class="mt-2">
+									<input type="text" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
 								</div>
 							</div>
-							<!-- End of the new nested accordion -->
+							<!-- prompt-strength field -->
+							<div class="sm:col-span-3" id="ps-field-container">
+								<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
+								<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Prompt Strength" data-te-content="Only applicable for image to image generation. A higher value makes the final image adhere more closely to the details of the prompt, while a lower value retains more of the reference image's features." class="ml-2 text-gray-300" data-te-original-title="" title="">
+									<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+								</button>
+								<div class="mt-2">
+									<input type="number" name="prompt-strength" id="prompt-strength" placeholder="0.8" min="0.1" max="1.0" step="0.1" value="0.8" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+									<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.1 - 1.0</p>
+								</div>
+							</div>
 						</div>
-
-
 					</div>
 				</div>
+				<!-- End of the new nested accordion -->
 			</div>
 		</div>
 

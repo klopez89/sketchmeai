@@ -184,7 +184,7 @@ function baseGenMenuHTML() {
 
 function generate_form_html() {
 	return `
-	<form class="generate-form overflow-y-auto flex flex-col px-6 py-4" id="generateForm">
+	<form class="generate-form overflow-y-auto flex flex-col px-0 py-4" id="generateForm">
 
 		<p class="text-xl font-bold mb-4 md:hidden">Generation Settings</p>
 
@@ -291,7 +291,7 @@ function generate_form_html() {
 				</div>
 			</div>
 
-			<div class="col-span-full">
+			<div class="col-span-full px-6 border-y border-gray-200">
 				<!-- Start of the new nested accordion for img-2img-url and prompt-strength fields -->
 				<div id="nestedAccordion">
 					<h2 id="nestedHeading">

@@ -1288,17 +1288,17 @@ function resizeGrid() {
 }
 
 function configureRefImageButton() {
-    let refImageButton = document.getElementById('localRefImgUploadInput');
+    let refImageUploadInput = document.getElementById('localRefImgUploadInput');
     let singleRefImageButton = document.getElementById('ref-img-button')
 
-    refImageButton.addEventListener("change", () => {
+    refImageUploadInput.addEventListener("change", () => {
         console.log('Trigger change event of local upload input');
          const files = localUploadInput.files;
         handleFileUploads(files);
         localUploadInput.value = '';
     });
 
-    refImageButton.addEventListener("click", () => {
+    refImageUploadInput.addEventListener("click", () => {
         console.log('Trigger click event of local upload input');
     });
 
@@ -1314,6 +1314,37 @@ function triggerLocalUploadMenu(event) {
     console.log('time to show local upload flow');
     let singleRefImageButton = document.getElementById('localRefImgUploadInput');
     singleRefImageButton.click();
+}
+
+function handleDragEnter(event) {
+    event.preventDefault();
+    // Highlight the drag-and-drop box when a file is dragged over it
+    // this.classList.add('highlight');
+}
+  
+function handleDragLeave(event) {
+    event.preventDefault();
+    // Un-highlight the drag-and-drop box when a file is dragged away from it
+    // this.classList.remove('highlight');
+}
+
+function handleDragOver(event) {
+    event.preventDefault();
+}
+
+function handleDrop(event) {
+    event.preventDefault();
+    // Un-highlight the drag-and-drop box
+    // this.classList.remove('highlight');
+
+    // Get the files that were dropped and handle them
+    var files = event.dataTransfer.files;
+    handleFileUploads(files)
+}
+
+
+function handleFileUploads(files) {
+    console.log('handling file uploads: ', files);
 }
 
 

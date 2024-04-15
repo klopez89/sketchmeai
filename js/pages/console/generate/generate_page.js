@@ -1345,6 +1345,85 @@ function handleDrop(event) {
 
 function handleFileUploads(files) {
     console.log('handling file uploads: ', files);
+
+    let file_to_upload = files[0];
+
+    var didFindUnsupporedFileType = false;
+    var unsupportedFileTypeFound = null;
+
+    let reader = new FileReader();
+    let file = file_to_upload;
+    let filename = file.name;
+    let fileType = file.type;
+    let fileSize = file.size;
+    console.log('The file type here is: ', fileType, ' and the file size is: ', fileSize);
+    
+    let uploadAreaButton = document.getElementById('ref-img-button');
+    let uploadSpinner = uploadAreaButton.querySelector('#upload-spinner');
+    uploadSpinner.classList.remove('hidden');
+
+    if (fileType === 'image/heic') {
+        // Convert HEIC to JPEG using heic2any
+        heic2any({
+            blob: file,
+            toType: "image/jpeg",
+            quality: 0.8 // Adjust quality as needed
+        })
+        .then(function (conversionResult) {
+            return resizeImage(conversionResult);
+        })
+        .then(function (resizedImage) {
+
+
+            uploadSpinner.classList.add('hidden');
+
+
+            reader.addEventListener('load', function(event) {
+                let fileData = event.target.result;
+                let fileInfo = {
+                    name: filename,
+                    type: 'image/jpeg', // Set the type to JPEG after conversion
+                    size: summarizeFileSize(resizedImage.size),
+                    data: fileData,
+                };
+                addFileToRefImgElement(fileInfo);
+            });
+            reader.readAsDataURL(resizedImage);
+        })
+        .catch(function (error) {
+            console.error('Error converting HEIC to JPEG', error);
+        });
+    } else if (fileType === 'image/jpg' || fileType === 'image/jpeg' || fileType === 'image/png') {
+        // Handle other image types as before
+        resizeImage(file).then(function (resizedImage) {
+
+            uploadSpinner.classList.add('hidden');
+
+            reader.addEventListener('load', function(event) {
+                let fileData = event.target.result;
+                let fileInfo = {
+                    name: filename,
+                    type: fileType,
+                    size: resizedImage.size,
+                    data: fileData,
+                };
+                addFileToRefImgElement(fileInfo);
+            });
+            reader.readAsDataURL(resizedImage);
+        });
+    } else {
+        didFindUnsupporedFileType = true;
+        unsupportedFileTypeFound = fileType.split('/')[1];
+    }
+
+    if (didFindUnsupporedFileType) {
+        displayWarningBanner(`The file you tried uploading is an unsupported image type: ${unsupportedFileTypeFound}. Please upload a JPG, JPEG, PNG, or HEIC file.`);
+    }
+}
+
+function addFileToRefImgElement(fileInfo) {
+    let singleRefImageButton = document.getElementById('ref-img-button')
+    singleRefImageButton.find('img')[0].src = fileInfo.data;
 }
 
 

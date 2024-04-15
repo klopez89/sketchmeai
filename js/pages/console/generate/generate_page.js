@@ -1309,6 +1309,11 @@ function configureRefImageButton() {
     singleRefImageButton.addEventListener('click', triggerLocalUploadMenu);
 }
 
+function genRefMenuShowing(event) {
+    event.preventDefault();
+    event.stopPropagation();
+}
+
 function triggerLocalUploadMenu(event) {
 	event.preventDefault();
     console.log('time to show local upload flow');

@@ -1424,6 +1424,14 @@ function handleFileUploads(files) {
 function addFileToRefImgElement(fileInfo) {
     let singleRefImageButton = document.getElementById('ref-img-button')
     singleRefImageButton.querySelector('img').src = fileInfo.data;
+    singleRefImageButton.classList.remove('border-2', 'border-dashed');
+}
+
+function clearRefImgElement(event) {
+    event.preventDefault();
+    let singleRefImageButton = document.getElementById('ref-img-button')
+    singleRefImageButton.querySelector('img').src = '';
+    singleRefImageButton.classList.add('border-2', 'border-dashed');
 }
 
 

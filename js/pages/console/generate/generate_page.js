@@ -1423,7 +1423,7 @@ function handleFileUploads(files) {
 
 function addFileToRefImgElement(fileInfo) {
     let singleRefImageButton = document.getElementById('ref-img-button')
-    singleRefImageButton.find('img')[0].src = fileInfo.data;
+    singleRefImageButton.querySelector('img').src = fileInfo.data;
 }
 
 

@@ -291,7 +291,7 @@ function generate_form_html() {
 				</div>
 			</div>
 
-			<div class="col-span-full px-4 border-y border-gray-200">
+			<div class="col-span-full px-4 border-y border-gray-300">
 				<!-- Start of the new nested accordion for img-2img-url and prompt-strength fields -->
 				<div id="nestedAccordion">
 					<h2 id="nestedHeading">

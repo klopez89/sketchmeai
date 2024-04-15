@@ -1293,9 +1293,9 @@ function configureRefImageButton() {
 
     refImageUploadInput.addEventListener("change", () => {
         console.log('Trigger change event of local upload input');
-         const files = localUploadInput.files;
+         const files = refImageUploadInput.files;
         handleFileUploads(files);
-        localUploadInput.value = '';
+        refImageUploadInput.value = '';
     });
 
     refImageUploadInput.addEventListener("click", () => {

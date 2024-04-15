@@ -307,9 +307,14 @@ function generate_form_html() {
 
 						</button>
 
-						<button title="Random seed" onclick="randomizeSeed(event)" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
-							<i class="fa-solid fa-pen text-gray-500 text-xs" aria-hidden="true"></i>
-						</button>
+						<div class="flex gap-2">
+							<button title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+								<i class="fa-solid fa-trash text-gray-500 text-xs" aria-hidden="true"></i>
+							</button>
+							<button title="Random seed" onclick="randomizeSeed(event)" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+								<i class="fa-solid fa-pen text-gray-500 text-xs" aria-hidden="true"></i>
+							</button>
+						</div>
 
 					</h2>
 					<div id="nestedImg2ImgCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">

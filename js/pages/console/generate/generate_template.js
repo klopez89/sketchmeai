@@ -294,7 +294,7 @@ function generate_form_html() {
 			<div class="col-span-full px-4 border-y border-gray-300">
 				<!-- Start of the new nested accordion for img-2img-url and prompt-strength fields -->
 				<div id="nestedAccordion">
-					<h2 id="nestedHeading">
+					<h2 id="nestedHeading" class="flex items-center justify-between">
 						<button class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
 							<span class="mr-2 mt-0 h-4 w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
@@ -306,11 +306,32 @@ function generate_form_html() {
 							Reference Image
 
 						</button>
+
+						<button title="Random seed" onclick="randomizeSeed(event)" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+							<i class="fa-solid fa-pen text-gray-500 text-xs" aria-hidden="true"></i>
+						</button>
+
 					</h2>
 					<div id="nestedImg2ImgCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
 						<div class="accordion-body px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
 							<!-- img-2img-url field -->
 							<div class="col-span-full" id="igm2img-field-container">
+								<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
+									<button id="uploadAreaButton" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
+										
+										<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
+											<div class="flex flex-col h-full items-center justify-center">		
+												<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
+												<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
+											</div>
+										</div>
+
+										<div class="flex flex-col items-center">		
+											<i id="upload-icon" class="fa text-3xl fa-images" aria-hidden="true"></i>
+											
+										</div>
+									</button>
+								</div>
 								<label for="img2imgurl" class="text-sm font-medium leading-6 text-gray-900">Image to Image URL</label>
 								<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 text-gray-300" data-te-original-title="" title="">
 									<i class="fa-solid fa-circle-info" aria-hidden="true"></i>

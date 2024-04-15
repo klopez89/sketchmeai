@@ -317,8 +317,10 @@ function generate_form_html() {
 							<!-- img-2img-url field -->
 							<div class="col-span-full" id="igm2img-field-container">
 								<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
-									<button id="uploadAreaButton" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
+									<button id="ref-img-button" onclick="triggerLocalUploadForRefImage(event)" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 										
+										<img class="absolute w-full h-full rounded-lg" src="">
+
 										<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
 											<div class="flex flex-col h-full items-center justify-center">		
 												<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
@@ -331,6 +333,7 @@ function generate_form_html() {
 											
 										</div>
 									</button>
+									<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
 								</div>
 								<label for="img2imgurl" class="text-sm font-medium leading-6 text-gray-900">Image to Image URL</label>
 								<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 text-gray-300" data-te-original-title="" title="">

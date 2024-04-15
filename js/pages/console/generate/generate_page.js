@@ -1286,6 +1286,37 @@ function resizeGrid() {
     // }
 }
 
+function configureRefImageButton(event) {
+    event.preventDefault();
+    let refImageButton = document.getElementById('localRefImgUploadInput');
+    let singleRefImageButton = document.getElementById('ref-img-button')
+
+    refImageButton.addEventListener("change", () => {
+        console.log('Trigger change event of local upload input');
+         const files = localUploadInput.files;
+        handleFileUploads(files);
+        localUploadInput.value = '';
+    });
+
+    refImageButton.addEventListener("click", () => {
+        console.log('Trigger click event of local upload input');
+    });
+
+    singleRefImageButton.addEventListener('dragenter', handleDragEnter);
+    singleRefImageButton.addEventListener('dragleave', handleDragLeave);
+    singleRefImageButton.addEventListener('dragover', handleDragOver);
+    singleRefImageButton.addEventListener('drop', handleDrop);
+    singleRefImageButton.addEventListener('click', triggerLocalUploadMenu);
+}
+
+function triggerLocalUploadMenu(event) {
+	event.preventDefault();
+    console.log('time to show local upload flow');
+    let singleRefImageButton = document.getElementById('localRefImgUploadInput');
+    singleRefImageButton.click();
+}
+
+
 function configureInfiniteScroll() {
     const scrollableContainer = document.getElementById("collection-grid-container");
     scrollableContainer.addEventListener("scroll", () => {

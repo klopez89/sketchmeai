@@ -294,7 +294,7 @@ function generate_form_html() {
 			<div class="col-span-full px-4 border-y border-gray-300">
 				<!-- Start of the new nested accordion for img-2img-url and prompt-strength fields -->
 				<div id="nestedAccordion">
-					<h2 id="nestedHeading" class="flex items-center justify-between">
+					<h2 id="nestedHeading" class="flex items-center justify-between py-2">
 						<button class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
 							<span class="mr-2 mt-0 h-4 w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">

@@ -12,6 +12,7 @@ let isSelectable = false;
 addImageGrid();
 addBaseGenMenu();
 configureGenerateForm();
+configureRefImageButton();
 resizeGrid();
 moveForm();
 configureInfiniteScroll();
@@ -1286,8 +1287,7 @@ function resizeGrid() {
     // }
 }
 
-function configureRefImageButton(event) {
-    event.preventDefault();
+function configureRefImageButton() {
     let refImageButton = document.getElementById('localRefImgUploadInput');
     let singleRefImageButton = document.getElementById('ref-img-button')
 

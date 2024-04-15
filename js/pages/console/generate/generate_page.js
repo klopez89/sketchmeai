@@ -1312,8 +1312,16 @@ function configureRefImageButton() {
 function triggerLocalUploadMenu(event) {
 	event.preventDefault();
     console.log('time to show local upload flow');
+    startRefUploadExperience();
+}
+
+function startRefUploadExperience() {
     let singleRefImageButton = document.getElementById('localRefImgUploadInput');
     singleRefImageButton.click();
+}
+
+function showRefImageUrlModal() {
+    console.log('time to show ref image url model for entry or edit');
 }
 
 function handleDragEnter(event) {
@@ -1841,6 +1849,9 @@ function closeAnyOpenGenMenus() {
 
     let genTopMenu = document.querySelector('#gen-top-collection-menu');
     genTopMenu.__x.$data.open = false;
+
+    let editRefImgMenu = document.querySelector('#edit-ref-comp-menu');
+    editRefImgMenu.__x.$data.open = false;
 }
 
 function hideGenMenuShield(genElement) {

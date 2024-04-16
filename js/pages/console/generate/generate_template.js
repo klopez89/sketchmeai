@@ -340,7 +340,7 @@ function generate_form_html() {
 								<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
 									<button id="ref-img-button" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 										
-										<img class="absolute w-full h-full rounded-lg" src="">
+										<img class="hidden absolute w-full h-full rounded-lg" src="">
 
 										<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
 											<div class="flex flex-col h-full items-center justify-center">		

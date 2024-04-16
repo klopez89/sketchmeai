@@ -554,16 +554,6 @@ function randomizeSeed(event) {
 }
 
 
-function tryShowingPromptSettings() {
-    const accordionButton = document.querySelector('[data-te-target="#collapseOne5"]');
-    const buttonHTMLElement = accordionButton.lastChild;
-    const buttonText = buttonHTMLElement.nodeValue;
-
-    if (buttonText.includes('Show')) {
-        accordionButton.click();
-    }
-}
-
 function tryShowingReferenceImageSettings() {
     const accordionButton = document.querySelector('[data-te-target="#nestedImg2ImgCollapse"]');
     const buttonHTMLElement = accordionButton.firstChild;
@@ -1195,7 +1185,6 @@ function configureCopyButton(gen_dict, gen_element) {
     gen_element.querySelector('#action-container').classList.remove('hidden');
     let copyButton = gen_element.querySelector('#copy-button');
     copyButton.addEventListener('click', function(event) {
-        tryShowingPromptSettings();
         removePlaceholder();
         copyPromptInfoFromGen(gen_dict);
         triggerModelNameInPromptFormatting();
@@ -1794,7 +1783,6 @@ function useAsReferenceImagePressed(event) {
     let imgElement = genElement.querySelector('img');
     let imgSrc = imgElement.getAttribute('src');
     document.getElementById('img-2-img').value = imgSrc;
-    tryShowingPromptSettings();
     tryShowingReferenceImageSettings();
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
     event.stopPropagation();

@@ -356,7 +356,7 @@ function generate_form_html() {
 									</button>
 									<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
 								</div>
-								<label for="img2imgurl" class="text-sm font-medium leading-6 text-gray-900">Image to Image URL</label>
+								<label for="img2imgurl" class="hidden text-sm font-medium leading-6 text-gray-900">Image to Image URL</label>
 								<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 text-gray-300" data-te-original-title="" title="">
 									<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 								</button>
@@ -364,6 +364,29 @@ function generate_form_html() {
 									<input type="text" name="img-2-img-url" id="img-2-img" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
 								</div>
 							</div>
+
+
+							<div class="col-span-3" id="mode-title-container">
+								<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-900">Mode</label>
+							</div>
+
+							<div class="col-span-3" id="mode-selector-container">
+								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+									<option>Image to Image</option>
+								</select>
+							</div>
+
+
+							<div class="col-span-3" id="influence-title-container">
+								<label for="influence" class="text-sm font-medium leading-6 text-gray-900">Influence</label>
+							</div>
+
+							<div class="col-span-3" id="influence-slider-container">
+								<input type="range" id="influence" name="influence" min="0" max="100" class="slider">
+								<input type="text" id="influence-value" name="influence-value" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+							</div>
+
+
 							<!-- prompt-strength field -->
 							<div class="sm:col-span-3" id="ps-field-container">
 								<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>

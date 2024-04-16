@@ -797,6 +797,7 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
     document.getElementById('seed').value = generation.gen_recipe.seed;
     document.getElementById('img-2-img').value = generation.gen_recipe.img2img_url;
+    console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
     document.getElementById('prompt-str').value = generation.gen_recipe.prompt_strength * 100;
     document.getElementById('lora-scale').value = generation.gen_recipe.lora_scale;
     // Trigger some UI updates in the gen form

@@ -1737,6 +1737,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .max-w-\[325px\] {
   max-width: 325px;
 }
+.max-w-\[4rem\] {
+  max-width: 4rem;
+}
 .max-w-\[90\%\] {
   max-width: 90%;
 }

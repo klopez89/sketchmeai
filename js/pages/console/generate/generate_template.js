@@ -335,6 +335,7 @@ function generate_form_html() {
 					</h2>
 					<div id="nestedImg2ImgCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
 						<div class="accordion-body px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
+						
 							<!-- img-2img-url field -->
 							<div class="col-span-full" id="igm2img-field-container">
 								<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
@@ -363,7 +364,7 @@ function generate_form_html() {
 							</div>
 
 
-							<div class="col-span-3" id="mode-title-container">
+							<div class="col-span-3 flex items-center" id="mode-title-container">
 								<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-900">Mode</label>
 								<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
 									<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
@@ -386,18 +387,6 @@ function generate_form_html() {
 								<input type="number" name="prompt-str" id="prompt-str" placeholder="80" min="10" max="100" value="80" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 							</div>
 
-
-							<!-- prompt-strength field -->
-							<div class="sm:col-span-3" id="ps-field-container">
-								<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-900">Prompt Strength</label>
-								<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Prompt Strength" data-te-content="Only applicable for image to image generation. A higher value makes the final image adhere more closely to the details of the prompt, while a lower value retains more of the reference image's features." class="ml-2 text-gray-300" data-te-original-title="" title="">
-									<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-								</button>
-								<div class="mt-2">
-									<input type="number" name="prompt-strength" id="prompt-strength" placeholder="0.8" min="0.1" max="1.0" step="0.1" value="0.8" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-									<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.1 - 1.0</p>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>

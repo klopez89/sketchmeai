@@ -378,7 +378,7 @@ function generate_form_html() {
 
 
 							<div class="col-span-2" id="influence-title-container">
-								<label for="influence" class="text-sm font-medium leading-6 text-gray-900">Influence</label>
+								<label for="influence" class="text-sm font-medium leading-6 text-gray-900">Influence, %</label>
 							</div>
 
 							<div class="col-span-4 flex gap-x-2" id="influence-slider-container">

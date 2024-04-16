@@ -22,6 +22,7 @@ configureModelListInput();
 configurePromptInputPlaceholder(); 
 addBottomGenerationMenu();
 configureShareButton();
+configureRefImageFields();
 
 
 // navigationToHomePage();

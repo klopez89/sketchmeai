@@ -13,6 +13,9 @@ function configureRefImageFields() {
 
     // Update the range input when the number input changes
     numberInput.addEventListener('input', function() {
+        if (numberInput.value < 5) {
+            numberInput.value = 5;
+        }
         rangeInput.value = numberInput.value;
     });
 }

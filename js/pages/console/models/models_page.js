@@ -311,7 +311,7 @@ function configureNewModelUploadArea() {
 		localUploadInput.addEventListener("change", () => {
 			console.log('Trigger change event of local upload input');
 		 	const files = localUploadInput.files;
-			handleFileUploads(files);
+			handleRefImgFileUpload(files);
             localUploadInput.value = '';
 		});
 
@@ -390,12 +390,12 @@ function handleDrop(event) {
 
     // Get the files that were dropped and handle them
     var files = event.dataTransfer.files;
-    handleFileUploads(files)
+    handleRefImgFileUpload(files)
 }
 
 
 
-function handleFileUploads(files) {
+function handleRefImgFileUpload(files) {
     let fileList = Array.from(files);
     let number_of_uploaded_files = numberOfUploadedFiles();
     let minimum_upload_count = minimumUploadCount;

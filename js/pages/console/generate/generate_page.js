@@ -1012,6 +1012,7 @@ function generateButtonPressed(event) {
                 gscale: promptValues.gscale,
                 seed: seedToUse,
                 img2imgUrl: promptValues.img2imgUrl,
+                refImgInfo: promptValues.refImgInfo,
                 promptStrength: promptValues.promptStrength,
                 inferenceSteps: promptValues.inferenceSteps,
                 loraScale: promptValues.loraScale,
@@ -1295,7 +1296,7 @@ function configureRefImageButton() {
     refImageUploadInput.addEventListener("change", () => {
         console.log('Trigger change event of local upload input');
          const files = refImageUploadInput.files;
-        handleFileUploads(files);
+        handleRefImgFileUpload(files);
         refImageUploadInput.value = '';
     });
 
@@ -1353,11 +1354,11 @@ function handleDrop(event) {
 
     // Get the files that were dropped and handle them
     var files = event.dataTransfer.files;
-    handleFileUploads(files)
+    handleRefImgFileUpload(files)
 }
 
 
-function handleFileUploads(files) {
+function handleRefImgFileUpload(files) {
     console.log('handling file uploads: ', files);
 
     let file_to_upload = files[0];
@@ -1439,6 +1440,8 @@ function addFileToRefImgElement(fileInfo) {
     let singleRefImageButton = document.getElementById('ref-img-button');
     let singleRefImg = singleRefImageButton.querySelector('img');
     singleRefImg.src = fileInfo.data;
+    singleRefImg.setAttribute('filename', fileInfo.name);
+    singleRefImg.setAttribute('fileType', fileInfo.type);
     singleRefImg.classList.remove('hidden');
     singleRefImageButton.classList.remove('border-2', 'border-dashed');
 }
@@ -1448,8 +1451,24 @@ function clearRefImgElement(event) {
     let singleRefImageButton = document.getElementById('ref-img-button');
     let singleRefImg = singleRefImageButton.querySelector('img');
     singleRefImg.src = '';
+    singleRefImg.setAttribute('filename', '');
+    singleRefImg.setAttribute('fileType', '');
     singleRefImg.classList.add('hidden');
     singleRefImageButton.classList.add('border-2', 'border-dashed');
+}
+
+function getUploadedRef() {
+	let singleRefImageButton = document.getElementById('ref-img-button');
+    let singleRefImg = singleRefImageButton.querySelector('img');
+    if (singleRefImg.src === '') {
+        return null;
+    }
+	let singleRefImgInfo = {
+        name: singleRefImg.getAttribute('filename'),
+        data: singleRefImg.src,
+        type: singleRefImg.getAttribute('fileType'),
+    };
+    return singleRefImgInfo;
 }
 
 
@@ -1525,6 +1544,7 @@ function promptInputValues() {
     var gscale = document.getElementById('guidance-scale').value;
     let seed = document.getElementById('seed').value;
     let img2imgUrl = document.getElementById('img-2-img').value;
+    let refImgInfo = getUploadedRef();
     var promptStrength = document.getElementById('prompt-str').value;
     var loraScale = document.getElementById('lora-scale').value;
     let shouldUseRandomSeedAcrossModels = true;
@@ -1574,6 +1594,7 @@ function promptInputValues() {
         gscale: gscale,
         seed: seed,
         img2imgUrl: img2imgUrl,
+        refImgInfo: refImgInfo,
         promptStrength: normalizedPromptStrength,
         loraScale: loraScale,
         resWidth: 1024,

@@ -564,7 +564,7 @@ function enterRefImageUrlModalHTML() {
 					<input type="text" name="ref-img-url" id="ref-img-url" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
 
 					<button id="ref-img-url-button" class="flex flex-grow justify-center items-center text-center bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToEnterRefImgUrl()">
-						<p id="rename-button-label" class="flex items-center"></p>
+						<p id="rename-button-label" class="flex items-center">Enter</p>
 						<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 					</button>
 

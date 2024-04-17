@@ -798,6 +798,7 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
     let url = generation.gen_recipe.signed_ref_url;
+    console.log('the signred ref url is: ', url);
     let urlWithoutQueryString = url.split('?')[0];
     let imageExtension = urlWithoutQueryString.split('.').pop();
     console.log('Image extension: ', imageExtension);

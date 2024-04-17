@@ -797,8 +797,6 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
-    // let singleRefImageButton = document.getElementById('ref-img-button');
-    // let singleRefImg = singleRefImageButton.querySelector('img');
     let url = generation.gen_recipe.signed_ref_url;
     let urlWithoutQueryString = url.split('?')[0];
     let imageExtension = urlWithoutQueryString.split('.').pop();
@@ -809,10 +807,9 @@ function copyPromptInfoFromGen(generation) {
         'type': `image/${imageExtension}`
     }
     addFileToRefImgElement(imgInfo);
-    // singleRefImg.src = generation.gen_recipe.signed_ref_url;
 
     console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
-    document.getElementById('prompt-str').value = generation.gen_recipe.prompt_strength * 100;
+    document.getElementById('prompt-str').value = 100 - generation.gen_recipe.prompt_strength * 100;
     document.getElementById('lora-scale').value = generation.gen_recipe.lora_scale;
     // Trigger some UI updates in the gen form
     document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
@@ -1561,7 +1558,7 @@ function promptInputValues() {
         document.getElementById('prompt-str').value = 10;
     }
 
-    let normalizedPromptStrength = promptStrength / 100;
+    let normalizedPromptStrength = 1 - promptStrength / 100;
 
     if (loraScale == '') {
         loraScale = 0.8;

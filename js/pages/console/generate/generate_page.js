@@ -797,6 +797,7 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
+    console.log('the signed ref url from copy prompt is: ', generation.gen_recipe.signed_ref_url);
     insertImgUrlForRefImg(generation.gen_recipe.signed_ref_url);
 
     console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
@@ -1302,6 +1303,7 @@ function userWantsToEnterRefImgUrl() {
     if (refImgUrl == '') {
         console.log('Entered ref img url is empty');
     }
+    console.log('the entered ref img url is: ', refImgUrl);
     insertImgUrlForRefImg(refImgUrl);
     dismissEnterRefImgUrlModal();
 }

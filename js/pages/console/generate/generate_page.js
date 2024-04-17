@@ -797,18 +797,31 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
-    // let singleRefImageButton = document.getElementById('ref-img-button');
-    // let singleRefImg = singleRefImageButton.querySelector('img');
-    let url = generation.gen_recipe.signed_ref_url;
-    let urlWithoutQueryString = url.split('?')[0];
+
+    let signed_ref_img_url = generation.gen_recipe.signed_ref_url;
+    let urlWithoutQueryString = signed_ref_img_url.split('?')[0];
     let imageExtension = urlWithoutQueryString.split('.').pop();
+
+    fetch(signed_ref_img_url)
+    .then(response => response.blob())
+    .then(blob => {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            let base64data = reader.result;
+            let imgInfo = {
+                'data': base64data,
+                'name': 'ref-img',
+                'type': `image/${imageExtension}`
+            }
+            addFileToRefImgElement(imgInfo);
+        }
+        reader.readAsDataURL(blob);
+    })
+    .catch(error => console.error(error));
+
+
     console.log('Image extension: ', imageExtension);
-    let imgInfo = {
-        'data': generation.gen_recipe.signed_ref_url,
-        'name': 'ref-img',
-        'type': `image/${imageExtension}`
-    }
-    addFileToRefImgElement(imgInfo);
+
     // singleRefImg.src = generation.gen_recipe.signed_ref_url;
 
     console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);

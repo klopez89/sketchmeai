@@ -1555,10 +1555,11 @@ function promptInputValues() {
 
     if (promptStrength == '') {
         promptStrength = 80;
-    } else if (promptStrength < 10) {
-        promptStrength = 10;
-        document.getElementById('prompt-str').value = 10;
-    }
+    } 
+    // else if (promptStrength < 10) {
+    //     promptStrength = 10;
+    //     document.getElementById('prompt-str').value = 10;
+    // }
 
     let normalizedPromptStrength = 1 - promptStrength / 100;
 

@@ -1167,6 +1167,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 gen_element.querySelector('#gen-loader').classList.add('hidden');
                 gen_element.querySelector('#gen-status').innerHTML = '';
                 loadGenImage(signed_gen_url, gen_element);
+                console.log('generation succeeded, and heres the gen dict for it: ', generation_dict);
                 configureCopyButton(generation_dict, gen_element);
                 configureFavoriteButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates

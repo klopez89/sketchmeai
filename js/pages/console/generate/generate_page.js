@@ -1817,7 +1817,7 @@ function useAsReferenceImagePressed(event) {
     let generationId = genElement.getAttribute('generation-id');
     let imgElement = genElement.querySelector('img');
     let imgSrc = imgElement.getAttribute('src');
-    document.getElementById('img-2-img').value = imgSrc;
+    insertImgUrlForRefImg(imgSrc);
     tryShowingReferenceImageSettings();
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
     event.stopPropagation();

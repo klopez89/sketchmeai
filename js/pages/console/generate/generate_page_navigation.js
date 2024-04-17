@@ -126,6 +126,17 @@ function dismissChangeCollectionModal() {
 }
 
 
+function showRefImageUrlModal(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let refImgUrlModalHTML = enterRefImageUrlModalHTML();
+    let refImgUrlModalDiv = $($.parseHTML(refImgUrlModalHTML));
+    $('#console-content').prepend(refImgUrlModalDiv);
+
+    let refImgUrlModal = document.getElementById('enter-ref-img-url-modal');
+    animateIn(refImgUrlModal);
+}
+
 function dismissEnterRefImgUrlModal() {
     let changeCollectionModal = document.getElementById('enter-ref-img-url-modal');
     animateAway(changeCollectionModal, 500);

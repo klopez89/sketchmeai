@@ -1345,10 +1345,6 @@ function startRefUploadExperience() {
     singleRefImageButton.click();
 }
 
-function showRefImageUrlModal() {
-    console.log('time to show ref image url model for entry or edit');
-}
-
 function handleDragEnter(event) {
     event.preventDefault();
     // Highlight the drag-and-drop box when a file is dragged over it

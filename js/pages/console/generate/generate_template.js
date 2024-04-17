@@ -546,3 +546,31 @@ function renameCollectionModalHTML() {
 	</div>
 	`;
 }
+
+function enterRefImageUrlModalHTML() {
+	return `
+	<div id="enter-ref-img-url-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
+		<div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
+			<button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissEnterRefImgUrlModal()">
+				<i class="fas fa-times" aria-hidden="true"></i>
+			</button>
+			<div class="mb-0">
+				<h2 class="text-3xl text-gray-900 mb-4">Reference Image Url</h2>
+			</div>
+
+			<div class="mb-0">
+				<div class="relative flex">
+					
+					<input type="text" name="ref-img-url" id="ref-img-url" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+
+					<button id="ref-img-url-button" class="flex flex-grow justify-center items-center text-center bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToEnterRefImgUrl()">
+						<p id="rename-button-label" class="flex items-center"></p>
+						<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
+					</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	`;
+}

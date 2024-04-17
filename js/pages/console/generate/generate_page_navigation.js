@@ -124,3 +124,10 @@ function dismissChangeCollectionModal() {
     let changeCollectionModal = document.getElementById('change-collection-modal');
     animateAway(changeCollectionModal, 500);
 }
+
+
+function dismissEnterRefImgUrlModal() {
+    let changeCollectionModal = document.getElementById('enter-ref-img-url-modal');
+    animateAway(changeCollectionModal, 500);
+}
+

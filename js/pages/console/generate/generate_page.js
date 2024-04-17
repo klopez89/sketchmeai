@@ -797,17 +797,7 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
-    let url = generation.gen_recipe.signed_ref_url;
-    console.log('the signred ref url is: ', url);
-    let urlWithoutQueryString = url.split('?')[0];
-    let imageExtension = urlWithoutQueryString.split('.').pop();
-    console.log('Image extension: ', imageExtension);
-    let imgInfo = {
-        'data': generation.gen_recipe.signed_ref_url,
-        'name': 'ref-img',
-        'type': `image/${imageExtension}`
-    }
-    addFileToRefImgElement(imgInfo);
+    insertImgUrlForRefImg(generation.gen_recipe.signed_ref_url);
 
     console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
     document.getElementById('prompt-str').value = 100 - generation.gen_recipe.prompt_strength * 100;
@@ -816,6 +806,18 @@ function copyPromptInfoFromGen(generation) {
     // Trigger some UI updates in the gen form
     document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
     selectModelWithVersion(generation.model_version);
+}
+
+function insertImgUrlForRefImg(url) {
+    let urlWithoutQueryString = url.split('?')[0];
+    let imageExtension = urlWithoutQueryString.split('.').pop();
+    console.log('Image extension for ref img url is: ', imageExtension);
+    let imgInfo = {
+        'data': generation.gen_recipe.signed_ref_url,
+        'name': 'ref-img',
+        'type': `image/${imageExtension}`
+    }
+    addFileToRefImgElement(imgInfo);
 }
 
 function selectModelWithVersion(version) {
@@ -1292,6 +1294,19 @@ function resizeGrid() {
     // }
 }
 
+
+// Ref Image Functions
+
+function userWantsToEnterRefImgUrl() {
+    let refImgUrl = document.getElementById('ref-img-url').value;
+    if (refImgUrl == '') {
+        console.log('Entered ref img url is empty');
+    }
+    insertImgUrlForRefImg(refImgUrl);
+    dismissEnterRefImgUrlModal();
+}
+
+
 function configureRefImageButton() {
     let refImageUploadInput = document.getElementById('localRefImgUploadInput');
     let singleRefImageButton = document.getElementById('ref-img-button')
@@ -1683,6 +1698,8 @@ function userWantsToCreateNewCollection() {
         }
     });
 }
+
+
 
 function getCollectionList() {
     let action = `${CONSTANTS.BACKEND_URL}collections`

@@ -813,7 +813,7 @@ function insertImgUrlForRefImg(url) {
     let imageExtension = urlWithoutQueryString.split('.').pop();
     console.log('Image extension for ref img url is: ', imageExtension);
     let imgInfo = {
-        'data': generation.gen_recipe.signed_ref_url,
+        'data': url,
         'name': 'ref-img',
         'type': `image/${imageExtension}`
     }

@@ -800,7 +800,8 @@ function copyPromptInfoFromGen(generation) {
     // let singleRefImageButton = document.getElementById('ref-img-button');
     // let singleRefImg = singleRefImageButton.querySelector('img');
     let url = generation.gen_recipe.signed_ref_url;
-    let imageExtension = url.split('.').pop();
+    let urlWithoutQueryString = url.split('?')[0];
+    let imageExtension = urlWithoutQueryString.split('.').pop();
     console.log('Image extension: ', imageExtension);
     let imgInfo = {
         'data': generation.gen_recipe.signed_ref_url,

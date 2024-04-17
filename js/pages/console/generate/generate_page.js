@@ -797,9 +797,18 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
-    let singleRefImageButton = document.getElementById('ref-img-button');
-    let singleRefImg = singleRefImageButton.querySelector('img');
-    singleRefImg.src = generation.gen_recipe.signed_ref_url;
+    // let singleRefImageButton = document.getElementById('ref-img-button');
+    // let singleRefImg = singleRefImageButton.querySelector('img');
+    let url = generation.gen_recipe.signed_ref_url;
+    let imageExtension = url.split('.').pop();
+    console.log('Image extension: ', imageExtension);
+    let imgInfo = {
+        'data': generation.gen_recipe.signed_ref_url,
+        'name': 'ref-img',
+        'type': `image/${imageExtension}`
+    }
+    addFileToRefImgElement(imgInfo);
+    // singleRefImg.src = generation.gen_recipe.signed_ref_url;
 
     console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
     document.getElementById('prompt-str').value = generation.gen_recipe.prompt_strength * 100;

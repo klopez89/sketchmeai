@@ -192,17 +192,17 @@ function generate_form_html() {
 		<div class="col-span-full px-4 py-2 border-y border-gray-300">
 			<div class="px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
 				<!-- img-2img-url field -->
-				<div class="col-span-2 flex items-center" id="mode-title-container">
+				<div class="col-span-2 flex items-center pl-4" id="mode-title-container">
 					<label class="text-sm font-medium leading-6 text-gray-900">Base Model</label>
 				</div>
-				<div class="col-span-4" id="base-model-selector-container">
+				<div class="col-span-4 pr-4" id="base-model-selector-container">
 					<select id="base-model-selector" name="base-model" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 						<option>SDXL</option>
 					</select>
 				</div>
-				<div id="lora-component-container" class="col-span-full">
+				<div id="lora-component-container" class="col-span-full pl-4">
 					<label class="text-sm font-medium leading-6 text-gray-900">Person</label>
-					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto">
+					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pr-4 pb-3">
 						<div id="new-model-button" class="relative cursor-pointer" onclick="clickedOnNewModelButton(event)">
 							<div class="w-32 h-32 rounded-lg bg-black hover:bg-gray-800">
 								<div class="flex justify-center items-center h-full text-white text-2xl">
@@ -254,7 +254,7 @@ function generate_form_html() {
 						</div>
 					</div>
 				</div>
-				<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
+				<div class="col-span-4 flex gap-x-2 px-4" id="influence-slider-container">
 					<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="95" class="slider flex-grow">
 					<input type="number" name="prompt-str" id="prompt-str" placeholder="80" min="0" max="95" value="80" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 				</div>

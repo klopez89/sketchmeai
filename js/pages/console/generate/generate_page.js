@@ -1976,23 +1976,38 @@ function loraPersonPressed(event) {
     event.preventDefault();
     event.stopPropagation();
     let loraPersonDiv = event.currentTarget;
+    if (loraPersonDiv.classList.contains('selected')) {
+        deSelectLoraPersonDiv(loraPersonDiv);
+    } else {
+        deSelectAllLoraPersonOptions();
+        selectLoraPersonDiv(loraPersonDiv);
+    }
+}
 
+function deSelectLoraPersonDiv(loraPersonDiv) {
     let pElement = loraPersonDiv.querySelector('p');
     let bgParentDiv = pElement.parentElement.parentElement;
     let bgColor = loraPersonDiv.getAttribute('bgColor');
+    loraPersonDiv.classList.remove('selected');
+    pElement.style.color = bgColor;
+    bgParentDiv.style.backgroundColor = '';
+    bgParentDiv.classList.add('bg-white');
+}
 
-    if (loraPersonDiv.classList.contains('selected')) {
-        // Time to give it the unselected state
-        loraPersonDiv.classList.remove('selected');
-        pElement.style.color = bgColor;
-        bgParentDiv.style.backgroundColor = '';
-        bgParentDiv.classList.add('bg-white');
-        
-    } else {
-        // Time to give it the selected state
-        loraPersonDiv.classList.add('selected');
-        pElement.style.color = 'white';
-        bgParentDiv.style.backgroundColor = bgColor;
-        bgParentDiv.classList.remove('bg-white');
+function selectLoraPersonDiv(loraPersonDiv) {
+    let pElement = loraPersonDiv.querySelector('p');
+    let bgParentDiv = pElement.parentElement.parentElement;
+    let bgColor = loraPersonDiv.getAttribute('bgColor');
+    loraPersonDiv.classList.add('selected');
+    pElement.style.color = 'white';
+    bgParentDiv.style.backgroundColor = bgColor;
+    bgParentDiv.classList.remove('bg-white');
+}
+
+function deSelectAllLoraPersonOptions() {
+    let loraPersonGrid = document.getElementById('lora-person-grid');
+    let loraPersonDivs = loraPersonGrid.children;
+    for (let i = 0; i < loraPersonDivs.length; i++) {
+        deSelectLoraPersonDiv(loraPersonDivs[i]);
     }
 }

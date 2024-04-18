@@ -470,7 +470,7 @@ function new_lora_model_option(model, bg_color) {
 		<div class="group w-32 h-32 block relative">
 			<div class="aspect-[1/1] rounded-lg bg-white">
 				<div class="flex justify-left items-end h-full">
-					<p class="text-xl ml-3 mb-2" style="color:${bg_color};">Kevin</p>
+					<p class="text-xl ml-3 mb-2" style="color:${bg_color};">${model_name}</p>
 				</div>
 			</div>
 		</div>

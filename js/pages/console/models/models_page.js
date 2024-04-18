@@ -92,9 +92,6 @@ function fetchModels(userRecId, lastDocId) {
             models = data.models;
             hasAnotherPage = data.has_another_page;
             lastDocId = data.last_doc_id;
-            // console.log(`data from generations: ${generations}`)
-            // console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
-
 
             if (models == null) {
                 console.log('Didnt find any more images to load. all done paginating!');

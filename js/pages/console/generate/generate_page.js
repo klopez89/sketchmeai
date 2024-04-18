@@ -1970,3 +1970,29 @@ function appropriateModelBgColor(model) {
     }
     return bg_color;
 }
+
+
+function loraPersonPressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let loraPersonDiv = event.currentTarget;
+
+    let pElement = loraPersonDiv.querySelector('p');
+    let bgParentDiv = pElement.parentElement.parentElement;
+    let bgColor = loraPersonDiv.getAttribute('bgColor');
+
+    if (loraPersonDiv.classList.contains('selected')) {
+        // Time to give it the unselected state
+        loraPersonDiv.classList.remove('selected');
+        pElement.style.color = bgColor;
+        bgParentDiv.style.backgroundColor = '';
+        bgParentDiv.classList.add('bg-white');
+        
+    } else {
+        // Time to give it the selected state
+        loraPersonDiv.classList.remove('selected');
+        pElement.style.color = 'white';
+        bgParentDiv.style.backgroundColor = bgColor;
+        bgParentDiv.classList.remove('bg-white');
+    }
+}

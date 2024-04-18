@@ -466,7 +466,7 @@ function new_lora_model_option(model, bg_color) {
 	let gender_type = model.gender_type;
 	var training_subject = model.training_subject ? model.training_subject : "person";
 	return `
-	<div class="relative cursor-pointer" id="${model_id}" instkey="${instKey}" model="${replicate_name}" version="${short_version}" modelName="${model_name}" trainingSubject="${training_subject}" genderType="${gender_type}" bgColor="${bg_color}">
+	<div class="relative cursor-pointer" id="${model_id}" instkey="${instKey}" model="${replicate_name}" version="${short_version}" modelName="${model_name}" trainingSubject="${training_subject}" genderType="${gender_type}" bgColor="${bg_color}" onclick="loraPersonPressed(event)">
 		<div class="group w-32 h-32 block relative">
 			<div class="aspect-[1/1] rounded-lg bg-white">
 				<div class="flex justify-left items-end h-full">

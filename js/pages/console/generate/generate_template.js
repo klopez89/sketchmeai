@@ -202,13 +202,11 @@ function generate_form_html() {
 				</div>
 				<div id="lora-component-container" class="col-span-full pl-4">
 
-
 					<div class="flex justify-between  pr-4 pb-1">
 						<label class="block text-sm font-medium leading-6 text-gray-900 pb-1">Person</label>
 						<label class="text-sm text-gray-700">Kevo</label>
 					</div>
 
-					<label class="block text-sm font-medium leading-6 text-gray-900 pb-1">Person</label>
 
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-3">
 						<div id="no-lora-person-button" class="relative cursor-pointer" onclick="clickedOnNewModelButton(event)">

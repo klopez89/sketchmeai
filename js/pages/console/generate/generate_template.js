@@ -207,40 +207,12 @@ function generate_form_html() {
 						<label class="text-sm text-gray-700">Kevo</label>
 					</div>
 
-
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">
 						<div id="no-lora-person-button" class="relative cursor-pointer" onclick="clickedOnNewModelButton(event)">
 							<div class="w-32 h-32 rounded-lg bg-white hover:bg-gray-200">
-								<div id="model-name-container" class="aspect-[1/1]">
+								<div class="aspect-[1/1]">
 									<div class="flex justify-left items-end h-full">
-										<p id="model-name-label" class="text-xl ml-3 mb-2 text-gray-500">None</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="relative cursor-pointer" model-id="6lmgrOLQFwmU3I90aXcH" replicate-name="klopez-sketchmeai/custom_sdxl" version="3b3bfa90aaa92a4b32dc15d000805f9bba176f7759d3d1e7f84e8fa47f686c78">
-							<div class="group w-32 h-32 block relative">
-								<div id="model-name-container" class="aspect-[1/1] rounded-lg bg-white">
-									<div class="flex justify-left items-end h-full text-white ">
-										<p id="model-name-label" class="text-xl ml-3 mb-2" style="color:#2e1f37;">Kevin</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="relative cursor-pointer" model-id="xB6tuDiCQ3AVGOF9tkzI" replicate-name="klopez-sketchmeai/custom_sdxl" version="6c0a631505ec1b4e06af74e991d2a7e46276a9b16c018a77d5c6a81031068197">
-							<div class="group w-32 h-32 block relative">
-								<div id="model-name-container" class="aspect-[1/1] rounded-lg bg-white">
-									<div class="flex justify-left items-end h-full">
-										<p id="model-name-label" class="text-xl ml-3 mb-2" style="color:#301f37;">KFive</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="relative cursor-pointer" model-id="ig74e3qCnsO7jdm1S4RR" replicate-name="klopez-sketchmeai/custom_sdxl" version="49665c30531a4f943bd8cbe41e887a1cb040486174de0ce110ef8c154c4e1f07">
-							<div class="group w-32 h-32 block relative">
-								<div id="model-name-container" class="aspect-[1/1] rounded-lg bg-white">
-									<div class="flex justify-left items-end h-full">
-										<p id="model-name-label" class="text-xl ml-3 mb-2" style="color:#301f37;">Kevo</p>
+										<p class="text-xl ml-3 mb-2 text-gray-500">None</p>
 									</div>
 								</div>
 							</div>
@@ -482,6 +454,28 @@ function new_model_option(model) {
     return `
     <option id="${model_id}" instkey="${instKey}" model="${replicate_name}" version="${short_version}" modelName="${model_name}" trainingSubject="${training_subject}" genderType=${gender_type}>&nbsp;&nbsp;${model_name}</option>
     `;
+}
+
+function new_lora_model_option(model, bg_color) {
+	let model_id = model.rec_id;
+	let replicate_name = model.replicate_name;
+	let instKey = model.token_string ? model.token_string : "zxc";
+	let long_version = model.version;
+	let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
+	let model_name = model.name;
+	let gender_type = model.gender_type;
+	var training_subject = model.training_subject ? model.training_subject : "person";
+	return `
+	<div class="relative cursor-pointer" id="${model_id}" instkey="${instKey}" model="${replicate_name}" version="${short_version}" modelName="${model_name}" trainingSubject="${training_subject}" genderType="${gender_type}" bgColor="${bg_color}">
+		<div class="group w-32 h-32 block relative">
+			<div class="aspect-[1/1] rounded-lg bg-white">
+				<div class="flex justify-left items-end h-full">
+					<p class="text-xl ml-3 mb-2" style="color:${bg_color};">Kevin</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	`;
 }
 
 function bottom_generation_menu_html() {

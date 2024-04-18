@@ -201,7 +201,7 @@ function generate_form_html() {
 					</select>
 				</div>
 				<div id="lora-component-container" class="col-span-full pl-4">
-					<label class="text-sm font-medium leading-6 text-gray-900">Person</label>
+					<label class="block text-sm font-medium leading-6 text-gray-900 pb-1">Person</label>
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pr-4 pb-3">
 						<div id="new-model-button" class="relative cursor-pointer" onclick="clickedOnNewModelButton(event)">
 							<div class="w-32 h-32 rounded-lg bg-black hover:bg-gray-800">
@@ -254,9 +254,12 @@ function generate_form_html() {
 						</div>
 					</div>
 				</div>
-				<div class="col-span-4 flex gap-x-2 px-4" id="influence-slider-container">
-					<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="95" class="slider flex-grow">
-					<input type="number" name="prompt-str" id="prompt-str" placeholder="80" min="0" max="95" value="80" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+				<div class="col-span-2 pl-4" id="person-lora-influence-title-container">
+					<label class="text-sm font-medium leading-6 text-gray-900">Influence, %</label>
+				</div>
+				<div class="col-span-4 flex gap-x-2 px-4" id="person-lora-influence-slider-container">
+					<input type="range" id="person-lora-influence-range" min="0" max="100" step="1" class="slider flex-grow">
+					<input type="number" name="person-lora-influence" id="person-lora-influence" placeholder="80" min="0" max="100" value="80" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 				</div>
 			</div>
 		</div>

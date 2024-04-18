@@ -1990,7 +1990,7 @@ function loraPersonPressed(event) {
         
     } else {
         // Time to give it the selected state
-        loraPersonDiv.classList.remove('selected');
+        loraPersonDiv.classList.add('selected');
         pElement.style.color = 'white';
         bgParentDiv.style.backgroundColor = bgColor;
         bgParentDiv.classList.remove('bg-white');

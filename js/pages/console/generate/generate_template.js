@@ -188,6 +188,113 @@ function generate_form_html() {
 
 		<p class="text-xl font-bold mb-4 md:hidden">Generation Settings</p>
 
+
+		<div class="col-span-full px-4 py-2 border-y border-gray-300">
+			<div class="px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
+				<!-- img-2img-url field -->
+				<div class="col-span-2 flex items-center" id="mode-title-container">
+					<label class="text-sm font-medium leading-6 text-gray-900">Base Model</label>
+				</div>
+				<div class="col-span-4" id="base-model-selector-container">
+					<select id="base-model-selector" name="base-model" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<option>SDXL</option>
+					</select>
+				</div>
+				<div id="lora-component-container" class="col-span-full">
+					<label class="text-sm font-medium leading-6 text-gray-900">Person</label>
+					<div id="collection-grid" role="list" class="flex flex-row space-x-2" @click.away="clickedOutsideOfCollectionGrid()" onclick="clickedOnEmptyPartOfGrid()">
+						<div id="new-model-button" class="relative rounded-lg overflow-hidden cursor-pointer" onclick="clickedOnNewModelButton(event)">
+						<div class="aspect-[1/1] bg-black hover:bg-gray-800">
+							<div class="flex justify-center items-center h-full text-white text-2xl">
+								Train<br>New Model
+							</div>
+						</div>
+						</div>
+						<div class="relative rounded-lg" model-id="6lmgrOLQFwmU3I90aXcH" style="" replicate-name="klopez-sketchmeai/custom_sdxl" version="3b3bfa90aaa92a4b32dc15d000805f9bba176f7759d3d1e7f84e8fa47f686c78">
+						<div class="group w-30 h-30 block relative">
+							<div id="model-name-container" class="aspect-[1/1]" style="background-color: #2e1f37;">
+								<div class="flex justify-left items-end h-full text-white text-5xl">
+									<p id="model-name-label" class="text-xl ml-3 mb-2">Kevin</p>
+								</div>
+							</div>
+							<div id="model-loader" class="bg-transparent flex justify-center items-center hidden">
+								<i class="fa fa-spinner fa-spin text-4xl text-gray-200" aria-hidden="true"></i>
+								<p class="absolute bottom-0 right-0 pb-3 pr-3 text-xs text-gray-200" id="model-status"></p>
+								<button class="hidden absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500" id="cancel-button">Cancel</button>
+							</div>
+							<div id="action-container" class="bg-transparent group-hover:bg-gray-900 group-hover:bg-opacity-10 pointer-events-none group transition-bg-opacity duration-200">
+								<div class="model-comp-menu relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+									<button type="button" class="absolute text-2xl text-white top-2 right-2 flex items-center p-2 opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="model-menu-button" onclick="modelMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+									<i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+									</button>
+									<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-4 z-10 mt-11 w-32 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="model-menu-button" tabindex="-1" style="display: none;">
+									<a href="#" class="block px-3 py-1 text-sm leading-6 text-red-600" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); deleteButtonPressed(event)">Delete</a>
+									</div>
+								</div>
+							</div>
+							<div id="model-menu-shield" class="bg-gray-900 bg-opacity-50 absolute top-0 left-0 w-full h-full hidden" onclick="tappedModelMenuShield(event)"></div>
+						</div>
+						</div>
+						<div class="relative rounded-lg overflow-hidden" model-id="xB6tuDiCQ3AVGOF9tkzI" style="" replicate-name="klopez-sketchmeai/custom_sdxl" version="6c0a631505ec1b4e06af74e991d2a7e46276a9b16c018a77d5c6a81031068197">
+						<div class="group aspect-h-10 aspect-w-10 block w-full relative">
+							<div id="model-name-container" class="aspect-[1/1]" style="background-color: #301f37;">
+								<div class="flex justify-left items-end h-full text-white text-5xl">
+									<p id="model-name-label" class="text-xl ml-3 mb-2">KFive</p>
+								</div>
+							</div>
+							<div id="model-loader" class="bg-transparent flex justify-center items-center hidden">
+								<i class="fa fa-spinner fa-spin text-4xl text-gray-200" aria-hidden="true"></i>
+								<p class="absolute bottom-0 right-0 pb-3 pr-3 text-xs text-gray-200" id="model-status"></p>
+								<button class="hidden absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500" id="cancel-button">Cancel</button>
+							</div>
+							<div id="action-container" class="bg-transparent group-hover:bg-gray-900 group-hover:bg-opacity-10 pointer-events-none group transition-bg-opacity duration-200">
+								<div class="model-comp-menu relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+									<button type="button" class="absolute text-2xl text-white top-2 right-2 flex items-center p-2 opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="model-menu-button" onclick="modelMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+									<i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+									</button>
+									<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-4 z-10 mt-11 w-32 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="model-menu-button" tabindex="-1" style="display: none;">
+									<a href="#" class="block px-3 py-1 text-sm leading-6 text-red-600" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); deleteButtonPressed(event)">Delete</a>
+									</div>
+								</div>
+							</div>
+							<div id="model-menu-shield" class="bg-gray-900 bg-opacity-50 absolute top-0 left-0 w-full h-full hidden" onclick="tappedModelMenuShield(event)"></div>
+						</div>
+						</div>
+						<div class="relative rounded-lg overflow-hidden" model-id="ig74e3qCnsO7jdm1S4RR" style="" replicate-name="klopez-sketchmeai/custom_sdxl" version="49665c30531a4f943bd8cbe41e887a1cb040486174de0ce110ef8c154c4e1f07">
+						<div class="group aspect-h-10 aspect-w-10 block w-full relative">
+							<div id="model-name-container" class="aspect-[1/1]" style="background-color: #1f372b;">
+								<div class="flex justify-left items-end h-full text-white text-5xl">
+									<p id="model-name-label" class="text-xl ml-3 mb-2">Kevo</p>
+								</div>
+							</div>
+							<div id="model-loader" class="bg-transparent flex justify-center items-center hidden">
+								<i class="fa fa-spinner fa-spin text-4xl text-gray-200" aria-hidden="true"></i>
+								<p class="absolute bottom-0 right-0 pb-3 pr-3 text-xs text-gray-200" id="model-status"></p>
+								<button class="hidden absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500" id="cancel-button">Cancel</button>
+							</div>
+							<div id="action-container" class="bg-transparent group-hover:bg-gray-900 group-hover:bg-opacity-10 pointer-events-none group transition-bg-opacity duration-200">
+								<div class="model-comp-menu relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+									<button type="button" class="absolute text-2xl text-white top-2 right-2 flex items-center p-2 opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="model-menu-button" onclick="modelMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+									<i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+									</button>
+									<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-4 z-10 mt-11 w-32 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="model-menu-button" tabindex="-1" style="display: none;">
+									<a href="#" class="block px-3 py-1 text-sm leading-6 text-red-600" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); deleteButtonPressed(event)">Delete</a>
+									</div>
+								</div>
+							</div>
+							<div id="model-menu-shield" class="bg-gray-900 bg-opacity-50 absolute top-0 left-0 w-full h-full hidden" onclick="tappedModelMenuShield(event)"></div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
+					<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="95" class="slider flex-grow">
+					<input type="number" name="prompt-str" id="prompt-str" placeholder="80" min="0" max="95" value="80" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+				</div>
+			</div>
+		</div>
+
+
 		<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
 			<div class="col-span-full" id="prompt-field-container">
 				<div class="flex justify-between items-center">

@@ -200,15 +200,15 @@ function generate_form_html() {
 						<option>SDXL</option>
 					</select>
 				</div>
-				<div id="lora-component-container" class="col-span-full pl-4">
+				<div id="lora-component-container" class="col-span-full">
 
-					<div class="flex justify-between  pr-4 pb-1">
+					<div class="flex justify-between px-4 pb-1">
 						<label class="block text-sm font-medium leading-6 text-gray-900 pb-1">Person</label>
 						<label class="text-sm text-gray-700">Kevo</label>
 					</div>
 
 
-					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-3">
+					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-3 px-4">
 						<div id="no-lora-person-button" class="relative cursor-pointer" onclick="clickedOnNewModelButton(event)">
 							<div class="w-32 h-32 rounded-lg bg-white hover:bg-gray-200">
 								<div id="model-name-container" class="aspect-[1/1]">

@@ -204,15 +204,15 @@ function generate_form_html() {
 					<label class="text-sm font-medium leading-6 text-gray-900">Person</label>
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2">
 						<div id="new-model-button" class="relative cursor-pointer" onclick="clickedOnNewModelButton(event)">
-							<div class="w-32 h-32 bg-black hover:bg-gray-800">
+							<div class="w-32 h-32 rounded-lg bg-black hover:bg-gray-800">
 								<div class="flex justify-center items-center h-full text-white text-2xl">
 									None
 								</div>
 							</div>
 						</div>
 						<div class="relative cursor-pointer" model-id="6lmgrOLQFwmU3I90aXcH" style="" replicate-name="klopez-sketchmeai/custom_sdxl" version="3b3bfa90aaa92a4b32dc15d000805f9bba176f7759d3d1e7f84e8fa47f686c78">
-						<div class="group w-32 h-32 rounded-lg block relative">
-							<div id="model-name-container" class="aspect-[1/1]" style="background-color: #2e1f37;">
+						<div class="group w-32 h-32 block relative">
+							<div id="model-name-container" class="aspect-[1/1] rounded-lg " style="background-color: #2e1f37;">
 								<div class="flex justify-left items-end h-full text-white text-5xl">
 									<p id="model-name-label" class="text-xl ml-3 mb-2">Kevin</p>
 								</div>
@@ -225,8 +225,8 @@ function generate_form_html() {
 						</div>
 						</div>
 						<div class="relative cursor-pointer" model-id="xB6tuDiCQ3AVGOF9tkzI" style="" replicate-name="klopez-sketchmeai/custom_sdxl" version="6c0a631505ec1b4e06af74e991d2a7e46276a9b16c018a77d5c6a81031068197">
-						<div class="group w-32 h-32 rounded-lg block relative">
-							<div id="model-name-container" class="aspect-[1/1]" style="background-color: #301f37;">
+						<div class="group w-32 h-32 block relative">
+							<div id="model-name-container" class="aspect-[1/1] rounded-lg " style="background-color: #301f37;">
 								<div class="flex justify-left items-end h-full text-white text-5xl">
 									<p id="model-name-label" class="text-xl ml-3 mb-2">KFive</p>
 								</div>
@@ -239,8 +239,8 @@ function generate_form_html() {
 						</div>
 						</div>
 						<div class="relative cursor-pointer" model-id="ig74e3qCnsO7jdm1S4RR" style="" replicate-name="klopez-sketchmeai/custom_sdxl" version="49665c30531a4f943bd8cbe41e887a1cb040486174de0ce110ef8c154c4e1f07">
-							<div class="group w-32 h-32 rounded-lg block relative">
-								<div id="model-name-container" class="aspect-[1/1]" style="background-color: #1f372b;">
+							<div class="group w-32 h-32 block relative">
+								<div id="model-name-container" class="aspect-[1/1] rounded-lg " style="background-color: #1f372b;">
 									<div class="flex justify-left items-end h-full text-white text-5xl">
 										<p id="model-name-label" class="text-xl ml-3 mb-2">Kevo</p>
 									</div>

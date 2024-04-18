@@ -189,7 +189,7 @@ function generate_form_html() {
 		<p class="text-xl font-bold mb-4 md:hidden">Generation Settings</p>
 
 
-		<div class="col-span-full px-4 py-2 border-y border-gray-300">
+		<div class="col-span-full px-0 py-2 border-y border-gray-300">
 			<div class="px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
 				<!-- img-2img-url field -->
 				<div class="col-span-2 flex items-center pl-4" id="mode-title-container">

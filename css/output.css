@@ -1437,6 +1437,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .h-3 {
   height: 0.75rem;
 }
+.h-32 {
+  height: 8rem;
+}
 .h-4 {
   height: 1rem;
 }
@@ -2859,6 +2862,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .pb-0 {
   padding-bottom: 0px;
 }
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -2891,6 +2897,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 }
 .pl-3 {
   padding-left: 0.75rem;
+}
+.pl-4 {
+  padding-left: 1rem;
 }
 .pl-6 {
   padding-left: 1.5rem;

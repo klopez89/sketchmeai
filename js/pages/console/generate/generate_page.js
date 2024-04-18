@@ -595,6 +595,13 @@ function fetchWorkingModels(userRecId) {
                 models.forEach(function(model) {
                     let new_model_option_html = new_model_option(model);
                     let new_model_option_div = $($.parseHTML(new_model_option_html));
+
+                    let model_color = appropriateModelBgColor(model);
+                    let new_lora_model_html = new_lora_model_option(model, model_color);
+                    let new_lora_model_div = $($.parseHTML(new_lora_model_html));
+
+                    new_lora_model_div.hide().appendTo('#lora-person-grid').fadeIn();
+
                     new_model_option_div.hide().appendTo('#model-dropdown').fadeIn();
                 });
 
@@ -1952,4 +1959,14 @@ function updateGenerationEstimateLabel() {
 function basicPromptExampleButtonPressed(event) {
     event.preventDefault();
     window.open(`https://${CONSTANTS.SITE_URL}/prompt-examples/basic`, '_blank');
+}
+
+function appropriateModelBgColor(model) {
+    let bg_color = model.bg_color || '#1f2937';
+    if (model.status === PredictionStatus.CANCELED || model.status === PredictionStatus.FAILED) {
+        bg_color = canceledColor;
+    } else if (model.status === PredictionStatus.FAILED) {
+        bg_color = failedColor;
+    }
+    return bg_color;
 }

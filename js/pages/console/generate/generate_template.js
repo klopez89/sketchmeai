@@ -202,7 +202,7 @@ function generate_form_html() {
 				</div>
 				<div id="lora-component-container" class="col-span-full">
 					<label class="text-sm font-medium leading-6 text-gray-900">Person</label>
-					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2">
+					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto">
 						<div id="new-model-button" class="relative cursor-pointer" onclick="clickedOnNewModelButton(event)">
 							<div class="w-32 h-32 rounded-lg bg-black hover:bg-gray-800">
 								<div class="flex justify-center items-center h-full text-white text-2xl">

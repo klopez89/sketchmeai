@@ -201,54 +201,49 @@ function generate_form_html() {
 					</select>
 				</div>
 				<div id="lora-component-container" class="col-span-full pl-4">
+
+
+					<div class="flex justify-between  pr-4 pb-1">
+						<label class="block text-sm font-medium leading-6 text-gray-900 pb-1">Person</label>
+						<label class="text-sm text-gray-700">Kevo</label>
+					</div>
+
 					<label class="block text-sm font-medium leading-6 text-gray-900 pb-1">Person</label>
-					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pr-4 pb-3">
-						<div id="new-model-button" class="relative cursor-pointer" onclick="clickedOnNewModelButton(event)">
-							<div class="w-32 h-32 rounded-lg bg-black hover:bg-gray-800">
-								<div class="flex justify-center items-center h-full text-white text-2xl">
-									None
-								</div>
-							</div>
-						</div>
-						<div class="relative cursor-pointer" model-id="6lmgrOLQFwmU3I90aXcH" style="" replicate-name="klopez-sketchmeai/custom_sdxl" version="3b3bfa90aaa92a4b32dc15d000805f9bba176f7759d3d1e7f84e8fa47f686c78">
-						<div class="group w-32 h-32 block relative">
-							<div id="model-name-container" class="aspect-[1/1] rounded-lg " style="background-color: #2e1f37;">
-								<div class="flex justify-left items-end h-full text-white text-5xl">
-									<p id="model-name-label" class="text-xl ml-3 mb-2">Kevin</p>
-								</div>
-							</div>
-							<div id="model-loader" class="bg-transparent flex justify-center items-center hidden">
-								<i class="fa fa-spinner fa-spin text-4xl text-gray-200" aria-hidden="true"></i>
-								<p class="absolute bottom-0 right-0 pb-3 pr-3 text-xs text-gray-200" id="model-status"></p>
-								<button class="hidden absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500" id="cancel-button">Cancel</button>
-							</div>
-						</div>
-						</div>
-						<div class="relative cursor-pointer" model-id="xB6tuDiCQ3AVGOF9tkzI" style="" replicate-name="klopez-sketchmeai/custom_sdxl" version="6c0a631505ec1b4e06af74e991d2a7e46276a9b16c018a77d5c6a81031068197">
-						<div class="group w-32 h-32 block relative">
-							<div id="model-name-container" class="aspect-[1/1] rounded-lg " style="background-color: #301f37;">
-								<div class="flex justify-left items-end h-full text-white text-5xl">
-									<p id="model-name-label" class="text-xl ml-3 mb-2">KFive</p>
-								</div>
-							</div>
-							<div id="model-loader" class="bg-transparent flex justify-center items-center hidden">
-								<i class="fa fa-spinner fa-spin text-4xl text-gray-200" aria-hidden="true"></i>
-								<p class="absolute bottom-0 right-0 pb-3 pr-3 text-xs text-gray-200" id="model-status"></p>
-								<button class="hidden absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500" id="cancel-button">Cancel</button>
-							</div>
-						</div>
-						</div>
-						<div class="relative cursor-pointer" model-id="ig74e3qCnsO7jdm1S4RR" style="" replicate-name="klopez-sketchmeai/custom_sdxl" version="49665c30531a4f943bd8cbe41e887a1cb040486174de0ce110ef8c154c4e1f07">
-							<div class="group w-32 h-32 block relative">
-								<div id="model-name-container" class="aspect-[1/1] rounded-lg " style="background-color: #1f372b;">
-									<div class="flex justify-left items-end h-full text-white text-5xl">
-										<p id="model-name-label" class="text-xl ml-3 mb-2">Kevo</p>
+
+					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-3">
+						<div id="no-lora-person-button" class="relative cursor-pointer" onclick="clickedOnNewModelButton(event)">
+							<div class="w-32 h-32 rounded-lg bg-white hover:bg-gray-200">
+								<div id="model-name-container" class="aspect-[1/1]">
+									<div class="flex justify-left items-end h-full">
+										<p id="model-name-label" class="text-xl ml-3 mb-2 text-gray-500">None</p>
 									</div>
 								</div>
-								<div id="model-loader" class="bg-transparent flex justify-center items-center hidden">
-									<i class="fa fa-spinner fa-spin text-4xl text-gray-200" aria-hidden="true"></i>
-									<p class="absolute bottom-0 right-0 pb-3 pr-3 text-xs text-gray-200" id="model-status"></p>
-									<button class="hidden absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500" id="cancel-button">Cancel</button>
+							</div>
+						</div>
+						<div class="relative cursor-pointer" model-id="6lmgrOLQFwmU3I90aXcH" replicate-name="klopez-sketchmeai/custom_sdxl" version="3b3bfa90aaa92a4b32dc15d000805f9bba176f7759d3d1e7f84e8fa47f686c78">
+							<div class="group w-32 h-32 block relative">
+								<div id="model-name-container" class="aspect-[1/1] rounded-lg bg-white">
+									<div class="flex justify-left items-end h-full text-white ">
+										<p id="model-name-label" class="text-xl ml-3 mb-2" style="color:#2e1f37;">Kevin</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="relative cursor-pointer" model-id="xB6tuDiCQ3AVGOF9tkzI" replicate-name="klopez-sketchmeai/custom_sdxl" version="6c0a631505ec1b4e06af74e991d2a7e46276a9b16c018a77d5c6a81031068197">
+							<div class="group w-32 h-32 block relative">
+								<div id="model-name-container" class="aspect-[1/1] rounded-lg bg-white">
+									<div class="flex justify-left items-end h-full">
+										<p id="model-name-label" class="text-xl ml-3 mb-2" style="color:#301f37;">KFive</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="relative cursor-pointer" model-id="ig74e3qCnsO7jdm1S4RR" replicate-name="klopez-sketchmeai/custom_sdxl" version="49665c30531a4f943bd8cbe41e887a1cb040486174de0ce110ef8c154c4e1f07">
+							<div class="group w-32 h-32 block relative">
+								<div id="model-name-container" class="aspect-[1/1] rounded-lg bg-white">
+									<div class="flex justify-left items-end h-full">
+										<p id="model-name-label" class="text-xl ml-3 mb-2" style="color:#301f37;">Kevo</p>
+									</div>
 								</div>
 							</div>
 						</div>

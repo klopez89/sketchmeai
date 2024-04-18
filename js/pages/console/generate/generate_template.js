@@ -190,7 +190,7 @@ function generate_form_html() {
 
 
 		<div class="col-span-full px-0 py-2 border-y border-gray-300">
-			<div class="px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
+			<div class="px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-2 sm:grid-cols-6">
 				<!-- img-2img-url field -->
 				<div class="col-span-2 flex items-center pl-4" id="mode-title-container">
 					<label class="text-sm font-medium leading-6 text-gray-900">Base Model</label>

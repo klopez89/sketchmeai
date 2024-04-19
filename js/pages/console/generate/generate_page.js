@@ -1999,7 +1999,11 @@ function loraPersonPressed(event) {
     event.stopPropagation();
     let loraPersonDiv = event.currentTarget;
     if (loraPersonDiv.classList.contains('selected')) {
-        deSelectLoraPersonDiv(loraPersonDiv);
+        if (loraPersonDiv.id != 'no-lora-person-button') {
+            deSelectLoraPersonDiv(loraPersonDiv);
+            let noLoraPersonDiv = document.getElementById('no-lora-person-button');
+            selectLoraPersonDiv(noLoraPersonDiv);
+        }
     } else {
         deSelectAllLoraPersonOptions();
         selectLoraPersonDiv(loraPersonDiv);

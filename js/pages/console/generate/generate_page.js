@@ -2052,7 +2052,7 @@ function selectLoraPersonDiv(loraPersonDiv) {
 
     let loraPersonGrid = document.getElementById('lora-person-grid');
     let scrollPosition = loraPersonGrid.offsetLeft - loraPersonGrid.offsetLeft;
-    lorapPErsonGrid.scrollLeft = scrollPosition;
+    loraPersonGrid.scrollLeft = scrollPosition;
     // loraPersonDiv.scrollIntoView({behavior: "smooth", block: "nearest", inline: "center"});
 }
 

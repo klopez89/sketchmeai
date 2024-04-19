@@ -213,7 +213,7 @@ function generate_form_html() {
 							<div class="group w-32 h-32 block relative">
 								<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
 									<div class="flex justify-left items-end h-full">
-										<p class="text-xl ml-3 mb-2" style="color:white;">None</p>
+										<p class="text-base ml-3 mb-2" style="color:white;">None</p>
 									</div>
 								</div>
 							</div>

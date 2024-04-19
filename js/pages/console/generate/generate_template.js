@@ -204,16 +204,16 @@ function generate_form_html() {
 
 					<div class="flex justify-between px-4 pb-1">
 						<label class="block text-sm font-medium leading-6 text-gray-700 pb-1">Person</label>
-						<label id="selected-person-lora" class="text-sm text-gray-700">Kevo</label>
+						<label id="selected-person-lora" class="text-sm text-gray-900">None</label>
 					</div>
 
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">
 				
 						<div class="relative cursor-pointer" id="no-lora-person-button" instkey="" bgColor="#000" onclick="loraPersonPressed(event)">
 							<div class="group w-32 h-32 block relative">
-								<div class="aspect-[1/1] rounded-lg bg-white">
+								<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
 									<div class="flex justify-left items-end h-full">
-										<p class="text-xl ml-3 mb-2" style="color:#000;">None</p>
+										<p class="text-xl ml-3 mb-2" style="color:white;">None</p>
 									</div>
 								</div>
 							</div>

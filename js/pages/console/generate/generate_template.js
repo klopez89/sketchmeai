@@ -209,7 +209,7 @@ function generate_form_html() {
 
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">
 				
-						<div class="relative cursor-pointer selected" id="no-lora-person-button" instkey="" model="" modelname="" bgColor="#000" onclick="loraPersonPressed(event)">
+						<div class="relative cursor-pointer select-none selected" id="no-lora-person-button" instkey="" model="" modelname="" bgColor="#000" onclick="loraPersonPressed(event)">
 							<div class="group w-32 h-32 block relative">
 								<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
 									<div class="flex justify-left items-end h-full">
@@ -467,11 +467,11 @@ function new_lora_model_option(model, bg_color) {
 	let gender_type = model.gender_type;
 	var training_subject = model.training_subject ? model.training_subject : "person";
 	return `
-	<div class="relative cursor-pointer" id="${model_id}" instkey="${instKey}" model="${replicate_name}" version="${short_version}" modelName="${model_name}" trainingSubject="${training_subject}" genderType="${gender_type}" bgColor="${bg_color}" onclick="loraPersonPressed(event)">
+	<div class="relative cursor-pointer select-none" id="${model_id}" instkey="${instKey}" model="${replicate_name}" version="${short_version}" modelName="${model_name}" trainingSubject="${training_subject}" genderType="${gender_type}" bgColor="${bg_color}" onclick="loraPersonPressed(event)">
 		<div class="group w-32 h-32 block relative">
 			<div class="aspect-[1/1] rounded-lg bg-white">
 				<div class="flex justify-left items-end h-full">
-					<p class="text-xl ml-3 mb-2" style="color:${bg_color};">${model_name}</p>
+					<p class="text-base ml-3 mb-2" style="color:${bg_color};">${model_name}</p>
 				</div>
 			</div>
 		</div>

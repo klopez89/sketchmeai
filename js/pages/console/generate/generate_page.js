@@ -2053,7 +2053,7 @@ function personLoraSelectionMade() {
     let newReplicateName = newLoraPersonDiv.getAttribute('model');
 
     if (newReplicateName.includes('custom_sdxl')) {
-        promptPlaceholderText = `Drawing of ${newModelName} wearing a sleek black leather jacket`;
+        promptPlaceholderText = `Drawing of ${newLoraPersonName} wearing a sleek black leather jacket`;
     } else {
         promptPlaceholderText = sdxlPlaceholderText;
     }

@@ -2042,6 +2042,7 @@ function personLoraSelectionMade() {
 
     let selectedLoraPersonDiv = loraPersonGrid.querySelector('.selected');
     let selectedLoraPersonId = selectedLoraPersonDiv ? selectedLoraPersonDiv.id : null;
+    console.log('selectedLoraPersonId is: ', selectedLoraPersonId);
 
     let previousLoraPersonDiv = loraPersonGrid.querySelector(`div[id="${previousModelSelectionId}"]`);
     let newLoraPersonDiv = loraPersonGrid.querySelector(`div[id="${selectedLoraPersonId}"]`);

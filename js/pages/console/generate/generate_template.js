@@ -351,7 +351,7 @@ function generate_form_html() {
 						</button>
 
 					<div class="flex gap-2">
-						<button title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+						<button id="clear-ref-button" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
 							<i class="fa-solid fa-trash text-gray-500 text-xs" aria-hidden="true"></i>
 						</button>
 						

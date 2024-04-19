@@ -810,6 +810,9 @@ function copyPromptInfoFromGen(generation) {
     console.log('the signed ref url from copy prompt is: ', generation.gen_recipe.signed_ref_url);
     if (generation.gen_recipe.signed_ref_url != undefined) {
         insertImgUrlForRefImg(generation.gen_recipe.signed_ref_url);
+    } else {
+        let clearRefButton = document.getElementById('clear-ref-button');
+        clearRefButton.click();
     }
 
     console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
@@ -2054,9 +2057,7 @@ function selectLoraPersonDiv(loraPersonDiv) {
     let scrollPosition = loraPersonDiv.offsetLeft - loraPersonGrid.offsetLeft 
     + loraPersonDiv.offsetWidth / 2 
     - loraPersonGrid.offsetWidth / 2;
-    // loraPersonDiv.offsetLeft - loraPersonGrid.offsetLeft;
     loraPersonGrid.scrollLeft = scrollPosition;
-    // loraPersonDiv.scrollIntoView({behavior: "smooth", block: "nearest", inline: "center"});
 }
 
 function deSelectAllLoraPersonOptions() {

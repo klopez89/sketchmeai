@@ -209,7 +209,7 @@ function generate_form_html() {
 
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">
 				
-						<div class="relative cursor-pointer select-none selected" id="no-lora-person-button" instkey="" model="" modelname="" bgColor="#000" onclick="loraPersonPressed(event)">
+						<div class="relative cursor-pointer select-none selected" id="no-lora-person-button" instkey="" model="" modelname="" version="" trainingSubject="" genderType="" bgColor="#000" onclick="loraPersonPressed(event)">
 							<div class="group w-32 h-32 block relative">
 								<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
 									<div class="flex justify-left items-end h-full">

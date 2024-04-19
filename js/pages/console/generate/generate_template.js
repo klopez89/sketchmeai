@@ -311,16 +311,6 @@ function generate_form_html() {
 					<p class="text-right text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
 				</div>
 			</div>
-			<div class="sm:col-span-3" id="lora-field-container">
-				<label for="lora-scale" class="text-sm font-medium leading-6 text-gray-900">Lora Scale</label>
-				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Lora Scale" data-te-content="Adjusts the extent to which a fine-tuned model's specialized training influences the generated image, blending the base model's knowledge with the fine-tuned nuances." class="ml-2 text-gray-300" data-te-original-title="" title="">
-					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-				</button>
-				<div class="mt-2">
-					<input type="number" name="lora-scale" id="lora-scale" placeholder="0.8" min="0.0" max="1.0" step="0.01" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" value="0.8">
-					<p class="text-right text-xs text-gray-400 mt-1 ml-1">0.00 - 1.00</p>
-				</div>
-			</div>
 
 			<div class="col-span-full px-4 border-y border-gray-300">
 				<!-- Start of the new nested accordion for img-2img-url and prompt-strength fields -->

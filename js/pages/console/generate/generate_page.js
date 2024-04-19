@@ -2003,16 +2003,10 @@ function loraPersonPressed(event) {
             deSelectLoraPersonDiv(loraPersonDiv);
             let noLoraPersonDiv = document.getElementById('no-lora-person-button');
             selectLoraPersonDiv(noLoraPersonDiv);
-            let selectedPersonLoraLabel = document.getElementById('selected-person-lora');
-            selectedPersonLoraLabel.innerHTML = noLoraPersonDiv.querySelector('p').innerHTML;
-            personLoraSelectionMade();
         }
     } else {
         deSelectAllLoraPersonOptions();
         selectLoraPersonDiv(loraPersonDiv);
-        let selectedPersonLoraLabel = document.getElementById('selected-person-lora');
-        selectedPersonLoraLabel.innerHTML = loraPersonDiv.querySelector('p').innerHTML;
-        personLoraSelectionMade();
     }
 }
 
@@ -2034,6 +2028,10 @@ function selectLoraPersonDiv(loraPersonDiv) {
     pElement.style.color = 'white';
     bgParentDiv.style.backgroundColor = bgColor;
     bgParentDiv.classList.remove('bg-white');
+
+    let selectedPersonLoraLabel = document.getElementById('selected-person-lora');
+    selectedPersonLoraLabel.innerHTML = loraPersonDiv.querySelector('p').innerHTML;
+    personLoraSelectionMade();
 }
 
 function deSelectAllLoraPersonOptions() {

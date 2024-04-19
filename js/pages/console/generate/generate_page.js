@@ -2003,6 +2003,9 @@ function loraPersonPressed(event) {
             deSelectLoraPersonDiv(loraPersonDiv);
             let noLoraPersonDiv = document.getElementById('no-lora-person-button');
             selectLoraPersonDiv(noLoraPersonDiv);
+            let selectedPersonLoraLabel = document.getElementById('selected-person-lora');
+            selectedPersonLoraLabel.innerHTML = noLoraPersonDiv.querySelector('p').innerHTML;
+            personLoraSelectionMade();
         }
     } else {
         deSelectAllLoraPersonOptions();

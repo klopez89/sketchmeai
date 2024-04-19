@@ -1981,6 +1981,8 @@ function loraPersonPressed(event) {
     } else {
         deSelectAllLoraPersonOptions();
         selectLoraPersonDiv(loraPersonDiv);
+        let selectedPersonLoraLabel = document.getElementById('selected-person-lora');
+        selectedPersonLoraLabel.innerHTML = loraPersonDiv.querySelector('p').innerHTML;
     }
 }
 

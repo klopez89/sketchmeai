@@ -23,6 +23,7 @@ configurePromptInputPlaceholder();
 addBottomGenerationMenu();
 configureShareButton();
 configureRefImageFields();
+configurePersonLoraFields();
 
 
 // navigationToHomePage();

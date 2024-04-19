@@ -1633,13 +1633,13 @@ function promptInputValues() {
     var trainingSubjects = [];
     var genderTypes = [];
     for (var i = 0; i < loraPersonDivs.length; i++) {
-        modelValues.push(selectedOptions[i].getAttribute('model'));
-        modelNames.push(selectedOptions[i].getAttribute('modelname'));
-        modelIds.push(selectedOptions[i].getAttribute('id'));
-        versionValues.push(selectedOptions[i].getAttribute('version'));
-        instanceKeys.push(selectedOptions[i].getAttribute('instkey'));
-        trainingSubjects.push(selectedOptions[i].getAttribute('trainingSubject'));
-        genderTypes.push(selectedOptions[i].getAttribute('genderType'));
+        modelValues.push(loraPersonDivs[i].getAttribute('model'));
+        modelNames.push(loraPersonDivs[i].getAttribute('modelname'));
+        modelIds.push(loraPersonDivs[i].getAttribute('id'));
+        versionValues.push(loraPersonDivs[i].getAttribute('version'));
+        instanceKeys.push(loraPersonDivs[i].getAttribute('instkey'));
+        trainingSubjects.push(loraPersonDivs[i].getAttribute('trainingSubject'));
+        genderTypes.push(loraPersonDivs[i].getAttribute('genderType'));
     }
 
     console.log('the model names list: ', modelNames);

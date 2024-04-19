@@ -1618,8 +1618,13 @@ function promptInputValues() {
         inferenceSteps = 20;
     }
 
-    let dropdown = document.getElementById('model-dropdown');
-    let selectedOptions = dropdown.selectedOptions;
+    let loraPersonGrid = document.getElementById('lora-person-grid');
+    let loraPersonDivs = loraPersonGrid.children;
+
+    console.log('the lora person divs: ', loraPersonDivs);
+
+    // let dropdown = document.getElementById('model-dropdown');
+    // let selectedOptions = dropdown.selectedOptions;
     var modelValues = [];
     var modelNames = [];
     var modelIds = [];
@@ -1627,7 +1632,7 @@ function promptInputValues() {
     var instanceKeys = [];
     var trainingSubjects = [];
     var genderTypes = [];
-    for (var i = 0; i < selectedOptions.length; i++) {
+    for (var i = 0; i < loraPersonDivs.length; i++) {
         modelValues.push(selectedOptions[i].getAttribute('model'));
         modelNames.push(selectedOptions[i].getAttribute('modelname'));
         modelIds.push(selectedOptions[i].getAttribute('id'));
@@ -1636,6 +1641,8 @@ function promptInputValues() {
         trainingSubjects.push(selectedOptions[i].getAttribute('trainingSubject'));
         genderTypes.push(selectedOptions[i].getAttribute('genderType'));
     }
+
+    console.log('the model names list: ', modelNames);
   
     return {
         prompt: prompt,

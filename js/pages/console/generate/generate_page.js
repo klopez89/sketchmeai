@@ -843,8 +843,8 @@ function selectModelWithVersion(version) {
     deSelectAllLoraPersonOptions();
     let loraPersonDivs = loraPersonGrid.children;
 
-    let modelDropdown = document.getElementById('model-dropdown');
-    var options = modelDropdown.options;
+    // let modelDropdown = document.getElementById('model-dropdown');
+    // var options = modelDropdown.options;
     var selected = false; // Flag to keep track if a matching option was found
 
 

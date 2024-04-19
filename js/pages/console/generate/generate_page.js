@@ -4,7 +4,7 @@ let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models 
 let status_check_interval = 2500; // 5 seconds in milliseconds
 const genEstimateCostPerDenoisingStep = 0.00128;
 var coldBootedModels = {};
-var previousModelSelectionId = null;
+var previousModelSelectionId = 'no-lora-person-button';
 let sdxlPlaceholderText = "Drawing of cute dalmation puppy in the backyard, highly detailed";
 var promptPlaceholderText = sdxlPlaceholderText;
 let isSelectable = false;
@@ -18,7 +18,7 @@ moveForm();
 configureInfiniteScroll();
 setupAccordion();
 showBasicExamplesButton();
-configureModelListInput();
+// configureModelListInput();
 configurePromptInputPlaceholder(); 
 addBottomGenerationMenu();
 configureShareButton();
@@ -307,6 +307,8 @@ function isPromptInputShowingPlaceholder() {
     let promptDiv = document.getElementById('prompt');
     return promptDiv.classList.contains('text-gray-400');
 }
+
+
 
 function configureModelListInput() {
     const modelDropdown = document.getElementById('model-dropdown');
@@ -829,31 +831,51 @@ function insertImgUrlForRefImg(url) {
 }
 
 function selectModelWithVersion(version) {
+
+    let loraPersonGrid = document.getElementById('lora-person-grid');
+    deSelectAllLoraPersonOptions();
+    let loraPersonDivs = loraPersonGrid.children;
+
     let modelDropdown = document.getElementById('model-dropdown');
     var options = modelDropdown.options;
     var selected = false; // Flag to keep track if a matching option was found
 
+
+
+
+    for (let i = 0; i < loraPersonDivs.length; i++) {
+        if (loraPersonDivs[i].getAttribute('version') === version) {
+            selectLoraPersonDiv(loraPersonDivs[i]);
+            selected = true;
+            break;
+        }
+    }
+
     // Find the first option w/ matching version if not set selection to false
-    for (var i = 0; i < options.length; i++) {
-      if (options[i].getAttribute('version') === version) {  
-        options[i].selected = true;
-        selected = true;
-        // break;
-      } else {
-        options[i].selected = false;
-      }
+    // for (var i = 0; i < options.length; i++) {
+    //   if (options[i].getAttribute('version') === version) {  
+    //     options[i].selected = true;
+    //     selected = true;
+    //     // break;
+    //   } else {
+    //     options[i].selected = false;
+    //   }
+    // }
+
+    if (!selected) {
+        selectLoraPersonDiv(loraPersonDivs[0]);
     }
   
     // If no matching option was found, only select the first option and deselect all others
-    if (!selected) {
-      for (var i = 0; i < options.length; i++) {
-        if (i === 0) {
-          options[i].selected = true;
-        } else {
-          options[i].selected = false;
-        }
-      }
-    }
+    // if (!selected) {
+    //   for (var i = 0; i < options.length; i++) {
+    //     if (i === 0) {
+    //       options[i].selected = true;
+    //     } else {
+    //       options[i].selected = false;
+    //     }
+    //   }
+    // }
 
     // Create a new 'change' event
     const event = new Event('change', {
@@ -1983,6 +2005,7 @@ function loraPersonPressed(event) {
         selectLoraPersonDiv(loraPersonDiv);
         let selectedPersonLoraLabel = document.getElementById('selected-person-lora');
         selectedPersonLoraLabel.innerHTML = loraPersonDiv.querySelector('p').innerHTML;
+        personLoraSelectionMade();
     }
 }
 
@@ -2012,4 +2035,46 @@ function deSelectAllLoraPersonOptions() {
     for (let i = 0; i < loraPersonDivs.length; i++) {
         deSelectLoraPersonDiv(loraPersonDivs[i]);
     }
+}
+
+function personLoraSelectionMade() {
+    let loraPersonGrid = document.getElementById('lora-person-grid');
+
+    let selectedLoraPersonDiv = loraPersonGrid.querySelector('.selected');
+    let selectedLoraPersonId = selectedLoraPersonDiv ? selectedLoraPersonDiv.id : null;
+
+    let previousLoraPersonDiv = loraPersonGrid.querySelector(`div[id="${previousModelSelectionId}"]`);
+    let newLoraPersonDiv = loraPersonGrid.querySelector(`div[id="${selectedLoraPersonId}"]`);
+
+    let previousLoraPersonName = previousLoraPersonDiv ? previousLoraPersonDiv.getAttribute('modelname') : '';
+    let newLoraPersonName = newLoraPersonDiv ? newLoraPersonDiv.getAttribute('modelname') : '';
+
+    let previousReplicateName = previousLoraPersonDiv.getAttribute('model');
+    let newReplicateName = newLoraPersonDiv.getAttribute('model');
+
+    if (newReplicateName.includes('custom_sdxl')) {
+        promptPlaceholderText = `Drawing of ${newModelName} wearing a sleek black leather jacket`;
+    } else {
+        promptPlaceholderText = sdxlPlaceholderText;
+    }
+
+    // Try to swap trained model name with another selected trained model. Else set the appropriate placeholder if in placeholder state 
+    const promptInput = document.getElementById('prompt');
+
+    if (previousReplicateName.includes('custom_sdxl') && newReplicateName.includes('custom_sdxl')) {
+        // Swap the modelName in the prompt if it exists
+        const promptText = promptInput.textContent || promptInput.innerText;
+
+        if (promptText.includes(previousModelName)) {
+            promptInput.textContent = promptText.replace(previousModelName, newModelName);
+        }
+    } else if (isPromptInputShowingPlaceholder()) {
+        promptInput.textContent = promptPlaceholderText;
+    }
+
+    // Update the previous selection id for the next change event
+    previousModelSelectionId = selectedLoraPersonId;
+
+    triggerModelNameInPromptFormatting();
+    updateGenerationEstimateLabel();
 }

@@ -190,20 +190,20 @@ function generate_form_html() {
 
 
 		<div class="col-span-full px-0 py-2 border-y border-gray-300">
-			<div class="px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-2 sm:grid-cols-6">
+			<div class="px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-0 sm:grid-cols-6">
 				<!-- img-2img-url field -->
 				<div class="col-span-2 flex items-center pl-4" id="mode-title-container">
-					<label class="text-sm font-medium leading-6 text-gray-900">Base Model</label>
+					<label class="text-sm font-medium leading-6 text-gray-700">Base Model</label>
 				</div>
 				<div class="col-span-4 pr-4" id="base-model-selector-container">
 					<select id="base-model-selector" name="base-model" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 						<option>SDXL</option>
 					</select>
 				</div>
-				<div id="lora-component-container" class="col-span-full">
+				<div id="lora-component-container" class="col-span-full pt-4">
 
 					<div class="flex justify-between px-4 pb-1">
-						<label class="block text-sm font-medium leading-6 text-gray-900 pb-1">Person</label>
+						<label class="block text-sm font-medium leading-6 text-gray-700 pb-1">Person</label>
 						<label class="text-sm text-gray-700">Kevo</label>
 					</div>
 
@@ -221,7 +221,7 @@ function generate_form_html() {
 					</div>
 				</div>
 				<div class="col-span-2 pl-4" id="person-lora-influence-title-container">
-					<label class="text-sm font-medium leading-6 text-gray-900">Influence, %</label>
+					<label class="text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 				</div>
 				<div class="col-span-4 flex gap-x-2 px-4" id="person-lora-influence-slider-container">
 					<input type="range" id="person-lora-influence-range" min="0" max="100" step="1" class="slider flex-grow">

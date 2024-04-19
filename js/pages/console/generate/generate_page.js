@@ -813,7 +813,8 @@ function copyPromptInfoFromGen(generation) {
     console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
     document.getElementById('prompt-str').value = 100 - generation.gen_recipe.prompt_strength * 100;
     document.getElementById('ref-influence-range').value = 100 - generation.gen_recipe.prompt_strength * 100;
-    document.getElementById('lora-scale').value = generation.gen_recipe.lora_scale;
+    document.getElementById('person-lora-influence').value = generation.gen_recipe.lora_scale * 100;
+    document.getElementById('person-lora-influence-range').value = generation.gen_recipe.lora_scale * 100;
     // Trigger some UI updates in the gen form
     document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
     selectModelWithVersion(generation.model_version);
@@ -1594,7 +1595,7 @@ function promptInputValues() {
     let img2imgUrl = document.getElementById('img-2-img').value;
     let refImgInfo = getUploadedRef();
     var promptStrength = document.getElementById('prompt-str').value;
-    var loraScale = document.getElementById('lora-scale').value;
+    var loraScale = document.getElementById('person-lora-influence').value;
     let shouldUseRandomSeedAcrossModels = true;
 
     if (promptStrength == '') {
@@ -1608,8 +1609,9 @@ function promptInputValues() {
     let normalizedPromptStrength = 1 - promptStrength / 100;
 
     if (loraScale == '') {
-        loraScale = 0.8;
+        loraScale = 80;
     }
+    let normalizedLoraScale = loraScale / 100;
 
     if (gscale == '') {
         gscale = 13;
@@ -1655,7 +1657,7 @@ function promptInputValues() {
         img2imgUrl: img2imgUrl,
         refImgInfo: refImgInfo,
         promptStrength: normalizedPromptStrength,
-        loraScale: loraScale,
+        loraScale: normalizedLoraScale,
         resWidth: 1024,
         resHeight: 1024,
         scheduler: 'K_EULER',

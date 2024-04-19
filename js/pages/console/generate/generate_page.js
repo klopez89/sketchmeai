@@ -1640,16 +1640,19 @@ function promptInputValues() {
     var trainingSubjects = [];
     var genderTypes = [];
     for (var i = 0; i < loraPersonDivs.length; i++) {
-        modelValues.push(loraPersonDivs[i].getAttribute('model'));
-        modelNames.push(loraPersonDivs[i].getAttribute('modelname'));
-        modelIds.push(loraPersonDivs[i].getAttribute('id'));
-        versionValues.push(loraPersonDivs[i].getAttribute('version'));
-        instanceKeys.push(loraPersonDivs[i].getAttribute('instkey'));
-        trainingSubjects.push(loraPersonDivs[i].getAttribute('trainingSubject'));
-        genderTypes.push(loraPersonDivs[i].getAttribute('genderType'));
+        let isLoraPersonSelected = loraPersonDivs[i].classList.contains('selected');
+        if (isLoraPersonSelected) {
+            modelValues.push(loraPersonDivs[i].getAttribute('model'));
+            modelNames.push(loraPersonDivs[i].getAttribute('modelname'));
+            modelIds.push(loraPersonDivs[i].getAttribute('id'));
+            versionValues.push(loraPersonDivs[i].getAttribute('version'));
+            instanceKeys.push(loraPersonDivs[i].getAttribute('instkey'));
+            trainingSubjects.push(loraPersonDivs[i].getAttribute('trainingSubject'));
+            genderTypes.push(loraPersonDivs[i].getAttribute('genderType'));
+        }
     }
 
-    console.log('the model names list: ', modelNames);
+    console.log('the selected model names list: ', modelNames);
   
     return {
         prompt: prompt,

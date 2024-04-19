@@ -204,7 +204,7 @@ function generate_form_html() {
 
 					<div class="flex justify-between px-4 pb-1">
 						<label class="block text-sm font-medium leading-6 text-gray-700 pb-1">Person</label>
-						<label class="text-sm text-gray-700">Kevo</label>
+						<label id="selected-person-lora" class="text-sm text-gray-700">Kevo</label>
 					</div>
 
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">

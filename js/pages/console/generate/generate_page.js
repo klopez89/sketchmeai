@@ -808,7 +808,9 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
     console.log('the signed ref url from copy prompt is: ', generation.gen_recipe.signed_ref_url);
-    insertImgUrlForRefImg(generation.gen_recipe.signed_ref_url);
+    if (generation.gen_recipe.signed_ref_url) {
+        insertImgUrlForRefImg(generation.gen_recipe.signed_ref_url);
+    }
 
     console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
     document.getElementById('prompt-str').value = 100 - generation.gen_recipe.prompt_strength * 100;

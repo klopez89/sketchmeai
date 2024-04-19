@@ -847,6 +847,7 @@ function selectModelWithVersion(version) {
 
     for (let i = 0; i < loraPersonDivs.length; i++) {
         if (loraPersonDivs[i].getAttribute('version') === version) {
+            console.log('Found a matching version in the lora person divs for version: ', version);
             selectLoraPersonDiv(loraPersonDivs[i]);
             selected = true;
             break;
@@ -865,6 +866,7 @@ function selectModelWithVersion(version) {
     // }
 
     if (!selected) {
+        console.log('About to select the first lora person div in the grid');
         selectLoraPersonDiv(loraPersonDivs[0]);
     }
   
@@ -880,13 +882,13 @@ function selectModelWithVersion(version) {
     // }
 
     // Create a new 'change' event
-    const event = new Event('change', {
-        bubbles: true,
-        cancelable: true,
-    });
+    // const event = new Event('change', {
+    //     bubbles: true,
+    //     cancelable: true,
+    // });
 
-    // Dispatch it on the 'model-dropdown' element
-    modelDropdown.dispatchEvent(event);
+    // // Dispatch it on the 'model-dropdown' element
+    // modelDropdown.dispatchEvent(event);
 }
 
 function generateButtonPressed(event) {

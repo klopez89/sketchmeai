@@ -2068,8 +2068,8 @@ function personLoraSelectionMade() {
         // Swap the modelName in the prompt if it exists
         const promptText = promptInput.textContent || promptInput.innerText;
 
-        if (promptText.includes(previousModelName)) {
-            promptInput.textContent = promptText.replace(previousModelName, newModelName);
+        if (promptText.includes(previousLoraPersonName)) {
+            promptInput.textContent = promptText.replace(previousLoraPersonName, newLoraPersonName);
         }
     } else if (isPromptInputShowingPlaceholder()) {
         promptInput.textContent = promptPlaceholderText;

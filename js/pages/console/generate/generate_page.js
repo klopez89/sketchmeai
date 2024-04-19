@@ -2039,6 +2039,8 @@ function selectLoraPersonDiv(loraPersonDiv) {
     let selectedPersonLoraLabel = document.getElementById('selected-person-lora');
     selectedPersonLoraLabel.innerHTML = loraPersonDiv.querySelector('p').innerHTML;
     personLoraSelectionMade();
+
+    loraPersonDiv.scrollIntoView({behavior: "smooth", block: "nearest", inline: "center"});
 }
 
 function deSelectAllLoraPersonOptions() {

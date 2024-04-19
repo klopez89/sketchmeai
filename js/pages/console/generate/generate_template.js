@@ -208,11 +208,12 @@ function generate_form_html() {
 					</div>
 
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">
-						<div id="no-lora-person-button" class="relative cursor-pointer" onclick="clickedOnNewModelButton(event)">
-							<div class="w-32 h-32 rounded-lg bg-white hover:bg-gray-200">
-								<div class="aspect-[1/1]">
+				
+						<div class="relative cursor-pointer" id="no-lora-person-button" instkey="" bgColor="#000" onclick="loraPersonPressed(event)">
+							<div class="group w-32 h-32 block relative">
+								<div class="aspect-[1/1] rounded-lg bg-white">
 									<div class="flex justify-left items-end h-full">
-										<p class="text-xl ml-3 mb-2 text-gray-500">None</p>
+										<p class="text-xl ml-3 mb-2" style="color:#000;">None</p>
 									</div>
 								</div>
 							</div>

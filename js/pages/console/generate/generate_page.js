@@ -2049,6 +2049,7 @@ function personLoraSelectionMade() {
     let previousLoraPersonName = previousLoraPersonDiv ? previousLoraPersonDiv.getAttribute('modelname') : '';
     let newLoraPersonName = newLoraPersonDiv ? newLoraPersonDiv.getAttribute('modelname') : '';
 
+    console.log('previousLoraPersonDiv is: ', previousLoraPersonDiv);
     let previousReplicateName = previousLoraPersonDiv.getAttribute('model');
     let newReplicateName = newLoraPersonDiv.getAttribute('model');
 

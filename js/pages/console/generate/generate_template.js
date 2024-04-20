@@ -243,16 +243,16 @@ function generate_form_html() {
 					<div id="prompt" name="prompt" rows="3" class="max-w-full overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></div>
 				</div>
 			</div>
-
-			<div class="col-span-full flex-col justify-center hidden md:flex" id="gen-button-container">
-				<button id="gen-button" class="cursor-pointer rounded-md flex flex-grow justify-center items-center text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">
-					<p id="desktop-gen-button-label" class="flex items-center">Generate</p>
-					<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
-				</button>
-			</div>
 		</div>
 
-		<p class="text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">Estimated cost: $0.04 ($0.11 from cold boot)<br>@ 20 denoising steps</p>
+		<div class="col-span-full flex-col justify-center hidden md:flex" id="gen-button-container">
+			<button id="gen-button" class="cursor-pointer rounded-md flex flex-grow justify-center items-center text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">
+				<p id="desktop-gen-button-label" class="flex items-center">Generate</p>
+				<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
+			</button>
+			<p class="text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">Estimated cost: $0.04 ($0.11 from cold boot)<br>@ 20 denoising steps</p>
+		</div>
+
 
 		${basicGenSettingsSection}
 

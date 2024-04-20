@@ -568,7 +568,7 @@ function generateReferenceFormSectionHTML() {
 
 function basicGenerationSettingsHTML() {
 	return `
-	<div class="px-4 pt-4 pb-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6" id="rest-gen-settings-section">
+	<div class="px-4 pt-4 pb-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 border-t border-gray-300" id="rest-gen-settings-section">
 		<div class="col-span-full grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
 
 			<div class="col-span-full" id="neg-prompt-field-container">

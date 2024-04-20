@@ -1987,13 +1987,13 @@ function updateGenerationEstimateLabel() {
     let base_price_estimate = inf_price * inference_steps;
 
     if (previousModelSelectionId.includes('sdxl')) {
-        document.getElementById('generation-estimate-label').innerHTML = `Estimated cost: $${base_price_estimate}<br>@ ${inference_steps} denoising steps`
+        document.getElementById('generation-estimate-label').innerHTML = `~$${base_price_estimate}`
     } else {
         let cold_boot_upcharge = basePrices['cold_boot_upcharge'];
         let warmed_upcharge = basePrices['warmed_upcharge'];
         let estimatedColdPrice = base_price_estimate + cold_boot_upcharge;
         let estimatedWarmedPrice = base_price_estimate + warmed_upcharge;
-        document.getElementById('generation-estimate-label').innerHTML = `Estimated cost: $${estimatedWarmedPrice.toFixed(2)} ($${estimatedColdPrice.toFixed(2)} from cold boot)<br>@ ${inference_steps} denoising steps`
+        document.getElementById('generation-estimate-label').innerHTML = `~$${estimatedWarmedPrice.toFixed(2)} ($${estimatedColdPrice.toFixed(2)} from cold boot)`
 
     }
 }

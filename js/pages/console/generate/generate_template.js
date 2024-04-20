@@ -250,7 +250,7 @@ function generate_form_html() {
 				<p id="desktop-gen-button-label" class="flex items-center">Generate</p>
 				<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 			</button>
-			<p class="text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">Estimated cost: $0.04 ($0.11 from cold boot)<br>@ 20 denoising steps</p>
+			<p class="text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">~$0.04 ($0.11 from cold boot)</p>
 		</div>
 
 

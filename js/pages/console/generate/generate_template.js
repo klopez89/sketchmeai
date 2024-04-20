@@ -183,6 +183,7 @@ function baseGenMenuHTML() {
 }
 
 function generate_form_html() {
+	let basicGenSettingsSection = basicGenerationSettingsHTML();
 	let referenceFormSection = generateReferenceFormSectionHTML();
 	return `
 	<form class="generate-form overflow-y-auto flex flex-col px-0 py-4" id="generateForm">
@@ -253,68 +254,7 @@ function generate_form_html() {
 
 		<p class="text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">Estimated cost: $0.04 ($0.11 from cold boot)<br>@ 20 denoising steps</p>
 
-
-		<div class="px-4 pt-4 pb-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6" id="rest-gen-settings-section">
-			<div class="col-span-full grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
-				<div class="sm:col-span-3" id="gen-count-field-container">
-					<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
-						<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-							<option>6</option>
-							<option>7</option>
-							<option>8</option>
-							<option>9</option>
-							<option>10</option>
-						</select>
-					</div>
-				</div>
-				<div class="sm:col-span-3" id="denoising-steps-field-container">
-						<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
-						<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
-							<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-						</button>
-						<div class="mt-2">
-							<input type="number" name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-							<p class="text-right text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
-						</div>
-				</div>
-				<div class="col-span-full" id="neg-prompt-field-container">
-					<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-900">Negative Prompt</label>
-					<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
-						<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-					</button>
-					<div class="mt-2">
-					<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;">ugly, morbid, photorealistic</textarea>
-					</div>
-				</div>
-				<div class="sm:col-span-3" id="gs-field-container">
-					<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
-					<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
-						<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-					</button>
-					<div class="mt-2">
-					<input type="number" name="guidance-scale" id="guidance-scale" placeholder="13" min="1.0" max="20.0" step="0.1" value="13" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-					<p class="text-right text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
-					</div>
-				</div>
-				<div class="sm:col-span-3" id="seed-field-container">
-					<div class="flex items-center">
-						<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
-						<button onclick="randomizeSeed(event)" title="Random seed">
-							<i class="fa-solid fa-dice-three text-gray-500" aria-hidden="true"></i>
-						</button>
-					</div>
-					<div class="mt-2">
-						<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" placeholder="Random">
-						<p class="text-right text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
-					</div>
-				</div>
-			</div>
-		</div>
+		${basicGenSettingsSection}
 
 		${referenceFormSection}
 
@@ -621,6 +561,79 @@ function generateReferenceFormSectionHTML() {
 
 				</div>
 			</div>
+		</div>
+	</div>
+	`;
+}
+
+function basicGenerationSettingsHTML() {
+	return `
+	<div class="px-4 pt-4 pb-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6" id="rest-gen-settings-section">
+		<div class="col-span-full grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
+
+			<div class="col-span-full" id="neg-prompt-field-container">
+				<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-900">Negative Prompt</label>
+				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
+					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+				</button>
+				<div class="mt-2">
+					<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;">ugly, morbid, photorealistic</textarea>
+				</div>
+			</div>
+
+
+			<div class="sm:col-span-3" id="gs-field-container">
+				<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
+				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
+					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+				</button>
+				<div class="mt-2">
+				<input type="number" name="guidance-scale" id="guidance-scale" placeholder="13" min="1.0" max="20.0" step="0.1" value="13" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+				<p class="text-right text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
+				</div>
+			</div>
+			<div class="sm:col-span-3" id="seed-field-container">
+				<div class="flex items-center">
+					<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
+					<button onclick="randomizeSeed(event)" title="Random seed">
+						<i class="fa-solid fa-dice-three text-gray-500" aria-hidden="true"></i>
+					</button>
+				</div>
+				<div class="mt-2">
+					<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" placeholder="Random">
+					<p class="text-right text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
+				</div>
+			</div>
+
+
+			<div class="sm:col-span-3" id="gen-count-field-container">
+				<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
+					<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+				</div>
+			</div>
+			<div class="sm:col-span-3" id="denoising-steps-field-container">
+					<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
+					<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
+						<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+					</button>
+					<div class="mt-2">
+						<input type="number" name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<p class="text-right text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
+					</div>
+			</div>
+			
+			
 		</div>
 	</div>
 	`;

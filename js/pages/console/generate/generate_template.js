@@ -183,7 +183,7 @@ function baseGenMenuHTML() {
 }
 
 function generate_form_html() {
-	let referenceFormSection = referenceFormHTML();
+	let referenceFormSection = generateReferenceFormSectionHTML();
 	return `
 	<form class="generate-form overflow-y-auto flex flex-col px-0 py-4" id="generateForm">
 

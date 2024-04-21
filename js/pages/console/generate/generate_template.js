@@ -186,7 +186,7 @@ function generate_form_html() {
 	let basicGenSettingsSection = basicGenerationSettingsHTML();
 	let referenceFormSection = generateReferenceFormSectionHTML();
 	return `
-	<form class="generate-form overflow-y-auto flex flex-col px-0 py-4" id="generateForm">
+	<form class="generate-form overflow-y-auto flex flex-col px-0 py-0" id="generateForm">
 
 		<p class="text-xl font-bold mb-4 md:hidden">Generation Settings</p>
 

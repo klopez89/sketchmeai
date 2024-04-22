@@ -192,7 +192,7 @@ function generate_form_html() {
 
 
 		<div class="col-span-full px-0 py-3 border-b border-gray-300">
-			<div class="px-0 pb-0 grid grid-cols-1 gap-x-5 gap-y-0 sm:grid-cols-6">
+			<div class="px-0 pb-0 grid grid-cols-6 gap-x-5 gap-y-0 sm:grid-cols-6">
 				
 				<div class="col-span-2 flex items-center pl-4" id="mode-title-container">
 					<label class="text-sm font-medium leading-6 text-gray-700">Base Model</label>

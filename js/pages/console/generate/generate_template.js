@@ -39,7 +39,7 @@ function newGridItemHTML(gen_id, gen_string="") {
 
 					<div class="flex flex-grow items-center justify-center text-center">
 						<span class="flex items-center justify-center pr-2 pt-2">
-							<div class="bg-black bg-opacity-50 p-2 rounded-full flex items-center justify-center">
+							<div class="bg-black bg-opacity-30 p-2 rounded-full flex items-center justify-center">
 								<i class="fa-regular fa-heart text-white" aria-hidden="true"></i>
 							</div>
 						</span>

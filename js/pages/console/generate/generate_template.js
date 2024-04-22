@@ -188,7 +188,7 @@ function generate_form_html() {
 	return `
 	<form class="generate-form overflow-y-auto flex flex-col px-0 py-0" id="generateForm">
 
-		<p class="text-xl font-bold mb-4 md:hidden">Generation Settings</p>
+		<p class="text-xl font-bold py-2 pl-4 md:hidden border-b border-gray-300">Generation Settings</p>
 
 
 		<div class="col-span-full px-0 py-3 border-b border-gray-300">
@@ -222,7 +222,7 @@ function generate_form_html() {
 						</div>
 					</div>
 				</div>
-				<div class="col-span-2 pl-4" id="person-lora-influence-title-container">
+				<div class="col-span-2 pl-4 flex items-center" id="person-lora-influence-title-container">
 					<label class="text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 				</div>
 				<div class="col-span-4 flex gap-x-2 px-4" id="person-lora-influence-slider-container">

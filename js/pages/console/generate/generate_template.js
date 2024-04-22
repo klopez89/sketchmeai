@@ -244,7 +244,7 @@ function generate_form_html() {
 			</div>
 		</div>
 
-		<div class="col-span-full flex-col px-4 py-3 justify-center hidden md:flex border-t border-gray-300" id="gen-button-container">
+		<div class="col-span-full flex-col px-4 pb-2 pt-3 justify-center hidden md:flex border-t border-gray-300" id="gen-button-container">
 			<button id="gen-button" class="cursor-pointer rounded-md flex flex-grow justify-center items-center text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">
 				<p id="desktop-gen-button-label" class="flex items-center">Generate</p>
 				<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
@@ -567,7 +567,7 @@ function generateReferenceFormSectionHTML() {
 
 function basicGenerationSettingsHTML() {
 	return `
-	<div class="px-4 pt-4 pb-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 border-t border-gray-300" id="rest-gen-settings-section">
+	<div class="px-4 py-3 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 border-t border-gray-300" id="rest-gen-settings-section">
 		<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2">
 
 			<div class="col-span-full" id="neg-prompt-field-container">

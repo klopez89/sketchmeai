@@ -188,7 +188,10 @@ function generate_form_html() {
 	return `
 	<form class="generate-form overflow-y-auto flex flex-col px-0 py-0" id="generateForm">
 
-		<p class="text-xl font-bold py-2 pl-4 md:hidden border-b border-gray-300">Generation Settings</p>
+		<div class="pb-3 pt-3 pl-4 border-b border-gray-300 md:hidden">
+			<p class="text-xl font-bold">Generation Settings</p>
+			<p class="text-xs text-gray-400 italic" id="secondary-gen-estimate-label">~$0.04 ($0.11 from cold boot)</p>
+		</div>
 
 
 		<div class="col-span-full px-0 py-3 border-b border-gray-300">

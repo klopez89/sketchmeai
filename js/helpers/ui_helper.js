@@ -41,14 +41,14 @@ function showLoaderOnFavoriteButton(button) {
 
 function hideLoaderOnFavoriteButton(button) {
     let buttonLoaderIcon = button.querySelector('i.fa-spinner');
-    let buttonFavIcon = button.querySelector('span i');
+    let buttonFavIcon = button.querySelector('span div i');
     console.log('buttonLoaderIcon: ', buttonLoaderIcon);
     buttonLoaderIcon.classList.add('hidden');
     buttonFavIcon.classList.remove('text-transparent');
 }
 
 function setFavoriteButtonState(button, isFavorite) {
-    let buttonFavIcon = button.querySelector('span i');
+    let buttonFavIcon = button.querySelector('span div i');
     if (isFavorite) {
         buttonFavIcon.classList.add('fa-solid');
         buttonFavIcon.classList.remove('fa-regular');

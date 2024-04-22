@@ -505,7 +505,7 @@ function generateReferenceFormSectionHTML() {
 
 			</h2>
 			<div id="nestedImg2ImgCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
-				<div class="accordion-body px-0 pb-4 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
+				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
 
 					<!-- img-2img-url field -->
 					<div class="col-span-full" id="igm2img-field-container">
@@ -549,7 +549,7 @@ function generateReferenceFormSectionHTML() {
 					</div>
 
 
-					<div class="col-span-2" id="influence-title-container">
+					<div class="col-span-2 flex items-center" id="influence-title-container">
 						<label for="influence" class="text-sm font-medium leading-6 text-gray-900">Influence, %</label>
 					</div>
 

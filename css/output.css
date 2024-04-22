@@ -2964,6 +2964,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .pt-24 {
   padding-top: 6rem;
 }
+.pt-3 {
+  padding-top: 0.75rem;
+}
 .pt-4 {
   padding-top: 1rem;
 }
@@ -5014,10 +5017,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
   }
 }
 @media (min-width: 640px) {
-
-  .sm\:col-span-3 {
-    grid-column: span 3 / span 3;
-  }
 
   .sm\:-ml-4 {
     margin-left: -1rem;

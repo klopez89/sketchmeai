@@ -568,7 +568,7 @@ function generateReferenceFormSectionHTML() {
 function basicGenerationSettingsHTML() {
 	return `
 	<div class="px-4 pt-4 pb-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 border-t border-gray-300" id="rest-gen-settings-section">
-		<div class="col-span-full grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
+		<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2">
 
 			<div class="col-span-full" id="neg-prompt-field-container">
 				<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-900">Negative Prompt</label>
@@ -581,7 +581,7 @@ function basicGenerationSettingsHTML() {
 			</div>
 
 
-			<div class="sm:col-span-3" id="gs-field-container">
+			<div class="col-span-3" id="gs-field-container">
 				<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
 				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
 					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
@@ -591,7 +591,7 @@ function basicGenerationSettingsHTML() {
 				<p class="text-right text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
 				</div>
 			</div>
-			<div class="sm:col-span-3" id="seed-field-container">
+			<div class="col-span-3" id="seed-field-container">
 				<div class="flex items-center">
 					<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
 					<button onclick="randomizeSeed(event)" title="Random seed">
@@ -605,7 +605,7 @@ function basicGenerationSettingsHTML() {
 			</div>
 
 
-			<div class="sm:col-span-3" id="gen-count-field-container">
+			<div class="col-span-3" id="gen-count-field-container">
 				<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
 					<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 						<option>1</option>
@@ -621,7 +621,7 @@ function basicGenerationSettingsHTML() {
 					</select>
 				</div>
 			</div>
-			<div class="sm:col-span-3" id="denoising-steps-field-container">
+			<div class="col-span-3" id="denoising-steps-field-container">
 					<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
 					<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
 						<i class="fa-solid fa-circle-info" aria-hidden="true"></i>

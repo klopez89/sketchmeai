@@ -569,7 +569,7 @@ function updateTrainingCostEstimate() {
     let upload_count = numberOfUploadedFiles();
     let estimatedCostDiv = document.getElementById('training-estimate-label');
     if (upload_count < minimumUploadCount) {
-        estimatedCostDiv.innerHTML = 'Estimated cost: $2.99 (based on 10 images)<br>Estimated training time: 30 mins';
+        estimatedCostDiv.innerHTML = 'Estimated cost: $0.90 (based on 3 images)<br>Estimated training time: 9 mins';
     } else {
         let maxTrainSteps = upload_count * 100;
         let basePrices = getBasePrices();

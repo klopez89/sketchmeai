@@ -363,7 +363,7 @@ function newCollectionModalHTML() {
 				<div class="relative flex">
 					
 					<input type="text" name="new-collection-name" id="new-collection-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
-					<button id="create-new-collection-button" class="flex flex-grow justify-center items-center text-center bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToCreateNewCollection()">
+					<button id="create-new-collection-button" class="flex flex-grow justify-center items-center text-center bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToCreateNewCollection()">
 						<p id="new-collection-button-label" class="flex items-center">Create</p>
 						<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 					</button>

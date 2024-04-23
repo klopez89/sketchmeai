@@ -71,7 +71,10 @@ function dummyGridHTML() {
                     <div class="col-span-full mt-2" id="training-data-container">
                         <div class="flex items-center">
                             <label for="localUploadInput" class="block text-sm font-medium leading-6 text-gray-900">Training Data</label>
-                            <p class="text-xs text-gray-500 italic pl-1">(10-20 images)</p>
+                            <div class="flex gap-x-2">
+                                <p class="text-xs text-gray-500 italic pl-1">(3-20 images)</p>
+                                <p class="text-xs text-gray-500">Recommend 10</p>
+                            </div>
                         </div>
                         <div class="text-xs text-gray-500">Supported file types: jpg, jpeg, png, and heic (from Apple devices only)</div>
                         <div class="mt-2">

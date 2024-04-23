@@ -119,7 +119,7 @@ function dummyGridHTML() {
 
 
 
-						<button type="button" class="select-to-share-button min-w-20 ml-3 inline-flex justify-center items-center rounded-md px-3 py-2 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-600 bg-gray-200 text-gray-500 hover:bg-gray-300" onclick="toggleImageSelectability()">Select</button>
+						<button type="button" class="select-to-share-button min-w-20 ml-3 inline-flex justify-center items-center rounded-md px-3 py-2 text-sm shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-600 bg-gray-200 text-gray-500 hover:bg-gray-300" onclick="toggleImageSelectability()">Multi-Select</button>
 					</div>
 
 					<div class="selection-bar absolute bottom-0 w-full right-0 py-5 px-5 bg-gray-100 shadow-sm border-t border-gray-200 z-[35] hidden">

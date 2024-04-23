@@ -15,7 +15,7 @@ function homePageHtml() {
 	let headerSubtitle = 'With easy-to-use model training and image generation, SketchMeAi enables you to create new profile photos and more with AI technology. See how you can reimagine yourself.';
 
 	let first_feature_title = 'Model Training';
-	let first_feature_body = 'Upload 10 - 20 images of yourself or any other person and train your own AI to generate images. To improve quality of training, aim to include some variety of images, ie. face pic, face w/ torso, selfie, different lighting conditions.';
+	let first_feature_body = 'Upload 3 - 20 images of yourself or any other person and train your own AI to generate images. To improve quality of training, aim to include some variety of images, ie. face pic, face w/ torso, selfie, different lighting conditions.';
 
 	let second_feature_title = 'Generation Console';
 	let second_feature_body = 'Kick off as many image generations as you want while tinkering with typical prompt features like guidance scale, lora scale, and image-to-image. You can also fire off a generation for the same prompt across several trained models.';
@@ -32,10 +32,6 @@ function homePageHtml() {
 
 	// let fourth_feature_title = 'Receive';
 	// let fourth_feature_body = 'Once all images are generated, we will email you a link to your image set. From there, download, share, and use your new images!';
-	
-	let timeline_a_title = 'Collections';
-	let timeline_a_body = "Organize your generated images into collections for distinct projects, allowing for better management and retrieval of your creations.";
-	let timeline_a_date = 'Mar 2024';
 
 	let timeline_b_title = 'Image Prompt Adapter';
 	let timeline_b_body = "The IP-adapter is an add-on for Stable Diffusion that transforms images into prompts. It empowers you to emulate the style, composition, or specific facial characteristics found in a reference image."
@@ -193,7 +189,7 @@ function homePageHtml() {
 						</dt>
 						<dd class="mt-2 pr-12" id="faq-0" x-show="open" style="display: none;">
 							<p class="text-base leading-7 text-gray-600">
-								Image generation and model training both require SketchMeAi credit to use; which can be purchased via Stripe. Cost of generation and training depends on denoising steps and amount of training data, respectively. On average, generation is ~$0.04/image and training a model is ~$3.00/training.
+								Image generation and model training both require SketchMeAi credit to use; which can be purchased via Stripe. Cost of generation and training depends on denoising steps and amount of training data, respectively. On average, generation is ~$0.04/image and training a model is ~$0.90/training (on 3 images).
 							</p>
 						</dd>
 
@@ -302,17 +298,7 @@ function homePageHtml() {
 				</div>
 				<div class="mx-auto max-w-7xl px-6 lg:px-8">
 					<div class="mx-auto grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-4">
-						<div>
-							<time class="flex items-center text-sm font-semibold leading-6 text-gray-500">
-								<svg viewBox="0 0 4 4" class="mr-4 h-1 w-1 flex-none" aria-hidden="true">
-								<circle cx="2" cy="2" r="2" fill="currentColor" />
-								</svg>
-								${timeline_a_date}
-								<div class="absolute -ml-2 h-px w-screen -translate-x-full bg-gray-900/10 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0" aria-hidden="true"></div>
-							</time>
-							<p class="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-800">${timeline_a_title}</p>
-							<p class="mt-1 text-base leading-7 text-gray-600">${timeline_a_body}</p>
-						</div>
+						
 						<div>
 							<time class="flex items-center text-sm font-semibold leading-6 text-gray-500">
 								<svg viewBox="0 0 4 4" class="mr-4 h-1 w-1 flex-none" aria-hidden="true">

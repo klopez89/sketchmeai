@@ -36,6 +36,7 @@ function showLoaderOnFavoriteButton(button) {
     let buttonLoaderIcon = button.querySelector('i.fa-spinner');
     let buttonFavIcon = button.querySelector('span div i');
     buttonLoaderIcon.classList.remove('hidden');
+    buttonFavIcon.classList.remove('text-white')
     buttonFavIcon.classList.add('text-transparent');
 }
 
@@ -44,6 +45,7 @@ function hideLoaderOnFavoriteButton(button) {
     let buttonFavIcon = button.querySelector('span div i');
     console.log('buttonLoaderIcon: ', buttonLoaderIcon, ' and buttonFavIcon: ', buttonFavIcon);
     buttonLoaderIcon.classList.add('hidden');
+    buttonFavIcon.classList.add('text-white')
     buttonFavIcon.classList.remove('text-transparent');
 }
 

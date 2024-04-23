@@ -77,8 +77,6 @@ function createGridHTML(numCopies) {
     return htmlString;
 }
 
-// <textarea id="prompt" name="prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></textarea>
-
 
 function dummyGridHTML() {
 
@@ -238,10 +236,10 @@ function generate_form_html() {
 		</div>
 
 
-		<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 py-3 px-4">
+		<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 pb-3 pt-2 px-4">
 			<div class="col-span-full" id="prompt-field-container">
 				<div class="flex justify-between items-center">
-					<label for="prompt" class="block text-sm font-medium leading-6 text-gray-900">Prompt</label>
+					<label for="prompt" class="block text-sm font-medium leading-6 text-gray-700">Prompt</label>
 				</div>
 				<div class="mt-2">
 					<div id="prompt" name="prompt" rows="3" class="max-w-full overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></div>
@@ -541,7 +539,7 @@ function generateReferenceFormSectionHTML() {
 
 
 					<div class="col-span-3 flex items-center" id="mode-title-container">
-						<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-900">Mode</label>
+						<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-700">Mode</label>
 						<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
 							<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 						</button>
@@ -555,7 +553,7 @@ function generateReferenceFormSectionHTML() {
 
 
 					<div class="col-span-2 flex items-center" id="influence-title-container">
-						<label for="influence" class="text-sm font-medium leading-6 text-gray-900">Influence, %</label>
+						<label for="influence" class="text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 					</div>
 
 					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
@@ -572,11 +570,11 @@ function generateReferenceFormSectionHTML() {
 
 function basicGenerationSettingsHTML() {
 	return `
-	<div class="px-4 py-3 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 border-t border-gray-300" id="rest-gen-settings-section">
+	<div class="px-4 pb-3 pt-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 border-t border-gray-300" id="rest-gen-settings-section">
 		<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2">
 
 			<div class="col-span-full" id="neg-prompt-field-container">
-				<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-900">Negative Prompt</label>
+				<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-700">Negative Prompt</label>
 				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
 					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 				</button>
@@ -587,7 +585,7 @@ function basicGenerationSettingsHTML() {
 
 
 			<div class="col-span-3" id="gs-field-container">
-				<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-900">Guidance Scale</label>
+				<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-700">Guidance Scale</label>
 				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
 					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 				</button>
@@ -598,7 +596,7 @@ function basicGenerationSettingsHTML() {
 			</div>
 			<div class="col-span-3" id="seed-field-container">
 				<div class="flex items-center">
-					<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-900">Seed</label>
+					<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-700">Seed</label>
 					<button onclick="randomizeSeed(event)" title="Random seed">
 						<i class="fa-solid fa-dice-three text-gray-500" aria-hidden="true"></i>
 					</button>
@@ -611,7 +609,7 @@ function basicGenerationSettingsHTML() {
 
 
 			<div class="col-span-3" id="gen-count-field-container">
-				<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-900"># of Images</label><div class="mt-2">
+				<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
 					<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 						<option>1</option>
 						<option>2</option>
@@ -627,7 +625,7 @@ function basicGenerationSettingsHTML() {
 				</div>
 			</div>
 			<div class="col-span-3" id="denoising-steps-field-container">
-					<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-900">Denoising Steps</label>
+					<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-700">Denoising Steps</label>
 					<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
 						<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 					</button>

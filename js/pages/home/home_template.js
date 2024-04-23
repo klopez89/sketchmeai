@@ -11,7 +11,7 @@ function homePageHtml() {
 // Old Title: Explore what you can create with AI
 // Old Subtitle: Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters to craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.
 
-	let headerTitle = 'New a new profile pic?<br>Let <b>AI</b> help';
+	let headerTitle = 'New a new<br>profile pic?<br>Let <b>AI</b> help';
 	let headerSubtitle = 'With easy-to-use model training and image generation, SketchMeAi enables you to create new profile photos and more with AI technology. See how you can reimagine yourself.';
 
 	let first_feature_title = 'Model Training';

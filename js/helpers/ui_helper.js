@@ -34,7 +34,7 @@ function hideLoaderOnButton(button) {
 
 function showLoaderOnFavoriteButton(button) {
     let buttonLoaderIcon = button.querySelector('i.fa-spinner');
-    let buttonFavIcon = button.querySelector('span i');
+    let buttonFavIcon = button.querySelector('span div i');
     buttonLoaderIcon.classList.remove('hidden');
     buttonFavIcon.classList.add('text-transparent');
 }

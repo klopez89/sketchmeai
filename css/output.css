@@ -5206,8 +5206,8 @@ input[type="range"]:active::-webkit-slider-thumb {}
     padding-right: 17px;
   }
 
-  .md\:pt-\[4\.2rem\] {
-    padding-top: 4.2rem;
+  .md\:pt-\[3\.8rem\] {
+    padding-top: 3.8rem;
   }
 
   .md\:opacity-0 {
@@ -5310,10 +5310,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .lg\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .lg\:flex-col {

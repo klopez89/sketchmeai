@@ -1515,7 +1515,9 @@ function clearRefImgElement(event) {
 function getUploadedRef() {
 	let singleRefImageButton = document.getElementById('ref-img-button');
     let singleRefImg = singleRefImageButton.querySelector('img');
-    if (singleRefImg.src === '') {
+    let singleRefSrcUrl = singleRefImg.src;
+    console.log('the single ref img src url is: ', singleRefSrcUrl)
+    if (singleRefSrcUrl === '') {
         return null;
     }
 

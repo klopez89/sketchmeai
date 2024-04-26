@@ -2138,17 +2138,24 @@ function toggleAysPressed(event) {
     event.stopPropagation();
     let aysButton = event.currentTarget;
     let span = aysButton.querySelector('span');
-    let isAysEnabled = aysButton.classList.contains('bg-black');
+    let denoisingStepsField = document.getElementById('denoising-steps');
+    let shouldEnableAys = !aysButton.classList.contains('bg-black');
 
-    if (isAysEnabled) {
-        aysButton.classList.remove('bg-black');
-        aysButton.classList.add('bg-gray-200');
-        span.classList.remove('translate-x-5');
-        span.classList.add('translate-x-0');
-    } else {
+    if (shouldEnableAys) {
         aysButton.classList.add('bg-black');
         aysButton.classList.remove('bg-gray-200');
         span.classList.add('translate-x-5');
         span.classList.remove('translate-x-0');
+        denoisingStepsField.disabled = true;
+        denoisingStepsField.classList.remove('text-gray-900');
+        denoisingStepsField.classList.add('text-gray-400');
+    } else {
+        aysButton.classList.remove('bg-black');
+        aysButton.classList.add('bg-gray-200');
+        span.classList.remove('translate-x-5');
+        span.classList.add('translate-x-0');
+        denoisingStepsField.disabled = false;
+        denoisingStepsField.classList.add('text-gray-900');
+        denoisingStepsField.classList.remove('text-gray-400');
     }
 }

@@ -1517,8 +1517,9 @@ function getUploadedRef() {
     console.log('the single ref img button is: ', singleRefImageButton);
     let singleRefImg = singleRefImageButton.querySelector('img');
     let singleRefSrcUrl = singleRefImg.src;
-    console.log('the single ref img src url is: ', singleRefSrcUrl);
-    if (singleRefSrcUrl === '') {
+    let currentPageUrl = window.location.href;
+
+    if (singleRefSrcUrl === '' || singleRefSrcUrl === currentPageUrl) {
         return null;
     }
 

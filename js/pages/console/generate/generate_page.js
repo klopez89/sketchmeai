@@ -1517,16 +1517,14 @@ function getUploadedRef() {
     console.log('the single ref img button is: ', singleRefImageButton);
     let singleRefImg = singleRefImageButton.querySelector('img');
     let singleRefSrcUrl = singleRefImg.src;
-    let currentPageUrl = window.location.href;
 
-    console.log('the currentPageUrl is: ', currentPageUrl, ' and singleRefSrcUrl is: ', singleRefSrcUrl);
     if (singleRefSrcUrl === '' || !singleRefSrcUrl.startsWith('data:image')) {
         return null;
     }
 
 	let singleRefImgInfo = {
         name: singleRefImg.getAttribute('filename'),
-        data: singleRefImg.src,
+        data: singleRefSrcUrl,
         type: singleRefImg.getAttribute('fileType'),
     };
     return singleRefImgInfo;
@@ -1660,6 +1658,18 @@ function promptInputValues() {
         }
     }
 
+    if (modelValues.length == 0) {
+        let baseModelSelector = document.getElementById('base-model-selector');
+        let selectedOption = baseModelSelector.options[baseModelSelector.selectedIndex].value;
+        modelValues.push(selectedOption.getAttribute('model'));
+        modelNames.push(selectedOption.getAttribute('modelname'));
+        modelIds.push(selectedOption.getAttribute('id'));
+        versionValues.push(selectedOption.getAttribute('version'));
+        instanceKeys.push(selectedOption.getAttribute('instkey'));
+        trainingSubjects.push(selectedOption.getAttribute('trainingSubject'));
+        genderTypes.push(selectedOption.getAttribute('genderType'));
+    }
+    
     console.log('the selected model names list: ', modelNames);
   
     return {

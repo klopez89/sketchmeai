@@ -1647,7 +1647,7 @@ function promptInputValues() {
     var genderTypes = [];
     for (var i = 0; i < loraPersonDivs.length; i++) {
         let isLoraPersonSelected = loraPersonDivs[i].classList.contains('selected');
-        if (isLoraPersonSelected) {
+        if (isLoraPersonSelected && !loraPersonDivs[i].id.includes('no-')) {
             modelValues.push(loraPersonDivs[i].getAttribute('model'));
             modelNames.push(loraPersonDivs[i].getAttribute('modelname'));
             modelIds.push(loraPersonDivs[i].getAttribute('id'));

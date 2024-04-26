@@ -1520,7 +1520,7 @@ function getUploadedRef() {
     let currentPageUrl = window.location.href;
 
     console.log('the currentPageUrl is: ', currentPageUrl, ' and singleRefSrcUrl is: ', singleRefSrcUrl);
-    if (singleRefSrcUrl === '' || singleRefSrcUrl === currentPageUrl) {
+    if (singleRefSrcUrl === '' || !singleRefSrcUrl.startsWith('data:image')) {
         return null;
     }
 

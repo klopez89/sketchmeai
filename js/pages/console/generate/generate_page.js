@@ -1660,7 +1660,7 @@ function promptInputValues() {
 
     if (modelValues.length == 0) {
         let baseModelSelector = document.getElementById('base-model-selector');
-        let selectedOption = baseModelSelector.options[baseModelSelector.selectedIndex].value;
+        let selectedOption = baseModelSelector.options[baseModelSelector.selectedIndex];
         modelValues.push(selectedOption.getAttribute('model'));
         modelNames.push(selectedOption.getAttribute('modelname'));
         modelIds.push(selectedOption.getAttribute('id'));
@@ -1669,7 +1669,7 @@ function promptInputValues() {
         trainingSubjects.push(selectedOption.getAttribute('trainingSubject'));
         genderTypes.push(selectedOption.getAttribute('genderType'));
     }
-    
+
     console.log('the selected model names list: ', modelNames);
   
     return {

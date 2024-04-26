@@ -1519,6 +1519,7 @@ function getUploadedRef() {
     let singleRefSrcUrl = singleRefImg.src;
     let currentPageUrl = window.location.href;
 
+    console.log('the currentPageUrl is: ', currentPageUrl, ' and singleRefSrcUrl is: ', singleRefSrcUrl);
     if (singleRefSrcUrl === '' || singleRefSrcUrl === currentPageUrl) {
         return null;
     }

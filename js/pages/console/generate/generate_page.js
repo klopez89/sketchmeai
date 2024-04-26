@@ -949,10 +949,10 @@ function generateButtonPressed(event) {
 
     console.log('the customSdxlModelNamesIncluded value: ', customSdxlModelNamesIncluded);
 
-    if (!customSdxlModelNamesIncluded && customSdxlCount > 0) {
-        displayErrorBanner('A fine tuned model is selected but not mentioned in the prompt.');
-        return;
-    }
+    // if (!customSdxlModelNamesIncluded && customSdxlCount > 0) {
+    //     displayErrorBanner('A fine tuned model is selected but not mentioned in the prompt.');
+    //     return;
+    // }
 
     var prompt = promptValues.prompt;
     if (isPromptInputShowingPlaceholder() == true) {

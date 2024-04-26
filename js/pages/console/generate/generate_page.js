@@ -1518,7 +1518,11 @@ function getUploadedRef() {
     let singleRefImg = singleRefImageButton.querySelector('img');
     let singleRefSrcUrl = singleRefImg.src;
 
-    if (singleRefSrcUrl === '' || !singleRefSrcUrl.startsWith('data:image')) {
+    let currentPageUrl = window.location.href;
+    const isSameUrl = new URL(currentPageUrl).origin + new URL(currentPageUrl).pathname === new URL(singleRefSrcUrl).origin + new URL(singleRefSrcUrl).pathname;
+    console.log('the isSameUrl value is: ', isSameUrl);
+
+    if (singleRefSrcUrl === '' || isSameUrl) {
         return null;
     }
 

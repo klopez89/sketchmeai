@@ -2132,3 +2132,23 @@ function personLoraSelectionMade() {
     triggerModelNameInPromptFormatting();
     updateGenerationEstimateLabel();
 }
+
+function toggleAysPressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let aysButton = event.currentTarget;
+    let span = aysButton.querySelector('span');
+    let isAysEnabled = aysButton.classList.contains('bg-black');
+
+    if (isAysEnabled) {
+        aysButton.classList.remove('bg-black');
+        aysButton.classList.add('bg-gray-200');
+        span.classList.remove('translate-x-5');
+        span.classList.add('translate-x-0');
+    } else {
+        aysButton.classList.add('bg-black');
+        aysButton.classList.remove('bg-gray-200');
+        span.classList.add('translate-x-5');
+        span.classList.remove('translate-x-0');
+    }
+}

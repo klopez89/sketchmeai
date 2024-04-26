@@ -1060,6 +1060,7 @@ function generateButtonPressed(event) {
                 refImgInfo: promptValues.refImgInfo,
                 promptStrength: promptValues.promptStrength,
                 inferenceSteps: promptValues.inferenceSteps,
+                shouldUseAys: promptValues.shouldUseAys,
                 loraScale: promptValues.loraScale,
                 resWidth: promptValues.resWidth,
                 resHeight: promptValues.resHeight,
@@ -1603,6 +1604,8 @@ function promptInputValues() {
     prompt = sanitizePrompt(prompt);
     let numberOfImages = document.getElementById('gen-count').value;
     var inferenceSteps = document.getElementById('denoising-steps').value;
+    let aysToggleButton = document.getElementById('ays-toggle-button');
+    let isAysToggled = aysToggleButton.classList.contains('enabled');
     let negativePrompt = document.getElementById("neg-prompt").value;
     var gscale = document.getElementById('guidance-scale').value;
     let seed = document.getElementById('seed').value;
@@ -1680,6 +1683,7 @@ function promptInputValues() {
         prompt: prompt,
         numberOfImages: numberOfImages,
         inferenceSteps: inferenceSteps,
+        shouldUseAys: isAysToggled,
         negativePrompt: negativePrompt,
         gscale: gscale,
         seed: seed,
@@ -2142,6 +2146,7 @@ function toggleAysPressed(event) {
     let shouldEnableAys = !aysButton.classList.contains('bg-black');
 
     if (shouldEnableAys) {
+        aysButton.classList.add('enabled');
         aysButton.classList.add('bg-black');
         aysButton.classList.remove('bg-gray-200');
         span.classList.add('translate-x-5');
@@ -2150,6 +2155,7 @@ function toggleAysPressed(event) {
         denoisingStepsField.classList.remove('text-gray-900');
         denoisingStepsField.classList.add('text-gray-400');
     } else {
+        aysButton.classList.remove('enabled');
         aysButton.classList.remove('bg-black');
         aysButton.classList.add('bg-gray-200');
         span.classList.remove('translate-x-5');

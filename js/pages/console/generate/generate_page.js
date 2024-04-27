@@ -658,6 +658,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 hideInfiniteLoader();
                 removeLastDocId();
                 showMobileBottomGenMenu();
+                showGenTopMenu();
                 setTimeout(function() {
                   isCurrentlyPaginatingPrompts = false;
                 }, 50);

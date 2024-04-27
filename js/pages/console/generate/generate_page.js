@@ -824,6 +824,7 @@ function copyPromptInfoFromGen(generation) {
     // Trigger some UI updates in the gen form
     document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
     selectModelWithVersion(generation.model_version);
+    updateAysToggle(generation.gen_recipe.should_use_ays);
 }
 
 function insertImgUrlForRefImg(url) {
@@ -2142,11 +2143,14 @@ function toggleAysPressed(event) {
     event.preventDefault();
     event.stopPropagation();
     let aysButton = event.currentTarget;
+    let shouldEnableAys = !aysButton.classList.contains('enabled');
+    updateAysToggle(shouldEnableAys);
+}
+function updateAysToggle(shouldEnable) {
+    let aysButton = document.getElementById('ays-toggle-button');
     let span = aysButton.querySelector('span');
     let denoisingStepsField = document.getElementById('denoising-steps');
-    let shouldEnableAys = !aysButton.classList.contains('bg-black');
-
-    if (shouldEnableAys) {
+    if (shouldEnable) {
         aysButton.classList.add('enabled');
         aysButton.classList.add('bg-black');
         aysButton.classList.remove('bg-gray-200');

@@ -1,9 +1,16 @@
-const container = document.querySelector('.comp-container');
-document.querySelector('.slider').addEventListener('input', function(e) {
+// const container = document.querySelector('.comp-container');
+// document.querySelector('.slider').addEventListener('input', function(e) {
+//     container.style.setProperty('--position', `${e.target.value}%`);
+// });
+
+function configureComparisonSliders() {
+    const container = document.querySelector('.comp-container');
+    document.querySelector('.slider').addEventListener('input', function(e) {
     container.style.setProperty('--position', `${e.target.value}%`);
 });
 
 
+}
 
 function comparisonElementHTML(before_img_src, after_img_src) {
     return `

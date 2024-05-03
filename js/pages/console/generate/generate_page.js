@@ -825,6 +825,7 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
     selectModelWithVersion(generation.model_version);
     updateAysToggle(generation.gen_recipe.should_use_ays);
+    updateHiDToggle(generation.gen_recipe.should_use_hi_d);
 }
 
 function insertImgUrlForRefImg(url) {

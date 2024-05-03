@@ -14,6 +14,9 @@ function addComparisons() {
     let black_comp_html = comparisonElementHTML(black_before, black_after);
     let black_comp_div = $($.parseHTML(black_comp_html));
 
-    $('#blog-container').append(blue_comp_div);
-    $('#blog-container').append(black_comp_div);
+    $('#blog-container').prepend(blue_comp_div);
+    $('#blog-container').prepend(black_comp_div);
+
+    configureComparisonSlider(blue_comp_div.find('.slider')[0]);
+    configureComparisonSlider(black_comp_div.find('.slider')[0]);
 }

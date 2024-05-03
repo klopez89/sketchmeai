@@ -7,9 +7,14 @@ function configureComparisonSliders() {
     const container = document.querySelector('.comp-container');
     document.querySelector('.slider').addEventListener('input', function(e) {
     container.style.setProperty('--position', `${e.target.value}%`);
-});
+    });
+}
 
-
+function configureComparisonSlider(slider) {
+    const container = slider.closest('.comp-container');
+    slider.addEventListener('input', function(e) {
+        container.style.setProperty('--position', `${e.target.value}%`);
+    });
 }
 
 function comparisonElementHTML(before_img_src, after_img_src) {

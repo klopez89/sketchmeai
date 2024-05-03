@@ -60,7 +60,6 @@ img {
     width: .2rem;
     height: 100%;
     background-color: #fff;
-    z-index: 10;
     left: var(--position);
     transform: translateX(-50%);
     pointer-events: none;
@@ -78,6 +77,5 @@ img {
     left: var(--position);
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 100;
     box-shadow: 1px 1px 1px hsl(0, 50%, 2%, .5);
 }

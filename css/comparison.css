@@ -23,6 +23,7 @@ img {
 .image-container {
     max-width: 800px;
     max-height: 90vh;
+    aspect-ratio: 1/1;
 }
 
 .slider-image {

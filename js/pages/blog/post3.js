@@ -1,4 +1,5 @@
 addComparisons();
+configureComparisonSliders();
 
 function addComparisons() {
     let blue_before = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_non_ays.png";

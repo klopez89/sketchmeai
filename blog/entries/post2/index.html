@@ -10,7 +10,8 @@
     <script src="https://kit.fontawesome.com/f302f79bb4.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="../../../css/output.css">
-    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../../../css/general.css">
+    <link rel="stylesheet" href="../../../css/comparison.css">
 </head>
 
 <body class="h-full">
@@ -19,6 +20,7 @@
     <script src="../../../node_modules/tw-elements/dist/js/tw-elements.umd.min.js"></script>
     <script src="../../../js/helpers/constants.js"></script>
     <script src="../../../js/helpers/shared_templates.js"></script>
+    <script src="../../../js/helpers/comparison.js" defer></script>
 
 
     <div class="bg-gray-100 h-full relative flex justify-center">
@@ -28,15 +30,27 @@
             <div class="container">
                 <div class="image-container">
                     <img 
-                        class="image-before"
+                        class="image-before slider-image"
                         src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_non_ays.png" 
                         alt="Before non-ays image"
                     />
                     <img 
-                        class="image-after"
+                        class="image-after slider-image"
                         src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_ays.png" 
                         alt="After ays image"
                     />
+                </div>
+                <input 
+                    type="range" 
+                    min="0" 
+                    max="100" 
+                    value="50" 
+                    class="slider" 
+                    aria-label="Percentage of before photo shown"
+                />
+                <div class="slider-line"></div>
+                <div class="slider-button" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="3" fill="currentColor" viewBox="0 0 256 256"><path d="M136,40V216a8,8,0,0,1-16,0V40a8,8,0,0,1,16,0ZM96,120H35.31l18.35-18.34A8,8,0,0,0,42.34,90.34l-32,32a8,8,0,0,0,0,11.32l32,32a8,8,0,0,0,11.32-11.32L35.31,136H96a8,8,0,0,0,0-16Zm149.66,2.34-32-32a8,8,0,0,0-11.32,11.32L220.69,120H160a8,8,0,0,0,0,16h60.69l-18.35,18.34a8,8,0,0,0,11.32,11.32l32-32A8,8,0,0,0,245.66,122.34Z"></path></svg>
                 </div>
             </div>
             

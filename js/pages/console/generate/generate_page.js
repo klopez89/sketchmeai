@@ -1063,6 +1063,7 @@ function generateButtonPressed(event) {
                 promptStrength: promptValues.promptStrength,
                 inferenceSteps: promptValues.inferenceSteps,
                 shouldUseAys: promptValues.shouldUseAys,
+                shouldUseHid: promptValues.shouldUseHid,
                 loraScale: promptValues.loraScale,
                 resWidth: promptValues.resWidth,
                 resHeight: promptValues.resHeight,
@@ -1608,6 +1609,8 @@ function promptInputValues() {
     var inferenceSteps = document.getElementById('denoising-steps').value;
     let aysToggleButton = document.getElementById('ays-toggle-button');
     let isAysToggled = aysToggleButton.classList.contains('enabled');
+    let hidToggleButton = document.getElementById('hid-toggle-button');
+    let isHidToggled = hidToggleButton.classList.contains('enabled');
     let negativePrompt = document.getElementById("neg-prompt").value;
     var gscale = document.getElementById('guidance-scale').value;
     let seed = document.getElementById('seed').value;
@@ -1686,6 +1689,7 @@ function promptInputValues() {
         numberOfImages: numberOfImages,
         inferenceSteps: inferenceSteps,
         shouldUseAys: isAysToggled,
+        shouldUseHid: isHidToggled,
         negativePrompt: negativePrompt,
         gscale: gscale,
         seed: seed,
@@ -2159,6 +2163,7 @@ function updateAysToggle(shouldEnable) {
         denoisingStepsField.disabled = true;
         denoisingStepsField.classList.remove('text-gray-900');
         denoisingStepsField.classList.add('text-gray-400');
+        updateHiDToggle(false);
     } else {
         aysButton.classList.remove('enabled');
         aysButton.classList.remove('bg-black');
@@ -2168,5 +2173,33 @@ function updateAysToggle(shouldEnable) {
         denoisingStepsField.disabled = false;
         denoisingStepsField.classList.add('text-gray-900');
         denoisingStepsField.classList.remove('text-gray-400');
+    }
+}
+
+function toggleHiDPressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let hiDButton = event.currentTarget;
+    let shouldEnableHiD = !hiDButton.classList.contains('enabled');
+    updateHiDToggle(shouldEnableHiD);
+}
+
+function updateHiDToggle(shouldEnable) {
+    let hiDButton = document.getElementById('hid-toggle-button');
+    let span = hiDButton.querySelector('span');
+
+    if (shouldEnable) {
+        hiDButton.classList.add('enabled');
+        hiDButton.classList.add('bg-black');
+        hiDButton.classList.remove('bg-gray-200');
+        span.classList.add('translate-x-5');
+        span.classList.remove('translate-x-0');
+        updateAysToggle(false);
+    } else {
+        hiDButton.classList.remove('enabled');
+        hiDButton.classList.remove('bg-black');
+        hiDButton.classList.add('bg-gray-200');
+        span.classList.remove('translate-x-5');
+        span.classList.add('translate-x-0');
     }
 }

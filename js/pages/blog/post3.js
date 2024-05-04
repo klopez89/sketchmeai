@@ -73,7 +73,7 @@ function loadInAysTestImages() {
     var true_src = image_before.getAttribute('true_src');
 
     let actualImage_1 = new Image();
-    actualImage.onload = function() {
+    actualImage_1.onload = function() {
         image_before.src = this.src;
     };
     actualImage_1.src = true_src;
@@ -82,7 +82,7 @@ function loadInAysTestImages() {
     true_src = image_before.getAttribute('true_src');
 
     let actualImage2 = new Image();
-    actualImage.onload = function() {
+    actualImage2.onload = function() {
         image_after.src = this.src;
     };
     actualImage2.src = true_src;

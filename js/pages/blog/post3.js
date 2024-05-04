@@ -72,18 +72,18 @@ function loadInAysTestImages() {
     let image_before = ays_test_1.querySelector('.image-before');
     var true_src = image_before.getAttribute('true_src');
 
-    var actualImage = new Image();
+    let actualImage_1 = new Image();
     actualImage.onload = function() {
         image_before.src = this.src;
     };
-    actualImage.src = true_src;
+    actualImage_1.src = true_src;
 
     let image_after = ays_test_1.querySelector('.image-after');
     true_src = image_before.getAttribute('true_src');
 
-    actualImage = new Image();
+    let actualImage2 = new Image();
     actualImage.onload = function() {
         image_after.src = this.src;
     };
-    actualImage.src = true_src;
+    actualImage2.src = true_src;
 }

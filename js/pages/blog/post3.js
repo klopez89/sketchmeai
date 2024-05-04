@@ -79,7 +79,7 @@ function loadInAysTestImages() {
     actualImage_1.src = true_src;
 
     let image_after = ays_test_1.querySelector('.image-after');
-    true_src = image_before.getAttribute('true_src');
+    true_src = image_after.getAttribute('true_src');
 
     let actualImage2 = new Image();
     actualImage2.onload = function() {

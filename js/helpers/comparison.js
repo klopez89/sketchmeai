@@ -11,7 +11,7 @@ function configureComparisonSliders() {
 }
 
 function configureComparisonSlider(slider) {
-    const container = slider.closest('.comp-container');
+    const container = slider.querySelector('.comp-container');
     slider.addEventListener('input', function(e) {
         container.style.setProperty('--position', `${e.target.value}%`);
     });

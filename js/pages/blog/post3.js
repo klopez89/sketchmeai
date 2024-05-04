@@ -1,5 +1,5 @@
-addComparisons();
-configureComparisonSliders();
+// addComparisons();
+// configureComparisonSliders();
 addAysTestComparisons();
 configureAysTestComparisons();
 loadInAysTestImages();

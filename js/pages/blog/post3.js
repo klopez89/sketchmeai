@@ -53,8 +53,15 @@ function addAysTestComparisons() {
     let ays_1_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-reg-1.png";
     let ays_1 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-1.png";
 
+    let ays_2_reg = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+    let ays_2 = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
     let ays_1_comp_html = comparisonElementHTML(ays_1_reg, ays_1);
     let ays_1_comp_div = $($.parseHTML(ays_1_comp_html));
 
+    let ays_2_comp_html = comparisonElementHTML(ays_2_reg, ays_2);
+    let ays_2_comp_div = $($.parseHTML(ays_2_comp_html));
+
     $('#ays-test-1').append(ays_1_comp_div);
+    $('#ays-test-2').append(ays_2_comp_div);
 }

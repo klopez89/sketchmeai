@@ -1,6 +1,7 @@
 // addComparisons();
 addAysTestComparisons();
 configureComparisonSliders();
+loadInAysTestImages();
 
 
 function addComparisons() {
@@ -53,8 +54,8 @@ function addAysTestComparisons() {
     let ays_1_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-reg-1.png";
     let ays_1 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-1.png";
 
-    let ays_2_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blank_sq.png";
-    let ays_2 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blank_sq.png";
+    let ays_2_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-reg-2.png";
+    let ays_2 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-2.png";
 
     let ays_1_comp_html = comparisonElementHTML(ays_1_reg, ays_1);
     let ays_1_comp_div = $($.parseHTML(ays_1_comp_html));
@@ -64,4 +65,25 @@ function addAysTestComparisons() {
 
     $('#ays-test-1').append(ays_1_comp_div);
     $('#ays-test-2').append(ays_2_comp_div);
+}
+
+function loadInAysTestImages() {
+    let ays_test_1 = document.getElementById('ays-test-1');
+    let image_before = ays_test_1.querySelector('.image-before');
+    var true_src = image_before.getAttribute('true_src');
+
+    var actualImage = new Image();
+    actualImage.onload = function() {
+        image_before.src = this.src;
+    };
+    actualImage.src = true_src;
+
+    let image_after = ays_test_1.querySelector('.image-after');
+    true_src = image_before.getAttribute('true_src');
+
+    actualImage = new Image();
+    actualImage.onload = function() {
+        image_after.src = this.src;
+    };
+    actualImage.src = true_src;
 }

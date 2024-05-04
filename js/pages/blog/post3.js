@@ -68,8 +68,30 @@ function addAysTestComparisons() {
 }
 
 function loadInAysTestImages() {
-    let ays_test_1 = document.getElementById('ays-test-1');
-    let image_before = ays_test_1.querySelector('.image-before');
+    loadComparisonImgs('ays-test-1');
+    // let ays_test_1 = document.getElementById('ays-test-1');
+    // let image_before = ays_test_1.querySelector('.image-before');
+    // var true_src = image_before.getAttribute('true_src');
+
+    // let actualImage_1 = new Image();
+    // actualImage_1.onload = function() {
+    //     image_before.src = this.src;
+    // };
+    // actualImage_1.src = true_src;
+
+    // let image_after = ays_test_1.querySelector('.image-after');
+    // true_src = image_after.getAttribute('true_src');
+
+    // let actualImage2 = new Image();
+    // actualImage2.onload = function() {
+    //     image_after.src = this.src;
+    // };
+    // actualImage2.src = true_src;
+}
+
+function loadComparisonImgs(comparison_id) {
+    let comparison = document.getElementById(`${comparison_id}`);
+    let image_before = comparison.querySelector('.image-before');
     var true_src = image_before.getAttribute('true_src');
 
     let actualImage_1 = new Image();
@@ -78,7 +100,7 @@ function loadInAysTestImages() {
     };
     actualImage_1.src = true_src;
 
-    let image_after = ays_test_1.querySelector('.image-after');
+    let image_after = comparison.querySelector('.image-after');
     true_src = image_after.getAttribute('true_src');
 
     let actualImage2 = new Image();

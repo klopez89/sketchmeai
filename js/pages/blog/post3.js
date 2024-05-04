@@ -69,6 +69,7 @@ function addAysTestComparisons() {
 
 function loadInAysTestImages() {
     loadComparisonImgs('ays-test-1');
+    loadComparisonImgs('ays-test-2');
     // let ays_test_1 = document.getElementById('ays-test-1');
     // let image_before = ays_test_1.querySelector('.image-before');
     // var true_src = image_before.getAttribute('true_src');

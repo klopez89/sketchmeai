@@ -1,4 +1,5 @@
-// addComparisons();
+addComparisons();
+configureComparisonSliders();
 addAysTestComparisons();
 configureAysTestComparisons();
 loadInAysTestImages();
@@ -6,7 +7,9 @@ loadInAysTestImages();
 
 function configureAysTestComparisons() {
     let ays_test_1 = document.getElementById('ays-test-1');
+    let ays_test_2 = document.getElementById('ays-test-2');
     configureComparisonSlider(ays_test_1)
+    configureComparisonSlider(ays_test_2)
 }
 
 function addComparisons() {

@@ -1,5 +1,7 @@
-addComparisons();
+// addComparisons();
+addAysTestComparisons();
 configureComparisonSliders();
+
 
 function addComparisons() {
     let blue_before = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_non_ays.png";
@@ -45,4 +47,14 @@ function addComparisons() {
     configureComparisonSlider(red_comp_div.find('.slider')[0]);
     configureComparisonSlider(green_comp_div.find('.slider')[0]);
     configureComparisonSlider(orange_comp_div.find('.slider')[0]);
+}
+
+function addAysTestComparisons() {
+    let ays_1_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-reg-1.png";
+    let ays_1 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-1.png";
+
+    let ays_1_comp_html = comparisonElementHTML(ays_1_reg, ays_1);
+    let ays_1_comp_div = $($.parseHTML(ays_1_comp_html));
+
+    $('#ays-test-1').append(ays_1_comp_div);
 }

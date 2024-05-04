@@ -27,7 +27,58 @@
     <div class="bg-gray-100 h-full relative flex justify-center">
         <div id="blog-container" class="mx-auto max-w-4xl px-8 lg:px-12 py-8 h-full w-full bg-white transform transition-all duration-200 ease-in-out">
             
-            
+            <header class="mb-2 text-3xl font-bold">Organize Your Generations with Collections</header>
+            <div id="blog-data-container" class="flex flex-col">
+
+                <p class="mt-2 mb-4">Tuesday, April 23rd 2024</p>
+                <p class="mt-2">&nbsp;</p>
+                <p class="mt-2">As we've come to expect, the AI space evolves insanely fast! New AI tech papers seem to come every single day. Well one of those recent papers caught my attention for two reasons: a promise of higher-quality images and super easy integration into existing workflows. The paper was published on April 22nd 2024 by Nvidia's Toronto AI Lab titled, “Align Your Steps: Optimizing Sampling Schedules in Diffusion Models”. From here on out, when you see the acronym 'AYS', it is short for this new technique.</p>
+                <p class="mt-0">&nbsp;</p>
+                <p class="mt-2">Think of diffusion models as architects, but they work slowly, like building a house brick by brick. This is due to their step-by-step plan, or 'blueprint'. A majority of recent diffusion tech announcements have been to improve the tools, not the blueprint. This new method, "Align Your Steps or AYS”, optimizes the blueprint, making building faster and the end result better.</p>
+                <p class="mt-0">&nbsp;</p>
+                <div class="mt-2">
+                    <p>Benefits of AYS:
+                    </p>
+                    <ul class="mt-2 pl-12 list-decimal leading-6">
+                        <li class="my-3"><span class="font-bold">Cheaper:</span>In SketchMeAi, the default number of steps is 20 when generating an image, which costs on average $0.04 (when model is warm). With AYS, the technique is inherently based on 10 steps so that means generation cost drops a penny to $0.03/image. </li>
+                        <li class="my-3"><span class="font-bold">Faster:</span>At 20 denoising steps, an image takes about 18 seconds to generate. With AYS @ 10 steps, that number is cut in half to 9 seconds.</li>
+                        <li class="my-3"><span class="font-bold">Super Easy Integration:</span>This technique can be easily applied to existing workflows that use Stable Diffusion XL, which SketchMeAi does. It also works with SD1.5 and few other popular models.</li>
+                    </ul>
+                </div>
+                <p class="mt-0">&nbsp;</p>
+                <div class="mt-2">
+                    <p>Limitations of AYS:
+                    </p>
+                    <ul class="mt-2 pl-12 list-decimal leading-6">
+                        <li class="my-3"><span class="font-bold">Sampling Scheduler Specific:</span>There are a number of sampling schedulers that one can use with diffusion models but from initial tests, the one that works the best w/ AYS (per the paper) is DPMSolverMultistepScheduler. Although we don't give you direct control on which scheduler to use on SketchMeAi, future techniques that require a different scheduler will mean AYS can't be used in combination.</li>
+                        <li class="my-3"><span class="font-bold">Bizarre Outputs</span>(sometimes): Just like in most AI workflows, not all generated output will be of high quality. This is still true with AYS. When the images are good, they can be really good. But when images are bad, they can be pretty bad. Almost comedic. I tend to see more bizarre outputs when using a person model (or LoRa). Since AYS is significantly cheaper and faster than 20 step generations, it more than makes up for bizarre output with the really bright gems.</li>
+                    </ul>
+                </div>
+                <p class="mt-0">&nbsp;</p>
+                <p class="mt-2">The AYS paper goes over 6 prompt examples using Stable Diffusion SDXL to show the image quality improvement. I wanted to verify these results before integrating the tech into SketchMeAi. Results impressed me! Check them out for yourself with our newly built comparison tool:</p>
+
+                <p class="mt-2">1. “Cluttered house in the woods, anime, oil painting, high resolution, cottagecore, ghibli inspired, 4k”</p>
+                <div id="ays-test-1"></div>
+
+                <p class="mt-2">2. “An old, creepy dollhouse in a dusty attic, with dolls posed in unsettling positions. Cobwebs, dim lighting, and the shadows of unseen presences create a chilling scene”</p>
+                <div id="ays-test-2"></div>
+
+                <p class="mt-2">3. “Tiger in construction gear, perched on aged wooden docks, formidable, curious, tiger on the waterfront, textured, vibrant, atmospheric, sharp focus, lifelike, professional lighting, cinematic, 8K”</p>
+                <div id="ays-test-3"></div>
+
+                <p class="mt-2">4. “A stunning, intricately detailed painting of a sunset in a forest valley, blending the rich, symmetrical styles of Dan Mumford and Marc Simonetti with astrophotography elements”</p>
+                <div id="ays-test-4"></div>
+
+                <p class="mt-2">5. “Create a photorealistic scene of a powerful storm with swirling, dark clouds and fierce winds approaching a coastal village. Show villagers preparing for the storm, with detailed architecture reflecting a fantasy world”</p>
+                <div id="ays-test-5"></div>
+
+                <p class="mt-2">6. “Cyberpunk cityscape with towering skyscrapers, neon signs, and flying cars”</p>
+                <div id="ays-test-6"></div>
+
+
+
+
+
                 <p class="mt-2">&nbsp;</p>
                 <p class="mt-2">&nbsp;</p>
                 <p class="mt-2">&nbsp;</p>

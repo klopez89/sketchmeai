@@ -21,7 +21,7 @@ function comparisonElementHTML(before_img_src, after_img_src) {
     return `
 
     <comparison>
-        <div class="comp-container aspect-h-1 aspect-w-1">
+        <div class="comp-container">
 
             <div class="image-container">
                 <img

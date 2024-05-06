@@ -54,7 +54,7 @@
                         <li class="my-3"><span class="font-bold">Bizarre Outputs</span>(sometimes): Just like in most AI workflows, not all generated output will be of high quality. This is still true with AYS. When the images are good, they can be really good. But when images are bad, they can be pretty bad. Almost comedic. I tend to see more bizarre outputs when using a person model (or LoRa). Since AYS is significantly cheaper and faster than 20 step generations, it more than makes up for bizarre output with the really bright gems.</li>
                     </ul>
                 </div>
-                
+
                 <p class="mt-0">&nbsp;</p>
                 <p class="mt-2">The AYS paper goes over 6 prompt examples using Stable Diffusion SDXL to show the image quality improvement. I wanted to verify these results before integrating the tech into SketchMeAi. Results impressed me! Check them out for yourself with our newly built comparison tool:</p>
                 <p class="mt-0">&nbsp;</p>
@@ -76,9 +76,41 @@
                 <p class="mt-2">6. “Cyberpunk cityscape with towering skyscrapers, neon signs, and flying cars”</p>
                 <div id="ays-test-6"></div>
 
+                <p class="mt-0">&nbsp;</p>
+                <p class="mt-2">Next, I needed to verify the promise of this technique on SketchMeAi using a custom person model (or LoRa) trained on my images. For fun's sake, I took one of my recent prompts focused on me wearing a leather jacket with a cell-shading style  and simply swapped out the colors mentioned in the prompt to create 5 different types of generation. The AYS results did not disappoint (non-ays output is based on 10 denoising steps):</p>
 
+                <p class="mt-0">&nbsp;</p>
+                <p class="mt-2">Baby blue leather jacket</p>
+                <div id="ays-lora-1"></div>
 
+                <p class="mt-2">Black leather jacket</p>
+                <div id="ays-lora-2"></div>
 
+                <p class="mt-2">Red leather jacket</p>
+                <div id="ays-lora-3"></div>
+
+                <p class="mt-2">Neon-green leather jacket (used image-to-image)</p>
+                <div id="ays-lora-4"></div>
+
+                <p class="mt-2">Orange leather jacket (used image-to-image)</p>
+                <div id="ays-lora-5"></div>
+
+                <p class="mt-0">&nbsp;</p>
+                <p class="mt-2">What makes AYS even more flexible is that it can be combined with the image-to-image technique to achieve even more controlled results.</p>
+                <p class="mt-0">&nbsp;</p>
+                <p class="mt-2">This is great and all, but how do I use AYS, you may ask? Well it's super easy to toggle it on SketchMeAi:</p>
+                <p class="mt-0">&nbsp;</p>
+
+                <div id="single-img" class="pt-2 pb-12 md:w-1/2">
+                    <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-toggle.png">
+                        <img class="w-full" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-toggle.png">
+                    </a>
+                </div>
+
+                <p class="mt-2">Just below the denoising steps field, you will find the Use AYS toggle. Toggling it on will disable the denoising steps field since the technique overrides the value to an equivalent of 10 steps.</p>
+
+                <p class="mt-0">&nbsp;</p>
+                <p class="mt-2">If you have an account on Replicate and you want to have a quicker test of AYS without signing up for SketchMeAi, I pushed out a public SDXL model on Replicate that supports AYS. You can check that out <a href="https://replicate.com/klopez89/ays-sdxl">here</a>.</p>
 
                 <p class="mt-2">&nbsp;</p>
                 <p class="mt-2">&nbsp;</p>

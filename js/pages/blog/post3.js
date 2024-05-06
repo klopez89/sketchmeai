@@ -1,24 +1,27 @@
 
 
 const ays_div_ids = ['ays-test-1', 'ays-test-2', 'ays-test-3', 'ays-test-4', 'ays-test-5', 'ays-test-6'];
+const ays_lora_div_ids = ['ays-lora-1', 'ays-lora-2', 'ays-lora-3', 'ays-lora-4', 'ays-lora-5', 'ays-lora-6'];
 
 addAysTestComparisons();
-configureAysTestComparisons();
-loadInAysTestImages();
+addAysLoraComparisons();
+configureAllComparisonSliders();
+loadInComparisonSliderImages();
 
 
-function configureAysTestComparisons() {
+function configureAllComparisonSliders() {
     for (let i = 0; i < ays_div_ids.length; i++) {
         let ays_div = document.getElementById(ays_div_ids[i]);
         configureComparisonSlider(ays_div);
     }
-    // let ays_test_1 = document.getElementById('ays-test-1');
-    // let ays_test_2 = document.getElementById('ays-test-2');
-    // configureComparisonSlider(ays_test_1)
-    // configureComparisonSlider(ays_test_2)
+
+    for (let i = 0; i < ays_lora_div_ids.length; i++) {
+        let ays_lora_div = document.getElementById(ays_lora_div_ids[i]);
+        configureComparisonSlider(ays_lora_div);
+    }
 }
 
-function addComparisons() {
+function addAysLoraComparisons() {
     let blue_before = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_non_ays.png";
     let blue_after = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_ays.png";
 
@@ -51,17 +54,11 @@ function addComparisons() {
     let orange_comp_html = comparisonElementHTML(orange_before, orange_after);
     let orange_comp_div = $($.parseHTML(orange_comp_html));
 
-    $('#blog-container').prepend(blue_comp_div);
-    $('#blog-container').prepend(black_comp_div);
-    $('#blog-container').prepend(red_comp_div);
-    $('#blog-container').prepend(green_comp_div);
-    $('#blog-container').prepend(orange_comp_div);
-
-    configureComparisonSlider(blue_comp_div.find('.slider')[0]);
-    configureComparisonSlider(black_comp_div.find('.slider')[0]);
-    configureComparisonSlider(red_comp_div.find('.slider')[0]);
-    configureComparisonSlider(green_comp_div.find('.slider')[0]);
-    configureComparisonSlider(orange_comp_div.find('.slider')[0]);
+    $('#ays-lora-1').append(blue_comp_div);
+    $('#ays-lora-2').append(black_comp_div);
+    $('#ays-lora-3').append(red_comp_div);
+    $('#ays-lora-4').append(green_comp_div);
+    $('#ays-lora-5').append(orange_comp_div);
 }
 
 function addAysTestComparisons() {
@@ -109,30 +106,14 @@ function addAysTestComparisons() {
     $('#ays-test-6').append(ays_6_comp_div);
 }
 
-function loadInAysTestImages() {
+function loadInComparisonSliderImages() {
     for (let i = 0; i < ays_div_ids.length; i++) {
         loadComparisonImgs(ays_div_ids[i]);
     }
-    // loadComparisonImgs('ays-test-1');
-    // loadComparisonImgs('ays-test-2');
-    // let ays_test_1 = document.getElementById('ays-test-1');
-    // let image_before = ays_test_1.querySelector('.image-before');
-    // var true_src = image_before.getAttribute('true_src');
 
-    // let actualImage_1 = new Image();
-    // actualImage_1.onload = function() {
-    //     image_before.src = this.src;
-    // };
-    // actualImage_1.src = true_src;
-
-    // let image_after = ays_test_1.querySelector('.image-after');
-    // true_src = image_after.getAttribute('true_src');
-
-    // let actualImage2 = new Image();
-    // actualImage2.onload = function() {
-    //     image_after.src = this.src;
-    // };
-    // actualImage2.src = true_src;
+    for (let i = 0; i < ays_lora_div_ids.length; i++) {
+        loadComparisonImgs(ays_lora_div_ids[i]);
+    }
 }
 
 function loadComparisonImgs(comparison_id) {

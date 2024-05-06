@@ -838,6 +838,11 @@ function insertImgUrlForRefImg(url) {
         'type': `image/${imageExtension}`
     }
     addFileToRefImgElement(imgInfo);
+
+    let refImgSectionButton = document.getElementById('reference-section-button');
+    if(refImgSectionButton.getAttribute('data-te-collapse-collapsed')) {
+        refImgSectionButton.click();
+    }
 }
 
 function selectModelWithVersion(version) {

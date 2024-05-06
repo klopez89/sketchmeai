@@ -630,7 +630,7 @@ function basicGenerationSettingsHTML() {
 						<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 					</button>
 					<div class="mt-2">
-						<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="10" min="4" max="500" value="10" class="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 						<p class="text-right text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
 					</div>
 			</div>
@@ -638,7 +638,7 @@ function basicGenerationSettingsHTML() {
 				<div class="flex items-center justify-between">
 					<span class="flex flex-grow flex-col">
 						<span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
-						<span class="text-sm text-gray-500" id="availability-description">Enables use of Align Your Steps, a sampling technique that helps improve prompt coherence.</span>
+						<span class="text-sm text-gray-500" id="availability-description">Enables use of Align Your Steps. Improves prompt coherence and quality. Disables noising steps.</span>
 					</span>
 					<!-- Enabled: "bg-black, enabled", Not Enabled: "bg-gray-200" -->
 					<button id="ays-toggle-button" type="button" onclick="toggleAysPressed(event)" class="enabled bg-black relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">

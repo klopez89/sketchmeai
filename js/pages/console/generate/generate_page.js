@@ -97,7 +97,7 @@ function toggleImageSelectability() {
         selectionBar.classList.add("hidden");
         selectToShareButton.classList.remove("text-gray-400");
         selectToShareButton.classList.add("text-gray-500");
-        selectToShareButton.textContent = 'Select';
+        selectToShareButton.textContent = 'Multi-Select';
         mobileMenu.classList.remove('hidden');
     }
     

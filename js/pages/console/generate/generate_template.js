@@ -590,7 +590,7 @@ function basicGenerationSettingsHTML() {
 					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 				</button>
 				<div class="mt-2">
-				<input type="number" name="guidance-scale" id="guidance-scale" placeholder="13" min="1.0" max="20.0" step="0.1" value="13" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+				<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 				<p class="text-right text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
 				</div>
 			</div>
@@ -649,7 +649,7 @@ function basicGenerationSettingsHTML() {
 			</div>
 
 			<div class="col-span-full" id="toggle-hidiffusion-field-container">
-				<div class="flex items-center justify-between">
+				<div class="hidden flex items-center justify-between">
 					<span class="flex flex-grow flex-col">
 						<span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">Use HiDiffusion</span>
 						<span class="text-sm text-gray-500" id="availability-description">Enables HiDiffusion which will generate a hig-res (1024x1024) image with even more details.</span>

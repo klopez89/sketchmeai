@@ -839,6 +839,7 @@ function insertImgUrlForRefImg(url) {
     addFileToRefImgElement(imgInfo);
 
     let refImgSectionButton = document.getElementById('reference-section-button');
+    console.log('the refImgSectionButton is: ', refImgSectionButton);
     if(refImgSectionButton.getAttribute('data-te-collapse-collapsed')) {
         refImgSectionButton.click();
     }

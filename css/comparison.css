@@ -14,7 +14,7 @@ img {
 comparison {
     display: grid;
     place-items: center;
-    padding-top: 0rem;
+    padding-top: 1rem;
     padding-bottom: 2rem;
   }
 

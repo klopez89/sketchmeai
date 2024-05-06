@@ -1,10 +1,11 @@
-// addComparisons();
-// configureComparisonSliders();
+
+
+const ays_div_ids = ['ays-test-1', 'ays-test-2', 'ays-test-3', 'ays-test-4', 'ays-test-5', 'ays-test-6'];
+
 addAysTestComparisons();
 configureAysTestComparisons();
 loadInAysTestImages();
 
-const ays_div_ids = ['ays-test-1', 'ays-test-2', 'ays-test-3', 'ays-test-4', 'ays-test-5', 'ays-test-6'];
 
 function configureAysTestComparisons() {
     for (let i = 0; i < ays_div_ids.length; i++) {

@@ -379,7 +379,6 @@ function configureGenerateForm() {
             let genButtonElement = document.getElementById('gen-button');
             let newEvent = new Event('click', { bubbles: true });
             genButtonElement.dispatchEvent(newEvent);
-            // generateButtonPressed(event);
         }
     });
 
@@ -998,7 +997,7 @@ function generateButtonPressed(event) {
 
     console.log('the event target is: ', event.currentTarget);
     let generateTarget = event.currentTarget;
-    generateTarget.disabled = true;
+    // generateTarget.disabled = true;
     let generateIcon = generateTarget.querySelector('i');
     let generateText = generateTarget.querySelector('p');
 
@@ -1136,7 +1135,7 @@ function resetGenerateTarget(target) {
     } else {
         generateIcon.className = 'fa-solid fa-bolt-lightning';
     }
-    target.disabled = false;
+    // target.disabled = false;
     target.parentElement.click();
 }
 
@@ -1237,14 +1236,6 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
 
             console.log(`for gen_id: ${generationId} prediction_status is ${prediction_status}`);
     });
-}
-
-function configure_main_gen_button(gen_dict, gen_element) {
-    let main_gen_button = gen_element.querySelector('#main-gen-button');
-    main_gen_button.addEventListener('click', function() {
-        copyPromptInfoFromGen(gen_dict);
-    });
-    main_gen_button.classList.remove('pointer-events-none');
 }
 
 function configureCopyButton(gen_dict, gen_element) {

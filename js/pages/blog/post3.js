@@ -1,7 +1,7 @@
 
 
 const ays_div_ids = ['ays-test-1', 'ays-test-2', 'ays-test-3', 'ays-test-4', 'ays-test-5', 'ays-test-6'];
-const ays_lora_div_ids = ['ays-lora-1', 'ays-lora-2', 'ays-lora-3', 'ays-lora-4', 'ays-lora-5', 'ays-lora-6'];
+const ays_lora_div_ids = ['ays-lora-1', 'ays-lora-2', 'ays-lora-3', 'ays-lora-4', 'ays-lora-5'];
 
 addAysTestComparisons();
 addAysLoraComparisons();

@@ -39,13 +39,13 @@ function blogListGridHTML() {
         </div>
 
         <div class="flex flex-col items-start space-y-4 group cursor-pointer" onclick="window.location.href='https://${CONSTANTS.SITE_URL}/blog/entries/post2'">
-            <div class="aspect-w-1 aspect-h-1 w-full">
+            <div id="post-3-comparison-slider" class="aspect-w-1 aspect-h-1 w-full">
                 <comparison>
                     <div class="comp-container" style="--position: 48%;">
 
                         <div class="image-container">
-                            <img class="image-before slider-image" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_non_ays.png" true_src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_non_ays.png" alt="Before, non ays image for post 3">
-                            <img class="image-after slider-image" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_ays.png" true_src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_ays.png" alt="Afer, ays image for post 3">
+                            <img class="image-before slider-image" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blank_sq_1024.png" true_src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_non_ays.png" alt="Before, non ays image for post 3">
+                            <img class="image-after slider-image" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blank_sq_1024.png" true_src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_ays.png" alt="Afer, ays image for post 3">
                         </div>
                         
                         <input type="range" min="0" max="100" value="50" aria-label="Percentage of before photo shown" class="slider" autocompleted="">

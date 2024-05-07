@@ -1,20 +1,31 @@
-// const container = document.querySelector('.comp-container');
-// document.querySelector('.slider').addEventListener('input', function(e) {
-//     container.style.setProperty('--position', `${e.target.value}%`);
-// });
 
-function configureComparisonSliders() {
-    const container = document.querySelector('.comp-container');
-    document.querySelector('.slider').addEventListener('input', function(e) {
-    container.style.setProperty('--position', `${e.target.value}%`);
-    });
-}
 
 function configureComparisonSlider(slider) {
     const container = slider.querySelector('.comp-container');
     slider.addEventListener('input', function(e) {
         container.style.setProperty('--position', `${e.target.value}%`);
     });
+}
+
+function loadComparisonImgs(comparison_id) {
+    let comparison = document.getElementById(`${comparison_id}`);
+    let image_before = comparison.querySelector('.image-before');
+    var true_src = image_before.getAttribute('true_src');
+
+    let actualImage_1 = new Image();
+    actualImage_1.onload = function() {
+        image_before.src = this.src;
+    };
+    actualImage_1.src = true_src;
+
+    let image_after = comparison.querySelector('.image-after');
+    true_src = image_after.getAttribute('true_src');
+
+    let actualImage2 = new Image();
+    actualImage2.onload = function() {
+        image_after.src = this.src;
+    };
+    actualImage2.src = true_src;
 }
 
 function comparisonElementHTML(before_img_src, after_img_src) {

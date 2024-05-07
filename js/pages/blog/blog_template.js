@@ -68,7 +68,7 @@ function blogListGridHTML() {
             </div>
             <div>
                 <h2 class="text-xl font-bold group-hover:underline">Organize Your Generations with Collections</h2>
-                <p class="text-sm text-gray-500">Tues, April 23rd 2024</p>
+                <p class="text-sm text-gray-500">Tues, May 7th 2024</p>
             </div>
         </div>
     </div>

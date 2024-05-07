@@ -38,7 +38,9 @@ function blogListGridHTML() {
             </div>
         </div>
 
-        <div class="flex flex-col items-start space-y-4 group cursor-pointer" onclick="window.location.href='https://${CONSTANTS.SITE_URL}/blog/entries/post2'">
+        <div class="flex flex-col items-start space-y-4 group cursor-pointer"  onmousedown="this.dataset.moving = 'false'" 
+        onmousemove="this.dataset.moving = 'true'" 
+        onclick="if (this.dataset.moving === 'false') window.location.href='https://${CONSTANTS.SITE_URL}/blog/entries/post3'">
             <div id="post-3-comparison-slider" class="aspect-w-1 aspect-h-1 w-full">
                 <comparison>
                     <div class="comp-container" style="--position: 48%;">

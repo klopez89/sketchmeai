@@ -2163,9 +2163,11 @@ function promptStylePressed(event) {
 function deSelectPromptStyleDiv(promptStyleDiv) {
     let pElement = promptStyleDiv.querySelector('p');
     let imgElement = promptStyleDiv.querySelector('img');
+    let selectedCheckDiv = promptStyleDiv.querySelector('#selected-check');
     let bgParentDiv = pElement.parentElement.parentElement;
     let bgColor = promptStyleDiv.getAttribute('bgColor');
     promptStyleDiv.classList.remove('selected');
+    selectedCheckDiv.classList.add('hidden');
     pElement.style.color = bgColor;
     bgParentDiv.style.backgroundColor = '';
     bgParentDiv.classList.add('bg-white');
@@ -2173,9 +2175,11 @@ function deSelectPromptStyleDiv(promptStyleDiv) {
 
 function selectPromptStyleDiv(promptStyleDiv) {
     let pElement = promptStyleDiv.querySelector('p');
+    let selectedCheckDiv = promptStyleDiv.querySelector('#selected-check');
     let bgParentDiv = pElement.parentElement.parentElement;
     let bgColor = promptStyleDiv.getAttribute('bgColor');
     promptStyleDiv.classList.add('selected');
+    selectedCheckDiv.classList.remove('hidden');
     pElement.style.color = 'white';
     bgParentDiv.style.backgroundColor = bgColor;
     bgParentDiv.classList.remove('bg-white');

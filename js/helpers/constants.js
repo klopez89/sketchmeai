@@ -40,6 +40,11 @@ const PredictionStatus = {
     CANCELED: 'canceled'
 };
 
+const PromptStyle = {
+    NONE: 'none',
+    CELL_SHADING: 'cell_shading',
+}
+
 const FAILED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/failed_img.png"
 const CANCELED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/canceled_img.png"
 

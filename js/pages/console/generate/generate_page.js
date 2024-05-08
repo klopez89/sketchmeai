@@ -2141,6 +2141,68 @@ function personLoraSelectionMade() {
     updateGenerationEstimateLabel();
 }
 
+// Prompt Style functions
+
+function promptStylePressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let promptStyleDiv = event.currentTarget;
+
+    if (promptStyleDiv.classList.contains('selected')) {
+        if (promptStyleDiv.id != 'no-prompt-style-button') {
+            deSelectPromptStyleDiv(promptStyleDiv);
+            let noPromptStyleDiv = document.getElementById('no-prompt-style-button');
+            selectLoraPersonDiv(noPromptStyleDiv);
+        }
+    } else {
+        deSelectAllPromptStylesOptions();
+        selectPromptStyleDiv(promptStyleDiv);
+    }
+}
+
+function deSelectPromptStyleDiv(promptStyleDiv) {
+    let pElement = promptStyleDiv.querySelector('p');
+    let imgElement = promptStyleDiv.querySelector('img');
+    let bgParentDiv = pElement.parentElement.parentElement;
+    let bgColor = promptStyleDiv.getAttribute('bgColor');
+    promptStyleDiv.classList.remove('selected');
+    pElement.style.color = bgColor;
+    bgParentDiv.style.backgroundColor = '';
+    bgParentDiv.classList.add('bg-white');
+}
+
+function selectPromptStyleDiv(promptStyleDiv) {
+    let pElement = promptStyleDiv.querySelector('p');
+    let bgParentDiv = pElement.parentElement.parentElement;
+    let bgColor = promptStyleDiv.getAttribute('bgColor');
+    promptStyleDiv.classList.add('selected');
+    pElement.style.color = 'white';
+    bgParentDiv.style.backgroundColor = bgColor;
+    bgParentDiv.classList.remove('bg-white');
+
+    let selectedPromptStyleLabel = document.getElementById('selected-prompt-style-label');
+    selectedPromptStyleLabel.innerHTML = promptStyleDiv.querySelector('p').innerHTML;
+
+    let promptStyleGrid = document.getElementById('prompt-style-grid');
+    let scrollPosition = loraPersonDiv.offsetLeft - promptStyleGrid.offsetLeft 
+    + promptStyleDiv.offsetWidth / 2 
+    - promptStyleGrid.offsetWidth / 2;
+    promptStyleGrid.scrollLeft = scrollPosition;
+}
+
+function deSelectAllPromptStylesOptions() {
+    let promptStyleGrid = document.getElementById('prompt-style-grid');
+    let promptStyleDivs = promptStyleGrid.children;
+    for (let i = 0; i < promptStyleDivs.length; i++) {
+        deSelectPromptStyleDiv(promptStyleDivs[i]);
+    }
+}
+
+
+
+
+
+
 function toggleAysPressed(event) {
     event.preventDefault();
     event.stopPropagation();

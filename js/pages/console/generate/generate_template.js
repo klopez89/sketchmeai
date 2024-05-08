@@ -248,12 +248,12 @@ function generate_form_html() {
 			<div id="lora-component-container" class="col-span-full pt-2">
 				<div class="flex justify-between px-4 pb-1">
 					<label class="block text-sm font-medium leading-6 text-gray-700 pb-1">Style</label>
-					<label id="selected-prompt-style" class="text-sm text-gray-900">None</label>
+					<label id="selected-prompt-style-label" class="text-sm text-gray-900">Cell-Shading</label>
 				</div>
 
 				<div id="prompt-style-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-0 px-4">
 			
-					<div class="relative cursor-pointer select-none selected" id="no-person-style-button" bgColor="#374151" onclick="promptStylePressed(event)">
+					<div class="relative cursor-pointer select-none selected" id="no-prompt-style-button" bgColor="#374151" onclick="promptStylePressed(event)">
 						<div class="group w-32 h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white">
 								<div class="flex justify-left items-end h-full">
@@ -263,10 +263,10 @@ function generate_form_html() {
 						</div>
 					</div>
 
-					<div class="relative cursor-pointer select-none selected" id="no-person-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+					<div class="relative cursor-pointer select-none selected" id="cell-shading-style-button" bgColor="#000" onclick="promptStylePressed(event)">
 						<div class="group w-32 h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
-								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/cell-shading.png" alt="Description" class="absolute inset-0 object-cover w-full h-full">
+								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/cell-shading-320.png" alt="Description" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-50">
 								<div class="flex justify-left items-end h-full">
 									<p class="text-base ml-3 mb-2" style="color:white;">Cell-Shading</p>
 								</div>

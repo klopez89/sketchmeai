@@ -257,7 +257,7 @@ function generate_form_html() {
 						<div class="group w-32 h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white">
 								<div class="flex justify-left items-end h-full">
-									<p class="text-base ml-3 mb-2" style="color:white;">None</p>
+									<p class="text-base ml-3 mb-2" style="color: rgb(55, 65, 81);">None</p>
 								</div>
 							</div>
 						</div>
@@ -266,6 +266,7 @@ function generate_form_html() {
 					<div class="relative cursor-pointer select-none selected" id="no-person-style-button" bgColor="#000" onclick="promptStylePressed(event)">
 						<div class="group w-32 h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
+								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/cell-shading.png" alt="Description" class="absolute inset-0 object-cover w-full h-full">
 								<div class="flex justify-left items-end h-full">
 									<p class="text-base ml-3 mb-2" style="color:white;">Cell-Shading</p>
 								</div>

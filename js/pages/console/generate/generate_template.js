@@ -217,6 +217,9 @@ function generate_form_html() {
 						<div class="relative cursor-pointer select-none selected" id="no-lora-person-button" instkey="" model="" modelname="" version="" trainingSubject="" genderType="" bgColor="#374151" onclick="loraPersonPressed(event)">
 							<div class="group w-32 h-32 block relative">
 								<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(55, 65, 81);">
+									<div id="selected-check" class="absolute top-0 right-0 p-2">
+										<i class="fas fa-check text-white" aria-hidden="true"></i>
+									</div>
 									<div class="flex justify-left items-end h-full">
 										<p class="text-base ml-3 mb-2" style="color:white;">None</p>
 									</div>

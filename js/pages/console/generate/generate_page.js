@@ -541,12 +541,14 @@ function setCaretPosition(element, offset) {
     }
 }
 
-
-function attemptAutoModelSelection() {
+function modelVersionInURL() {
     var url = window.location.href;
     var urlObj = new URL(url);
     var params = new URLSearchParams(urlObj.search);
-    let modelVersion = params.get('model_version');
+    return params.get('model_version');
+}
+
+function attemptAutoModelSelection(modelVersion) {
     selectModelWithVersion(modelVersion);
 }
 
@@ -607,7 +609,11 @@ function fetchWorkingModels(userRecId) {
                     new_model_option_div.hide().appendTo('#model-dropdown').fadeIn();
                 });
 
-                if (models.length == 1) {
+                let model_version = modelVersionInURL();
+                console.log('Model version in URL is:', model_version);
+                if (model_version != null) {
+                    attemptAutoModelSelection(model_version);
+                } else {
                     let firstModelName = models[0].name;
                     let long_version = models[0].version;
                     let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
@@ -616,8 +622,6 @@ function fetchWorkingModels(userRecId) {
                     promptDiv.textContent = promptPlaceholderText;
                     selectModelWithVersion(short_version);
                     promptDiv.blur();
-                } else {
-                    attemptAutoModelSelection();
                 }
             }
             console.log('the base prices dict is: ', data.base_prices);

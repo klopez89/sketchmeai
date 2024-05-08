@@ -245,7 +245,7 @@ function generate_form_html() {
 					<div id="prompt" name="prompt" rows="3" class="max-w-full overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></div>
 				</div>
 			</div>
-			<div id="lora-component-container" class="col-span-full pt-2">
+			<div id="prompt-style-container" class="col-span-full pt-1">
 				<div class="flex justify-between px-4 pb-1">
 					<label class="block text-sm font-medium leading-6 text-gray-700 pb-1">Style</label>
 					<label id="selected-prompt-style-label" class="text-sm text-gray-900">Cell-Shading</label>
@@ -256,6 +256,9 @@ function generate_form_html() {
 					<div class="relative cursor-pointer select-none" id="no-prompt-style-button" bgColor="#374151" onclick="promptStylePressed(event)">
 						<div class="group w-32 h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white">
+								<div id="selected-check" class="hidden absolute top-0 right-0 p-2">
+									<i class="fas fa-check text-white" aria-hidden="true"></i>
+								</div>
 								<div class="flex justify-left items-end h-full">
 									<p class="text-base ml-3 mb-2" style="color: rgb(55, 65, 81);">None</p>
 								</div>
@@ -267,6 +270,9 @@ function generate_form_html() {
 						<div class="group w-32 h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
 								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/cell-shading-320.png" alt="Description" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-50">
+								<div id="selected-check" class="absolute top-0 right-0 p-2">
+									<i class="fas fa-check text-white" aria-hidden="true"></i>
+								</div>
 								<div class="flex justify-left items-end h-full">
 									<p class="text-base ml-3 mb-2 z-10" style="color:white;">Cell-Shading</p>
 								</div>

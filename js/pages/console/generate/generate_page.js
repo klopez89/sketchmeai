@@ -823,6 +823,7 @@ function copyPromptInfoFromGen(generation) {
     // Trigger some UI updates in the gen form
     document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
     selectModelWithVersion(generation.model_version);
+    selectPromptStyle(generation.gen_recipe.prompt_style);
     updateAysToggle(generation.gen_recipe.should_use_ays);
     updateHiDToggle(generation.gen_recipe.should_use_hi_d);
 }
@@ -846,17 +847,11 @@ function insertImgUrlForRefImg(url) {
 }
 
 function selectModelWithVersion(version) {
-
     let loraPersonGrid = document.getElementById('lora-person-grid');
     deSelectAllLoraPersonOptions();
     let loraPersonDivs = loraPersonGrid.children;
 
-    // let modelDropdown = document.getElementById('model-dropdown');
-    // var options = modelDropdown.options;
     var selected = false; // Flag to keep track if a matching option was found
-
-
-
 
     for (let i = 0; i < loraPersonDivs.length; i++) {
         if (loraPersonDivs[i].getAttribute('version') === version) {
@@ -867,41 +862,30 @@ function selectModelWithVersion(version) {
         }
     }
 
-    // Find the first option w/ matching version if not set selection to false
-    // for (var i = 0; i < options.length; i++) {
-    //   if (options[i].getAttribute('version') === version) {  
-    //     options[i].selected = true;
-    //     selected = true;
-    //     // break;
-    //   } else {
-    //     options[i].selected = false;
-    //   }
-    // }
-
     if (!selected) {
         console.log('About to select the first lora person div in the grid');
         selectLoraPersonDiv(loraPersonDivs[0]);
     }
-  
-    // If no matching option was found, only select the first option and deselect all others
-    // if (!selected) {
-    //   for (var i = 0; i < options.length; i++) {
-    //     if (i === 0) {
-    //       options[i].selected = true;
-    //     } else {
-    //       options[i].selected = false;
-    //     }
-    //   }
-    // }
+}
 
-    // Create a new 'change' event
-    // const event = new Event('change', {
-    //     bubbles: true,
-    //     cancelable: true,
-    // });
+function selectPromptStyle(prompt_style) {
+    let promptStyleGrid = document.getElementById('prompt-style-grid');
+    deSelectAllPromptStylesOptions();
+    let promptStyleDivs = promptStyleGrid.children;
 
-    // // Dispatch it on the 'model-dropdown' element
-    // modelDropdown.dispatchEvent(event);
+    var selected = false; // Flag to keep track if a matching option was found
+
+    for (let i = 0; i < promptStyleDivs.length; i++) {
+        if (promptStyleDivs[i].getAttribute('prompt-style') === prompt_style) {
+            selectPromptStyleDiv(promptStyleDivs[i]);
+            selected = true;
+            break;
+        }
+    }
+
+    if (!selected) {
+        selectPromptStyleDiv(promptStyleDivs[0]);
+    }
 }
 
 function generateButtonPressed(event) {

@@ -245,6 +245,35 @@ function generate_form_html() {
 					<div id="prompt" name="prompt" rows="3" class="max-w-full overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></div>
 				</div>
 			</div>
+			<div id="lora-component-container" class="col-span-full pt-4">
+				<div class="flex justify-between px-4 pb-1">
+					<label class="block text-sm font-medium leading-6 text-gray-700 pb-1">Style</label>
+					<label id="selected-prompt-style" class="text-sm text-gray-900">None</label>
+				</div>
+
+				<div id="prompt-style-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">
+			
+					<div class="relative cursor-pointer select-none selected" id="no-person-style-button" bgColor="#374151" onclick="promptStylePressed(event)">
+						<div class="group w-32 h-32 block relative">
+							<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(55, 65, 81);">
+								<div class="flex justify-left items-end h-full">
+									<p class="text-base ml-3 mb-2" style="color:white;">None</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="relative cursor-pointer select-none selected" id="no-person-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+						<div class="group w-32 h-32 block relative">
+							<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(55, 65, 81);">
+								<div class="flex justify-left items-end h-full">
+									<p class="text-base ml-3 mb-2" style="color:white;">Cell-Shading</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="col-span-full flex-col px-4 pb-2 pt-3 justify-center hidden md:flex border-t border-gray-300" id="gen-button-container">

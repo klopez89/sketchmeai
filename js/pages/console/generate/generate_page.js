@@ -1061,6 +1061,7 @@ function generateButtonPressed(event) {
                 modelVersion: versionName,
                 userFacingPrompt: userFacingPrompt,
                 prompt: personalizedPrompt,
+                promptStyle: promptValues.promptStyle,
                 negativePrompt: promptValues.negativePrompt,
                 gscale: promptValues.gscale,
                 seed: seedToUse,
@@ -1680,10 +1681,22 @@ function promptInputValues() {
         genderTypes.push(selectedOption.getAttribute('genderType'));
     }
 
+    let promptStyleGrid = document.getElementById('prompt-style-grid');
+    let promptStyleDivs = promptStyleGrid.children;
+    let selectedPromptStyleDiv;
+    for (let i = 0; i < promptStyleDivs.length; i++) {
+        if (promptStyleDivs[i].classList.contains('selected')) {
+            selectedPromptStyleDiv = promptStyleDivs[i];
+            break;
+        }
+    }
+    let promptStyle = selectedPromptStyleDiv.getAttribute('prompt-style');
+
     console.log('the selected model names list: ', modelNames);
   
     return {
         prompt: prompt,
+        promptStyle: promptStyle,
         numberOfImages: numberOfImages,
         inferenceSteps: inferenceSteps,
         shouldUseAys: isAysToggled,

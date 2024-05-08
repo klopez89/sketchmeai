@@ -256,7 +256,7 @@ function generate_form_html() {
 
 				<div id="prompt-style-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-0 px-4">
 			
-					<div class="relative cursor-pointer select-none" id="no-prompt-style-button" bgColor="#374151" onclick="promptStylePressed(event)">
+					<div prompt-style="${PromptStyle.NONE}" class="relative cursor-pointer select-none" id="no-prompt-style-button" bgColor="#374151" onclick="promptStylePressed(event)">
 						<div class="group w-32 h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white">
 								<div id="selected-check" class="hidden absolute top-0 right-0 p-2">
@@ -269,7 +269,7 @@ function generate_form_html() {
 						</div>
 					</div>
 
-					<div class="relative cursor-pointer select-none selected" id="cell-shading-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+					<div prompt-style="${PromptStyle.CELL_SHADING}" class="relative cursor-pointer select-none selected" id="cell-shading-style-button" bgColor="#000" onclick="promptStylePressed(event)">
 						<div class="group w-32 h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
 								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/cell-shading-320.png" alt="Description" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-50">

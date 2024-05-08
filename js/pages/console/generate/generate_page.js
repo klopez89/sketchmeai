@@ -2060,7 +2060,7 @@ function loraPersonPressed(event) {
 
 function deSelectLoraPersonDiv(loraPersonDiv) {
     let pElement = loraPersonDiv.querySelector('p');
-    let selectedCheckDiv = promptStyleDiv.querySelector('#selected-check');
+    let selectedCheckDiv = loraPersonDiv.querySelector('#selected-check');
     let bgParentDiv = pElement.parentElement.parentElement;
     let bgColor = loraPersonDiv.getAttribute('bgColor');
     loraPersonDiv.classList.remove('selected');
@@ -2072,7 +2072,7 @@ function deSelectLoraPersonDiv(loraPersonDiv) {
 
 function selectLoraPersonDiv(loraPersonDiv) {
     let pElement = loraPersonDiv.querySelector('p');
-    let selectedCheckDiv = promptStyleDiv.querySelector('#selected-check');
+    let selectedCheckDiv = loraPersonDiv.querySelector('#selected-check');
     let bgParentDiv = pElement.parentElement.parentElement;
     let bgColor = loraPersonDiv.getAttribute('bgColor');
     loraPersonDiv.classList.add('selected');

@@ -2184,7 +2184,7 @@ function selectPromptStyleDiv(promptStyleDiv) {
     selectedPromptStyleLabel.innerHTML = promptStyleDiv.querySelector('p').innerHTML;
 
     let promptStyleGrid = document.getElementById('prompt-style-grid');
-    let scrollPosition = loraPersonDiv.offsetLeft - promptStyleGrid.offsetLeft 
+    let scrollPosition = promptStyleDiv.offsetLeft - promptStyleGrid.offsetLeft 
     + promptStyleDiv.offsetWidth / 2 
     - promptStyleGrid.offsetWidth / 2;
     promptStyleGrid.scrollLeft = scrollPosition;

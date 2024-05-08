@@ -58,7 +58,7 @@ function consoleHtml() {
                         <li>
                             <a href="/blog" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold" target="_blank">
                                 <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
-                                    <i class="fa-solid fa-layer-group self-center text-lg" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-file-lines self-center text-lg" aria-hidden="true"></i>
                                 </div>
                                 Blog&nbsp;
                             </a>

@@ -1549,7 +1549,7 @@ function configureInfiniteScroll() {
             }
         }
     });
-  }
+}
 
 function hideInfiniteLoader() {
     $('#infiniteLoader').addClass('hidden');
@@ -2219,6 +2219,7 @@ function toggleAysPressed(event) {
     let shouldEnableAys = !aysButton.classList.contains('enabled');
     updateAysToggle(shouldEnableAys);
 }
+
 function updateAysToggle(shouldEnable) {
     let aysButton = document.getElementById('ays-toggle-button');
     let span = aysButton.querySelector('span');

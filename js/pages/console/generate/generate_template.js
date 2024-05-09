@@ -599,7 +599,7 @@ function generateReferenceFormSectionHTML() {
 
 					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
 						<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="95" class="slider flex-grow" autocompleted="">
-						<input type="number" name="prompt-str" id="prompt-str" placeholder="80" min="0" max="95" value="80" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<input type="number" name="prompt-str" id="prompt-str" placeholder="8" min="0" max="95" value="8" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 					</div>
 
 				</div>

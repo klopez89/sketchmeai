@@ -43,6 +43,7 @@ const PredictionStatus = {
 const PromptStyle = {
     NONE: 'none',
     CELL_SHADING: 'cell_shading',
+    PIXEL_ART: 'pixel_art',
 }
 
 const FAILED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/failed_img.png"

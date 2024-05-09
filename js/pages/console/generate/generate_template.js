@@ -207,9 +207,9 @@ function generate_form_html() {
 				</div>
 				<div id="lora-component-container" class="col-span-full pt-0">
 
-					<div class="flex justify-between px-4 pb-1">
-						<label class="block text-sm font-medium leading-6 text-gray-700 pb-1">Person Model</label>
-						<label id="selected-person-lora" class="text-sm text-gray-900">None</label>
+					<div class="flex px-4 pb-1">
+						<label class="text-sm leading-6 text-gray-700 pb-1">Person Model:&nbsp;</label>
+						<label id="selected-person-lora" class="text-sm leading-6 text-gray-900">None</label>
 					</div>
 
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">
@@ -249,9 +249,9 @@ function generate_form_html() {
 				</div>
 			</div>
 			<div id="prompt-style-container" class="col-span-full pt-1">
-				<div class="flex justify-between px-4 pb-1">
-					<label class="block text-sm font-medium leading-6 text-gray-700 pb-1">Style</label>
-					<label id="selected-prompt-style-label" class="text-sm text-gray-900">Cell-Shading</label>
+				<div class="flex px-4 pb-1">
+					<label class="text-sm leading-6 text-gray-700 pb-1">Style:&nbsp;</label>
+					<label id="selected-prompt-style-label" class="text-sm leading-6 text-gray-900">Cell-Shading</label>
 				</div>
 
 				<div id="prompt-style-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-0 px-4">

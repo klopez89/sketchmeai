@@ -3621,11 +3621,11 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .opacity-25 {
   opacity: 0.25;
 }
-.opacity-30 {
-  opacity: 0.3;
-}
 .opacity-50 {
   opacity: 0.5;
+}
+.opacity-60 {
+  opacity: 0.6;
 }
 .opacity-\[\.53\] {
   opacity: .53;

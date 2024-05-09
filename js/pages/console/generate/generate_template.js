@@ -197,15 +197,15 @@ function generate_form_html() {
 		<div class="col-span-full px-0 py-3 border-b border-gray-300">
 			<div class="px-0 pb-0 grid grid-cols-6 gap-x-5 gap-y-0 sm:grid-cols-6">
 				
-				<div class="col-span-2 flex items-center pl-4" id="mode-title-container">
+				<div class="hidden col-span-2 flex items-center pl-4" id="mode-title-container">
 					<label class="text-sm font-medium leading-6 text-gray-700">Base Model</label>
 				</div>
-				<div class="col-span-4 pr-4" id="base-model-selector-container">
+				<div class="hidden col-span-4 pr-4" id="base-model-selector-container">
 					<select id="base-model-selector" name="base-model" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 						<option selected id="sdxl" instkey="zxc" modelname="sdxl" model="stability-ai/sdxl" version="39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b">SDXL</option>
 					</select>
 				</div>
-				<div id="lora-component-container" class="col-span-full pt-4">
+				<div id="lora-component-container" class="col-span-full pt-0">
 
 					<div class="flex justify-between px-4 pb-1">
 						<label class="block text-sm font-medium leading-6 text-gray-700 pb-1">Person</label>

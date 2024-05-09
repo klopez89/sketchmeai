@@ -613,7 +613,7 @@ function generateReferenceFormSectionHTML() {
 
 function basicGenerationSettingsHTML() {
 	return `
-	<div class="col-span-full px-4 border-y border-gray-300">
+	<div class="col-span-full px-4 border-t border-gray-300">
 		<!-- Start of the new nested accordion for prompt settings fields -->
 		<div id="nestedAccordion">
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2">
@@ -632,7 +632,7 @@ function basicGenerationSettingsHTML() {
 
 			<div id="nestedPromptSettingsCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
 
-				<div class="px-4 pb-3 pt-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 border-t border-gray-300" id="rest-gen-settings-section">
+				<div class="px-0 pb-3 pt-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6" id="rest-gen-settings-section">
 					<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2">
 
 						<div class="col-span-full" id="neg-prompt-field-container">

@@ -508,8 +508,9 @@ function enterRefImageUrlModalHTML() {
 function generateReferenceFormSectionHTML() {
 	return `
 	<div class="col-span-full px-4 border-y border-gray-300">
-		<!-- Start of the new nested accordion for img-2img-url and prompt-strength fields -->
+		<!-- Start of the new nested accordion for reference image fields -->
 		<div id="nestedAccordion">
+
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2">
 				<button id="reference-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
@@ -523,36 +524,34 @@ function generateReferenceFormSectionHTML() {
 
 				</button>
 
-			<div class="flex gap-2">
-				<button id="clear-ref-button" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
-					<i class="fa-solid fa-trash text-gray-500 text-xs" aria-hidden="true"></i>
-				</button>
-				
-				<div id="edit-ref-comp-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
-
-					<button type="button" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center" id="gen-ref-menu-button" onclick="genRefMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
-						<i class="fa-solid fa-pen text-gray-500 text-xs" aria-hidden="true"></i>
+				<div class="flex gap-2">
+					<button id="clear-ref-button" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+						<i class="fa-solid fa-trash text-gray-500 text-xs" aria-hidden="true"></i>
 					</button>
-			
-					<div class="m-0 absolute right-0 z-10 mt-1 origin-top-right min-w-[15rem]">
-			
-						<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
-						
-							<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); showRefImageUrlModal(event)">Enter Image URL</a>
-			
-							<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); startRefUploadExperience()">Upload Image</a>
-			
+					
+					<div id="edit-ref-comp-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+
+						<button type="button" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center" id="gen-ref-menu-button" onclick="genRefMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+							<i class="fa-solid fa-pen text-gray-500 text-xs" aria-hidden="true"></i>
+						</button>
+				
+						<div class="m-0 absolute right-0 z-10 mt-1 origin-top-right min-w-[15rem]">
+				
+							<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
+							
+								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); showRefImageUrlModal(event)">Enter Image URL</a>
+				
+								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); startRefUploadExperience()">Upload Image</a>
+				
+							</div>
 						</div>
 					</div>
 				</div>
-
-			</div>
-
 			</h2>
+
 			<div id="nestedImg2ImgCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
 				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
 
-					<!-- img-2img-url field -->
 					<div class="col-span-full" id="igm2img-field-container">
 						<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
 							<button id="ref-img-button" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
@@ -604,7 +603,9 @@ function generateReferenceFormSectionHTML() {
 					</div>
 
 				</div>
+
 			</div>
+
 		</div>
 	</div>
 	`;
@@ -612,99 +613,120 @@ function generateReferenceFormSectionHTML() {
 
 function basicGenerationSettingsHTML() {
 	return `
-	<div class="px-4 pb-3 pt-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 border-t border-gray-300" id="rest-gen-settings-section">
-		<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2">
+	<div class="col-span-full px-4 border-y border-gray-300">
+		<!-- Start of the new nested accordion for prompt settings fields -->
+		<div id="nestedAccordion">
+			<h2 id="nestedHeading" class="flex items-center justify-between py-2">
+				<button id="reference-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedPromptSettingsCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
-			<div class="col-span-full" id="neg-prompt-field-container">
-				<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-700">Negative Prompt</label>
-				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
-					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+					<span class="mr-2 mt-0 h-4 w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+						</svg>
+					</span>
+
+					Prompt Settings
+
 				</button>
-				<div class="mt-2">
-					<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;">ugly, morbid, photorealistic</textarea>
-				</div>
-			</div>
+			</h2>
+
+			<div id="nestedPromptSettingsCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
+
+				<div class="px-4 pb-3 pt-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 border-t border-gray-300" id="rest-gen-settings-section">
+					<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2">
+
+						<div class="col-span-full" id="neg-prompt-field-container">
+							<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-700">Negative Prompt</label>
+							<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
+								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+							</button>
+							<div class="mt-2">
+								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;">ugly, morbid, photorealistic</textarea>
+							</div>
+						</div>
 
 
-			<div class="col-span-3" id="gs-field-container">
-				<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-700">Guidance Scale</label>
-				<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
-					<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-				</button>
-				<div class="mt-2">
-				<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-				<p class="text-right text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
-				</div>
-			</div>
-			<div class="col-span-3" id="seed-field-container">
-				<div class="flex items-center">
-					<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-700">Seed</label>
-					<button onclick="randomizeSeed(event)" title="Random seed">
-						<i class="fa-solid fa-dice-three text-gray-500" aria-hidden="true"></i>
-					</button>
-				</div>
-				<div class="mt-2">
-					<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" placeholder="Random">
-					<p class="text-right text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
-				</div>
-			</div>
+						<div class="col-span-3" id="gs-field-container">
+							<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-700">Guidance Scale</label>
+							<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
+								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+							</button>
+							<div class="mt-2">
+							<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+							<p class="text-right text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
+							</div>
+						</div>
+						<div class="col-span-3" id="seed-field-container">
+							<div class="flex items-center">
+								<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-700">Seed</label>
+								<button onclick="randomizeSeed(event)" title="Random seed">
+									<i class="fa-solid fa-dice-three text-gray-500" aria-hidden="true"></i>
+								</button>
+							</div>
+							<div class="mt-2">
+								<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" placeholder="Random">
+								<p class="text-right text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
+							</div>
+						</div>
 
 
-			<div class="col-span-3" id="gen-count-field-container">
-				<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
-					<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-span-3" id="denoising-steps-field-container">
-					<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-700">Denoising Steps</label>
-					<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
-						<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-					</button>
-					<div class="mt-2">
-						<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="10" min="4" max="500" value="10" class="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-						<p class="text-right text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
+						<div class="col-span-3" id="gen-count-field-container">
+							<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
+								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+									<option>6</option>
+									<option>7</option>
+									<option>8</option>
+									<option>9</option>
+									<option>10</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-span-3" id="denoising-steps-field-container">
+								<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-700">Denoising Steps</label>
+								<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
+									<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+								</button>
+								<div class="mt-2">
+									<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="10" min="4" max="500" value="10" class="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+									<p class="text-right text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
+								</div>
+						</div>
+						<div class="col-span-full" id="toggle-ays-field-container">
+							<div class="flex items-center justify-between">
+								<span class="flex flex-grow flex-col">
+									<span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
+									<span class="text-sm text-gray-500" id="availability-description">Enables use of <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Improves prompt coherence and quality. Disables noising steps.</span>
+								</span>
+								<!-- Enabled: "bg-black, enabled", Not Enabled: "bg-gray-200" -->
+								<button id="ays-toggle-button" type="button" onclick="toggleAysPressed(event)" class="enabled bg-black relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+									<!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+									<span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+								</button>
+							</div>
+						</div>
+
+						<div class="col-span-full" id="toggle-hidiffusion-field-container">
+							<div class="hidden flex items-center justify-between">
+								<span class="flex flex-grow flex-col">
+									<span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">Use HiDiffusion</span>
+									<span class="text-sm text-gray-500" id="availability-description">Enables HiDiffusion which will generate a hig-res (1024x1024) image with even more details.</span>
+								</span>
+								<!-- Enabled: "bg-black", Not Enabled: "bg-gray-200" -->
+								<button id="hid-toggle-button" type="button" onclick="toggleHiDPressed(event)" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+									<!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+									<span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+								</button>
+							</div>
+						</div>	
 					</div>
-			</div>
-			<div class="col-span-full" id="toggle-ays-field-container">
-				<div class="flex items-center justify-between">
-					<span class="flex flex-grow flex-col">
-						<span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
-						<span class="text-sm text-gray-500" id="availability-description">Enables use of <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Improves prompt coherence and quality. Disables noising steps.</span>
-					</span>
-					<!-- Enabled: "bg-black, enabled", Not Enabled: "bg-gray-200" -->
-					<button id="ays-toggle-button" type="button" onclick="toggleAysPressed(event)" class="enabled bg-black relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
-						<!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-						<span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-					</button>
 				</div>
-			</div>
 
-			<div class="col-span-full" id="toggle-hidiffusion-field-container">
-				<div class="hidden flex items-center justify-between">
-					<span class="flex flex-grow flex-col">
-						<span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">Use HiDiffusion</span>
-						<span class="text-sm text-gray-500" id="availability-description">Enables HiDiffusion which will generate a hig-res (1024x1024) image with even more details.</span>
-					</span>
-					<!-- Enabled: "bg-black", Not Enabled: "bg-gray-200" -->
-					<button id="hid-toggle-button" type="button" onclick="toggleHiDPressed(event)" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
-						<!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-						<span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-					</button>
-				</div>
 			</div>
-			
-			
 		</div>
 	</div>
 	`;

@@ -24,15 +24,11 @@
     <script src="../../js/helpers/ui_helper.js"></script>
 
     <script>
-        // Firebase configuration
-        const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
-        console.log('The firebase config dict is: ',firebaseConfig);
-        // Firebase configuration
-        console.log('about to initialize firebase app');
-        firebase.initializeApp(firebaseConfig);
-        console.log('about to create auth');
+        if (!firebase.apps.length) {
+            const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
+            firebase.initializeApp(firebaseConfig);
+        }
         const auth = firebase.auth();
-        console.log('about to initialize firestore');
         var db = firebase.firestore();
     </script>
 

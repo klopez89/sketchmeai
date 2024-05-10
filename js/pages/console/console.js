@@ -11,16 +11,16 @@ configureUserRelatedUI();
 
 setTimeout(handleRecentPaymentRedirect, 200);
 
-const unloadCallback = () => {
-    if (unsubscribeFromCreditSnapshot) {
-        console.log('Unsubscribing from credit snapshot!');
-        // unsubscribeFromCreditSnapshot();
-        // unsubscribeFromCreditSnapshot = null;
-    }
-    // firebase.app().delete()
-}
+// const unloadCallback = () => {
+//     if (unsubscribeFromCreditSnapshot) {
+//         console.log('Unsubscribing from credit snapshot!');
+//         // unsubscribeFromCreditSnapshot();
+//         // unsubscribeFromCreditSnapshot = null;
+//     }
+//     // firebase.app().delete()
+// }
 
-window.addEventListener("beforeunload", unloadCallback);
+// window.addEventListener("beforeunload", unloadCallback);
 
 function addConsoleToDOM() {
 	let console_html = consoleHtml();

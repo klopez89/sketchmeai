@@ -7,7 +7,7 @@ const loraScaleInfo = "Adjusts the extent to which a fine-tuned model's speciali
 
 
 function newGenItem_FromExistingGen(generation) {
-    gen_string = JSON.stringify(generation);
+    let gen_string = JSON.stringify(generation);
     return newGridItemHTML(generation.rec_id, gen_string);
 }
 
@@ -59,22 +59,6 @@ function newGridItemHTML(gen_id, gen_string="") {
         </div>
     </div>
     `;
-}
-
-function createGridHTML(numCopies) {
-    let htmlString = '';
-    for (let i = 0; i < numCopies; i++) {
-        const imageUrl = imageUrls[i % imageUrls.length];
-        htmlString += `
-            <li class="relative">
-                <div class="group aspect-h-10 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-                    <img src="${imageUrl}" alt="" class="pointer-events-none object-cover group-hover:opacity-75">
-                    <button type="button" class="absolute inset-0 focus:outline-none"></button>
-                </div>
-            </li>
-        `;
-    }
-    return htmlString;
 }
 
 

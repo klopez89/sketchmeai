@@ -14,8 +14,8 @@ setTimeout(handleRecentPaymentRedirect, 200);
 const unloadCallback = () => {
     if (unsubscribeFromCreditSnapshot) {
         console.log('Unsubscribing from credit snapshot!');
-        unsubscribeFromCreditSnapshot();
-        unsubscribeFromCreditSnapshot = null;
+        // unsubscribeFromCreditSnapshot();
+        // unsubscribeFromCreditSnapshot = null;
     }
     // firebase.app().delete()
 }

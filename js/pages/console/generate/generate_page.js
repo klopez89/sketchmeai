@@ -28,6 +28,18 @@ configurePersonLoraFields();
 
 // navigationToHomePage();
 
+const unloadCallback = () => {
+    if (unsubscribeFromCreditSnapshot) {
+        console.log('Unsubscribing from credit snapshot!');
+        unsubscribeFromCreditSnapshot();
+        unsubscribeFromCreditSnapshot = null;
+    }
+    firebase.app().delete()
+}
+
+window.addEventListener("beforeunload", unloadCallback);
+
+
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {

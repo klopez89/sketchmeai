@@ -17,7 +17,7 @@ const unloadCallback = () => {
         unsubscribeFromCreditSnapshot();
         unsubscribeFromCreditSnapshot = null;
     }
-    firebase.app().delete()
+    // firebase.app().delete()
 }
 
 window.addEventListener("beforeunload", unloadCallback);

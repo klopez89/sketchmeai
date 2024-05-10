@@ -28,10 +28,11 @@
 
 
     <script>
-        if (!firebase.apps.length) {
-            const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
-            firebase.initializeApp(firebaseConfig);
-        }
+        // if (!firebase.apps.length) {
+        //     const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
+        //     firebase.initializeApp(firebaseConfig);
+        // }
+        const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         var db = firebase.firestore();
     </script>

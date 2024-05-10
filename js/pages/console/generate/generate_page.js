@@ -28,16 +28,16 @@ configurePersonLoraFields();
 
 // navigationToHomePage();
 
-const unloadCallback = () => {
-    if (unsubscribeFromCreditSnapshot) {
-        console.log('Unsubscribing from credit snapshot!');
-        unsubscribeFromCreditSnapshot();
-        unsubscribeFromCreditSnapshot = null;
-    }
-    firebase.app().delete()
-}
+// const unloadCallback = () => {
+//     if (unsubscribeFromCreditSnapshot) {
+//         console.log('Unsubscribing from credit snapshot!');
+//         unsubscribeFromCreditSnapshot();
+//         unsubscribeFromCreditSnapshot = null;
+//     }
+//     firebase.app().delete()
+// }
 
-window.addEventListener("beforeunload", unloadCallback);
+// window.addEventListener("beforeunload", unloadCallback);
 
 
 

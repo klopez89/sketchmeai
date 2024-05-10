@@ -1,4 +1,4 @@
-let isCurrentlyPaginatingPrompts = false;
+var isCurrentlyPaginatingPrompts = false;
 let cold_boot_delay = 180000; // 3 minutes in milliseconds for custom models
 let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models to turn cold w/o use
 let status_check_interval = 2500; // 5 seconds in milliseconds
@@ -594,7 +594,7 @@ function fetchWorkingModels(userRecId) {
         contentType: 'application/json',
         dataType: 'json',
         success: function(data) {
-            models = data.models;
+            let models = data.models;
             if (models != null && models.length > 0) {
                 models.forEach(function(model) {
                     let new_model_option_html = new_model_option(model);
@@ -648,8 +648,8 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
         contentType: 'application/json',
         dataType: 'json',
         success: function(data) {
-            generations = data.generations;
-            hasAnotherPage = data.has_another_page;
+            let generations = data.generations;
+            let hasAnotherPage = data.has_another_page;
             lastDocId = data.last_doc_id;
             // console.log(`data from generations: ${JSON.stringify(generations[0], null, 2)}`)
             console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);

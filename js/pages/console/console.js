@@ -1,3 +1,4 @@
+var unsubscribeFromCreditSnapshot = null;
 
 addConsoleToDOM();
 addMobileSidebar();
@@ -10,7 +11,15 @@ configureUserRelatedUI();
 
 setTimeout(handleRecentPaymentRedirect, 200);
 
-const unloadCallback = () => {firebase.app().delete()}
+const unloadCallback = () => {
+    // if (unsubscribeFromCreditSnapshot) {
+    //     console.log('Unsubscribing from credit snapshot!');
+    //     unsubscribeFromCreditSnapshot();
+    //     unsubscribeFromCreditSnapshot = null;
+    // }
+    firebase.app().delete()
+}
+
 window.addEventListener("beforeunload", unloadCallback);
 
 function addConsoleToDOM() {
@@ -199,10 +208,11 @@ function updateShowPaymentButton(credit_balance) {
     creditBalanceLabel.innerHTML = `Credit: $${credit_balance.toFixed(2)}`;
 }
 
+
 function startListeningForCreditUpdates() {
     console.log('startListeningForCreditUpdates');
     let userRecId = getUserRecId();
-    db.collection('users').doc(userRecId)
+    let unsubscribeFromCreditSnapshot = db.collection('users').doc(userRecId)
         .onSnapshot((doc) => {
             console.log('User credit balance updated: ', doc.data());
             if (doc.exists) {

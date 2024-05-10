@@ -212,7 +212,6 @@ function updateShowPaymentButton(credit_balance) {
 function startListeningForCreditUpdates() {
     console.log('startListeningForCreditUpdates');
     let userRecId = getUserRecId();
-    let db = firebase.firestore();
     unsubscribeFromCreditSnapshot = db.collection('users').doc(userRecId)
         .onSnapshot((doc) => {
             console.log('User credit balance updated: ', doc.data());

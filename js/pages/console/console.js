@@ -6,7 +6,7 @@ copyStaticSidebar();
 changeActiveMenuPage();
 updatePageTitle();
 configurePayButton();
-startListeningForCreditUpdates;
+startListeningForCreditUpdates();
 configureUserRelatedUI();
 
 setTimeout(handleRecentPaymentRedirect, 200);
@@ -212,6 +212,9 @@ function updateShowPaymentButton(credit_balance) {
 function startListeningForCreditUpdates() {
     console.log('startListeningForCreditUpdates');
     let userRecId = getUserRecId();
+
+    
+
     unsubscribeFromCreditSnapshot = db.collection('users').doc(userRecId)
         .onSnapshot((doc) => {
             // console.log('User credit balance updated: ', doc.data());

@@ -212,7 +212,7 @@ function updateShowPaymentButton(credit_balance) {
 function startListeningForCreditUpdates() {
     console.log('startListeningForCreditUpdates');
     let userRecId = getUserRecId();
-    let unsubscribeFromCreditSnapshot = db.collection('users').doc(userRecId)
+    unsubscribeFromCreditSnapshot = db.collection('users').doc(userRecId)
         .onSnapshot((doc) => {
             console.log('User credit balance updated: ', doc.data());
             if (doc.exists) {

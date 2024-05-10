@@ -213,14 +213,14 @@ function startListeningForCreditUpdates() {
     console.log('startListeningForCreditUpdates');
     let userRecId = getUserRecId();
 
-    if (!firebase.apps.length) {
-        const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
-        firebase.initializeApp(firebaseConfig);
-    }
+    // if (!firebase.apps.length) {
+    //     const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
+    //     firebase.initializeApp(firebaseConfig);
+    // }
 
-    let firestoreDb = firebase.firestore();
+    // let firestoreDb = firebase.firestore();
 
-    unsubscribeFromCreditSnapshot = firestoreDb.collection('users').doc(userRecId)
+    unsubscribeFromCreditSnapshot = db.collection('users').doc(userRecId)
         .onSnapshot((doc) => {
             console.log('User credit balance updated: ', doc.data());
             if (doc.exists) {

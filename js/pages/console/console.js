@@ -40,12 +40,12 @@ function copyStaticSidebar() {
 
 function changeActiveMenuPage() {
     var page = window.location.pathname.split('/')[2];
-    console.log("page from url: ", page);
+    // console.log("page from url: ", page);
     var links = document.querySelectorAll('#static-sidebar #page-list a');
     var copiedLinks = document.querySelectorAll('#swap-for-static-sidebar #page-list a');
     var combinedLinks = [...links, ...copiedLinks];
     combinedLinks.forEach(function(link) {
-        console.log("link: ", link.href);
+        // console.log("link: ", link.href);
         if (link.href.toLowerCase().includes(page.toLowerCase())) {
             link.classList.add('bg-gray-800', 'text-white');
         } else {
@@ -160,7 +160,7 @@ function handleRecentPaymentRedirect() {
     let quantity = params.get('quantity');
     let unitAmount = params.get('unitAmount');
     let showNewForm = params.get('newForm');
-    console.log('didCompletePayment: ', didCompletePayment, ', productName: ', productName, ', quantity: ', quantity, ', unitAmount: ', unitAmount);
+    // console.log('didCompletePayment: ', didCompletePayment, ', productName: ', productName, ', quantity: ', quantity, ', unitAmount: ', unitAmount);
     if (didCompletePayment === 'true' && productName && quantity && unitAmount) {
         console.log('Payment completed for: ', productName, ' with quantity: ', quantity, ' and unit amount: ', unitAmount);
         // var showPaymentButton = document.getElementById('show-payment-button');

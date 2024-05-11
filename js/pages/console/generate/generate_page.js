@@ -319,15 +319,15 @@ function triggerModelNameInPromptFormatting() {
 function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
 
-    const form = document.getElementById('generateForm');
-    form.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            let genButtonElement = document.getElementById('gen-button');
-            let newEvent = new Event('click', { bubbles: true });
-            genButtonElement.dispatchEvent(newEvent);
-        }
-    });
+    // const form = document.getElementById('generateForm');
+    // form.addEventListener('keydown', function(event) {
+    //     if (event.key === 'Enter') {
+    //         event.preventDefault();
+    //         let genButtonElement = document.getElementById('gen-button');
+    //         let newEvent = new Event('click', { bubbles: true });
+    //         genButtonElement.dispatchEvent(newEvent);
+    //     }
+    // });
 
 
     let promptInput = document.getElementById('prompt')

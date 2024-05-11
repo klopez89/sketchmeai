@@ -1049,6 +1049,7 @@ function fireGenerateCall(jsonObject, generateTarget) {
         let currrentPersonModelName = getCurrentPersonModelName();
         let newPrompt = generatePrompt(currrentPersonModelName);
         promptField.innerHTML = newPrompt;
+        triggerModelNameInPromptFormatting();
     }
     
     let action = `${CONSTANTS.BACKEND_URL}generate/new`

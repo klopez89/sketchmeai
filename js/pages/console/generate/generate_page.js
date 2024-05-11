@@ -1554,8 +1554,10 @@ function promptInputValues() {
     var promptField = document.getElementById("prompt");
     let prompt = sanitizePrompt(promptField.innerHTML);
     let currrentPersonModelName = getCurrentPersonModelName();
-    promptField.innerHTML = generatePrompt(currrentPersonModelName);
-    
+    let newPrompt = generatePrompt(currrentPersonModelName);
+    console.log('the new prompt is: ', newPrompt);
+    promptField.innerHTML = newPrompt;
+
     let numberOfImages = document.getElementById('gen-count').value;
     var inferenceSteps = document.getElementById('denoising-steps').value;
     let aysToggleButton = document.getElementById('ays-toggle-button');

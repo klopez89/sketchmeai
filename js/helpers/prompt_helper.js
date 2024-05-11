@@ -41,7 +41,7 @@ function generatePrompt(model_name) {
     }
 
     // Construct the prompt
-    const prompt = `${model_name} ${randomMiddle} ${randomLast}`;
+    const prompt = `${model_name} closeup with a soft smile, ${randomMiddle} ${randomLast}`;
 
     return prompt;
 }

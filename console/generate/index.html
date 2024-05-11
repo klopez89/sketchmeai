@@ -24,12 +24,16 @@
     <script src="../../js/helpers/ui_helper.js"></script>
 
     <script>
-        if (!firebase.apps.length) {
-            const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
-            firebase.initializeApp(firebaseConfig);
-        }
+        const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
+        const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         var db = firebase.firestore();
+
+        const unloadCallback = () => {
+            app.delete()
+        }
+
+        window.addEventListener("beforeunload", unloadCallback);
     </script>
 
     <script src="../../js/helpers/components.js"></script>

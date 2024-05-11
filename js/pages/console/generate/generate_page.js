@@ -18,26 +18,11 @@ moveForm();
 configureInfiniteScroll();
 setupAccordion();
 showBasicExamplesButton();
-// configureModelListInput();
 configurePromptInputPlaceholder(); 
 addBottomGenerationMenu();
 configureShareButton();
 configureRefImageFields();
 configurePersonLoraFields();
-
-
-// navigationToHomePage();
-
-// const unloadCallback = () => {
-//     if (unsubscribeFromCreditSnapshot) {
-//         console.log('Unsubscribing from credit snapshot!');
-//         unsubscribeFromCreditSnapshot();
-//         unsubscribeFromCreditSnapshot = null;
-//     }
-//     firebase.app().delete()
-// }
-
-// window.addEventListener("beforeunload", unloadCallback);
 
 
 
@@ -321,56 +306,6 @@ function isPromptInputShowingPlaceholder() {
     return promptDiv.classList.contains('text-gray-400');
 }
 
-
-
-function configureModelListInput() {
-    const modelDropdown = document.getElementById('model-dropdown');
-    previousModelSelectionId = modelDropdown.options[modelDropdown.selectedIndex].id; // Store the initial selection id
-
-    modelDropdown.addEventListener('change', function() {
-        const newSelectionId = modelDropdown.options[modelDropdown.selectedIndex].id;
-        console.log('Model selection changed. New selection id:', newSelectionId, ", previous selection id: ", previousModelSelectionId);
-
-        // Get the option elements for both previous and new selections
-        const previousOption = modelDropdown.querySelector(`option[id="${previousModelSelectionId}"]`);
-        const newOption = modelDropdown.querySelector(`option[id="${newSelectionId}"]`);
-
-        // Get the modelname attribute values for both previous and new selections
-        const previousModelName = previousOption ? previousOption.getAttribute('modelname') : '';
-        const newModelName = newOption ? newOption.getAttribute('modelname') : '';
-
-        const previousReplicateName = previousOption.getAttribute('model');
-        const newReplicateName = newOption.getAttribute('model');
-
-        console.log('New replicate model name:', newReplicateName);
-        if (newReplicateName.includes('custom_sdxl')) {
-            promptPlaceholderText = `Drawing of ${newModelName} wearing a sleek black leather jacket`;
-        } else {
-            promptPlaceholderText = sdxlPlaceholderText;
-        }
-
-        // Try to swap trained model name with another selected trained model. Else set the appropriate placeholder if in placeholder state 
-        const promptInput = document.getElementById('prompt');
-        
-        if (previousReplicateName.includes('custom_sdxl') && newReplicateName.includes('custom_sdxl')) {
-            // Swap the modelName in the prompt if it exists
-            const promptInput = document.getElementById('prompt');
-            const promptText = promptInput.textContent || promptInput.innerText;
-
-            if (promptText.includes(previousModelName)) {
-                promptInput.textContent = promptText.replace(previousModelName, newModelName);
-            }
-        } else if (isPromptInputShowingPlaceholder()) {
-            promptInput.textContent = promptPlaceholderText;
-        }
-
-        // Update the previous selection id for the next change event
-        previousModelSelectionId = newSelectionId;
-
-        triggerModelNameInPromptFormatting();
-        updateGenerationEstimateLabel();
-    });
-}
 
 function triggerModelNameInPromptFormatting() {
     let promptInput = document.getElementById('prompt')

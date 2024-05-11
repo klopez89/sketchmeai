@@ -2140,16 +2140,22 @@ function promptStylePressed(event) {
     event.preventDefault();
     event.stopPropagation();
     let promptStyleDiv = event.currentTarget;
+    let negPromptTextfield = document.getElementById('neg-prompt');
 
     if (promptStyleDiv.classList.contains('selected')) {
         if (promptStyleDiv.id != 'no-prompt-style-button') {
             deSelectPromptStyleDiv(promptStyleDiv);
             let noPromptStyleDiv = document.getElementById('no-prompt-style-button');
             selectLoraPersonDiv(noPromptStyleDiv);
-        }
+            negPromptTextfield.textContent = 'ugly, morbid, photorealistic';
     } else {
         deSelectAllPromptStylesOptions();
         selectPromptStyleDiv(promptStyleDiv);
+        if (promptStyleDiv.id != 'no-prompt-style-button') {
+            negPromptTextfield.textContent = '';
+        } else {
+            negPromptTextfield.textContent = 'ugly, morbid, photorealistic';
+        }
     }
 }
 

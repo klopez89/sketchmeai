@@ -5,8 +5,7 @@ let status_check_interval = 2500; // 5 seconds in milliseconds
 const genEstimateCostPerDenoisingStep = 0.00128;
 var coldBootedModels = {};
 var previousModelSelectionId = 'no-lora-person-button';
-let sdxlPlaceholderText = "Drawing of cute dalmation puppy in the backyard, highly detailed";
-var promptPlaceholderText = sdxlPlaceholderText;
+var promptPlaceholderText = generatePrompt('');
 let isSelectable = false;
 
 addImageGrid();
@@ -293,7 +292,7 @@ function promptAboutToLoseFocus() {
 function togglePlaceholder() {
     let promptDiv = document.getElementById('prompt');
     if (!promptDiv.textContent.trim().length ) {
-        promptDiv.textContent = promptPlaceholderText;
+        promptDiv.textContent = generatePrompt('');
         promptDiv.classList.remove('text-gray-900');
         promptDiv.classList.add('text-gray-400');
     }
@@ -306,19 +305,6 @@ function shiftAwayFromPromptPlaceholderState() {
         promptDiv.classList.add('text-gray-900');
     }
 }
-
-// function removePlaceholder() {
-//     let promptDiv = document.getElementById('prompt');
-
-//     console.log('In remove placeholder, textcontent: ', promptDiv.textContent, ' promptPlaceholderText: ', promptPlaceholderText);
-//     if (promptDiv.textContent === promptPlaceholderText) {
-//         if (promptDiv.classList.contains('text-gray-400')) {
-//             promptDiv.textContent = '';
-//         }
-//         promptDiv.classList.remove('text-gray-400');
-//         promptDiv.classList.add('text-gray-900');
-//     }
-// }
 
 function isPromptInputShowingPlaceholder() {
     let promptDiv = document.getElementById('prompt');
@@ -2127,7 +2113,7 @@ function personLoraSelectionMade() {
         if (promptText.includes(previousLoraPersonName)) {
             promptInput.textContent = promptText.replace(previousLoraPersonName, newLoraPersonName);
         }
-    } else if (isPromptInputShowingPlaceholder()) {
+    } else {
         promptInput.textContent = promptPlaceholderText;
     }
 

@@ -18,12 +18,27 @@ const lastParts = [
     // Add more as needed
 ];
 
+const firstParts = [
+    "Person",
+    "Cat",
+    "Dog",
+    "Bird",
+    "Lizard",
+    "Fish",
+    "Robot",
+]
+
 function generatePrompt(model_name) {
     // Get a random middle part
     const randomMiddle = middleParts[Math.floor(Math.random() * middleParts.length)];
 
     // Get a random last part
     const randomLast = lastParts[Math.floor(Math.random() * lastParts.length)];
+
+    // Get a random first part if its an empty string
+    if (model_name == "") {
+        model_name = firstParts[Math.floor(Math.random() * firstParts.length)];
+    }
 
     // Construct the prompt
     const prompt = `${model_name} ${randomMiddle} ${randomLast}`;

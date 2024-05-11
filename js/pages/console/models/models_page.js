@@ -16,18 +16,18 @@ setupAccordion();
 applyTrainingPreset(personTrainingPreset());
 updateTrainingCostEstimate();
 
-// auth.onAuthStateChanged(function(user) {
-//     if (user) {
-//         console.log('User is signed in.');
-//         let userRecId = getUserRecId();
-//         let lastDocId = null;
-//         fetchModels(userRecId, lastDocId);
-//         checkForNewModelRedirect();
-//     } else {
-//         console.log('No user is signed in.');
-//         navigationToHomePage();
-//     }
-// });
+auth.onAuthStateChanged(function(user) {
+    if (user) {
+        console.log('User is signed in.');
+        let userRecId = getUserRecId();
+        let lastDocId = null;
+        fetchModels(userRecId, lastDocId);
+        checkForNewModelRedirect();
+    } else {
+        console.log('No user is signed in.');
+        navigationToHomePage();
+    }
+});
 
 function enforceNoSpaces(event) {
     // Remove spaces

@@ -296,18 +296,18 @@ function shiftAwayFromPromptPlaceholderState() {
     }
 }
 
-function removePlaceholder() {
-    let promptDiv = document.getElementById('prompt');
+// function removePlaceholder() {
+//     let promptDiv = document.getElementById('prompt');
 
-    console.log('In remove placeholder, textcontent: ', promptDiv.textContent, ' promptPlaceholderText: ', promptPlaceholderText);
-    if (promptDiv.textContent === promptPlaceholderText) {
-        if (promptDiv.classList.contains('text-gray-400')) {
-            promptDiv.textContent = '';
-        }
-        promptDiv.classList.remove('text-gray-400');
-        promptDiv.classList.add('text-gray-900');
-    }
-}
+//     console.log('In remove placeholder, textcontent: ', promptDiv.textContent, ' promptPlaceholderText: ', promptPlaceholderText);
+//     if (promptDiv.textContent === promptPlaceholderText) {
+//         if (promptDiv.classList.contains('text-gray-400')) {
+//             promptDiv.textContent = '';
+//         }
+//         promptDiv.classList.remove('text-gray-400');
+//         promptDiv.classList.add('text-gray-900');
+//     }
+// }
 
 function isPromptInputShowingPlaceholder() {
     let promptDiv = document.getElementById('prompt');
@@ -915,9 +915,9 @@ function generateButtonPressed(event) {
 
     var prompt = promptValues.prompt;
     if (isPromptInputShowingPlaceholder() == true) {
-        removePlaceholder();
-        document.getElementById('prompt').innerHTML = prompt;
-        console.log('the prompt after removing placeholder: ', document.getElementById('prompt').innerHTML);
+        // removePlaceholder();
+        // document.getElementById('prompt').innerHTML = prompt;
+        // console.log('the prompt after removing placeholder: ', document.getElementById('prompt').innerHTML);
         triggerModelNameInPromptFormatting();
     }
 

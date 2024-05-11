@@ -263,7 +263,7 @@ async function generateFileArray(imageUrls) {
 
 function configurePromptInputPlaceholder() {
     let promptDiv = document.getElementById('prompt');
-    // promptDiv.addEventListener('focus', removePlaceholder);
+    promptDiv.addEventListener('focus', shiftAwayFromPromptPlaceholderState);
     promptDiv.addEventListener('blur', promptAboutToLoseFocus);
     togglePlaceholder();
 }
@@ -285,6 +285,14 @@ function togglePlaceholder() {
         promptDiv.textContent = promptPlaceholderText;
         promptDiv.classList.remove('text-gray-900');
         promptDiv.classList.add('text-gray-400');
+    }
+}
+
+function shiftAwayFromPromptPlaceholderState() {
+    let promptDiv = document.getElementById('prompt');
+    if (promptDiv.classList.contains('text-gray-400')) {
+        promptDiv.classList.remove('text-gray-400');
+        promptDiv.classList.add('text-gray-900');
     }
 }
 

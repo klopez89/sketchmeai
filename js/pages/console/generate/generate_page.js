@@ -30,6 +30,7 @@ setInterval(function() {
         let currentModelName = getCurrentPersonModelName();
         console.log('currentModelName about to be used to gen new random default prompt: ', currentModelName);
         promptDiv.textContent = generatePrompt(currentModelName);
+        triggerModelNameInPromptFormatting();
     } else {
         console.log('promptDiv is not showing in placeholder state so skipping the setting of a random prompt!');
     }

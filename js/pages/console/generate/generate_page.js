@@ -263,7 +263,7 @@ async function generateFileArray(imageUrls) {
 
 function configurePromptInputPlaceholder() {
     let promptDiv = document.getElementById('prompt');
-    promptDiv.addEventListener('focus', removePlaceholder);
+    // promptDiv.addEventListener('focus', removePlaceholder);
     promptDiv.addEventListener('blur', promptAboutToLoseFocus);
     togglePlaceholder();
 }

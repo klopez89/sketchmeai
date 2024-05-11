@@ -351,7 +351,7 @@ function configureGenerateForm() {
     });
 
     // Neg-prompt field: Enbable pressing enter to trigger generation
-    document.getElementById('negative-prompt').addEventListener('keydown', function(event) {
+    document.getElementById('neg-prompt').addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
             let genButtonElement = document.getElementById('gen-button');

@@ -2097,8 +2097,8 @@ function personLoraSelectionMade() {
 
     let selectedLoraPersonDiv = loraPersonGrid.querySelector('.selected');
     let selectedLoraPersonId = selectedLoraPersonDiv ? selectedLoraPersonDiv.id : null;
-    console.log('selectedLoraPersonId is: ', selectedLoraPersonId);
-    console.log('previousModelSelectionId is: ', previousModelSelectionId);
+    // console.log('selectedLoraPersonId is: ', selectedLoraPersonId);
+    // console.log('previousModelSelectionId is: ', previousModelSelectionId);
 
     let previousLoraPersonDiv = loraPersonGrid.querySelector(`div[id="${previousModelSelectionId}"]`);
     let newLoraPersonDiv = loraPersonGrid.querySelector(`div[id="${selectedLoraPersonId}"]`);
@@ -2106,14 +2106,14 @@ function personLoraSelectionMade() {
     let previousLoraPersonName = previousLoraPersonDiv ? previousLoraPersonDiv.getAttribute('modelname') : '';
     let newLoraPersonName = newLoraPersonDiv ? newLoraPersonDiv.getAttribute('modelname') : '';
 
-    console.log('previousLoraPersonDiv is: ', previousLoraPersonDiv);
+    // console.log('previousLoraPersonDiv is: ', previousLoraPersonDiv);
     let previousReplicateName = previousLoraPersonDiv.getAttribute('model');
     let newReplicateName = newLoraPersonDiv.getAttribute('model');
 
     if (newReplicateName.includes('custom_sdxl')) {
-        promptPlaceholderText = `Drawing of ${newLoraPersonName} wearing a sleek black leather jacket`;
+        promptPlaceholderText = generatePrompt(newLoraPersonName);
     } else {
-        promptPlaceholderText = sdxlPlaceholderText;
+        promptPlaceholderText = generatePrompt('');
     }
 
     // Try to swap trained model name with another selected trained model. Else set the appropriate placeholder if in placeholder state 

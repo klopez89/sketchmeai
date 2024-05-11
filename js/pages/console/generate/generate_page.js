@@ -24,8 +24,8 @@ configureRefImageFields();
 configurePersonLoraFields();
 
 setInterval(function() {
-    let promptDiv = document.getElementById('prompt');
-    if (promptDiv.classList.contains('text-gray-400')) {
+    if (isPromptInputShowingPlaceholder()) {    
+        let promptDiv = document.getElementById('prompt');
         let currentModelName = getCurrentPersonModelName();
         console.log('currentModelName about to be used to gen new random default prompt: ', currentModelName);
         promptDiv.textContent = generatePrompt(currentModelName);
@@ -1044,8 +1044,8 @@ function fireGenerateCall(jsonObject, generateTarget) {
     });
 
     // Reset the prompt field to a new prompt if the promptField is in placeholder state
-    let promptField = document.getElementById('prompt');
-    if (promptField.classList.contains('text-gray-400')) {
+    if (isPromptInputShowingPlaceholder()) {
+        let promptField = document.getElementById('prompt');
         let currrentPersonModelName = getCurrentPersonModelName();
         let newPrompt = generatePrompt(currrentPersonModelName);
         promptField.innerHTML = newPrompt;
@@ -2123,7 +2123,7 @@ function personLoraSelectionMade() {
         if (promptText.includes(previousLoraPersonName)) {
             promptInput.textContent = promptText.replace(previousLoraPersonName, newLoraPersonName);
         }
-    } else {
+    } else if (isPromptInputShowingPlaceholder()) {
         promptInput.textContent = promptPlaceholderText;
     }
 

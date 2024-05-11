@@ -317,7 +317,8 @@ function triggerModelNameInPromptFormatting() {
 }
 
 function configureGenerateForm() {
-    document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
+    let genForm = document.getElementById("generateForm");
+    genForm.addEventListener("submit", generateButtonPressed, true);
 
     let promptInput = document.getElementById('prompt')
     promptInput.addEventListener('input', function(event) {
@@ -356,8 +357,8 @@ function configureGenerateForm() {
         if (event.key === 'Enter') {
             event.preventDefault();
             // let genButtonElement = document.getElementById('gen-button');
-            // let newEvent = new Event('click', { bubbles: false });
-            // genButtonElement.dispatchEvent(newEvent);
+            let newEvent = new Event('submit', { bubbles: false });
+            genForm.dispatchEvent(newEvent);
         }
     });
 

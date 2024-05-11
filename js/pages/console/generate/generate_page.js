@@ -319,17 +319,6 @@ function triggerModelNameInPromptFormatting() {
 function configureGenerateForm() {
     document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
 
-    // const form = document.getElementById('generateForm');
-    // form.addEventListener('keydown', function(event) {
-    //     if (event.key === 'Enter') {
-    //         event.preventDefault();
-    //         let genButtonElement = document.getElementById('gen-button');
-    //         let newEvent = new Event('click', { bubbles: true });
-    //         genButtonElement.dispatchEvent(newEvent);
-    //     }
-    // });
-
-
     let promptInput = document.getElementById('prompt')
     promptInput.addEventListener('input', function(event) {
         console.log('promptInput value: ', promptInput.innerHTML);
@@ -350,7 +339,26 @@ function configureGenerateForm() {
         if (!selection.rangeCount) return false;
         selection.deleteFromDocument();
         selection.getRangeAt(0).insertNode(document.createTextNode(text));
-      });
+    });
+
+    promptInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            let genButtonElement = document.getElementById('gen-button');
+            let newEvent = new Event('click', { bubbles: true });
+            genButtonElement.dispatchEvent(newEvent);
+        }
+    });
+
+    // Neg-prompt field: Enbable pressing enter to trigger generation
+    document.getElementById('negative-prompt').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            let genButtonElement = document.getElementById('gen-button');
+            let newEvent = new Event('click', { bubbles: true });
+            genButtonElement.dispatchEvent(newEvent);
+        }
+    });
 
     let denoisingStepsInput = document.getElementById('denoising-steps');
     denoisingStepsInput.addEventListener('input', function(event) {

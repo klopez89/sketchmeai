@@ -304,7 +304,7 @@ function generate_form_html() {
 }
 
 function new_model_option(model) {
-	console.log('the mode for a new model option: ', model);
+	// console.log('the mode's for a new model option: ', model);
 	let model_id = model.rec_id;
 	let replicate_name = model.replicate_name;
 	let instKey = model.token_string ? model.token_string : "zxc";

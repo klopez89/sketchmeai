@@ -1476,22 +1476,22 @@ function getUploadedRef() {
 function configureInfiniteScroll() {
     const scrollableContainer = document.getElementById("collection-grid-container");
     scrollableContainer.addEventListener("scroll", () => {
-        console.log("Scroll Top: ", scrollableContainer.scrollTop, 
-                    "Client Height: ", scrollableContainer.clientHeight, 
-                    "Scroll Height: ", scrollableContainer.scrollHeight);
+        // console.log("Scroll Top: ", scrollableContainer.scrollTop, 
+        //             "Client Height: ", scrollableContainer.clientHeight, 
+        //             "Scroll Height: ", scrollableContainer.scrollHeight);
         if ((scrollableContainer.scrollTop + scrollableContainer.clientHeight) >= scrollableContainer.scrollHeight - 5) {
             if (isCurrentlyPaginatingPrompts) {
-                console.log('is currently paginating!');
+                // console.log('is currently paginating!');
                 return
             } else {
                 const last_doc_id = getLastDocIdFromLocalStorage();
                 if (last_doc_id != null) {
-                    console.log('has a last doc id of: ', last_doc_id);
+                    // console.log('has a last doc id of: ', last_doc_id);
                     isCurrentlyPaginatingPrompts = true;
                     let collectionId = getLastEditedCollectionInfo().collectionId;
                     fetchGenerations(getUserRecId(), collectionId, last_doc_id);
                 } else {
-                    console.log('doesnt have a last doc id, so no more things to fetch');
+                    // console.log('doesnt have a last doc id, so no more things to fetch');
                 }
             }
         }

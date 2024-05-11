@@ -1551,8 +1551,11 @@ function isValidImageUrl(url) {
 }
 
 function promptInputValues() {
-    var prompt = document.getElementById("prompt").innerHTML;
-    prompt = sanitizePrompt(prompt);
+    var promptField = document.getElementById("prompt");
+    let prompt = sanitizePrompt(promptField.innerHTML);
+    let currrentPersonModelName = getCurrentPersonModelName();
+    promptField.innerHTML = generatePrompt(currrentPersonModelName);
+    
     let numberOfImages = document.getElementById('gen-count').value;
     var inferenceSteps = document.getElementById('denoising-steps').value;
     let aysToggleButton = document.getElementById('ays-toggle-button');

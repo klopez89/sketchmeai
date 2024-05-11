@@ -2148,6 +2148,7 @@ function promptStylePressed(event) {
             let noPromptStyleDiv = document.getElementById('no-prompt-style-button');
             selectLoraPersonDiv(noPromptStyleDiv);
             negPromptTextfield.textContent = 'ugly, morbid, photorealistic';
+        }
     } else {
         deSelectAllPromptStylesOptions();
         selectPromptStyleDiv(promptStyleDiv);

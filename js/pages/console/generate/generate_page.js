@@ -24,6 +24,16 @@ configureShareButton();
 configureRefImageFields();
 configurePersonLoraFields();
 
+setInterval(function() {
+    let promptDiv = document.getElementById('prompt');
+    if (promptDiv.classList.contains('text-gray-400')) {
+        let currentModelName = getCurrentPersonModelName();
+        console.log('currentModelName about to be used to gen new random default prompt: ', currentModelName);
+        promptDiv.textContent = generatePrompt(currentModelName);
+    } else {
+        console.log('promptDiv is not showing in placeholder state so skipping the setting of a random prompt!');
+    }
+}, 2000);
 
 
 firebase.auth().onAuthStateChanged(function(user) {
@@ -547,6 +557,8 @@ function setupAccordion() {
     });
 }
 
+
+
 function fetchWorkingModels(userRecId) {
     $.ajax({
         url: CONSTANTS.BACKEND_URL + 'models/working',
@@ -581,8 +593,7 @@ function fetchWorkingModels(userRecId) {
                     let long_version = models[0].version;
                     let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
                     let promptDiv = document.getElementById('prompt');
-                    promptPlaceholderText = `Drawing of ${firstModelName} wearing a sleek black leather jacket`;
-                    promptDiv.textContent = promptPlaceholderText;
+                    promptDiv.textContent = generatePrompt(firstModelName);
                     selectModelWithVersion(short_version);
                     promptDiv.blur();
                 }
@@ -1632,18 +1643,9 @@ function promptInputValues() {
         genderTypes.push(selectedOption.getAttribute('genderType'));
     }
 
-    let promptStyleGrid = document.getElementById('prompt-style-grid');
-    let promptStyleDivs = promptStyleGrid.children;
-    let selectedPromptStyleDiv;
-    for (let i = 0; i < promptStyleDivs.length; i++) {
-        if (promptStyleDivs[i].classList.contains('selected')) {
-            selectedPromptStyleDiv = promptStyleDivs[i];
-            break;
-        }
-    }
-    let promptStyle = selectedPromptStyleDiv.getAttribute('prompt-style');
+    let promptStyle = getCurrentPromptStyle();
 
-    console.log('the selected model names list: ', modelNames);
+    // console.log('the selected model names list: ', modelNames);
   
     return {
         prompt: prompt,
@@ -1673,6 +1675,32 @@ function promptInputValues() {
         trainingSubjects: trainingSubjects,
         genderTypes: genderTypes
     }
+}
+
+function getCurrentPromptStyle() {
+    let promptStyleGrid = document.getElementById('prompt-style-grid');
+    let promptStyleDivs = promptStyleGrid.children;
+    let selectedPromptStyleDiv;
+    for (let i = 0; i < promptStyleDivs.length; i++) {
+        if (promptStyleDivs[i].classList.contains('selected')) {
+            selectedPromptStyleDiv = promptStyleDivs[i];
+            break;
+        }
+    }
+    return selectedPromptStyleDiv.getAttribute('prompt-style');
+}
+
+function getCurrentPersonModelName() {
+    let loraPersonGrid = document.getElementById('lora-person-grid');
+    let loraPersonDivs = loraPersonGrid.children;
+    let selectedLoraPersonDiv;
+    for (let i = 0; i < loraPersonDivs.length; i++) {
+        if (loraPersonDivs[i].classList.contains('selected')) {
+            selectedLoraPersonDiv = loraPersonDivs[i];
+            break;
+        }
+    }
+    return selectedLoraPersonDiv.getAttribute('modelname');
 }
 
 function updateCurrentCollectionLabels() {

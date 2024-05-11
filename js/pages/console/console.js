@@ -11,16 +11,6 @@ configureUserRelatedUI();
 
 setTimeout(handleRecentPaymentRedirect, 200);
 
-// const unloadCallback = () => {
-//     // if (unsubscribeFromCreditSnapshot) {
-//     //     console.log('Unsubscribing from credit snapshot!');
-//     //     unsubscribeFromCreditSnapshot();
-//     //     unsubscribeFromCreditSnapshot = null;
-//     // }
-//     app.delete()
-// }
-
-// window.addEventListener("beforeunload", unloadCallback);
 
 function addConsoleToDOM() {
 	let console_html = consoleHtml();
@@ -212,13 +202,6 @@ function updateShowPaymentButton(credit_balance) {
 function startListeningForCreditUpdates() {
     console.log('startListeningForCreditUpdates');
     let userRecId = getUserRecId();
-
-    // if (!firebase.apps.length) {
-    //     const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
-    //     firebase.initializeApp(firebaseConfig);
-    // }
-
-    // let firestoreDb = firebase.firestore();
 
     unsubscribeFromCreditSnapshot = db.collection('users').doc(userRecId)
         .onSnapshot((doc) => {

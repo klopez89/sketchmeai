@@ -267,7 +267,7 @@ function generate_form_html() {
 						</div>
 					</div>
 
-					<div prompt-style="${PromptStyle.PIXEL_ART}" class="relative cursor-pointer select-none selected" id="pixel-art-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+					<div prompt-style="${PromptStyle.PIXEL_ART}" class="relative cursor-pointer select-none" id="pixel-art-style-button" bgColor="#000" onclick="promptStylePressed(event)">
 						<div class="group w-32 h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white">
 								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Description" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">

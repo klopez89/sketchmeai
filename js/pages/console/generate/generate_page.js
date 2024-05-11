@@ -345,9 +345,8 @@ function configureGenerateForm() {
     promptInput.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            let genButtonElement = document.getElementById('gen-button');
-            let newEvent = new Event('click', { bubbles: true });
-            genButtonElement.dispatchEvent(newEvent);
+            let newEvent = new Event('submit', { bubbles: false });
+            genForm.dispatchEvent(newEvent);
         }
     });
 
@@ -356,7 +355,6 @@ function configureGenerateForm() {
     document.getElementById('neg-prompt').addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            // let genButtonElement = document.getElementById('gen-button');
             let newEvent = new Event('submit', { bubbles: false });
             genForm.dispatchEvent(newEvent);
         }

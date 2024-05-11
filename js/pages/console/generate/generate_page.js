@@ -1042,6 +1042,14 @@ function fireGenerateCall(jsonObject, generateTarget) {
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
         new_grid_item_div.find('img').first().removeClass('hidden');
     });
+
+    // Reset the prompt field to a new prompt if the promptField is in placeholder state
+    let promptField = document.getElementById('prompt');
+    if (promptField.classList.contains('text-gray-400')) {
+        let currrentPersonModelName = getCurrentPersonModelName();
+        let newPrompt = generatePrompt(currrentPersonModelName);
+        promptField.innerHTML = newPrompt;
+    }
     
     let action = `${CONSTANTS.BACKEND_URL}generate/new`
     $.ajax({
@@ -1553,10 +1561,6 @@ function isValidImageUrl(url) {
 function promptInputValues() {
     var promptField = document.getElementById("prompt");
     let prompt = sanitizePrompt(promptField.innerHTML);
-    let currrentPersonModelName = getCurrentPersonModelName();
-    let newPrompt = generatePrompt(currrentPersonModelName);
-    console.log('the new prompt is: ', newPrompt);
-    promptField.innerHTML = newPrompt;
 
     let numberOfImages = document.getElementById('gen-count').value;
     var inferenceSteps = document.getElementById('denoising-steps').value;

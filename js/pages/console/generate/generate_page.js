@@ -989,8 +989,8 @@ function generateButtonPressed(event) {
                 if (!personalizedPrompt.includes(`a ${instanceKey}`) && personalizedPrompt.includes(`${instanceKey}`)) {
                     personalizedPrompt = personalizedPrompt.replace(instanceKey, `a ${instanceKey}`);
                 }
-                if (!personalizedPrompt.includes(`${instanceKey}`) && personalizedPrompt.includes(`${instanceKey}`)) {
-                    personalizedPrompt = personalizedPrompt.replace(instanceKey, `${instanceKey}`);
+                if (!personalizedPrompt.includes(`${instanceKey} ${genderType}`) && personalizedPrompt.includes(`${instanceKey}`)) {
+                    personalizedPrompt = personalizedPrompt.replace(instanceKey, `${instanceKey} ${genderType}`);
                 }
             } else if (trainingSubject == null) {
                 personalizedPrompt = personalizedPrompt.replace(instanceKey, 'person');

@@ -789,6 +789,7 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
     selectModelWithVersion(generation.model_version);
     selectPromptStyle(generation.gen_recipe.prompt_style);
+    selectRefImageMode(generation.gen_recipe.ref_img_mode);
     updateAysToggle(generation.gen_recipe.should_use_ays);
     updateHiDToggle(generation.gen_recipe.should_use_hi_d);
 }
@@ -850,6 +851,16 @@ function selectPromptStyle(prompt_style) {
 
     if (!selected) {
         selectPromptStyleDiv(promptStyleDivs[0]);
+    }
+}
+
+function selectRefImageMode(ref_img_mode) {
+    let refImgModeSelector = document.getElementById('ref-img-mode');
+    for (let i = 0; i < refImgModeSelector.options.length; i++) {
+        if (refImgModeSelector.options[i].id === ref_img_mode) {
+            refImgModeSelector.selectedIndex = i;
+            break;
+        }
     }
 }
 
@@ -1581,6 +1592,7 @@ function promptInputValues() {
 
     let refImgModeElement = document.getElementById('ref-img-mode');
     let refImageMode = refImgModeElement.options[refImgModeElement.selectedIndex].id;
+    console.log('the ref image mode is: ', refImageMode);
 
     if (promptStrength == '') {
         promptStrength = 80;

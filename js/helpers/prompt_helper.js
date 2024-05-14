@@ -3,7 +3,8 @@
 // Array of middle parts of the prompts
 const middleParts = [
     "wearing a sleek black leather jacket,",
-    "holding a red umbrella,",
+    "wearing a sleek red leather jacket,",
+    "wearing a sleek baby-blue leather jacket,",
     "sitting on a wooden bench,",
     "standing under a cherry blossom tree,"
     // Add more as needed
@@ -11,9 +12,9 @@ const middleParts = [
 
 // Array of last parts of the prompts
 const lastParts = [
-    "forest in the background",
+    "forest in background",
     "city skyline behind",
-    "ocean waves crashing",
+    "ocean waves in background",
     "mountains in the distance"
     // Add more as needed
 ];

@@ -46,6 +46,11 @@ const PromptStyle = {
     PIXEL_ART: 'pixel_art',
 }
 
+const RefImageMode = {
+    IMG2IMG: 'i2i-mode',
+    MISTO: 'misto-mode',
+}
+
 const FAILED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/failed_img.png"
 const CANCELED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/canceled_img.png"
 

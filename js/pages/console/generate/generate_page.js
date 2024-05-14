@@ -1016,6 +1016,7 @@ function generateButtonPressed(event) {
                 seed: seedToUse,
                 img2imgUrl: promptValues.img2imgUrl,
                 refImgInfo: promptValues.refImgInfo,
+                refImageMode: promptValues.refImageMode,
                 promptStrength: promptValues.promptStrength,
                 inferenceSteps: promptValues.inferenceSteps,
                 shouldUseAys: promptValues.shouldUseAys,
@@ -1578,6 +1579,9 @@ function promptInputValues() {
     var loraScale = document.getElementById('person-lora-influence').value;
     let shouldUseRandomSeedAcrossModels = true;
 
+    let refImgModeElement = document.getElementById('ref-img-mode');
+    let refImageMode = refImgModeElement.options[refImgModeElement.selectedIndex].id;
+
     if (promptStrength == '') {
         promptStrength = 80;
     } 
@@ -1656,6 +1660,7 @@ function promptInputValues() {
         seed: seed,
         img2imgUrl: img2imgUrl,
         refImgInfo: refImgInfo,
+        refImageMode: refImageMode,
         promptStrength: normalizedPromptStrength,
         loraScale: normalizedLoraScale,
         resWidth: 1024,
@@ -1670,7 +1675,7 @@ function promptInputValues() {
         versionValues: versionValues,
         instanceKeys: instanceKeys,
         trainingSubjects: trainingSubjects,
-        genderTypes: genderTypes
+        genderTypes: genderTypes,
     }
 }
 

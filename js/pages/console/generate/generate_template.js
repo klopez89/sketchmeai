@@ -586,8 +586,9 @@ function generateReferenceFormSectionHTML() {
 					</div>
 
 					<div class="col-span-3" id="mode-selector-container">
-						<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-							<option>Image to Image</option>
+						<select id="ref-img-mode" name="ref-img-mode" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+							<option id="${RefImageMode.IMG2IMG}">Image to Image</option>
+							<option id="${RefImageMode.MISTO}">Misto Line, ControlNet</option>
 						</select>
 					</div>
 

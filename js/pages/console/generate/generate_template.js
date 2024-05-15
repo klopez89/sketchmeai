@@ -219,6 +219,43 @@ function generate_form_html() {
 					<input type="range" id="person-lora-influence-range" min="0" max="100" step="1" class="slider flex-grow">
 					<input type="number" name="person-lora-influence" id="person-lora-influence" placeholder="100" min="0" max="100" value="100" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 				</div>
+
+
+				<div class="col-span-full flex" id="control-net-influence-tab-selector-container">
+					<label for="influence" class="text-sm font-medium leading-6 text-gray-700">Influence</label><div class="sm:hidden">
+					<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+					<select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+					  <option selected="">My Account</option>
+					  <option>Company</option>
+					  <option>Team Members</option>
+					  <option>Billing</option>
+					</select>
+					</div>
+					<div class="hidden sm:block">
+						<nav class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Tabs">
+							<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
+							<a href="#" class="text-gray-900 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+							<span>My Account</span>
+							<span aria-hidden="true" class="bg-indigo-500 absolute inset-x-0 bottom-0 h-0.5"></span>
+							</a>
+							<a href="#" class="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+							<span>Company</span>
+							<span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+							</a>
+							<a href="#" class="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+							<span>Team Members</span>
+							<span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+							</a>
+							<a href="#" class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+							<span>Billing</span>
+							<span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+							</a>
+						</nav>
+					</div>
+				
+				</div>
+
+
 			</div>
 		</div>
 

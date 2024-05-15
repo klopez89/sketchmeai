@@ -194,7 +194,7 @@ function validateUserAuth(userInfo) {
 }
 
 function navigateToConsole() {
-    window.location.href = `https://${CONSTANTS.SITE_URL}/console/models`;
+    window.location.href = `https://${CONSTANTS.SITE_URL}/console/generate`;
 }
 
 function navigateToNewModelForm() {

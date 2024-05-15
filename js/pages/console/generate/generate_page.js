@@ -2305,3 +2305,14 @@ function updateHiDToggle(shouldEnable) {
         span.classList.add('translate-x-0');
     }
 }
+
+
+function cnetOptionSelectionMade(event) {
+    event.preventDefault();
+    let selectedOption = event.target.options[event.target.selectedIndex];
+    console.log('from cnetOptionSelectionMade, the selected option is: ', selectedOption.getAttribute('cnet-inf'));
+}
+
+function cnetTabOptionSelected(influence_val) {
+    console.log('from cnetTabOptionSelected, the influence val is: ', influence_val);
+}

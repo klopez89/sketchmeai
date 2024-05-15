@@ -1617,10 +1617,10 @@ function promptInputValues() {
     if (promptStrength == '') {
         promptStrength = 80;
     } 
-    else if (promptStrength > 95) {
-        promptStrength = 95;
-        document.getElementById('prompt-str').value = 95;
-    }
+    // else if (promptStrength > 95) {
+    //     promptStrength = 95;
+    //     document.getElementById('prompt-str').value = 95;
+    // }
 
     let normalizedPromptStrength = 1 - promptStrength / 100;
 

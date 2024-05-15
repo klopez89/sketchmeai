@@ -36,7 +36,7 @@ setInterval(function() {
 }, 2000);
 
 
-firebase.auth().onAuthStateChanged(function(user) {
+auth.onAuthStateChanged(function(user) {
     if (user) {
         console.log('User is signed in.');
         let userRecId = getUserRecId();

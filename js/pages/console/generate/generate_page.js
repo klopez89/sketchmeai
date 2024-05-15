@@ -1507,13 +1507,13 @@ function clearRefImgElement(event) {
 
 function getUploadedRef() {
 	let singleRefImageButton = document.getElementById('ref-img-button');
-    console.log('the single ref img button is: ', singleRefImageButton);
+    // console.log('the single ref img button is: ', singleRefImageButton);
     let singleRefImg = singleRefImageButton.querySelector('img');
     let singleRefSrcUrl = singleRefImg.src;
 
     let currentPageUrl = window.location.href;
     const isSameUrl = new URL(currentPageUrl).origin + new URL(currentPageUrl).pathname === new URL(singleRefSrcUrl).origin + new URL(singleRefSrcUrl).pathname;
-    console.log('the isSameUrl value is: ', isSameUrl);
+    // console.log('the isSameUrl value is: ', isSameUrl);
 
     if (singleRefSrcUrl === '' || isSameUrl) {
         return null;
@@ -1612,7 +1612,7 @@ function promptInputValues() {
 
     let refImgModeElement = document.getElementById('ref-img-mode');
     let refImageMode = refImgModeElement.options[refImgModeElement.selectedIndex].id;
-    console.log('the ref image mode is: ', refImageMode);
+    // console.log('the ref image mode is: ', refImageMode);
 
     if (promptStrength == '') {
         promptStrength = 80;
@@ -1640,7 +1640,7 @@ function promptInputValues() {
     let loraPersonGrid = document.getElementById('lora-person-grid');
     let loraPersonDivs = loraPersonGrid.children;
 
-    console.log('the lora person divs: ', loraPersonDivs);
+    // console.log('the lora person divs: ', loraPersonDivs);
 
     // let dropdown = document.getElementById('model-dropdown');
     // let selectedOptions = dropdown.selectedOptions;

@@ -778,6 +778,7 @@ function copyPromptInfoFromGen(generation) {
     } else {
         let clearRefButton = document.getElementById('clear-ref-button');
         clearRefButton.click();
+        attemptToCloseRefImgSection();
     }
 
     console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
@@ -792,6 +793,7 @@ function copyPromptInfoFromGen(generation) {
     selectRefImageMode(generation.gen_recipe.ref_img_mode);
     updateAysToggle(generation.gen_recipe.should_use_ays);
     updateHiDToggle(generation.gen_recipe.should_use_hi_d);
+    attemptToShowPromptSettingsSection();
 }
 
 function insertImgUrlForRefImg(url) {
@@ -804,13 +806,31 @@ function insertImgUrlForRefImg(url) {
         'type': `image/${imageExtension}`
     }
     addFileToRefImgElement(imgInfo);
+    attemptToShowRefImgSection();
+}
 
+function attemptToShowRefImgSection() {
     let refImgSectionButton = document.getElementById('reference-section-button');
-    console.log('the refImgSectionButton is: ', refImgSectionButton);
     if(refImgSectionButton.getAttribute('data-te-collapse-collapsed') != null) {
         refImgSectionButton.click();
     }
 }
+
+function attemptToCloseRefImgSection() {
+    let refImgSectionButton = document.getElementById('reference-section-button');
+    if(refImgSectionButton.getAttribute('data-te-collapse-collapsed') == null) {
+        refImgSectionButton.click();
+    }
+}
+
+function attemptToShowPromptSettingsSection() {
+    let promptSettingsSectionButton = document.getElementById('prompt-settings-section-button');
+    if(promptSettingsSectionButton.getAttribute('data-te-collapse-collapsed') != null) {
+        promptSettingsSectionButton.click();
+    }
+}
+
+
 
 function selectModelWithVersion(version) {
     let loraPersonGrid = document.getElementById('lora-person-grid');

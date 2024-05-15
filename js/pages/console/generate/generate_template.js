@@ -611,8 +611,8 @@ function generateReferenceFormSectionHTML() {
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
 							<select id="tabs" name="tabs" onChange="cnetOptionSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
 								<option selected="" cnet-inf="${ControlNetInfluence.LOW}">Low</option>
-								<option cnet-inf="${ControlNetInfluence.MEDIUM}>Medium</option>
-								<option cnet-inf="${ControlNetInfluence.HIGH}>High</option>
+								<option cnet-inf="${ControlNetInfluence.MEDIUM}">Medium</option>
+								<option cnet-inf="${ControlNetInfluence.HIGH}">High</option>
 							</select>
 						</div>
 						<div class="hidden sm:block">

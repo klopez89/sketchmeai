@@ -605,8 +605,9 @@ function generateReferenceFormSectionHTML() {
 
 
 					<div class="col-span-full flex" id="control-net-influence-tab-selector-container">
+						
+						<label for="influence" class="text-sm font-medium leading-6 text-gray-700">Influence</label>
 						<div class="sm:hidden">
-							<label for="influence" class="text-sm font-medium leading-6 text-gray-700">Influence</label><div class="sm:hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
 							<select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
 								<option selected="">Low</option>

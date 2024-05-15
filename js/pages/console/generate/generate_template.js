@@ -609,24 +609,26 @@ function generateReferenceFormSectionHTML() {
 						<label for="influence" class="text-sm font-medium leading-6 text-gray-700">Influence</label>
 						<div class="sm:hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-							<select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-								<option selected="">Low</option>
-								<option>Medium</option>
-								<option>High</option>
+							<select id="tabs" name="tabs" onChange="cnetOptionSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+								<option selected="" cnet-inf="${ControlNetInfluence.LOW}">Low</option>
+								<option cnet-inf="${ControlNetInfluence.MEDIUM}>Medium</option>
+								<option cnet-inf="${ControlNetInfluence.HIGH}>High</option>
 							</select>
 						</div>
 						<div class="hidden sm:block">
 							<nav class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Tabs">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
-								<a href="#" class="text-gray-900 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+
+
+								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${ControlNetInfluence.LOW}')" class="text-gray-900 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
 									<span>Low</span>
 									<span aria-hidden="true" class="bg-indigo-500 absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" class="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${ControlNetInfluence.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>Medium</span>
 									<span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${ControlNetInfluence.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
 									<span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>

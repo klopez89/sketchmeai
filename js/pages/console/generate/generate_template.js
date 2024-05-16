@@ -9,7 +9,7 @@ var has_a_mouse = false;
 if (matchMedia('(pointer:fine)').matches) {
 	has_a_mouse = true;
 }
-let info_interaction_type = has_a_mouse ? "focus" : "click";
+let info_interaction_type = has_a_mouse ? "hover" : "click";
 
 function newGenItem_FromExistingGen(generation) {
     let gen_string = JSON.stringify(generation);

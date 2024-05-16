@@ -2356,9 +2356,9 @@ function alignInfluenceSettingToValue() {
             influence_setting = InfluenceSetting.HIGH;
         }
     } else if (selectedOptionId == RefImageMode.MISTO) {
-        if (influence_value <= MistoSettingValue.LOW) {
+        if (influence_value >= MistoSettingValue.LOW) {
             influence_setting = InfluenceSetting.LOW;
-        } else if (influence_value <= MistoSettingValue.MEDIUM) {
+        } else if (influence_value >= MistoSettingValue.MEDIUM) {
             influence_setting = InfluenceSetting.MEDIUM;
         } else {
             influence_setting = InfluenceSetting.HIGH;

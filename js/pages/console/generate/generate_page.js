@@ -795,6 +795,7 @@ function copyPromptInfoFromGen(generation) {
     updateHiDToggle(generation.gen_recipe.should_use_hi_d);
     attemptToShowPromptSettingsSection();
     alignInfluenceSettingToValue();
+    alignPersonInfluenceSettingToValue();
 }
 
 function insertImgUrlForRefImg(url) {
@@ -2308,7 +2309,7 @@ function updateHiDToggle(shouldEnable) {
 }
 
 
-
+// Reference Image Mode and Influence Setting functions
 
 function refImgModeChanged() {
     let dropdown = document.getElementById('influence-setting-dropdown-selector');
@@ -2328,15 +2329,7 @@ function infSettingDropdownSelectionMade(event) {
 function infSettingTabSelected(influence_setting) {
     setRefImgInfluenceValue(influence_setting);
     updateInfSettingTabUI(influence_setting);
-
-    // Set the dropdown to the selected value
-    let dropdown = document.getElementById('influence-setting-dropdown-selector');
-    for(let i = 0; i < dropdown.options.length; i++) {
-        if(dropdown.options[i].getAttribute('inf-setting') == influence_setting) {
-            dropdown.selectedIndex = i;
-            break;
-        }
-    }
+    updateInfSettingDropdownUI(influence_setting);
 }
 
 function alignInfluenceSettingToValue() {
@@ -2364,8 +2357,18 @@ function alignInfluenceSettingToValue() {
     }
 
     updateInfSettingTabUI(influence_setting);
+    updateInfSettingDropdownUI(influence_setting);
 }
 
+function updateInfSettingDropdownUI(selected_influence_setting) {
+    let dropdown = document.getElementById('influence-setting-dropdown-selector');
+    for(let i = 0; i < dropdown.options.length; i++) {
+        if(dropdown.options[i].getAttribute('inf-setting') == selected_influence_setting) {
+            dropdown.selectedIndex = i;
+            break;
+        }
+    }
+}
 
 function updateInfSettingTabUI(selected_influence_setting) {
     //  Update the state of the influence setting tab UI
@@ -2421,6 +2424,16 @@ function setPersonInfluenceValue(selected_influence_setting) {
     personLoraInfluenceField.value = PersonLoraSettingValue[selected_influence_setting.toUpperCase()];
 }
 
+function updatePersonInfSettingDropdownUI(selected_influence_setting) {
+    let dropdown = document.getElementById('person-influence-setting-dropdown-selector');
+    for(let i = 0; i < dropdown.options.length; i++) {
+        if(dropdown.options[i].getAttribute('inf-setting') == selected_influence_setting) {
+            dropdown.selectedIndex = i;
+            break;
+        }
+    }
+}
+
 function updatePersonInfSettingTabUI(selected_influence_setting) {
     //  Update the state of the influence setting tab UI
     let navElement = document.getElementById('person-influence-setting-tabs-selector');
@@ -2474,4 +2487,5 @@ function alignPersonInfluenceSettingToValue() {
     
 
     updatePersonInfSettingTabUI(influence_setting);
+    updatePersonInfSettingDropdownUI(influence_setting);
 }

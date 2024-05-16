@@ -2509,5 +2509,5 @@ function showGenerationSettingsMobileButtonPressed() {
     console.log('showGenerationSettingsMobileButtonPressed was called');
     setTimeout(function() {
         selectModelWithVersion(lastSelectedModelVersion);
-    }, 500);
+    }, 301);
 }

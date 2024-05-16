@@ -212,15 +212,15 @@ function generate_form_html() {
 						</div>
 					</div>
 				</div>
-				<div class="col-span-2 pl-4 flex items-center" id="person-lora-influence-title-container">
+				<div class="hidden col-span-2 pl-4 flex items-center" id="person-lora-influence-title-container">
 					<label class="text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 				</div>
-				<div class="col-span-4 flex gap-x-2 px-4" id="person-lora-influence-slider-container">
+				<div class="hidden col-span-4 flex gap-x-2 px-4" id="person-lora-influence-slider-container">
 					<input type="range" id="person-lora-influence-range" min="0" max="100" step="1" class="slider flex-grow">
 					<input type="number" name="person-lora-influence" id="person-lora-influence" placeholder="100" min="0" max="100" value="100" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 				</div>
 
-				<div class="col-span-full flex justify-between" id="person-influence-setting-selector-container">
+				<div class="col-span-full flex justify-between px-4 mt-2" id="person-influence-setting-selector-container">
 						
 						<label for="person-influence" class="text-sm font-medium leading-6 text-gray-700">Resemblance</label>
 						<div class="sm:hidden">

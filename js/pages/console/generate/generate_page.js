@@ -70,11 +70,16 @@ document.querySelectorAll('.editable').forEach(function(element){
 
 /////////////////////////////////////////////////////////////////////
 
+var previousWindowWidth = window.innerWidth;
+
 window.onresize = function() {
     resizeGrid();
-    moveForm()
+    let currentWindowWidth = window.innerWidth;
+    if ((previousWindowWidth < 768 && currentWindowWidth >= 768) || (previousWindowWidth >= 768 && currentWindowWidth < 768)) {
+        moveForm();
+    }
+    previousWindowWidth = currentWindowWidth;
 }
-
 
 function moveForm() {
     var form = document.getElementById('generateForm');
@@ -83,6 +88,7 @@ function moveForm() {
     } else {
         document.getElementById('sidebar-gen-form-container').prepend(form);
     }
+    selectModelWithVersion(lastSelectedModelVersion);
 }
 
 function showBasicExamplesButton() {
@@ -2506,7 +2512,6 @@ function alignPersonInfluenceSettingToValue() {
 }
 
 function showGenerationSettingsMobileButtonPressed() {
-    console.log('showGenerationSettingsMobileButtonPressed was called');
     setTimeout(function() {
         selectModelWithVersion(lastSelectedModelVersion);
     }, 200);

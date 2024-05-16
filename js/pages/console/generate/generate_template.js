@@ -380,7 +380,7 @@ function new_lora_model_option(model, bg_color) {
 function bottom_generation_menu_html() {
 	return `
 	<div id="mobile-bottom-menu" class="hidden md:hidden fixed right-0 bottom-0 m-4 z-30 flex gap-4 items-end bg-opacity-50">
-		<button id="gen-settings-bottom-button" class="bg-gray-100 text-black text-xl shadow-lg rounded-full w-12 h-12 flex items-center justify-center" @click="open = !open">
+		<button id="gen-settings-bottom-button" class="bg-gray-100 text-black text-xl shadow-lg rounded-full w-12 h-12 flex items-center justify-center" @click="open = !open, showGenerationSettingsMobileButtonPressed()">
 			<i class="fa-solid fa-gear" aria-hidden="true"></i>
 		</button>
 

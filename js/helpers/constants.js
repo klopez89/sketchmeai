@@ -51,10 +51,22 @@ const RefImageMode = {
     MISTO: 'misto-mode',
 }
 
-const ControlNetInfluence = {
+const InfluenceSetting = {
     LOW: 'low',
     MEDIUM: 'medium',
     HIGH: 'high',
+}
+
+const MistoSettingValue = {
+    LOW: 95,
+    MEDIUM: 80,
+    HIGH: 70
+}
+
+const Img2ImgSettingValue = {
+    LOW: 10,
+    MEDIUM: 30,
+    HIGH: 50
 }
 
 const FAILED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/failed_img.png"

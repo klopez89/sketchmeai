@@ -316,8 +316,8 @@ function triggerModelNameInPromptFormatting() {
     let promptInput = document.getElementById('prompt')
     let promptValues = promptInputValues();
     let modelNames = promptValues.modelNames;
-    console.log("Model Names:", modelNames);
-    console.log("Prompt Input:", promptInput.textContent);
+    // console.log("Model Names:", modelNames);
+    // console.log("Prompt Input:", promptInput.textContent);
     formatAroundModelName(modelNames, promptInput);
 }
 
@@ -419,7 +419,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             // Strip any spaces from the model name in order to check against list of selected model names
             const cleanedModelName = boldedModelName.replace(/&nbsp;/g, ' ').replace(/\s+/g, '');
             if (!modelNames.includes(cleanedModelName)) {
-                console.log('Removing bold tags from:', boldedModelName);
+                // console.log('Removing bold tags from:', boldedModelName);
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, boldedModelName);
                 setCaretPosition(promptInputDiv, initialCaretPos);
             }
@@ -440,9 +440,9 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
            
             if (doesModelNameHaveBoldTags == false) {
-                console.log('trying to add bold tags if model name doesnt have em');
+                // console.log('trying to add bold tags if model name doesnt have em');
                 let newPromptValue = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
-                console.log('newPromptValue: ', newPromptValue);
+                // console.log('newPromptValue: ', newPromptValue);
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 if (document.activeElement === promptInputDiv) {
                     setTimeout(() => {

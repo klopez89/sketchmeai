@@ -5,6 +5,11 @@ const imgToImgURLInfo = "Provides a starting image that the model will use as a 
 const promptStrengthInfo = "Only applicable for image to image generation. A higher value makes the final image adhere more closely to the details of the prompt, while a lower value retains more of the reference image's features."
 const loraScaleInfo = "Adjusts the extent to which a fine-tuned model's specialized training influences the generated image, blending the base model's knowledge with the fine-tuned nuances."
 
+var has_a_mouse = false;
+if (matchMedia('(pointer:fine)').matches) {
+	has_a_mouse = true;
+}
+let info_interaction_type = has_a_mouse ? "focus" : "click";
 
 function newGenItem_FromExistingGen(generation) {
     let gen_string = JSON.stringify(generation);
@@ -614,7 +619,7 @@ function generateReferenceFormSectionHTML() {
 
 					<div class="col-span-3 flex items-center" id="mode-title-container">
 						<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-700">Mode</label>
-						<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
+						<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image URL" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
 							<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 						</button>
 					</div>
@@ -704,7 +709,7 @@ function basicGenerationSettingsHTML() {
 
 						<div class="col-span-full" id="neg-prompt-field-container">
 							<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-700">Negative Prompt</label>
-							<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
+							<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
 								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
@@ -715,7 +720,7 @@ function basicGenerationSettingsHTML() {
 
 						<div class="col-span-3" id="gs-field-container">
 							<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-700">Guidance Scale</label>
-							<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
+							<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
 								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
@@ -755,7 +760,7 @@ function basicGenerationSettingsHTML() {
 						</div>
 						<div class="col-span-3" id="denoising-steps-field-container">
 								<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-700">Denoising Steps</label>
-								<button onclick="event.preventDefault()" data-te-trigger="click" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
+								<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
 									<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 								</button>
 								<div class="mt-2">

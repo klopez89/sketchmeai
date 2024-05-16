@@ -807,6 +807,7 @@ function copyPromptInfoFromGen(generation) {
     attemptToShowPromptSettingsSection();
     alignInfluenceSettingToValue();
     alignPersonInfluenceSettingToValue();
+    alignAYSBasedOnRefImgMode();
 }
 
 function insertImgUrlForRefImg(url) {
@@ -2328,8 +2329,10 @@ function refImgModeChanged() {
     let selectedOption = dropdown.options[dropdown.selectedIndex];
     let influence_setting = selectedOption.getAttribute('inf-setting');
     setRefImgInfluenceValue(influence_setting);
+    alignAYSBasedOnRefImgMode();
+}
 
-
+function alignAYSBasedOnRefImgMode() {
     let refImgModeSelector = document.getElementById('ref-img-mode');
     let selectedMode = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
 

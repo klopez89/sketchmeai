@@ -604,33 +604,32 @@ function generateReferenceFormSectionHTML() {
 					</div>
 
 
-					<div class="col-span-full flex justify-between" id="control-net-influence-tab-selector-container">
+					<div class="col-span-full flex justify-between" id="influence-setting-selector-container">
 						
 						<label for="influence" class="text-sm font-medium leading-6 text-gray-700">Influence</label>
 						<div class="sm:hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-							<select id="tabs" name="tabs" onChange="cnetOptionSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-								<option selected="" cnet-inf="${InfluenceSetting.LOW}">Low</option>
-								<option cnet-inf="${InfluenceSetting.MEDIUM}">Medium</option>
-								<option cnet-inf="${InfluenceSetting.HIGH}">High</option>
+							<select id="influence-setting-dropdown-selector" onChange="cnetOptionSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
+								<option selected="" inf-setting="${InfluenceSetting.LOW}">Low</option>
+								<option inf-setting="${InfluenceSetting.MEDIUM}">Medium</option>
+								<option inf-setting="${InfluenceSetting.HIGH}">High</option>
 							</select>
 						</div>
 						<div class="hidden sm:block">
-							<nav class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Tabs">
+							<nav id="influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Influence Setting">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
 
-
-								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.LOW}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.LOW}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
 									<span>Low</span>
-									<span aria-hidden="true" class="bg-indigo-500 absolute inset-x-0 bottom-0 h-0.5"></span>
+									<span id="inf-line" aria-hidden="true" class="bg-black absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>Medium</span>
-									<span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
-									<span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
 
 							</nav>

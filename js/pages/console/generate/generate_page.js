@@ -7,6 +7,7 @@ var coldBootedModels = {};
 var previousModelSelectionId = 'no-lora-person-button';
 var promptPlaceholderText = generatePrompt('');
 let isSelectable = false;
+let lastSelectedModelVersion = null;
 
 addImageGrid();
 addBaseGenMenu();
@@ -575,6 +576,7 @@ function fetchWorkingModels(userRecId) {
                 let model_version = modelVersionInURL();
                 console.log('Model version in URL is:', model_version);
                 if (model_version != null) {
+                    lastSelectedModelVersion = model_version;
                     attemptAutoModelSelection(model_version);
                 } else {
                     let firstModelName = models[0].name;
@@ -582,6 +584,7 @@ function fetchWorkingModels(userRecId) {
                     let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
                     let promptDiv = document.getElementById('prompt');
                     promptDiv.textContent = generatePrompt(firstModelName);
+                    lastSelectedModelVersion = short_version;
                     selectModelWithVersion(short_version);
                     promptDiv.blur();
                 }
@@ -789,7 +792,8 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('person-lora-influence-range').value = generation.gen_recipe.lora_scale * 100;
     // Trigger some UI updates in the gen form
     document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
-    selectModelWithVersion(generation.model_version);
+    lastSelectedModelVersion = generation.model_version;
+    selectModelWithVersion(lastSelectedModelVersion);
     selectPromptStyle(generation.gen_recipe.prompt_style);
     selectRefImageMode(generation.gen_recipe.ref_img_mode);
     updateAysToggle(generation.gen_recipe.should_use_ays);
@@ -841,6 +845,7 @@ function selectModelWithVersion(version) {
     let loraPersonDivs = loraPersonGrid.children;
 
     var selected = false; // Flag to keep track if a matching option was found
+
 
     for (let i = 0; i < loraPersonDivs.length; i++) {
         if (loraPersonDivs[i].getAttribute('version') === version) {
@@ -2498,4 +2503,8 @@ function alignPersonInfluenceSettingToValue() {
 
     updatePersonInfSettingTabUI(influence_setting);
     updatePersonInfSettingDropdownUI(influence_setting);
+}
+
+function showGenerationSettingsMobileButtonPressed() {
+    selectModelWithVersion(lastSelectedModelVersion);
 }

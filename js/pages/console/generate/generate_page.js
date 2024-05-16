@@ -784,7 +784,6 @@ function copyPromptInfoFromGen(generation) {
     // console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
     document.getElementById('prompt-str').value = 100 - generation.gen_recipe.prompt_strength * 100;
     document.getElementById('ref-influence-range').value = 100 - generation.gen_recipe.prompt_strength * 100;
-    alignInfluenceSettingToValue();
     document.getElementById('person-lora-influence').value = generation.gen_recipe.lora_scale * 100;
     document.getElementById('person-lora-influence-range').value = generation.gen_recipe.lora_scale * 100;
     // Trigger some UI updates in the gen form
@@ -795,6 +794,7 @@ function copyPromptInfoFromGen(generation) {
     updateAysToggle(generation.gen_recipe.should_use_ays);
     updateHiDToggle(generation.gen_recipe.should_use_hi_d);
     attemptToShowPromptSettingsSection();
+    alignInfluenceSettingToValue();
 }
 
 function insertImgUrlForRefImg(url) {

@@ -2118,6 +2118,10 @@ function selectLoraPersonDiv(loraPersonDiv) {
     let scrollPosition = loraPersonDiv.offsetLeft - loraPersonGrid.offsetLeft 
     + loraPersonDiv.offsetWidth / 2 
     - loraPersonGrid.offsetWidth / 2;
+    console.log('loraPersonDiv.offsetLeft: ', loraPersonDiv.offsetLeft);
+    console.log('loraPersonGrid.offsetLeft: ', loraPersonGrid.offsetLeft);
+    console.log('loraPersonDiv.offsetWidth / 2: ', loraPersonDiv.offsetWidth / 2);
+    console.log('loraPersonGrid.offsetWidth / 2: ', loraPersonGrid.offsetWidth / 2);
     console.log('scrollPosition after selecting lora is: ', scrollPosition)
     loraPersonGrid.scrollLeft = scrollPosition;
 }

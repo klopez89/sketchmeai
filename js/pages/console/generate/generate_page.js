@@ -22,6 +22,7 @@ addBottomGenerationMenu();
 configureShareButton();
 configureRefImageFields();
 configurePersonLoraFields();
+updateAysToggle(false);
 
 setInterval(function() {
     if (isPromptInputShowingPlaceholder()) {    

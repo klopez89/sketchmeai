@@ -587,7 +587,7 @@ function generateReferenceFormSectionHTML() {
 					</div>
 
 					<div class="col-span-3" id="mode-selector-container">
-						<select id="ref-img-mode" name="ref-img-mode" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<select id="ref-img-mode" name="ref-img-mode" onChange="refImgModeChanged()" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 							<option id="${RefImageMode.IMG2IMG}">Image to Image</option>
 							<option id="${RefImageMode.MISTO}">Misto Line, ControlNet</option>
 						</select>
@@ -609,7 +609,7 @@ function generateReferenceFormSectionHTML() {
 						<label for="influence" class="text-sm font-medium leading-6 text-gray-700">Influence</label>
 						<div class="sm:hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-							<select id="influence-setting-dropdown-selector" onChange="cnetOptionSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
+							<select id="influence-setting-dropdown-selector" onChange="infSettingDropdownSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
 								<option selected="" inf-setting="${InfluenceSetting.LOW}">Low</option>
 								<option inf-setting="${InfluenceSetting.MEDIUM}">Medium</option>
 								<option inf-setting="${InfluenceSetting.HIGH}">High</option>
@@ -619,15 +619,15 @@ function generateReferenceFormSectionHTML() {
 							<nav id="influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Influence Setting">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
 
-								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.LOW}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
 									<span>Low</span>
 									<span id="inf-line" aria-hidden="true" class="bg-black absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>Medium</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>

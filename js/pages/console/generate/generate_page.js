@@ -2307,7 +2307,15 @@ function updateHiDToggle(shouldEnable) {
 }
 
 
-function cnetOptionSelectionMade(event) {
+function refImgModeChanged() {
+    let dropdown = document.getElementById('influence-setting-dropdown-selector');
+    let selectedOption = dropdown.options[dropdown.selectedIndex];
+    let influence_val = selectedOption.getAttribute('inf-setting');
+    setRefImgInfluenceValue(influence_val);
+}
+
+
+function infSettingDropdownSelectionMade(event) {
     event.preventDefault();
     let selectedOption = event.target.options[event.target.selectedIndex];
     let influence_val = selectedOption.getAttribute('inf-setting');
@@ -2316,7 +2324,7 @@ function cnetOptionSelectionMade(event) {
     updateInfSettingTabUI(influence_val);
 }
 
-function cnetTabOptionSelected(influence_val) {
+function infSettingTabSelected(influence_val) {
     console.log('from cnetTabOptionSelected, the influence val is: ', influence_val);
     setRefImgInfluenceValue(influence_val);
 

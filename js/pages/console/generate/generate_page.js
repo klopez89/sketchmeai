@@ -2506,5 +2506,6 @@ function alignPersonInfluenceSettingToValue() {
 }
 
 function showGenerationSettingsMobileButtonPressed() {
-    selectModelWithVersion(lastSelectedModelVersion);
+    console.log('showGenerationSettingsMobileButtonPressed was called');
+    // selectModelWithVersion(lastSelectedModelVersion);
 }

@@ -2310,9 +2310,45 @@ function updateHiDToggle(shouldEnable) {
 function cnetOptionSelectionMade(event) {
     event.preventDefault();
     let selectedOption = event.target.options[event.target.selectedIndex];
-    console.log('from cnetOptionSelectionMade, the selected option is: ', selectedOption.getAttribute('cnet-inf'));
+    let influence_val = selectedOption.getAttribute('inf-setting');
+    console.log('from cnetOptionSelectionMade, the selected option is: ', selectedOption.getAttribute('inf-setting'));
+    updateInfSettingTabUI(influence_val);
 }
 
 function cnetTabOptionSelected(influence_val) {
     console.log('from cnetTabOptionSelected, the influence val is: ', influence_val);
+    updateInfSettingTabUI(influence_val);
+
+    // Set the dropdown to the selected value
+    let dropdown = document.getElementById('influence-setting-dropdown-selector');
+    for(let i = 0; i < dropdown.options.length; i++) {
+        if(dropdown.options[i].id == influence_val) {
+            dropdown.selectedIndex = i;
+            break;
+        }
+    }
+}
+
+function updateInfSettingTabUI(selected_influence_val) {
+    //  Update the state of the influence setting tab UI
+    let navElement = document.getElementById('influence-setting-tabs-selector');
+    let aElements = navElement.getElementsByTagName('a');
+    for(let i = 0; i < aElements.length; i++) {
+        let infSetting_a_element = aElements[i];
+        let infLineSpan = infSetting_a_element.querySelector('#inf-line');
+
+        if(infSetting_a_element.getAttribute('inf-setting') == selected_influence_val) {
+            // set it's state to active
+            infSetting_a_element.classList.add('text-gray-900');
+            infSetting_a_element.classList.remove('text-gray-500', 'hover:text-gray-700');
+            infLineSpan.classList.add('bg-black');
+            infLineSpan.classList.remove('bg-transparent');
+        } else {
+            // set its state inactive
+            infSetting_a_element.classList.add('text-gray-500', 'hover:text-gray-700');
+            infSetting_a_element.classList.remove('text-gray-900');
+            infLineSpan.classList.add('bg-transparent');
+            infLineSpan.classList.remove('bg-black');
+        }
+    }
 }

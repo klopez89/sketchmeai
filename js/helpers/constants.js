@@ -57,6 +57,12 @@ const InfluenceSetting = {
     HIGH: 'high',
 }
 
+const PersonLoraSettingValue = {
+    LOW: 80,
+    MEDIUM: 90,
+    HIGH: 100
+}
+
 const MistoSettingValue = {
     LOW: 95,
     MEDIUM: 80,

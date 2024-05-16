@@ -2308,6 +2308,8 @@ function updateHiDToggle(shouldEnable) {
 }
 
 
+
+
 function refImgModeChanged() {
     let dropdown = document.getElementById('influence-setting-dropdown-selector');
     let selectedOption = dropdown.options[dropdown.selectedIndex];
@@ -2315,20 +2317,16 @@ function refImgModeChanged() {
     setRefImgInfluenceValue(influence_setting);
 }
 
-
 function infSettingDropdownSelectionMade(event) {
     event.preventDefault();
     let selectedOption = event.target.options[event.target.selectedIndex];
     let influence_setting = selectedOption.getAttribute('inf-setting');
     setRefImgInfluenceValue(influence_setting);
-    console.log('from cnetOptionSelectionMade, the selected option is: ', selectedOption.getAttribute('inf-setting'));
     updateInfSettingTabUI(influence_setting);
 }
 
 function infSettingTabSelected(influence_setting) {
-    console.log('from cnetTabOptionSelected, the influence setting is: ', influence_setting);
     setRefImgInfluenceValue(influence_setting);
-
     updateInfSettingTabUI(influence_setting);
 
     // Set the dropdown to the selected value
@@ -2405,4 +2403,75 @@ function setRefImgInfluenceValue(selected_influence_setting) {
         promptStrValue = MistoSettingValue[selected_influence_setting.toUpperCase()];
     }
     promptStrField.value = promptStrValue;
+}
+
+
+// Person Influence Setting functions
+
+function personInfSettingDropdownSelectionMade(event) {
+    event.preventDefault();
+    let selectedOption = event.target.options[event.target.selectedIndex];
+    let influence_setting = selectedOption.getAttribute('inf-setting');
+    setPersonInfluenceValue(influence_setting);
+    updatePersonInfSettingTabUI(influence_setting);
+}
+
+function setPersonInfluenceValue(selected_influence_setting) {
+    let personLoraInfluenceField = document.getElementById('person-lora-influence');
+    personLoraInfluenceField.value = PersonLoraSettingValue[selected_influence_setting.toUpperCase()];
+}
+
+function updatePersonInfSettingTabUI(selected_influence_setting) {
+    //  Update the state of the influence setting tab UI
+    let navElement = document.getElementById('person-influence-setting-tabs-selector');
+    let aElements = navElement.getElementsByTagName('a');
+    for(let i = 0; i < aElements.length; i++) {
+        let infSetting_a_element = aElements[i];
+        let infLineSpan = infSetting_a_element.querySelector('#inf-line');
+
+        if(infSetting_a_element.getAttribute('inf-setting') == selected_influence_setting) {
+            // set it's state to active
+            infSetting_a_element.classList.add('text-gray-900');
+            infSetting_a_element.classList.remove('text-gray-500', 'hover:text-gray-700');
+            infLineSpan.classList.add('bg-black');
+            infLineSpan.classList.remove('bg-transparent');
+        } else {
+            // set its state inactive
+            infSetting_a_element.classList.add('text-gray-500', 'hover:text-gray-700');
+            infSetting_a_element.classList.remove('text-gray-900');
+            infLineSpan.classList.add('bg-transparent');
+            infLineSpan.classList.remove('bg-black');
+        }
+    }
+}
+
+function personInfSettingTabSelected(influence_setting) {
+    setPersonInfluenceValue(influence_setting);
+    updatePersonInfSettingTabUI(influence_setting);
+
+    // Set the dropdown to the selected value
+    let dropdown = document.getElementById('person-influence-setting-dropdown-selector');
+    for(let i = 0; i < dropdown.options.length; i++) {
+        if(dropdown.options[i].getAttribute('inf-setting') == influence_setting) {
+            dropdown.selectedIndex = i;
+            break;
+        }
+    }
+}
+
+function alignPersonInfluenceSettingToValue() {
+    let influence_value = document.getElementById('person-lora-influence').value;
+    let influence_setting;
+
+
+        if (influence_value <= Img2ImgSettingValue.LOW) {
+            influence_setting = InfluenceSetting.LOW;
+        } else if (influence_value <= Img2ImgSettingValue.MEDIUM) {
+            influence_setting = InfluenceSetting.MEDIUM;
+        } else {
+            influence_setting = InfluenceSetting.HIGH;
+        }
+    
+
+    updateInfSettingTabUI(influence_setting);
 }

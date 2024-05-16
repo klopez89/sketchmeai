@@ -27,11 +27,11 @@ setInterval(function() {
     if (isPromptInputShowingPlaceholder()) {    
         let promptDiv = document.getElementById('prompt');
         let currentModelName = getCurrentPersonModelName();
-        console.log('currentModelName about to be used to gen new random default prompt: ', currentModelName);
+        // console.log('currentModelName about to be used to gen new random default prompt: ', currentModelName);
         promptDiv.textContent = generatePrompt(currentModelName);
         triggerModelNameInPromptFormatting();
     } else {
-        console.log('promptDiv is not showing in placeholder state so skipping the setting of a random prompt!');
+        // console.log('promptDiv is not showing in placeholder state so skipping the setting of a random prompt!');
     }
 }, 2000);
 
@@ -2322,7 +2322,7 @@ function cnetTabOptionSelected(influence_val) {
     // Set the dropdown to the selected value
     let dropdown = document.getElementById('influence-setting-dropdown-selector');
     for(let i = 0; i < dropdown.options.length; i++) {
-        if(dropdown.options[i].id == influence_val) {
+        if(dropdown.options[i].getAttribute('inf-setting') == influence_val) {
             dropdown.selectedIndex = i;
             break;
         }

@@ -760,7 +760,7 @@ function configureGenDivForSelection(div) {
 function configCopyButton(div, generation) {
     div.find('button').click(function() {
         copyPromptInfoFromGen(generation);
-        console.log(`clicked on generation button, gen info: ${generation.rec_id}`);
+        // console.log(`clicked on generation button, gen info: ${generation.rec_id}`);
     });
 }
 
@@ -772,7 +772,7 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
-    console.log('the signed ref url from copy prompt is: ', generation.gen_recipe.signed_ref_url);
+    // console.log('the signed ref url from copy prompt is: ', generation.gen_recipe.signed_ref_url);
     if (generation.gen_recipe.signed_ref_url != undefined) {
         insertImgUrlForRefImg(generation.gen_recipe.signed_ref_url);
     } else {
@@ -781,9 +781,10 @@ function copyPromptInfoFromGen(generation) {
         attemptToCloseRefImgSection();
     }
 
-    console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
+    // console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
     document.getElementById('prompt-str').value = 100 - generation.gen_recipe.prompt_strength * 100;
     document.getElementById('ref-influence-range').value = 100 - generation.gen_recipe.prompt_strength * 100;
+    alignInfluenceSettingToValue();
     document.getElementById('person-lora-influence').value = generation.gen_recipe.lora_scale * 100;
     document.getElementById('person-lora-influence-range').value = generation.gen_recipe.lora_scale * 100;
     // Trigger some UI updates in the gen form
@@ -2310,37 +2311,65 @@ function updateHiDToggle(shouldEnable) {
 function refImgModeChanged() {
     let dropdown = document.getElementById('influence-setting-dropdown-selector');
     let selectedOption = dropdown.options[dropdown.selectedIndex];
-    let influence_val = selectedOption.getAttribute('inf-setting');
-    setRefImgInfluenceValue(influence_val);
+    let influence_setting = selectedOption.getAttribute('inf-setting');
+    setRefImgInfluenceValue(influence_setting);
 }
 
 
 function infSettingDropdownSelectionMade(event) {
     event.preventDefault();
     let selectedOption = event.target.options[event.target.selectedIndex];
-    let influence_val = selectedOption.getAttribute('inf-setting');
-    setRefImgInfluenceValue(influence_val);
+    let influence_setting = selectedOption.getAttribute('inf-setting');
+    setRefImgInfluenceValue(influence_setting);
     console.log('from cnetOptionSelectionMade, the selected option is: ', selectedOption.getAttribute('inf-setting'));
-    updateInfSettingTabUI(influence_val);
+    updateInfSettingTabUI(influence_setting);
 }
 
-function infSettingTabSelected(influence_val) {
-    console.log('from cnetTabOptionSelected, the influence val is: ', influence_val);
-    setRefImgInfluenceValue(influence_val);
+function infSettingTabSelected(influence_setting) {
+    console.log('from cnetTabOptionSelected, the influence setting is: ', influence_setting);
+    setRefImgInfluenceValue(influence_setting);
 
-    updateInfSettingTabUI(influence_val);
+    updateInfSettingTabUI(influence_setting);
 
     // Set the dropdown to the selected value
     let dropdown = document.getElementById('influence-setting-dropdown-selector');
     for(let i = 0; i < dropdown.options.length; i++) {
-        if(dropdown.options[i].getAttribute('inf-setting') == influence_val) {
+        if(dropdown.options[i].getAttribute('inf-setting') == influence_setting) {
             dropdown.selectedIndex = i;
             break;
         }
     }
 }
 
-function updateInfSettingTabUI(selected_influence_val) {
+function alignInfluenceSettingToValue() {
+    let influence_value = document.getElementById('prompt-str').value;
+    let refImgModeSelector = document.getElementById('ref-img-mode');
+    let selectedOptionId = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
+    let influence_setting;
+
+    if (selectedOptionId == RefImageMode.IMG2IMG) {
+        if (influence_value <= Img2ImgSettingValue.LOW) {
+            influence_setting = InfluenceSetting.LOW;
+        } else if (influence_value <= Img2ImgSettingValue.MEDIUM) {
+            influence_setting = InfluenceSetting.MEDIUM;
+        } else {
+            influence_setting = InfluenceSetting.HIGH;
+        }
+    } else if (selectedOptionId == RefImageMode.MISTO) {
+        if (influence_value <= MistoSettingValue.LOW) {
+            influence_setting = InfluenceSetting.LOW;
+        } else if (influence_value <= MistoSettingValue.MEDIUM) {
+            influence_setting = InfluenceSetting.MEDIUM;
+        } else {
+            influence_setting = InfluenceSetting.HIGH;
+        }
+    }
+
+    updateInfSettingTabUI(influence_setting);
+}
+
+
+function updateInfSettingTabUI(selected_influence_setting) {
     //  Update the state of the influence setting tab UI
     let navElement = document.getElementById('influence-setting-tabs-selector');
     let aElements = navElement.getElementsByTagName('a');
@@ -2348,7 +2377,7 @@ function updateInfSettingTabUI(selected_influence_val) {
         let infSetting_a_element = aElements[i];
         let infLineSpan = infSetting_a_element.querySelector('#inf-line');
 
-        if(infSetting_a_element.getAttribute('inf-setting') == selected_influence_val) {
+        if(infSetting_a_element.getAttribute('inf-setting') == selected_influence_setting) {
             // set it's state to active
             infSetting_a_element.classList.add('text-gray-900');
             infSetting_a_element.classList.remove('text-gray-500', 'hover:text-gray-700');
@@ -2364,16 +2393,16 @@ function updateInfSettingTabUI(selected_influence_val) {
     }
 }
 
-function setRefImgInfluenceValue(selected_influence_val) {
+function setRefImgInfluenceValue(selected_influence_setting) {
     let promptStrField = document.getElementById('prompt-str');
     let refImgModeSelector = document.getElementById('ref-img-mode');
     let selectedOptionId = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
     
     var promptStrValue = 0;
     if (selectedOptionId == RefImageMode.IMG2IMG) {
-        promptStrValue = Img2ImgSettingValue[selected_influence_val.toUpperCase()];
+        promptStrValue = Img2ImgSettingValue[selected_influence_setting.toUpperCase()];
     } else if (selectedOptionId == RefImageMode.MISTO) {
-        promptStrValue = MistoSettingValue[selected_influence_val.toUpperCase()];
+        promptStrValue = MistoSettingValue[selected_influence_setting.toUpperCase()];
     }
     promptStrField.value = promptStrValue;
 }

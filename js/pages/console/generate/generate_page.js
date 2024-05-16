@@ -2129,15 +2129,6 @@ function selectLoraPersonDiv(loraPersonDiv) {
     let scrollPosition = loraPersonDiv.offsetLeft - loraPersonGrid.offsetLeft 
     + loraPersonDiv.offsetWidth / 2 
     - loraPersonGrid.offsetWidth / 2;
-
-    console.log('the lora person grid is: ', loraPersonGrid);
-    console.log('the lora person div is: ', loraPersonDiv);
-
-    console.log('loraPersonDiv.offsetLeft: ', loraPersonDiv.offsetLeft);
-    console.log('loraPersonGrid.offsetLeft: ', loraPersonGrid.offsetLeft);
-    console.log('loraPersonDiv.offsetWidth / 2: ', loraPersonDiv.offsetWidth / 2);
-    console.log('loraPersonGrid.offsetWidth / 2: ', loraPersonGrid.offsetWidth / 2);
-    console.log('scrollPosition after selecting lora is: ', scrollPosition)
     loraPersonGrid.scrollLeft = scrollPosition;
 }
 
@@ -2337,6 +2328,19 @@ function refImgModeChanged() {
     let selectedOption = dropdown.options[dropdown.selectedIndex];
     let influence_setting = selectedOption.getAttribute('inf-setting');
     setRefImgInfluenceValue(influence_setting);
+
+
+    let refImgModeSelector = document.getElementById('ref-img-mode');
+    let selectedMode = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
+
+    let aysButton = document.getElementById('ays-toggle-button');
+
+    if (selectedMode == RefImageMode.IMG2IMG) {
+        aysButton.removeAttribute("disabled");
+    } else if (selectedMode == RefImageMode.MISTO) {
+        updateAysToggle(false);
+        aysButton.setAttribute("disabled", "");
+    }
 }
 
 function infSettingDropdownSelectionMade(event) {

@@ -2311,12 +2311,15 @@ function cnetOptionSelectionMade(event) {
     event.preventDefault();
     let selectedOption = event.target.options[event.target.selectedIndex];
     let influence_val = selectedOption.getAttribute('inf-setting');
+    setRefImgInfluenceValue(influence_val);
     console.log('from cnetOptionSelectionMade, the selected option is: ', selectedOption.getAttribute('inf-setting'));
     updateInfSettingTabUI(influence_val);
 }
 
 function cnetTabOptionSelected(influence_val) {
     console.log('from cnetTabOptionSelected, the influence val is: ', influence_val);
+    setRefImgInfluenceValue(influence_val);
+
     updateInfSettingTabUI(influence_val);
 
     // Set the dropdown to the selected value
@@ -2351,4 +2354,18 @@ function updateInfSettingTabUI(selected_influence_val) {
             infLineSpan.classList.remove('bg-black');
         }
     }
+}
+
+function setRefImgInfluenceValue(selected_influence_val) {
+    let promptStrField = document.getElementById('prompt-str');
+    let refImgModeSelector = document.getElementById('ref-img-mode');
+    let selectedOptionId = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
+    
+    var promptStrValue = 0;
+    if (selectedOptionId == RefImageMode.IMG2IMG) {
+        promptStrValue = Img2ImgSettingValue[selected_influence_val.toUpperCase()];
+    } else if (selectedOptionId == RefImageMode.MISTO) {
+        promptStrValue = MistoSettingValue[selected_influence_val.toUpperCase()];
+    }
+    promptStrField.value = promptStrValue;
 }

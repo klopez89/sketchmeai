@@ -2334,17 +2334,18 @@ function refImgModeChanged() {
     let selectedMode = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
 
     let aysButton = document.getElementById('ays-toggle-button');
-    let refImgModelInfoButton = document.getElementById('ref-img-mode-info-button');
+    let i2iModeInfoButton = document.getElementById('i2i-mode-info-button');
+    let mistoModeInfoButton = document.getElementById('misto-mode-info-button');
 
     if (selectedMode == RefImageMode.IMG2IMG) {
         aysButton.removeAttribute("disabled");
-        refImgModelInfoButton.setAttribute('data-te-title', 'Image to Image');
-        refImgModelInfoButton.setAttribute('data-te-content', 'Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch.');
+        i2iModeInfoButton.classList.remove('hidden');
+        mistoModeInfoButton.classList.add('hidden');
     } else if (selectedMode == RefImageMode.MISTO) {
         updateAysToggle(false);
         aysButton.setAttribute("disabled", "");
-        refImgModelInfoButton.setAttribute('data-te-title', 'MistoLine, ControlNet');
-        refImgModelInfoButton.setAttribute('data-te-content', 'MistoLine is an SDXL-ControlNet model that can adapt to any type of line art input, demonstrating high accuracy and excellent stability. It can generate high-quality images (with a short side greater than 1024px) based on user-provided line art of various types, including hand-drawn sketches, different ControlNet line preprocessors, and model-generated outlines. MistoLine eliminates the need to select different ControlNet models for different line preprocessors, as it exhibits strong generalization capabilities across diverse line art conditions.');
+        i2iModeInfoButton.classList.add('hidden');
+        mistoModeInfoButton.classList.remove('hidden');
     }
 }
 

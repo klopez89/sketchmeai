@@ -619,7 +619,10 @@ function generateReferenceFormSectionHTML() {
 
 					<div class="col-span-3 flex items-center" id="mode-title-container">
 						<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-700">Mode</label>
-						<button id="ref-img-mode-info-button" onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
+						<button id="i2i-mode-info-button" onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
+							<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+						</button>
+						<button id="misto-mode-info-button" onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="MistoLine, ControlNet" data-te-content="MistoLine is an SDXL-ControlNet model that can adapt to any type of line art input, demonstrating high accuracy and excellent stability. It can generate high-quality images (with a short side greater than 1024px) based on user-provided line art of various types, including hand-drawn sketches, different ControlNet line preprocessors, and model-generated outlines. MistoLine eliminates the need to select different ControlNet models for different line preprocessors, as it exhibits strong generalization capabilities across diverse line art conditions." class="hidden ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
 							<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 						</button>
 					</div>

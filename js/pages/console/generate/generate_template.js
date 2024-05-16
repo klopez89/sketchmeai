@@ -594,7 +594,7 @@ function generateReferenceFormSectionHTML() {
 					</div>
 
 
-					<div class="col-span-2 flex items-center" id="influence-title-container">
+					<div class="hidden col-span-2 flex items-center" id="influence-title-container">
 						<label for="influence" class="text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 					</div>
 

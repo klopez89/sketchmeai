@@ -2464,14 +2464,14 @@ function alignPersonInfluenceSettingToValue() {
     let influence_setting;
 
 
-        if (influence_value <= Img2ImgSettingValue.LOW) {
+        if (influence_value <= PersonLoraSettingValue.LOW) {
             influence_setting = InfluenceSetting.LOW;
-        } else if (influence_value <= Img2ImgSettingValue.MEDIUM) {
+        } else if (influence_value <= PersonLoraSettingValue.MEDIUM) {
             influence_setting = InfluenceSetting.MEDIUM;
         } else {
             influence_setting = InfluenceSetting.HIGH;
         }
     
 
-    updateInfSettingTabUI(influence_setting);
+    updatePersonInfSettingTabUI(influence_setting);
 }

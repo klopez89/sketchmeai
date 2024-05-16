@@ -599,8 +599,8 @@ function generateReferenceFormSectionHTML() {
 					</div>
 
 					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
-						<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="95" class="slider flex-grow" autocompleted="">
-						<input type="number" name="prompt-str" id="prompt-str" placeholder="8" min="0" max="95" value="8" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="100" class="slider flex-grow" autocompleted="">
+						<input type="number" name="prompt-str" id="prompt-str" placeholder="${Img2ImgSettingValue.LOW}" min="0" max="100" value="${Img2ImgSettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 					</div>
 
 
@@ -610,9 +610,9 @@ function generateReferenceFormSectionHTML() {
 						<div class="sm:hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
 							<select id="tabs" name="tabs" onChange="cnetOptionSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-								<option selected="" cnet-inf="${ControlNetInfluence.LOW}">Low</option>
-								<option cnet-inf="${ControlNetInfluence.MEDIUM}">Medium</option>
-								<option cnet-inf="${ControlNetInfluence.HIGH}">High</option>
+								<option selected="" cnet-inf="${InfluenceSetting.LOW}">Low</option>
+								<option cnet-inf="${InfluenceSetting.MEDIUM}">Medium</option>
+								<option cnet-inf="${InfluenceSetting.HIGH}">High</option>
 							</select>
 						</div>
 						<div class="hidden sm:block">
@@ -620,15 +620,15 @@ function generateReferenceFormSectionHTML() {
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
 
 
-								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${ControlNetInfluence.LOW}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.LOW}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
 									<span>Low</span>
 									<span aria-hidden="true" class="bg-indigo-500 absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${ControlNetInfluence.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>Medium</span>
 									<span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${ControlNetInfluence.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" onClick="event.preventDefault(); cnetTabOptionSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
 									<span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>

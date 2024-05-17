@@ -27,14 +27,14 @@
     <div class="bg-gray-100 h-full relative flex justify-center">
         <div id="blog-container" class="mx-auto max-w-4xl px-8 lg:px-12 py-8 h-full w-full bg-white transform transition-all duration-200 ease-in-out">
             
-            <header class="mb-2 text-3xl font-bold">Improved Quality and Cost with AYS!</header>
+            <header class="mb-2 text-3xl font-bold">Improve Quality and Cost with AYS</header>
             <div id="blog-data-container" class="flex flex-col">
 
-                <p class="mt-2 mb-4">Tuesday, May 7th 2024</p>
+                <p class="mt-2 mb-4">Friday, May 17th 2024</p>
                 <p class="mt-2">&nbsp;</p>
                 <p class="mt-2">As we've come to expect, the AI space evolves insanely fast! New AI tech papers seem to come every single day. Well one of those recent papers caught my attention for two reasons: a promise of higher-quality images and super easy integration into existing workflows. The paper was published on April 22nd 2024 by Nvidia's Toronto AI Lab titled, <a class="text-blue-500 underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/">“Align Your Steps: Optimizing Sampling Schedules in Diffusion Models”</a>. From here on out, when you see the acronym 'AYS', it is short for this new technique.</p>
                 <p class="mt-0">&nbsp;</p>
-                <p class="mt-2">Think of diffusion models as architects, but they work slowly, like building a house brick by brick. This is due to their step-by-step plan, or 'blueprint'. A majority of recent diffusion tech announcements have been to improve the tools, not the blueprint. This new method, "Align Your Steps or AYS”, optimizes the blueprint, making building faster and the end result better.</p>
+                <p class="mt-2">Think of diffusion models as architects, but they work slowly, like building a house brick by brick. This is due to their step-by-step plan, or 'blueprint'. A majority of recent diffusion tech announcements have been to improve the tools, not the blueprint. This new method, "Align Your Steps or AYS”, optimizes the blueprint, making building faster and (generally) the end result better.</p>
                 <p class="mt-0">&nbsp;</p>
 
                 <p class="mt-2 text-center text-xl font-bold">Example of improved output</p>
@@ -45,7 +45,7 @@
                     <p>Benefits of AYS:
                     </p>
                     <ul class="mt-2 pl-12 list-decimal leading-6">
-                        <li class="my-3"><span class="font-bold">Improved Quality:</span> Generations with AYS tend to have more dynamic range, sharper lines, and stronger resemblance to your trained models. Quality tends to be more consistently higher when paired with a reference image for image-to-image.</li>
+                        <li class="my-3"><span class="font-bold">Improved Quality:</span> Generations with AYS tend to have more dynamic range, sharper lines, and stronger coherence to the given prompts (but may reduce resemblance when paired w/ a trained person model). However, quality tends to be consistently higher, regardless if a trained person model is used, when paired with a reference image for image-to-image.</li>
                         <li class="my-3"><span class="font-bold">Cheaper:</span> In SketchMeAi, the default number of steps is 20 when generating an image, which costs on average $0.04 (when model is warm). With AYS, the technique is inherently based on 10 steps so that means generation cost drops a penny to $0.03/image.</li>
                         <li class="my-3"><span class="font-bold">Faster:</span> At 20 denoising steps, an image takes about 18 seconds to generate. With AYS @ 10 steps, that number is cut in half to 9 seconds.</li>
                         <li class="my-3"><span class="font-bold">Super Easy Integration:</span> This technique can be easily applied to existing workflows that use Stable Diffusion XL, which SketchMeAi does. It also works with SD1.5 and few other popular models.</li>
@@ -57,12 +57,12 @@
                     </p>
                     <ul class="mt-2 pl-12 list-decimal leading-6">
                         <li class="my-3"><span class="font-bold">Sampling Scheduler Specific:</span> There are a number of sampling schedulers that one can use with diffusion models but from initial tests, the one that works the best w/ AYS (per the paper) is DPMSolverMultistepScheduler. Although we don't give you direct control on which scheduler to use on SketchMeAi, future techniques that require a different scheduler will mean AYS can't be used in combination.</li>
-                        <li class="my-3"><span class="font-bold">Bizarre Outputs</span>(sometimes): Just like in most AI workflows, not all generated output will be of high quality. This is still true with AYS. When the images are good, they can be really good. But when images are bad, they can be pretty bad. Almost comedic. I tend to see more bizarre outputs when using a person model (or LoRa). Since AYS is significantly cheaper and faster than 20 step generations, it more than makes up for bizarre output with the really bright gems.</li>
+                        <li class="my-3"><span class="font-bold">Inconsistent Resemblance</span>: When using a trained person model, the resemblance seems less consistent than non-ays generations at 20 steps. So it's recommended to use AYS in the early stages of image discovery (where resemblance isnt as important), and then turn it off in when optimzating an image. As mentioned above, you can control for this by using image to image.</li>
                     </ul>
                 </div>
 
                 <p class="mt-0">&nbsp;</p>
-                <p class="mt-2">The AYS paper goes over 6 prompt examples using Stable Diffusion SDXL to show the image quality improvement. I wanted to verify these results before integrating the tech into SketchMeAi. Results impressed me! Check them out for yourself with our newly built comparison tool:</p>
+                <p class="mt-2">The AYS paper goes over 6 prompt examples using Stable Diffusion SDXL to show the image quality improvement. I wanted to replicate these results on SketchMeAi before pushing it live. Results impressed me! Check them out below with our newly built comparison tool:</p>
                 <p class="mt-0">&nbsp;</p>
                 <p class="mt-2 text-center textl-xl font-bold">1. “Cluttered house in the woods, anime, oil painting, high resolution, cottagecore, ghibli inspired, 4k”</p>
                 <div id="ays-test-1"></div>
@@ -83,7 +83,7 @@
                 <div id="ays-test-6"></div>
 
                 <p class="mt-0">&nbsp;</p>
-                <p class="mt-2">Next, I needed to verify the promise of this technique on SketchMeAi using a custom person model (or LoRa) trained on my images. For fun's sake, I took one of my recent prompts focused on me wearing a leather jacket with a cell-shading style  and simply swapped out the colors mentioned in the prompt to create 4 different types of generation (the baby-blue variation I showed above). The AYS results did not disappoint (non-ays output is based on 10 denoising steps):</p>
+                <p class="mt-2">Next, I needed to verify the promise of this technique on SketchMeAi using a trained person model (or LoRa) of myself. For fun's sake, I took one of my recent prompts focused on wearing a leather jacket with a comic style and then simply swapped out the colors mentioned in the prompt to create 4 different types of generation. Here are the AYS results (non-ays output is based on 10 denoising steps):</p>
 
                 <p class="mt-2 text-center text-xl font-bold">1. Black leather jacket</p>
                 <div id="ays-lora-2"></div>
@@ -91,16 +91,16 @@
                 <p class="mt-2 text-center text-xl font-bold">2. Red leather jacket</p>
                 <div id="ays-lora-3"></div>
 
-                <p class="mt-2 text-center text-xl font-bold">3. Neon-green leather jacket</p><p class="text-center text-sm">(used image-to-image)</p>
+                <p class="mt-2 text-center text-xl font-bold">3. Neon-green leather jacket</p><p class="text-center text-sm">(used image to image)</p>
                 <div id="ays-lora-4"></div>
 
-                <p class="mt-2 text-center text-xl font-bold">4. Orange leather jacket</p><p class="text-center text-sm">(used image-to-image)</p>
+                <p class="mt-2 text-center text-xl font-bold">4. Orange leather jacket</p><p class="text-center text-sm">(used image to image)</p>
                 <div id="ays-lora-5"></div>
 
                 <p class="mt-0">&nbsp;</p>
                 <p class="mt-2">What makes AYS even more flexible is that it can be combined with the image-to-image technique to achieve even more controlled results.</p>
                 <p class="mt-0">&nbsp;</p>
-                <p class="mt-2">This is great and all, but how do I use AYS, you may ask? Well it's now on by default on SketchMeAi! Just below the denoising steps field, you will find the 'Use AYS' toggle. Toggling it off will enable the denoising steps field since the technique overrides the value to an equivalent of 10 steps.</p>
+                <p class="mt-2">This is great and all, but how do I use AYS, you may ask? Well just below the denoising steps field, you will find the 'Use AYS' toggle. Toggling it on will disable the denoising steps field since the technique overrides the value to an equivalent of 10 steps.</p>
 
                 <div id="single-img" class="pt-2 pb-12 md:w-1/2">
                     <a href="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-toggle.png">
@@ -112,7 +112,7 @@
 
                 <p class="mt-2">&nbsp;</p>
                 <div class="mt-24 flex items-center justify-center">
-                    <a href="https://dev.sketchme.ai/auth" class="rounded-md bg-black px-8 py-4 text-lg text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">Start generating images on SketchMeAi</a>
+                    <a href="https://dev.sketchme.ai/auth" class="rounded-md bg-black px-8 py-4 text-lg text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">Generate on SketchMeAi</a>
                 </div>
 
                 <p class="mt-2">&nbsp;</p>

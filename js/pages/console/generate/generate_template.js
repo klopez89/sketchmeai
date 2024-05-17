@@ -775,7 +775,7 @@ function basicGenerationSettingsHTML() {
 							<div class="flex items-center justify-between">
 								<span class="flex flex-grow flex-col mr-1">
 									<span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
-									<span class="text-sm text-gray-500" id="availability-description">Enables use of <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Can improve prompt coherence and output quality. Disables denoising steps.</span>
+									<span class="text-sm text-gray-500" id="availability-description">Enables <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Can improve prompt coherence and output quality. Disables denoising steps.</span>
 								</span>
 								<!-- Enabled: "bg-black, enabled", Not Enabled: "bg-gray-200" -->
 								<button id="ays-toggle-button" type="button" onclick="toggleAysPressed(event)" class="enabled bg-black relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">

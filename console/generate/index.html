@@ -22,18 +22,19 @@
     <script src="../../js/helpers/constants.js"></script>
     <script src="../../js/helpers/auth_helper.js"></script>
     <script src="../../js/helpers/ui_helper.js"></script>
+    <script src="../../js/helpers/prompt_helper.js"></script>
 
     <script>
-        // Firebase configuration
         const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
-        console.log('The firebase config dict is: ',firebaseConfig);
-        // Firebase configuration
-        console.log('about to initialize firebase app');
-        firebase.initializeApp(firebaseConfig);
-        console.log('about to create auth');
+        const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-        console.log('about to initialize firestore');
         var db = firebase.firestore();
+
+        const unloadCallback = () => {
+            app.delete()
+        }
+
+        window.addEventListener("beforeunload", unloadCallback);
     </script>
 
     <script src="../../js/helpers/components.js"></script>

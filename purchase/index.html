@@ -26,11 +26,10 @@
     <script src="../js/helpers/auth_helper.js"></script>
 
     <script>
-        // Firebase configuration
-        const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
-        console.log('The firebase config dict is: ',firebaseConfig);
-        // Firebase configuration
-        firebase.initializeApp(firebaseConfig);
+        if (!firebase.apps.length) {
+            const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
+            firebase.initializeApp(firebaseConfig);
+        }
         const auth = firebase.auth();
     </script>
 

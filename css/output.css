@@ -2794,10 +2794,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
   --tw-bg-opacity: 1;
   background-color: rgb(240 253 244 / var(--tw-bg-opacity));
 }
-.bg-indigo-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
-}
 .bg-inherit {
   background-color: inherit;
 }
@@ -4259,10 +4255,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .focus\:border-indigo-300:focus {
   --tw-border-opacity: 1;
   border-color: rgb(165 180 252 / var(--tw-border-opacity));
-}
-.focus\:border-indigo-500:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(99 102 241 / var(--tw-border-opacity));
 }
 .focus\:border-primary:focus {
   --tw-border-opacity: 1;

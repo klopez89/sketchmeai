@@ -441,24 +441,49 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             continue;
         }
 
-        const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${modelName}\\b(?!<\/b>)`, 'g');
+        const regex = new RegExp(`(<b>)?\\b${modelName}\\b(</b>)?`, 'g');
 
-        if (promptInputDiv.innerHTML.includes(modelName)) {
-            const modelInBoldRegex = new RegExp(`(<b>(?:\\s|&nbsp;)*${modelName}(?:\\s|&nbsp;)*<\/b>)`, 'gi');
-            let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
-           
-            if (doesModelNameHaveBoldTags == false) {
-                // console.log('trying to add bold tags if model name doesnt have em');
-                let newPromptValue = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
-                // console.log('newPromptValue: ', newPromptValue);
-                promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
-                if (document.activeElement === promptInputDiv) {
-                    setTimeout(() => {
-                        setCaretPosition(promptInputDiv, initialCaretPos);
-                    }, 0);
-                }
+        promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, function(match, p1, p2) {
+            // If the match is surrounded by <b> and </b> tags, return the original match
+            var returning_str = '';
+            if (p1 && p2) {
+                returning_str = match;
             }
-        }
+            // Otherwise, return the replacement
+            else {
+                returning_str = '<b>' + match + '</b>';
+            }
+
+            if (document.activeElement === promptInputDiv) {
+                setTimeout(() => {
+                    setCaretPosition(promptInputDiv, initialCaretPos);
+                }, 0);
+            }
+            return returning_str;
+        });
+
+
+        // const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${modelName}\\b(?!<\/b>)`, 'g');
+
+
+
+
+        // if (promptInputDiv.innerHTML.includes(modelName)) {
+        //     const modelInBoldRegex = new RegExp(`(<b>(?:\\s|&nbsp;)*${modelName}(?:\\s|&nbsp;)*<\/b>)`, 'gi');
+        //     let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
+           
+        //     if (doesModelNameHaveBoldTags == false) {
+        //         // console.log('trying to add bold tags if model name doesnt have em');
+        //         let newPromptValue = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
+        //         // console.log('newPromptValue: ', newPromptValue);
+        //         promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
+        //         if (document.activeElement === promptInputDiv) {
+        //             setTimeout(() => {
+        //                 setCaretPosition(promptInputDiv, initialCaretPos);
+        //             }, 0);
+        //         }
+        //     }
+        // }
     }
 }
 

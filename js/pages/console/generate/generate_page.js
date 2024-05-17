@@ -1,13 +1,13 @@
-let isCurrentlyPaginatingPrompts = false;
+var isCurrentlyPaginatingPrompts = false;
 let cold_boot_delay = 180000; // 3 minutes in milliseconds for custom models
 let cold_booting_time = 600000; // 10 minutes in milliseconds for custom models to turn cold w/o use
 let status_check_interval = 2500; // 5 seconds in milliseconds
 const genEstimateCostPerDenoisingStep = 0.00128;
 var coldBootedModels = {};
 var previousModelSelectionId = 'no-lora-person-button';
-let sdxlPlaceholderText = "Drawing of cute dalmation puppy in the backyard, highly detailed";
-var promptPlaceholderText = sdxlPlaceholderText;
+var promptPlaceholderText = generatePrompt('');
 let isSelectable = false;
+let lastSelectedModelVersion = null;
 
 addImageGrid();
 addBaseGenMenu();
@@ -18,18 +18,27 @@ moveForm();
 configureInfiniteScroll();
 setupAccordion();
 showBasicExamplesButton();
-// configureModelListInput();
 configurePromptInputPlaceholder(); 
 addBottomGenerationMenu();
 configureShareButton();
 configureRefImageFields();
 configurePersonLoraFields();
+updateAysToggle(false);
+
+setInterval(function() {
+    if (isPromptInputShowingPlaceholder()) {    
+        let promptDiv = document.getElementById('prompt');
+        let currentModelName = getCurrentPersonModelName();
+        // console.log('currentModelName about to be used to gen new random default prompt: ', currentModelName);
+        promptDiv.textContent = generatePrompt(currentModelName);
+        triggerModelNameInPromptFormatting();
+    } else {
+        // console.log('promptDiv is not showing in placeholder state so skipping the setting of a random prompt!');
+    }
+}, 2000);
 
 
-// navigationToHomePage();
-
-
-firebase.auth().onAuthStateChanged(function(user) {
+auth.onAuthStateChanged(function(user) {
     if (user) {
         console.log('User is signed in.');
         let userRecId = getUserRecId();
@@ -61,11 +70,16 @@ document.querySelectorAll('.editable').forEach(function(element){
 
 /////////////////////////////////////////////////////////////////////
 
+var previousWindowWidth = window.innerWidth;
+
 window.onresize = function() {
     resizeGrid();
-    moveForm()
+    let currentWindowWidth = window.innerWidth;
+    if ((previousWindowWidth < 768 && currentWindowWidth >= 768) || (previousWindowWidth >= 768 && currentWindowWidth < 768)) {
+        moveForm();
+    }
+    previousWindowWidth = currentWindowWidth;
 }
-
 
 function moveForm() {
     var form = document.getElementById('generateForm');
@@ -74,6 +88,7 @@ function moveForm() {
     } else {
         document.getElementById('sidebar-gen-form-container').prepend(form);
     }
+    selectModelWithVersion(lastSelectedModelVersion);
 }
 
 function showBasicExamplesButton() {
@@ -97,7 +112,7 @@ function toggleImageSelectability() {
         selectionBar.classList.add("hidden");
         selectToShareButton.classList.remove("text-gray-400");
         selectToShareButton.classList.add("text-gray-500");
-        selectToShareButton.textContent = 'Select';
+        selectToShareButton.textContent = 'Multi-Select';
         mobileMenu.classList.remove('hidden');
     }
     
@@ -266,7 +281,7 @@ async function generateFileArray(imageUrls) {
 
 function configurePromptInputPlaceholder() {
     let promptDiv = document.getElementById('prompt');
-    promptDiv.addEventListener('focus', removePlaceholder);
+    promptDiv.addEventListener('focus', shiftAwayFromPromptPlaceholderState);
     promptDiv.addEventListener('blur', promptAboutToLoseFocus);
     togglePlaceholder();
 }
@@ -285,20 +300,15 @@ function promptAboutToLoseFocus() {
 function togglePlaceholder() {
     let promptDiv = document.getElementById('prompt');
     if (!promptDiv.textContent.trim().length ) {
-        promptDiv.textContent = promptPlaceholderText;
+        promptDiv.textContent = generatePrompt('');
         promptDiv.classList.remove('text-gray-900');
         promptDiv.classList.add('text-gray-400');
     }
 }
 
-function removePlaceholder() {
+function shiftAwayFromPromptPlaceholderState() {
     let promptDiv = document.getElementById('prompt');
-
-    console.log('In remove placeholder, textcontent: ', promptDiv.textContent, ' promptPlaceholderText: ', promptPlaceholderText);
-    if (promptDiv.textContent === promptPlaceholderText) {
-        if (promptDiv.classList.contains('text-gray-400')) {
-            promptDiv.textContent = '';
-        }
+    if (promptDiv.classList.contains('text-gray-400')) {
         promptDiv.classList.remove('text-gray-400');
         promptDiv.classList.add('text-gray-900');
     }
@@ -310,79 +320,18 @@ function isPromptInputShowingPlaceholder() {
 }
 
 
-
-function configureModelListInput() {
-    const modelDropdown = document.getElementById('model-dropdown');
-    previousModelSelectionId = modelDropdown.options[modelDropdown.selectedIndex].id; // Store the initial selection id
-
-    modelDropdown.addEventListener('change', function() {
-        const newSelectionId = modelDropdown.options[modelDropdown.selectedIndex].id;
-        console.log('Model selection changed. New selection id:', newSelectionId, ", previous selection id: ", previousModelSelectionId);
-
-        // Get the option elements for both previous and new selections
-        const previousOption = modelDropdown.querySelector(`option[id="${previousModelSelectionId}"]`);
-        const newOption = modelDropdown.querySelector(`option[id="${newSelectionId}"]`);
-
-        // Get the modelname attribute values for both previous and new selections
-        const previousModelName = previousOption ? previousOption.getAttribute('modelname') : '';
-        const newModelName = newOption ? newOption.getAttribute('modelname') : '';
-
-        const previousReplicateName = previousOption.getAttribute('model');
-        const newReplicateName = newOption.getAttribute('model');
-
-        console.log('New replicate model name:', newReplicateName);
-        if (newReplicateName.includes('custom_sdxl')) {
-            promptPlaceholderText = `Drawing of ${newModelName} wearing a sleek black leather jacket`;
-        } else {
-            promptPlaceholderText = sdxlPlaceholderText;
-        }
-
-        // Try to swap trained model name with another selected trained model. Else set the appropriate placeholder if in placeholder state 
-        const promptInput = document.getElementById('prompt');
-        
-        if (previousReplicateName.includes('custom_sdxl') && newReplicateName.includes('custom_sdxl')) {
-            // Swap the modelName in the prompt if it exists
-            const promptInput = document.getElementById('prompt');
-            const promptText = promptInput.textContent || promptInput.innerText;
-
-            if (promptText.includes(previousModelName)) {
-                promptInput.textContent = promptText.replace(previousModelName, newModelName);
-            }
-        } else if (isPromptInputShowingPlaceholder()) {
-            promptInput.textContent = promptPlaceholderText;
-        }
-
-        // Update the previous selection id for the next change event
-        previousModelSelectionId = newSelectionId;
-
-        triggerModelNameInPromptFormatting();
-        updateGenerationEstimateLabel();
-    });
-}
-
 function triggerModelNameInPromptFormatting() {
     let promptInput = document.getElementById('prompt')
     let promptValues = promptInputValues();
     let modelNames = promptValues.modelNames;
-    console.log("Model Names:", modelNames);
-    console.log("Prompt Input:", promptInput.textContent);
+    // console.log("Model Names:", modelNames);
+    // console.log("Prompt Input:", promptInput.textContent);
     formatAroundModelName(modelNames, promptInput);
 }
 
 function configureGenerateForm() {
-    document.getElementById("generateForm").addEventListener("submit", generateButtonPressed, true);
-
-    const form = document.getElementById('generateForm');
-    form.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            let genButtonElement = document.getElementById('gen-button');
-            let newEvent = new Event('click', { bubbles: true });
-            genButtonElement.dispatchEvent(newEvent);
-            // generateButtonPressed(event);
-        }
-    });
-
+    let genForm = document.getElementById("generateForm");
+    genForm.addEventListener("submit", generateButtonPressed, true);
 
     let promptInput = document.getElementById('prompt')
     promptInput.addEventListener('input', function(event) {
@@ -404,7 +353,25 @@ function configureGenerateForm() {
         if (!selection.rangeCount) return false;
         selection.deleteFromDocument();
         selection.getRangeAt(0).insertNode(document.createTextNode(text));
-      });
+    });
+
+    promptInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            let newEvent = new Event('submit', { bubbles: false });
+            genForm.dispatchEvent(newEvent);
+        }
+    });
+
+    // Neg-prompt field: Enbable pressing enter to trigger generation
+
+    document.getElementById('neg-prompt').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            let newEvent = new Event('submit', { bubbles: false });
+            genForm.dispatchEvent(newEvent);
+        }
+    });
 
     let denoisingStepsInput = document.getElementById('denoising-steps');
     denoisingStepsInput.addEventListener('input', function(event) {
@@ -460,7 +427,7 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             // Strip any spaces from the model name in order to check against list of selected model names
             const cleanedModelName = boldedModelName.replace(/&nbsp;/g, ' ').replace(/\s+/g, '');
             if (!modelNames.includes(cleanedModelName)) {
-                console.log('Removing bold tags from:', boldedModelName);
+                // console.log('Removing bold tags from:', boldedModelName);
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(substring, boldedModelName);
                 setCaretPosition(promptInputDiv, initialCaretPos);
             }
@@ -481,9 +448,9 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
            
             if (doesModelNameHaveBoldTags == false) {
-                console.log('trying to add bold tags if model name doesnt have em');
+                // console.log('trying to add bold tags if model name doesnt have em');
                 let newPromptValue = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
-                console.log('newPromptValue: ', newPromptValue);
+                // console.log('newPromptValue: ', newPromptValue);
                 promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
                 if (document.activeElement === promptInputDiv) {
                     setTimeout(() => {
@@ -542,12 +509,14 @@ function setCaretPosition(element, offset) {
     }
 }
 
-
-function attemptAutoModelSelection() {
+function modelVersionInURL() {
     var url = window.location.href;
     var urlObj = new URL(url);
     var params = new URLSearchParams(urlObj.search);
-    let modelVersion = params.get('model_version');
+    return params.get('model_version');
+}
+
+function attemptAutoModelSelection(modelVersion) {
     selectModelWithVersion(modelVersion);
 }
 
@@ -583,6 +552,8 @@ function setupAccordion() {
     });
 }
 
+
+
 function fetchWorkingModels(userRecId) {
     $.ajax({
         url: CONSTANTS.BACKEND_URL + 'models/working',
@@ -593,7 +564,7 @@ function fetchWorkingModels(userRecId) {
         contentType: 'application/json',
         dataType: 'json',
         success: function(data) {
-            models = data.models;
+            let models = data.models;
             if (models != null && models.length > 0) {
                 models.forEach(function(model) {
                     let new_model_option_html = new_model_option(model);
@@ -608,17 +579,20 @@ function fetchWorkingModels(userRecId) {
                     new_model_option_div.hide().appendTo('#model-dropdown').fadeIn();
                 });
 
-                if (models.length == 1) {
+                let model_version = modelVersionInURL();
+                console.log('Model version in URL is:', model_version);
+                if (model_version != null) {
+                    lastSelectedModelVersion = model_version;
+                    attemptAutoModelSelection(model_version);
+                } else {
                     let firstModelName = models[0].name;
                     let long_version = models[0].version;
                     let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
                     let promptDiv = document.getElementById('prompt');
-                    promptPlaceholderText = `Drawing of ${firstModelName} wearing a sleek black leather jacket`;
-                    promptDiv.textContent = promptPlaceholderText;
+                    promptDiv.textContent = generatePrompt(firstModelName);
+                    lastSelectedModelVersion = short_version;
                     selectModelWithVersion(short_version);
                     promptDiv.blur();
-                } else {
-                    attemptAutoModelSelection();
                 }
             }
             console.log('the base prices dict is: ', data.base_prices);
@@ -645,8 +619,8 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
         contentType: 'application/json',
         dataType: 'json',
         success: function(data) {
-            generations = data.generations;
-            hasAnotherPage = data.has_another_page;
+            let generations = data.generations;
+            let hasAnotherPage = data.has_another_page;
             lastDocId = data.last_doc_id;
             // console.log(`data from generations: ${JSON.stringify(generations[0], null, 2)}`)
             console.log(`hasAnotherPage: ${hasAnotherPage}, lastDocId: ${lastDocId}`);
@@ -796,7 +770,7 @@ function configureGenDivForSelection(div) {
 function configCopyButton(div, generation) {
     div.find('button').click(function() {
         copyPromptInfoFromGen(generation);
-        console.log(`clicked on generation button, gen info: ${generation.rec_id}`);
+        // console.log(`clicked on generation button, gen info: ${generation.rec_id}`);
     });
 }
 
@@ -808,23 +782,32 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
-    console.log('the signed ref url from copy prompt is: ', generation.gen_recipe.signed_ref_url);
+    // console.log('the signed ref url from copy prompt is: ', generation.gen_recipe.signed_ref_url);
     if (generation.gen_recipe.signed_ref_url != undefined) {
         insertImgUrlForRefImg(generation.gen_recipe.signed_ref_url);
     } else {
         let clearRefButton = document.getElementById('clear-ref-button');
         clearRefButton.click();
+        attemptToCloseRefImgSection();
     }
 
-    console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
+    // console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
     document.getElementById('prompt-str').value = 100 - generation.gen_recipe.prompt_strength * 100;
     document.getElementById('ref-influence-range').value = 100 - generation.gen_recipe.prompt_strength * 100;
     document.getElementById('person-lora-influence').value = generation.gen_recipe.lora_scale * 100;
     document.getElementById('person-lora-influence-range').value = generation.gen_recipe.lora_scale * 100;
     // Trigger some UI updates in the gen form
     document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
-    selectModelWithVersion(generation.model_version);
+    lastSelectedModelVersion = generation.model_version;
+    selectModelWithVersion(lastSelectedModelVersion);
+    selectPromptStyle(generation.gen_recipe.prompt_style);
+    selectRefImageMode(generation.gen_recipe.ref_img_mode);
     updateAysToggle(generation.gen_recipe.should_use_ays);
+    updateHiDToggle(generation.gen_recipe.should_use_hi_d);
+    attemptToShowPromptSettingsSection();
+    alignInfluenceSettingToValue();
+    alignPersonInfluenceSettingToValue();
+    alignAYSBasedOnRefImgMode();
 }
 
 function insertImgUrlForRefImg(url) {
@@ -837,19 +820,38 @@ function insertImgUrlForRefImg(url) {
         'type': `image/${imageExtension}`
     }
     addFileToRefImgElement(imgInfo);
+    attemptToShowRefImgSection();
 }
 
-function selectModelWithVersion(version) {
+function attemptToShowRefImgSection() {
+    let refImgSectionButton = document.getElementById('reference-section-button');
+    if(refImgSectionButton.getAttribute('data-te-collapse-collapsed') != null) {
+        refImgSectionButton.click();
+    }
+}
 
+function attemptToCloseRefImgSection() {
+    let refImgSectionButton = document.getElementById('reference-section-button');
+    if(refImgSectionButton.getAttribute('data-te-collapse-collapsed') == null) {
+        refImgSectionButton.click();
+    }
+}
+
+function attemptToShowPromptSettingsSection() {
+    let promptSettingsSectionButton = document.getElementById('prompt-settings-section-button');
+    if(promptSettingsSectionButton.getAttribute('data-te-collapse-collapsed') != null) {
+        promptSettingsSectionButton.click();
+    }
+}
+
+
+
+function selectModelWithVersion(version) {
     let loraPersonGrid = document.getElementById('lora-person-grid');
     deSelectAllLoraPersonOptions();
     let loraPersonDivs = loraPersonGrid.children;
 
-    // let modelDropdown = document.getElementById('model-dropdown');
-    // var options = modelDropdown.options;
     var selected = false; // Flag to keep track if a matching option was found
-
-
 
 
     for (let i = 0; i < loraPersonDivs.length; i++) {
@@ -861,41 +863,40 @@ function selectModelWithVersion(version) {
         }
     }
 
-    // Find the first option w/ matching version if not set selection to false
-    // for (var i = 0; i < options.length; i++) {
-    //   if (options[i].getAttribute('version') === version) {  
-    //     options[i].selected = true;
-    //     selected = true;
-    //     // break;
-    //   } else {
-    //     options[i].selected = false;
-    //   }
-    // }
-
     if (!selected) {
         console.log('About to select the first lora person div in the grid');
         selectLoraPersonDiv(loraPersonDivs[0]);
     }
-  
-    // If no matching option was found, only select the first option and deselect all others
-    // if (!selected) {
-    //   for (var i = 0; i < options.length; i++) {
-    //     if (i === 0) {
-    //       options[i].selected = true;
-    //     } else {
-    //       options[i].selected = false;
-    //     }
-    //   }
-    // }
+}
 
-    // Create a new 'change' event
-    // const event = new Event('change', {
-    //     bubbles: true,
-    //     cancelable: true,
-    // });
+function selectPromptStyle(prompt_style) {
+    let promptStyleGrid = document.getElementById('prompt-style-grid');
+    deSelectAllPromptStylesOptions();
+    let promptStyleDivs = promptStyleGrid.children;
 
-    // // Dispatch it on the 'model-dropdown' element
-    // modelDropdown.dispatchEvent(event);
+    var selected = false; // Flag to keep track if a matching option was found
+
+    for (let i = 0; i < promptStyleDivs.length; i++) {
+        if (promptStyleDivs[i].getAttribute('prompt-style') === prompt_style) {
+            selectPromptStyleDiv(promptStyleDivs[i]);
+            selected = true;
+            break;
+        }
+    }
+
+    if (!selected) {
+        selectPromptStyleDiv(promptStyleDivs[0]);
+    }
+}
+
+function selectRefImageMode(ref_img_mode) {
+    let refImgModeSelector = document.getElementById('ref-img-mode');
+    for (let i = 0; i < refImgModeSelector.options.length; i++) {
+        if (refImgModeSelector.options[i].id === ref_img_mode) {
+            refImgModeSelector.selectedIndex = i;
+            break;
+        }
+    }
 }
 
 function generateButtonPressed(event) {
@@ -958,9 +959,9 @@ function generateButtonPressed(event) {
 
     var prompt = promptValues.prompt;
     if (isPromptInputShowingPlaceholder() == true) {
-        removePlaceholder();
-        document.getElementById('prompt').innerHTML = prompt;
-        console.log('the prompt after removing placeholder: ', document.getElementById('prompt').innerHTML);
+        // removePlaceholder();
+        // document.getElementById('prompt').innerHTML = prompt;
+        // console.log('the prompt after removing placeholder: ', document.getElementById('prompt').innerHTML);
         triggerModelNameInPromptFormatting();
     }
 
@@ -992,7 +993,7 @@ function generateButtonPressed(event) {
 
     console.log('the event target is: ', event.currentTarget);
     let generateTarget = event.currentTarget;
-    generateTarget.disabled = true;
+    // generateTarget.disabled = true;
     let generateIcon = generateTarget.querySelector('i');
     let generateText = generateTarget.querySelector('p');
 
@@ -1055,14 +1056,17 @@ function generateButtonPressed(event) {
                 modelVersion: versionName,
                 userFacingPrompt: userFacingPrompt,
                 prompt: personalizedPrompt,
+                promptStyle: promptValues.promptStyle,
                 negativePrompt: promptValues.negativePrompt,
                 gscale: promptValues.gscale,
                 seed: seedToUse,
                 img2imgUrl: promptValues.img2imgUrl,
                 refImgInfo: promptValues.refImgInfo,
+                refImageMode: promptValues.refImageMode,
                 promptStrength: promptValues.promptStrength,
                 inferenceSteps: promptValues.inferenceSteps,
                 shouldUseAys: promptValues.shouldUseAys,
+                shouldUseHid: promptValues.shouldUseHid,
                 loraScale: promptValues.loraScale,
                 resWidth: promptValues.resWidth,
                 resHeight: promptValues.resHeight,
@@ -1085,6 +1089,15 @@ function fireGenerateCall(jsonObject, generateTarget) {
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
         new_grid_item_div.find('img').first().removeClass('hidden');
     });
+
+    // Reset the prompt field to a new prompt if the promptField is in placeholder state
+    if (isPromptInputShowingPlaceholder()) {
+        let promptField = document.getElementById('prompt');
+        let currrentPersonModelName = getCurrentPersonModelName();
+        let newPrompt = generatePrompt(currrentPersonModelName);
+        promptField.innerHTML = newPrompt;
+        triggerModelNameInPromptFormatting();
+    }
     
     let action = `${CONSTANTS.BACKEND_URL}generate/new`
     $.ajax({
@@ -1129,7 +1142,7 @@ function resetGenerateTarget(target) {
     } else {
         generateIcon.className = 'fa-solid fa-bolt-lightning';
     }
-    target.disabled = false;
+    // target.disabled = false;
     target.parentElement.click();
 }
 
@@ -1232,19 +1245,11 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
     });
 }
 
-function configure_main_gen_button(gen_dict, gen_element) {
-    let main_gen_button = gen_element.querySelector('#main-gen-button');
-    main_gen_button.addEventListener('click', function() {
-        copyPromptInfoFromGen(gen_dict);
-    });
-    main_gen_button.classList.remove('pointer-events-none');
-}
-
 function configureCopyButton(gen_dict, gen_element) {
     gen_element.querySelector('#action-container').classList.remove('hidden');
     let copyButton = gen_element.querySelector('#copy-button');
     copyButton.addEventListener('click', function(event) {
-        removePlaceholder();
+        shiftAwayFromPromptPlaceholderState();
         copyPromptInfoFromGen(gen_dict);
         triggerModelNameInPromptFormatting();
         event.stopPropagation();
@@ -1517,13 +1522,13 @@ function clearRefImgElement(event) {
 
 function getUploadedRef() {
 	let singleRefImageButton = document.getElementById('ref-img-button');
-    console.log('the single ref img button is: ', singleRefImageButton);
+    // console.log('the single ref img button is: ', singleRefImageButton);
     let singleRefImg = singleRefImageButton.querySelector('img');
     let singleRefSrcUrl = singleRefImg.src;
 
     let currentPageUrl = window.location.href;
     const isSameUrl = new URL(currentPageUrl).origin + new URL(currentPageUrl).pathname === new URL(singleRefSrcUrl).origin + new URL(singleRefSrcUrl).pathname;
-    console.log('the isSameUrl value is: ', isSameUrl);
+    // console.log('the isSameUrl value is: ', isSameUrl);
 
     if (singleRefSrcUrl === '' || isSameUrl) {
         return null;
@@ -1541,27 +1546,27 @@ function getUploadedRef() {
 function configureInfiniteScroll() {
     const scrollableContainer = document.getElementById("collection-grid-container");
     scrollableContainer.addEventListener("scroll", () => {
-        console.log("Scroll Top: ", scrollableContainer.scrollTop, 
-                    "Client Height: ", scrollableContainer.clientHeight, 
-                    "Scroll Height: ", scrollableContainer.scrollHeight);
+        // console.log("Scroll Top: ", scrollableContainer.scrollTop, 
+        //             "Client Height: ", scrollableContainer.clientHeight, 
+        //             "Scroll Height: ", scrollableContainer.scrollHeight);
         if ((scrollableContainer.scrollTop + scrollableContainer.clientHeight) >= scrollableContainer.scrollHeight - 5) {
             if (isCurrentlyPaginatingPrompts) {
-                console.log('is currently paginating!');
+                // console.log('is currently paginating!');
                 return
             } else {
                 const last_doc_id = getLastDocIdFromLocalStorage();
                 if (last_doc_id != null) {
-                    console.log('has a last doc id of: ', last_doc_id);
+                    // console.log('has a last doc id of: ', last_doc_id);
                     isCurrentlyPaginatingPrompts = true;
                     let collectionId = getLastEditedCollectionInfo().collectionId;
                     fetchGenerations(getUserRecId(), collectionId, last_doc_id);
                 } else {
-                    console.log('doesnt have a last doc id, so no more things to fetch');
+                    // console.log('doesnt have a last doc id, so no more things to fetch');
                 }
             }
         }
     });
-  }
+}
 
 function hideInfiniteLoader() {
     $('#infiniteLoader').addClass('hidden');
@@ -1574,7 +1579,7 @@ function showInfiniteLoader() {
 function saveLastDocIdLocally(last_doc_id) {
     console.log('in saving of last doc id: ', last_doc_id);
     localStorage.setItem('last_doc_id', last_doc_id);
-  }
+}
   
 function getLastDocIdFromLocalStorage() {
     return localStorage.getItem('last_doc_id');
@@ -1602,12 +1607,15 @@ function isValidImageUrl(url) {
 }
 
 function promptInputValues() {
-    var prompt = document.getElementById("prompt").innerHTML;
-    prompt = sanitizePrompt(prompt);
+    var promptField = document.getElementById("prompt");
+    let prompt = sanitizePrompt(promptField.innerHTML);
+
     let numberOfImages = document.getElementById('gen-count').value;
     var inferenceSteps = document.getElementById('denoising-steps').value;
     let aysToggleButton = document.getElementById('ays-toggle-button');
     let isAysToggled = aysToggleButton.classList.contains('enabled');
+    let hidToggleButton = document.getElementById('hid-toggle-button');
+    let isHidToggled = hidToggleButton.classList.contains('enabled');
     let negativePrompt = document.getElementById("neg-prompt").value;
     var gscale = document.getElementById('guidance-scale').value;
     let seed = document.getElementById('seed').value;
@@ -1617,13 +1625,17 @@ function promptInputValues() {
     var loraScale = document.getElementById('person-lora-influence').value;
     let shouldUseRandomSeedAcrossModels = true;
 
+    let refImgModeElement = document.getElementById('ref-img-mode');
+    let refImageMode = refImgModeElement.options[refImgModeElement.selectedIndex].id;
+    // console.log('the ref image mode is: ', refImageMode);
+
     if (promptStrength == '') {
         promptStrength = 80;
     } 
-    else if (promptStrength > 95) {
-        promptStrength = 95;
-        document.getElementById('prompt-str').value = 95;
-    }
+    // else if (promptStrength > 95) {
+    //     promptStrength = 95;
+    //     document.getElementById('prompt-str').value = 95;
+    // }
 
     let normalizedPromptStrength = 1 - promptStrength / 100;
 
@@ -1643,7 +1655,7 @@ function promptInputValues() {
     let loraPersonGrid = document.getElementById('lora-person-grid');
     let loraPersonDivs = loraPersonGrid.children;
 
-    console.log('the lora person divs: ', loraPersonDivs);
+    // console.log('the lora person divs: ', loraPersonDivs);
 
     // let dropdown = document.getElementById('model-dropdown');
     // let selectedOptions = dropdown.selectedOptions;
@@ -1679,18 +1691,23 @@ function promptInputValues() {
         genderTypes.push(selectedOption.getAttribute('genderType'));
     }
 
-    console.log('the selected model names list: ', modelNames);
+    let promptStyle = getCurrentPromptStyle();
+
+    // console.log('the selected model names list: ', modelNames);
   
     return {
         prompt: prompt,
+        promptStyle: promptStyle,
         numberOfImages: numberOfImages,
         inferenceSteps: inferenceSteps,
         shouldUseAys: isAysToggled,
+        shouldUseHid: isHidToggled,
         negativePrompt: negativePrompt,
         gscale: gscale,
         seed: seed,
         img2imgUrl: img2imgUrl,
         refImgInfo: refImgInfo,
+        refImageMode: refImageMode,
         promptStrength: normalizedPromptStrength,
         loraScale: normalizedLoraScale,
         resWidth: 1024,
@@ -1705,8 +1722,34 @@ function promptInputValues() {
         versionValues: versionValues,
         instanceKeys: instanceKeys,
         trainingSubjects: trainingSubjects,
-        genderTypes: genderTypes
+        genderTypes: genderTypes,
     }
+}
+
+function getCurrentPromptStyle() {
+    let promptStyleGrid = document.getElementById('prompt-style-grid');
+    let promptStyleDivs = promptStyleGrid.children;
+    let selectedPromptStyleDiv;
+    for (let i = 0; i < promptStyleDivs.length; i++) {
+        if (promptStyleDivs[i].classList.contains('selected')) {
+            selectedPromptStyleDiv = promptStyleDivs[i];
+            break;
+        }
+    }
+    return selectedPromptStyleDiv.getAttribute('prompt-style');
+}
+
+function getCurrentPersonModelName() {
+    let loraPersonGrid = document.getElementById('lora-person-grid');
+    let loraPersonDivs = loraPersonGrid.children;
+    let selectedLoraPersonDiv;
+    for (let i = 0; i < loraPersonDivs.length; i++) {
+        if (loraPersonDivs[i].classList.contains('selected')) {
+            selectedLoraPersonDiv = loraPersonDivs[i];
+            break;
+        }
+    }
+    return selectedLoraPersonDiv.getAttribute('modelname');
 }
 
 function updateCurrentCollectionLabels() {
@@ -2058,9 +2101,11 @@ function loraPersonPressed(event) {
 
 function deSelectLoraPersonDiv(loraPersonDiv) {
     let pElement = loraPersonDiv.querySelector('p');
+    let selectedCheckDiv = loraPersonDiv.querySelector('#selected-check');
     let bgParentDiv = pElement.parentElement.parentElement;
     let bgColor = loraPersonDiv.getAttribute('bgColor');
     loraPersonDiv.classList.remove('selected');
+    selectedCheckDiv.classList.add('hidden');
     pElement.style.color = bgColor;
     bgParentDiv.style.backgroundColor = '';
     bgParentDiv.classList.add('bg-white');
@@ -2068,9 +2113,11 @@ function deSelectLoraPersonDiv(loraPersonDiv) {
 
 function selectLoraPersonDiv(loraPersonDiv) {
     let pElement = loraPersonDiv.querySelector('p');
+    let selectedCheckDiv = loraPersonDiv.querySelector('#selected-check');
     let bgParentDiv = pElement.parentElement.parentElement;
     let bgColor = loraPersonDiv.getAttribute('bgColor');
     loraPersonDiv.classList.add('selected');
+    selectedCheckDiv.classList.remove('hidden');
     pElement.style.color = 'white';
     bgParentDiv.style.backgroundColor = bgColor;
     bgParentDiv.classList.remove('bg-white');
@@ -2099,8 +2146,8 @@ function personLoraSelectionMade() {
 
     let selectedLoraPersonDiv = loraPersonGrid.querySelector('.selected');
     let selectedLoraPersonId = selectedLoraPersonDiv ? selectedLoraPersonDiv.id : null;
-    console.log('selectedLoraPersonId is: ', selectedLoraPersonId);
-    console.log('previousModelSelectionId is: ', previousModelSelectionId);
+    // console.log('selectedLoraPersonId is: ', selectedLoraPersonId);
+    // console.log('previousModelSelectionId is: ', previousModelSelectionId);
 
     let previousLoraPersonDiv = loraPersonGrid.querySelector(`div[id="${previousModelSelectionId}"]`);
     let newLoraPersonDiv = loraPersonGrid.querySelector(`div[id="${selectedLoraPersonId}"]`);
@@ -2108,14 +2155,14 @@ function personLoraSelectionMade() {
     let previousLoraPersonName = previousLoraPersonDiv ? previousLoraPersonDiv.getAttribute('modelname') : '';
     let newLoraPersonName = newLoraPersonDiv ? newLoraPersonDiv.getAttribute('modelname') : '';
 
-    console.log('previousLoraPersonDiv is: ', previousLoraPersonDiv);
+    // console.log('previousLoraPersonDiv is: ', previousLoraPersonDiv);
     let previousReplicateName = previousLoraPersonDiv.getAttribute('model');
     let newReplicateName = newLoraPersonDiv.getAttribute('model');
 
     if (newReplicateName.includes('custom_sdxl')) {
-        promptPlaceholderText = `Drawing of ${newLoraPersonName} wearing a sleek black leather jacket`;
+        promptPlaceholderText = generatePrompt(newLoraPersonName);
     } else {
-        promptPlaceholderText = sdxlPlaceholderText;
+        promptPlaceholderText = generatePrompt('');
     }
 
     // Try to swap trained model name with another selected trained model. Else set the appropriate placeholder if in placeholder state 
@@ -2139,13 +2186,87 @@ function personLoraSelectionMade() {
     updateGenerationEstimateLabel();
 }
 
+// Prompt Style functions
+
+function promptStylePressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let promptStyleDiv = event.currentTarget;
+    let negPromptTextfield = document.getElementById('neg-prompt');
+
+    if (promptStyleDiv.classList.contains('selected')) {
+        if (promptStyleDiv.id != 'no-prompt-style-button') {
+            deSelectPromptStyleDiv(promptStyleDiv);
+            let noPromptStyleDiv = document.getElementById('no-prompt-style-button');
+            selectLoraPersonDiv(noPromptStyleDiv);
+            negPromptTextfield.textContent = 'ugly, morbid, photorealistic';
+        }
+    } else {
+        deSelectAllPromptStylesOptions();
+        selectPromptStyleDiv(promptStyleDiv);
+        if (promptStyleDiv.id != 'no-prompt-style-button') {
+            negPromptTextfield.textContent = '';
+        } else {
+            negPromptTextfield.textContent = 'ugly, morbid, photorealistic';
+        }
+    }
+}
+
+function deSelectPromptStyleDiv(promptStyleDiv) {
+    let pElement = promptStyleDiv.querySelector('p');
+    let imgElement = promptStyleDiv.querySelector('img');
+    let selectedCheckDiv = promptStyleDiv.querySelector('#selected-check');
+    let bgParentDiv = pElement.parentElement.parentElement;
+    let bgColor = promptStyleDiv.getAttribute('bgColor');
+    promptStyleDiv.classList.remove('selected');
+    selectedCheckDiv.classList.add('hidden');
+    pElement.style.color = bgColor;
+    bgParentDiv.style.backgroundColor = '';
+    bgParentDiv.classList.add('bg-white');
+}
+
+function selectPromptStyleDiv(promptStyleDiv) {
+    let pElement = promptStyleDiv.querySelector('p');
+    let selectedCheckDiv = promptStyleDiv.querySelector('#selected-check');
+    let bgParentDiv = pElement.parentElement.parentElement;
+    let bgColor = promptStyleDiv.getAttribute('bgColor');
+    promptStyleDiv.classList.add('selected');
+    selectedCheckDiv.classList.remove('hidden');
+    pElement.style.color = 'white';
+    bgParentDiv.style.backgroundColor = bgColor;
+    bgParentDiv.classList.remove('bg-white');
+
+    let selectedPromptStyleLabel = document.getElementById('selected-prompt-style-label');
+    selectedPromptStyleLabel.innerHTML = promptStyleDiv.querySelector('p').innerHTML;
+
+    let promptStyleGrid = document.getElementById('prompt-style-grid');
+    let scrollPosition = promptStyleDiv.offsetLeft - promptStyleGrid.offsetLeft 
+    + promptStyleDiv.offsetWidth / 2 
+    - promptStyleGrid.offsetWidth / 2;
+    promptStyleGrid.scrollLeft = scrollPosition;
+}
+
+function deSelectAllPromptStylesOptions() {
+    let promptStyleGrid = document.getElementById('prompt-style-grid');
+    let promptStyleDivs = promptStyleGrid.children;
+    for (let i = 0; i < promptStyleDivs.length; i++) {
+        deSelectPromptStyleDiv(promptStyleDivs[i]);
+    }
+}
+
+
+
 function toggleAysPressed(event) {
     event.preventDefault();
     event.stopPropagation();
     let aysButton = event.currentTarget;
     let shouldEnableAys = !aysButton.classList.contains('enabled');
+    if (shouldEnableAys) {
+        selectRefImageMode(RefImageMode.IMG2IMG);
+    }
     updateAysToggle(shouldEnableAys);
 }
+
 function updateAysToggle(shouldEnable) {
     let aysButton = document.getElementById('ays-toggle-button');
     let span = aysButton.querySelector('span');
@@ -2159,6 +2280,7 @@ function updateAysToggle(shouldEnable) {
         denoisingStepsField.disabled = true;
         denoisingStepsField.classList.remove('text-gray-900');
         denoisingStepsField.classList.add('text-gray-400');
+        updateHiDToggle(false);
     } else {
         aysButton.classList.remove('enabled');
         aysButton.classList.remove('bg-black');
@@ -2169,4 +2291,238 @@ function updateAysToggle(shouldEnable) {
         denoisingStepsField.classList.add('text-gray-900');
         denoisingStepsField.classList.remove('text-gray-400');
     }
+}
+
+function toggleHiDPressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let hiDButton = event.currentTarget;
+    let shouldEnableHiD = !hiDButton.classList.contains('enabled');
+    updateHiDToggle(shouldEnableHiD);
+}
+
+function updateHiDToggle(shouldEnable) {
+    let hiDButton = document.getElementById('hid-toggle-button');
+    let span = hiDButton.querySelector('span');
+
+    if (shouldEnable) {
+        hiDButton.classList.add('enabled');
+        hiDButton.classList.add('bg-black');
+        hiDButton.classList.remove('bg-gray-200');
+        span.classList.add('translate-x-5');
+        span.classList.remove('translate-x-0');
+        updateAysToggle(false);
+    } else {
+        hiDButton.classList.remove('enabled');
+        hiDButton.classList.remove('bg-black');
+        hiDButton.classList.add('bg-gray-200');
+        span.classList.remove('translate-x-5');
+        span.classList.add('translate-x-0');
+    }
+}
+
+
+// Reference Image Mode and Influence Setting functions
+
+function refImgModeChanged() {
+    let dropdown = document.getElementById('influence-setting-dropdown-selector');
+    let selectedOption = dropdown.options[dropdown.selectedIndex];
+    let influence_setting = selectedOption.getAttribute('inf-setting');
+    setRefImgInfluenceValue(influence_setting);
+    alignAYSBasedOnRefImgMode();
+}
+
+function alignAYSBasedOnRefImgMode() {
+    let refImgModeSelector = document.getElementById('ref-img-mode');
+    let selectedMode = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
+
+    let i2iModeInfoButton = document.getElementById('i2i-mode-info-button');
+    let mistoModeInfoButton = document.getElementById('misto-mode-info-button');
+
+    if (selectedMode == RefImageMode.IMG2IMG) {
+        i2iModeInfoButton.classList.remove('hidden');
+        mistoModeInfoButton.classList.add('hidden');
+    } else if (selectedMode == RefImageMode.MISTO) {
+        updateAysToggle(false);
+        i2iModeInfoButton.classList.add('hidden');
+        mistoModeInfoButton.classList.remove('hidden');
+    }
+}
+
+function infSettingDropdownSelectionMade(event) {
+    event.preventDefault();
+    let selectedOption = event.target.options[event.target.selectedIndex];
+    let influence_setting = selectedOption.getAttribute('inf-setting');
+    setRefImgInfluenceValue(influence_setting);
+    updateInfSettingTabUI(influence_setting);
+}
+
+function infSettingTabSelected(influence_setting) {
+    setRefImgInfluenceValue(influence_setting);
+    updateInfSettingTabUI(influence_setting);
+    updateInfSettingDropdownUI(influence_setting);
+}
+
+function alignInfluenceSettingToValue() {
+    let influence_value = document.getElementById('prompt-str').value;
+    let refImgModeSelector = document.getElementById('ref-img-mode');
+    let selectedOptionId = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
+    let influence_setting;
+
+    if (selectedOptionId == RefImageMode.IMG2IMG) {
+        if (influence_value <= Img2ImgSettingValue.LOW) {
+            influence_setting = InfluenceSetting.LOW;
+        } else if (influence_value <= Img2ImgSettingValue.MEDIUM) {
+            influence_setting = InfluenceSetting.MEDIUM;
+        } else {
+            influence_setting = InfluenceSetting.HIGH;
+        }
+    } else if (selectedOptionId == RefImageMode.MISTO) {
+        if (influence_value >= MistoSettingValue.LOW) {
+            influence_setting = InfluenceSetting.LOW;
+        } else if (influence_value >= MistoSettingValue.MEDIUM) {
+            influence_setting = InfluenceSetting.MEDIUM;
+        } else {
+            influence_setting = InfluenceSetting.HIGH;
+        }
+    }
+
+    updateInfSettingTabUI(influence_setting);
+    updateInfSettingDropdownUI(influence_setting);
+}
+
+function updateInfSettingDropdownUI(selected_influence_setting) {
+    let dropdown = document.getElementById('influence-setting-dropdown-selector');
+    for(let i = 0; i < dropdown.options.length; i++) {
+        if(dropdown.options[i].getAttribute('inf-setting') == selected_influence_setting) {
+            dropdown.selectedIndex = i;
+            break;
+        }
+    }
+}
+
+function updateInfSettingTabUI(selected_influence_setting) {
+    //  Update the state of the influence setting tab UI
+    let navElement = document.getElementById('influence-setting-tabs-selector');
+    let aElements = navElement.getElementsByTagName('a');
+    for(let i = 0; i < aElements.length; i++) {
+        let infSetting_a_element = aElements[i];
+        let infLineSpan = infSetting_a_element.querySelector('#inf-line');
+
+        if(infSetting_a_element.getAttribute('inf-setting') == selected_influence_setting) {
+            // set it's state to active
+            infSetting_a_element.classList.add('text-gray-900');
+            infSetting_a_element.classList.remove('text-gray-500', 'hover:text-gray-700');
+            infLineSpan.classList.add('bg-black');
+            infLineSpan.classList.remove('bg-transparent');
+        } else {
+            // set its state inactive
+            infSetting_a_element.classList.add('text-gray-500', 'hover:text-gray-700');
+            infSetting_a_element.classList.remove('text-gray-900');
+            infLineSpan.classList.add('bg-transparent');
+            infLineSpan.classList.remove('bg-black');
+        }
+    }
+}
+
+function setRefImgInfluenceValue(selected_influence_setting) {
+    let promptStrField = document.getElementById('prompt-str');
+    let refImgModeSelector = document.getElementById('ref-img-mode');
+    let selectedOptionId = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
+    
+    var promptStrValue = 0;
+    if (selectedOptionId == RefImageMode.IMG2IMG) {
+        promptStrValue = Img2ImgSettingValue[selected_influence_setting.toUpperCase()];
+    } else if (selectedOptionId == RefImageMode.MISTO) {
+        promptStrValue = MistoSettingValue[selected_influence_setting.toUpperCase()];
+    }
+    promptStrField.value = promptStrValue;
+}
+
+
+// Person Influence Setting functions
+
+function personInfSettingDropdownSelectionMade(event) {
+    event.preventDefault();
+    let selectedOption = event.target.options[event.target.selectedIndex];
+    let influence_setting = selectedOption.getAttribute('inf-setting');
+    setPersonInfluenceValue(influence_setting);
+    updatePersonInfSettingTabUI(influence_setting);
+}
+
+function setPersonInfluenceValue(selected_influence_setting) {
+    let personLoraInfluenceField = document.getElementById('person-lora-influence');
+    personLoraInfluenceField.value = PersonLoraSettingValue[selected_influence_setting.toUpperCase()];
+}
+
+function updatePersonInfSettingDropdownUI(selected_influence_setting) {
+    let dropdown = document.getElementById('person-influence-setting-dropdown-selector');
+    for(let i = 0; i < dropdown.options.length; i++) {
+        if(dropdown.options[i].getAttribute('inf-setting') == selected_influence_setting) {
+            dropdown.selectedIndex = i;
+            break;
+        }
+    }
+}
+
+function updatePersonInfSettingTabUI(selected_influence_setting) {
+    //  Update the state of the influence setting tab UI
+    let navElement = document.getElementById('person-influence-setting-tabs-selector');
+    let aElements = navElement.getElementsByTagName('a');
+    for(let i = 0; i < aElements.length; i++) {
+        let infSetting_a_element = aElements[i];
+        let infLineSpan = infSetting_a_element.querySelector('#inf-line');
+
+        if(infSetting_a_element.getAttribute('inf-setting') == selected_influence_setting) {
+            // set it's state to active
+            infSetting_a_element.classList.add('text-gray-900');
+            infSetting_a_element.classList.remove('text-gray-500', 'hover:text-gray-700');
+            infLineSpan.classList.add('bg-black');
+            infLineSpan.classList.remove('bg-transparent');
+        } else {
+            // set its state inactive
+            infSetting_a_element.classList.add('text-gray-500', 'hover:text-gray-700');
+            infSetting_a_element.classList.remove('text-gray-900');
+            infLineSpan.classList.add('bg-transparent');
+            infLineSpan.classList.remove('bg-black');
+        }
+    }
+}
+
+function personInfSettingTabSelected(influence_setting) {
+    setPersonInfluenceValue(influence_setting);
+    updatePersonInfSettingTabUI(influence_setting);
+
+    // Set the dropdown to the selected value
+    let dropdown = document.getElementById('person-influence-setting-dropdown-selector');
+    for(let i = 0; i < dropdown.options.length; i++) {
+        if(dropdown.options[i].getAttribute('inf-setting') == influence_setting) {
+            dropdown.selectedIndex = i;
+            break;
+        }
+    }
+}
+
+function alignPersonInfluenceSettingToValue() {
+    let influence_value = document.getElementById('person-lora-influence').value;
+    let influence_setting;
+
+
+        if (influence_value <= PersonLoraSettingValue.LOW) {
+            influence_setting = InfluenceSetting.LOW;
+        } else if (influence_value <= PersonLoraSettingValue.MEDIUM) {
+            influence_setting = InfluenceSetting.MEDIUM;
+        } else {
+            influence_setting = InfluenceSetting.HIGH;
+        }
+    
+
+    updatePersonInfSettingTabUI(influence_setting);
+    updatePersonInfSettingDropdownUI(influence_setting);
+}
+
+function showGenerationSettingsMobileButtonPressed() {
+    setTimeout(function() {
+        selectModelWithVersion(lastSelectedModelVersion);
+    }, 200);
 }

@@ -27,8 +27,14 @@
 
     <script>
         const firebaseConfig = CONSTANTS.FIREBASE_CONFIG;
-        firebase.initializeApp(firebaseConfig);
+        const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
+
+        const unloadCallback = () => {
+            app.delete()
+        }
+
+        window.addEventListener("beforeunload", unloadCallback);
     </script>
 
 

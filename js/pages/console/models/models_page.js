@@ -16,7 +16,7 @@ setupAccordion();
 applyTrainingPreset(personTrainingPreset());
 updateTrainingCostEstimate();
 
-firebase.auth().onAuthStateChanged(function(user) {
+auth.onAuthStateChanged(function(user) {
     if (user) {
         console.log('User is signed in.');
         let userRecId = getUserRecId();
@@ -116,6 +116,7 @@ function fetchModels(userRecId, lastDocId) {
                     if (model.status === PredictionStatus.IN_PROGRESS) {
                         model_element.querySelector('#model-status').innerHTML = '...queued';
                         startListeningForModelUpdates(userRecId, model.rec_id);
+                        
                     } else if (model.status === PredictionStatus.BEING_HANDLED) {
                         model_element.querySelector('#model-status').innerHTML = '...training';
                     

@@ -457,11 +457,11 @@ function formatAroundModelName(modelNames, promptInputDiv) {
             return returning_str;
         });
 
-        // if (document.activeElement === promptInputDiv) {
-        //     setTimeout(() => {
-        //         setCaretPosition(promptInputDiv, initialCaretPos);
-        //     }, 0);
-        // }
+        if (document.activeElement === promptInputDiv) {
+            setTimeout(() => {
+                setCaretPosition(promptInputDiv, initialCaretPos);
+            }, 0);
+        }
 
 
         // const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${modelName}\\b(?!<\/b>)`, 'g');

@@ -2264,6 +2264,9 @@ function toggleAysPressed(event) {
     event.stopPropagation();
     let aysButton = event.currentTarget;
     let shouldEnableAys = !aysButton.classList.contains('enabled');
+    if (shouldEnableAys) {
+        selectRefImageMode(RefImageMode.IMG2IMG);
+    }
     updateAysToggle(shouldEnableAys);
 }
 
@@ -2336,17 +2339,14 @@ function alignAYSBasedOnRefImgMode() {
     let refImgModeSelector = document.getElementById('ref-img-mode');
     let selectedMode = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
 
-    let aysButton = document.getElementById('ays-toggle-button');
     let i2iModeInfoButton = document.getElementById('i2i-mode-info-button');
     let mistoModeInfoButton = document.getElementById('misto-mode-info-button');
 
     if (selectedMode == RefImageMode.IMG2IMG) {
-        aysButton.removeAttribute("disabled");
         i2iModeInfoButton.classList.remove('hidden');
         mistoModeInfoButton.classList.add('hidden');
     } else if (selectedMode == RefImageMode.MISTO) {
         updateAysToggle(false);
-        aysButton.setAttribute("disabled", "");
         i2iModeInfoButton.classList.add('hidden');
         mistoModeInfoButton.classList.remove('hidden');
     }

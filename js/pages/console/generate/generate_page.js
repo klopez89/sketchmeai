@@ -2256,9 +2256,6 @@ function deSelectAllPromptStylesOptions() {
 
 
 
-
-
-
 function toggleAysPressed(event) {
     event.preventDefault();
     event.stopPropagation();

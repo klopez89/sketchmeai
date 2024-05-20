@@ -35,15 +35,15 @@ function homePageHtml() {
 
 	let timeline_b_title = 'Image Prompt Adapter';
 	let timeline_b_body = "The IP-adapter is an add-on for Stable Diffusion that transforms images into prompts. It empowers you to emulate the style, composition, or specific facial characteristics found in a reference image."
-	let timeline_b_date = 'Apr 2024';
+	let timeline_b_date = 'June 2024';
 
 	let timeline_c_title = 'ControlNet';
 	let timeline_c_body = "ControlNet brings a new level of precision to Stable Diffusion's image generation by conditioning input images and prompts. It will enable more control over the final output, utilizing techniques such as pose manipulation, edge detection, and depth mapping.";
-	let timeline_c_date = 'May 2024';
+	let timeline_c_date = 'June 2024';
 
 	let timeline_d_title = 'LoRA Mixing';
 	let timeline_d_body = "Each trained model is of a LoRA type, and by combining multiple LoRA you can merge multiple concepts together in new ways, ie. a LoRA of a particular style and a LoRA of your face.";
-	let timeline_d_date = 'Jun 2024';
+	let timeline_d_date = 'July 2024';
 
 	
 	let contactFormTitle = 'Contact Us';

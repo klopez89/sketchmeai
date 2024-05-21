@@ -49,8 +49,8 @@ auth.onAuthStateChanged(function(user) {
         collectionNameLabel.textContent = collectionName;
         let lastDocId = null;
         console.log('about to fetch generations initially, with collectionId, ', collectionId);
-        fetchGenerations(userRecId, collectionId, lastDocId);
-        fetchWorkingModels(userRecId);
+        // fetchGenerations(userRecId, collectionId, lastDocId);
+        // fetchWorkingModels(userRecId);
         updateCurrentCollectionLabels();
     } else {
         console.log('No user is signed in.');

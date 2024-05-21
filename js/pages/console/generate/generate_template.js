@@ -134,7 +134,7 @@ function dummyGridHTML() {
                                 </div>
                             </div>
                         </div>  
-                        <div id="infiniteLoader" class="text-4xl text-gray-500 w-full flex bg-transparent flex flex-col items-center mt-6 mb-6">
+                        <div id="infiniteLoader" class="hidden text-4xl text-gray-500 w-full flex bg-transparent flex flex-col items-center mt-6 mb-6">
                             <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
                         </div>                 
                     </div>

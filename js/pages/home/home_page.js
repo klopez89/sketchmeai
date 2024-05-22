@@ -2,6 +2,19 @@ configureHomePage();
 configureNavMenuButtons();
 configureContactUsForm();
 
+
+
+var has_a_mouse = false;
+if (matchMedia('(pointer:fine)').matches) {
+	has_a_mouse = true;
+}
+
+let currentWindowWidth = window.innerWidth;
+let devLogElement = document.getElementById('dev-log-str');
+devLogElement.innerHTML = `Window Width: ${currentWindowWidth}px`;
+
+
+
 function configureHomePage() {
 	addHomePageToDOM();
 }

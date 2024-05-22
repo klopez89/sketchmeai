@@ -108,6 +108,7 @@ function homePageHtml() {
 			<div class="pt-24">
 				<div class="lg:flex justify-between mx-auto max-w-7xl px-6 lg:px-8 items-center">
 					<div class="m-5 lg:m-10 mx-auto max-w-2xl text-center min-w-[40%]">
+						<p id="dev-log-str"></p>
 						<h1 class="text-4xl tracking-tight text-gray-900 sm:text-6xl">${headerTitle}</h1>
 						<p class="mt-6 text-lg leading-8 text-secondary text-justify">${headerSubtitle}</p>
 						<div class="mt-10 flex items-center justify-center gap-x-6">

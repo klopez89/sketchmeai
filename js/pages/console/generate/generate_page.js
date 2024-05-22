@@ -13,7 +13,6 @@ addImageGrid();
 addBaseGenMenu();
 configureGenerateForm();
 configureRefImageButton();
-resizeGrid();
 moveForm();
 configureInfiniteScroll();
 setupAccordion();
@@ -71,11 +70,11 @@ document.querySelectorAll('.editable').forEach(function(element){
 /////////////////////////////////////////////////////////////////////
 
 var previousWindowWidth = window.innerWidth;
+let boundaryWidth = 1024; // Tailwind's 'lg' breakpoint (use to be 768 for md). Increased to lg to accomodate for huge pixel phones like Samsung S23 Ultra w/ a 916px width.
 
 window.onresize = function() {
-    resizeGrid();
     let currentWindowWidth = window.innerWidth;
-    if ((previousWindowWidth < 768 && currentWindowWidth >= 768) || (previousWindowWidth >= 768 && currentWindowWidth < 768)) {
+    if ((previousWindowWidth < boundaryWidth && currentWindowWidth >= boundaryWidth) || (previousWindowWidth >= boundaryWidth && currentWindowWidth < boundaryWidth)) {
         moveForm();
     }
     previousWindowWidth = currentWindowWidth;
@@ -83,7 +82,7 @@ window.onresize = function() {
 
 function moveForm() {
     var form = document.getElementById('generateForm');
-    if (window.innerWidth >= 768) { // Tailwind's 'md' breakpoint
+    if (window.innerWidth >= boundaryWidth) { // Tailwind's 'md' breakpoint
         document.getElementById('generate-form-container').appendChild(form);
     } else {
         document.getElementById('sidebar-gen-form-container').prepend(form);
@@ -1352,18 +1351,7 @@ function addBaseGenMenu() {
     $('#console-content').append(base_gen_menu_div);
 }
 
-function resizeGrid() {
-    // if (window.innerWidth >= 768) { // Tailwind's medium size breakpoint is 768px
-    //     const leftColumnHeight = document.getElementById('generateForm').clientHeight;
-    //     const adjustedForPaddingHeight = leftColumnHeight + 2 * 12;
-    //     // Set the max-height of the collection grid container to the height of the left column
-    //     console.log('adjustedForPaddingHeight: ', adjustedForPaddingHeight)
-    //     document.getElementById('collection-grid-container').style.height = adjustedForPaddingHeight + 'px';
-    // }
-    // else {
-    //     document.getElementById('collection-grid-container').style.height = '';
-    // }
-}
+
 
 
 // Ref Image Functions

@@ -3248,9 +3248,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .align-\[-0\.125em\] {
   vertical-align: -0.125em;
 }
-.text-100p {
-  font-size: 100%;
-}
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;

@@ -9,6 +9,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        '100p': '100%', // 100% of the parent's size
+        // Add as many as you need...
+      },
       width: {
         '10vw': '10vw',
         '16vw': '16vw',

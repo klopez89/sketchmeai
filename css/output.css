@@ -1597,6 +1597,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .h-16 {
   height: 4rem;
 }
+.h-16vw {
+  height: 16vw;
+}
 .h-2\/5 {
   height: 40%;
 }
@@ -1765,6 +1768,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 }
 .w-16 {
   width: 4rem;
+}
+.w-16vw {
+  width: 16vw;
 }
 .w-2 {
   width: 0.5rem;

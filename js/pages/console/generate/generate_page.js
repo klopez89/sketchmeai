@@ -8,6 +8,7 @@ var previousModelSelectionId = 'no-lora-person-button';
 var promptPlaceholderText = generatePrompt('');
 let isSelectable = false;
 let lastSelectedModelVersion = null;
+let boundaryWidth = 1024; // Tailwind's 'lg' breakpoint (use to be 768 for md). Increased to lg to accomodate for huge pixel phones like Samsung S23 Ultra w/ a 916px width.
 
 addImageGrid();
 addBaseGenMenu();
@@ -70,7 +71,6 @@ document.querySelectorAll('.editable').forEach(function(element){
 /////////////////////////////////////////////////////////////////////
 
 var previousWindowWidth = window.innerWidth;
-let boundaryWidth = 1024; // Tailwind's 'lg' breakpoint (use to be 768 for md). Increased to lg to accomodate for huge pixel phones like Samsung S23 Ultra w/ a 916px width.
 
 window.onresize = function() {
     let currentWindowWidth = window.innerWidth;

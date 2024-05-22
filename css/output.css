@@ -5532,6 +5532,11 @@ input[type="range"]:active::-webkit-slider-thumb {}
   .md\:pr-\[17px\] {
     padding-right: 17px;
   }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
 }
 @media (min-width: 1024px) {
 
@@ -5705,11 +5710,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
 
   .lg\:pt-\[3\.8rem\] {
     padding-top: 3.8rem;
-  }
-
-  .lg\:text-6xl {
-    font-size: 3.75rem;
-    line-height: 1;
   }
 
   .lg\:opacity-0 {

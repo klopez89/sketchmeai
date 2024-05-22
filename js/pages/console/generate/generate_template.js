@@ -73,16 +73,16 @@ function dummyGridHTML() {
     <!-- 3 column wrapper -->
     <div class="mx-auto w-full h-full grow md:flex">
 
-        <div id="generate-form-container" class="h-full overflow-y-auto bg-gray-100 pb-4 pt-0 min-w-80 md:w-[400px] max-w-full border-r border-gray-300 hidden md:block">
+        <div id="generate-form-container" class="h-full overflow-y-auto bg-gray-100 pb-4 pt-0 min-w-80 lg:w-[400px] max-w-full border-r border-gray-300 hidden lg:block">
 
         </div>
 
         <!-- Right column area -->
-        <div class="flex-1 md:flex h-full">
-            <div class="bg-gray-100 px-0 py-0 md:flex-1 h-full">
+        <div class="flex-1 lg:flex h-full">
+            <div class="bg-gray-100 px-0 py-0 lg:flex-1 h-full">
                 <div class="bg-gray-100 h-full relative">
 
-					<div id="gen-top-menu" class="hidden md:flex opacity-0 transition-opacity duration-300 absolute bg-gray-100 p-2 z-20 w-full justify-between border-b border-gray-300">
+					<div id="gen-top-menu" class="hidden lg:flex opacity-0 transition-opacity duration-300 absolute bg-gray-100 p-2 z-20 w-full justify-between border-b border-gray-300">
 
 
 

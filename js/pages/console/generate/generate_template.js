@@ -36,7 +36,7 @@ function newGridItemHTML(gen_id, gen_string="") {
             </div>
 
             <div id="action-container" class="hidden bg-transparent group-hover:bg-gray-900 group-hover:bg-opacity-10 pointer-events-none group transition-bg-opacity duration-200">
-                <button id="copy-button" class="absolute hidden md:flex bottom-2 right-2 p-2 text-md text-white border-2 border-white opacity-100 md:opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
+                <button id="copy-button" class="absolute hidden lg:flex bottom-2 right-2 p-2 text-md text-white border-2 border-white opacity-100 lg:opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
                     <i class="fa fa-copy" aria-hidden="true"></i>
                 </button>
 
@@ -124,7 +124,7 @@ function dummyGridHTML() {
 						</div>
 					</div>
 
-                    <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 md:pt-[3.8rem] overflow-y-auto">
+                    <div id="collection-grid-container" class="relative h-full mx-auto max-w-7xl px-1 lg:pt-[3.8rem] overflow-y-auto">
                         <div data-te-lightbox-init id="collection-grid" role="list" class="grid grid-cols-2 gap-x-1 gap-y-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" @click.away="clickedOutsideOfGenMenu()" onclick="clickedOnEmptyPartOfGrid()"></div>
 
                         <div id="grid-loader" class="absolute top-0 left-0 w-full h-full px-4 py-8 sm:px-6 lg:px-8">
@@ -148,7 +148,7 @@ function dummyGridHTML() {
 function baseGenMenuHTML() {
     return `
     <div class="gen-comp-menu hidden relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
-        <button type="button" class="absolute text-2xl text-white rounded-lg w-12 h-12 aspect-w-1 aspect-h-1 top-2 right-2 flex items-center p-4 opacity-100 md:opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="gen-menu-button" onClick="genMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+        <button type="button" class="absolute text-2xl text-white rounded-lg w-12 h-12 aspect-w-1 aspect-h-1 top-2 right-2 flex items-center p-4 opacity-100 lg:opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="gen-menu-button" onClick="genMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
 			<span class="flex items-start justify-end pr-2 pt-2">
 				<div class="bg-black bg-opacity-30 p-2 w-full rounded-full flex items-center justify-center">
 					<i class="fa-solid fa-ellipsis-vertical shadow-2xl" aria-hidden="true"></i>
@@ -384,7 +384,7 @@ function new_lora_model_option(model, bg_color) {
 
 function bottom_generation_menu_html() {
 	return `
-	<div id="mobile-bottom-menu" class="hidden md:hidden fixed right-0 bottom-0 m-4 z-30 flex gap-4 items-end bg-opacity-50">
+	<div id="mobile-bottom-menu" class="hidden lg:hidden fixed right-0 bottom-0 m-4 z-30 flex gap-4 items-end bg-opacity-50">
 		<button id="gen-settings-bottom-button" class="bg-gray-100 text-black text-xl shadow-lg rounded-full w-12 h-12 flex items-center justify-center" x-on:click="open = !open; showGenerationSettingsMobileButtonPressed()">
 			<i class="fa-solid fa-gear" aria-hidden="true"></i>
 		</button>

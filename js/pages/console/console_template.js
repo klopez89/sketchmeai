@@ -325,7 +325,7 @@ function mobileSideBarHTML() {
     return `
             <div id="mobile-sidebar" x-show="open" x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed bg-gray-800 bg-opacity-50 top-0 right-0 w-full h-full overflow-auto z-50 flex lg:hidden" style="display: none;">
                 
-                <div class="relative max-w-md ml-auto flex-grow flex-1" x-show="open" x-transition:enter=" transition ease-in-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" style="display: none;">
+                <div class="relative pl-24 w-full ml-auto flex-grow flex-1" x-show="open" x-transition:enter=" transition ease-in-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" style="display: none;">
                     
                     <!-- Sidebar content -->
                     <div id="sidebar-gen-form-container" class="h-full pt-16 overflow-y-auto scrolling-touch bg-gray-100 flex flex-col justify-between">

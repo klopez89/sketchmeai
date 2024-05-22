@@ -5533,6 +5533,14 @@ input[type="range"]:active::-webkit-slider-thumb {}
     justify-content: space-between;
   }
 
+  .md\:p-4 {
+    padding: 1rem;
+  }
+
+  .md\:pl-24 {
+    padding-left: 6rem;
+  }
+
   .md\:pr-1 {
     padding-right: 0.25rem;
   }
@@ -5694,6 +5702,10 @@ input[type="range"]:active::-webkit-slider-thumb {}
     background-color: rgb(17 24 39 / 0.1);
   }
 
+  .lg\:p-3 {
+    padding: 0.75rem;
+  }
+
   .lg\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;
@@ -5718,6 +5730,11 @@ input[type="range"]:active::-webkit-slider-thumb {}
 
   .lg\:pt-\[3\.8rem\] {
     padding-top: 3.8rem;
+  }
+
+  .lg\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 
   .lg\:opacity-0 {

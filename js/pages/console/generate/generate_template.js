@@ -71,7 +71,7 @@ function dummyGridHTML() {
 
     return `
     <!-- 3 column wrapper -->
-    <div class="mx-auto w-full h-full grow md:flex">
+    <div class="mx-auto w-full h-full grow lg:flex">
 
         <div id="generate-form-container" class="h-full overflow-y-auto bg-gray-100 pb-4 pt-0 min-w-80 lg:w-[400px] max-w-full border-r border-gray-300 hidden lg:block">
 
@@ -179,7 +179,7 @@ function generate_form_html() {
 	return `
 	<form class="generate-form overflow-y-auto flex flex-col px-0 py-0" id="generateForm">
 
-		<div class="pb-3 pt-3 pl-4 border-b border-gray-300 md:hidden">
+		<div class="pb-3 pt-3 pl-4 border-b border-gray-300 lg:hidden">
 			<p class="text-xl font-bold">Generation Settings</p>
 			<p class="text-xs text-gray-400 italic" id="secondary-gen-estimate-label">~$0.04 ($0.11 from cold boot)</p>
 		</div>

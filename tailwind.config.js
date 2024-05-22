@@ -9,6 +9,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      width: {
+        '10vw': '10vw',
+        '16vw': '16vw',
+        // Add as many as you need...
+      },
+      height: {
+        '10vw': '10vw',
+        '16vw': '16vw',
+        // Add as many as you need...
+      },
       maxWidth: {
         '80': '20rem', // Adjust the value as needed
       },

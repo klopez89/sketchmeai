@@ -5455,6 +5455,14 @@ input[type="range"]:active::-webkit-slider-thumb {}
 }
 @media (min-width: 768px) {
 
+  .md\:bottom-5 {
+    bottom: 1.25rem;
+  }
+
+  .md\:left-5 {
+    left: 1.25rem;
+  }
+
   .md\:order-1 {
     order: 1;
   }
@@ -5533,8 +5541,8 @@ input[type="range"]:active::-webkit-slider-thumb {}
     padding-right: 17px;
   }
 
-  .md\:text-6xl {
-    font-size: 3.75rem;
+  .md\:text-5xl {
+    font-size: 3rem;
     line-height: 1;
   }
 }

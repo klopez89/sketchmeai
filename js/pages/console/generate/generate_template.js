@@ -790,9 +790,9 @@ function basicGenerationSettingsHTML() {
 									<span class="text-sm md:text-2xl text-gray-500" id="availability-description">Enables <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Can improve prompt coherence and output quality. Disables denoising steps.</span>
 								</span>
 								<!-- Enabled: "bg-black, enabled", Not Enabled: "bg-gray-200" -->
-								<button id="ays-toggle-button" type="button" onclick="toggleAysPressed(event)" class="enabled bg-black relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
-									<!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-									<span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+								<button id="ays-toggle-button" type="button" onclick="toggleAysPressed(event)" class="enabled bg-black relative inline-flex h-6 w-10 md:h-12 md:w-20 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+									<!-- Enabled: "translate-x-5 or x-10 if md", Not Enabled: "translate-x-0" -->
+									<span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 md:h-10 md:w-10 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
 								</button>
 							</div>
 						</div>

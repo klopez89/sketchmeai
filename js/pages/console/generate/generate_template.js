@@ -187,7 +187,7 @@ function generate_form_html() {
 
 		<div class="pb-3 pt-3 pl-4 border-b border-gray-300 lg:hidden">
 			<p class="text-xl md:text-4xl font-bold">Generation Settings</p>
-			<p class="text-x md:text-lg text-gray-400 italic" id="secondary-gen-estimate-label">~$0.04 ($0.11 from cold boot)</p>
+			<p class="text-xs md:text-lg text-gray-400 italic" id="secondary-gen-estimate-label">~$0.04 ($0.11 from cold boot)</p>
 		</div>
 
 
@@ -706,8 +706,8 @@ function basicGenerationSettingsHTML() {
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2">
 				<button id="prompt-settings-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm md:text-2xl text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedPromptSettingsCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
-					<span class="mr-2 mt-0 h-4 w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+					<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
 						</svg>
 					</span>
@@ -728,7 +728,7 @@ function basicGenerationSettingsHTML() {
 								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
-								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm md:text-2xl sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
+								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
 							</div>
 						</div>
 

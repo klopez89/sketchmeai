@@ -2279,7 +2279,7 @@ function toggleAysPressed(event) {
 }
 
 function updateAysToggle(shouldEnable) {
-    var translate_x_amount = currentWindowWidth < 768 ? 'translate-x-5' : 'translate-x-10';
+    var translate_x_amount = previousWindowWidth < 768 ? 'translate-x-5' : 'translate-x-10';
     let aysButton = document.getElementById('ays-toggle-button');
     let span = aysButton.querySelector('span');
     let denoisingStepsField = document.getElementById('denoising-steps');

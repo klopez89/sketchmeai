@@ -43,8 +43,8 @@ function newGridItemHTML(gen_id, gen_string="") {
 				<button id="favorite-button" class="absolute w-10 h-10 md:w-14 md:h-14 aspect-w-1 aspect-h-1 flex bottom-2 md:bottom-3 left-2 md:left-3 p-2 text-xl md:text-4xl lg:text-3xl text-white border-0 border-white opacity-100 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
 
 					<div class="flex flex-grow items-center justify-center text-center">
-						<span class="flex items-center justify-center pr-2 pt-2">
-							<div class="bg-black bg-opacity-30 p-2 md:p-3 rounded-full flex items-center justify-center">
+						<span class="flex items-center justify-center">
+							<div class="bg-black bg-opacity-30 px-2 md:px-3 pt-2 md:pt-3 pb-2 rounded-full flex items-center justify-center">
 								<i class="fa-regular fa-heart text-white" aria-hidden="true"></i>
 							</div>
 						</span>

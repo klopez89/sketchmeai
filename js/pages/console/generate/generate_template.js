@@ -67,6 +67,36 @@ function newGridItemHTML(gen_id, gen_string="") {
 }
 
 
+
+function baseGenMenuHTML() {
+    return `
+    <div class="gen-comp-menu hidden relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+        <button type="button" class="absolute text-xl md:text-5xl lg:text-3xl text-white rounded-lg w-10 md:w-12 h-10 md:h-12 aspect-w-1 aspect-h-1 top-0 md:top-1 right-0 md:top-1 flex items-center p-4 md:p-10 lg:p-7 opacity-100 lg:opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="gen-menu-button" onClick="genMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+			<span class="flex items-start justify-end pr-2 pt-2">
+				<div class="bg-black bg-opacity-30 p-2 w-full h-full rounded-full flex items-center justify-center">
+					<i class="fa-solid fa-ellipsis-vertical shadow-2xl" aria-hidden="true"></i>
+				</div>
+			</span>
+        </button>
+
+		<div class="p-2 absolute right-0 z-10 mt-11 origin-top-right">
+
+			<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
+			
+				<a href="#" class="block px-3 py-1 text-sm md:text-lg leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); useAsReferenceImagePressed(event)">Use as Reference</a>
+
+				<a href="#" class="block px-3 py-1 text-sm md:text-lg leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); copyPromptFromGenMenuPressed(event)">Copy Prompt</a>
+
+				<a href="#" class="block px-3 py-1 text-sm md:text-lg leading-6 text-red-600" :class="{ 'bg-gray-50': activeIndex === 2 }" role="menuitem" tabindex="-1" id="user-menu-item-2" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 2)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); deleteButtonPressed(event)">Delete</a>
+
+			</div>
+		</div>
+
+    </div>
+    `;
+}
+
+
 function dummyGridHTML() {
 
     return `
@@ -145,33 +175,6 @@ function dummyGridHTML() {
     `;
 }
 
-function baseGenMenuHTML() {
-    return `
-    <div class="gen-comp-menu hidden relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
-        <button type="button" class="absolute text-xl md:text-2xl text-white rounded-lg w-10 md:w-12 h-10 md:h-12 aspect-w-1 aspect-h-1 top-0 md:top-1 right-0 md:top-1 flex items-center p-4 md:p-7 opacity-100 lg:opacity-0 group-hover:opacity-100 hover:text-gray-200 transition-opacity duration-200" id="gen-menu-button" onClick="genMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
-			<span class="flex items-start justify-end pr-2 pt-2">
-				<div class="bg-black bg-opacity-30 p-2 w-full h-full rounded-full flex items-center justify-center">
-					<i class="fa-solid fa-ellipsis-vertical shadow-2xl" aria-hidden="true"></i>
-				</div>
-			</span>
-        </button>
-
-		<div class="p-2 absolute right-0 z-10 mt-11 origin-top-right">
-
-			<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
-			
-				<a href="#" class="block px-3 py-1 text-sm md:text-lg leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); useAsReferenceImagePressed(event)">Use as Reference</a>
-
-				<a href="#" class="block px-3 py-1 text-sm md:text-lg leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); copyPromptFromGenMenuPressed(event)">Copy Prompt</a>
-
-				<a href="#" class="block px-3 py-1 text-sm md:text-lg leading-6 text-red-600" :class="{ 'bg-gray-50': activeIndex === 2 }" role="menuitem" tabindex="-1" id="user-menu-item-2" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 2)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); deleteButtonPressed(event)">Delete</a>
-
-			</div>
-		</div>
-
-    </div>
-    `;
-}
 
 function generate_form_html() {
 	let basicGenSettingsSection = basicGenerationSettingsHTML();

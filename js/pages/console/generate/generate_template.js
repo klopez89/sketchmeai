@@ -575,14 +575,14 @@ function generateReferenceFormSectionHTML() {
 				</button>
 
 				<div class="flex gap-2">
-					<button id="clear-ref-button" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
-						<i class="fa-solid fa-trash text-gray-500 text-xs" aria-hidden="true"></i>
+					<button id="clear-ref-button" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+						<i class="fa-solid fa-trash text-gray-500 text-xs md:text-2xl" aria-hidden="true"></i>
 					</button>
 					
 					<div id="edit-ref-comp-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
 
-						<button type="button" class="w-7 h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center" id="gen-ref-menu-button" onclick="genRefMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
-							<i class="fa-solid fa-pen text-gray-500 text-xs" aria-hidden="true"></i>
+						<button type="button" class="w-7 h-7 md:w-14 md:h-14 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center" id="gen-ref-menu-button" onclick="genRefMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+							<i class="fa-solid fa-pen text-gray-500 text-xs md:text-2xl" aria-hidden="true"></i>
 						</button>
 				
 						<div class="m-0 absolute right-0 z-10 mt-1 origin-top-right min-w-[15rem]">
@@ -640,7 +640,7 @@ function generateReferenceFormSectionHTML() {
 					</div>
 
 					<div class="col-span-3" id="mode-selector-container">
-						<select id="ref-img-mode" name="ref-img-mode" onChange="refImgModeChanged()" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6">
+						<select id="ref-img-mode" name="ref-img-mode" onChange="refImgModeChanged()" class="block w-full rounded-md border-0 px-2 md:px-4 py-1.5 md:py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6">
 							<option id="${RefImageMode.IMG2IMG}">Image to Image</option>
 							<option id="${RefImageMode.MISTO}">Misto Line, ControlNet</option>
 						</select>

@@ -48,7 +48,7 @@ function newGridItemHTML(gen_id, gen_string="") {
 								<i class="fa-regular fa-heart text-white" aria-hidden="true"></i>
 							</div>
 						</span>
-						<i class="fa fa-spinner fa-spin hidden absolute mr-2 mt-2" aria-hidden="true"></i>
+						<i class="fa fa-spinner fa-spin hidden absolute mr-0 mt-0" aria-hidden="true"></i>
 					</div>
 				</button>
 

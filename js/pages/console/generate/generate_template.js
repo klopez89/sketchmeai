@@ -604,7 +604,7 @@ function generateReferenceFormSectionHTML() {
 
 					<div class="col-span-full" id="igm2img-field-container">
 						<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
-							<button id="ref-img-button" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] rounded-lg border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
+							<button id="ref-img-button" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] rounded-lg border-2 md:border-4 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 								
 								<img class="hidden absolute w-full h-full rounded-lg" src="">
 
@@ -616,7 +616,7 @@ function generateReferenceFormSectionHTML() {
 								</div>
 
 								<div class="flex flex-col items-center">		
-									<i id="upload-icon" class="fa text-3xl fa-images" aria-hidden="true"></i>
+									<i id="upload-icon" class="fa text-3xl md:text-6xl fa-images" aria-hidden="true"></i>
 									
 								</div>
 							</button>

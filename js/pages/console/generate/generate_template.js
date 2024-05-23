@@ -79,7 +79,7 @@ function baseGenMenuHTML() {
 			</span>
         </button>
 
-		<div class="p-2 absolute right-0 z-10 mt-10 md:mt-16 origin-top-right">
+		<div class="p-2 absolute right-4 z-10 mt-10 md:mt-16 lg:mt-10 origin-top-right">
 
 			<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
 			

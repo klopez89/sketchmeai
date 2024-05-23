@@ -2279,6 +2279,7 @@ function toggleAysPressed(event) {
 }
 
 function updateAysToggle(shouldEnable) {
+    var translate_x_amount = currentWindowWidth < 768 ? 'translate-x-5' : 'translate-x-10';
     let aysButton = document.getElementById('ays-toggle-button');
     let span = aysButton.querySelector('span');
     let denoisingStepsField = document.getElementById('denoising-steps');
@@ -2286,7 +2287,7 @@ function updateAysToggle(shouldEnable) {
         aysButton.classList.add('enabled');
         aysButton.classList.add('bg-black');
         aysButton.classList.remove('bg-gray-200');
-        span.classList.add('translate-x-5');
+        span.classList.add(translate_x_amount);
         span.classList.remove('translate-x-0');
         denoisingStepsField.disabled = true;
         denoisingStepsField.classList.remove('text-gray-900');
@@ -2296,7 +2297,7 @@ function updateAysToggle(shouldEnable) {
         aysButton.classList.remove('enabled');
         aysButton.classList.remove('bg-black');
         aysButton.classList.add('bg-gray-200');
-        span.classList.remove('translate-x-5');
+        span.classList.remove(translate_x_amount);
         span.classList.add('translate-x-0');
         denoisingStepsField.disabled = false;
         denoisingStepsField.classList.add('text-gray-900');

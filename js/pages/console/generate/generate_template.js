@@ -394,12 +394,12 @@ function bottom_generation_menu_html() {
 
 			<div class="flex justify-between">
 			
-				<button id="gen-settings-bottom-button" class="bg-gray-100 text-black text-xl md:text-5xl shadow-lg rounded-full w-12 h-12 md:w-28 md:h-28 flex items-center justify-center" x-on:click="open = !open; showGenerationSettingsMobileButtonPressed()">
+				<button id="gen-settings-bottom-button" class="bg-gray-100 text-black text-xl md:text-4xl shadow-lg rounded-full w-12 h-12 md:w-24 md:h-24 flex items-center justify-center" x-on:click="open = !open; showGenerationSettingsMobileButtonPressed()">
 					<i class="fa-solid fa-gear" aria-hidden="true"></i>
 				</button>
 
 				<div id="mobile-bottom-action-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
-					<button type="button" class="bg-gray-700 text-white text-lg shadow-lg rounded-full w-12 h-12 flex items-center justify-center" id="mobile-bottom-action-menu-button" onClick="mobileGenMoreMenuShowing()" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+					<button type="button" class="bg-gray-700 text-white text-lg md:text-4xl shadow-lg rounded-full w-12 h-12 md:w-24 md:h-24 flex items-center justify-center" id="mobile-bottom-action-menu-button" onClick="mobileGenMoreMenuShowing()" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
 						<i class="fa-solid fa-caret-up" aria-hidden="true"></i>
 					</button>
 
@@ -423,7 +423,7 @@ function bottom_generation_menu_html() {
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 
 

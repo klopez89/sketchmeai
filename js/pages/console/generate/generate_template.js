@@ -248,15 +248,15 @@ function generate_form_html() {
 							<nav id="person-influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Person Influence Setting">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
 
-								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-500 hover:text-gray-700 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:py-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-500 hover:text-gray-700 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
 									<span>Low</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-900 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:py-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-900 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
 									<span>Medium</span>
 									<span id="inf-line" aria-hidden="true" class="bg-black absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:py-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
@@ -562,10 +562,10 @@ function generateReferenceFormSectionHTML() {
 		<div id="nestedAccordion">
 
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2">
-				<button id="reference-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
+				<button id="reference-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm md:text-2xl text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
-					<span class="mr-2 mt-0 h-4 w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+					<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
 						</svg>
 					</span>
@@ -630,7 +630,7 @@ function generateReferenceFormSectionHTML() {
 
 
 					<div class="col-span-3 flex items-center" id="mode-title-container">
-						<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-700">Mode</label>
+						<label for="prompt-strength" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Mode</label>
 						<button id="i2i-mode-info-button" onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
 							<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
 						</button>
@@ -640,7 +640,7 @@ function generateReferenceFormSectionHTML() {
 					</div>
 
 					<div class="col-span-3" id="mode-selector-container">
-						<select id="ref-img-mode" name="ref-img-mode" onChange="refImgModeChanged()" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<select id="ref-img-mode" name="ref-img-mode" onChange="refImgModeChanged()" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6">
 							<option id="${RefImageMode.IMG2IMG}">Image to Image</option>
 							<option id="${RefImageMode.MISTO}">Misto Line, ControlNet</option>
 						</select>
@@ -648,7 +648,7 @@ function generateReferenceFormSectionHTML() {
 
 
 					<div class="hidden col-span-2 flex items-center" id="influence-title-container">
-						<label for="influence" class="text-sm font-medium leading-6 text-gray-700">Influence, %</label>
+						<label for="influence" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Influence, %</label>
 					</div>
 
 					<div class="hidden col-span-4 flex gap-x-2" id="influence-slider-container">
@@ -659,8 +659,8 @@ function generateReferenceFormSectionHTML() {
 
 					<div class="col-span-full flex justify-between" id="influence-setting-selector-container">
 						
-						<label for="influence" class="text-sm font-medium leading-6 text-gray-700">Influence</label>
-						<div class="sm:hidden">
+						<label for="influence" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Influence</label>
+						<div class="hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
 							<select id="influence-setting-dropdown-selector" onChange="infSettingDropdownSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
 								<option selected="" inf-setting="${InfluenceSetting.LOW}">Low</option>
@@ -668,19 +668,19 @@ function generateReferenceFormSectionHTML() {
 								<option inf-setting="${InfluenceSetting.HIGH}">High</option>
 							</select>
 						</div>
-						<div class="hidden sm:block">
+						<div class="block">
 							<nav id="influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Influence Setting">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
 
-								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
 									<span>Low</span>
 									<span id="inf-line" aria-hidden="true" class="bg-black absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
 									<span>Medium</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
@@ -785,7 +785,7 @@ function basicGenerationSettingsHTML() {
 						</div>
 						<div class="col-span-full" id="toggle-ays-field-container">
 							<div class="flex items-center justify-between">
-								<span class="flex flex-grow flex-col mr-1">
+								<span class="flex flex-grow flex-col mr-1 md:mr-3">
 									<span class="text-sm md:text-2xl font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
 									<span class="text-sm md:text-2xl text-gray-500" id="availability-description">Enables <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Can improve prompt coherence and output quality. Disables denoising steps.</span>
 								</span>

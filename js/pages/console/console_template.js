@@ -331,7 +331,7 @@ function mobileSideBarHTML() {
                     <div id="sidebar-gen-form-container" class="h-full pt-16 md:pt-20 overflow-y-auto scrolling-touch bg-gray-100 flex flex-col justify-between">
                         
                         <div class="w-full flex justify-start sticky bottom-0 bg-white p-2 gap-4 border-t border-gray-200" id="gen-button-container">
-                            <button id="back-to-models-button" class="pl-3 text-gray-400 hover:text-gray-600 flex-shrink-0" @click="open = !open">
+                            <button id="back-to-models-button" class="pl-3 text-gray-400 hover:text-gray-600 flex-shrink-0 md:text-2xl" @click="open = !open">
                                 <i class="fa-solid fa-arrow-left mr-2" aria-hidden="true"></i>
                                 Back
                             </button>               

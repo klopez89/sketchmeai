@@ -331,11 +331,11 @@ function generate_form_html() {
 		</div>
 
 		<div class="col-span-full flex-col px-4 pb-2 pt-3 justify-center hidden lg:flex border-t border-gray-300" id="gen-button-container">
-			<button id="gen-button" class="cursor-pointer rounded-md flex flex-grow justify-center items-center text-center bg-black px-3.5 py-2.5 text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">
+			<button id="gen-button" class="cursor-pointer rounded-md flex flex-grow justify-center items-center text-center bg-black px-3.5 md:px-7 lg:px-3.5 py-2.5 md:py-5 lg:py-2.5 text-lg md:text-3xl lg:text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">
 				<p id="desktop-gen-button-label" class="flex items-center">Generate</p>
 				<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 			</button>
-			<p class="text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">~$0.04 ($0.11 from cold boot)</p>
+			<p class="text-xs md:text-2xl lg:text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">~$0.04 ($0.11 from cold boot)</p>
 		</div>
 
 
@@ -703,7 +703,7 @@ function basicGenerationSettingsHTML() {
 	<div class="col-span-full px-4 border-t border-gray-300">
 		<!-- Start of the new nested accordion for prompt settings fields -->
 		<div id="nestedAccordion">
-			<h2 id="nestedHeading" class="flex items-center justify-between py-2">
+			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">
 				<button id="prompt-settings-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm md:text-2xl text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedPromptSettingsCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
 					<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">

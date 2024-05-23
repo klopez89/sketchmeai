@@ -306,7 +306,7 @@ function generate_form_html() {
 									<i class="fas fa-check text-white" aria-hidden="true"></i>
 								</div>
 								<div class="flex justify-left items-end h-full">
-									<p class="text-base ml-3 mb-2 z-10" style="color:white;">Cell-Shading</p>
+									<p class="text-base md:${md_font_size} ml-3 mb-2 z-10" style="color:white;">Cell-Shading</p>
 								</div>
 							</div>
 						</div>
@@ -320,7 +320,7 @@ function generate_form_html() {
 									<i class="fas fa-check text-white" aria-hidden="true"></i>
 								</div>
 								<div class="flex justify-left items-end h-full">
-									<p class="text-base ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Pixel-Art</p>
+									<p class="text-base md:${md_font_size} ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Pixel-Art</p>
 								</div>
 							</div>
 						</div>
@@ -704,7 +704,7 @@ function basicGenerationSettingsHTML() {
 		<!-- Start of the new nested accordion for prompt settings fields -->
 		<div id="nestedAccordion">
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2">
-				<button id="prompt-settings-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedPromptSettingsCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
+				<button id="prompt-settings-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm md:text-2xl text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedPromptSettingsCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
 					<span class="mr-2 mt-0 h-4 w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
@@ -723,12 +723,12 @@ function basicGenerationSettingsHTML() {
 					<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2">
 
 						<div class="col-span-full" id="neg-prompt-field-container">
-							<label for="neg-prompt" class="text-sm font-medium leading-6 text-gray-700">Negative Prompt</label>
+							<label for="neg-prompt" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Negative Prompt</label>
 							<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
 								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
-								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
+								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm md:text-2xl sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
 							</div>
 						</div>
 

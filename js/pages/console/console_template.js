@@ -92,7 +92,7 @@ function consoleHtml() {
         </div>
     
         <div class="lg:pl-48 h-full flex flex-col relative">
-        <div class="fixed top-0 z-[80] flex w-full h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white shadow-sm sm:gap-x-6 pl-6 pr-4 lg:pr-52">
+        <div class="fixed top-0 z-[80] flex w-full h-16 md:h-20 lg:h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white shadow-sm sm:gap-x-6 pl-6 pr-4 lg:pr-52">
             <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="open = true">
             <span class="sr-only">Open sidebar</span>
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -104,7 +104,7 @@ function consoleHtml() {
             <div class="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true"></div>
     
             <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 items-center">
-                <div id="page-title" class="relative flex flex-0 self-center text-xl font-bold">Generate</div>
+                <div id="page-title" class="relative flex flex-0 self-center text-xl md:text-3xl font-bold">Generate</div>
                 <button id="basic-examples-button" onclick="navigateToBasicPromptExamples()" class="hidden cursor-pointer border-2 border-black rounded-md flex-grow-0 flex-shrink-0 text-center px-8 py-2.5 text-sm text-black shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">See Prompt Examples</button>                
                 
                 <div class="ml-auto flex items-center gap-x-4 lg:gap-x-6">
@@ -140,7 +140,7 @@ function consoleHtml() {
         </div>
 
 
-        <div id="console-group" x-data="{ open: false }" :class="{ 'overflow-hidden': open }" class="relative h-full overflow-auto mt-16">
+        <div id="console-group" x-data="{ open: false }" :class="{ 'overflow-hidden': open }" class="relative h-full overflow-auto mt-16 md:mt-20 lg:mt-16">
 
 
             <main id="console-container" class="py-0 flex-grow overflow-auto h-full relative">

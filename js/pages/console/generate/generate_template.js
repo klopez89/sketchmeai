@@ -427,7 +427,7 @@ function bottom_generation_menu_html() {
 			</div>
 
 
-			<button id="generate-bottom-button" class="bg-black px-10 text-white text-xl md:text-4xl shadow-lg rounded-full h-12 md:h-24 flex items-center justify-center" onclick="generateButtonPressed(event)">
+			<button id="generate-bottom-button" class="bg-black px-6 md:px-10 text-white text-xl md:text-4xl shadow-lg rounded-full h-12 md:h-24 flex items-center justify-center" onclick="generateButtonPressed(event)">
 				<i id="mobile-gen-icon" class="fa-solid fa-bolt-lightning" aria-hidden="true"></i>
 				<p class="ml-4">Generate</p>
 			</button>

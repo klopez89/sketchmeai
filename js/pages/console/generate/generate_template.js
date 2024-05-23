@@ -274,7 +274,7 @@ function generate_form_html() {
 					<label for="prompt" class="block text-sm md:text-2xl font-medium leading-6 text-gray-700">Prompt</label>
 				</div>
 				<div class="mt-2">
-					<div id="prompt" name="prompt" rows="3" class="max-w-full h-28 md:h-32 overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6"></div>
+					<div id="prompt" name="prompt" rows="3" class="max-w-full h-28 md:h-36 overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6"></div>
 				</div>
 			</div>
 			<div id="prompt-style-container" class="col-span-full pt-1">
@@ -728,7 +728,7 @@ function basicGenerationSettingsHTML() {
 								<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
-								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
+								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full h-20 md:h-32 lg:h-20 rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6"></textarea>
 							</div>
 						</div>
 

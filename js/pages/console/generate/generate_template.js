@@ -186,8 +186,8 @@ function generate_form_html() {
 	<form class="generate-form overflow-y-auto flex flex-col px-0 py-0" id="generateForm">
 
 		<div class="pb-3 pt-3 pl-4 border-b border-gray-300 lg:hidden">
-			<p class="text-xl font-bold">Generation Settings</p>
-			<p class="text-xs text-gray-400 italic" id="secondary-gen-estimate-label">~$0.04 ($0.11 from cold boot)</p>
+			<p class="text-xl md:text-4xl font-bold">Generation Settings</p>
+			<p class="text-x md:text-lg text-gray-400 italic" id="secondary-gen-estimate-label">~$0.04 ($0.11 from cold boot)</p>
 		</div>
 
 
@@ -204,15 +204,15 @@ function generate_form_html() {
 				</div>
 				<div id="lora-component-container" class="col-span-full pt-0">
 
-					<div class="flex px-4 pb-1">
-						<label class="text-sm leading-6 text-gray-700 pb-1">Person Model:&nbsp;</label>
-						<label id="selected-person-lora" class="text-sm leading-6 text-gray-900">None</label>
+					<div class="flex px-4 pb-1 md:pb-2 text-sm md:text-2xl">
+						<label class="leading-6 text-gray-700 pb-1">Person Model:&nbsp;</label>
+						<label id="selected-person-lora" class="leading-6 text-gray-900">None</label>
 					</div>
 
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">
 				
 						<div class="relative cursor-pointer select-none selected" id="no-lora-person-button" instkey="" model="" modelname="" version="" trainingSubject="" genderType="" bgColor="#374151" onclick="loraPersonPressed(event)">
-							<div class="group w-32 h-32 block relative">
+							<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
 								<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(55, 65, 81);">
 									<div id="selected-check" class="absolute top-0 right-0 p-2">
 										<i class="fas fa-check text-white" aria-hidden="true"></i>
@@ -286,7 +286,7 @@ function generate_form_html() {
 				<div id="prompt-style-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-0 px-4">
 			
 					<div prompt-style="${PromptStyle.NONE}" class="relative cursor-pointer select-none" id="no-prompt-style-button" bgColor="#374151" onclick="promptStylePressed(event)">
-						<div class="group w-32 h-32 block relative">
+						<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white">
 								<div id="selected-check" class="hidden absolute top-0 right-0 p-2">
 									<i class="fas fa-check text-white" aria-hidden="true"></i>
@@ -299,7 +299,7 @@ function generate_form_html() {
 					</div>
 
 					<div prompt-style="${PromptStyle.CELL_SHADING}" class="relative cursor-pointer select-none selected" id="cell-shading-style-button" bgColor="#000" onclick="promptStylePressed(event)">
-						<div class="group w-32 h-32 block relative">
+						<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
 								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/cell-shading-320.png" alt="Description" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
 								<div id="selected-check" class="absolute top-0 right-0 p-2">
@@ -313,7 +313,7 @@ function generate_form_html() {
 					</div>
 
 					<div prompt-style="${PromptStyle.PIXEL_ART}" class="relative cursor-pointer select-none" id="pixel-art-style-button" bgColor="#000" onclick="promptStylePressed(event)">
-						<div class="group w-32 h-32 block relative">
+						<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white">
 								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Description" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
 								<div id="selected-check" class="absolute top-0 right-0 p-2 hidden">
@@ -374,13 +374,13 @@ function new_lora_model_option(model, bg_color) {
 	var training_subject = model.training_subject ? model.training_subject : "person";
 	return `
 	<div class="relative cursor-pointer select-none" id="${model_id}" instkey="${instKey}" model="${replicate_name}" version="${short_version}" modelName="${model_name}" trainingSubject="${training_subject}" genderType="${gender_type}" bgColor="${bg_color}" onclick="loraPersonPressed(event)">
-		<div class="group w-32 h-32 block relative">
+		<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
 			<div class="aspect-[1/1] rounded-lg bg-white">
-				<div id="selected-check" class="hidde absolute top-0 right-0 p-2">
+				<div id="selected-check" class="hidden absolute top-0 right-0 p-2">
 					<i class="fas fa-check text-white" aria-hidden="true"></i>
 				</div>
 				<div class="flex justify-left items-end h-full">
-					<p class="text-base ml-3 mb-2" style="color:${bg_color};">${model_name}</p>
+					<p class="text-base md:${md_font_size} ml-3 mb-2" style="color:${bg_color};">${model_name}</p>
 				</div>
 			</div>
 		</div>

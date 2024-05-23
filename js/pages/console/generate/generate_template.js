@@ -271,16 +271,16 @@ function generate_form_html() {
 		<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 pb-3 pt-2 px-0">
 			<div class="col-span-full px-4" id="prompt-field-container">
 				<div class="flex justify-between items-center">
-					<label for="prompt" class="block text-sm font-medium leading-6 text-gray-700">Prompt</label>
+					<label for="prompt" class="block text-sm md:text-2xl font-medium leading-6 text-gray-700">Prompt</label>
 				</div>
 				<div class="mt-2">
-					<div id="prompt" name="prompt" rows="3" class="max-w-full overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></div>
+					<div id="prompt" name="prompt" rows="3" class="max-w-full overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 110px;"></div>
 				</div>
 			</div>
 			<div id="prompt-style-container" class="col-span-full pt-1">
-				<div class="flex px-4 pb-1">
-					<label class="text-sm leading-6 text-gray-700 pb-1">Style:&nbsp;</label>
-					<label id="selected-prompt-style-label" class="text-sm leading-6 text-gray-900">Cell-Shading</label>
+				<div class="flex px-4 pb-1text-sm md:text-2xl">
+					<label class="leading-6 text-gray-700 pb-1">Style:&nbsp;</label>
+					<label id="selected-prompt-style-label" class="leading-6 text-gray-900">Cell-Shading</label>
 				</div>
 
 				<div id="prompt-style-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-0 px-4">

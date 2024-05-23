@@ -215,7 +215,7 @@ function generate_form_html() {
 							<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
 								<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(55, 65, 81);">
 									<div id="selected-check" class="absolute top-0 right-0 p-2">
-										<i class="fas fa-check text-white" aria-hidden="true"></i>
+										<i class="fas fa-check text-white md:text-2xl" aria-hidden="true"></i>
 									</div>
 									<div class="flex justify-left items-end h-full">
 										<p class="text-base md:${md_font_size} ml-3 mb-2" style="color:white;">None</p>
@@ -289,7 +289,7 @@ function generate_form_html() {
 						<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white">
 								<div id="selected-check" class="hidden absolute top-0 right-0 p-2">
-									<i class="fas fa-check text-white" aria-hidden="true"></i>
+									<i class="fas fa-check text-white md:text-2xl" aria-hidden="true"></i>
 								</div>
 								<div class="flex justify-left items-end h-full">
 									<p class="text-base md:${md_font_size} ml-3 mb-2" style="color: rgb(55, 65, 81);">None</p>
@@ -303,7 +303,7 @@ function generate_form_html() {
 							<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
 								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/cell-shading-320.png" alt="Description" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
 								<div id="selected-check" class="absolute top-0 right-0 p-2">
-									<i class="fas fa-check text-white" aria-hidden="true"></i>
+									<i class="fas fa-check text-white md:text-2xl" aria-hidden="true"></i>
 								</div>
 								<div class="flex justify-left items-end h-full">
 									<p class="text-base md:${md_font_size} ml-3 mb-2 z-10" style="color:white;">Cell-Shading</p>
@@ -317,7 +317,7 @@ function generate_form_html() {
 							<div class="aspect-[1/1] rounded-lg bg-white">
 								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Description" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
 								<div id="selected-check" class="absolute top-0 right-0 p-2 hidden">
-									<i class="fas fa-check text-white" aria-hidden="true"></i>
+									<i class="fas fa-check text-white md:text-2xl" aria-hidden="true"></i>
 								</div>
 								<div class="flex justify-left items-end h-full">
 									<p class="text-base md:${md_font_size} ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Pixel-Art</p>
@@ -377,7 +377,7 @@ function new_lora_model_option(model, bg_color) {
 		<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
 			<div class="aspect-[1/1] rounded-lg bg-white">
 				<div id="selected-check" class="hidden absolute top-0 right-0 p-2">
-					<i class="fas fa-check text-white" aria-hidden="true"></i>
+					<i class="fas fa-check text-white md:text-2xl" aria-hidden="true"></i>
 				</div>
 				<div class="flex justify-left items-end h-full">
 					<p class="text-base md:${md_font_size} ml-3 mb-2" style="color:${bg_color};">${model_name}</p>
@@ -632,10 +632,10 @@ function generateReferenceFormSectionHTML() {
 					<div class="col-span-3 flex items-center" id="mode-title-container">
 						<label for="prompt-strength" class="text-sm font-medium leading-6 text-gray-700">Mode</label>
 						<button id="i2i-mode-info-button" onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
-							<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+							<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
 						</button>
 						<button id="misto-mode-info-button" onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="MistoLine, ControlNet" data-te-content="MistoLine is an SDXL-ControlNet model that can adapt to any type of line art input, demonstrating high accuracy and excellent stability. It can generate high-quality images (with a short side greater than 1024px) based on user-provided line art of various types, including hand-drawn sketches, different ControlNet line preprocessors, and model-generated outlines. MistoLine eliminates the need to select different ControlNet models for different line preprocessors, as it exhibits strong generalization capabilities across diverse line art conditions." class="hidden ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
-							<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+							<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
 						</button>
 					</div>
 
@@ -725,7 +725,7 @@ function basicGenerationSettingsHTML() {
 						<div class="col-span-full" id="neg-prompt-field-container">
 							<label for="neg-prompt" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Negative Prompt</label>
 							<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
-								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+								<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
 								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></textarea>
@@ -734,32 +734,32 @@ function basicGenerationSettingsHTML() {
 
 
 						<div class="col-span-3" id="gs-field-container">
-							<label for="guidance-scale" class="text-sm font-medium leading-6 text-gray-700">Guidance Scale</label>
+							<label for="guidance-scale" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Guidance Scale</label>
 							<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
-								<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+								<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
-							<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-							<p class="text-right text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
+							<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6">
+							<p class="text-right text-xs md:text-lg text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
 							</div>
 						</div>
 						<div class="col-span-3" id="seed-field-container">
 							<div class="flex items-center">
-								<label for="seed" class="flex-grow block text-sm font-medium leading-6 text-gray-700">Seed</label>
+								<label for="seed" class="flex-grow block text-sm md:text-2xl font-medium leading-6 text-gray-700">Seed</label>
 								<button onclick="randomizeSeed(event)" title="Random seed">
-									<i class="fa-solid fa-dice-three text-gray-500" aria-hidden="true"></i>
+									<i class="fa-solid fa-dice-three text-gray-500 md:text-2xl" aria-hidden="true"></i>
 								</button>
 							</div>
 							<div class="mt-2">
-								<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" placeholder="Random">
-								<p class="text-right text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
+								<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6" placeholder="Random">
+								<p class="text-right text-xs md:text-lg text-gray-400 mt-1 ml-1">0 - 4294967295</p>
 							</div>
 						</div>
 
 
 						<div class="col-span-3" id="gen-count-field-container">
-							<label for="gen-count" class="block text-sm font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
-								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+							<label for="gen-count" class="block text-sm md:text-2xl font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
+								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 md:text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -774,20 +774,20 @@ function basicGenerationSettingsHTML() {
 							</div>
 						</div>
 						<div class="col-span-3" id="denoising-steps-field-container">
-								<label for="denoising-steps" class="text-sm font-medium leading-6 text-gray-700">Denoising Steps</label>
+								<label for="denoising-steps" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Denoising Steps</label>
 								<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
-									<i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+									<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
 								</button>
 								<div class="mt-2">
-									<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-									<p class="text-right text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
+									<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6">
+									<p class="text-right text-xs md:tex-lg text-gray-400 mt-1 ml-1">4 - 100</p>
 								</div>
 						</div>
 						<div class="col-span-full" id="toggle-ays-field-container">
 							<div class="flex items-center justify-between">
 								<span class="flex flex-grow flex-col mr-1">
-									<span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
-									<span class="text-sm text-gray-500" id="availability-description">Enables <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Can improve prompt coherence and output quality. Disables denoising steps.</span>
+									<span class="text-sm md:text-2xl font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
+									<span class="text-sm md:text-2xl text-gray-500" id="availability-description">Enables <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Can improve prompt coherence and output quality. Disables denoising steps.</span>
 								</span>
 								<!-- Enabled: "bg-black, enabled", Not Enabled: "bg-gray-200" -->
 								<button id="ays-toggle-button" type="button" onclick="toggleAysPressed(event)" class="enabled bg-black relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">

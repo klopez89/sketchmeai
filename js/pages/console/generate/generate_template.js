@@ -6,7 +6,7 @@ const promptStrengthInfo = "Only applicable for image to image generation. A hig
 const loraScaleInfo = "Adjusts the extent to which a fine-tuned model's specialized training influences the generated image, blending the base model's knowledge with the fine-tuned nuances."
 
 
-const md_font_size = "text-4xl";
+const md_font_size = "text-3xl";
 
 var has_a_mouse = false;
 if (matchMedia('(pointer:fine)').matches) {

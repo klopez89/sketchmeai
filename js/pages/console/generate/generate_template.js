@@ -392,7 +392,7 @@ function bottom_generation_menu_html() {
 
 		<div class="flex flex-col gap-4">
 
-			<div class="flex justify-between">
+			<div class="flex justify-end space-x-4">
 			
 				<button id="gen-settings-bottom-button" class="bg-gray-100 text-black text-xl md:text-4xl shadow-lg rounded-full w-12 h-12 md:w-24 md:h-24 flex items-center justify-center" x-on:click="open = !open; showGenerationSettingsMobileButtonPressed()">
 					<i class="fa-solid fa-gear" aria-hidden="true"></i>

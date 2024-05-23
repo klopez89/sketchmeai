@@ -388,7 +388,7 @@ function new_lora_model_option(model, bg_color) {
 function bottom_generation_menu_html() {
 	return `
 	<div id="mobile-bottom-menu" class="hidden lg:hidden fixed right-0 bottom-0 m-4 z-30 flex gap-4 items-end bg-opacity-50">
-		<button id="gen-settings-bottom-button" class="bg-gray-100 text-black text-xl shadow-lg rounded-full w-12 h-12 flex items-center justify-center" x-on:click="open = !open; showGenerationSettingsMobileButtonPressed()">
+		<button id="gen-settings-bottom-button" class="bg-gray-100 text-black text-xl md:text-5xl shadow-lg rounded-full w-12 h-12 md:w-28 md:h-28 flex items-center justify-center" x-on:click="open = !open; showGenerationSettingsMobileButtonPressed()">
 			<i class="fa-solid fa-gear" aria-hidden="true"></i>
 		</button>
 
@@ -422,8 +422,9 @@ function bottom_generation_menu_html() {
 			</div>
 
 
-			<button id="generate-bottom-button" class="bg-black text-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center" onclick="generateButtonPressed(event)">
+			<button id="generate-bottom-button" class="bg-black text-white text-xl md:text-5xl shadow-lg rounded-full h-12 md:h-28 flex items-center justify-center" onclick="generateButtonPressed(event)">
 				<i id="mobile-gen-icon" class="fa-solid fa-bolt-lightning" aria-hidden="true"></i>
+				<p>Generate</p>
 			</button>
 		</div>
 	</div>

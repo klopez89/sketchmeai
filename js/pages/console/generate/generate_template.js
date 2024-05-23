@@ -218,7 +218,7 @@ function generate_form_html() {
 										<i class="fas fa-check text-white" aria-hidden="true"></i>
 									</div>
 									<div class="flex justify-left items-end h-full">
-										<p class="text-base ml-3 mb-2" style="color:white;">None</p>
+										<p class="text-base md:${md_font_size} ml-3 mb-2" style="color:white;">None</p>
 									</div>
 								</div>
 							</div>
@@ -235,7 +235,7 @@ function generate_form_html() {
 
 				<div class="col-span-full flex justify-between px-4 mt-2" id="person-influence-setting-selector-container">
 						
-						<label for="person-influence" class="text-sm font-medium leading-6 text-gray-700">Resemblance</label>
+						<label for="person-influence" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Resemblance</label>
 						<div class="sm:hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
 							<select id="person-influence-setting-dropdown-selector" onChange="personInfSettingDropdownSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
@@ -248,15 +248,15 @@ function generate_form_html() {
 							<nav id="person-influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Person Influence Setting">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
 
-								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-500 hover:text-gray-700 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-500 hover:text-gray-700 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:py-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
 									<span>Low</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-900 group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-900 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:py-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
 									<span>Medium</span>
 									<span id="inf-line" aria-hidden="true" class="bg-black absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative flex-grow overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:py-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
@@ -292,7 +292,7 @@ function generate_form_html() {
 									<i class="fas fa-check text-white" aria-hidden="true"></i>
 								</div>
 								<div class="flex justify-left items-end h-full">
-									<p class="text-base ml-3 mb-2" style="color: rgb(55, 65, 81);">None</p>
+									<p class="text-base md:${md_font_size} ml-3 mb-2" style="color: rgb(55, 65, 81);">None</p>
 								</div>
 							</div>
 						</div>

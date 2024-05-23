@@ -2287,8 +2287,9 @@ function updateAysToggle(shouldEnable) {
         aysButton.classList.add('enabled');
         aysButton.classList.add('bg-black');
         aysButton.classList.remove('bg-gray-200');
-        span.classList.add(translate_x_amount);
         span.classList.remove('translate-x-0');
+        span.classList.remove('translate-x-5');
+        span.classList.add(translate_x_amount);
         denoisingStepsField.disabled = true;
         denoisingStepsField.classList.remove('text-gray-900');
         denoisingStepsField.classList.add('text-gray-400');
@@ -2298,6 +2299,7 @@ function updateAysToggle(shouldEnable) {
         aysButton.classList.remove('bg-black');
         aysButton.classList.add('bg-gray-200');
         span.classList.remove(translate_x_amount);
+        span.classList.remove('translate-x-5');
         span.classList.add('translate-x-0');
         denoisingStepsField.disabled = false;
         denoisingStepsField.classList.add('text-gray-900');

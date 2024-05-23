@@ -388,43 +388,48 @@ function new_lora_model_option(model, bg_color) {
 function bottom_generation_menu_html() {
 	return `
 	<div id="mobile-bottom-menu" class="hidden lg:hidden fixed right-0 bottom-0 m-4 z-30 flex gap-4 items-end bg-opacity-50">
-		<button id="gen-settings-bottom-button" class="bg-gray-100 text-black text-xl md:text-5xl shadow-lg rounded-full w-12 h-12 md:w-28 md:h-28 flex items-center justify-center" x-on:click="open = !open; showGenerationSettingsMobileButtonPressed()">
-			<i class="fa-solid fa-gear" aria-hidden="true"></i>
-		</button>
+		
 
 		<div class="flex flex-col gap-4">
 
-
-			<div id="mobile-bottom-action-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
-				<button type="button" class="bg-gray-700 text-white text-lg shadow-lg rounded-full w-12 h-12 flex items-center justify-center" id="mobile-bottom-action-menu-button" onClick="mobileGenMoreMenuShowing()" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
-					<i class="fa-solid fa-caret-up" aria-hidden="true"></i>
+			<div class="flex justify-between">
+			
+				<button id="gen-settings-bottom-button" class="bg-gray-100 text-black text-xl md:text-5xl shadow-lg rounded-full w-12 h-12 md:w-28 md:h-28 flex items-center justify-center" x-on:click="open = !open; showGenerationSettingsMobileButtonPressed()">
+					<i class="fa-solid fa-gear" aria-hidden="true"></i>
 				</button>
 
-				<div class="p-2 absolute right-0 bottom-0 z-10 mb-12 mr-4 min-w-36 w-max">
+				<div id="mobile-bottom-action-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+					<button type="button" class="bg-gray-700 text-white text-lg shadow-lg rounded-full w-12 h-12 flex items-center justify-center" id="mobile-bottom-action-menu-button" onClick="mobileGenMoreMenuShowing()" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+						<i class="fa-solid fa-caret-up" aria-hidden="true"></i>
+					</button>
 
-					<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md overflow-hidden bg-white py-0 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
-					
-						<div id="collection-name-label-container" class="block pl-3 pr-8 py-2 text-sm leading-6 bg-gray-100 text-gray-700 border-gray-200 border-b">
-							<p class="text-xs text-gray-500">Collection</p>
-							<p id="collection-name-label">Default</p>
+					<div class="p-2 absolute right-0 bottom-0 z-10 mb-12 mr-4 min-w-36 w-max">
+
+						<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md overflow-hidden bg-white py-0 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
+						
+							<div id="collection-name-label-container" class="block pl-3 pr-8 py-2 text-sm leading-6 bg-gray-100 text-gray-700 border-gray-200 border-b">
+								<p class="text-xs text-gray-500">Collection</p>
+								<p id="collection-name-label">Default</p>
+							</div>
+
+							<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); newCollectionPressed(event)">New Collection</a>
+
+							<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); changeCollectionPressed(event)">Change Collection</a>
+
+							<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 2 }" role="menuitem" tabindex="-1" id="user-menu-item-2" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 2)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); renameCollectionPressed(event)">Rename Collection</a>
+
+							<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 3 }" role="menuitem" tabindex="-1" id="user-menu-item-3" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 3)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); multiSelectPressed(event)">Multi-Select</a>
+
 						</div>
-
-						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); newCollectionPressed(event)">New Collection</a>
-
-						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); changeCollectionPressed(event)">Change Collection</a>
-
-						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 2 }" role="menuitem" tabindex="-1" id="user-menu-item-2" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 2)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); renameCollectionPressed(event)">Rename Collection</a>
-
-						<a href="#" class="block pl-3 pr-8 py-2 text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 3 }" role="menuitem" tabindex="-1" id="user-menu-item-3" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 3)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); multiSelectPressed(event)">Multi-Select</a>
-
 					</div>
 				</div>
+				
 			</div>
 
 
-			<button id="generate-bottom-button" class="bg-black text-white text-xl md:text-5xl shadow-lg rounded-full h-12 md:h-28 flex items-center justify-center" onclick="generateButtonPressed(event)">
+			<button id="generate-bottom-button" class="bg-black px-10 text-white text-xl md:text-4xl shadow-lg rounded-full h-12 md:h-24 flex items-center justify-center" onclick="generateButtonPressed(event)">
 				<i id="mobile-gen-icon" class="fa-solid fa-bolt-lightning" aria-hidden="true"></i>
-				<p>Generate</p>
+				<p class="ml-4">Generate</p>
 			</button>
 		</div>
 	</div>

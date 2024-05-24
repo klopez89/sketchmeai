@@ -3,7 +3,7 @@ function dummyGridHTML() {
     <div class="bg-gray-100 h-full relative flex justify-center">
         <div id="collection-grid-container" class="absolute mx-auto max-w-4xl px-8 py-8 overflow-y-auto h-full w-full bg-gray-100 transform transition-all duration-200 ease-in-out">
             <div class="relative">
-                <div id="collection-grid" role="list" class="grid grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3" @click.away="clickedOutsideOfCollectionGrid()" onclick="clickedOnEmptyPartOfGrid()">
+                <div id="collection-grid" role="list" class="grid p-1 grid-cols-2 gap-x-2 gap-y-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3" @click.away="clickedOutsideOfCollectionGrid()" onclick="clickedOnEmptyPartOfGrid()">
                     <div id="new-model-button" class="relative rounded-lg overflow-hidden cursor-pointer" onclick="clickedOnNewModelButton(event)">
                         <div class="aspect-[1/1] bg-black hover:bg-gray-800">
                             <div class="flex justify-center items-center h-full text-white text-2xl">
@@ -292,8 +292,8 @@ function uploadEntryDiv(file, is_first_file) {
         <div class="group aspect-h-10 aspect-w-10 block w-full relative">
 
             <div id="model-name-container" class="aspect-[1/1]" style="background-color: ${bgColor};">
-                <div class="flex justify-left items-end h-full text-white text-5xl">
-                    <p id="model-name-label" class="text-xl ml-3 mb-2"></p>
+                <div class="flex justify-left items-end h-full text-white">
+                    <p id="model-name-label" class="text-xl md:text-3xl lg:text-xl ml-3 md:ml-5 lg:ml-3 mb-2 md:mb-4 lg:mb-2"></p>
                 </div>
             </div>
             

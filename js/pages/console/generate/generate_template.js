@@ -61,7 +61,7 @@ function newGridItemHTML(gen_id, gen_string="") {
         
 			<div class="selection-overlay absolute inset-0 cursor-pointer pointer-events-none">
 				<div class="overlay-bg h-full w-full"></div>
-				<i class="fa fa-circle checkbox hidden absolute top-2 right-2 cursor-pointer text-gray-800 text-3xl"></i>
+				<i class="fa fa-circle checkbox hidden absolute top-1 right-1 md:top-2 lg:top-1 md:right-2 lg:right-1 cursor-pointer text-gray-800 text-4xl md:text-6xl lg:text-4xl"></i>
 			</div>
 
         </div>
@@ -145,12 +145,12 @@ function dummyGridHTML() {
 					</div>
 
 					<div class="selection-bar absolute bottom-0 w-full right-0 py-5 px-5 bg-gray-100 shadow-sm border-t border-gray-200 z-[35] hidden">
-						<div class="float-right space-x-4 flex">
-							<button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm shadow-sm bg-gray-200 text-gray-400 hover:bg-gray-300" onclick="toggleImageSelectability()">Cancel</button>
+						<div class="float-right space-x-4 md:space-x-6 lg:space-x-4 flex">
+							<button type="button" class="inline-flex items-center rounded-md px-3 md:px-6 lg:px-3 py-2 md:py-4 lg:py-2 text-sm md:text-3xl lg:text-sm shadow-sm bg-gray-200 text-gray-400 hover:bg-gray-300" onclick="toggleImageSelectability()">Cancel</button>
 							
-							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm shadow-sm text-white bg-gray-200" onclick="deleteSelectedPressed(event)" id="deleteSelectedButton">Delete</button>
+							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 md:px-6 lg:px-3 py-2 md:py-4 lg:py-2 text-sm md:text-3xl lg:text-sm shadow-sm text-white bg-gray-200" onclick="deleteSelectedPressed(event)" id="deleteSelectedButton">Delete</button>
 
-							<button id="share-button" type="button" class="share-button ml-3 flex flex-grow justify-center items-center text-center rounded-md bg-gray-200 px-3 py-2 text-sm text-white shadow-sm">
+							<button id="share-button" type="button" class="share-button ml-3 flex flex-grow justify-center items-center text-center rounded-md bg-gray-200 px-3 md:px-6 lg:px-3 py-2 md:py-4 lg:py-2 text-sm md:text-3xl lg:text-sm text-white shadow-sm">
 								<p id="desktop-gen-button-label" class="flex items-center">Share</p>
 								<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 							</button>

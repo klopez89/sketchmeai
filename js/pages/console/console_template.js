@@ -22,7 +22,7 @@ function consoleHtml() {
                 </div>
         
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
-                <div id="swap-for-static-sidebar" class="fixed inset-y-0 flex w-48 flex-col"></div>
+                <div id="swap-for-static-sidebar" class="fixed inset-y-0 flex w-48 md:w-60 lg:w-48 flex-col"></div>
 
             </div>
         </div>
@@ -31,16 +31,16 @@ function consoleHtml() {
         <!-- Static sidebar for desktop -->
         <div id="static-sidebar" class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-48 lg:flex-col">
             <!-- Sidebar component, swap this element with another sidebar if you like -->
-            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black px-6 pb-4">
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black px-6 pb-4 pt-16 md:pt-24 lg:pt-16">
                 <div class="flex h-16 shrink-0 items-center cursor-pointer" onclick="navigationToHomePage()">
-                <img class="h-8 w-auto" src="https://storage.googleapis.com/sketchmeai-public/branding/white_sketchmeai_logo.png" alt="Your Company">
+                <img class="h-8 md:h-14 lg:h-8 w-auto" src="https://storage.googleapis.com/sketchmeai-public/branding/white_sketchmeai_logo.png" alt="Your Company">
                 </div>
                 <nav class="flex flex-1 flex-col">
                 <ul id="page-list" role="list" class="flex flex-1 flex-col gap-y-7">
                     <li>
                     <ul role="list" class="-mx-2 space-y-1">
                         <li>
-                            <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                            <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold">
                                 <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-solid fa-bolt-lightning self-center text-lg" aria-hidden="true"></i>
                                 </div>
@@ -48,7 +48,7 @@ function consoleHtml() {
                             </a>
                         </li>
                         <li>
-                            <a href="/console/models" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                            <a href="/console/models" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold">
                                 <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-solid fa-layer-group self-center text-lg" aria-hidden="true"></i>
                                 </div>
@@ -56,7 +56,7 @@ function consoleHtml() {
                             </a>
                         </li>
                         <li>
-                            <a href="/blog" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold" target="_blank">
+                            <a href="/blog" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold" target="_blank">
                                 <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-solid fa-file-lines self-center text-lg" aria-hidden="true"></i>
                                 </div>
@@ -64,7 +64,7 @@ function consoleHtml() {
                             </a>
                         </li>
                         <li class="hidden">
-                            <a href="/console/collections" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                            <a href="/console/collections" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold">
                                 <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-regular fa-images self-center text-lg" aria-hidden="true"></i>
                                 </div>
@@ -130,7 +130,7 @@ function consoleHtml() {
                             </button>
                 
                             <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()" @keydown.tab="open = false" @keydown.enter.prevent="open = false; focusButton()" @keyup.space.prevent="open = false; focusButton()" style="display: none;">
-                                <a class="block px-3 py-1 text-sm leading-6 text-gray-900 cursor-pointer" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); signOutButtonPressed()">Sign out</a>
+                                <a class="block px-3 py-1 text-sm md:text-xl lg:text-sm leading-6 text-gray-900 cursor-pointer" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); signOutButtonPressed()">Sign out</a>
                             </div>
                         </div>
                     </div>

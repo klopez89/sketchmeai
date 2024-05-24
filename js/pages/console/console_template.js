@@ -181,7 +181,7 @@ function consoleHtml() {
                                     <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                                         <span class="text-gray-400 md:text-2xl lg:text-base">$</span>
                                     </span>
-                                    <input id="credit-amount" type="number" min="1" step="1" placeholder="" class="md:text-3xl lg:text-base border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 md:px-8 lg:px-5 py-2 md:py-4 lg:py-2" value="10">
+                                    <input id="credit-amount" type="number" min="1" step="1" placeholder="" class="max-w-32 md:max-w-60 lg:max-w-32 md:text-3xl lg:text-base border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 md:px-8 lg:px-5 py-2 md:py-4 lg:py-2" value="10">
                                     <button id="pay-button" class="bg-black text-white md:text-2xl lg:text-base font-semibold px-8 md:px-16 lg:px-8 py-[0.6em] md:py-[0.7em] lg:py-[0.6em] rounded shadow ml-2" onclick="userWantsToPay()">Pay</button>
                                 </div>
                             </div>

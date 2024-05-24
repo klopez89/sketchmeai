@@ -22,7 +22,7 @@ function consoleHtml() {
                 </div>
         
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
-                <div id="swap-for-static-sidebar" class="fixed inset-y-0 flex w-48 md:w-60 lg:w-48 flex-col"></div>
+                <div id="swap-for-static-sidebar" class="fixed inset-y-0 flex w-48 md:w-80 lg:w-48 flex-col"></div>
 
             </div>
         </div>
@@ -40,33 +40,33 @@ function consoleHtml() {
                     <li>
                     <ul role="list" class="-mx-2 space-y-1">
                         <li>
-                            <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold">
+                            <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold">
                                 <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
-                                    <i class="fa-solid fa-bolt-lightning self-center text-lg" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-bolt-lightning self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
                                 Generate&nbsp;
                             </a>
                         </li>
                         <li>
-                            <a href="/console/models" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold">
+                            <a href="/console/models" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold">
                                 <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
-                                    <i class="fa-solid fa-layer-group self-center text-lg" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-layer-group self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
                                 Models&nbsp;
                             </a>
                         </li>
                         <li>
-                            <a href="/blog" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold" target="_blank">
+                            <a href="/blog" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold" target="_blank">
                                 <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
-                                    <i class="fa-solid fa-file-lines self-center text-lg" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-file-lines self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
                                 Blog&nbsp;
                             </a>
                         </li>
                         <li class="hidden">
-                            <a href="/console/collections" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold">
+                            <a href="/console/collections" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold">
                                 <div class="h-6 w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
-                                    <i class="fa-regular fa-images self-center text-lg" aria-hidden="true"></i>
+                                    <i class="fa-regular fa-images self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
                                 Collections&nbsp;
                             </a>

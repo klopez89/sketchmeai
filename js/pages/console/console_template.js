@@ -40,7 +40,7 @@ function consoleHtml() {
                     <li>
                     <ul role="list" class="-mx-2 space-y-1 md:space-y-5 lg:space-y-1">
                         <li>
-                            <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold">
+                            <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-5 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold">
                                 <div class="h-6 w-6 md:h-10 md:w-10 lg:h-6 lg:w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-solid fa-bolt-lightning self-center text-lg md:text-4xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
@@ -48,7 +48,7 @@ function consoleHtml() {
                             </a>
                         </li>
                         <li>
-                            <a href="/console/models" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold">
+                            <a href="/console/models" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-5 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold">
                                 <div class="h-6 w-6 md:h-10 md:w-10 lg:h-6 lg:w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-solid fa-layer-group self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
@@ -56,7 +56,7 @@ function consoleHtml() {
                             </a>
                         </li>
                         <li>
-                            <a href="/blog" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold" target="_blank">
+                            <a href="/blog" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-5 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold" target="_blank">
                                 <div class="h-6 w-6 md:h-10 md:w-10 lg:h-6 lg:w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-solid fa-file-lines self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
@@ -64,7 +64,7 @@ function consoleHtml() {
                             </a>
                         </li>
                         <li class="hidden">
-                            <a href="/console/collections" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold">
+                            <a href="/console/collections" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-5 md:p-4 lg:p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold">
                                 <div class="h-6 w-6 md:h-10 md:w-10 lg:h-6 lg:w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-regular fa-images self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
@@ -153,41 +153,41 @@ function consoleHtml() {
 
                     <div id="payment-modal" class="hidden absolute bg-black bg-opacity-90 h-full w-full z-[100] px-4 flex flex-col justify-center transition duration-500 opacity-0">
                 
-                        <div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
-                            <button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissPaymentModal()">
+                        <div class="max-w-2xl md:max-w-3xl lg:max-w-2xl mx-auto bg-white p-7 md:p-9 lg:p-7 rounded-lg shadow-lg w-full relative">
+                            <button class="absolute top-3 md:top-6 right-3 md:right-6 lg:right-3 text-3xl md:text-4xl lg:text-3xl text-gray-500 hover:text-gray-700" onclick="dismissPaymentModal()">
                                 <i class="fas fa-times" aria-hidden="true"></i>
                             </button>
                             <div class="mb-4">
-                                <h2 class="text-3xl text-gray-900 mb-2">Balance: 
+                                <h2 class="text-3xl md:text-4xl lg:text-3xl text-gray-900 mb-2 md:mb-4">Balance: 
                                     <span id="modal-credit-balance-label" class="">$0.00</span>
-                                    <span id="insufficient-credit-label" class="hidden italic text-red-500 text-xs">Insufficient credit.</span>
+                                    <span id="insufficient-credit-label" class="hidden italic text-red-500 text-xs md:text-xl lg:text-xs">Insufficient credit.</span>
                                 </h2>
-                                <p class="mb-0 text-gray-400">~ $3.00 to $6.00 / trained model (for 10 vs 20 images)</p>
-                                <p class="mb-1 text-gray-400">~ $0.04 / image ($0.11 from a cold boot)</p>
-                                <p class="mb-8 text-gray-400 text-xs italic">cost will vary based on model and parameters</p>
+                                <p class="mb-0 text-gray-400 md:text-2xl lg:text-base">~ $3.00 to $6.00 / trained model (for 10 vs 20 images)</p>
+                                <p class="mb-1 text-gray-400 md:text-2xl lg:text-base">~ $0.04 / image ($0.11 from a cold boot)</p>
+                                <p class="mb-8 text-gray-400 text-xs md:text-xl lg:text-xs italic">cost will vary based on model and parameters</p>
                             </div>
 
                             <hr class="border-t border-gray-200 my-6">
 
                             <div class="mb-1">
-                                <h3 class="text-lg font-semibold mb-2">Add Credit</h3>
-                                <div class="flex space-x-2">
-                                    <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="first-credit-option" value="5" onclick="firstCreditOptionClicked()">$5</button>
-                                    <button class="bg-black text-white px-6 py-2 rounded shadow" id="second-credit-option" value="10" onclick="secondCreditOptionClicked()">$10</button>
-                                    <button class="bg-gray-500 hover:bg-gray-700 text-white px-6 py-2 rounded shadow" id="third-credit-option" value="20" onclick="thirdCreditOptionClicked()">$20</button>
+                                <h3 class="text-lg md:text-3xl lg:text-lg font-semibold mb-2">Add Credit</h3>
+                                <div class="flex space-x-2 md:text-2xl lg:text-base px-6 md:px-8 lg:px-6 py-2 md:py-4 lg:py-2">
+                                    <button class="bg-gray-500 hover:bg-gray-700 text-whiterounded shadow" id="first-credit-option" value="5" onclick="firstCreditOptionClicked()">$5</button>
+                                    <button class="bg-black text-white rounded shadow" id="second-credit-option" value="10" onclick="secondCreditOptionClicked()">$10</button>
+                                    <button class="bg-gray-500 hover:bg-gray-700 text-white rounded shadow" id="third-credit-option" value="20" onclick="thirdCreditOptionClicked()">$20</button>
                                 </div>
-                                <div class="mb-4 mt-1 text-xs text-gray-800">Minimum</div>
+                                <div class="mb-4 mt-1 text-xs md:text-lg lg:text-xs text-gray-800">Minimum</div>
                                 <div class="relative">
                                     <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                                        <span class="text-gray-400">$</span>
+                                        <span class="text-gray-400 md:text-2xl lg:text-base">$</span>
                                     </span>
-                                    <input id="credit-amount" type="number" min="1" step="1" placeholder="" class="border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 py-2" value="10">
-                                    <button id="pay-button" class="bg-black text-white font-semibold px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToPay()">Pay</button>
+                                    <input id="credit-amount" type="number" min="1" step="1" placeholder="" class="border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 md:px-8 lg:px-5 py-2 md:py-4 lg:py-2" value="10">
+                                    <button id="pay-button" class="bg-black text-white md:text-2xl lg:text-base font-semibold px-8 md:px-10 lg:px-8 py-[0.6em] md:py-[1em] lg:py-[0.6em] rounded shadow ml-2" onclick="userWantsToPay()">Pay</button>
                                 </div>
                             </div>
 
                             <div class="flex space-x-2">
-                                <p class="flex-1 text-left py-0 rounded text-xs text-gray-400">Powered by Stripe</p>
+                                <p class="flex-1 text-left py-0 rounded text-xs md:text-lg lg:text-xs text-gray-400">Powered by Stripe</p>
                                 
                             </div>
                         </div>

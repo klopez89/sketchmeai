@@ -279,7 +279,7 @@ function generate_form_html() {
 			</div>
 			<div id="prompt-style-container" class="col-span-full pt-1">
 				<div class="flex px-4 md:px-6 lg:px-4 pb-1 text-sm md:text-2xl lg:text-sm">
-					<label class="leading-6 text-gray-700 pb-1">Style:&nbsp;</label>
+					<label class="leading-6 text-gray-700 font-medium pb-1">Style:&nbsp;</label>
 					<label id="selected-prompt-style-label" class="leading-6 text-gray-900">Cell-Shading</label>
 				</div>
 
@@ -739,7 +739,7 @@ function basicGenerationSettingsHTML() {
 								<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
-							<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
+							<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
 							</div>
 						</div>
@@ -751,7 +751,7 @@ function basicGenerationSettingsHTML() {
 								</button>
 							</div>
 							<div class="mt-2">
-								<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6" placeholder="Random">
+								<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6" placeholder="Random">
 								<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
 							</div>
 						</div>
@@ -759,7 +759,7 @@ function basicGenerationSettingsHTML() {
 
 						<div class="col-span-3" id="gen-count-field-container">
 							<label for="gen-count" class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
-								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 md:text-2xl lg:text-base shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 md:text-2xl lg:text-base shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -779,7 +779,7 @@ function basicGenerationSettingsHTML() {
 									<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 								</button>
 								<div class="mt-2">
-									<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
+									<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
 									<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
 								</div>
 						</div>

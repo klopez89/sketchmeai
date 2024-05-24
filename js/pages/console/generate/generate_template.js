@@ -33,7 +33,7 @@ function newGridItemHTML(gen_id, gen_string="") {
             <img src="${placeholderImageURL}" alt="" class="object-cover group-hover:opacity-95 transition-opacity opacity-0 duration-200 cursor-pointer data-[te-lightbox-disabled]:cursor-auto" onclick="goingToLightbox(event)">
             
             <div id="gen-loader" class="bg-gray-200 flex justify-center items-center">
-                <i class="fa fa-spinner fa-spin text-4xl text-gray-500" aria-hidden="true"></i>
+                <i class="fa fa-spinner fa-spin text-4xl md:text-6xl lg:text-4xl text-gray-500" aria-hidden="true"></i>
                 <p class="absolute bottom-0 right-0 pb-2 pr-2 text-xs text-gray-500" id="gen-status"></p>
                 <button class="absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500 hidden" id="cancel-button">Cancel</button>
             </div>

@@ -204,7 +204,7 @@ function generate_form_html() {
 				</div>
 				<div id="lora-component-container" class="col-span-full pt-0">
 
-					<div class="flex px-4 pb-1 md:pb-2 text-sm md:text-2xl">
+					<div class="flex px-4 pb-1 md:pb-2 lg:pb-1 text-sm md:text-2xl lg:text-sm">
 						<label class="leading-6 text-gray-700 pb-1">Person Model:&nbsp;</label>
 						<label id="selected-person-lora" class="leading-6 text-gray-900">None</label>
 					</div>
@@ -212,13 +212,13 @@ function generate_form_html() {
 					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">
 				
 						<div class="relative cursor-pointer select-none selected" id="no-lora-person-button" instkey="" model="" modelname="" version="" trainingSubject="" genderType="" bgColor="#374151" onclick="loraPersonPressed(event)">
-							<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
+							<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
 								<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(55, 65, 81);">
 									<div id="selected-check" class="absolute top-0 right-0 p-2">
-										<i class="fas fa-check text-white md:text-2xl" aria-hidden="true"></i>
+										<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
 									</div>
 									<div class="flex justify-left items-end h-full">
-										<p class="text-base md:${md_font_size} ml-3 mb-2" style="color:white;">None</p>
+										<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2" style="color:white;">None</p>
 									</div>
 								</div>
 							</div>
@@ -235,7 +235,7 @@ function generate_form_html() {
 
 				<div class="col-span-full flex justify-between px-4 mt-2" id="person-influence-setting-selector-container">
 						
-						<label for="person-influence" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Resemblance</label>
+						<label for="person-influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Resemblance</label>
 						<div class="sm:hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
 							<select id="person-influence-setting-dropdown-selector" onChange="personInfSettingDropdownSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
@@ -248,15 +248,15 @@ function generate_form_html() {
 							<nav id="person-influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Person Influence Setting">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
 
-								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-500 hover:text-gray-700 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-500 hover:text-gray-700 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
 									<span>Low</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-900 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-900 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>Medium</span>
 									<span id="inf-line" aria-hidden="true" class="bg-black absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); personInfSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
@@ -271,14 +271,14 @@ function generate_form_html() {
 		<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 pb-3 pt-2 px-0">
 			<div class="col-span-full px-4" id="prompt-field-container">
 				<div class="flex justify-between items-center">
-					<label for="prompt" class="block text-sm md:text-2xl font-medium leading-6 text-gray-700">Prompt</label>
+					<label for="prompt" class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Prompt</label>
 				</div>
 				<div class="mt-2">
-					<div id="prompt" name="prompt" rows="3" class="max-w-full h-28 md:h-36 overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6"></div>
+					<div id="prompt" name="prompt" rows="3" class="max-w-full h-28 md:h-36 lg:h-28 overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6"></div>
 				</div>
 			</div>
 			<div id="prompt-style-container" class="col-span-full pt-1">
-				<div class="flex px-4 pb-1text-sm md:text-2xl">
+				<div class="flex px-4 pb-1 text-sm md:text-2xl lg:text-sm">
 					<label class="leading-6 text-gray-700 pb-1">Style:&nbsp;</label>
 					<label id="selected-prompt-style-label" class="leading-6 text-gray-900">Cell-Shading</label>
 				</div>
@@ -286,41 +286,41 @@ function generate_form_html() {
 				<div id="prompt-style-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-0 px-4">
 			
 					<div prompt-style="${PromptStyle.NONE}" class="relative cursor-pointer select-none" id="no-prompt-style-button" bgColor="#374151" onclick="promptStylePressed(event)">
-						<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
+						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white">
 								<div id="selected-check" class="hidden absolute top-0 right-0 p-2">
-									<i class="fas fa-check text-white md:text-2xl" aria-hidden="true"></i>
+									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
 								</div>
 								<div class="flex justify-left items-end h-full">
-									<p class="text-base md:${md_font_size} ml-3 mb-2" style="color: rgb(55, 65, 81);">None</p>
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2" style="color: rgb(55, 65, 81);">None</p>
 								</div>
 							</div>
 						</div>
 					</div>
 
 					<div prompt-style="${PromptStyle.CELL_SHADING}" class="relative cursor-pointer select-none selected" id="cell-shading-style-button" bgColor="#000" onclick="promptStylePressed(event)">
-						<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
+						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white" style="background-color: rgb(0, 0, 0);">
 								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/cell-shading-320.png" alt="Description" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
 								<div id="selected-check" class="absolute top-0 right-0 p-2">
-									<i class="fas fa-check text-white md:text-2xl" aria-hidden="true"></i>
+									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
 								</div>
 								<div class="flex justify-left items-end h-full">
-									<p class="text-base md:${md_font_size} ml-3 mb-2 z-10" style="color:white;">Cell-Shading</p>
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color:white;">Cell-Shading</p>
 								</div>
 							</div>
 						</div>
 					</div>
 
 					<div prompt-style="${PromptStyle.PIXEL_ART}" class="relative cursor-pointer select-none" id="pixel-art-style-button" bgColor="#000" onclick="promptStylePressed(event)">
-						<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
+						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
 							<div class="aspect-[1/1] rounded-lg bg-white">
 								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Description" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
 								<div id="selected-check" class="absolute top-0 right-0 p-2 hidden">
-									<i class="fas fa-check text-white md:text-2xl" aria-hidden="true"></i>
+									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
 								</div>
 								<div class="flex justify-left items-end h-full">
-									<p class="text-base md:${md_font_size} ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Pixel-Art</p>
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Pixel-Art</p>
 								</div>
 							</div>
 						</div>
@@ -374,13 +374,13 @@ function new_lora_model_option(model, bg_color) {
 	var training_subject = model.training_subject ? model.training_subject : "person";
 	return `
 	<div class="relative cursor-pointer select-none" id="${model_id}" instkey="${instKey}" model="${replicate_name}" version="${short_version}" modelName="${model_name}" trainingSubject="${training_subject}" genderType="${gender_type}" bgColor="${bg_color}" onclick="loraPersonPressed(event)">
-		<div class="group w-32 h-32 md:w-56 md:h-56 block relative">
+		<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
 			<div class="aspect-[1/1] rounded-lg bg-white">
 				<div id="selected-check" class="hidden absolute top-0 right-0 p-2">
-					<i class="fas fa-check text-white md:text-2xl" aria-hidden="true"></i>
+					<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
 				</div>
 				<div class="flex justify-left items-end h-full">
-					<p class="text-base md:${md_font_size} ml-3 mb-2" style="color:${bg_color};">${model_name}</p>
+					<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2" style="color:${bg_color};">${model_name}</p>
 				</div>
 			</div>
 		</div>
@@ -562,10 +562,10 @@ function generateReferenceFormSectionHTML() {
 		<div id="nestedAccordion">
 
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">
-				<button id="reference-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm md:text-2xl text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
+				<button id="reference-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm md:text-2xl lg:text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
-					<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6">
+					<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
 						</svg>
 					</span>
@@ -575,14 +575,14 @@ function generateReferenceFormSectionHTML() {
 				</button>
 
 				<div class="flex gap-2">
-					<button id="clear-ref-button" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
-						<i class="fa-solid fa-trash text-gray-500 text-xs md:text-2xl" aria-hidden="true"></i>
+					<button id="clear-ref-button" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+						<i class="fa-solid fa-trash text-gray-500 text-xs md:text-2xl lg:text-xs" aria-hidden="true"></i>
 					</button>
 					
 					<div id="edit-ref-comp-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
 
-						<button type="button" class="w-7 h-7 md:w-14 md:h-14 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center" id="gen-ref-menu-button" onclick="genRefMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
-							<i class="fa-solid fa-pen text-gray-500 text-xs md:text-2xl" aria-hidden="true"></i>
+						<button type="button" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center" id="gen-ref-menu-button" onclick="genRefMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+							<i class="fa-solid fa-pen text-gray-500 text-xs md:text-2xl lg:text-xs" aria-hidden="true"></i>
 						</button>
 				
 						<div class="m-0 absolute right-0 z-10 mt-1 origin-top-right min-w-[15rem]">
@@ -604,7 +604,7 @@ function generateReferenceFormSectionHTML() {
 
 					<div class="col-span-full" id="igm2img-field-container">
 						<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
-							<button id="ref-img-button" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] rounded-lg border-2 md:border-4 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
+							<button id="ref-img-button" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 								
 								<img class="hidden absolute w-full h-full rounded-lg" src="">
 
@@ -616,7 +616,7 @@ function generateReferenceFormSectionHTML() {
 								</div>
 
 								<div class="flex flex-col items-center">		
-									<i id="upload-icon" class="fa text-3xl md:text-6xl fa-images" aria-hidden="true"></i>
+									<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
 									
 								</div>
 							</button>
@@ -630,17 +630,17 @@ function generateReferenceFormSectionHTML() {
 
 
 					<div class="col-span-3 flex items-center" id="mode-title-container">
-						<label for="prompt-strength" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Mode</label>
+						<label for="prompt-strength" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Mode</label>
 						<button id="i2i-mode-info-button" onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
-							<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
+							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 						<button id="misto-mode-info-button" onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="MistoLine, ControlNet" data-te-content="MistoLine is an SDXL-ControlNet model that can adapt to any type of line art input, demonstrating high accuracy and excellent stability. It can generate high-quality images (with a short side greater than 1024px) based on user-provided line art of various types, including hand-drawn sketches, different ControlNet line preprocessors, and model-generated outlines. MistoLine eliminates the need to select different ControlNet models for different line preprocessors, as it exhibits strong generalization capabilities across diverse line art conditions." class="hidden ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
-							<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
+							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 					</div>
 
 					<div class="col-span-3" id="mode-selector-container">
-						<select id="ref-img-mode" name="ref-img-mode" onChange="refImgModeChanged()" class="block w-full rounded-md border-0 px-2 md:px-4 py-1.5 md:py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6">
+						<select id="ref-img-mode" name="ref-img-mode" onChange="refImgModeChanged()" class="block w-full rounded-md border-0 px-2 md:px-4 lg:px-2 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
 							<option id="${RefImageMode.IMG2IMG}">Image to Image</option>
 							<option id="${RefImageMode.MISTO}">Misto Line, ControlNet</option>
 						</select>
@@ -648,7 +648,7 @@ function generateReferenceFormSectionHTML() {
 
 
 					<div class="hidden col-span-2 flex items-center" id="influence-title-container">
-						<label for="influence" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Influence, %</label>
+						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 					</div>
 
 					<div class="hidden col-span-4 flex gap-x-2" id="influence-slider-container">
@@ -659,7 +659,7 @@ function generateReferenceFormSectionHTML() {
 
 					<div class="col-span-full flex justify-between" id="influence-setting-selector-container">
 						
-						<label for="influence" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Influence</label>
+						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence</label>
 						<div class="hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
 							<select id="influence-setting-dropdown-selector" onChange="infSettingDropdownSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
@@ -672,15 +672,15 @@ function generateReferenceFormSectionHTML() {
 							<nav id="influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Influence Setting">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
 
-								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.LOW}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
 									<span>Low</span>
 									<span id="inf-line" aria-hidden="true" class="bg-black absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.MEDIUM}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>Medium</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 px-4 md:px-6 text-center text-sm md:text-2xl font-medium hover:bg-gray-50 focus:z-10">
+								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.HIGH}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
@@ -704,10 +704,10 @@ function basicGenerationSettingsHTML() {
 		<!-- Start of the new nested accordion for prompt settings fields -->
 		<div id="nestedAccordion">
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">
-				<button id="prompt-settings-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm md:text-2xl text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedPromptSettingsCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
+				<button id="prompt-settings-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm md:text-2xl lg:text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedPromptSettingsCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
-					<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6">
+					<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
 						</svg>
 					</span>
@@ -723,43 +723,43 @@ function basicGenerationSettingsHTML() {
 					<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2">
 
 						<div class="col-span-full" id="neg-prompt-field-container">
-							<label for="neg-prompt" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Negative Prompt</label>
+							<label for="neg-prompt" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Negative Prompt</label>
 							<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
-								<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
+								<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
-								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full h-20 md:h-32 lg:h-20 rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6"></textarea>
+								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full h-20 md:h-32 lg:h-20 rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6"></textarea>
 							</div>
 						</div>
 
 
 						<div class="col-span-3" id="gs-field-container">
-							<label for="guidance-scale" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Guidance Scale</label>
+							<label for="guidance-scale" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Guidance Scale</label>
 							<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
-								<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
+								<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
-							<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6">
-							<p class="text-right text-xs md:text-lg text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
+							<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
+							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
 							</div>
 						</div>
 						<div class="col-span-3" id="seed-field-container">
 							<div class="flex items-center">
-								<label for="seed" class="flex-grow block text-sm md:text-2xl font-medium leading-6 text-gray-700">Seed</label>
+								<label for="seed" class="flex-grow block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Seed</label>
 								<button onclick="randomizeSeed(event)" title="Random seed">
-									<i class="fa-solid fa-dice-three text-gray-500 md:text-2xl" aria-hidden="true"></i>
+									<i class="fa-solid fa-dice-three text-gray-500 md:text-2xl lg:text-base" aria-hidden="true"></i>
 								</button>
 							</div>
 							<div class="mt-2">
-								<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6" placeholder="Random">
-								<p class="text-right text-xs md:text-lg text-gray-400 mt-1 ml-1">0 - 4294967295</p>
+								<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6" placeholder="Random">
+								<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
 							</div>
 						</div>
 
 
 						<div class="col-span-3" id="gen-count-field-container">
-							<label for="gen-count" class="block text-sm md:text-2xl font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
-								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 md:text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+							<label for="gen-count" class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
+								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 text-gray-900 md:text-2xl lg:text-base shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -774,25 +774,25 @@ function basicGenerationSettingsHTML() {
 							</div>
 						</div>
 						<div class="col-span-3" id="denoising-steps-field-container">
-								<label for="denoising-steps" class="text-sm md:text-2xl font-medium leading-6 text-gray-700">Denoising Steps</label>
+								<label for="denoising-steps" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Denoising Steps</label>
 								<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
-									<i class="fa-solid fa-circle-info md:text-2xl" aria-hidden="true"></i>
+									<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 								</button>
 								<div class="mt-2">
-									<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl leading-6">
-									<p class="text-right text-xs md:text-lg text-gray-400 mt-1 ml-1">4 - 100</p>
+									<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
+									<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
 								</div>
 						</div>
 						<div class="col-span-full" id="toggle-ays-field-container">
 							<div class="flex items-center justify-between">
-								<span class="flex flex-grow flex-col mr-1 md:mr-3">
-									<span class="text-sm md:text-2xl font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
-									<span class="text-sm md:text-2xl text-gray-500" id="availability-description">Enables <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Can improve prompt coherence and output quality. Disables denoising steps.</span>
+								<span class="flex flex-grow flex-col mr-1 md:mr-3 lg:mr-1">
+									<span class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
+									<span class="text-sm md:text-2xl lg:text-sm text-gray-500" id="availability-description">Enables <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Can improve prompt coherence and output quality. Disables denoising steps.</span>
 								</span>
 								<!-- Enabled: "bg-black, enabled", Not Enabled: "bg-gray-200" -->
-								<button id="ays-toggle-button" type="button" onclick="toggleAysPressed(event)" class="enabled bg-black relative inline-flex h-6 w-10 md:h-11 md:w-20 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+								<button id="ays-toggle-button" type="button" onclick="toggleAysPressed(event)" class="enabled bg-black relative inline-flex h-6 w-10 md:h-11 md:w-20 lg:h-6 lg:w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
 									<!-- Enabled: "translate-x-5 or x-10 if md", Not Enabled: "translate-x-0" -->
-									<span aria-hidden="true" class="translate-x-5 md:translate-x-10 pointer-events-none inline-block h-5 w-5 md:h-10 md:w-10 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+									<span aria-hidden="true" class="translate-x-5 md:translate-x-10 lg:translate-x-5 pointer-events-none inline-block h-5 w-5 md:h-10 md:w-10 lg:h-5 lg:w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
 								</button>
 							</div>
 						</div>

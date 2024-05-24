@@ -442,20 +442,20 @@ function bottom_generation_menu_html() {
 function newCollectionModalHTML() {
 	return `
 	<div id="new-collection-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
-		<div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
-			<button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissNewCollectionModal()">
+		<div class="max-w-2xl md:max-w-3xl mx-auto bg-white p-7 md:p-9 rounded-lg shadow-lg w-full relative">
+			<button class="absolute top-3 md:top-6 right-3 md:right-6 text-3xl md:text-4xl text-gray-500 hover:text-gray-700" onclick="dismissNewCollectionModal()">
 				<i class="fas fa-times" aria-hidden="true"></i>
 			</button>
 			<div class="mb-4">
-				<h2 class="text-3xl text-gray-900 mb-2">New Collection</h2>
+				<h2 class="text-3xl md:text-4xl text-gray-900 mb-2 md:py-3">New Collection</h2>
 			</div>
 
 			<div class="mb-1">
-				<label for="new-collection-name" class="block text-sm font-medium leading-6 text-gray-900">Collection Name</label>
+				<label for="new-collection-name" class="block text-sm md:text-2xl font-medium leading-6 text-gray-900">Collection Name</label>
 				<div class="relative flex">
 					
-					<input type="text" name="new-collection-name" id="new-collection-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
-					<button id="create-new-collection-button" class="flex flex-grow justify-center items-center text-center bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToCreateNewCollection()">
+					<input type="text" name="new-collection-name" id="new-collection-name" class="block w-full rounded-md border-0 py-1.5 md:py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-3xl leading-6" autocomplete="off">
+					<button id="create-new-collection-button" class="flex flex-grow justify-center items-center text-center bg-black text-white md:text-3xl px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToCreateNewCollection()">
 						<p id="new-collection-button-label" class="flex items-center">Create</p>
 						<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 					</button>
@@ -473,23 +473,23 @@ function newCollectionModalHTML() {
 function changeCollectionModalHTML() {
 	return `
 	<div id="change-collection-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
-		<div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
-			<button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissChangeCollectionModal()">
+		<div class="max-w-2xl md:max-w-3xl mx-auto bg-white p-7 md:p-9 rounded-lg shadow-lg w-full relative">
+			<button class="absolute top-3 md:top-6 right-3 md:right-6 text-3xl md:text-4xl text-gray-500 hover:text-gray-700" onclick="dismissNewCollectionModal()">
 				<i class="fas fa-times" aria-hidden="true"></i>
 			</button>
 			<div class="mb-0">
-				<h2 class="text-3xl text-gray-900 mb-4">Change Collection</h2>
+				<h2 class="text-3xl md:text-4xl text-gray-900 mb-4 md:py-3">Change Collection</h2>
 			</div>
 
 			<div class="mb-0">
-				<label id="change-collection-label" class="block text-sm mb-1 font-medium leading-6 text-gray-400">from</label>
+				<label id="change-collection-label" class="block text-sm md:text-2xl mb-1 font-medium leading-6 text-gray-400">from</label>
 				<div class="relative flex">
 					
-					<select id="collection-list" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+					<select id="collection-list" class="block w-full rounded-md border-0 py-1.5 md:py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-3xl leading-6">
 						
 					</select>
 
-					<button id="change-collection" class="bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToChangeCollection()">Change</button>
+					<button id="change-collection" class="bg-black text-white md:text-3xl px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToChangeCollection()">Change</button>
 				</div>
 			</div>
 
@@ -501,21 +501,21 @@ function changeCollectionModalHTML() {
 function renameCollectionModalHTML() {
 	return `
 	<div id="rename-collection-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
-		<div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
-			<button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissRenameCollectionModal()">
+		<div class="max-w-2xl md:max-w-3xl mx-auto bg-white p-7 md:p-9 rounded-lg shadow-lg w-full relative">
+			<button class="absolute top-3 md:top-6 right-3 md:right-6 text-3xl md:text-4xl text-gray-500 hover:text-gray-700" onclick="dismissNewCollectionModal()">
 				<i class="fas fa-times" aria-hidden="true"></i>
 			</button>
 			<div class="mb-0">
-				<h2 class="text-3xl text-gray-900 mb-4">Rename Collection</h2>
+				<h2 class="text-3xl md:text-4xl text-gray-900 mb-4 md:py-3">Rename Collection</h2>
 			</div>
 
 			<div class="mb-0">
-				<label id="rename-collection-name-label" class="block text-sm font-medium leading-6 text-gray-400">for</label>
+				<label id="rename-collection-name-label" class="block text-sm md:text-2xl font-medium leading-6 text-gray-400">for</label>
 				<div class="relative flex">
 					
-					<input type="text" name="rename-collection-name" id="rename-collection-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+					<input type="text" name="rename-collection-name" id="rename-collection-name" class="block w-full rounded-md border-0 py-1.5 md:py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-3xl leading-6" autocomplete="off">
 
-					<button id="rename-new-collection-button" class="flex flex-grow justify-center items-center text-center bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToRenameCollection()">
+					<button id="rename-new-collection-button" class="flex flex-grow justify-center items-center text-center bg-black text-white md:text-3xl px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToRenameCollection()">
 						<p id="rename-button-label" class="flex items-center">Rename</p>
 						<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 					</button>
@@ -530,20 +530,20 @@ function renameCollectionModalHTML() {
 function enterRefImageUrlModalHTML() {
 	return `
 	<div id="enter-ref-img-url-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
-		<div class="max-w-2xl mx-auto bg-white p-7 rounded-lg shadow-lg w-full relative">
-			<button class="absolute top-3 right-3 text-3xl text-gray-500 hover:text-gray-700" onclick="dismissEnterRefImgUrlModal()">
+		<div class="max-w-2xl md:max-w-3xl  mx-auto bg-white p-7 md:p-9 rounded-lg shadow-lg w-full relative">
+			<button class="absolute top-3 md:top-6 right-3 md:right-6 text-3xl md:text-4xl text-gray-500 hover:text-gray-700" onclick="dismissNewCollectionModal()">
 				<i class="fas fa-times" aria-hidden="true"></i>
 			</button>
 			<div class="mb-0">
-				<h2 class="text-3xl text-gray-900 mb-4">Reference Image Url</h2>
+				<h2 class="text-3xl md:text-4xl text-gray-900 mb-4 md:py-3">Reference Image Url</h2>
 			</div>
 
 			<div class="mb-0">
 				<div class="relative flex">
 					
-					<input type="text" name="ref-img-url" id="ref-img-url" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+					<input type="text" name="ref-img-url" id="ref-img-url" class="block w-full rounded-md border-0 py-1.5 md:py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-3xl leading-6" autocomplete="off">
 
-					<button id="ref-img-url-button" class="flex flex-grow justify-center items-center text-center bg-black text-white px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToEnterRefImgUrl()">
+					<button id="ref-img-url-button" class="flex flex-grow justify-center items-center text-center bg-black text-white md:text-3xl px-8 py-[0.6em] rounded shadow ml-2" onclick="userWantsToEnterRefImgUrl()">
 						<p id="rename-button-label" class="flex items-center">Enter</p>
 						<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
 					</button>

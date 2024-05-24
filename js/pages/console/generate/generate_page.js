@@ -146,7 +146,7 @@ function configureSelectableDiv(div) {
     if (isSelectable) {
         checkbox.classList.remove("hidden"); 
         selectionOverlay.classList.remove("pointer-events-none");      
-        floatingCopyButton.classList.remove('md:flex');
+        floatingCopyButton.classList.remove('lg:flex');
     } else {
         div.classList.remove("selected");
         checkbox.classList.add("hidden");
@@ -155,7 +155,7 @@ function configureSelectableDiv(div) {
         selectionOverlay.classList.add("pointer-events-none"); 
         const overlay_bg = div.querySelector(".overlay-bg");
         overlay_bg.classList.remove("bg-white", "opacity-50");
-        floatingCopyButton.classList.add('md:flex');
+        floatingCopyButton.classList.add('lg:flex');
     }
 }
 
@@ -1517,7 +1517,7 @@ function addFileToRefImgElement(fileInfo) {
     singleRefImg.setAttribute('filename', fileInfo.name);
     singleRefImg.setAttribute('fileType', fileInfo.type);
     singleRefImg.classList.remove('hidden');
-    singleRefImageButton.classList.remove('border-2', 'border-dashed');
+    singleRefImageButton.classList.remove('border-2', 'md:border-4', 'lg:border-2', 'border-dashed');
 }
 
 function clearRefImgElement(event) {
@@ -1528,7 +1528,7 @@ function clearRefImgElement(event) {
     singleRefImg.setAttribute('filename', '');
     singleRefImg.setAttribute('fileType', '');
     singleRefImg.classList.add('hidden');
-    singleRefImageButton.classList.add('border-2', 'border-dashed');
+    singleRefImageButton.classList.add('border-2', 'md:border-4', 'lg:border-2', 'border-dashed');
 }
 
 function getUploadedRef() {
@@ -2279,6 +2279,7 @@ function toggleAysPressed(event) {
 }
 
 function updateAysToggle(shouldEnable) {
+    var translate_x_amount = previousWindowWidth < 768 ? 'translate-x-5' : 'md:translate-x-10';
     let aysButton = document.getElementById('ays-toggle-button');
     let span = aysButton.querySelector('span');
     let denoisingStepsField = document.getElementById('denoising-steps');
@@ -2286,8 +2287,9 @@ function updateAysToggle(shouldEnable) {
         aysButton.classList.add('enabled');
         aysButton.classList.add('bg-black');
         aysButton.classList.remove('bg-gray-200');
-        span.classList.add('translate-x-5');
         span.classList.remove('translate-x-0');
+        span.classList.remove('translate-x-5');
+        span.classList.add(translate_x_amount);
         denoisingStepsField.disabled = true;
         denoisingStepsField.classList.remove('text-gray-900');
         denoisingStepsField.classList.add('text-gray-400');
@@ -2296,6 +2298,7 @@ function updateAysToggle(shouldEnable) {
         aysButton.classList.remove('enabled');
         aysButton.classList.remove('bg-black');
         aysButton.classList.add('bg-gray-200');
+        span.classList.remove(translate_x_amount);
         span.classList.remove('translate-x-5');
         span.classList.add('translate-x-0');
         denoisingStepsField.disabled = false;

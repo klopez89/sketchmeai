@@ -43,11 +43,11 @@ function newGridItemHTML(gen_id, gen_string="") {
                     <i class="fa fa-copy" aria-hidden="true"></i>
                 </button>
 
-				<button id="favorite-button" class="absolute w-10 h-10 md:w-14 md:h-14 aspect-w-1 aspect-h-1 flex bottom-2 md:bottom-3 left-2 md:left-3 p-2 text-xl md:text-4xl lg:text-3xl text-white border-0 border-white opacity-100 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
+				<button id="favorite-button" class="absolute w-10 h-10 md:w-14 md:h-14 lg:w-10 lg:h-10 aspect-w-1 aspect-h-1 flex bottom-2 md:bottom-3 lg:bottom-2 left-2 md:left-3 lg:left-2 p-2 text-xl md:text-4xl lg:text-2xl text-white border-0 border-white opacity-100 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
 
 					<div class="flex flex-grow items-center justify-center text-center">
 						<span class="flex items-center justify-center">
-							<div class="bg-black bg-opacity-30 p-2 md:p-3 rounded-full flex items-center justify-center">
+							<div class="bg-black bg-opacity-30 p-2 md:p-3 lg:p-2 rounded-full flex items-center justify-center">
 								<i class="fa-regular fa-heart text-white" aria-hidden="true"></i>
 							</div>
 						</span>
@@ -271,7 +271,7 @@ function generate_form_html() {
 		<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 md:gap-y-4 lg:gap-y-2 sm:grid-cols-6 py-3 md:py-5 lg:py-3">
 			<div class="col-span-full px-4 md:px-6 lg:px-4" id="prompt-field-container">
 				<div class="flex justify-between items-center">
-					<label for="prompt" class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Prompt</label>
+					<label for="prompt" class="block text-sm md:text-2xl lg:text-sm leading-6 text-gray-700">Prompt</label>
 				</div>
 				<div class="mt-2">
 					<div id="prompt" name="prompt" rows="3" class="max-w-full h-28 md:h-36 lg:h-28 overflow-y-auto bg-white whitespace-normal editable break-words outline-none px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6"></div>
@@ -279,7 +279,7 @@ function generate_form_html() {
 			</div>
 			<div id="prompt-style-container" class="col-span-full pt-1">
 				<div class="flex px-4 md:px-6 lg:px-4 pb-1 text-sm md:text-2xl lg:text-sm">
-					<label class="leading-6 text-gray-700 font-medium pb-1">Style:&nbsp;</label>
+					<label class="leading-6 text-gray-700 pb-1">Style:&nbsp;</label>
 					<label id="selected-prompt-style-label" class="leading-6 text-gray-900">Cell-Shading</label>
 				</div>
 

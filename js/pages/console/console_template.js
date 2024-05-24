@@ -42,7 +42,7 @@ function consoleHtml() {
                         <li>
                             <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold">
                                 <div class="h-6 w-6 md:h-10 md:w-10 lg:h-6 lg:w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
-                                    <i class="fa-solid fa-bolt-lightning self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-bolt-lightning self-center text-lg md:text-4xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
                                 Generate&nbsp;
                             </a>
@@ -95,7 +95,7 @@ function consoleHtml() {
         <div class="fixed top-0 z-[80] flex w-full h-16 md:h-24 lg:h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white shadow-sm sm:gap-x-6 pl-6 pr-4 lg:pr-52">
             <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="open = true">
             <span class="sr-only">Open sidebar</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <svg class="h-6 w-6 md:h-10 md:w-10 lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
             </svg>
             </button>
@@ -107,8 +107,8 @@ function consoleHtml() {
                 <div id="page-title" class="relative flex flex-0 self-center text-xl md:text-3xl lg:text-xl font-bold">Generate</div>
                 <button id="basic-examples-button" onclick="navigateToBasicPromptExamples()" class="hidden cursor-pointer border-2 border-black rounded-md flex-grow-0 flex-shrink-0 text-center px-8 py-2.5 text-sm text-black shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">See Prompt Examples</button>                
                 
-                <div class="ml-auto flex items-center gap-x-4 lg:gap-x-6">
-                    <button id="show-payment-button" onclick="showPaymentModal()" class="rounded-md text-xs md:text-xl lg:text-xs text-gray-400 hover:bg-gray-100 px-4 md:px-5 lg:px-4 py-4 md:py-5 lg:py-4 my-2 relative flex items-center justify-center">
+                <div class="ml-auto flex items-center gap-x-4 md:gap-x-6">
+                    <button id="show-payment-button" onclick="showPaymentModal()" class="rounded-md text-xs md:text-2xl lg:text-xs text-gray-400 hover:bg-gray-100 px-4 md:px-5 lg:px-4 py-4 md:py-5 lg:py-4 my-2 relative flex items-center justify-center">
                         <span id="credit-balance-label" class="inset-0 flex items-center justify-center text-transparent">Credit: $0.00</span>
                         <i id="balance-spinner" class="fas fa-spinner fa-spin absolute m-auto" aria-hidden="true"></i>
                     </button>
@@ -120,7 +120,7 @@ function consoleHtml() {
                         <div x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()" @click.away="onClickAway($event)" class="relative">
                             <button type="button" class="-m-1.5 flex items-center p-1.5" id="user-menu-button" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="true" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
                                 <span class="sr-only">Open user menu</span>
-                                <div id="user-avatar-circle" class="flex h-8 w-8 md:h-14 md:w-14 lg:h-8 lg:w-8 flex-shrink-0 items-center justify-center bg-black rounded-full text-sm md:text-xl lg:text-sm font-medium text-white">A</div>
+                                <div id="user-avatar-circle" class="flex h-8 w-8 md:h-14 md:w-14 lg:h-8 lg:w-8 flex-shrink-0 items-center justify-center bg-black rounded-full text-sm md:text-2xl lg:text-sm font-medium text-white">A</div>
                                 <span class="hidden lg:flex lg:items-center">
                                 <span id="display-name-label" class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">Tom Cook</span>
                                 <svg class="ml-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

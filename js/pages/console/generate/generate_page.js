@@ -2142,6 +2142,12 @@ function selectLoraPersonDiv(loraPersonDiv) {
     + loraPersonDiv.offsetWidth / 2 
     - loraPersonGrid.offsetWidth / 2;
     loraPersonGrid.scrollLeft = scrollPosition;
+
+    // Add a small delay then simulate a scroll event
+    setTimeout(() => {
+        loraPersonGrid.scrollBy(0, 1);
+        loraPersonGrid.scrollBy(0, -1);
+    }, 100);
 }
 
 function deSelectAllLoraPersonOptions() {

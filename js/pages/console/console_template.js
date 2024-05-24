@@ -328,7 +328,7 @@ function mobileSideBarHTML() {
                 <div class="relative md:pl-24 w-full ml-auto flex-grow flex-1" x-show="open" x-transition:enter=" transition ease-in-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" style="display: none;">
                     
                     <!-- Sidebar content -->
-                    <div id="sidebar-gen-form-container" class="h-full pt-16 md:pt-20 overflow-y-auto scrolling-touch bg-gray-100 flex flex-col justify-between">
+                    <div id="sidebar-gen-form-container" class="h-full pt-16 md:pt-24 overflow-y-auto scrolling-touch bg-gray-100 flex flex-col justify-between">
                         
                         <div class="w-full flex justify-start sticky bottom-0 bg-white p-2 gap-4 border-t border-gray-200" id="gen-button-container">
                             <button id="back-to-models-button" class="pl-3 text-gray-400 hover:text-gray-600 flex-shrink-0 md:text-2xl" @click="open = !open">

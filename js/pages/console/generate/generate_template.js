@@ -185,13 +185,13 @@ function generate_form_html() {
 	return `
 	<form class="generate-form overflow-y-auto flex flex-col px-0 py-0" id="generateForm">
 
-		<div class="pb-3 pt-3 pl-4 md:pl-6 lg:pl-4 border-b border-gray-300 lg:hidden">
+		<div class="py-3 md:py-5 lg:py-3 pl-4 md:pl-6 lg:pl-4 border-b border-gray-300 lg:hidden">
 			<p class="text-xl md:text-4xl font-bold">Generation Settings</p>
 			<p class="text-xs md:text-lg text-gray-400 italic" id="secondary-gen-estimate-label">~$0.04 ($0.11 from cold boot)</p>
 		</div>
 
 
-		<div class="col-span-full px-0 py-3 border-b border-gray-300">
+		<div class="col-span-full px-0 py-3 md:py-5 lg:py-3 border-b border-gray-300">
 			<div class="px-0 pb-0 grid grid-cols-6 gap-x-5 gap-y-0 sm:grid-cols-6">
 				
 				<div class="hidden col-span-2 flex items-center pl-4" id="mode-title-container">
@@ -268,7 +268,7 @@ function generate_form_html() {
 		</div>
 
 
-		<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 pb-3 pt-2 px-0">
+		<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 md:gap-y-4 lg:gap-y-2 sm:grid-cols-6 py-3 md:py-5 lg:py-3">
 			<div class="col-span-full px-4 md:px-6 lg:px-4" id="prompt-field-container">
 				<div class="flex justify-between items-center">
 					<label for="prompt" class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Prompt</label>
@@ -557,7 +557,7 @@ function enterRefImageUrlModalHTML() {
 
 function generateReferenceFormSectionHTML() {
 	return `
-	<div class="col-span-full px-4 md:px-6 lg:px-4 border-y border-gray-300">
+	<div class="col-span-full px-4 md:px-6 lg:px-4 border-y border-gray-300 mb-5 md:mb-10 lg:mb-5">
 		<!-- Start of the new nested accordion for reference image fields -->
 		<div id="nestedAccordion">
 
@@ -719,8 +719,8 @@ function basicGenerationSettingsHTML() {
 
 			<div id="nestedPromptSettingsCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
 
-				<div class="px-0 pb-3 pt-2 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6" id="rest-gen-settings-section">
-					<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2">
+				<div class="pb-3 pt-2" id="rest-gen-settings-section">
+					<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2 md:gap-y-4 lg:gap-y-2">
 
 						<div class="col-span-full" id="neg-prompt-field-container">
 							<label for="neg-prompt" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Negative Prompt</label>

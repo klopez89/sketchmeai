@@ -292,8 +292,8 @@ function uploadEntryDiv(file, is_first_file) {
         <div class="group aspect-h-10 aspect-w-10 block w-full relative">
 
             <div id="model-name-container" class="aspect-[1/1]" style="background-color: ${bgColor};">
-                <div class="flex justify-left items-end h-full text-white text-5xl">
-                    <p id="model-name-label" class="text-xl ml-3 mb-2"></p>
+                <div class="flex justify-left items-end h-full text-white">
+                    <p id="model-name-label" class="text-xl md:text-3xl lg:text-xl ml-3 md:ml-5 lg:ml-3 mb-2 md:mb-4 lg:mb-2"></p>
                 </div>
             </div>
             

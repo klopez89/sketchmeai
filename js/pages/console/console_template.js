@@ -158,7 +158,7 @@ function consoleHtml() {
                                 <i class="fas fa-times" aria-hidden="true"></i>
                             </button>
                             <div class="mb-4">
-                                <h2 class="text-3xl md:text-4xl lg:text-3xl text-gray-900 mb-2 md:mb-4">Balance: 
+                                <h2 class="text-3xl md:text-5xl lg:text-3xl text-gray-900 mb-2 md:mb-4">Balance: 
                                     <span id="modal-credit-balance-label" class="">$0.00</span>
                                     <span id="insufficient-credit-label" class="hidden italic text-red-500 text-xs md:text-xl lg:text-xs">Insufficient credit.</span>
                                 </h2>
@@ -170,19 +170,19 @@ function consoleHtml() {
                             <hr class="border-t border-gray-200 my-6">
 
                             <div class="mb-1">
-                                <h3 class="text-lg md:text-3xl lg:text-lg font-semibold mb-2">Add Credit</h3>
-                                <div class="flex space-x-2 md:text-2xl lg:text-base px-6 md:px-8 lg:px-6 py-2 md:py-4 lg:py-2">
-                                    <button class="bg-gray-500 hover:bg-gray-700 text-white rounded shadow" id="first-credit-option" value="5" onclick="firstCreditOptionClicked()">$5</button>
-                                    <button class="bg-black text-white rounded shadow" id="second-credit-option" value="10" onclick="secondCreditOptionClicked()">$10</button>
-                                    <button class="bg-gray-500 hover:bg-gray-700 text-white rounded shadow" id="third-credit-option" value="20" onclick="thirdCreditOptionClicked()">$20</button>
+                                <h3 class="text-lg md:text-4xl lg:text-lg font-semibold mb-2">Add Credit</h3>
+                                <div class="flex space-x-2 md:text-2xl lg:text-base">
+                                    <button class="bg-gray-500 hover:bg-gray-700 text-white rounded shadow px-6 md:px-8 lg:px-6 py-2 md:py-4 lg:py-2" id="first-credit-option" value="5" onclick="firstCreditOptionClicked()">$5</button>
+                                    <button class="bg-black text-white rounded shadow px-6 md:px-8 lg:px-6 py-2 md:py-4 lg:py-2" id="second-credit-option" value="10" onclick="secondCreditOptionClicked()">$10</button>
+                                    <button class="bg-gray-500 hover:bg-gray-700 text-white rounded shadow px-6 md:px-8 lg:px-6 py-2 md:py-4 lg:py-2" id="third-credit-option" value="20" onclick="thirdCreditOptionClicked()">$20</button>
                                 </div>
                                 <div class="mb-4 mt-1 text-xs md:text-lg lg:text-xs text-gray-800">Minimum</div>
-                                <div class="relative">
+                                <div class="relative flex">
                                     <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                                         <span class="text-gray-400 md:text-2xl lg:text-base">$</span>
                                     </span>
                                     <input id="credit-amount" type="number" min="1" step="1" placeholder="" class="border-1 border-gray-400 focus:border-black focus:ring-0 rounded-lg px-5 md:px-8 lg:px-5 py-2 md:py-4 lg:py-2" value="10">
-                                    <button id="pay-button" class="bg-black text-white md:text-2xl lg:text-base font-semibold px-8 md:px-10 lg:px-8 py-[0.6em] md:py-[1em] lg:py-[0.6em] rounded shadow ml-2" onclick="userWantsToPay()">Pay</button>
+                                    <button id="pay-button" class="bg-black text-white md:text-2xl lg:text-base font-semibold px-8 md:px-10 lg:px-8 py-[0.6em] md:py-[0.7em] lg:py-[0.6em] rounded shadow ml-2" onclick="userWantsToPay()">Pay</button>
                                 </div>
                             </div>
 

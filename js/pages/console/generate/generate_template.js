@@ -185,7 +185,7 @@ function generate_form_html() {
 	return `
 	<form class="generate-form overflow-y-auto flex flex-col px-0 py-0" id="generateForm">
 
-		<div class="pb-3 pt-3 pl-4 border-b border-gray-300 lg:hidden">
+		<div class="pb-3 pt-3 pl-4 md:pl-6 lg:pl-4 border-b border-gray-300 lg:hidden">
 			<p class="text-xl md:text-4xl font-bold">Generation Settings</p>
 			<p class="text-xs md:text-lg text-gray-400 italic" id="secondary-gen-estimate-label">~$0.04 ($0.11 from cold boot)</p>
 		</div>
@@ -204,12 +204,12 @@ function generate_form_html() {
 				</div>
 				<div id="lora-component-container" class="col-span-full pt-0">
 
-					<div class="flex px-4 pb-1 md:pb-2 lg:pb-1 text-sm md:text-2xl lg:text-sm">
+					<div class="flex px-4 md:px-6 lg:px-4 pb-1 md:pb-2 lg:pb-1 text-sm md:text-2xl lg:text-sm">
 						<label class="leading-6 text-gray-700 pb-1">Person Model:&nbsp;</label>
 						<label id="selected-person-lora" class="leading-6 text-gray-900">None</label>
 					</div>
 
-					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4">
+					<div id="lora-person-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-4 px-4 md:px-6 lg:px-4">
 				
 						<div class="relative cursor-pointer select-none selected" id="no-lora-person-button" instkey="" model="" modelname="" version="" trainingSubject="" genderType="" bgColor="#374151" onclick="loraPersonPressed(event)">
 							<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
@@ -233,7 +233,7 @@ function generate_form_html() {
 					<input type="number" name="person-lora-influence" id="person-lora-influence" placeholder="90" min="0" max="100" value="90" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 				</div>
 
-				<div class="col-span-full flex justify-between px-4 mt-2" id="person-influence-setting-selector-container">
+				<div class="col-span-full flex justify-between px-4 md:px-6 lg:px-4 mt-2" id="person-influence-setting-selector-container">
 						
 						<label for="person-influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Resemblance</label>
 						<div class="sm:hidden">
@@ -269,7 +269,7 @@ function generate_form_html() {
 
 
 		<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6 pb-3 pt-2 px-0">
-			<div class="col-span-full px-4" id="prompt-field-container">
+			<div class="col-span-full px-4 md:px-6 lg:px-4" id="prompt-field-container">
 				<div class="flex justify-between items-center">
 					<label for="prompt" class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Prompt</label>
 				</div>
@@ -278,12 +278,12 @@ function generate_form_html() {
 				</div>
 			</div>
 			<div id="prompt-style-container" class="col-span-full pt-1">
-				<div class="flex px-4 pb-1 text-sm md:text-2xl lg:text-sm">
+				<div class="flex px-4 md:px-6 lg:px-4 pb-1 text-sm md:text-2xl lg:text-sm">
 					<label class="leading-6 text-gray-700 pb-1">Style:&nbsp;</label>
 					<label id="selected-prompt-style-label" class="leading-6 text-gray-900">Cell-Shading</label>
 				</div>
 
-				<div id="prompt-style-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-0 px-4">
+				<div id="prompt-style-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-0 px-4 md:px-6 lg:px-4">
 			
 					<div prompt-style="${PromptStyle.NONE}" class="relative cursor-pointer select-none" id="no-prompt-style-button" bgColor="#374151" onclick="promptStylePressed(event)">
 						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
@@ -330,7 +330,7 @@ function generate_form_html() {
 			</div>
 		</div>
 
-		<div class="col-span-full flex-col px-4 pb-2 pt-3 justify-center hidden lg:flex border-t border-gray-300" id="gen-button-container">
+		<div class="col-span-full flex-col px-4 md:px-6 lg:px-4 pb-2 pt-3 justify-center hidden lg:flex border-t border-gray-300" id="gen-button-container">
 			<button id="gen-button" class="cursor-pointer rounded-md flex flex-grow justify-center items-center text-center bg-black px-3.5 md:px-7 lg:px-3.5 py-2.5 md:py-5 lg:py-2.5 text-lg md:text-3xl lg:text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">
 				<p id="desktop-gen-button-label" class="flex items-center">Generate</p>
 				<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
@@ -557,7 +557,7 @@ function enterRefImageUrlModalHTML() {
 
 function generateReferenceFormSectionHTML() {
 	return `
-	<div class="col-span-full px-4 border-y border-gray-300">
+	<div class="col-span-full px-4 md:px-6 lg:px-4 border-y border-gray-300">
 		<!-- Start of the new nested accordion for reference image fields -->
 		<div id="nestedAccordion">
 
@@ -700,7 +700,7 @@ function generateReferenceFormSectionHTML() {
 
 function basicGenerationSettingsHTML() {
 	return `
-	<div class="col-span-full px-4 border-t border-gray-300">
+	<div class="col-span-full px-4 md:px-6 lg:px-4 border-t border-gray-300" id="more-prompt-settings">
 		<!-- Start of the new nested accordion for prompt settings fields -->
 		<div id="nestedAccordion">
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">

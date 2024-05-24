@@ -31,7 +31,7 @@ function consoleHtml() {
         <!-- Static sidebar for desktop -->
         <div id="static-sidebar" class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-48 lg:flex-col">
             <!-- Sidebar component, swap this element with another sidebar if you like -->
-            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black px-6 pb-4 pt-16 md:pt-24 lg:pt-16">
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black px-6 pb-4 pt-20 md:pt-28 lg:pt-20">
                 <div class="flex h-16 shrink-0 items-center cursor-pointer" onclick="navigationToHomePage()">
                 <img class="h-8 md:h-14 lg:h-8 w-auto" src="https://storage.googleapis.com/sketchmeai-public/branding/white_sketchmeai_logo.png" alt="Your Company">
                 </div>

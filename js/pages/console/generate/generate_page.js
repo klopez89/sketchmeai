@@ -146,7 +146,7 @@ function configureSelectableDiv(div) {
     if (isSelectable) {
         checkbox.classList.remove("hidden"); 
         selectionOverlay.classList.remove("pointer-events-none");      
-        floatingCopyButton.classList.remove('md:flex');
+        floatingCopyButton.classList.remove('lg:flex');
     } else {
         div.classList.remove("selected");
         checkbox.classList.add("hidden");
@@ -155,7 +155,7 @@ function configureSelectableDiv(div) {
         selectionOverlay.classList.add("pointer-events-none"); 
         const overlay_bg = div.querySelector(".overlay-bg");
         overlay_bg.classList.remove("bg-white", "opacity-50");
-        floatingCopyButton.classList.add('md:flex');
+        floatingCopyButton.classList.add('lg:flex');
     }
 }
 

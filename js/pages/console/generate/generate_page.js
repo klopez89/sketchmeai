@@ -2142,11 +2142,6 @@ function selectLoraPersonDiv(loraPersonDiv) {
     + loraPersonDiv.offsetWidth / 2 
     - loraPersonGrid.offsetWidth / 2;
     loraPersonGrid.scrollLeft = scrollPosition;
-
-    // Force a reflow
-    loraPersonGrid.style.display='none';
-    loraPersonGrid.offsetHeight; // no need to store this anywhere, the reference is enough
-    loraPersonGrid.style.display='';
 }
 
 function deSelectAllLoraPersonOptions() {

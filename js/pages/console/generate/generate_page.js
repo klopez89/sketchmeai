@@ -1517,7 +1517,7 @@ function addFileToRefImgElement(fileInfo) {
     singleRefImg.setAttribute('filename', fileInfo.name);
     singleRefImg.setAttribute('fileType', fileInfo.type);
     singleRefImg.classList.remove('hidden');
-    singleRefImageButton.classList.remove('border-2', 'border-dashed');
+    singleRefImageButton.classList.remove('border-2', 'md:border-4', 'lg:border-2', 'border-dashed');
 }
 
 function clearRefImgElement(event) {
@@ -1528,7 +1528,7 @@ function clearRefImgElement(event) {
     singleRefImg.setAttribute('filename', '');
     singleRefImg.setAttribute('fileType', '');
     singleRefImg.classList.add('hidden');
-    singleRefImageButton.classList.add('border-2', 'border-dashed');
+    singleRefImageButton.classList.add('border-2', 'md:border-4', 'lg:border-2', 'border-dashed');
 }
 
 function getUploadedRef() {

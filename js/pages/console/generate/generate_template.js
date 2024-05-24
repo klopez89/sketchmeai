@@ -236,7 +236,7 @@ function generate_form_html() {
 				<div class="col-span-full flex justify-between px-4 md:px-6 lg:px-4 mt-2" id="person-influence-setting-selector-container">
 						
 						<label for="person-influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Resemblance</label>
-						<div class="sm:hidden">
+						<div class="hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
 							<select id="person-influence-setting-dropdown-selector" onChange="personInfSettingDropdownSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
 								<option selected="" inf-setting="${InfluenceSetting.LOW}">Low</option>
@@ -244,7 +244,7 @@ function generate_form_html() {
 								<option inf-setting="${InfluenceSetting.HIGH}">High</option>
 							</select>
 						</div>
-						<div class="hidden sm:block">
+						<div class="block">
 							<nav id="person-influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Person Influence Setting">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
 

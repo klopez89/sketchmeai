@@ -474,7 +474,7 @@ function changeCollectionModalHTML() {
 	return `
 	<div id="change-collection-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
 		<div class="max-w-2xl md:max-w-3xl mx-auto bg-white p-7 md:p-9 rounded-lg shadow-lg w-full relative">
-			<button class="absolute top-3 md:top-6 right-3 md:right-6 text-3xl md:text-4xl text-gray-500 hover:text-gray-700" onclick="dismissNewCollectionModal()">
+			<button class="absolute top-3 md:top-6 right-3 md:right-6 text-3xl md:text-4xl text-gray-500 hover:text-gray-700" onclick="dismissChangeCollectionModal()">
 				<i class="fas fa-times" aria-hidden="true"></i>
 			</button>
 			<div class="mb-0">
@@ -502,7 +502,7 @@ function renameCollectionModalHTML() {
 	return `
 	<div id="rename-collection-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
 		<div class="max-w-2xl md:max-w-3xl mx-auto bg-white p-7 md:p-9 rounded-lg shadow-lg w-full relative">
-			<button class="absolute top-3 md:top-6 right-3 md:right-6 text-3xl md:text-4xl text-gray-500 hover:text-gray-700" onclick="dismissNewCollectionModal()">
+			<button class="absolute top-3 md:top-6 right-3 md:right-6 text-3xl md:text-4xl text-gray-500 hover:text-gray-700" onclick="dismissRenameCollectionModal()">
 				<i class="fas fa-times" aria-hidden="true"></i>
 			</button>
 			<div class="mb-0">
@@ -531,7 +531,7 @@ function enterRefImageUrlModalHTML() {
 	return `
 	<div id="enter-ref-img-url-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
 		<div class="max-w-2xl md:max-w-3xl  mx-auto bg-white p-7 md:p-9 rounded-lg shadow-lg w-full relative">
-			<button class="absolute top-3 md:top-6 right-3 md:right-6 text-3xl md:text-4xl text-gray-500 hover:text-gray-700" onclick="dismissNewCollectionModal()">
+			<button class="absolute top-3 md:top-6 right-3 md:right-6 text-3xl md:text-4xl text-gray-500 hover:text-gray-700" onclick="dismissEnterRefImgUrlModal()">
 				<i class="fas fa-times" aria-hidden="true"></i>
 			</button>
 			<div class="mb-0">

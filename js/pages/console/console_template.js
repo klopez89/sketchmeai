@@ -22,7 +22,7 @@ function consoleHtml() {
                 </div>
         
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
-                <div id="swap-for-static-sidebar" class="fixed inset-y-0 flex w-48 md:w-80 lg:w-48 flex-col"></div>
+                <div id="swap-for-static-sidebar" class="fixed inset-y-0 flex w-48 md:w-96 lg:w-48 flex-col"></div>
 
             </div>
         </div>
@@ -31,17 +31,17 @@ function consoleHtml() {
         <!-- Static sidebar for desktop -->
         <div id="static-sidebar" class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-48 lg:flex-col">
             <!-- Sidebar component, swap this element with another sidebar if you like -->
-            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black px-6 md:px-10 lg:px-6 pb-4 pt-20 md:pt-28 lg:pt-20">
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black px-6 md:px-10 lg:px-6 pb-4 pt-20 md:pt-28 lg:pt-0">
                 <div class="flex h-16 shrink-0 items-center cursor-pointer" onclick="navigationToHomePage()">
                 <img class="h-8 md:h-14 lg:h-8 w-auto" src="https://storage.googleapis.com/sketchmeai-public/branding/white_sketchmeai_logo.png" alt="Your Company">
                 </div>
                 <nav class="flex flex-1 flex-col">
                 <ul id="page-list" role="list" class="flex flex-1 flex-col gap-y-7">
                     <li>
-                    <ul role="list" class="-mx-2 space-y-1">
+                    <ul role="list" class="-mx-2 space-y-1 md:space-y-5 lg:space-y-1">
                         <li>
                             <a href="/console/generate" class="bg-gray-800 text-white group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold">
-                                <div class="h-6 w-6 md:h-10 md:w-10 lg:h-10 lg:w-10 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                <div class="h-6 w-6 md:h-10 md:w-10 lg:h-6 lg:w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-solid fa-bolt-lightning self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
                                 Generate&nbsp;
@@ -49,7 +49,7 @@ function consoleHtml() {
                         </li>
                         <li>
                             <a href="/console/models" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold">
-                                <div class="h-6 w-6 md:h-10 md:w-10 lg:h-10 lg:w-10 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                <div class="h-6 w-6 md:h-10 md:w-10 lg:h-6 lg:w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-solid fa-layer-group self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
                                 Models&nbsp;
@@ -57,7 +57,7 @@ function consoleHtml() {
                         </li>
                         <li>
                             <a href="/blog" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-4xl lg:text-sm leading-6 font-semibold" target="_blank">
-                                <div class="h-6 w-6 md:h-10 md:w-10 lg:h-10 lg:w-10 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                <div class="h-6 w-6 md:h-10 md:w-10 lg:h-6 lg:w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-solid fa-file-lines self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
                                 Blog&nbsp;
@@ -65,7 +65,7 @@ function consoleHtml() {
                         </li>
                         <li class="hidden">
                             <a href="/console/collections" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 md:gap-x-5 lg:gap-x-3 rounded-md p-2 md:p-4 lg:p-2 text-sm md:text-2xl lg:text-sm leading-6 font-semibold">
-                                <div class="h-6 w-6 md:h-10 md:w-10 lg:h-10 lg:w-10 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
+                                <div class="h-6 w-6 md:h-10 md:w-10 lg:h-6 lg:w-6 flex items-stretch justify-center" viewbox="0 0 24 24" aria-hidden="true">
                                     <i class="fa-regular fa-images self-center text-lg md:text-3xl lg:text-lg" aria-hidden="true"></i>
                                 </div>
                                 Collections&nbsp;

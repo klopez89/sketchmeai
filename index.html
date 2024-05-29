@@ -3,12 +3,18 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DE6TQDCBK"></script>
+    <script src="/js/helpers/constants.js"></script>
+    <script>
+        const script = document.createElement('script');
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${CONSTANTS.GANALYTICS_ID}`;
+        script.async = true;
+        document.head.appendChild(script);
+    </script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-9DE6TQDCBK');
+        gtag('config', `${CONSTANTS.GANALYTICS_ID}`);
     </script>
 
     <meta charset="UTF-8">
@@ -28,7 +34,7 @@
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/node_modules/tw-elements/dist/js/tw-elements.umd.min.js"></script>
-    <script src="/js/helpers/constants.js"></script>
+
     <script src="/js/helpers/shared_templates.js"></script>
     <script src="/js/pages/home/home_template.js"></script> 
     <script src="/js/pages/home/home_page.js"></script>

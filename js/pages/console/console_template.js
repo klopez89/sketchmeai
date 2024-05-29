@@ -337,9 +337,8 @@ function mobileSideBarHTML() {
                             </button>               
 
                             <button class="cursor-pointer rounded-md flex flex-grow justify-center items-center text-center bg-black px-3.5 md:px-7 lg:px-3.5 py-2.5 md:py-5 lg:py-2.5 text-lg md:text-3xl lg:text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">
-
-                                <p id="mobile-sidebar-gen-button-label" class="flex items-center">Generate</p>
-                                <i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
+                                <i id="mobile-gen-icon" class="fa-solid fa-bolt-lightning" aria-hidden="true"></i>
+                                <p id="mobile-sidebar-gen-button-label" class="ml-2 md:ml-4">Generate</p>
                             </button>
                             
                         </div>

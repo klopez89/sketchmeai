@@ -2,6 +2,22 @@
 <html lang="en" class="h-full bg-white">
 
 <head>
+
+    <script src="../../js/helpers/constants.js"></script>
+    <script>
+        const script = document.createElement('script');
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${CONSTANTS.GANALYTICS_ID}`;
+        script.async = true;
+        document.head.appendChild(script);
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', `${CONSTANTS.GANALYTICS_ID}`);
+    </script>
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +37,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../js/helpers/constants.js"></script>
     <script src="../../js/helpers/auth_helper.js"></script>
     <script src="../../js/helpers/ui_helper.js"></script>
     <script src="../../js/pages/console/models/local_db.js"></script>

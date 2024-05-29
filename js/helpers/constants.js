@@ -29,7 +29,7 @@ const CONSTANTS = (function() {
                 appId: "1:537976500685:web:df3d5b4172c19db8cc9484",
                 measurementId: "G-9DE6TQDCBK"
             },
-            GANALYTICS_ID: 'G-9DE6TQDCBKZ',
+            GANALYTICS_ID: 'G-9DE6TQDCBK',
         };
     }
 })();

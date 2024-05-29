@@ -151,8 +151,8 @@ function dummyGridHTML() {
 							<button type="button" class="ml-3 inline-flex items-center rounded-md px-3 md:px-6 lg:px-3 py-2 md:py-4 lg:py-2 text-sm md:text-3xl lg:text-sm shadow-sm text-white bg-gray-200" onclick="deleteSelectedPressed(event)" id="deleteSelectedButton">Delete</button>
 
 							<button id="share-button" type="button" class="share-button ml-3 flex flex-grow justify-center items-center text-center rounded-md bg-gray-200 px-3 md:px-6 lg:px-3 py-2 md:py-4 lg:py-2 text-sm md:text-3xl lg:text-sm text-white shadow-sm">
-								<p id="desktop-gen-button-label" class="flex items-center">Share</p>
-								<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
+								<p id="share-button-label" class="flex items-center">Share</p>
+								<i class="fa fa-spinner fa-spin hid" aria-hidden="true"></i>
 							</button>
 						</div>
 					</div>
@@ -332,8 +332,8 @@ function generate_form_html() {
 
 		<div class="col-span-full flex-col px-4 md:px-6 lg:px-4 pb-2 pt-3 justify-center hidden lg:flex border-t border-gray-300" id="gen-button-container">
 			<button id="gen-button" class="cursor-pointer rounded-md flex flex-grow justify-center items-center text-center bg-black px-3.5 md:px-7 lg:px-3.5 py-2.5 md:py-5 lg:py-2.5 text-lg md:text-3xl lg:text-lg text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" onclick="generateButtonPressed(event)">
-				<p id="desktop-gen-button-label" class="flex items-center">Generate</p>
-				<i class="fa fa-spinner fa-spin hidden absolute" aria-hidden="true"></i>
+				<i id="mobile-gen-icon" class="fa-solid fa-bolt-lightning" aria-hidden="true"></i>
+				<p id="desktop-gen-button-label" class="ml-2 md:ml-4">Generate</p>
 			</button>
 			<p class="text-xs md:text-2xl lg:text-xs text-gray-400 italic mt-1 ml-1" id="generation-estimate-label">~$0.04 ($0.11 from cold boot)</p>
 		</div>

@@ -13,6 +13,7 @@ const CONSTANTS = (function() {
                 appId: "1:883089591531:web:e729a8ec05be7e0f4942ae",
                 measurementId: "G-F8YZ99D1R3"
             },
+            GANALYTICS_ID: 'G-7CB2YHT1T9',
         };
     } else {
         return {
@@ -28,6 +29,7 @@ const CONSTANTS = (function() {
                 appId: "1:537976500685:web:df3d5b4172c19db8cc9484",
                 measurementId: "G-9DE6TQDCBK"
             },
+            GANALYTICS_ID: 'G-9DE6TQDCBKZ',
         };
     }
 })();

@@ -152,7 +152,7 @@ function dummyGridHTML() {
 
 							<button id="share-button" type="button" class="share-button ml-3 flex flex-grow justify-center items-center text-center rounded-md bg-gray-200 px-3 md:px-6 lg:px-3 py-2 md:py-4 lg:py-2 text-sm md:text-3xl lg:text-sm text-white shadow-sm">
 								<p id="share-button-label" class="flex items-center">Share</p>
-								<i class="fa fa-spinner fa-spin hid" aria-hidden="true"></i>
+								<i class="fa fa-spinner fa-spin hidden" aria-hidden="true"></i>
 							</button>
 						</div>
 					</div>

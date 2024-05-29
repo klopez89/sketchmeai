@@ -1017,14 +1017,14 @@ function generateButtonPressed(event) {
     let generateTarget = event.currentTarget;
     // generateTarget.disabled = true;
     let generateIcon = generateTarget.querySelector('i');
-    let generateText = generateTarget.querySelector('p');
+    // let generateText = generateTarget.querySelector('p');
 
-    if (generateText != null) {
-        generateText.classList.add('opacity-0');
-        generateIcon.classList.remove('hidden');
-    } else {
-        generateIcon.className = 'fa-solid fa-spinner fa-spin'; // Change to spinner 
-    }
+    // if (generateText != null) {
+    //     generateText.classList.add('opacity-0');
+    //     generateIcon.classList.remove('hidden');
+    // } else {
+    generateIcon.className = 'fa-solid fa-spinner fa-spin'; // Change to spinner 
+    // }
 
     for (var j = 0; j < numberOfImages; j++) {
         if (shouldResetSeed) {
@@ -1157,13 +1157,13 @@ function fireGenerateCall(jsonObject, generateTarget) {
 
 function resetGenerateTarget(target) {
     let generateIcon = target.querySelector('i');
-    let generateText = target.querySelector('p');
-    if (generateText != null) {
-        generateText.classList.remove('opacity-0');
-        generateIcon.classList.add('hidden');
-    } else {
-        generateIcon.className = 'fa-solid fa-bolt-lightning';
-    }
+    // let generateText = target.querySelector('p');
+    // if (generateText != null) {
+    //     generateText.classList.remove('opacity-0');
+    //     generateIcon.classList.add('hidden');
+    // } else {
+    generateIcon.className = 'fa-solid fa-bolt-lightning';
+    // }
     // target.disabled = false;
     target.parentElement.click();
 }

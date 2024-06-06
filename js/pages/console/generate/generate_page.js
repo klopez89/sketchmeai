@@ -1723,7 +1723,7 @@ function promptInputValues() {
         loraScale: normalizedLoraScale,
         resWidth: 1024,
         resHeight: 1024,
-        scheduler: 'K_EULER',
+        scheduler: 'DDIM',
         refine: 'no_refiner',
         highNoiseFrac: 0.9,
         shouldUseRandomSeedAcrossModels: shouldUseRandomSeedAcrossModels,

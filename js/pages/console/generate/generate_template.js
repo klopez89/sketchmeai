@@ -642,6 +642,7 @@ function generateReferenceFormSectionHTML() {
 					<div class="col-span-3" id="mode-selector-container">
 						<select id="ref-img-mode" name="ref-img-mode" onChange="refImgModeChanged()" class="block w-full rounded-md border-0 px-2 md:px-4 lg:px-2 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
 							<option id="${RefImageMode.IMG2IMG}">Image to Image</option>
+							<option id="${RefImageMode.OPENPOSE}">Open Pose, ControlNet</option>
 							<option id="${RefImageMode.MISTO}">Misto Line, ControlNet</option>
 						</select>
 					</div>

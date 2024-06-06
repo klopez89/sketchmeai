@@ -50,6 +50,7 @@ const PromptStyle = {
 
 const RefImageMode = {
     IMG2IMG: 'i2i-mode',
+    OPENPOSE: 'openpose-mode',
     MISTO: 'misto-mode',
 }
 

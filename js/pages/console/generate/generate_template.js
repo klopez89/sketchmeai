@@ -453,18 +453,15 @@ function imageReferenceModeSelectionModalHTML(imgSrc) {
 				<i class="fas fa-times" aria-hidden="true"></i>
 			</button>
 			<div class="mb-4">
-				<h2 class="text-3xl md:text-4xl lg:text-3xl text-gray-900 mb-2 md:mb-3 lg:mb-2">Use as Reference</h2>
+				<h2 class="text-3xl md:text-4xl lg:text-3xl text-gray-900 mb-2 md:mb-3 lg:mb-2">Select Reference Mode</h2>
 			</div>
 
-			<div class="mb-0">
-				<label id="change-collection-label" class="block text-sm md:text-2xl lg:text-sm mb-1 font-medium leading-6 text-gray-400">for:</label>
-				
-				<div class="relative flex">
-					<button class="bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow ml-2" onclick="userSelectedImgRefModel(${RefImageMode.IMG2IMG},${imgSrc})">Image-to-Image</button>
-					<button class="bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow ml-2" onclick="userSelectedImgRefModel(${RefImageMode.OPENPOSE},${imgSrc})">OpenPose</button>
-					<button class="bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow ml-2" onclick="userSelectedImgRefModel(${RefImageMode.CANNY},${imgSrc})">Canny</button>
-				</div>
+			<div class="relative flex">
+				<button class="flex-1 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow ml-2" onclick="userSelectedImgRefModel(${RefImageMode.IMG2IMG},${imgSrc})">Image-to-Image</button>
+				<button class="flex-1 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow ml-2" onclick="userSelectedImgRefModel(${RefImageMode.OPENPOSE},${imgSrc})">OpenPose</button>
+				<button class="flex-1 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow ml-2" onclick="userSelectedImgRefModel(${RefImageMode.CANNY},${imgSrc})">Canny</button>
 			</div>
+
 		</div>
 	</div>
 	`;

@@ -456,10 +456,14 @@ function imageReferenceModeSelectionModalHTML(imgSrc) {
 				<h2 class="text-3xl md:text-4xl lg:text-3xl text-gray-900 mb-2 md:mb-3 lg:mb-2">Select Reference Mode</h2>
 			</div>
 
+			<div class="relative flex gap-x-2 mb-2">
+				<button class="flex-1 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode(${RefImageMode.IMG2IMG},${imgSrc})">Image-to-Image</button>
+				<button class="flex-1 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode(${RefImageMode.OPENPOSE},${imgSrc})">OpenPose</button>
+				<button class="flex-1 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode(${RefImageMode.CANNY},${imgSrc})">Canny</button>
+			</div>
+
 			<div class="relative flex">
-				<button class="flex-1 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow ml-2" onclick="userSelectedImgRefModel(${RefImageMode.IMG2IMG},${imgSrc})">Image-to-Image</button>
-				<button class="flex-1 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow ml-2" onclick="userSelectedImgRefModel(${RefImageMode.OPENPOSE},${imgSrc})">OpenPose</button>
-				<button class="flex-1 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow ml-2" onclick="userSelectedImgRefModel(${RefImageMode.CANNY},${imgSrc})">Canny</button>
+				<button class="flex-1 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode("ALL",${imgSrc})">All Three</button>
 			</div>
 
 		</div>

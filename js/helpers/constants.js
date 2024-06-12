@@ -84,6 +84,12 @@ const OpenPoseSettingValue = {
     HIGH: 100
 }
 
+const CannySettingValue = {
+    LOW: 70,
+    MEDIUM: 85,
+    HIGH: 100
+}
+
 const FAILED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/failed_img.png"
 const CANCELED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/canceled_img.png"
 

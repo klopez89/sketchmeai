@@ -707,7 +707,7 @@ function imageToImageFormSectionHTML() {
 
 function openPoseFormSectionHTML() {
 	return `
-	<div class="col-span-full px-4 md:px-6 lg:px-4 border-y border-gray-300">
+	<div class="col-span-full px-4 md:px-6 lg:px-4 border-t border-gray-300">
 		<div id="nestedAccordion">
 
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">

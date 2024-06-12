@@ -1940,15 +1940,21 @@ function configureGenElementforDeletion(genElement) {
 
 function useAsReferenceImagePressed(event) {
     event.preventDefault();
+    event.stopPropagation();
     let genElement = event.target.closest('[generation-id]');
     hideGenMenuShield(genElement);
     let generationId = genElement.getAttribute('generation-id');
     let imgElement = genElement.querySelector('img');
     let imgSrc = imgElement.getAttribute('src');
-    insertImgUrlForRefImg(imgSrc);
-    tryShowingReferenceImageSettings();
+
+    showImageRefModelSelectionModal(imgSrc);
+    // insertImgUrlForRefImg(imgSrc);
+    // tryShowingReferenceImageSettings();
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
-    event.stopPropagation();
+}
+
+function imgRefModeSelected(imgSrc) {
+
 }
 
 function copyPromptFromGenMenuPressed(event) {

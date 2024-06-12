@@ -568,11 +568,11 @@ function imageToImageFormSectionHTML() {
 		<div id="nestedAccordion">
 
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">
-				<button id="reference-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm md:text-2xl lg:text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
+				<button id="i2i-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 pr-4 text-right text-sm md:text-2xl lg:text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed>
 
 					<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+							<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
 						</svg>
 					</span>
 
@@ -632,25 +632,6 @@ function imageToImageFormSectionHTML() {
 						<div class="mt-0">
 							<input type="text" name="img-2-img-url" id="img-2-img" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
 						</div>
-					</div>
-
-
-					<div class="col-span-3 flex items-center" id="mode-title-container">
-						<label for="prompt-strength" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Mode</label>
-						<button id="i2i-mode-info-button" onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
-							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
-						</button>
-						<button id="misto-mode-info-button" onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="MistoLine, ControlNet" data-te-content="MistoLine is an SDXL-ControlNet model that can adapt to any type of line art input, demonstrating high accuracy and excellent stability. It can generate high-quality images (with a short side greater than 1024px) based on user-provided line art of various types, including hand-drawn sketches, different ControlNet line preprocessors, and model-generated outlines. MistoLine eliminates the need to select different ControlNet models for different line preprocessors, as it exhibits strong generalization capabilities across diverse line art conditions." class="hidden ml-2 pt-0 text-gray-300" data-te-original-title="" title="">
-							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
-						</button>
-					</div>
-
-					<div class="col-span-3" id="mode-selector-container">
-						<select id="ref-img-mode" name="ref-img-mode" onChange="refImgModeChanged()" class="block w-full rounded-md border-0 px-2 md:px-4 lg:px-2 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
-							<option id="${RefImageMode.IMG2IMG}">Image to Image</option>
-							<option id="${RefImageMode.OPENPOSE}">Open Pose, ControlNet</option>
-							<option id="${RefImageMode.MISTO}">Misto Line, ControlNet</option>
-						</select>
 					</div>
 
 

@@ -125,6 +125,24 @@ function dismissChangeCollectionModal() {
     animateAway(changeCollectionModal, 500);
 }
 
+function showImageRefModelSelectionModal(imgSrc) {
+    let imgRefModelSelectionModal_HTML = imageReferenceModeSelectionModalHTML(imgSrc);
+    let imgRefModelSelectionModalDiv = $($.parseHTML(imgRefModelSelectionModal_HTML));
+    $('#console-content').prepend(imgRefModelSelectionModalDiv);
+    let imgRefModelSelectionModal = document.getElementById('img-ref-mode-selection-modal');
+    animateIn(imgRefModelSelectionModal);
+}
+
+function userSelectedImgRefModel(refImgMode, imgSrc) {
+    console.log('The selected imgRefMode: ', refImgMode, ', and imgSrc: ', imgSrc);
+}
+
+
+function dismissImageRefModeSelectionModal() {
+    let imgRefModelSelectionModal = document.getElementById('img-ref-mode-selection-modal');
+    animateAway(imgRefModelSelectionModal, 500);
+}
+
 
 function showRefImageUrlModal(event) {
     event.preventDefault();

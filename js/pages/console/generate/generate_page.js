@@ -1637,7 +1637,7 @@ function promptInputValues() {
     let shouldUseRandomSeedAcrossModels = true;
 
     let refImgModeElement = document.getElementById('ref-img-mode');
-    let refImageMode = refImgModeElement.options[refImgModeElement.selectedIndex].id;
+    let refImageMode = RefImageMode.IMG2IMG; // refImgModeElement.options[refImgModeElement.selectedIndex].id;
     // console.log('the ref image mode is: ', refImageMode);
 
     if (promptStrength == '') {

@@ -133,7 +133,7 @@ function showImageRefModelSelectionModal(imgSrc) {
     animateIn(imgRefModelSelectionModal);
 }
 
-function userSelectedImgRefModel(refImgMode, imgSrc) {
+function userSelectedImgRefMode(refImgMode, imgSrc) {
     console.log('The selected imgRefMode: ', refImgMode, ', and imgSrc: ', imgSrc);
 }
 

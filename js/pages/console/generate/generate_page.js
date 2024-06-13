@@ -2410,14 +2410,6 @@ function updateHiDToggle(shouldEnable) {
 
 // Reference Image Mode and Influence Setting functions
 
-function refImgModeChanged() {
-    let dropdown = document.getElementById('influence-setting-dropdown-selector');
-    let selectedOption = dropdown.options[dropdown.selectedIndex];
-    let influence_setting = selectedOption.getAttribute('inf-setting');
-    setRefImgInfluenceValue(influence_setting);
-    alignAYSBasedOnRefImgMode();
-}
-
 function alignAYSBasedOnRefImgMode() {
     let refImgModeSelector = document.getElementById('ref-img-mode');
     let selectedMode = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
@@ -2530,10 +2522,14 @@ function setRefImgInfluenceValue(selected_influence_setting) {
 
 function personInfSettingDropdownSelectionMade(event) {
     event.preventDefault();
-    let selectedOption = event.target.options[event.target.selectedIndex];
+    let influenceTabSelection = event.currentTarget;
+    let refImgMode = influenceTabSelection.getAttribute('mode');
+
+    let selectedOption = influenceTabSelection.options[influenceTabSelection.selectedIndex];
     let influence_setting = selectedOption.getAttribute('inf-setting');
-    setPersonInfluenceValue(influence_setting);
-    updatePersonInfSettingTabUI(influence_setting);
+    console.log('the inf setting selected: ', influence_setting, ', and refImgMode: ', refImgMode);
+    // setPersonInfluenceValue(influence_setting);
+    // updatePersonInfSettingTabUI(influence_setting);
 }
 
 function setPersonInfluenceValue(selected_influence_setting) {

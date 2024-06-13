@@ -136,7 +136,7 @@ function showImageRefModelSelectionModal(imgSrc) {
 function userSelectedImgRefMode(refImgMode, imgSrc) {
     console.log('The selected imgRefMode: ', refImgMode, ', and imgSrc: ', imgSrc);
     insertImgUrlForRefImg(imgSrc, refImgMode);
-
+    dismissImageRefModeSelectionModal();
 }
 
 

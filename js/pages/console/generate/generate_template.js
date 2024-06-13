@@ -625,7 +625,7 @@ function imageToImageFormSectionHTML() {
 							
 								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); showRefImageUrlModal(event)">Enter Image URL</a>
 				
-								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); startRefUploadExperience()">Upload Image</a>
+								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); startRefUploadExperience(event)">Upload Image</a>
 				
 							</div>
 						</div>
@@ -638,7 +638,7 @@ function imageToImageFormSectionHTML() {
 
 					<div class="col-span-full" id="igm2img-field-container">
 						<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
-							<button id="ref-img-button" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
+							<button id="i2i-img-button" mode="${RefImageMode.IMG2IMG}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 								
 								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
 
@@ -754,7 +754,7 @@ function openPoseFormSectionHTML() {
 							
 								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); showRefImageUrlModal(event)">Enter Image URL</a>
 				
-								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); startRefUploadExperience()">Upload Image</a>
+								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); startRefUploadExperience(event)">Upload Image</a>
 				
 							</div>
 						</div>
@@ -767,7 +767,7 @@ function openPoseFormSectionHTML() {
 
 					<div class="col-span-full" id="igm2img-field-container">
 						<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
-							<button id="ref-img-button" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
+							<button id="openpose-img-button" mode="${RefImageMode.OPENPOSE}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 								
 								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
 
@@ -883,7 +883,7 @@ function cannyFormSectionHTML() {
 							
 								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); showRefImageUrlModal(event)">Enter Image URL</a>
 				
-								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); startRefUploadExperience()">Upload Image</a>
+								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); startRefUploadExperience(event)">Upload Image</a>
 				
 							</div>
 						</div>
@@ -896,7 +896,7 @@ function cannyFormSectionHTML() {
 
 					<div class="col-span-full" id="igm2img-field-container">
 						<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
-							<button id="ref-img-button" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
+							<button id="canny-img-button" mode="${RefImageMode.CANNY}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 								
 								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
 

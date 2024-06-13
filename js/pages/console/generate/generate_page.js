@@ -832,7 +832,7 @@ function copyPromptInfoFromGen(generation) {
     alignAYSBasedOnRefImgMode();
 }
 
-function insertImgUrlForRefImg(url) {
+function insertImgUrlForRefImg(url, refImageMode) {
     let urlWithoutQueryString = url.split('?')[0];
     let imageExtension = urlWithoutQueryString.split('.').pop();
     console.log('Image extension for ref img url is: ', imageExtension);
@@ -841,14 +841,17 @@ function insertImgUrlForRefImg(url) {
         'name': 'ref-img',
         'type': `image/${imageExtension}`
     }
-    addFileToRefImgElement(imgInfo);
-    attemptToShowRefImgSection();
+    addFileToRefImgElement(imgInfo, refImageMode);
+    attemptToShowRefImgSection(refImageMode);
 }
 
-function attemptToShowRefImgSection() {
-    let refImgSectionButton = document.getElementById('reference-section-button');
-    if(refImgSectionButton.getAttribute('data-te-collapse-collapsed') != null) {
-        refImgSectionButton.click();
+function attemptToShowRefImgSection(refImageMode) {
+    let refImgSectionBttns = referenceImgSectionButtons(refImageMode);
+    for(let i = 0; i < refImgSectionBttns.length; i++) {
+        let refImgSectionButton = refImgSectionBttns[i];
+        if(refImgSectionButton.getAttribute('data-te-collapse-collapsed') != null) {
+            refImgSectionButton.click();
+        }
     }
 }
 
@@ -1368,25 +1371,51 @@ function userWantsToEnterRefImgUrl() {
 
 
 function configureRefImageButton() {
-    let refImageUploadInput = document.getElementById('localRefImgUploadInput');
-    let singleRefImageButton = document.getElementById('ref-img-button')
+    let refImgButtonElements = referenceImgButtonElements(RefImageMode.ALL);
+    for(let i = 0; i < refImgButtonElements.length; i++) {
+        let refImgButton = refImgButtonElements[i];
+        let refImgButtonMode = refImgButton.getAttribute('mode');
+        let refImageUploadInput = refImgButton.nextElementSibling;
 
-    refImageUploadInput.addEventListener("change", () => {
-        console.log('Trigger change event of local upload input');
-         const files = refImageUploadInput.files;
-        handleRefImgFileUpload(files);
-        refImageUploadInput.value = '';
-    });
+        refImageUploadInput.addEventListener("change", () => {
+            console.log('Trigger change event of local upload input');
+             const files = refImageUploadInput.files;
+            handleRefImgFileUpload(files, refImgButton, refImgButtonMode);
+            refImageUploadInput.value = '';
+        });
 
-    refImageUploadInput.addEventListener("click", () => {
-        console.log('Trigger click event of local upload input');
-    });
+        refImageUploadInput.addEventListener("click", () => {
+            console.log('Trigger click event of local upload input');
+        });
 
-    singleRefImageButton.addEventListener('dragenter', handleDragEnter);
-    singleRefImageButton.addEventListener('dragleave', handleDragLeave);
-    singleRefImageButton.addEventListener('dragover', handleDragOver);
-    singleRefImageButton.addEventListener('drop', handleDrop);
-    singleRefImageButton.addEventListener('click', triggerLocalUploadMenu);
+        refImgButton.addEventListener('dragenter', handleDragEnter);
+        refImgButton.addEventListener('dragleave', handleDragLeave);
+        refImgButton.addEventListener('dragover', handleDragOver);
+        refImgButton.addEventListener('drop', handleDrop);
+        refImgButton.addEventListener('click', triggerLocalUploadMenu);
+    }
+
+
+
+    // let refImageUploadInput = document.getElementById('localRefImgUploadInput');
+    // let singleRefImageButton = document.getElementById('ref-img-button')
+
+    // refImageUploadInput.addEventListener("change", () => {
+    //     console.log('Trigger change event of local upload input');
+    //      const files = refImageUploadInput.files;
+    //     handleRefImgFileUpload(files);
+    //     refImageUploadInput.value = '';
+    // });
+
+    // refImageUploadInput.addEventListener("click", () => {
+    //     console.log('Trigger click event of local upload input');
+    // });
+
+    // singleRefImageButton.addEventListener('dragenter', handleDragEnter);
+    // singleRefImageButton.addEventListener('dragleave', handleDragLeave);
+    // singleRefImageButton.addEventListener('dragover', handleDragOver);
+    // singleRefImageButton.addEventListener('drop', handleDrop);
+    // singleRefImageButton.addEventListener('click', triggerLocalUploadMenu);
 }
 
 function genRefMenuShowing(event) {
@@ -1397,12 +1426,13 @@ function genRefMenuShowing(event) {
 function triggerLocalUploadMenu(event) {
 	event.preventDefault();
     console.log('time to show local upload flow');
-    startRefUploadExperience();
+    startRefUploadExperience(event);
 }
 
-function startRefUploadExperience() {
-    let singleRefImageButton = document.getElementById('localRefImgUploadInput');
-    singleRefImageButton.click();
+function startRefUploadExperience(event) {
+    let refImgButton = event.currentTarget;
+    let refImageUploadInput = refImgButton.nextElementSibling;
+    refImageUploadInput.click();
 }
 
 function handleDragEnter(event) {
@@ -1426,13 +1456,16 @@ function handleDrop(event) {
     // Un-highlight the drag-and-drop box
     // this.classList.remove('highlight');
 
+    let refImgButton = event.currentTarget;
+    let refImgButtonMode = refImgButton.getAttribute('mode');
+
     // Get the files that were dropped and handle them
     var files = event.dataTransfer.files;
-    handleRefImgFileUpload(files)
+    handleRefImgFileUpload(files, refImgButton, refImgButtonMode);
 }
 
 
-function handleRefImgFileUpload(files) {
+function handleRefImgFileUpload(files, refImgButton, refImgMode) {
     console.log('handling file uploads: ', files);
 
     let file_to_upload = files[0];
@@ -1447,7 +1480,7 @@ function handleRefImgFileUpload(files) {
     let fileSize = file.size;
     console.log('The file type here is: ', fileType, ' and the file size is: ', fileSize);
     
-    let uploadAreaButton = document.getElementById('ref-img-button');
+    let uploadAreaButton = refImgButton
     let uploadSpinner = uploadAreaButton.querySelector('#upload-spinner');
     uploadSpinner.classList.remove('hidden');
 
@@ -1463,9 +1496,7 @@ function handleRefImgFileUpload(files) {
         })
         .then(function (resizedImage) {
 
-
             uploadSpinner.classList.add('hidden');
-
 
             reader.addEventListener('load', function(event) {
                 let fileData = event.target.result;
@@ -1475,7 +1506,7 @@ function handleRefImgFileUpload(files) {
                     size: summarizeFileSize(resizedImage.size),
                     data: fileData,
                 };
-                addFileToRefImgElement(fileInfo);
+                addFileToRefImgElement(fileInfo, refImgMode);
             });
             reader.readAsDataURL(resizedImage);
         })
@@ -1496,7 +1527,7 @@ function handleRefImgFileUpload(files) {
                     size: resizedImage.size,
                     data: fileData,
                 };
-                addFileToRefImgElement(fileInfo);
+                addFileToRefImgElement(fileInfo, refImgMode);
             });
             reader.readAsDataURL(resizedImage);
         });
@@ -1510,14 +1541,49 @@ function handleRefImgFileUpload(files) {
     }
 }
 
-function addFileToRefImgElement(fileInfo) {
-    let singleRefImageButton = document.getElementById('ref-img-button');
-    let singleRefImg = singleRefImageButton.querySelector('img');
-    singleRefImg.src = fileInfo.data;
-    singleRefImg.setAttribute('filename', fileInfo.name);
-    singleRefImg.setAttribute('fileType', fileInfo.type);
-    singleRefImg.classList.remove('hidden');
-    singleRefImageButton.classList.remove('border-2', 'md:border-4', 'lg:border-2', 'border-dashed');
+function addFileToRefImgElement(fileInfo, refImageMode) {
+    let refImgButtonElements = referenceImgButtonElements(refImageMode);
+    for(let i = 0; i < refImgButtonElements.length; i++) {
+        let refImgButtonElement = refImgButtonElements[i];
+        let refImg = refImgButtonElement.querySelector('img');
+        refImg.src = fileInfo.data;
+        refImg.setAttribute('filename', fileInfo.name);
+        refImg.setAttribute('fileType', fileInfo.type);
+        refImg.classList.remove('hidden');
+        refImgButtonElement.classList.remove('border-2', 'md:border-4', 'lg:border-2', 'border-dashed');
+    }
+}
+
+function referenceImgButtonElements(refImageMode) {
+    var refImgButtonElements = [];
+    if (refImageMode == RefImageMode.IMG2IMG) {
+        refImgButtonElements.append(document.getElementById('i2i-img-button'));
+    } else if (refImageMode == RefImageMode.OPENPOSE) {
+        refImgButtonElements.append(document.getElementById('openpose-img-button'));
+    } else if (refImageMode == RefImageMode.CANNY) {
+        refImgButtonElements.append(document.getElementById('canny-img-button'));
+    } else { // All case
+        refImgButtonElements.append(document.getElementById('i2i-img-button'));
+        refImgButtonElements.append(document.getElementById('openpose-img-button'));
+        refImgButtonElements.append(document.getElementById('canny-img-button'));
+    }
+    return refImgButtonElements;
+}
+
+function referenceImgSectionButtons(refImageMode) {
+    var refImgSectionButtons = [];
+    if (refImageMode == RefImageMode.IMG2IMG) {
+        refImgSectionButtons.append(document.getElementById('i2i-section-button'));
+    } else if (refImageMode == RefImageMode.OPENPOSE) {
+        refImgSectionButtons.append(document.getElementById('openpose-section-button'));
+    } else if (refImageMode == RefImageMode.CANNY) {
+        refImgSectionButtons.append(document.getElementById('canny-section-button'));
+    } else { // All case
+        refImgSectionButtons.append(document.getElementById('i2i-section-button'));
+        refImgSectionButtons.append(document.getElementById('openpose-section-button'));
+        refImgSectionButtons.append(document.getElementById('canny-section-button'));
+    }
+    return refImgSectionButtons;
 }
 
 function clearRefImgElement(event) {

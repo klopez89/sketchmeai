@@ -1590,7 +1590,7 @@ function clearRefImgElement(event) {
     event.preventDefault();
     let clearRefImgButton = event.currentTarget;
     let refImgMode = clearRefImgButton.getAttribute('mode');
-    let refImgButton = referenceImgButtonElements(refImgMode);
+    let refImgButton = referenceImgButtonElements(refImgMode)[0];
 
     let singleRefImg = refImgButton.querySelector('img');
     singleRefImg.src = '';

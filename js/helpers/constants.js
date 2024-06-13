@@ -53,6 +53,7 @@ const RefImageMode = {
     OPENPOSE: 'openpose-mode',
     CANNY: 'canny-mode',
     MISTO: 'misto-mode',
+    ALL: 'all'
 }
 
 const InfluenceSetting = {

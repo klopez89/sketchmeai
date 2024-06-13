@@ -1557,15 +1557,15 @@ function addFileToRefImgElement(fileInfo, refImageMode) {
 function referenceImgButtonElements(refImageMode) {
     var refImgButtonElements = [];
     if (refImageMode == RefImageMode.IMG2IMG) {
-        refImgButtonElements.append(document.getElementById('i2i-img-button'));
+        refImgButtonElements.push(document.getElementById('i2i-img-button'));
     } else if (refImageMode == RefImageMode.OPENPOSE) {
-        refImgButtonElements.append(document.getElementById('openpose-img-button'));
+        refImgButtonElements.push(document.getElementById('openpose-img-button'));
     } else if (refImageMode == RefImageMode.CANNY) {
-        refImgButtonElements.append(document.getElementById('canny-img-button'));
+        refImgButtonElements.push(document.getElementById('canny-img-button'));
     } else { // All case
-        refImgButtonElements.append(document.getElementById('i2i-img-button'));
-        refImgButtonElements.append(document.getElementById('openpose-img-button'));
-        refImgButtonElements.append(document.getElementById('canny-img-button'));
+        refImgButtonElements.push(document.getElementById('i2i-img-button'));
+        refImgButtonElements.push(document.getElementById('openpose-img-button'));
+        refImgButtonElements.push(document.getElementById('canny-img-button'));
     }
     return refImgButtonElements;
 }
@@ -1573,15 +1573,15 @@ function referenceImgButtonElements(refImageMode) {
 function referenceImgSectionButtons(refImageMode) {
     var refImgSectionButtons = [];
     if (refImageMode == RefImageMode.IMG2IMG) {
-        refImgSectionButtons.append(document.getElementById('i2i-section-button'));
+        refImgSectionButtons.push(document.getElementById('i2i-section-button'));
     } else if (refImageMode == RefImageMode.OPENPOSE) {
-        refImgSectionButtons.append(document.getElementById('openpose-section-button'));
+        refImgSectionButtons.push(document.getElementById('openpose-section-button'));
     } else if (refImageMode == RefImageMode.CANNY) {
-        refImgSectionButtons.append(document.getElementById('canny-section-button'));
+        refImgSectionButtons.push(document.getElementById('canny-section-button'));
     } else { // All case
-        refImgSectionButtons.append(document.getElementById('i2i-section-button'));
-        refImgSectionButtons.append(document.getElementById('openpose-section-button'));
-        refImgSectionButtons.append(document.getElementById('canny-section-button'));
+        refImgSectionButtons.push(document.getElementById('i2i-section-button'));
+        refImgSectionButtons.push(document.getElementById('openpose-section-button'));
+        refImgSectionButtons.push(document.getElementById('canny-section-button'));
     }
     return refImgSectionButtons;
 }

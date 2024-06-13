@@ -135,15 +135,8 @@ function showImageRefModelSelectionModal(imgSrc) {
 
 function userSelectedImgRefMode(refImgMode, imgSrc) {
     console.log('The selected imgRefMode: ', refImgMode, ', and imgSrc: ', imgSrc);
-    if (refImgMode == RefImageMode.IMG2IMG) {
+    insertImgUrlForRefImg(imgSrc, refImgMode);
 
-    } else if (refImgMode == RefImageMode.OPENPOSE) {
-
-    } else if (refImgMode == RefImageMode.CANNY) {
-
-    } else { // All case
-
-    }
 }
 
 

@@ -2020,10 +2020,6 @@ function useAsReferenceImagePressed(event) {
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
 }
 
-function imgRefModeSelected(imgSrc) {
-
-}
-
 function copyPromptFromGenMenuPressed(event) {
     event.preventDefault();
     event.stopPropagation();

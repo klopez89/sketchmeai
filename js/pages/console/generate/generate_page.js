@@ -1598,7 +1598,8 @@ function clearRefImgElement(event) {
 }
 
 function getUploadedRef() {
-	let singleRefImageButton = document.getElementById('ref-img-button');
+    let i2iRefImgButton = referenceImgButtonElements(RefImageMode.IMG2IMG)[0];
+	let singleRefImageButton = i2iRefImgButton;
     // console.log('the single ref img button is: ', singleRefImageButton);
     let singleRefImg = singleRefImageButton.querySelector('img');
     let singleRefSrcUrl = singleRefImg.src;

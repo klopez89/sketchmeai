@@ -678,7 +678,7 @@ function imageToImageFormSectionHTML() {
 						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence</label>
 						<div class="hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-							<select id="influence-setting-dropdown-selector" onChange="infSettingDropdownSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
+							<select id="influence-setting-dropdown-selector" onChange="infSettingDropdownSelectionMade(event)" mode="${RefImageMode.IMG2IMG}" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
 								<option selected="" inf-setting="${InfluenceSetting.LOW}">Low</option>
 								<option inf-setting="${InfluenceSetting.MEDIUM}">Medium</option>
 								<option inf-setting="${InfluenceSetting.HIGH}">High</option>
@@ -807,7 +807,7 @@ function openPoseFormSectionHTML() {
 						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence</label>
 						<div class="hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab. -->
-							<select id="influence-setting-dropdown-selector" onChange="infSettingDropdownSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
+							<select id="influence-setting-dropdown-selector" onChange="infSettingDropdownSelectionMade(event)" mode="${RefImageMode.OPENPOSE}" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
 								<option selected="" inf-setting="${InfluenceSetting.LOW}">Low</option>
 								<option inf-setting="${InfluenceSetting.MEDIUM}">Medium</option>
 								<option inf-setting="${InfluenceSetting.HIGH}">High</option>
@@ -936,7 +936,7 @@ function cannyFormSectionHTML() {
 						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence</label>
 						<div class="hidden">
 							<!-- Use an "onChange" listener to redirect the user to the selected tab. -->
-							<select id="influence-setting-dropdown-selector" onChange="infSettingDropdownSelectionMade(event)" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
+							<select id="influence-setting-dropdown-selector" onChange="infSettingDropdownSelectionMade(event)" mode="${RefImageMode.CANNY}" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
 								<option selected="" inf-setting="${InfluenceSetting.LOW}">Low</option>
 								<option inf-setting="${InfluenceSetting.MEDIUM}">Medium</option>
 								<option inf-setting="${InfluenceSetting.HIGH}">High</option>

@@ -1588,13 +1588,16 @@ function referenceImgSectionButtons(refImageMode) {
 
 function clearRefImgElement(event) {
     event.preventDefault();
-    let singleRefImageButton = document.getElementById('ref-img-button');
-    let singleRefImg = singleRefImageButton.querySelector('img');
+    let clearRefImgButton = event.currentTarget;
+    let refImgMode = clearRefImgButton.getAttribute('mode');
+    let refImgButton = referenceImgButtonElements(refImgMode);
+
+    let singleRefImg = refImgButton.querySelector('img');
     singleRefImg.src = '';
     singleRefImg.setAttribute('filename', '');
     singleRefImg.setAttribute('fileType', '');
     singleRefImg.classList.add('hidden');
-    singleRefImageButton.classList.add('border-2', 'md:border-4', 'lg:border-2', 'border-dashed');
+    refImgButton.classList.add('border-2', 'md:border-4', 'lg:border-2', 'border-dashed');
 }
 
 function getUploadedRef() {

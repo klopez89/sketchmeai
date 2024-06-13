@@ -609,7 +609,7 @@ function imageToImageFormSectionHTML() {
 				</div>
 
 				<div class="flex gap-2">
-					<button id="clear-ref-button" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+					<button id="clear-ref-button" mode="${RefImageMode.IMG2IMG}" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
 						<i class="fa-solid fa-trash text-gray-500 text-xs md:text-2xl lg:text-xs" aria-hidden="true"></i>
 					</button>
 					
@@ -738,7 +738,7 @@ function openPoseFormSectionHTML() {
 				</div>
 
 				<div class="flex gap-2">
-					<button id="clear-ref-button" title="Clear open pose image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+					<button id="clear-ref-button" mode="${RefImageMode.OPENPOSE}" title="Clear open pose image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
 						<i class="fa-solid fa-trash text-gray-500 text-xs md:text-2xl lg:text-xs" aria-hidden="true"></i>
 					</button>
 					
@@ -867,7 +867,7 @@ function cannyFormSectionHTML() {
 				</div>
 
 				<div class="flex gap-2">
-					<button id="clear-ref-button" title="Clear open pose image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+					<button id="clear-ref-button" mode="${RefImageMode.CANNY}" title="Clear open pose image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
 						<i class="fa-solid fa-trash text-gray-500 text-xs md:text-2xl lg:text-xs" aria-hidden="true"></i>
 					</button>
 					

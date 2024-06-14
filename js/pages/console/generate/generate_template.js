@@ -920,14 +920,7 @@ function cannyFormSectionHTML() {
 					<div class="col-span-full flex justify-between" id="influence-setting-selector-container">
 						
 						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence</label>
-						<div class="hidden">
-							<!-- Use an "onChange" listener to redirect the user to the selected tab. -->
-							<select id="${InfluenceDropdownId.CANNY}" onChange="infSettingDropdownSelectionMade(event)" mode="${RefImageMode.CANNY}" class="block w-full rounded-md border-gray-300 focus:border-black focus:ring-black">
-								<option selected="" inf-setting="${InfluenceSetting.LOW}">Low</option>
-								<option inf-setting="${InfluenceSetting.MEDIUM}">Medium</option>
-								<option inf-setting="${InfluenceSetting.HIGH}">High</option>
-							</select>
-						</div>
+						
 						<div class="block">
 							<nav id="canny-influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Influence Setting">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->

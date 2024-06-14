@@ -92,6 +92,13 @@ const CannySettingValue = {
     HIGH: 100
 }
 
+const InfluenceValueInputId = {
+    IMG2IMG: 'prompt-str',
+    OPENPOSE: 'openpose-cnet-scale',
+    CANNY: 'canny-cnet-scale',
+}
+
+
 const FAILED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/failed_img.png"
 const CANCELED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/canceled_img.png"
 

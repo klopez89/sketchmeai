@@ -2429,25 +2429,34 @@ function alignAYSBasedOnRefImgMode() {
 
 function infSettingDropdownSelectionMade(event) {
     event.preventDefault();
+    let refImgMode = event.currentTarget.getAttribute('mode');
     let selectedOption = event.target.options[event.target.selectedIndex];
     let influence_setting = selectedOption.getAttribute('inf-setting');
-    setRefImgInfluenceValue(influence_setting);
-    updateInfSettingTabUI(influence_setting);
+    setRefImgInfluenceValue(influence_setting, refImgMode);
+    updateInfSettingTabUI(influence_setting, refImgMode);
 }
 
-function infSettingTabSelected(influence_setting) {
-    setRefImgInfluenceValue(influence_setting);
-    updateInfSettingTabUI(influence_setting);
-    updateInfSettingDropdownUI(influence_setting);
+function infSettingTabSelected(influence_setting, refImgMode) {
+    setRefImgInfluenceValue(influence_setting, refImgMode);
+    updateInfSettingTabUI(influence_setting, refImgMode);
 }
 
-function alignInfluenceSettingToValue() {
-    let influence_value = document.getElementById('prompt-str').value;
-    let refImgModeSelector = document.getElementById('ref-img-mode');
-    let selectedOptionId = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
+function alignInfluenceSettingToValue(refImgMode) {
+    var influence_value_field_id = null;
+    if (refImgMode == RefImageMode.IMG2IMG) {
+        influence_value_field_id = InfluenceValueInputId.IMG2IMG;
+    } else if (refImgMode == RefImageMode.OPENPOSE) {
+        influence_value_field_id = InfluenceValueInputId.OPENPOSE;
+    } else if (refImgMode == RefImageMode.CANNY) {
+        influence_value_field_id = InfluenceValueInputId.CANNY;
+    } else {
+        return;
+    }
+
+    let influence_value = document.getElementById(influence_value_field_id).value;
     let influence_setting;
 
-    if (selectedOptionId == RefImageMode.IMG2IMG) {
+    if (refImgMode == RefImageMode.IMG2IMG) {
         if (influence_value <= Img2ImgSettingValue.LOW) {
             influence_setting = InfluenceSetting.LOW;
         } else if (influence_value <= Img2ImgSettingValue.MEDIUM) {
@@ -2455,7 +2464,23 @@ function alignInfluenceSettingToValue() {
         } else {
             influence_setting = InfluenceSetting.HIGH;
         }
-    } else if (selectedOptionId == RefImageMode.MISTO) {
+    } else if (refImgMode == RefImageMode.OPENPOSE) {
+        if (influence_value >= OpenPoseSettingValue.LOW) {
+            influence_setting = InfluenceSetting.LOW;
+        } else if (influence_value >= OpenPoseSettingValue.MEDIUM) {
+            influence_setting = InfluenceSetting.MEDIUM;
+        } else {
+            influence_setting = InfluenceSetting.HIGH;
+        }
+    } else if (refImgMode == RefImageMode.CANNY) {
+        if (influence_value >= CannySettingValue.LOW) {
+            influence_setting = InfluenceSetting.LOW;
+        } else if (influence_value >= CannySettingValue.MEDIUM) {
+            influence_setting = InfluenceSetting.MEDIUM;
+        } else {
+            influence_setting = InfluenceSetting.HIGH;
+        }
+    } else if (refImgMode == RefImageMode.MISTO) {
         if (influence_value >= MistoSettingValue.LOW) {
             influence_setting = InfluenceSetting.LOW;
         } else if (influence_value >= MistoSettingValue.MEDIUM) {
@@ -2463,26 +2488,29 @@ function alignInfluenceSettingToValue() {
         } else {
             influence_setting = InfluenceSetting.HIGH;
         }
+    } else {
+        return;
     }
 
-    updateInfSettingTabUI(influence_setting);
-    updateInfSettingDropdownUI(influence_setting);
+    updateInfSettingTabUI(influence_setting, refImgMode);
 }
 
-function updateInfSettingDropdownUI(selected_influence_setting) {
-    let dropdown = document.getElementById('influence-setting-dropdown-selector');
-    for(let i = 0; i < dropdown.options.length; i++) {
-        if(dropdown.options[i].getAttribute('inf-setting') == selected_influence_setting) {
-            dropdown.selectedIndex = i;
-            break;
-        }
+
+
+function updateInfSettingTabUI(selected_influence_setting, refImgMode) {
+    var infSettingTabsSelectorId = null;
+    if (refImgMode == RefImageMode.IMG2IMG) {
+        infSettingTabsSelectorId = "i2i-influence-setting-tabs-selector";
+    } else if (refImgMode == RefImageMode.OPENPOSE) {
+        infSettingTabsSelectorId = "openpose-influence-setting-tabs-selector";
+    } else if (refImgMode == RefImageMode.CANNY) {
+        infSettingTabsSelectorId = "canny-influence-setting-tabs-selector";
+    } else {
+        return;
     }
-}
 
-function updateInfSettingTabUI(selected_influence_setting) {
-    //  Update the state of the influence setting tab UI
-    let navElement = document.getElementById('influence-setting-tabs-selector');
-    let aElements = navElement.getElementsByTagName('a');
+    let selectorElement = document.getElementById(infSettingTabsSelectorId);
+    let aElements = selectorElement.getElementsByTagName('a');
     for(let i = 0; i < aElements.length; i++) {
         let infSetting_a_element = aElements[i];
         let infLineSpan = infSetting_a_element.querySelector('#inf-line');
@@ -2503,17 +2531,24 @@ function updateInfSettingTabUI(selected_influence_setting) {
     }
 }
 
-function setRefImgInfluenceValue(selected_influence_setting) {
-    let promptStrField = document.getElementById('prompt-str');
-    let refImgModeSelector = document.getElementById('ref-img-mode');
-    let selectedOptionId = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
-    
+function setRefImgInfluenceValue(selected_influence_setting, refImgMode) {
+    var influence_value_field_id = null;
     var promptStrValue = 0;
-    if (selectedOptionId == RefImageMode.IMG2IMG) {
+
+    if (refImgMode == RefImageMode.IMG2IMG) {
+        influence_value_field_id = "prompt-str";
         promptStrValue = Img2ImgSettingValue[selected_influence_setting.toUpperCase()];
-    } else if (selectedOptionId == RefImageMode.MISTO) {
-        promptStrValue = MistoSettingValue[selected_influence_setting.toUpperCase()];
+    } else if (refImgMode == RefImageMode.OPENPOSE) {
+        influence_value_field_id = "openpose-cnet-scale";
+        promptStrValue = OpenPoseSettingValue[selected_influence_setting.toUpperCase()];
+    } else if (refImgMode == RefImageMode.CANNY) {
+        influence_value_field_id = "canny-cnet-scale";
+        promptStrValue = CannySettingValue[selected_influence_setting.toUpperCase()];
+    } else {
+        return;
     }
+
+    let promptStrField = document.getElementById(influence_value_field_id);
     promptStrField.value = promptStrValue;
 }
 
@@ -2522,14 +2557,10 @@ function setRefImgInfluenceValue(selected_influence_setting) {
 
 function personInfSettingDropdownSelectionMade(event) {
     event.preventDefault();
-    let influenceTabSelection = event.currentTarget;
-    let refImgMode = influenceTabSelection.getAttribute('mode');
-
-    let selectedOption = influenceTabSelection.options[influenceTabSelection.selectedIndex];
+    let selectedOption = event.target.options[event.target.selectedIndex];
     let influence_setting = selectedOption.getAttribute('inf-setting');
-    console.log('the inf setting selected: ', influence_setting, ', and refImgMode: ', refImgMode);
-    // setPersonInfluenceValue(influence_setting);
-    // updatePersonInfSettingTabUI(influence_setting);
+    setPersonInfluenceValue(influence_setting);
+    updatePersonInfSettingTabUI(influence_setting);
 }
 
 function setPersonInfluenceValue(selected_influence_setting) {

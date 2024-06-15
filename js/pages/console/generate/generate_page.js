@@ -876,7 +876,7 @@ function copyPromptInfoFromGen(generation) {
     lastSelectedModelVersion = generation.model_version;
     selectModelWithVersion(lastSelectedModelVersion);
     selectPromptStyle(generation.gen_recipe.prompt_style);
-    selectRefImageMode(generation.gen_recipe.ref_img_mode);
+    // selectRefImageMode(generation.gen_recipe.ref_img_mode);
     updateAysToggle(generation.gen_recipe.should_use_ays);
     updateHiDToggle(generation.gen_recipe.should_use_hi_d);
     attemptToShowPromptSettingsSection();
@@ -2424,7 +2424,7 @@ function toggleAysPressed(event) {
     let aysButton = event.currentTarget;
     let shouldEnableAys = !aysButton.classList.contains('enabled');
     if (shouldEnableAys) {
-        selectRefImageMode(RefImageMode.IMG2IMG);
+        // selectRefImageMode(RefImageMode.IMG2IMG);
     }
     updateAysToggle(shouldEnableAys);
 }

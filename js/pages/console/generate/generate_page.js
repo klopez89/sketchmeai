@@ -924,6 +924,24 @@ function selectRefImageMode(ref_img_mode) {
     }
 }
 
+function isProvidedUrlInvalid(img_url) {
+    if (img_url) {
+        if (isValidImageUrl(img_url) == false) {
+            displayErrorBanner('The provided reference image url does not seem to point to a valid image url. Try a different one.');
+            return true;
+        }
+    }
+
+    let isUrlExpired = isImageUrlExpired(img_url);
+    if (isUrlExpired) {
+        console.log('url is expired');
+        displayErrorBanner('Reference image url is expired. Try a different a different url.');
+        return true;
+    }
+
+    return false;
+}
+
 function generateButtonPressed(event) {
     event.preventDefault();
     removeErrorBanners();
@@ -939,21 +957,9 @@ function generateButtonPressed(event) {
     let promptValues = promptInputValues();
     console.log("promptValues: ", promptValues);
 
-    let img2imgUrl = promptValues.img2imgUrl;
-    if (img2imgUrl) {
-        if (isValidImageUrl(img2imgUrl) == false) {
-            displayErrorBanner('The provided image to image url does not seem to point to a valid image url. Try a different one.');
-            return;
-        }
-    }
-
-    let isUrlExpired = isImageUrlExpired(promptValues.img2imgUrl);
-    if (isUrlExpired) {
-        console.log('url is expired');
-        displayErrorBanner('Reference image url is expired. Try a different a different url.');
+    if (isProvidedUrlInvalid(promptValues.i2iUrl) || isProvidedUrlInvalid(promptValues.openPoseUrl) || isProvidedUrlInvalid(promptValues.cannyUrl)) {
         return;
     }
-
 
     var seedToUse = promptValues.seed;
     let hasChosenSeed = seedToUse != "";
@@ -997,19 +1003,11 @@ function generateButtonPressed(event) {
 
     // Validate the generation form before proceeding to fire off an API call
 
-    console.log(`inf steps (${typeof promptValues.inferenceSteps}): ${promptValues.inferenceSteps}, gscale (${typeof promptValues.gscale}): ${promptValues.gscale}, prompt (${typeof prompt}): ${prompt}, lorascale (${typeof promptValues.loraScale}): ${promptValues.loraScale}, img2imgurl (${typeof promptValues.img2imgUrl}): ${promptValues.img2imgUrl}, prompt strength (${typeof promptValues.promptStrength}): ${promptValues.promptStrength}`);
     let missingFields = [];
     if (!promptValues.inferenceSteps) missingFields.push('Denoising Steps');
     if (!promptValues.gscale) missingFields.push('Guidance Scale');
     if (!prompt) missingFields.push('Prompt');
     if (!promptValues.loraScale) missingFields.push('Lora Scale');
-
-    if (promptValues.img2imgUrl) {
-        if (!promptValues.promptStrength) {
-            displayErrorBanner('Prompt strength is required for image-to-image generation.');
-            return;
-        }
-    }
 
     if (missingFields.length > 0) {
         displayErrorBanner('Missing value(s) for: ' + missingFields.join(', '));
@@ -1085,10 +1083,18 @@ function generateButtonPressed(event) {
                 negativePrompt: promptValues.negativePrompt,
                 gscale: promptValues.gscale,
                 seed: seedToUse,
-                img2imgUrl: promptValues.img2imgUrl,
-                refImgInfo: promptValues.refImgInfo,
-                refImageMode: promptValues.refImageMode,
+                img2imgUrl: promptValues.i2iUrl,
+                i2iRefImgInfo: promptValues.i2iRefImgInfo,
+                // refImageMode: promptValues.refImageMode,
                 promptStrength: promptValues.promptStrength,
+                openPoseUrl: promptValues.openPoseUrl,
+                openPoseRefImgInfo: promptValues.openPoseRefImgInfo,
+                openPoseInfValue: promptValues.openPoseInfValue,
+
+                cannyUrl: promptValues.cannyUrl,
+                cannyRefImgInfo: promptValues.cannyRefImgInfo,
+                cannyInfValue: promptValues.cannyInfValue,
+            
                 inferenceSteps: promptValues.inferenceSteps,
                 shouldUseAys: promptValues.shouldUseAys,
                 shouldUseHid: promptValues.shouldUseHid,
@@ -1600,8 +1606,8 @@ function clearRefImgElement(event) {
     refImgButton.classList.add('border-2', 'md:border-4', 'lg:border-2', 'border-dashed');
 }
 
-function getUploadedRef() {
-    let i2iRefImgButton = referenceImgButtonElements(RefImageMode.IMG2IMG)[0];
+function getUploadedRef(refImgMode) {
+    let i2iRefImgButton = referenceImgButtonElements(refImgMode)[0];
 	let singleRefImageButton = i2iRefImgButton;
     // console.log('the single ref img button is: ', singleRefImageButton);
     let singleRefImg = singleRefImageButton.querySelector('img');
@@ -1700,25 +1706,38 @@ function promptInputValues() {
     let negativePrompt = document.getElementById("neg-prompt").value;
     var gscale = document.getElementById('guidance-scale').value;
     let seed = document.getElementById('seed').value;
-    let img2imgUrl = document.getElementById('img-2-img').value;
-    let refImgInfo = getUploadedRef();
-    var promptStrength = document.getElementById('prompt-str').value;
+
+    // Reference image for all modes
+    // Image-to-image
+    let i2iUrl = document.getElementById(RefImgUrlInputId.IMG2IMG).value;
+    let i2iRefImgInfo = getUploadedRef(RefImageMode.IMG2IMG);
+    var promptStrength = document.getElementById(InfluenceValueInputId.IMG2IMG).value;
+    if (promptStrength == '') {
+        promptStrength = Img2ImgSettingValue.HIGH;
+    } else if (promptStrength > 95) {
+        promptStrength = 95;
+        document.getElementById(InfluenceValueInputId.IMG2IMG).value = promptStrength;
+    }
+    let normalizedPromptStrength = 1 - promptStrength / 100;
+    // Openpose
+    let openPoseUrl = document.getElementById(RefImgUrlInputId.OPENPOSE).value;
+    let openPoseRefImgInfo = getUploadedRef(RefImageMode.OPENPOSE);
+    var openPoseInfValue = document.getElementById(InfluenceValueInputId.OPENPOSE).value;
+    if (openPoseInfValue == '') {
+        openPoseInfValue = OpenPoseSettingValue.HIGH;
+    }
+    // Canny
+    let cannyUrl = document.getElementById(RefImgUrlInputId.CANNY).value;
+    let cannyRefImgInfo = getUploadedRef(RefImageMode.CANNY);
+    var cannyInfValue = document.getElementById(InfluenceValueInputId.CANNY).value;
+    if (cannyInfValue == '') {
+        cannyInfValue = CannySettingValue.HIGH;
+    }
+
+
     var loraScale = document.getElementById('person-lora-influence').value;
     let shouldUseRandomSeedAcrossModels = true;
 
-    let refImgModeElement = document.getElementById('ref-img-mode');
-    let refImageMode = RefImageMode.IMG2IMG; // refImgModeElement.options[refImgModeElement.selectedIndex].id;
-    // console.log('the ref image mode is: ', refImageMode);
-
-    if (promptStrength == '') {
-        promptStrength = 80;
-    } 
-    // else if (promptStrength > 95) {
-    //     promptStrength = 95;
-    //     document.getElementById('prompt-str').value = 95;
-    // }
-
-    let normalizedPromptStrength = 1 - promptStrength / 100;
 
     if (loraScale == '') {
         loraScale = 80;
@@ -1786,10 +1805,15 @@ function promptInputValues() {
         negativePrompt: negativePrompt,
         gscale: gscale,
         seed: seed,
-        img2imgUrl: img2imgUrl,
-        refImgInfo: refImgInfo,
-        refImageMode: refImageMode,
+        img2imgUrl: i2iUrl,
+        i2iRefImgInfo: i2iRefImgInfo,
         promptStrength: normalizedPromptStrength,
+        openPoseUrl: openPoseUrl,
+        openPoseRefImgInfo: openPoseRefImgInfo,
+        openPoseInfValue: openPoseInfValue,
+        cannyUrl: cannyUrl,
+        cannyRefImgInfo: cannyRefImgInfo,
+        cannyInfValue: cannyInfValue,
         loraScale: normalizedLoraScale,
         resWidth: 1024,
         resHeight: 1024,

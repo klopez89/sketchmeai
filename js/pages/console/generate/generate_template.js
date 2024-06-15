@@ -658,7 +658,7 @@ function imageToImageFormSectionHTML() {
 						</div>
 						
 						<div class="mt-0">
-							<input type="text" name="img-2-img-url" id="img-2-img" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+							<input type="text" id="${RefImgUrlInputId.IMG2IMG}" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
 						</div>
 					</div>
 
@@ -780,7 +780,7 @@ function openPoseFormSectionHTML() {
 						</div>
 						
 						<div class="mt-0">
-							<input type="text" name="img-2-img-url" id="img-2-img" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+							<input type="text" id="${RefImgUrlInputId.OPENPOSE}" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
 						</div>
 					</div>
 
@@ -902,7 +902,7 @@ function cannyFormSectionHTML() {
 						</div>
 						
 						<div class="mt-0">
-							<input type="text" name="img-2-img-url" id="img-2-img" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+							<input type="text" id="${RefImgUrlInputId.CANNY}" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
 						</div>
 					</div>
 

@@ -882,7 +882,7 @@ function copyPromptInfoFromGen(generation) {
     attemptToShowPromptSettingsSection();
     alignInfluenceSettingToValue();
     alignPersonInfluenceSettingToValue();
-    alignAYSBasedOnRefImgMode();
+    // alignAYSBasedOnRefImgMode();
 }
 
 function insertImgUrlForRefImg(url, refImageMode) {

@@ -386,8 +386,9 @@ function configureGenerateForm() {
         }
     });
 
-    let img2imgField = document.getElementById('img-2-img');
-    document.getElementById('img-2-img').addEventListener('drop', function(event) {
+
+    let i2iRefImgUrlInput = document.getElementById(RefImgUrlInputId.IMG2IMG);
+    i2iRefImgUrlInput.addEventListener('drop', function(event) {
         console.log('Received a drop event listener in img2img field');
         event.preventDefault();
         const dataTransfer = event.dataTransfer;
@@ -403,7 +404,59 @@ function configureGenerateForm() {
                         if (img && img.src) {
                             // Now you have the src of the dragged image
                             console.log('Dragged image src:', img.src);
-                            img2imgField.value = img.src;
+                            i2iRefImgUrlInput.value = img.src;
+                            // You can now use img.src as needed for your application
+                        }
+                    });
+                }
+            }
+        }
+    });
+
+    let openPoseRefImgUrlInput = document.getElementById(RefImgUrlInputId.OPENPOSE);
+    openPoseRefImgUrlInput.addEventListener('drop', function(event) {
+        console.log('Received a drop event listener in img2img field');
+        event.preventDefault();
+        const dataTransfer = event.dataTransfer;
+        if (dataTransfer && dataTransfer.items) {
+            for (let item of dataTransfer.items) {
+                if (item.kind === 'string' && item.type === 'text/html') {
+                    item.getAsString(function(s) {
+                        // Create a temporary element to parse the HTML string
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = s;
+                        // Attempt to find an img element and retrieve its src
+                        const img = tempDiv.querySelector('img');
+                        if (img && img.src) {
+                            // Now you have the src of the dragged image
+                            console.log('Dragged image src:', img.src);
+                            openPoseRefImgUrlInput.value = img.src;
+                            // You can now use img.src as needed for your application
+                        }
+                    });
+                }
+            }
+        }
+    });
+
+    let cannyRefImgUrlInput = document.getElementById(RefImgUrlInputId.CANNY);
+    cannyRefImgUrlInput.addEventListener('drop', function(event) {
+        console.log('Received a drop event listener in img2img field');
+        event.preventDefault();
+        const dataTransfer = event.dataTransfer;
+        if (dataTransfer && dataTransfer.items) {
+            for (let item of dataTransfer.items) {
+                if (item.kind === 'string' && item.type === 'text/html') {
+                    item.getAsString(function(s) {
+                        // Create a temporary element to parse the HTML string
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = s;
+                        // Attempt to find an img element and retrieve its src
+                        const img = tempDiv.querySelector('img');
+                        if (img && img.src) {
+                            // Now you have the src of the dragged image
+                            console.log('Dragged image src:', img.src);
+                            cannyRefImgUrlInput.value = img.src;
                             // You can now use img.src as needed for your application
                         }
                     });

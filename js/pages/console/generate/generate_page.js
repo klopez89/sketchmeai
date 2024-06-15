@@ -985,6 +985,7 @@ function isProvidedUrlInvalid(img_url) {
         }
     }
 
+    console.log('the img url where its breaking: ', img_url);
     let isUrlExpired = isImageUrlExpired(img_url);
     if (isUrlExpired) {
         console.log('url is expired');
@@ -1772,6 +1773,7 @@ function promptInputValues() {
         document.getElementById(InfluenceValueInputId.IMG2IMG).value = promptStrength;
     }
     let normalizedPromptStrength = 1 - promptStrength / 100;
+
     // Openpose
     let openPoseUrl = document.getElementById(RefImgUrlInputId.OPENPOSE).value;
     let openPoseRefImgInfo = getUploadedRef(RefImageMode.OPENPOSE);

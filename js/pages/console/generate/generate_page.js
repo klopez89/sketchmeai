@@ -1011,7 +1011,7 @@ function generateButtonPressed(event) {
     let promptValues = promptInputValues();
     console.log("promptValues: ", promptValues);
 
-    if (isProvidedUrlInvalid(promptValues.i2iUrl) || isProvidedUrlInvalid(promptValues.openPoseUrl) || isProvidedUrlInvalid(promptValues.cannyUrl)) {
+    if (isProvidedUrlInvalid(promptValues.img2imgUrl) || isProvidedUrlInvalid(promptValues.openPoseUrl) || isProvidedUrlInvalid(promptValues.cannyUrl)) {
         return;
     }
 

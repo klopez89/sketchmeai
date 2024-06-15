@@ -1137,7 +1137,7 @@ function generateButtonPressed(event) {
                 negativePrompt: promptValues.negativePrompt,
                 gscale: promptValues.gscale,
                 seed: seedToUse,
-                img2imgUrl: promptValues.i2iUrl,
+                img2imgUrl: promptValues.img2imgUrl,
                 i2iRefImgInfo: promptValues.i2iRefImgInfo,
                 // refImageMode: promptValues.refImageMode,
                 promptStrength: promptValues.promptStrength,

@@ -858,8 +858,10 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
     // console.log('the signed ref url from copy prompt is: ', generation.gen_recipe.signed_ref_url);
+
+    // TODO Need to fix!
     if (generation.gen_recipe.signed_ref_url != undefined) {
-        insertImgUrlForRefImg(generation.gen_recipe.signed_ref_url);
+        // insertImgUrlForRefImg(generation.gen_recipe.signed_ref_url);
     } else {
         let clearRefButton = document.getElementById('clear-ref-button');
         clearRefButton.click();

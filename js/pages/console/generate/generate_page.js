@@ -845,7 +845,7 @@ function configureGenDivForSelection(div) {
 function configCopyButton(div, generation) {
     div.find('button').click(function() {
         copyPromptInfoFromGen(generation);
-        // console.log(`clicked on generation button, gen info: ${generation.rec_id}`);
+        console.log(`clicked on generation button, gen info: ${generation}`);
     });
 }
 

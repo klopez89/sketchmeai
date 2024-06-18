@@ -868,7 +868,6 @@ function copyPromptInfoFromGen(generation) {
     updateAysToggle(generation.gen_recipe.should_use_ays);
     updateHiDToggle(generation.gen_recipe.should_use_hi_d);
     attemptToShowPromptSettingsSection();
-    alignInfluenceSettingToValue();
     alignPersonInfluenceSettingToValue();
     // alignAYSBasedOnRefImgMode();
 }
@@ -877,6 +876,7 @@ function configureRefImgSection(signed_url, refImgMode, infValue) {
     if (signed_url != undefined) {
         insertImgUrlForRefImg(signed_url, refImgMode);
         enterRefImgInfluenceValue(refImgMode, infValue);
+        alignInfluenceSettingToValue(refImgMode);
     } else {
         let clearRefButton = document.querySelector(`#clear-ref-button[mode="${refImgMode}"]`);
         clearRefButton.click();

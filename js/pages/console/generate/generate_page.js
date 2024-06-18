@@ -887,20 +887,24 @@ function configureRefImgSection(signed_url, refImgMode, infValue) {
 function enterRefImgInfluenceValue(refImgMode, infValue) {
     var inputFieldId = null;
     var rangeInputFieldId = null;
+    var adjustedInfValue = infValue;
     if (refImgMode == RefImageMode.IMG2IMG) {
         inputFieldId = InfluenceValueInputId.IMG2IMG;
         rangeInputFieldId = InfluenceRangeInputId.IMG2IMG;
+        adjustedInfValue = 100 - adjustedInfValue * 100;
     } else if (refImgMode == RefImageMode.OPENPOSE) {
         inputFieldId = InfluenceValueInputId.OPENPOSE;
         rangeInputFieldId = InfluenceRangeInputId.OPENPOSE;
+        adjustedInfValue = adjustedInfValue * 100;
     } else if (refImgMode == RefImageMode.CANNY) {
         inputFieldId = InfluenceValueInputId.CANNY;
         rangeInputFieldId = InfluenceRangeInputId.CANNY;
+        adjustedInfValue = adjustedInfValue * 100;
     } else {
         return;
     }
-    document.getElementById(inputFieldId).value = 100 - infValue * 100;
-    document.getElementById(rangeInputFieldId).value = 100 - infValue * 100;
+    document.getElementById(inputFieldId).value = adjustedInfValue;
+    document.getElementById(rangeInputFieldId).value = adjustedInfValue;
 }
 
 function insertImgUrlForRefImg(url, refImageMode) {

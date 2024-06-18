@@ -146,10 +146,10 @@ function dismissImageRefModeSelectionModal() {
 }
 
 
-function showRefImageUrlModal(event) {
+function showRefImageUrlModal(event, refImgMode) {
     event.preventDefault();
     event.stopPropagation();
-    let refImgUrlModalHTML = enterRefImageUrlModalHTML();
+    let refImgUrlModalHTML = enterRefImageUrlModalHTML(refImgMode);
     let refImgUrlModalDiv = $($.parseHTML(refImgUrlModalHTML));
     $('#console-content').prepend(refImgUrlModalDiv);
 

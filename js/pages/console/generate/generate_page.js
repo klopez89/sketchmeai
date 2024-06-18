@@ -857,20 +857,12 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
-    // console.log('the signed ref url from copy prompt is: ', generation.gen_recipe.signed_ref_url);
 
-    // TODO Need to fix!
-    if (generation.gen_recipe.signed_ref_url != undefined) {
-        // insertImgUrlForRefImg(generation.gen_recipe.signed_ref_url);
-    } else {
-        let clearRefButton = document.getElementById('clear-ref-button');
-        clearRefButton.click();
-        attemptToCloseRefImgSection();
-    }
+    configureRefImgSection(generation.gen_recipe.img2img_signed_url,RefImageMode.IMG2IMG, generation.gen_recipe.prompt_strength)
+    configureRefImgSection(generation.gen_recipe.openpose_signed_url,RefImageMode.OPENPOSE, generation.gen_recipe.openpose_scale)
+    configureRefImgSection(generation.gen_recipe.canny_signed_url,RefImageMode.CANNY, generation.gen_recipe.canny_scale)
 
-    // console.log('the prompt strength being copied over has a value of: ', generation.gen_recipe.prompt_strength);
-    document.getElementById('prompt-str').value = 100 - generation.gen_recipe.prompt_strength * 100;
-    document.getElementById('ref-influence-range').value = 100 - generation.gen_recipe.prompt_strength * 100;
+
     document.getElementById('person-lora-influence').value = generation.gen_recipe.lora_scale * 100;
     document.getElementById('person-lora-influence-range').value = generation.gen_recipe.lora_scale * 100;
     // Trigger some UI updates in the gen form
@@ -885,6 +877,36 @@ function copyPromptInfoFromGen(generation) {
     alignInfluenceSettingToValue();
     alignPersonInfluenceSettingToValue();
     // alignAYSBasedOnRefImgMode();
+}
+
+function configureRefImgSection(signed_url, refImgMode, infValue) {
+    if (signed_url != undefined) {
+        insertImgUrlForRefImg(signed_url, refImgMode);
+        enterRefImgInfluenceValue(refImgMode, infValue);
+    } else {
+        let clearRefButton = document.querySelector(`#clear-ref-button[mode="${refImgMode}"]`);
+        clearRefButton.click();
+        attemptToCloseRefImgSection(refImgMode);
+    }
+}
+
+function enterRefImgInfluenceValue(refImgMode, infValue) {
+    var inputFieldId = null;
+    var rangeInputFieldId = null;
+    if (refImgMode == RefImageMode.IMG2IMG) {
+        inputFieldId = InfluenceValueInputId.IMG2IMG;
+        rangeInputFieldId = InfluenceRangeInputId.IMG2IMG;
+    } else if (refImgMode == RefImageMode.OPENPOSE) {
+        inputFieldId = InfluenceValueInputId.OPENPOSE;
+        rangeInputFieldId = InfluenceRangeInputId.OPENPOSE;
+    } else if (refImgMode == RefImageMode.CANNY) {
+        inputFieldId = InfluenceValueInputId.CANNY;
+        rangeInputFieldId = InfluenceRangeInputId.CANNY;
+    } else {
+        return;
+    }
+    document.getElementById(inputFieldId).value = 100 - infValue * 100;
+    document.getElementById(rangeInputFieldId).value = 100 - infValue * 100;
 }
 
 function insertImgUrlForRefImg(url, refImageMode) {
@@ -910,8 +932,19 @@ function attemptToShowRefImgSection(refImageMode) {
     }
 }
 
-function attemptToCloseRefImgSection() {
-    let refImgSectionButton = document.getElementById('reference-section-button');
+function attemptToCloseRefImgSection(refImgMode) {
+    var sectionButtonId = null;
+    if (refImgMode == RefImageMode.IMG2IMG) {
+        sectionButtonId = RefImgSectionButtonId.IMG2IMG;
+    } else if (refImgMode == RefImageMode.OPENPOSE) {
+        sectionButtonId = RefImgSectionButtonId.OPENPOSE;
+    } else if (refImgMode == RefImageMode.CANNY) {
+        sectionButtonId = RefImgSectionButtonId.CANNY;
+    } else {
+        return;
+    }
+
+    let refImgSectionButton = document.getElementById(sectionButtonId);
     if(refImgSectionButton.getAttribute('data-te-collapse-collapsed') == null) {
         refImgSectionButton.click();
     }
@@ -1418,19 +1451,19 @@ function addBaseGenMenu() {
 
 
 
-
 // Ref Image Functions
 
 function userWantsToEnterRefImgUrl() {
-    let refImgUrl = document.getElementById('ref-img-url').value;
+    let refImgUrlElement = document.getElementById('ref-img-url');
+    let refImgUrl = refImgUrlElement.value;
+    let refImgMode = refImgUrlElement.getAttribute('mode');
     if (refImgUrl == '') {
         console.log('Entered ref img url is empty');
     }
     console.log('the entered ref img url is: ', refImgUrl);
-    insertImgUrlForRefImg(refImgUrl);
+    insertImgUrlForRefImg(refImgUrl, refImgMode);
     dismissEnterRefImgUrlModal();
 }
-
 
 function configureRefImageButton() {
     let refImgButtonElements = referenceImgButtonElements(RefImageMode.ALL);
@@ -1456,28 +1489,6 @@ function configureRefImageButton() {
         refImgButton.addEventListener('drop', handleDrop);
         refImgButton.addEventListener('click', triggerLocalUploadMenu);
     }
-
-
-
-    // let refImageUploadInput = document.getElementById('localRefImgUploadInput');
-    // let singleRefImageButton = document.getElementById('ref-img-button')
-
-    // refImageUploadInput.addEventListener("change", () => {
-    //     console.log('Trigger change event of local upload input');
-    //      const files = refImageUploadInput.files;
-    //     handleRefImgFileUpload(files);
-    //     refImageUploadInput.value = '';
-    // });
-
-    // refImageUploadInput.addEventListener("click", () => {
-    //     console.log('Trigger click event of local upload input');
-    // });
-
-    // singleRefImageButton.addEventListener('dragenter', handleDragEnter);
-    // singleRefImageButton.addEventListener('dragleave', handleDragLeave);
-    // singleRefImageButton.addEventListener('dragover', handleDragOver);
-    // singleRefImageButton.addEventListener('drop', handleDrop);
-    // singleRefImageButton.addEventListener('click', triggerLocalUploadMenu);
 }
 
 function genRefMenuShowing(event) {
@@ -2099,8 +2110,6 @@ function useAsReferenceImagePressed(event) {
     let imgSrc = imgElement.getAttribute('src');
 
     showImageRefModelSelectionModal(imgSrc);
-    // insertImgUrlForRefImg(imgSrc);
-    // tryShowingReferenceImageSettings();
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
 }
 

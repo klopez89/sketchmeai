@@ -98,10 +98,22 @@ const InfluenceValueInputId = {
     CANNY: 'canny-cnet-scale',
 }
 
+const InfluenceRangeInputId = {
+    IMG2IMG: 'ref-influence-range',
+    OPENPOSE: 'openpose-scale-range',
+    CANNY: 'canny-scale-range',
+}
+
 const RefImgUrlInputId = {
     IMG2IMG: 'i2i-url',
     OPENPOSE: 'openpose-url',
     CANNY: 'canny-url',
+}
+
+const RefImgSectionButtonId = {
+    IMG2IMG: 'i2i-section-button',
+    OPENPOSE: 'openpose-section-button',
+    CANNY: 'canny-section-button',
 }
 
 

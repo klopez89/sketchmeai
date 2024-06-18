@@ -2553,17 +2553,17 @@ function alignInfluenceSettingToValue(refImgMode) {
             influence_setting = InfluenceSetting.HIGH;
         }
     } else if (refImgMode == RefImageMode.OPENPOSE) {
-        if (influence_value >= OpenPoseSettingValue.LOW) {
+        if (influence_value <= OpenPoseSettingValue.LOW) {
             influence_setting = InfluenceSetting.LOW;
-        } else if (influence_value >= OpenPoseSettingValue.MEDIUM) {
+        } else if (influence_value <= OpenPoseSettingValue.MEDIUM) {
             influence_setting = InfluenceSetting.MEDIUM;
         } else {
             influence_setting = InfluenceSetting.HIGH;
         }
     } else if (refImgMode == RefImageMode.CANNY) {
-        if (influence_value >= CannySettingValue.LOW) {
+        if (influence_value <= CannySettingValue.LOW) {
             influence_setting = InfluenceSetting.LOW;
-        } else if (influence_value >= CannySettingValue.MEDIUM) {
+        } else if (influence_value <= CannySettingValue.MEDIUM) {
             influence_setting = InfluenceSetting.MEDIUM;
         } else {
             influence_setting = InfluenceSetting.HIGH;

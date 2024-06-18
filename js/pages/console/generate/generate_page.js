@@ -842,14 +842,8 @@ function configureGenDivForSelection(div) {
     return gen_div_element;
 }
 
-function configCopyButton(div, generation) {
-    div.find('button').click(function() {
-        copyPromptInfoFromGen(generation);
-        console.log(`clicked on generation button, gen info: ${generation}`);
-    });
-}
-
 function copyPromptInfoFromGen(generation) {
+    console.log('the generation to be copied: ', generation);
     document.getElementById("prompt").innerHTML = generation.gen_recipe.user_facing_prompt || generation.gen_recipe.prompt;
     document.getElementById("neg-prompt").value = generation.gen_recipe.neg_prompt;
     document.getElementById('gen-count').value = 1;

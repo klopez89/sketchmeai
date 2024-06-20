@@ -785,11 +785,11 @@ function openPoseFormSectionHTML() {
 					</div>
 
 
-					<div class="hidden col-span-2 flex items-center" id="influence-title-container">
+					<div class="col-span-2 flex items-center" id="influence-title-container">
 						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 					</div>
 
-					<div class="hidden col-span-4 flex gap-x-2" id="influence-slider-container">
+					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
 						<input type="range" id="openpose-scale-range" name="openpose-scale-range" min="0" max="100" class="slider flex-grow" autocompleted="">
 						<input type="number" id="openpose-cnet-scale" placeholder="${OpenPoseSettingValue.HIGH}" min="0" max="100" value="${OpenPoseSettingValue.HIGH}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 					</div>

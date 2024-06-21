@@ -24,11 +24,13 @@ function configureRefImageFields(refImgMode) {
     // Update the number input when the range input changes
     rangeInput.addEventListener('input', function() {
         numberInput.value = rangeInput.value;
+        alignInfluenceSettingToValue(refImgMode);
     });
 
     // Update the range input when the number input changes
     numberInput.addEventListener('input', function() {
         rangeInput.value = numberInput.value;
+        alignInfluenceSettingToValue(refImgMode);
     });
 }
 

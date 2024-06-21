@@ -693,6 +693,10 @@ function imageToImageFormSectionHTML() {
 									<span>High</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
+								<a href="#" inf-setting="${InfluenceSetting.FULL}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.FULL}','${RefImageMode.IMG2IMG}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
+									<span>Full</span>
+									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+								</a>
 							</nav>
 						</div>
 					</div>
@@ -791,7 +795,7 @@ function openPoseFormSectionHTML() {
 
 					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
 						<input type="range" id="openpose-scale-range" name="openpose-scale-range" min="0" max="100" class="slider flex-grow" autocompleted="">
-						<input type="number" id="openpose-cnet-scale" placeholder="${OpenPoseSettingValue.HIGH}" min="0" max="100" value="${OpenPoseSettingValue.HIGH}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<input type="number" id="openpose-cnet-scale" placeholder="${OpenPoseSettingValue.FULL}" min="0" max="100" value="${OpenPoseSettingValue.FULL}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 					</div>
 
 
@@ -813,6 +817,10 @@ function openPoseFormSectionHTML() {
 								</a>
 								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.HIGH}','${RefImageMode.OPENPOSE}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
+									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+								</a>
+								<a href="#" inf-setting="${InfluenceSetting.FULL}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.FULL}','${RefImageMode.OPENPOSE}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
+									<span>Full</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
 							</nav>
@@ -913,7 +921,7 @@ function cannyFormSectionHTML() {
 
 					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
 						<input type="range" id="canny-scale-range" name="canny-scale-range" min="0" max="100" class="slider flex-grow" autocompleted="">
-						<input type="number" name="canny-cnet-scale" id="canny-cnet-scale" placeholder="${CannySettingValue.HIGH}" min="0" max="100" value="${CannySettingValue.HIGH}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+						<input type="number" name="canny-cnet-scale" id="canny-cnet-scale" placeholder="${CannySettingValue.LOW}" min="0" max="100" value="${CannySettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 					</div>
 
 
@@ -935,6 +943,10 @@ function cannyFormSectionHTML() {
 								</a>
 								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.HIGH}','${RefImageMode.CANNY}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>High</span>
+									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+								</a>
+								<a href="#" inf-setting="${InfluenceSetting.FULL}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.FULL}','${RefImageMode.CANNY}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
+									<span>Full</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
 							</nav>

@@ -2615,23 +2615,26 @@ function updateInfSettingTabUI(selected_influence_setting, refImgMode) {
 
 function setRefImgInfluenceValue(selected_influence_setting, refImgMode) {
     var influence_value_field_id = null;
-    var promptStrValue = 0;
+    var influenceValue = 0;
 
     if (refImgMode == RefImageMode.IMG2IMG) {
         influence_value_field_id = "prompt-str";
-        promptStrValue = Img2ImgSettingValue[selected_influence_setting.toUpperCase()];
+        influenceValue = Img2ImgSettingValue[selected_influence_setting.toUpperCase()];
     } else if (refImgMode == RefImageMode.OPENPOSE) {
         influence_value_field_id = "openpose-cnet-scale";
-        promptStrValue = OpenPoseSettingValue[selected_influence_setting.toUpperCase()];
+        influenceValue = OpenPoseSettingValue[selected_influence_setting.toUpperCase()];
     } else if (refImgMode == RefImageMode.CANNY) {
         influence_value_field_id = "canny-cnet-scale";
-        promptStrValue = CannySettingValue[selected_influence_setting.toUpperCase()];
+        influenceValue = CannySettingValue[selected_influence_setting.toUpperCase()];
     } else {
         return;
     }
 
-    let promptStrField = document.getElementById(influence_value_field_id);
-    promptStrField.value = promptStrValue;
+    let influenceValueField = document.getElementById(influence_value_field_id);
+    influenceValueField.value = influenceValue;
+
+    // Fire the input event for the prompt strength field
+    influenceValueField.dispatchEvent(new Event('input'));
 }
 
 

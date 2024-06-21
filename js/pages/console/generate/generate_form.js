@@ -1,7 +1,22 @@
-function configureRefImageFields() {
+function configureRefImageFields(refImgMode) {
+    var inputFieldId = null;
+    var rangeInputFieldId = null;
+    if (refImgMode == RefImageMode.IMG2IMG) {
+        inputFieldId = InfluenceValueInputId.IMG2IMG;
+        rangeInputFieldId = InfluenceRangeInputId.IMG2IMG;
+    } else if (refImgMode == RefImageMode.OPENPOSE) {
+        inputFieldId = InfluenceValueInputId.OPENPOSE;
+        rangeInputFieldId = InfluenceRangeInputId.OPENPOSE;
+    } else if (refImgMode == RefImageMode.CANNY) {
+        inputFieldId = InfluenceValueInputId.CANNY;
+        rangeInputFieldId = InfluenceRangeInputId.CANNY;
+    } else {
+        return;
+    }
+
     // Get references to the elements
-    var rangeInput = document.getElementById('ref-influence-range');
-    var numberInput = document.getElementById('prompt-str');
+    var rangeInput = document.getElementById(rangeInputFieldId);
+    var numberInput = document.getElementById(inputFieldId);
 
     // Set the initial value of the range input to match the number input
     rangeInput.value = numberInput.value;

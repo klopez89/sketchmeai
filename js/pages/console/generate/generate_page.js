@@ -21,7 +21,9 @@ showBasicExamplesButton();
 configurePromptInputPlaceholder(); 
 addBottomGenerationMenu();
 configureShareButton();
-configureRefImageFields();
+configureRefImageFields(RefImageMode.IMG2IMG);
+configureRefImageFields(RefImageMode.OPENPOSE);
+configureRefImageFields(RefImageMode.CANNY);
 configurePersonLoraFields();
 updateAysToggle(false);
 

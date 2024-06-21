@@ -819,7 +819,7 @@ function openPoseFormSectionHTML() {
 									<span>High</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
-								<a href="#" inf-setting="${InfluenceSetting.FULL}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.FULL}','${RefImageMode.OPENPOSE}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+								<a href="#" inf-setting="${InfluenceSetting.FULL}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.FULL}','${RefImageMode.OPENPOSE}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
 									<span>Full</span>
 									<span id="inf-line" aria-hidden="true" class="bg-black absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>

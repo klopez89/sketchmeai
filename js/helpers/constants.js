@@ -52,7 +52,6 @@ const RefImageMode = {
     IMG2IMG: 'i2i-mode',
     OPENPOSE: 'openpose-mode',
     CANNY: 'canny-mode',
-    MISTO: 'misto-mode',
     ALL: 'all'
 }
 
@@ -60,6 +59,7 @@ const InfluenceSetting = {
     LOW: 'low',
     MEDIUM: 'medium',
     HIGH: 'high',
+    FULL: 'full'
 }
 
 const PersonLoraSettingValue = {
@@ -68,28 +68,25 @@ const PersonLoraSettingValue = {
     HIGH: 100
 }
 
-const MistoSettingValue = {
-    LOW: 95,
-    MEDIUM: 80,
-    HIGH: 70
-}
-
 const Img2ImgSettingValue = {
     LOW: 10,
-    MEDIUM: 30,
-    HIGH: 50
+    MEDIUM: 25,
+    HIGH: 50,
+    FULL: 90
 }
 
 const OpenPoseSettingValue = {
-    LOW: 70,
-    MEDIUM: 85,
-    HIGH: 100
+    LOW: 10,
+    MEDIUM: 25,
+    HIGH: 50,
+    FULL: 90
 }
 
 const CannySettingValue = {
-    LOW: 70,
-    MEDIUM: 85,
-    HIGH: 100
+    LOW: 10,
+    MEDIUM: 25,
+    HIGH: 50,
+    FULL: 90
 }
 
 const InfluenceValueInputId = {

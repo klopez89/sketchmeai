@@ -2503,15 +2503,9 @@ function alignAYSBasedOnRefImgMode() {
     let selectedMode = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
 
     let i2iModeInfoButton = document.getElementById('i2i-mode-info-button');
-    let mistoModeInfoButton = document.getElementById('misto-mode-info-button');
 
     if (selectedMode == RefImageMode.IMG2IMG) {
         i2iModeInfoButton.classList.remove('hidden');
-        mistoModeInfoButton.classList.add('hidden');
-    } else if (selectedMode == RefImageMode.MISTO) {
-        updateAysToggle(false);
-        i2iModeInfoButton.classList.add('hidden');
-        mistoModeInfoButton.classList.remove('hidden');
     }
 }
 
@@ -2549,32 +2543,30 @@ function alignInfluenceSettingToValue(refImgMode) {
             influence_setting = InfluenceSetting.LOW;
         } else if (influence_value <= Img2ImgSettingValue.MEDIUM) {
             influence_setting = InfluenceSetting.MEDIUM;
-        } else {
+        } else if (influence_value <= Img2ImgSettingValue.HIGH) {
             influence_setting = InfluenceSetting.HIGH;
+        } else {
+            influence_setting = InfluenceSetting.FULL;
         }
     } else if (refImgMode == RefImageMode.OPENPOSE) {
         if (influence_value <= OpenPoseSettingValue.LOW) {
             influence_setting = InfluenceSetting.LOW;
         } else if (influence_value <= OpenPoseSettingValue.MEDIUM) {
             influence_setting = InfluenceSetting.MEDIUM;
-        } else {
+        } else if (influence_value <= OpenPoseSettingValue.HIGH) {
             influence_setting = InfluenceSetting.HIGH;
+        } else {
+            influence_setting = InfluenceSetting.FULL;
         }
     } else if (refImgMode == RefImageMode.CANNY) {
         if (influence_value <= CannySettingValue.LOW) {
             influence_setting = InfluenceSetting.LOW;
         } else if (influence_value <= CannySettingValue.MEDIUM) {
             influence_setting = InfluenceSetting.MEDIUM;
-        } else {
+        } else if (influence_value <= CannySettingValue.HIGH) {
             influence_setting = InfluenceSetting.HIGH;
-        }
-    } else if (refImgMode == RefImageMode.MISTO) {
-        if (influence_value >= MistoSettingValue.LOW) {
-            influence_setting = InfluenceSetting.LOW;
-        } else if (influence_value >= MistoSettingValue.MEDIUM) {
-            influence_setting = InfluenceSetting.MEDIUM;
         } else {
-            influence_setting = InfluenceSetting.HIGH;
+            influence_setting = InfluenceSetting.FULL;
         }
     } else {
         return;

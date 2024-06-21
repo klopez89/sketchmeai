@@ -99,31 +99,3 @@
 .remove-upload-button:hover {
   color: black;
 }
-
-input[type=range]::-webkit-slider-runnable-track {
-  background: black; /* Change to your desired color */
-}
-
-input[type=range]::-webkit-slider-thumb {
-  background: black; /* Change to your desired color */
-}
-
-input[type=range]::-moz-range-track {
-  background: black; /* Change to your desired color */
-}
-
-input[type=range]::-moz-range-thumb {
-  background: black; /* Change to your desired color */
-}
-
-input[type=range]::-ms-fill-lower {
-  background: black; /* Change to your desired color */
-}
-
-input[type=range]::-ms-fill-upper {
-  background: black; /* Change to your desired color */
-}
-
-input[type=range]::-ms-thumb {
-  background: black; /* Change to your desired color */
-}

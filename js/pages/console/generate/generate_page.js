@@ -1665,12 +1665,16 @@ function clearRefImgElement(event) {
     let refImgMode = clearRefImgButton.getAttribute('mode');
     let refImgButton = referenceImgButtonElements(refImgMode)[0];
 
+    attemptToCloseRefImgSection(refImgMode);
+
     let singleRefImg = refImgButton.querySelector('img');
     singleRefImg.src = '';
     singleRefImg.setAttribute('filename', '');
     singleRefImg.setAttribute('fileType', '');
     singleRefImg.classList.add('hidden');
     refImgButton.classList.add('border-2', 'md:border-4', 'lg:border-2', 'border-dashed');
+
+    
 }
 
 function getUploadedRef(refImgMode) {

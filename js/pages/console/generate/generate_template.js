@@ -282,7 +282,7 @@ function generate_form_html() {
 			<div id="prompt-style-container" class="col-span-full pt-1">
 				<div class="flex px-4 md:px-6 lg:px-4 pb-1 text-sm md:text-2xl lg:text-sm">
 					<label class="leading-6 text-gray-700 pb-1">Style:&nbsp;</label>
-					<label id="selected-prompt-style-label" class="leading-6 text-gray-900">Cell-Shading</label>
+					<label id="selected-prompt-style-label" class="leading-6 text-gray-900">Comic</label>
 				</div>
 
 				<div id="prompt-style-grid" role="list" class="flex flex-row space-x-2 overflow-y-auto pb-0 px-4 md:px-6 lg:px-4">
@@ -663,11 +663,11 @@ function imageToImageFormSectionHTML() {
 					</div>
 
 
-					<div class="col-span-2 flex items-center" id="influence-title-container">
+					<div class="hidden col-span-2 flex items-center" id="influence-title-container">
 						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 					</div>
 
-					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
+					<div class="hidden col-span-4 flex gap-x-2" id="influence-slider-container">
 						<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="100" class="slider flex-grow" autocompleted="">
 						<input type="number" name="prompt-str" id="prompt-str" placeholder="${Img2ImgSettingValue.LOW}" min="0" max="100" value="${Img2ImgSettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 					</div>
@@ -789,11 +789,11 @@ function openPoseFormSectionHTML() {
 					</div>
 
 
-					<div class="col-span-2 flex items-center" id="influence-title-container">
+					<div class="hidden col-span-2 flex items-center" id="influence-title-container">
 						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 					</div>
 
-					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
+					<div class="hidden col-span-4 flex gap-x-2" id="influence-slider-container">
 						<input type="range" id="openpose-scale-range" name="openpose-scale-range" min="0" max="100" class="slider flex-grow" autocompleted="">
 						<input type="number" id="openpose-cnet-scale" placeholder="${OpenPoseSettingValue.FULL}" min="0" max="100" value="${OpenPoseSettingValue.FULL}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 					</div>
@@ -917,11 +917,11 @@ function cannyFormSectionHTML() {
 					</div>
 
 
-					<div class="col-span-2 flex items-center" id="influence-title-container">
+					<div class="hidden col-span-2 flex items-center" id="influence-title-container">
 						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 					</div>
 
-					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
+					<div class="hidden col-span-4 flex gap-x-2" id="influence-slider-container">
 						<input type="range" id="canny-scale-range" name="canny-scale-range" min="0" max="100" class="slider flex-grow" autocompleted="">
 						<input type="number" name="canny-cnet-scale" id="canny-cnet-scale" placeholder="${CannySettingValue.LOW}" min="0" max="100" value="${CannySettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 					</div>

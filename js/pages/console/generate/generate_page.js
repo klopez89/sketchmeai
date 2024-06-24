@@ -1183,6 +1183,8 @@ function generateButtonPressed(event) {
                 cannyUrl: promptValues.cannyUrl,
                 cannyRefImgInfo: promptValues.cannyRefImgInfo,
                 cannyInfValue: promptValues.cannyInfValue,
+                cannyGuidanceStart: promptValues.cannyGuidanceStart,
+                cannyGuidanceEnd: promptValues.cannyGuidanceEnd,
             
                 inferenceSteps: promptValues.inferenceSteps,
                 shouldUseAys: promptValues.shouldUseAys,
@@ -1805,6 +1807,8 @@ function promptInputValues() {
     if (cannyInfValue == '') {
         cannyInfValue = CannySettingValue.HIGH;
     }
+    let cannyGuidanceStart = document.getElementById('canny-guidance-start').value;
+    let cannyGuidanceEnd = document.getElementById('canny-guidance-end').value;
 
 
     var loraScale = document.getElementById('person-lora-influence').value;
@@ -1886,6 +1890,8 @@ function promptInputValues() {
         cannyUrl: cannyUrl,
         cannyRefImgInfo: cannyRefImgInfo,
         cannyInfValue: cannyInfValue/100,
+        cannyGuidanceStart: cannyGuidanceStart,
+        cannyGuidanceEnd: cannyGuidanceEnd,
         loraScale: normalizedLoraScale,
         resWidth: 1024,
         resHeight: 1024,

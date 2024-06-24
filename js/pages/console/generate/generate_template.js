@@ -1,7 +1,9 @@
 const denoisingInfo = "Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details."
 const negativePromptInfo = "The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result."
 const guidanceScaleInfo = "Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations."
-const imgToImgURLInfo = "Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch."
+const imgToImgInfo = "Uses an image as a starting point for the generation, rather than starting from random noise. Ideal for guiding the color composition of your output."
+const openPoseControlNetInfo = "Extracts the estimated position of the human pose in an image, and is then used to influence the human pose in your generation."
+const cannyControlNetInfo = " Identifies the edges and shapes in an image, and then uses this information to guide the structure and form in your generated image."
 const promptStrengthInfo = "Only applicable for image to image generation. A higher value makes the final image adhere more closely to the details of the prompt, while a lower value retains more of the reference image's features."
 const loraScaleInfo = "Adjusts the extent to which a fine-tuned model's specialized training influences the generated image, blending the base model's knowledge with the fine-tuned nuances."
 
@@ -953,6 +955,27 @@ function cannyFormSectionHTML() {
 						</div>
 					</div>
 
+					<div class="col-span-3" id="canny-start-field-container">
+						<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Guidance Start</label>
+						<button onclick="event.preventDefault()" data-te-trigger="hover" data-te-toggle="popover" data-te-title="Guidance Start" data-te-content="Determines what point in the generation the AI will use this control net as guidance. A zero means this control net will be used from the very start of the generation. A 25 means it will be used at the generation step equal to # of denoising steps * 0.25" class="ml-2 text-gray-300">
+							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
+						</button>
+						<div class="mt-2">
+							<input type="number" name="canny-guidance-start" id="canny-guidance-start" placeholder="0" min="0.0" max="1.0" step="0.1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
+							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.0 - 1.0</p>
+						</div>
+					</div>
+
+					<div class="col-span-3" id="canny-end-field-container">
+						<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Guidance End</label>
+						<button onclick="event.preventDefault()" data-te-trigger="hover" data-te-toggle="popover" data-te-title="Guidance End" data-te-content="Determines what point in the generation the AI will stop using this control net as guidance. A one means this control net will be used from till the very end of the generation. A 75 means it will be used at the generation step equal to # of denoising steps * 0.75" class="ml-2 text-gray-300">
+							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
+						</button>
+						<div class="mt-2">
+							<input type="number" name="canny-guidance-end" id="canny-guidance-end" placeholder="0" min="0.0" max="1.0" step="0.1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
+							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.0 - 1.0</p>
+						</div>
+					</div>
 
 				</div>
 

@@ -308,7 +308,7 @@ function generate_form_html() {
 									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
 								</div>
 								<div class="flex justify-left items-end h-full">
-									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color:white;">Cell-Shading</p>
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color:white;">Comic</p>
 								</div>
 							</div>
 						</div>

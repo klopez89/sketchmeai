@@ -854,9 +854,9 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
 
-    configureRefImgSection(generation.gen_recipe.img2img_signed_url,RefImageMode.IMG2IMG, generation.gen_recipe.prompt_strength)
-    configureRefImgSection(generation.gen_recipe.openpose_signed_url,RefImageMode.OPENPOSE, generation.gen_recipe.openpose_scale)
-    configureRefImgSection(generation.gen_recipe.canny_signed_url,RefImageMode.CANNY, generation.gen_recipe.canny_scale)
+    configureRefImgSection(generation.gen_recipe.img2img_signed_url,RefImageMode.IMG2IMG, generation.gen_recipe.prompt_strength);
+    configureRefImgSection(generation.gen_recipe.openpose_signed_url,RefImageMode.OPENPOSE, generation.gen_recipe.openpose_scale);
+    configureRefImgSection(generation.gen_recipe.canny_signed_url,RefImageMode.CANNY, generation.gen_recipe.canny_scale, generation.gen_recipe.canny_guidance_start, generation.gen_recipe.canny_guidance_end);
 
 
     document.getElementById('person-lora-influence').value = generation.gen_recipe.lora_scale * 100;
@@ -874,11 +874,16 @@ function copyPromptInfoFromGen(generation) {
     // alignAYSBasedOnRefImgMode();
 }
 
-function configureRefImgSection(signed_url, refImgMode, infValue) {
+function configureRefImgSection(signed_url, refImgMode, infValue, startValue, endValue) {
     if (signed_url != undefined) {
         insertImgUrlForRefImg(signed_url, refImgMode);
         enterRefImgInfluenceValue(refImgMode, infValue);
         alignInfluenceSettingToValue(refImgMode);
+
+        if (refImgMode == RefImageMode.CANNY.value) {
+            document.getElementById('canny-guidance-start').value = startValue;
+            document.getElementById('canny-guidance-end').value = endValue;
+        }
     } else {
         let clearRefButton = document.querySelector(`#clear-ref-button[mode="${refImgMode}"]`);
         clearRefButton.click();

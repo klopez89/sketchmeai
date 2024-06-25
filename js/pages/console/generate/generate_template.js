@@ -844,7 +844,7 @@ function openPoseFormSectionHTML() {
 
 function cannyFormSectionHTML() {
 	return `
-	<div class="col-span-full px-4 md:px-6 lg:px-4 border-y border-gray-300 mb-5 md:mb-10 lg:mb-5">
+	<div class="col-span-full px-4 md:px-6 lg:px-4 border-t border-gray-300">
 		<div id="nestedAccordion">
 
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">

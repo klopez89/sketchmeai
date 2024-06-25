@@ -186,6 +186,7 @@ function generate_form_html() {
 	let referenceFormSection = imageToImageFormSectionHTML();
 	let openPoseFormSection = openPoseFormSectionHTML();
 	let cannyFormSection = cannyFormSectionHTML();
+	let depthFormSection = depthFormSectionHTML();
 	return `
 	<form class="generate-form overflow-y-auto flex flex-col px-0 py-0" id="generateForm">
 
@@ -350,6 +351,8 @@ function generate_form_html() {
 		${openPoseFormSection}
 
 		${cannyFormSection}
+
+		${depthFormSection}
 
 		<div class="flex-grow"></div>
 	</form>

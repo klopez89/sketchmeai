@@ -1795,6 +1795,15 @@ function promptInputValues() {
     }
     let cannyGuidanceStart = document.getElementById('canny-guidance-start').value;
     let cannyGuidanceEnd = document.getElementById('canny-guidance-end').value;
+    if (cannyGuidanceStart == '') {
+        cannyGuidanceStart = 0.0;
+        document.getElementById('canny-guidance-start').value = cannyGuidanceStart;
+    }
+    if (cannyGuidanceEnd == '') {
+        cannyGuidanceEnd = 1.0;
+        document.getElementById('canny-guidance-end').value = cannyGuidanceEnd;
+    }
+
     // depth
     let depthUrl = document.getElementById(RefImgUrlInputId.DEPTH).value;
     let depthRefImgInfo = getUploadedRef(RefImageMode.DEPTH);
@@ -1804,6 +1813,14 @@ function promptInputValues() {
     }
     let depthGuidanceStart = document.getElementById('depth-guidance-start').value;
     let depthGuidanceEnd = document.getElementById('depth-guidance-end').value;
+    if (depthGuidanceStart == '') {
+        depthGuidanceStart = 0.0;
+        document.getElementById('depth-guidance-start').value = depthGuidanceStart;
+    }
+    if (depthGuidanceEnd == '') {
+        depthGuidanceEnd = 1.0;
+        document.getElementById('depth-guidance-end').value = depthGuidanceEnd;
+    }
 
     var loraScale = document.getElementById('person-lora-influence').value;
     let shouldUseRandomSeedAcrossModels = true;

@@ -388,15 +388,19 @@ function configureGenerateForm() {
     });
 
     let i2iRefImgUrlInput = document.getElementById(RefImgUrlInputId.IMG2IMG);
+    console.log('i2iRefImgUrlInput: ', i2iRefImgUrlInput);
     addDropListenerToRefImgUrlInput(i2iRefImgUrlInput);
 
     let openPoseRefImgUrlInput = document.getElementById(RefImgUrlInputId.OPENPOSE);
+    console.log('openPoseRefImgUrlInput: ', openPoseRefImgUrlInput);
     addDropListenerToRefImgUrlInput(openPoseRefImgUrlInput);
     
     let cannyRefImgUrlInput = document.getElementById(RefImgUrlInputId.CANNY);
+    console.log('cannyRefImgUrlInput: ', cannyRefImgUrlInput);
     addDropListenerToRefImgUrlInput(cannyRefImgUrlInput);
 
     let depthRefImgUrlInput = document.getElementById(RefImgUrlInputId.DEPTH);
+    console.log('depthRefImgUrlInput: ', depthRefImgUrlInput);
     addDropListenerToRefImgUrlInput(depthRefImgUrlInput);
 }
 

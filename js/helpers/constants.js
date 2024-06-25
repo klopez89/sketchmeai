@@ -52,6 +52,7 @@ const RefImageMode = {
     IMG2IMG: 'i2i-mode',
     OPENPOSE: 'openpose-mode',
     CANNY: 'canny-mode',
+    DEPTH: 'depth-mode',
     ALL: 'all'
 }
 
@@ -89,28 +90,39 @@ const CannySettingValue = {
     FULL: 90
 }
 
+const DepthSettingValue = {
+    LOW: 10,
+    MEDIUM: 25,
+    HIGH: 50,
+    FULL: 90
+}
+
 const InfluenceValueInputId = {
     IMG2IMG: 'prompt-str',
     OPENPOSE: 'openpose-cnet-scale',
     CANNY: 'canny-cnet-scale',
+    DEPTH: 'depth-cnet-scale',
 }
 
 const InfluenceRangeInputId = {
     IMG2IMG: 'ref-influence-range',
     OPENPOSE: 'openpose-scale-range',
     CANNY: 'canny-scale-range',
+    DEPTH: 'depth-scale-range',
 }
 
 const RefImgUrlInputId = {
     IMG2IMG: 'i2i-url',
     OPENPOSE: 'openpose-url',
     CANNY: 'canny-url',
+    DEPTH: 'depth-url',
 }
 
 const RefImgSectionButtonId = {
     IMG2IMG: 'i2i-section-button',
     OPENPOSE: 'openpose-section-button',
     CANNY: 'canny-section-button',
+    DEPTH: 'depth-section-button',
 }
 
 

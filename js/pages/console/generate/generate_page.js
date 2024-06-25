@@ -24,6 +24,7 @@ configureShareButton();
 configureRefImageFields(RefImageMode.IMG2IMG);
 configureRefImageFields(RefImageMode.OPENPOSE);
 configureRefImageFields(RefImageMode.CANNY);
+configureRefImageFields(RefImageMode.DEPTH);
 configurePersonLoraFields();
 updateAysToggle(false);
 
@@ -365,7 +366,6 @@ function configureGenerateForm() {
     });
 
     // Neg-prompt field: Enbable pressing enter to trigger generation
-
     document.getElementById('neg-prompt').addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
@@ -383,67 +383,25 @@ function configureGenerateForm() {
     seedInput.placeholder = 'Random';
     seedInput.addEventListener('blur', function() {
         if (seedInput.value.trim() === '') {
-            // seedInput.value = '-1'; // Reset to default value when input loses focus and is empty
-            seedInput.placeholder = 'Random'; // Reset placeholder
+            seedInput.placeholder = 'Random';
         }
     });
-
 
     let i2iRefImgUrlInput = document.getElementById(RefImgUrlInputId.IMG2IMG);
-    i2iRefImgUrlInput.addEventListener('drop', function(event) {
-        console.log('Received a drop event listener in img2img field');
-        event.preventDefault();
-        const dataTransfer = event.dataTransfer;
-        if (dataTransfer && dataTransfer.items) {
-            for (let item of dataTransfer.items) {
-                if (item.kind === 'string' && item.type === 'text/html') {
-                    item.getAsString(function(s) {
-                        // Create a temporary element to parse the HTML string
-                        const tempDiv = document.createElement('div');
-                        tempDiv.innerHTML = s;
-                        // Attempt to find an img element and retrieve its src
-                        const img = tempDiv.querySelector('img');
-                        if (img && img.src) {
-                            // Now you have the src of the dragged image
-                            console.log('Dragged image src:', img.src);
-                            i2iRefImgUrlInput.value = img.src;
-                            // You can now use img.src as needed for your application
-                        }
-                    });
-                }
-            }
-        }
-    });
+    addDropListenerToRefImgUrlInput(i2iRefImgUrlInput);
 
     let openPoseRefImgUrlInput = document.getElementById(RefImgUrlInputId.OPENPOSE);
-    openPoseRefImgUrlInput.addEventListener('drop', function(event) {
-        console.log('Received a drop event listener in img2img field');
-        event.preventDefault();
-        const dataTransfer = event.dataTransfer;
-        if (dataTransfer && dataTransfer.items) {
-            for (let item of dataTransfer.items) {
-                if (item.kind === 'string' && item.type === 'text/html') {
-                    item.getAsString(function(s) {
-                        // Create a temporary element to parse the HTML string
-                        const tempDiv = document.createElement('div');
-                        tempDiv.innerHTML = s;
-                        // Attempt to find an img element and retrieve its src
-                        const img = tempDiv.querySelector('img');
-                        if (img && img.src) {
-                            // Now you have the src of the dragged image
-                            console.log('Dragged image src:', img.src);
-                            openPoseRefImgUrlInput.value = img.src;
-                            // You can now use img.src as needed for your application
-                        }
-                    });
-                }
-            }
-        }
-    });
-
+    addDropListenerToRefImgUrlInput(openPoseRefImgUrlInput);
+    
     let cannyRefImgUrlInput = document.getElementById(RefImgUrlInputId.CANNY);
-    cannyRefImgUrlInput.addEventListener('drop', function(event) {
-        console.log('Received a drop event listener in img2img field');
+    addDropListenerToRefImgUrlInput(cannyRefImgUrlInput);
+
+    let depthRefImgUrlInput = document.getElementById(RefImgUrlInputId.DEPTH);
+    addDropListenerToRefImgUrlInput(depthRefImgUrlInput);
+}
+
+function addDropListenerToRefImgUrlInput(refImgUrlInput) {
+    refImgUrlInput.addEventListener('drop', function(event) {
         event.preventDefault();
         const dataTransfer = event.dataTransfer;
         if (dataTransfer && dataTransfer.items) {
@@ -457,9 +415,7 @@ function configureGenerateForm() {
                         const img = tempDiv.querySelector('img');
                         if (img && img.src) {
                             // Now you have the src of the dragged image
-                            console.log('Dragged image src:', img.src);
-                            cannyRefImgUrlInput.value = img.src;
-                            // You can now use img.src as needed for your application
+                            refImgUrlInput.value = img.src;
                         }
                     });
                 }
@@ -857,7 +813,7 @@ function copyPromptInfoFromGen(generation) {
     configureRefImgSection(generation.gen_recipe.img2img_signed_url,RefImageMode.IMG2IMG, generation.gen_recipe.prompt_strength);
     configureRefImgSection(generation.gen_recipe.openpose_signed_url,RefImageMode.OPENPOSE, generation.gen_recipe.openpose_scale);
     configureRefImgSection(generation.gen_recipe.canny_signed_url,RefImageMode.CANNY, generation.gen_recipe.canny_scale, generation.gen_recipe.canny_guidance_start, generation.gen_recipe.canny_guidance_end);
-
+    configureRefImgSection(generation.gen_recipe.depth_signed_url,RefImageMode.DEPTH, generation.gen_recipe.depth_scale, generation.gen_recipe.depth_guidance_start, generation.gen_recipe.depth_guidance_end);
 
     document.getElementById('person-lora-influence').value = generation.gen_recipe.lora_scale * 100;
     document.getElementById('person-lora-influence-range').value = generation.gen_recipe.lora_scale * 100;
@@ -880,9 +836,12 @@ function configureRefImgSection(signed_url, refImgMode, infValue, startValue, en
         enterRefImgInfluenceValue(refImgMode, infValue);
         alignInfluenceSettingToValue(refImgMode);
 
-        if (refImgMode == RefImageMode.CANNY.value) {
+        if (refImgMode == RefImageMode.CANNY) {
             document.getElementById('canny-guidance-start').value = startValue;
             document.getElementById('canny-guidance-end').value = endValue;
+        } else if (refImgMode ==  RefImageMode.DEPTH) {
+            document.getElementById('depth-guidance-start').value = startValue;
+            document.getElementById('depth-guidance-end').value = endValue;
         }
     } else {
         let clearRefButton = document.querySelector(`#clear-ref-button[mode="${refImgMode}"]`);
@@ -906,6 +865,10 @@ function enterRefImgInfluenceValue(refImgMode, infValue) {
     } else if (refImgMode == RefImageMode.CANNY) {
         inputFieldId = InfluenceValueInputId.CANNY;
         rangeInputFieldId = InfluenceRangeInputId.CANNY;
+        adjustedInfValue = adjustedInfValue * 100;
+    } else if (refImgMode == RefImageMode.DEPTH) {
+        inputFieldId = InfluenceValueInputId.DEPTH;
+        rangeInputFieldId = InfluenceRangeInputId.DEPTH;
         adjustedInfValue = adjustedInfValue * 100;
     } else {
         return;
@@ -945,6 +908,8 @@ function attemptToCloseRefImgSection(refImgMode) {
         sectionButtonId = RefImgSectionButtonId.OPENPOSE;
     } else if (refImgMode == RefImageMode.CANNY) {
         sectionButtonId = RefImgSectionButtonId.CANNY;
+    } else if (refImgMode == RefImageMode.DEPTH) {
+        sectionButtonId = RefImgSectionButtonId.DEPTH;
     } else {
         return;
     }
@@ -1051,7 +1016,7 @@ function generateButtonPressed(event) {
     let promptValues = promptInputValues();
     console.log("promptValues: ", promptValues);
 
-    if (isProvidedUrlInvalid(promptValues.img2imgUrl) || isProvidedUrlInvalid(promptValues.openPoseUrl) || isProvidedUrlInvalid(promptValues.cannyUrl)) {
+    if (isProvidedUrlInvalid(promptValues.img2imgUrl) || isProvidedUrlInvalid(promptValues.openPoseUrl) || isProvidedUrlInvalid(promptValues.cannyUrl) || isProvidedUrlInvalid(promptValues.depthUrl)) {
         return;
     }
 
@@ -1190,6 +1155,12 @@ function generateButtonPressed(event) {
                 cannyInfValue: promptValues.cannyInfValue,
                 cannyGuidanceStart: promptValues.cannyGuidanceStart,
                 cannyGuidanceEnd: promptValues.cannyGuidanceEnd,
+
+                depthUrl: promptValues.depthUrl,
+                depthRefImgInfo: promptValues.depthRefImgInfo,
+                depthInfValue: promptValues.depthInfValue,
+                depthGuidanceStart: promptValues.depthGuidanceStart,
+                depthGuidanceEnd: promptValues.depthGuidanceEnd,
             
                 inferenceSteps: promptValues.inferenceSteps,
                 shouldUseAys: promptValues.shouldUseAys,
@@ -1642,10 +1613,13 @@ function referenceImgButtonElements(refImageMode) {
         refImgButtonElements.push(document.getElementById('openpose-img-button'));
     } else if (refImageMode == RefImageMode.CANNY) {
         refImgButtonElements.push(document.getElementById('canny-img-button'));
+    } else if (refImageMode == RefImageMode.DEPTH) {
+        refImgButtonElements.push(document.getElementById('depth-img-button'));
     } else { // All case
         refImgButtonElements.push(document.getElementById('i2i-img-button'));
         refImgButtonElements.push(document.getElementById('openpose-img-button'));
         refImgButtonElements.push(document.getElementById('canny-img-button'));
+        refImgButtonElements.push(document.getElementById('depth-img-button'));
     }
     return refImgButtonElements;
 }
@@ -1658,10 +1632,13 @@ function referenceImgSectionButtons(refImageMode) {
         refImgSectionButtons.push(document.getElementById('openpose-section-button'));
     } else if (refImageMode == RefImageMode.CANNY) {
         refImgSectionButtons.push(document.getElementById('canny-section-button'));
+    } else if (refImageMode == RefImageMode.DEPTH) {
+        refImgSectionButtons.push(document.getElementById('depth-section-button'));
     } else { // All case
         refImgSectionButtons.push(document.getElementById('i2i-section-button'));
         refImgSectionButtons.push(document.getElementById('openpose-section-button'));
         refImgSectionButtons.push(document.getElementById('canny-section-button'));
+        refImgSectionButtons.push(document.getElementById('depth-section-button'));
     }
     return refImgSectionButtons;
 }
@@ -1814,7 +1791,15 @@ function promptInputValues() {
     }
     let cannyGuidanceStart = document.getElementById('canny-guidance-start').value;
     let cannyGuidanceEnd = document.getElementById('canny-guidance-end').value;
-
+    // depth
+    let depthUrl = document.getElementById(RefImgUrlInputId.DEPTH).value;
+    let depthRefImgInfo = getUploadedRef(RefImageMode.DEPTH);
+    var depthInfValue = document.getElementById(InfluenceValueInputId.DEPTH).value;
+    if (depthInfValue == '') {
+        depthInfValue = DepthSettingValue.HIGH;
+    }
+    let depthGuidanceStart = document.getElementById('depth-guidance-start').value;
+    let depthGuidanceEnd = document.getElementById('depth-guidance-end').value;
 
     var loraScale = document.getElementById('person-lora-influence').value;
     let shouldUseRandomSeedAcrossModels = true;
@@ -1897,6 +1882,11 @@ function promptInputValues() {
         cannyInfValue: cannyInfValue/100,
         cannyGuidanceStart: cannyGuidanceStart,
         cannyGuidanceEnd: cannyGuidanceEnd,
+        depthUrl: depthUrl,
+        depthRefImgInfo: depthRefImgInfo,
+        depthInfValue: depthInfValue/100,
+        depthGuidanceStart: depthGuidanceStart,
+        depthGuidanceEnd: depthGuidanceEnd,
         loraScale: normalizedLoraScale,
         resWidth: 1024,
         resHeight: 1024,
@@ -2548,6 +2538,8 @@ function alignInfluenceSettingToValue(refImgMode) {
         influence_value_field_id = InfluenceValueInputId.OPENPOSE;
     } else if (refImgMode == RefImageMode.CANNY) {
         influence_value_field_id = InfluenceValueInputId.CANNY;
+    } else if (refImgMode == RefImageMode.DEPTH) {
+        influence_value_field_id = InfluenceValueInputId.DEPTH;
     } else {
         return;
     }
@@ -2585,6 +2577,16 @@ function alignInfluenceSettingToValue(refImgMode) {
         } else {
             influence_setting = InfluenceSetting.FULL;
         }
+    } else if (refImgMode == RefImageMode.DEPTH) {
+        if (influence_value <= DepthSettingValue.LOW) {
+            influence_setting = InfluenceSetting.LOW;
+        } else if (influence_value <= DepthSettingValue.MEDIUM) {
+            influence_setting = InfluenceSetting.MEDIUM;
+        } else if (influence_value <= DepthSettingValue.HIGH) {
+            influence_setting = InfluenceSetting.HIGH;
+        } else {
+            influence_setting = InfluenceSetting.FULL;
+        }
     } else {
         return;
     }
@@ -2602,6 +2604,8 @@ function updateInfSettingTabUI(selected_influence_setting, refImgMode) {
         infSettingTabsSelectorId = "openpose-influence-setting-tabs-selector";
     } else if (refImgMode == RefImageMode.CANNY) {
         infSettingTabsSelectorId = "canny-influence-setting-tabs-selector";
+    } else if (refImgMode == RefImageMode.DEPTH) {
+        infSettingTabsSelectorId = "depth-influence-setting-tabs-selector";
     } else {
         return;
     }
@@ -2641,6 +2645,9 @@ function setRefImgInfluenceValue(selected_influence_setting, refImgMode) {
     } else if (refImgMode == RefImageMode.CANNY) {
         influence_value_field_id = "canny-cnet-scale";
         influenceValue = CannySettingValue[selected_influence_setting.toUpperCase()];
+    } else if (refImgMode == RefImageMode.DEPTH) {
+        influence_value_field_id = "depth-cnet-scale";
+        influenceValue = DepthSettingValue[selected_influence_setting.toUpperCase()];
     } else {
         return;
     }

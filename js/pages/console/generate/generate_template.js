@@ -977,8 +977,8 @@ function cannyFormSectionHTML() {
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 						<div class="mt-2">
-							<input type="number" name="canny-guidance-end" id="canny-guidance-end" placeholder="0" min="0.0" max="1.0" step="0.1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
-							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.0 - 1.0</p>
+							<input type="number" name="canny-guidance-end" id="canny-guidance-end" placeholder="1" min="0.1" max="1.0" step="0.1" value="1" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
+							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.1 - 1.0</p>
 						</div>
 					</div>
 
@@ -1125,7 +1125,7 @@ function depthFormSectionHTML() {
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 						<div class="mt-2">
-							<input type="number" name="depth-guidance-end" id="depth-guidance-end" placeholder="0" min="0.0" max="1.0" step="0.1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
+							<input type="number" name="depth-guidance-end" id="depth-guidance-end" placeholder="1" min="0.1" max="1.0" step="0.1" value="1" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-sm md:text-2xl lg:text-sm leading-6">
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.0 - 1.0</p>
 						</div>
 					</div>

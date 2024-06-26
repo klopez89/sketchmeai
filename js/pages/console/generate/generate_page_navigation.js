@@ -125,8 +125,8 @@ function dismissChangeCollectionModal() {
     animateAway(changeCollectionModal, 500);
 }
 
-function showImageRefModelSelectionModal(imgSrc) {
-    let imgRefModelSelectionModal_HTML = imageReferenceModeSelectionModalHTML(imgSrc);
+function showImageRefModelSelectionModal(modal_title, imgSrc) {
+    let imgRefModelSelectionModal_HTML = imageReferenceModeSelectionModalHTML(modal_title, imgSrc);
     let imgRefModelSelectionModalDiv = $($.parseHTML(imgRefModelSelectionModal_HTML));
     $('#console-content').prepend(imgRefModelSelectionModalDiv);
     let imgRefModelSelectionModal = document.getElementById('img-ref-mode-selection-modal');

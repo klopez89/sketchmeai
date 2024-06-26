@@ -30,10 +30,10 @@ function newGenItem_FromNewGen(generation_id) {
 function newGridItemHTML(gen_id, gen_string="") {
     const placeholderImageURL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXY3B0cPoPAAX8A+gBk0h+kgAAAABJRU5ErkJggg==";
     return `
-    <div class="relative rounded-lg overflow-hidden" generation-id="${gen_id}" gen-info="${gen_string}">
+    <div class="relative" generation-id="${gen_id}" gen-info="${gen_string}">
         <div class="selectable group aspect-h-10 aspect-w-10 block w-full relative">
 
-            <img src="${placeholderImageURL}" alt="" class="object-cover group-hover:opacity-95 transition-opacity opacity-0 duration-200 cursor-pointer data-[te-lightbox-disabled]:cursor-auto" onclick="goingToLightbox(event)">
+            <img src="${placeholderImageURL}" alt="" class="rounded-lg object-cover group-hover:opacity-95 transition-opacity opacity-0 duration-200 cursor-pointer data-[te-lightbox-disabled]:cursor-auto" onclick="goingToLightbox(event)">
             
             <div id="gen-loader" class="bg-gray-200 flex justify-center items-center">
                 <i class="fa fa-spinner fa-spin text-4xl md:text-6xl lg:text-4xl text-gray-500" aria-hidden="true"></i>
@@ -41,7 +41,7 @@ function newGridItemHTML(gen_id, gen_string="") {
                 <button class="absolute top-0 right-0 p-2 text-xs text-gray-400 hover:text-gray-500 hidden" id="cancel-button">Cancel</button>
             </div>
 
-            <div id="action-container" class="hidden bg-transparent group-hover:bg-gray-900 group-hover:bg-opacity-10 pointer-events-none group transition-bg-opacity duration-200">
+            <div id="action-container" class="hidden rounded-lg bg-transparent group-hover:bg-gray-900 group-hover:bg-opacity-10 pointer-events-none group transition-bg-opacity duration-200">
                 <button id="copy-button" class="absolute hidden lg:flex bottom-2 right-2 p-2 text-md text-white border-2 border-white opacity-100 lg:opacity-0 group-hover:opacity-100 hover:bg-gray-800 rounded-lg pointer-events-auto items-center justify-center transition-opacity duration-200">
                     <i class="fa fa-copy" aria-hidden="true"></i>
                 </button>

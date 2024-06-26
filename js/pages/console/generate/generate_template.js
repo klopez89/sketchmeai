@@ -644,7 +644,7 @@ function imageToImageFormSectionHTML() {
 				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
 
 					<div class="col-span-full" id="igm2img-field-container">
-						<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
+						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
 							<button id="i2i-img-button" mode="${RefImageMode.IMG2IMG}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 								
 								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
@@ -771,7 +771,7 @@ function openPoseFormSectionHTML() {
 				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
 
 					<div class="col-span-full" id="igm2img-field-container">
-						<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
+						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
 							<button id="openpose-img-button" mode="${RefImageMode.OPENPOSE}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 								
 								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
@@ -898,7 +898,7 @@ function cannyFormSectionHTML() {
 				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
 
 					<div class="col-span-full" id="igm2img-field-container">
-						<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
+						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
 							<button id="canny-img-button" mode="${RefImageMode.CANNY}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 
 								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
@@ -1047,7 +1047,7 @@ function depthFormSectionHTML() {
 				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
 
 					<div class="col-span-full" id="igm2img-field-container">
-						<div id="ref-img-div-container" class="flex items-center justify-center pt-1 pb-2">
+						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
 							<button id="depth-img-button" mode="${RefImageMode.DEPTH}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 
 								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">

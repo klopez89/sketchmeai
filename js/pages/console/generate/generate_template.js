@@ -4,6 +4,7 @@ const guidanceScaleInfo = "Also know as 'classifier free guidance' or cfg. Guida
 const imgToImgInfo = "Uses an image as a starting point for the generation, rather than starting from random noise. Ideal for guiding the color composition of your output."
 const openPoseControlNetInfo = "Extracts the estimated position of the human pose in an image, and is then used to influence the human pose in your generation."
 const cannyControlNetInfo = " Identifies the edges and shapes in an image, and then uses this information to guide the structure and form in your generated image."
+const depthControlNetInfo = "Analyzes the depth information in an image to guide the generation process, ensuring that the generated image maintains a coherent sense of depth and spatial relationships."
 const promptStrengthInfo = "Only applicable for image to image generation. A higher value makes the final image adhere more closely to the details of the prompt, while a lower value retains more of the reference image's features."
 const loraScaleInfo = "Adjusts the extent to which a fine-tuned model's specialized training influences the generated image, blending the base model's knowledge with the fine-tuned nuances."
 
@@ -462,10 +463,11 @@ function imageReferenceModeSelectionModalHTML(imgSrc) {
 			</div>
 
 			<div class="relative flex flex-col justify-center items-center gap-y-2">
-				<button class="w-1/2 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.IMG2IMG}','${imgSrc}')">Image-to-Image</button>
-				<button class="w-1/2 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.OPENPOSE}','${imgSrc}')">OpenPose</button>
-				<button class="w-1/2 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.CANNY}','${imgSrc}')">Canny</button>
-				<button class="w-1/2 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('ALL','${imgSrc}')">All</button>
+				<button class="w-6/7 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.IMG2IMG}','${imgSrc}')">Image-to-Image</button>
+				<button class="w-6/7 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.OPENPOSE}','${imgSrc}')">OpenPose</button>
+				<button class="w-6/7 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.CANNY}','${imgSrc}')">Canny</button>
+				<button class="w-6/7 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.DEPTH}','${imgSrc}')">Canny</button>
+				<button class="w-6/7 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('ALL','${imgSrc}')">All</button>
 			</div>
 
 		</div>
@@ -608,7 +610,7 @@ function imageToImageFormSectionHTML() {
 						Image-to-Image
 
 					</button>
-					<button id="openpose-mode-info-button" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300">
+					<button id="i2i-mode-info-button" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="${imgToImgInfo}" class="ml-2 pt-0 text-gray-300">
 						<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 					</button>
 				</div>
@@ -734,7 +736,7 @@ function openPoseFormSectionHTML() {
 						OpenPose ControlNet
 
 					</button>
-					<button id="openpose-mode-info-button" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300">
+					<button id="openpose-mode-info-button" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Open Pose, ControlNet" data-te-content="${openPoseControlNetInfo}" class="ml-2 pt-0 text-gray-300">
 						<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 					</button>
 				</div>
@@ -860,7 +862,7 @@ function cannyFormSectionHTML() {
 						Canny ControlNet
 
 					</button>
-					<button id="canny-mode-info-button" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300">
+					<button id="canny-mode-info-button" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Canny, ControlNet" data-te-content="${cannyControlNetInfo}" class="ml-2 pt-0 text-gray-300">
 						<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 					</button>
 				</div>
@@ -990,7 +992,6 @@ function cannyFormSectionHTML() {
 }
 
 
-
 function depthFormSectionHTML() {
 	return `
 	<div class="col-span-full px-4 md:px-6 lg:px-4 border-y border-gray-300 mb-5 md:mb-10 lg:mb-5">
@@ -1009,7 +1010,7 @@ function depthFormSectionHTML() {
 						Depth ControlNet
 
 					</button>
-					<button id="depth-mode-info-button" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="Provides a starting image that the model will use as a base to apply the transformations specified by your prompt. A way to direct the AI to modify or build upon an existing image rather than creating one from scratch." class="ml-2 pt-0 text-gray-300">
+					<button id="depth-mode-info-button" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Depth, ControlNet" data-te-content="${depthControlNetInfo}" class="ml-2 pt-0 text-gray-300">
 						<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 					</button>
 				</div>

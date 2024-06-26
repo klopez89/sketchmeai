@@ -1665,6 +1665,14 @@ function clearRefImgElement(event) {
     
 }
 
+function getRefImgSrc(refImgMode) {
+    let i2iRefImgButton = referenceImgButtonElements(refImgMode)[0];
+	let singleRefImageButton = i2iRefImgButton;
+    // console.log('the single ref img button is: ', singleRefImageButton);
+    let singleRefImg = singleRefImageButton.querySelector('img');
+    return singleRefImg.src;
+}
+
 function getUploadedRef(refImgMode) {
     let i2iRefImgButton = referenceImgButtonElements(refImgMode)[0];
 	let singleRefImageButton = i2iRefImgButton;
@@ -2126,6 +2134,12 @@ function configureGenElementforDeletion(genElement) {
     setGenLoaderToDeleteMode(genElement);
 }
 
+function copyToOtherReferenceMode(refImgMode) {
+    let img_src = getRefImgSrc(refImgMode);
+    let modal_title = 'Copy to Reference Mode';
+    showImageRefModelSelectionModal(modal_title, img_src);
+}
+
 function useAsReferenceImagePressed(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -2135,7 +2149,8 @@ function useAsReferenceImagePressed(event) {
     let imgElement = genElement.querySelector('img');
     let imgSrc = imgElement.getAttribute('src');
 
-    showImageRefModelSelectionModal(imgSrc);
+    let modal_title = 'Select Reference Mode';
+    showImageRefModelSelectionModal(modal_title, imgSrc);
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
 }
 

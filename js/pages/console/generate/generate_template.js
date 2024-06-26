@@ -451,7 +451,7 @@ function bottom_generation_menu_html() {
 	`;
 }
 
-function imageReferenceModeSelectionModalHTML(imgSrc) {
+function imageReferenceModeSelectionModalHTML(modal_title, imgSrc) {
 	return `
 	<div id="img-ref-mode-selection-modal" class="absolute bg-black bg-opacity-90 h-full w-full z-[81] px-4 flex flex-col justify-center transition duration-500 opacity-0">
 		<div class="max-w-2xl md:max-w-3xl lg:max-w-2xl mx-auto bg-white p-7 md:p-9 rounded-lg shadow-lg w-full relative">
@@ -459,7 +459,7 @@ function imageReferenceModeSelectionModalHTML(imgSrc) {
 				<i class="fas fa-times" aria-hidden="true"></i>
 			</button>
 			<div class="mb-4">
-				<h2 class="text-2xl md:text-4xl lg:text-3xl text-gray-900 mb-2 md:mb-3 lg:mb-2">Select Reference Mode</h2>
+				<h2 class="text-2xl md:text-4xl lg:text-3xl text-gray-900 mb-2 md:mb-3 lg:mb-2">${modal_title}</h2>
 			</div>
 
 			<div class="relative flex flex-col justify-center items-center gap-y-2">
@@ -662,6 +662,7 @@ function imageToImageFormSectionHTML() {
 								</div>
 							</button>
 							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
+							<button class="text-gray-400 text-base w-[8em] md:w-[16em] lg:w-[8em] pl-0 py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.IMG2IMG}')">Copy to...</button>
 						</div>
 						
 						<div class="mt-0">
@@ -788,6 +789,7 @@ function openPoseFormSectionHTML() {
 								</div>
 							</button>
 							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
+							<button class="text-gray-400 text-base w-[8em] md:w-[16em] lg:w-[8em] pl-0 py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.OPENPOSE}')">Copy to...</button>
 						</div>
 						
 						<div class="mt-0">
@@ -914,6 +916,7 @@ function cannyFormSectionHTML() {
 								</div>
 							</button>
 							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
+							<button class="text-gray-400 text-base w-[8em] md:w-[16em] lg:w-[8em] pl-0 py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.CANNY}')">Copy to...</button>
 						</div>
 						
 						<div class="mt-0">
@@ -1062,6 +1065,7 @@ function depthFormSectionHTML() {
 								</div>
 							</button>
 							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
+							<button class="text-gray-400 text-base w-[8em] md:w-[16em] lg:w-[8em] pl-0 py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.DEPTH}')">Copy to...</button>
 						</div>
 						
 						<div class="mt-0">

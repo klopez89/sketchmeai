@@ -466,7 +466,7 @@ function imageReferenceModeSelectionModalHTML(imgSrc) {
 				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.IMG2IMG}','${imgSrc}')">Image-to-Image</button>
 				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.OPENPOSE}','${imgSrc}')">OpenPose</button>
 				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.CANNY}','${imgSrc}')">Canny</button>
-				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.DEPTH}','${imgSrc}')">Canny</button>
+				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.DEPTH}','${imgSrc}')">Depth</button>
 				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('ALL','${imgSrc}')">All</button>
 			</div>
 

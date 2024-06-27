@@ -478,8 +478,8 @@ function imageReferenceModeSelectionModalHTML(modal_title, imgSrc) {
 					</label>
 				</div>
 				<div class="flex w-full gap-2 mt-2">
-					<button class="flex-grow bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${imgSrc}')">Confirm</button>
-					<button class="flex-grow bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedAllImgRefModes('${imgSrc}')">All</button>
+					<button class="w-full bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${imgSrc}')">Confirm</button>
+					<button class="w-full bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedAllImgRefModes('${imgSrc}')">All</button>
 				</div>
 			</div>
 		</div>

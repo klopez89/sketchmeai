@@ -463,13 +463,22 @@ function imageReferenceModeSelectionModalHTML(modal_title, imgSrc) {
 			</div>
 
 			<div class="relative flex flex-col justify-center items-center gap-y-2">
-				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.IMG2IMG}','${imgSrc}')">Image-to-Image</button>
-				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.OPENPOSE}','${imgSrc}')">OpenPose</button>
-				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.CANNY}','${imgSrc}')">Canny</button>
-				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('${RefImageMode.DEPTH}','${imgSrc}')">Depth</button>
-				<button class="w-9/12 bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedImgRefMode('ALL','${imgSrc}')">All</button>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
+					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
+						<input type="checkbox" class="mr-2" value="i2i-mode" onclick="toggleRefImgModeSelection('${RefImageMode.IMG2IMG}')"> Image-to-Image
+					</label>
+					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
+						<input type="checkbox" class="mr-2" value="openpose-mode" onclick="toggleRefImgModeSelection('${RefImageMode.OPENPOSE}')"> OpenPose
+					</label>
+					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
+						<input type="checkbox" class="mr-2" value="canny-mode" onclick="toggleRefImgModeSelection('${RefImageMode.CANNY}')"> Canny
+					</label>
+					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
+						<input type="checkbox" class="mr-2" value="depth-mode" onclick="toggleRefImgModeSelection('${RefImageMode.DEPTH}')"> Depth
+					</label>
+				</div>
+				<button class="w-full bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow mt-2" onclick="userSelectedImgRefMode('${imgSrc}')">Confirm</button>
 			</div>
-
 		</div>
 	</div>
 	`;

@@ -133,12 +133,13 @@ function showImageRefModelSelectionModal(modal_title, imgSrc) {
     animateIn(imgRefModelSelectionModal);
 }
 
-function userSelectedImgRefMode(refImgMode, imgSrc) {
-    console.log('The selected imgRefMode: ', refImgMode, ', and imgSrc: ', imgSrc);
-    insertImgUrlForRefImg(imgSrc, refImgMode);
+function userSelectedImgRefMode(imgSrc) {
+    selectedRefImgModes.forEach(refImgMode => {
+        console.log('The selected imgRefMode: ', refImgMode, ', and imgSrc: ', imgSrc);
+        insertImgUrlForRefImg(imgSrc, refImgMode);
+    });
     dismissImageRefModeSelectionModal();
 }
-
 
 function dismissImageRefModeSelectionModal() {
     let imgRefModelSelectionModal = document.getElementById('img-ref-mode-selection-modal');

@@ -9,6 +9,7 @@ var promptPlaceholderText = generatePrompt('');
 let isSelectable = false;
 let lastSelectedModelVersion = null;
 let boundaryWidth = 1024; // Tailwind's 'lg' breakpoint (use to be 768 for md). Increased to lg to accomodate for huge pixel phones like Samsung S23 Ultra w/ a 916px width.
+let selectedRefImgModes = [];
 
 addImageGrid();
 addBaseGenMenu();
@@ -2154,6 +2155,21 @@ function useAsReferenceImagePressed(event) {
     let modal_title = 'Select Reference Mode';
     showImageRefModelSelectionModal(modal_title, imgSrc);
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
+}
+
+function toggleRefImgModeSelection(refImgMode) {
+    const index = selectedRefImgModes.indexOf(refImgMode);
+    if (index > -1) {
+        selectedRefImgModes.splice(index, 1);
+    } else {
+        selectedRefImgModes.push(refImgMode);
+    }
+}
+
+function confirmRefImgModeSelection() {
+    console.log('Selected Modes:', selectedModes);
+    // Add your logic to handle the selected modes
+    dismissImageRefModeSelectionModal();
 }
 
 function copyPromptFromGenMenuPressed(event) {

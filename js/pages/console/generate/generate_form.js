@@ -10,6 +10,9 @@ function configureRefImageFields(refImgMode) {
     } else if (refImgMode == RefImageMode.CANNY) {
         inputFieldId = InfluenceValueInputId.CANNY;
         rangeInputFieldId = InfluenceRangeInputId.CANNY;
+    } else if (refImgMode == RefImageMode.DEPTH) {
+        inputFieldId = InfluenceValueInputId.DEPTH;
+        rangeInputFieldId = InfluenceRangeInputId.DEPTH;
     } else {
         return;
     }

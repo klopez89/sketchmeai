@@ -1451,8 +1451,10 @@ function configureRefImageButton() {
     let refImgButtonElements = referenceImgButtonElements(RefImageMode.ALL);
     for(let i = 0; i < refImgButtonElements.length; i++) {
         let refImgButton = refImgButtonElements[i];
+        console.log('the ref img button is: ', refImgButton);
         let refImgButtonMode = refImgButton.getAttribute('mode');
         let refImageUploadInput = refImgButton.nextElementSibling;
+        console.log('the ref image upload input is: ', refImageUploadInput, ' the ref img mode: ', refImgButtonMode);
 
         refImageUploadInput.addEventListener("change", () => {
             console.log('Trigger change event of local upload input');

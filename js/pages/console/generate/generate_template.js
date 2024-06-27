@@ -477,7 +477,10 @@ function imageReferenceModeSelectionModalHTML(modal_title, imgSrc) {
 						<input type="checkbox" class="mr-2" value="depth-mode" onclick="toggleRefImgModeSelection('${RefImageMode.DEPTH}')"> Depth
 					</label>
 				</div>
-				<button class="w-full bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow mt-2" onclick="userSelectedImgRefMode('${imgSrc}')">Confirm</button>
+				<div class="flex w-full gap-2 mt-2">
+					<button class="flex-grow bg-black text-white md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow mt-2" onclick="userSelectedImgRefMode('${imgSrc}')">Confirm</button>
+					<button class="flex-grow bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow" onclick="userSelectedAllImgRefModes('${imgSrc}')">All</button>
+				</div>
 			</div>
 		</div>
 	</div>

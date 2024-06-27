@@ -141,6 +141,15 @@ function userSelectedImgRefMode(imgSrc) {
     dismissImageRefModeSelectionModal();
 }
 
+function userSelectedAllImgRefModes(imgSrc) {
+    Object.values(RefImageMode).forEach(refImgMode => {
+        if (refImgMode !== RefImageMode.ALL) {
+            insertImgUrlForRefImg(imgSrc, refImgMode);
+        }
+    });
+    dismissImageRefModeSelectionModal();
+}
+
 function dismissImageRefModeSelectionModal() {
     let imgRefModelSelectionModal = document.getElementById('img-ref-mode-selection-modal');
     animateAway(imgRefModelSelectionModal, 500);

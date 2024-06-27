@@ -925,7 +925,7 @@ function cannyFormSectionHTML() {
 									</div>
 								</button>
 								<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
-								<button class="text-gray-400 text-base py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.CANNY}')">Copy to...</button>
+								<button class="text-gray-400 text-sm py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.CANNY}')">Copy to...</button>
 							</div>
 						</div>
 						

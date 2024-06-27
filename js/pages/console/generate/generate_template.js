@@ -645,24 +645,28 @@ function imageToImageFormSectionHTML() {
 
 					<div class="col-span-full" id="igm2img-field-container">
 						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
-							<button id="i2i-img-button" mode="${RefImageMode.IMG2IMG}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
-								
-								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
 
-								<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
-									<div class="flex flex-col h-full items-center justify-center">		
-										<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
-										<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
-									</div>
-								</div>
-
-								<div class="flex flex-col items-center">		
-									<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
+							<div class="w-[8em] md:w-[16em] lg:w-[8em]">
+								<button id="i2i-img-button" mode="${RefImageMode.IMG2IMG}" class="relative flex flex-col items-center justify-center block h-[8em] md:h-[16em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 									
-								</div>
-							</button>
-							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
-							<button class="text-gray-400 text-base w-[8em] md:w-[16em] lg:w-[8em] pl-0 py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.IMG2IMG}')">Copy to...</button>
+									<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
+
+									<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
+										<div class="flex flex-col h-full items-center justify-center">		
+											<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
+											<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
+										</div>
+									</div>
+
+									<div class="flex flex-col items-center">		
+										<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
+										
+									</div>
+								</button>
+								<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
+								<button class="text-gray-400 text-sm py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.IMG2IMG}')">Copy to...</button>
+							</div>
+							
 						</div>
 						
 						<div class="mt-0">
@@ -772,24 +776,27 @@ function openPoseFormSectionHTML() {
 
 					<div class="col-span-full" id="igm2img-field-container">
 						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
-							<button id="openpose-img-button" mode="${RefImageMode.OPENPOSE}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
-								
-								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
 
-								<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
-									<div class="flex flex-col h-full items-center justify-center">		
-										<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
-										<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
-									</div>
-								</div>
-
-								<div class="flex flex-col items-center">		
-									<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
+							<div class="w-[8em] md:w-[16em] lg:w-[8em]">
+								<button id="openpose-img-button" mode="${RefImageMode.OPENPOSE}" class="relative flex flex-col items-center justify-center block h-[8em] md:h-[16em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 									
-								</div>
-							</button>
+									<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
+
+									<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
+										<div class="flex flex-col h-full items-center justify-center">		
+											<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
+											<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
+										</div>
+									</div>
+
+									<div class="flex flex-col items-center">		
+										<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
+										
+									</div>
+								</button>
+								<button class="text-gray-400 text-sm py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.OPENPOSE}')">Copy to...</button>
+							</div>
 							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
-							<button class="text-gray-400 text-base w-[8em] md:w-[16em] lg:w-[8em] pl-0 py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.OPENPOSE}')">Copy to...</button>
 						</div>
 						
 						<div class="mt-0">
@@ -899,24 +906,27 @@ function cannyFormSectionHTML() {
 
 					<div class="col-span-full" id="igm2img-field-container">
 						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
-							<button id="canny-img-button" mode="${RefImageMode.CANNY}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 
-								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
+							<div class="w-[8em] md:w-[16em] lg:w-[8em]">
+								<button id="canny-img-button" mode="${RefImageMode.CANNY}" class="relative flex flex-col items-center justify-center block h-[8em] md:h-[16em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 
-								<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
-									<div class="flex flex-col h-full items-center justify-center">		
-										<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
-										<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
+									<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
+
+									<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
+										<div class="flex flex-col h-full items-center justify-center">		
+											<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
+											<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
+										</div>
 									</div>
-								</div>
 
-								<div class="flex flex-col items-center">		
-									<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
-									
-								</div>
-							</button>
+									<div class="flex flex-col items-center">		
+										<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
+										
+									</div>
+								</button>
+								<button class="text-gray-400 text-base py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.CANNY}')">Copy to...</button>
+							</div>
 							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
-							<button class="text-gray-400 text-base w-[8em] md:w-[16em] lg:w-[8em] pl-0 py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.CANNY}')">Copy to...</button>
 						</div>
 						
 						<div class="mt-0">
@@ -1048,24 +1058,27 @@ function depthFormSectionHTML() {
 
 					<div class="col-span-full" id="igm2img-field-container">
 						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
-							<button id="depth-img-button" mode="${RefImageMode.DEPTH}" class="relative flex flex-col items-center justify-center block w-[8em] h-[8em] md:w-[16em] md:h-[16em] lg:w-[8em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 
-								<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
+							<div class="w-[8em] md:w-[16em] lg:w-[8em]">
+								<button id="depth-img-button" mode="${RefImageMode.DEPTH}" class="relative flex flex-col items-center justify-center block h-[8em] md:h-[16em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 
-								<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
-									<div class="flex flex-col h-full items-center justify-center">		
-										<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
-										<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
+									<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
+
+									<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
+										<div class="flex flex-col h-full items-center justify-center">		
+											<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
+											<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
+										</div>
 									</div>
-								</div>
 
-								<div class="flex flex-col items-center">		
-									<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
-									
-								</div>
-							</button>
+									<div class="flex flex-col items-center">		
+										<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
+										
+									</div>
+								</button>
+								<button class="text-gray-400 text-sm py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.DEPTH}')">Copy to...</button>
+							</div>
 							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
-							<button class="text-gray-400 text-base w-[8em] md:w-[16em] lg:w-[8em] pl-0 py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.DEPTH}')">Copy to...</button>
 						</div>
 						
 						<div class="mt-0">

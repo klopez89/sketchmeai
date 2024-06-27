@@ -2166,12 +2166,6 @@ function toggleRefImgModeSelection(refImgMode) {
     }
 }
 
-function confirmRefImgModeSelection() {
-    console.log('Selected Modes:', selectedModes);
-    // Add your logic to handle the selected modes
-    dismissImageRefModeSelectionModal();
-}
-
 function copyPromptFromGenMenuPressed(event) {
     event.preventDefault();
     event.stopPropagation();

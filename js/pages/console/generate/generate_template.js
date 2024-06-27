@@ -794,9 +794,9 @@ function openPoseFormSectionHTML() {
 										
 									</div>
 								</button>
+								<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
 								<button class="text-gray-400 text-sm py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.OPENPOSE}')">Copy to...</button>
 							</div>
-							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
 						</div>
 						
 						<div class="mt-0">
@@ -924,9 +924,9 @@ function cannyFormSectionHTML() {
 										
 									</div>
 								</button>
+								<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
 								<button class="text-gray-400 text-base py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.CANNY}')">Copy to...</button>
 							</div>
-							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
 						</div>
 						
 						<div class="mt-0">
@@ -1076,9 +1076,10 @@ function depthFormSectionHTML() {
 										
 									</div>
 								</button>
+								<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
 								<button class="text-gray-400 text-sm py-1 text-left" onClick="event.preventDefault(); event.stopPropagation(); copyToOtherReferenceMode('${RefImageMode.DEPTH}')">Copy to...</button>
 							</div>
-							<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
+	
 						</div>
 						
 						<div class="mt-0">

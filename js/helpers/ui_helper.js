@@ -62,39 +62,51 @@ function setFavoriteButtonState(button, isFavorite) {
 
 
 function resizeImage(file) {
+
     return new Promise((resolve, reject) => {
         const img = document.createElement('img');
         img.onload = function () {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
-            const maxDimension = 1024;
+            const targetSize = 1024;
 
             // Calculate the new dimensions while maintaining the aspect ratio
             let width = img.width;
             let height = img.height;
 
             if (width > height) {
-                console.log('the width is greater than the height');
-                if (width > maxDimension) {
-                    height = Math.round((height *= maxDimension / width));
-                    width = maxDimension;
-                }
+                width = Math.round((width / height) * targetSize);
+                height = targetSize;
             } else {
-                console.log('the height is greater than the width, or equal');
-                if (height > maxDimension) {
-                    width = Math.round((width *= maxDimension / height));
-                    height = maxDimension;
-                }
+                height = Math.round((height / width) * targetSize);
+                width = targetSize;
             }
 
-            canvas.width = width;
-            canvas.height = height;
-            ctx.drawImage(img, 0, 0, width, height);
+            // Resize the image
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCanvas.width = width;
+            tempCanvas.height = height;
+            tempCtx.drawImage(img, 0, 0, width, height);
+
+            // Set the canvas dimensions to 1024x1024 for cropping
+            canvas.width = targetSize;
+            canvas.height = targetSize;
+
+            // Calculate the cropping coordinates (centered in the x direction, top in the y direction)
+            const cropX = (width - targetSize) / 2;
+            const cropY = 0;
+
+            // Draw the cropped portion onto the canvas
+            ctx.drawImage(tempCanvas, cropX, cropY, targetSize, targetSize, 0, 0, targetSize, targetSize);
+
+            // Convert the canvas to a Blob
             canvas.toBlob(resolve, 'image/jpeg', 0.8);
         };
         img.onerror = reject;
         img.src = URL.createObjectURL(file);
     });
+
 
     // return new Promise((resolve, reject) => {
     //     const img = document.createElement('img');

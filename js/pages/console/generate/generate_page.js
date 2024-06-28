@@ -816,7 +816,7 @@ function copyPromptInfoFromGen(generation) {
 
 
     configureRefImgSection(generation.gen_recipe.img2img_signed_url,RefImageMode.IMG2IMG, generation.gen_recipe.prompt_strength);
-    configureRefImgSection(generation.gen_recipe.openpose_signed_url,RefImageMode.OPENPOSE, generation.gen_recipe.openpose_scale);
+    configureRefImgSection(generation.gen_recipe.openpose_signed_url,RefImageMode.OPENPOSE, generation.gen_recipe.openpose_scale, generation.gen_recipe.openpose_guidance_start, generation.gen_recipe.openpose_guidance_end);
     configureRefImgSection(generation.gen_recipe.canny_signed_url,RefImageMode.CANNY, generation.gen_recipe.canny_scale, generation.gen_recipe.canny_guidance_start, generation.gen_recipe.canny_guidance_end);
     configureRefImgSection(generation.gen_recipe.depth_signed_url,RefImageMode.DEPTH, generation.gen_recipe.depth_scale, generation.gen_recipe.depth_guidance_start, generation.gen_recipe.depth_guidance_end);
 
@@ -840,18 +840,24 @@ function configureRefImgSection(signed_url, refImgMode, infValue, startValue, en
         insertImgUrlForRefImg(signed_url, refImgMode);
         enterRefImgInfluenceValue(refImgMode, infValue);
         alignInfluenceSettingToValue(refImgMode);
-
-        if (refImgMode == RefImageMode.CANNY) {
-            document.getElementById('canny-guidance-start').value = startValue;
-            document.getElementById('canny-guidance-end').value = endValue;
-        } else if (refImgMode ==  RefImageMode.DEPTH) {
-            document.getElementById('depth-guidance-start').value = startValue;
-            document.getElementById('depth-guidance-end').value = endValue;
-        }
+        assignGuidanceValuesToRefImgSection(refImgMode, startValue, endValue);
     } else {
         let clearRefButton = document.querySelector(`#clear-ref-button[mode="${refImgMode}"]`);
         clearRefButton.click();
         attemptToCloseRefImgSection(refImgMode);
+    }
+}
+
+function assignGuidanceValuesToRefImgSection(refImgMode, startValue, endValue) {
+    if (refImgMode == RefImageMode.OPENPOSE) {
+        document.getElementById('openpose-guidance-start').value = startValue;
+        document.getElementById('openpose-guidance-end').value = endValue;
+    } else if (refImgMode == RefImageMode.CANNY) {
+        document.getElementById('canny-guidance-start').value = startValue;
+        document.getElementById('canny-guidance-end').value = endValue;
+    } else if (refImgMode ==  RefImageMode.DEPTH) {
+        document.getElementById('depth-guidance-start').value = startValue;
+        document.getElementById('depth-guidance-end').value = endValue;
     }
 }
 
@@ -1154,6 +1160,8 @@ function generateButtonPressed(event) {
                 openPoseUrl: promptValues.openPoseUrl,
                 openPoseRefImgInfo: promptValues.openPoseRefImgInfo,
                 openPoseInfValue: promptValues.openPoseInfValue,
+                openposeGuidanceStart: promptValues.openposeGuidanceStart,
+                openposeGuidanceEnd: promptValues.openposeGuidanceEnd,
 
                 cannyUrl: promptValues.cannyUrl,
                 cannyRefImgInfo: promptValues.cannyRefImgInfo,
@@ -1797,6 +1805,17 @@ function promptInputValues() {
     if (openPoseInfValue == '') {
         openPoseInfValue = OpenPoseSettingValue.HIGH;
     }
+    let openposeGuidanceStart = document.getElementById('openpose-guidance-start').value;
+    let openposeGuidanceEnd = document.getElementById('openpose-guidance-end').value;
+    if (openposeGuidanceStart == '') {
+        openposeGuidanceStart = 0.0;
+        document.getElementById('openpose-guidance-start').value = openposeGuidanceStart;
+    }
+    if (openposeGuidanceEnd == '') {
+        openposeGuidanceEnd = 1.0;
+        document.getElementById('openpose-guidance-end').value = openposeGuidanceEnd;
+    }
+
     // Canny
     let cannyUrl = document.getElementById(RefImgUrlInputId.CANNY).value;
     let cannyRefImgInfo = getUploadedRef(RefImageMode.CANNY);
@@ -1909,6 +1928,8 @@ function promptInputValues() {
         openPoseUrl: openPoseUrl,
         openPoseRefImgInfo: openPoseRefImgInfo,
         openPoseInfValue: openPoseInfValue/100,
+        openposeGuidanceStart: openposeGuidanceStart,
+        openposeGuidanceEnd: openposeGuidanceEnd,
         cannyUrl: cannyUrl,
         cannyRefImgInfo: cannyRefImgInfo,
         cannyInfValue: cannyInfValue/100,

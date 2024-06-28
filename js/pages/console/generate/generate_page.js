@@ -2139,7 +2139,7 @@ function configureGenElementforDeletion(genElement) {
 
 function copyToOtherReferenceMode(refImgMode) {
     let img_src = getRefImgSrc(refImgMode);
-    let modal_title = 'Copy to Reference Mode';
+    let modal_title = 'Copy to which reference mode?';
     showImageRefModelSelectionModal(modal_title, img_src);
 }
 
@@ -2152,7 +2152,7 @@ function useAsReferenceImagePressed(event) {
     let imgElement = genElement.querySelector('img');
     let imgSrc = imgElement.getAttribute('src');
 
-    let modal_title = 'Select Reference Mode';
+    let modal_title = 'Select reference mode';
     showImageRefModelSelectionModal(modal_title, imgSrc);
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
 }

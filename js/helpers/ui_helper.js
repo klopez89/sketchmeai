@@ -67,23 +67,57 @@ function resizeImage(file) {
         img.onload = function () {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
-            // Calculate the ratio of the image's width and height
-            const ratio = img.width / img.height;
-            console.log('the ratio is: ', ratio);
-            // Set the canvas dimensions to the desired size while maintaining the aspect ratio
-            if (img.width > img.height) {
+            const maxDimension = 1024;
+
+            // Calculate the new dimensions while maintaining the aspect ratio
+            let width = img.width;
+            let height = img.height;
+
+            if (width > height) {
                 console.log('the width is greater than the height');
-                canvas.width = 1024 * ratio;
-                canvas.height = 1024;
+                if (width > maxDimension) {
+                    height = Math.round((height *= maxDimension / width));
+                    width = maxDimension;
+                }
             } else {
                 console.log('the height is greater than the width, or equal');
-                canvas.height = 1024 * (1 / ratio);
-                canvas.width = 1024;
+                if (height > maxDimension) {
+                    width = Math.round((width *= maxDimension / height));
+                    height = maxDimension;
+                }
             }
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
             canvas.toBlob(resolve, 'image/jpeg', 0.8);
         };
         img.onerror = reject;
         img.src = URL.createObjectURL(file);
     });
+
+    // return new Promise((resolve, reject) => {
+    //     const img = document.createElement('img');
+    //     img.onload = function () {
+    //         const canvas = document.createElement('canvas');
+    //         const ctx = canvas.getContext('2d');
+    //         // Calculate the ratio of the image's width and height
+    //         const ratio = img.width / img.height;
+    //         console.log('the ratio is: ', ratio);
+    //         // Set the canvas dimensions to the desired size while maintaining the aspect ratio
+    //         if (img.width > img.height) {
+    //             console.log('the width is greater than the height');
+    //             canvas.width = 1024 * ratio;
+    //             canvas.height = 1024;
+    //         } else {
+    //             console.log('the height is greater than the width, or equal');
+    //             canvas.height = 1024 * (1 / ratio);
+    //             canvas.width = 1024;
+    //         }
+    //         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    //         canvas.toBlob(resolve, 'image/jpeg', 0.8);
+    //     };
+    //     img.onerror = reject;
+    //     img.src = URL.createObjectURL(file);
+    // });
 }

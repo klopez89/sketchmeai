@@ -1160,8 +1160,8 @@ function generateButtonPressed(event) {
                 openPoseUrl: promptValues.openPoseUrl,
                 openPoseRefImgInfo: promptValues.openPoseRefImgInfo,
                 openPoseInfValue: promptValues.openPoseInfValue,
-                openposeGuidanceStart: promptValues.openposeGuidanceStart,
-                openposeGuidanceEnd: promptValues.openposeGuidanceEnd,
+                openPoseGuidanceStart: promptValues.openposeGuidanceStart,
+                openPoseGuidanceEnd: promptValues.openposeGuidanceEnd,
 
                 cannyUrl: promptValues.cannyUrl,
                 cannyRefImgInfo: promptValues.cannyRefImgInfo,

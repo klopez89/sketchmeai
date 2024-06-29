@@ -64,7 +64,7 @@ function newGridItemHTML(gen_id, gen_string="") {
         
 			<div class="selection-overlay absolute inset-0 cursor-pointer pointer-events-none">
 				<div class="overlay-bg h-full w-full"></div>
-				<i class="fa fa-circle checkbox hidden absolute top-1 right-1 md:top-2 lg:top-1 md:right-2 lg:right-1 cursor-pointer text-gray-800 text-4xl md:text-6xl lg:text-5xl"></i>
+				<i class="fa fa-circle checkbox hidden absolute top-1 right-1 md:top-2 lg:top-1 md:right-2 lg:right-1 cursor-pointer text-gray-800 text-4xl md:text-6xl lg:text-4xl"></i>
 			</div>
 
         </div>

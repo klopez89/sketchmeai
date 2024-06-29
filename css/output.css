@@ -1981,6 +1981,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .flex-grow-0 {
   flex-grow: 0;
 }
+.flex-grow-\[3\] {
+  flex-grow: 3;
+}
 .grow {
   flex-grow: 1;
 }
@@ -6181,6 +6184,11 @@ input[type="range"]:active::-webkit-slider-thumb {}
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .lg\:py-0 {
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 
   .lg\:py-1 {

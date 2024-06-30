@@ -554,10 +554,6 @@ function modelVersionInURL() {
     return params.get('model_version');
 }
 
-function attemptAutoModelSelection(modelVersion) {
-    selectModelWithVersion(modelVersion);
-}
-
 function randomizeSeed(event) {
     event.preventDefault();
     document.getElementById('seed').value = "";
@@ -621,7 +617,7 @@ function fetchWorkingModels(userRecId) {
                 console.log('Model version in URL is:', model_version);
                 if (model_version != null) {
                     lastSelectedModelVersion = model_version;
-                    attemptAutoModelSelection(model_version);
+                    selectModelWithVersion(lastSelectedModelVersion);
                 } else {
                     let firstModelName = models[0].name;
                     let long_version = models[0].version;
@@ -632,6 +628,8 @@ function fetchWorkingModels(userRecId) {
                     selectModelWithVersion(short_version);
                     promptDiv.blur();
                 }
+                document.getElementById('person-lora-influence-range').value = PersonLoraSettingValue.HIGH;
+                alignPersonInfluenceSettingToValue();
             }
             console.log('the base prices dict is: ', data.base_prices);
             storeBasePrices(data.base_prices);

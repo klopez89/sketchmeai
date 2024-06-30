@@ -629,6 +629,7 @@ function fetchWorkingModels(userRecId) {
                     promptDiv.blur();
                 }
                 document.getElementById('person-lora-influence-range').value = PersonLoraSettingValue.HIGH;
+                document.getElementById('person-lora-influence').value = PersonLoraSettingValue.HIGH;
                 alignPersonInfluenceSettingToValue();
             }
             console.log('the base prices dict is: ', data.base_prices);
@@ -820,6 +821,8 @@ function copyPromptInfoFromGen(generation) {
 
     document.getElementById('person-lora-influence').value = generation.gen_recipe.lora_scale * 100;
     document.getElementById('person-lora-influence-range').value = generation.gen_recipe.lora_scale * 100;
+    document.getElementById('person-lora-influence').value = generation.gen_recipe.lora_scale * 100;
+
     // Trigger some UI updates in the gen form
     document.getElementById('denoising-steps').dispatchEvent(new Event('input'));
     lastSelectedModelVersion = generation.model_version;

@@ -474,7 +474,7 @@ function imageReferenceModeSelectionModalHTML(modal_title, imgSrc) {
 						<input type="checkbox" class="mr-2" value="canny-mode" onclick="toggleRefImgModeSelection('${RefImageMode.CANNY}')"> Canny
 					</label>
 					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
-						<input type="checkbox" class="mr-2" value="depth-mode" onclick="toggleRefImgModeSelection('${RefImageMode.DEPTH}')"> Depth
+						<input type="checkbox" class="mr-2" value="depth-mode" onclick="toggleRefImgModeSelection('${RefImageMode}')"> Depth
 					</label>
 				</div>
 				<div class="flex w-full gap-2 mt-2">
@@ -980,7 +980,7 @@ function cannyFormSectionHTML() {
 
 					<div class="col-span-full flex justify-between" id="influence-setting-selector-container">
 						
-						<label for="influence" class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Influence</label>
+						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence</label>
 						
 						<div class="block">
 							<nav id="canny-influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Influence Setting">
@@ -1018,7 +1018,7 @@ function cannyFormSectionHTML() {
 					</div>
 
 					<div class="col-span-3" id="canny-end-field-container">
-						<label class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Guidance End</label>
+						<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Guidance End</label>
 						<button onclick="event.preventDefault()" data-te-trigger="hover" data-te-toggle="popover" data-te-title="Guidance End" data-te-content="Determines what point in the generation the AI will stop using this control net as guidance. A one means this control net will be used from till the very end of the generation. A 75 means it will be used at the generation step equal to # of denoising steps * 0.75" class="ml-2 text-gray-300">
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
@@ -1045,7 +1045,7 @@ function depthFormSectionHTML() {
 
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">
 				<div class="flex">
-					<button id="depth-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 pr-4 text-right text-base md:text-2xl lg:text-base text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedDepthCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed>
+					<button id="depth-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 pr-4 text-right text-sm md:text-2xl lg:text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedDepthCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed>
 
 						<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4">
@@ -1122,7 +1122,7 @@ function depthFormSectionHTML() {
 
 
 					<div class="hidden col-span-2 flex items-center" id="influence-title-container">
-						<label for="influence" class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Influence, %</label>
+						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence, %</label>
 					</div>
 
 					<div class="hidden col-span-4 flex gap-x-2" id="influence-slider-container">
@@ -1133,7 +1133,7 @@ function depthFormSectionHTML() {
 
 					<div class="col-span-full flex justify-between" id="influence-setting-selector-container">
 						
-						<label for="influence" class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Influence</label>
+						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence</label>
 						
 						<div class="block">
 							<nav id="depth-influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Influence Setting">
@@ -1160,7 +1160,7 @@ function depthFormSectionHTML() {
 					</div>
 
 					<div class="col-span-3" id="depth-start-field-container">
-						<label class="text-base md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Guidance Start</label>
+						<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Guidance Start</label>
 						<button onclick="event.preventDefault()" data-te-trigger="hover" data-te-toggle="popover" data-te-title="Guidance Start" data-te-content="Determines what point in the generation the AI will use this control net as guidance. A zero means this control net will be used from the very start of the generation. A 25 means it will be used at the generation step equal to # of denoising steps * 0.25" class="ml-2 text-gray-300">
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
@@ -1171,7 +1171,7 @@ function depthFormSectionHTML() {
 					</div>
 
 					<div class="col-span-3" id="depth-end-field-container">
-						<label class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Guidance End</label>
+						<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Guidance End</label>
 						<button onclick="event.preventDefault()" data-te-trigger="hover" data-te-toggle="popover" data-te-title="Guidance End" data-te-content="Determines what point in the generation the AI will stop using this control net as guidance. A one means this control net will be used from till the very end of the generation. A 75 means it will be used at the generation step equal to # of denoising steps * 0.75" class="ml-2 text-gray-300">
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
@@ -1197,7 +1197,7 @@ function basicGenerationSettingsHTML() {
 		<!-- Start of the new nested accordion for prompt settings fields -->
 		<div id="nestedAccordion">
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">
-				<button id="prompt-settings-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-base md:text-2xl lg:text-base text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedPromptSettingsCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
+				<button id="prompt-settings-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 text-right text-sm md:text-2xl lg:text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedPromptSettingsCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed="">
 
 					<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4">
@@ -1216,7 +1216,7 @@ function basicGenerationSettingsHTML() {
 					<div class="col-span-full grid grid-cols-6 gap-x-6 gap-y-2 md:gap-y-4 lg:gap-y-2">
 
 						<div class="col-span-full" id="neg-prompt-field-container">
-							<label for="neg-prompt" class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Negative Prompt</label>
+							<label for="neg-prompt" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Negative Prompt</label>
 							<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Negative Prompt" data-te-content="The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result." class="ml-2 text-gray-300" data-te-original-title="" title="">
 								<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 							</button>
@@ -1227,7 +1227,7 @@ function basicGenerationSettingsHTML() {
 
 
 						<div class="col-span-3" id="gs-field-container">
-							<label for="guidance-scale" class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Guidance Scale</label>
+							<label for="guidance-scale" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Guidance Scale</label>
 							<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Guidance Scale" data-te-content="Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations." class="ml-2 text-gray-300" data-te-original-title="" title="">
 								<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 							</button>
@@ -1238,7 +1238,7 @@ function basicGenerationSettingsHTML() {
 						</div>
 						<div class="col-span-3" id="seed-field-container">
 							<div class="flex items-center">
-								<label for="seed" class="flex-grow block text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Seed</label>
+								<label for="seed" class="flex-grow block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Seed</label>
 								<button onclick="randomizeSeed(event)" title="Random seed">
 									<i class="fa-solid fa-dice-three text-gray-500 md:text-2xl lg:text-base" aria-hidden="true"></i>
 								</button>
@@ -1251,7 +1251,7 @@ function basicGenerationSettingsHTML() {
 
 
 						<div class="col-span-3" id="gen-count-field-container">
-							<label for="gen-count" class="block text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
+							<label for="gen-count" class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
 								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 md:text-2xl lg:text-base shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
 									<option>1</option>
 									<option>2</option>
@@ -1267,7 +1267,7 @@ function basicGenerationSettingsHTML() {
 							</div>
 						</div>
 						<div class="col-span-3" id="denoising-steps-field-container">
-								<label for="denoising-steps" class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Denoising Steps</label>
+								<label for="denoising-steps" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Denoising Steps</label>
 								<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Denoising Steps" data-te-content="Each step reduces the noise a bit more, adding detail and coherence to the image. The more denoising steps, the more detailed and polished the image can become, but it also takes more time to generate; directly affecting generation cost. There is a drop off where more steps do not result in more details." class="ml-2 text-gray-300" data-te-original-title="" title="">
 									<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 								</button>
@@ -1279,8 +1279,8 @@ function basicGenerationSettingsHTML() {
 						<div class="col-span-full" id="toggle-ays-field-container">
 							<div class="flex items-center justify-between">
 								<span class="flex flex-grow flex-col mr-1 md:mr-3 lg:mr-1">
-									<span class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
-									<span class="text-base md:text-2xl lg:text-base text-gray-500" id="availability-description">Enables <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Can improve prompt coherence and output quality. Disables denoising steps.</span>
+									<span class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>
+									<span class="text-sm md:text-2xl lg:text-sm text-gray-500" id="availability-description">Enables <a class="underline" href="https://research.nvidia.com/labs/toronto-ai/AlignYourSteps/" target="_blank">Align Your Steps</a>. Can improve prompt coherence and output quality. Disables denoising steps.</span>
 								</span>
 								<!-- Enabled: "bg-black, enabled", Not Enabled: "bg-gray-200" -->
 								<button id="ays-toggle-button" type="button" onclick="toggleAysPressed(event)" class="enabled bg-black relative inline-flex h-6 w-10 md:h-11 md:w-20 lg:h-6 lg:w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-black-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">

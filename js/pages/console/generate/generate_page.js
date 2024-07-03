@@ -479,24 +479,51 @@ function formatAroundModelName(modelNames, promptInputDiv) {
         // }
 
 
-        const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${modelName}\\b(?!<\/b>)`, 'g');
 
-        if (promptInputDiv.innerHTML.includes(modelName)) {
-            const modelInBoldRegex = new RegExp(`(<b>(?:\\s|&nbsp;)*${modelName}(?:\\s|&nbsp;)*<\/b>)`, 'gi');
-            let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
-           
-            if (doesModelNameHaveBoldTags == false) {
-                // console.log('trying to add bold tags if model name doesnt have em');
-                let newPromptValue = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
-                // console.log('newPromptValue: ', newPromptValue);
-                promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
-                if (document.activeElement === promptInputDiv) {
-                    setTimeout(() => {
-                        setCaretPosition(promptInputDiv, initialCaretPos);
-                    }, 0);
-                }
+
+        const regex = new RegExp(`\\b${modelName}\\b`, 'g');
+        let isAlreadyBold = false;
+        const initialCaretPos = getInitialCaretPosition(promptInputDiv);
+
+        // Check if any match is already bold
+        promptInputDiv.innerHTML.replace(regex, (match, offset, string) => {
+            const before = string.slice(0, offset);
+            const after = string.slice(offset + match.length);
+            if (before.endsWith('<b>') && after.startsWith('</b>')) {
+                isAlreadyBold = true;
+            }
+            return match; // No replacement needed in this step
+        });
+
+        // Perform the replacement if not already bold
+        if (!isAlreadyBold) {
+            promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, `<b>${modelName}</b>`);
+            if (document.activeElement === promptInputDiv) {
+                setTimeout(() => {
+                    setCaretPosition(promptInputDiv, initialCaretPos);
+                }, 0);
             }
         }
+
+
+        // const regex = new RegExp(`(?<!<b[^>]*>|<b>)\\b${modelName}\\b(?!<\/b>)`, 'g');
+
+        // if (promptInputDiv.innerHTML.includes(modelName)) {
+        //     const modelInBoldRegex = new RegExp(`(<b>(?:\\s|&nbsp;)*${modelName}(?:\\s|&nbsp;)*<\/b>)`, 'gi');
+        //     let doesModelNameHaveBoldTags = modelInBoldRegex.test(promptInputDiv.innerHTML);
+           
+        //     if (doesModelNameHaveBoldTags == false) {
+        //         // console.log('trying to add bold tags if model name doesnt have em');
+        //         let newPromptValue = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
+        //         // console.log('newPromptValue: ', newPromptValue);
+        //         promptInputDiv.innerHTML = promptInputDiv.innerHTML.replace(regex, '<b>$&</b>');
+        //         if (document.activeElement === promptInputDiv) {
+        //             setTimeout(() => {
+        //                 setCaretPosition(promptInputDiv, initialCaretPos);
+        //             }, 0);
+        //         }
+        //     }
+        // }
     }
 }
 

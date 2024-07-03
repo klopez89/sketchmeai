@@ -1007,7 +1007,7 @@ function cannyFormSectionHTML() {
 					</div>
 
 					<div class="col-span-3" id="canny-start-field-container">
-						<label class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Guidance Start</label>
+						<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Guidance Start</label>
 						<button onclick="event.preventDefault()" data-te-trigger="hover" data-te-toggle="popover" data-te-title="Guidance Start" data-te-content="Determines what point in the generation the AI will use this control net as guidance. A zero means this control net will be used from the very start of the generation. A 25 means it will be used at the generation step equal to # of denoising steps * 0.25" class="ml-2 text-gray-300">
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>

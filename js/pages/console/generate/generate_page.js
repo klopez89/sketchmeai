@@ -620,10 +620,10 @@ function fetchWorkingModels(userRecId) {
                     lastSelectedModelVersion = model_version;
                     selectModelWithVersion(lastSelectedModelVersion);
                 } else {
-                    let firstModelName = models[0].name;
-                    let long_version = models[0].version;
-                    let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
-                    console.log('short version of first model: ', short_version);
+                    // let firstModelName = models[0].name;
+                    // let long_version = models[0].version;
+                    // let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
+                    // console.log('short version of first model: ', short_version);
                     // let promptDiv = document.getElementById('prompt');
                     // promptDiv.textContent = generatePrompt(firstModelName);
                     // lastSelectedModelVersion = short_version;
@@ -2371,6 +2371,8 @@ function selectLoraPersonDiv(loraPersonDiv) {
     pElement.style.color = 'white';
     bgParentDiv.style.backgroundColor = bgColor;
     bgParentDiv.classList.remove('bg-white');
+
+    lastSelectedModelVersion = loraPersonDiv.getAttribute('version');
 
     let selectedPersonLoraLabel = document.getElementById('selected-person-lora');
     selectedPersonLoraLabel.innerHTML = loraPersonDiv.querySelector('p').innerHTML;

@@ -474,7 +474,7 @@ function imageReferenceModeSelectionModalHTML(modal_title, imgSrc) {
 						<input type="checkbox" class="mr-2" value="canny-mode" onclick="toggleRefImgModeSelection('${RefImageMode.CANNY}')"> Canny
 					</label>
 					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
-						<input type="checkbox" class="mr-2" value="depth-mode" onclick="toggleRefImgModeSelection('${RefImageMode}')"> Depth
+						<input type="checkbox" class="mr-2" value="depth-mode" onclick="toggleRefImgModeSelection('${RefImageMode.DEPTH}')"> Depth
 					</label>
 				</div>
 				<div class="flex w-full gap-2 mt-2">

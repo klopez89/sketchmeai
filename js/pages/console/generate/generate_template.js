@@ -2,6 +2,7 @@ const denoisingInfo = "Each step reduces the noise a bit more, adding detail and
 const negativePromptInfo = "The negative prompt in image generation acts as a guide for what the model should avoid including in the output image. It helps in steering the generation away from undesired elements or themes by explicitly stating what you do not want to appear in the final result."
 const guidanceScaleInfo = "Also know as 'classifier free guidance' or cfg. Guidance scale controls how closely the generation should adhere to the input prompt. A higher value enforces greater fidelity to the prompt, potentially leading to more accurate but less varied results, while a lower value allows for more creative interpretations."
 const imgToImgInfo = "Uses an image as a starting point for the generation, rather than starting from random noise. Ideal for guiding the color composition of your output."
+const ipAdapterInfo = "Uses an image as a reference for the generation, rather than starting from random noise. Ideal for maintaining resemblance to an input image but modifying aspects via prompt texts and control nets."
 const openPoseControlNetInfo = "Extracts the estimated position of the human pose in an image, and is then used to influence the human pose in your generation."
 const cannyControlNetInfo = " Identifies the edges and shapes in an image, and then uses this information to guide the structure and form in your generated image."
 const depthControlNetInfo = "Analyzes the depth information in an image to guide the generation process, ensuring that the generated image maintains a coherent sense of depth and spatial relationships."
@@ -184,7 +185,8 @@ function dummyGridHTML() {
 
 function generate_form_html() {
 	let basicGenSettingsSection = basicGenerationSettingsHTML();
-	let referenceFormSection = imageToImageFormSectionHTML();
+	let i2iFormSection = imageToImageFormSectionHTML();
+	let ipAdapterFormSection = ipAdapterFormSectionHTML();
 	let openPoseFormSection = openPoseFormSectionHTML();
 	let cannyFormSection = cannyFormSectionHTML();
 	let depthFormSection = depthFormSectionHTML();
@@ -347,7 +349,9 @@ function generate_form_html() {
 
 		${basicGenSettingsSection}
 
-		${referenceFormSection}
+		${i2iFormSection}
+
+		${ipAdapterFormSection}
 
 		${openPoseFormSection}
 
@@ -465,16 +469,19 @@ function imageReferenceModeSelectionModalHTML(modal_title, imgSrc) {
 			<div class="relative flex flex-col justify-center items-center gap-y-2">
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
 					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
-						<input type="checkbox" class="mr-2" value="i2i-mode" onclick="toggleRefImgModeSelection('${RefImageMode.IMG2IMG}')"> Image-to-Image
+						<input type="checkbox" class="mr-2" onclick="toggleRefImgModeSelection('${RefImageMode.IMG2IMG}')"> Image-to-Image
 					</label>
 					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
-						<input type="checkbox" class="mr-2" value="openpose-mode" onclick="toggleRefImgModeSelection('${RefImageMode.OPENPOSE}')"> OpenPose
+						<input type="checkbox" class="mr-2" onclick="toggleRefImgModeSelection('${RefImageMode.IPADAPTER}')"> IP-Adapter
 					</label>
 					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
-						<input type="checkbox" class="mr-2" value="canny-mode" onclick="toggleRefImgModeSelection('${RefImageMode.CANNY}')"> Canny
+						<input type="checkbox" class="mr-2" onclick="toggleRefImgModeSelection('${RefImageMode.OPENPOSE}')"> OpenPose
 					</label>
 					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
-						<input type="checkbox" class="mr-2" value="depth-mode" onclick="toggleRefImgModeSelection('${RefImageMode.DEPTH}')"> Depth
+						<input type="checkbox" class="mr-2" onclick="toggleRefImgModeSelection('${RefImageMode.CANNY}')"> Canny
+					</label>
+					<label class="bg-gray-200 text-black md:text-3xl lg:text-base px-8 py-[0.6em] rounded shadow flex items-center">
+						<input type="checkbox" class="mr-2" onclick="toggleRefImgModeSelection('${RefImageMode.DEPTH}')"> Depth
 					</label>
 				</div>
 				<div class="flex w-full gap-2 mt-2">
@@ -611,7 +618,7 @@ function imageToImageFormSectionHTML() {
 
 			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">
 				<div class="flex">
-					<button id="i2i-section-button" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 pr-4 text-right text-sm md:text-2xl lg:text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed>
+					<button id="${RefImgSectionButtonId.IMG2IMG}" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 pr-4 text-right text-sm md:text-2xl lg:text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed>
 
 						<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4">
@@ -622,7 +629,7 @@ function imageToImageFormSectionHTML() {
 						Image-to-Image
 
 					</button>
-					<button id="i2i-mode-info-button" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="${imgToImgInfo}" class="ml-2 pt-0 text-gray-300">
+					<button id="${RefImgModeInfoButtonId.IMG2IMG}" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Image to Image" data-te-content="${imgToImgInfo}" class="ml-2 pt-0 text-gray-300">
 						<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 					</button>
 				</div>
@@ -655,11 +662,11 @@ function imageToImageFormSectionHTML() {
 			<div id="nestedImg2ImgCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
 				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
 
-					<div class="col-span-full" id="igm2img-field-container">
+					<div class="col-span-full">
 						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
 
 							<div class="w-[8em] md:w-[16em] lg:w-[8em]">
-								<button id="i2i-img-button" mode="${RefImageMode.IMG2IMG}" class="relative flex flex-col items-center justify-center block h-[8em] md:h-[16em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
+								<button id="${RefImgModeImageButtonId.IMG2IMG}" mode="${RefImageMode.IMG2IMG}" class="relative flex flex-col items-center justify-center block h-[8em] md:h-[16em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
 									
 									<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
 
@@ -693,7 +700,7 @@ function imageToImageFormSectionHTML() {
 
 					<div class="hidden col-span-4 flex gap-x-2" id="influence-slider-container">
 						<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="100" class="slider flex-grow" autocompleted="">
-						<input type="number" name="prompt-str" id="prompt-str" placeholder="${Img2ImgSettingValue.LOW}" min="0" max="100" value="${Img2ImgSettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
+						<input type="number" id="${InfluenceValueInputId.IMG2IMG}" placeholder="${Img2ImgSettingValue.LOW}" min="0" max="100" value="${Img2ImgSettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
 					</div>
 
 
@@ -702,7 +709,7 @@ function imageToImageFormSectionHTML() {
 						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence</label>
 						
 						<div class="block">
-							<nav id="i2i-influence-setting-tabs-selector" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Influence Setting">
+							<nav id="${InfluenceTabSelectorId.IMG2IMG}" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Influence Setting">
 								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
 
 								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.LOW}','${RefImageMode.IMG2IMG}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
@@ -718,6 +725,137 @@ function imageToImageFormSectionHTML() {
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
 								<a href="#" inf-setting="${InfluenceSetting.FULL}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.FULL}','${RefImageMode.IMG2IMG}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
+									<span>Full</span>
+									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+								</a>
+							</nav>
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	`;
+}
+
+function ipAdapterFormSectionHTML() {
+	return `
+	<div class="col-span-full px-4 md:px-6 lg:px-4 border-t border-gray-300">
+		<div id="nestedAccordion">
+
+			<h2 id="nestedHeading" class="flex items-center justify-between py-2 md:py-4 lg:py-2">
+				<div class="flex">
+					<button id="${RefImgSectionButtonId.IPADAPTER}" class="group relative flex items-center rounded-t-[15px] border-0 bg-transparent py-2 pr-4 text-right text-sm md:text-2xl lg:text-sm text-gray-700 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&amp;:not([data-te-collapse-collapsed])]:bg-transparent [&amp;:not([data-te-collapse-collapsed])]:text-gray-700" type="button" data-te-collapse-init="" data-te-collapse-toggle="" data-te-target="#nestedImg2ImgCollapse" aria-expanded="false" aria-controls="nestedCollapse" data-te-collapse-collapsed>
+
+						<span class="mr-2 mt-0 h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4 rotate-[0deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-2 group-[[data-te-collapse-collapsed]]:rotate-[-90deg] group-[[data-te-collapse-collapsed]]:fill-[#336dec] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 md:h-6 md:w-6 lg:h-4 lg:w-4">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+							</svg>
+						</span>
+
+						IP-Adapter
+
+					</button>
+					<button id="${RefImgModeInfoButtonId.IPADAPTER}" onclick="event.preventDefault();event.stopPropagation()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="IP-Adapter" data-te-content="${ipAdapterInfo}" class="ml-2 pt-0 text-gray-300">
+						<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
+					</button>
+				</div>
+
+				<div class="flex gap-2">
+					<button id="clear-ref-button" mode="${RefImageMode.IPADAPTER}" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+						<i class="fa-solid fa-trash text-gray-500 text-xs md:text-2xl lg:text-xs" aria-hidden="true"></i>
+					</button>
+					
+					<div id="edit-ref-comp-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+
+						<button type="button" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center" id="gen-ref-menu-button" onclick="genRefMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+							<i class="fa-solid fa-pen text-gray-500 text-xs md:text-2xl lg:text-xs" aria-hidden="true"></i>
+						</button>
+				
+						<div class="m-0 absolute right-0 z-10 mt-1 origin-top-right min-w-[15rem]">
+				
+							<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
+							
+								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); showRefImageUrlModal(event,'${RefImageMode.IPADAPTER}')">Enter Image URL</a>
+				
+								<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); startRefUploadExperience(event)">Upload Image</a>
+				
+							</div>
+						</div>
+					</div>
+				</div>
+			</h2>
+
+			<div id="nestedIPAdapterCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
+				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
+
+					<div class="col-span-full">
+						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
+
+							<div class="w-[8em] md:w-[16em] lg:w-[8em]">
+								<button id="${RefImgModeImageButtonId.IPADAPTER}" mode="${RefImageMode.IPADAPTER}" class="relative flex flex-col items-center justify-center block h-[8em] md:h-[16em] lg:h-[8em] rounded-lg border-2 md:border-4 lg:border-2 border-dashed border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400">
+									
+									<img class="hidden absolute w-full h-full rounded-lg object-cover" src="">
+
+									<div class="hidden absolute bg-gray-200 h-full w-full" id="upload-spinner">
+										<div class="flex flex-col h-full items-center justify-center">		
+											<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Image</p>
+											<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
+										</div>
+									</div>
+
+									<div class="flex flex-col items-center">		
+										<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
+										
+									</div>
+								</button>
+								<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="">
+								<button class="text-gray-400 text-sm py-1 text-left" onClick="event.preventDefault(); copyToOtherReferenceMode('${RefImageMode.IPADAPTER}')">Copy to...</button>
+							</div>
+							
+						</div>
+						
+						<div class="mt-0">
+							<input type="text" id="${RefImgUrlInputId.IPADAPTER}" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+						</div>
+					</div>
+
+
+					<div class="hidden col-span-2 flex items-center" id="influence-title-container">
+						<label for="influence" class="text-base md:text-2xl lg:text-base font-medium leading-6 text-gray-700">Influence, %</label>
+					</div>
+
+					<div class="hidden col-span-4 flex gap-x-2" id="influence-slider-container">
+						<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="100" class="slider flex-grow" autocompleted="">
+						<input type="number" id="${InfluenceValueInputId.IPADAPTER}" placeholder="${IPAdapterSettingValue.LOW}" min="0" max="100" value="${IPAdapterSettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
+					</div>
+
+
+					<div class="col-span-full flex justify-between" id="influence-setting-selector-container">
+						
+						<label for="influence" class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Influence</label>
+						
+						<div class="block">
+							<nav id="${InfluenceTabSelectorId.IPADAPTER}" class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Influence Setting">
+								<!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
+
+								<a href="#" inf-setting="${InfluenceSetting.LOW}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.LOW}','${RefImageMode.IPADAPTER}')" class="text-gray-900 rounded-l-lg group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
+									<span>Low</span>
+									<span id="inf-line" aria-hidden="true" class="bg-black absolute inset-x-0 bottom-0 h-0.5"></span>
+								</a>
+								<a href="#" inf-setting="${InfluenceSetting.MEDIUM}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.MEDIUM}','${RefImageMode.IPADAPTER}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
+									<span>Medium</span>
+									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+								</a>
+								<a href="#" inf-setting="${InfluenceSetting.HIGH}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.HIGH}','${RefImageMode.IPADAPTER}')" class="text-gray-500 hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
+									<span>High</span>
+									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+								</a>
+								<a href="#" inf-setting="${InfluenceSetting.FULL}" onClick="event.preventDefault(); infSettingTabSelected('${InfluenceSetting.FULL}','${RefImageMode.IPADAPTER}')" class="text-gray-500 rounded-r-lg hover:text-gray-700 group relative flex-grow overflow-hidden bg-white py-4 md:py-6 lg:py-4 px-4 md:px-6 lg:px-4 text-center text-sm md:text-2xl lg:text-sm font-medium hover:bg-gray-50 focus:z-10">
 									<span>Full</span>
 									<span id="inf-line" aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
 								</a>
@@ -786,7 +924,7 @@ function openPoseFormSectionHTML() {
 			<div id="nestedOpenposeCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
 				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
 
-					<div class="col-span-full" id="igm2img-field-container">
+					<div class="col-span-full">
 						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
 
 							<div class="w-[8em] md:w-[16em] lg:w-[8em]">
@@ -937,7 +1075,7 @@ function cannyFormSectionHTML() {
 			<div id="nestedCannyCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
 				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
 
-					<div class="col-span-full" id="igm2img-field-container">
+					<div class="col-span-full">
 						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
 
 							<div class="w-[8em] md:w-[16em] lg:w-[8em]">
@@ -1089,7 +1227,7 @@ function depthFormSectionHTML() {
 			<div id="nestedDepthCollapse" class="accordion-collapse collapse !visible hidden" aria-labelledby="nestedHeading" style="" data-te-collapse-item="">
 				<div class="accordion-body px-0 pb-4 grid grid-cols-6 gap-x-5 gap-y-5 sm:grid-cols-6">
 
-					<div class="col-span-full" id="igm2img-field-container">
+					<div class="col-span-full">
 						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
 
 							<div class="w-[8em] md:w-[16em] lg:w-[8em]">

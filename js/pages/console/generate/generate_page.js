@@ -1626,18 +1626,21 @@ function addFileToRefImgElement(fileInfo, refImageMode) {
 function referenceImgButtonElements(refImageMode) {
     var refImgButtonElements = [];
     if (refImageMode == RefImageMode.IMG2IMG) {
-        refImgButtonElements.push(document.getElementById('i2i-img-button'));
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.IMG2IMG));
+    } else if (refImageMode == RefImageMode.IPADAPTER) {
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.IPADAPTER));
     } else if (refImageMode == RefImageMode.OPENPOSE) {
-        refImgButtonElements.push(document.getElementById('openpose-img-button'));
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.OPENPOSE));
     } else if (refImageMode == RefImageMode.CANNY) {
-        refImgButtonElements.push(document.getElementById('canny-img-button'));
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.CANNY));
     } else if (refImageMode == RefImageMode.DEPTH) {
-        refImgButtonElements.push(document.getElementById('depth-img-button'));
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.DEPTH));
     } else { // All case
-        refImgButtonElements.push(document.getElementById('i2i-img-button'));
-        refImgButtonElements.push(document.getElementById('openpose-img-button'));
-        refImgButtonElements.push(document.getElementById('canny-img-button'));
-        refImgButtonElements.push(document.getElementById('depth-img-button'));
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.IMG2IMG));
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.IPADAPTER));
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.OPENPOSE));
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.CANNY));
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.DEPTH));
     }
     return refImgButtonElements;
 }
@@ -1645,18 +1648,21 @@ function referenceImgButtonElements(refImageMode) {
 function referenceImgSectionButtons(refImageMode) {
     var refImgSectionButtons = [];
     if (refImageMode == RefImageMode.IMG2IMG) {
-        refImgSectionButtons.push(document.getElementById('i2i-section-button'));
+        refImgSectionButtons.push(document.getElementById(RefImgSectionButtonId.IMG2IMG));
+     } else if (refImageMode == RefImageMode.IPADAPTER) {
+        refImgSectionButtons.push(document.getElementById(RefImgSectionButtonId.IPADAPTER));
     } else if (refImageMode == RefImageMode.OPENPOSE) {
-        refImgSectionButtons.push(document.getElementById('openpose-section-button'));
+        refImgSectionButtons.push(document.getElementById(RefImgSectionButtonId.OPENPOSE));
     } else if (refImageMode == RefImageMode.CANNY) {
-        refImgSectionButtons.push(document.getElementById('canny-section-button'));
+        refImgSectionButtons.push(document.getElementById(RefImgSectionButtonId.CANNY));
     } else if (refImageMode == RefImageMode.DEPTH) {
-        refImgSectionButtons.push(document.getElementById('depth-section-button'));
+        refImgSectionButtons.push(document.getElementById(RefImgSectionButtonId.DEPTH));
     } else { // All case
-        refImgSectionButtons.push(document.getElementById('i2i-section-button'));
-        refImgSectionButtons.push(document.getElementById('openpose-section-button'));
-        refImgSectionButtons.push(document.getElementById('canny-section-button'));
-        refImgSectionButtons.push(document.getElementById('depth-section-button'));
+        refImgSectionButtons.push(document.getElementById(RefImgSectionButtonId.IMG2IMG));
+        refImgSectionButtons.push(document.getElementById(RefImgSectionButtonId.IPADAPTER));
+        refImgSectionButtons.push(document.getElementById(RefImgSectionButtonId.OPENPOSE));
+        refImgSectionButtons.push(document.getElementById(RefImgSectionButtonId.CANNY));
+        refImgSectionButtons.push(document.getElementById(RefImgSectionButtonId.DEPTH));
     }
     return refImgSectionButtons;
 }
@@ -2583,7 +2589,7 @@ function alignAYSBasedOnRefImgMode() {
     let refImgModeSelector = document.getElementById('ref-img-mode');
     let selectedMode = refImgModeSelector.options[refImgModeSelector.selectedIndex].id;
 
-    let i2iModeInfoButton = document.getElementById('i2i-mode-info-button');
+    let i2iModeInfoButton = document.getElementById(RefImgModeInfoButtonId.IMG2IMG);
 
     if (selectedMode == RefImageMode.IMG2IMG) {
         i2iModeInfoButton.classList.remove('hidden');
@@ -2608,6 +2614,8 @@ function alignInfluenceSettingToValue(refImgMode) {
     var influence_value_field_id = null;
     if (refImgMode == RefImageMode.IMG2IMG) {
         influence_value_field_id = InfluenceValueInputId.IMG2IMG;
+    } else if (refImgMode == RefImageMode.IPADAPTER) {
+        influence_value_field_id = InfluenceValueInputId.IPADAPTER;
     } else if (refImgMode == RefImageMode.OPENPOSE) {
         influence_value_field_id = InfluenceValueInputId.OPENPOSE;
     } else if (refImgMode == RefImageMode.CANNY) {
@@ -2627,6 +2635,16 @@ function alignInfluenceSettingToValue(refImgMode) {
         } else if (influence_value <= Img2ImgSettingValue.MEDIUM) {
             influence_setting = InfluenceSetting.MEDIUM;
         } else if (influence_value <= Img2ImgSettingValue.HIGH) {
+            influence_setting = InfluenceSetting.HIGH;
+        } else {
+            influence_setting = InfluenceSetting.FULL;
+        }
+    } else if (refImgMode == RefImageMode.IPADAPTER) {
+        if (influence_value <= IPAdapterSettingValue.LOW) {
+            influence_setting = InfluenceSetting.LOW;
+        } else if (influence_value <= IPAdapterSettingValue.MEDIUM) {
+            influence_setting = InfluenceSetting.MEDIUM;
+        } else if (influence_value <= IPAdapterSettingValue.HIGH) {
             influence_setting = InfluenceSetting.HIGH;
         } else {
             influence_setting = InfluenceSetting.FULL;
@@ -2673,13 +2691,15 @@ function alignInfluenceSettingToValue(refImgMode) {
 function updateInfSettingTabUI(selected_influence_setting, refImgMode) {
     var infSettingTabsSelectorId = null;
     if (refImgMode == RefImageMode.IMG2IMG) {
-        infSettingTabsSelectorId = "i2i-influence-setting-tabs-selector";
+        infSettingTabsSelectorId = InfluenceTabSelectorId.IMG2IMG;
+    } else if (refImgMode == RefImageMode.IPADAPTER) {
+        infSettingTabsSelectorId = InfluenceTabSelectorId.IPADAPTER;
     } else if (refImgMode == RefImageMode.OPENPOSE) {
-        infSettingTabsSelectorId = "openpose-influence-setting-tabs-selector";
+        infSettingTabsSelectorId = InfluenceTabSelectorId.OPENPOSE;
     } else if (refImgMode == RefImageMode.CANNY) {
-        infSettingTabsSelectorId = "canny-influence-setting-tabs-selector";
+        infSettingTabsSelectorId = InfluenceTabSelectorId.CANNY;
     } else if (refImgMode == RefImageMode.DEPTH) {
-        infSettingTabsSelectorId = "depth-influence-setting-tabs-selector";
+        infSettingTabsSelectorId = InfluenceTabSelectorId.DEPTH;
     } else {
         return;
     }
@@ -2711,16 +2731,19 @@ function setRefImgInfluenceValue(selected_influence_setting, refImgMode) {
     var influenceValue = 0;
 
     if (refImgMode == RefImageMode.IMG2IMG) {
-        influence_value_field_id = "prompt-str";
+        influence_value_field_id = InfluenceValueInputId.IMG2IMG;
         influenceValue = Img2ImgSettingValue[selected_influence_setting.toUpperCase()];
+    } else if (refImgMode == RefImageMode.IPADAPTER) {
+        influence_value_field_id = InfluenceValueInputId.IPADAPTER;
+        influenceValue = IPAdapterSettingValue[selected_influence_setting.toUpperCase()];
     } else if (refImgMode == RefImageMode.OPENPOSE) {
-        influence_value_field_id = "openpose-cnet-scale";
+        influence_value_field_id = InfluenceValueInputId.OPENPOSE;
         influenceValue = OpenPoseSettingValue[selected_influence_setting.toUpperCase()];
     } else if (refImgMode == RefImageMode.CANNY) {
-        influence_value_field_id = "canny-cnet-scale";
+        influence_value_field_id = InfluenceValueInputId.CANNY;
         influenceValue = CannySettingValue[selected_influence_setting.toUpperCase()];
     } else if (refImgMode == RefImageMode.DEPTH) {
-        influence_value_field_id = "depth-cnet-scale";
+        influence_value_field_id = InfluenceValueInputId.DEPTH;
         influenceValue = DepthSettingValue[selected_influence_setting.toUpperCase()];
     } else {
         return;

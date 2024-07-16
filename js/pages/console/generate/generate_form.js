@@ -4,6 +4,9 @@ function configureRefImageFields(refImgMode) {
     if (refImgMode == RefImageMode.IMG2IMG) {
         inputFieldId = InfluenceValueInputId.IMG2IMG;
         rangeInputFieldId = InfluenceRangeInputId.IMG2IMG;
+    } else if (refImgMode == RefImageMode.IPADAPTER) {
+        inputFieldId = InfluenceValueInputId.IPADAPTER;
+        rangeInputFieldId = InfluenceRangeInputId.IPADAPTER;
     } else if (refImgMode == RefImageMode.OPENPOSE) {
         inputFieldId = InfluenceValueInputId.OPENPOSE;
         rangeInputFieldId = InfluenceRangeInputId.OPENPOSE;

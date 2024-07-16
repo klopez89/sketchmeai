@@ -50,6 +50,7 @@ const PromptStyle = {
 
 const RefImageMode = {
     IMG2IMG: 'i2i-mode',
+    IPADAPTER: 'ipadapter-mode',
     OPENPOSE: 'openpose-mode',
     CANNY: 'canny-mode',
     DEPTH: 'depth-mode',
@@ -70,6 +71,13 @@ const PersonLoraSettingValue = {
 }
 
 const Img2ImgSettingValue = {
+    LOW: 10,
+    MEDIUM: 25,
+    HIGH: 50,
+    FULL: 90
+}
+
+const IPAdapterSettingValue = {
     LOW: 10,
     MEDIUM: 25,
     HIGH: 50,
@@ -99,6 +107,7 @@ const DepthSettingValue = {
 
 const InfluenceValueInputId = {
     IMG2IMG: 'prompt-str',
+    IPADAPTER: 'ipadapter-scale',
     OPENPOSE: 'openpose-cnet-scale',
     CANNY: 'canny-cnet-scale',
     DEPTH: 'depth-cnet-scale',
@@ -111,8 +120,17 @@ const InfluenceRangeInputId = {
     DEPTH: 'depth-scale-range',
 }
 
+const InfluenceTabSelectorId = {
+    IMG2IMG: 'i2i-influence-setting-tabs-selector',
+    IPADAPTER: 'ipadapter-influence-setting-tabs-selector',
+    OPENPOSE: 'openpose-influence-setting-tabs-selector',
+    CANNY: 'canny-influence-setting-tabs-selector',
+    DEPTH: 'depth-influence-setting-tabs-selector',
+}
+
 const RefImgUrlInputId = {
     IMG2IMG: 'i2i-url',
+    IPADAPTER: 'ipadapter-url',
     OPENPOSE: 'openpose-url',
     CANNY: 'canny-url',
     DEPTH: 'depth-url',
@@ -120,11 +138,27 @@ const RefImgUrlInputId = {
 
 const RefImgSectionButtonId = {
     IMG2IMG: 'i2i-section-button',
+    IPADAPTER: 'ipadapter-section-button',
     OPENPOSE: 'openpose-section-button',
     CANNY: 'canny-section-button',
     DEPTH: 'depth-section-button',
 }
 
+const RefImgModeInfoButtonId = {
+    IMG2IMG: 'i2i-mode-info-button',
+    IPADAPTER: 'ipadapter-mode-info-button',
+    OPENPOSE: 'openpose-mode-info-button',
+    CANNY: 'canny-mode-info-button',
+    DEPTH: 'depth-mode-info-button',
+}
+
+const RefImgModeImageButtonId = {
+    IMG2IMG: 'i2i-img-button',
+    IPADAPTER: 'ipadapter-img-button',
+    OPENPOSE: 'openpose-img-button',
+    CANNY: 'canny-img-button',
+    DEPTH: 'depth-img-button',
+}
 
 const FAILED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/failed_img.png"
 const CANCELED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/canceled_img.png"

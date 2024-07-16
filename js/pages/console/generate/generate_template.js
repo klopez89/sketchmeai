@@ -20,6 +20,7 @@ let info_interaction_type = has_a_mouse ? "hover" : "click";
 
 function newGenItem_FromExistingGen(generation) {
     let gen_string = JSON.stringify(generation);
+	gen_string = gen_string.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     return newGridItemHTML(generation.rec_id, gen_string);
 }
 

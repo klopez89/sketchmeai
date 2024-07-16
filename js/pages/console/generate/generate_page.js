@@ -23,6 +23,7 @@ configurePromptInputPlaceholder();
 addBottomGenerationMenu();
 configureShareButton();
 configureRefImageFields(RefImageMode.IMG2IMG);
+configureRefImageFields(RefImageMode.IPADAPTER);
 configureRefImageFields(RefImageMode.OPENPOSE);
 configureRefImageFields(RefImageMode.CANNY);
 configureRefImageFields(RefImageMode.DEPTH);
@@ -391,6 +392,10 @@ function configureGenerateForm() {
     let i2iRefImgUrlInput = document.getElementById(RefImgUrlInputId.IMG2IMG);
     console.log('i2iRefImgUrlInput: ', i2iRefImgUrlInput);
     addDropListenerToRefImgUrlInput(i2iRefImgUrlInput);
+
+    let ipAdapterRefImgUrlInput = document.getElementById(RefImgUrlInputId.IPADAPTER);
+    console.log('ipAdapterRefImgUrlInput: ', ipAdapterRefImgUrlInput);
+    addDropListenerToRefImgUrlInput(ipAdapterRefImgUrlInput);
 
     let openPoseRefImgUrlInput = document.getElementById(RefImgUrlInputId.OPENPOSE);
     console.log('openPoseRefImgUrlInput: ', openPoseRefImgUrlInput);
@@ -817,6 +822,7 @@ function copyPromptInfoFromGen(generation) {
 
 
     configureRefImgSection(generation.gen_recipe.img2img_signed_url,RefImageMode.IMG2IMG, generation.gen_recipe.prompt_strength);
+    configureRefImgSection(generation.gen_recipe.ipadapter_signed_url,RefImageMode.IPADAPTER, generation.gen_recipe.ipadapter_scale);
     configureRefImgSection(generation.gen_recipe.openpose_signed_url,RefImageMode.OPENPOSE, generation.gen_recipe.openpose_scale, generation.gen_recipe.openpose_guidance_start, generation.gen_recipe.openpose_guidance_end);
     configureRefImgSection(generation.gen_recipe.canny_signed_url,RefImageMode.CANNY, generation.gen_recipe.canny_scale, generation.gen_recipe.canny_guidance_start, generation.gen_recipe.canny_guidance_end);
     configureRefImgSection(generation.gen_recipe.depth_signed_url,RefImageMode.DEPTH, generation.gen_recipe.depth_scale, generation.gen_recipe.depth_guidance_start, generation.gen_recipe.depth_guidance_end);
@@ -872,6 +878,10 @@ function enterRefImgInfluenceValue(refImgMode, infValue) {
         inputFieldId = InfluenceValueInputId.IMG2IMG;
         rangeInputFieldId = InfluenceRangeInputId.IMG2IMG;
         adjustedInfValue = 100 - adjustedInfValue * 100;
+    } else if (refImgMode == RefImageMode.IPADAPTER) {
+        inputFieldId = InfluenceValueInputId.IPADAPTER;
+        rangeInputFieldId = InfluenceRangeInputId.IPADAPTER;
+        adjustedInfValue = adjustedInfValue * 100;
     } else if (refImgMode == RefImageMode.OPENPOSE) {
         inputFieldId = InfluenceValueInputId.OPENPOSE;
         rangeInputFieldId = InfluenceRangeInputId.OPENPOSE;
@@ -918,6 +928,8 @@ function attemptToCloseRefImgSection(refImgMode) {
     var sectionButtonId = null;
     if (refImgMode == RefImageMode.IMG2IMG) {
         sectionButtonId = RefImgSectionButtonId.IMG2IMG;
+    } else if (refImgMode == RefImageMode.IPADAPTER) {
+        sectionButtonId = RefImgSectionButtonId.IPADAPTER;
     } else if (refImgMode == RefImageMode.OPENPOSE) {
         sectionButtonId = RefImgSectionButtonId.OPENPOSE;
     } else if (refImgMode == RefImageMode.CANNY) {
@@ -1158,8 +1170,12 @@ function generateButtonPressed(event) {
                 seed: seedToUse,
                 img2imgUrl: promptValues.img2imgUrl,
                 i2iRefImgInfo: promptValues.i2iRefImgInfo,
-                // refImageMode: promptValues.refImageMode,
                 promptStrength: promptValues.promptStrength,
+
+                ipAdapterUrl: promptValues.ipAdapterUrl,
+                ipAdapterRefImgInfo: promptValues.ipAdapterRefImgInfo,
+                ipAdapterInfValue: promptValues.ipAdapterInfValue,
+
                 openPoseUrl: promptValues.openPoseUrl,
                 openPoseRefImgInfo: promptValues.openPoseRefImgInfo,
                 openPoseInfValue: promptValues.openPoseInfValue,
@@ -1807,6 +1823,14 @@ function promptInputValues() {
     }
     let normalizedPromptStrength = 1 - promptStrength / 100;
 
+    // IPAdapter
+    let ipAdapterUrl = document.getElementById(RefImgUrlInputId.IPADAPTER).value;
+    let ipAdapterRefImgInfo = getUploadedRef(RefImageMode.IPADAPTER);
+    var ipAdapterInfValue = document.getElementById(InfluenceValueInputId.IPADAPTER).value;
+    if (ipAdapterInfValue == '') {
+        ipAdapterInfValue = IPAdapterSettingValue.HIGH;
+    }
+
     // Openpose
     let openPoseUrl = document.getElementById(RefImgUrlInputId.OPENPOSE).value;
     let openPoseRefImgInfo = getUploadedRef(RefImageMode.OPENPOSE);
@@ -1933,6 +1957,9 @@ function promptInputValues() {
         seed: seed,
         img2imgUrl: i2iUrl,
         i2iRefImgInfo: i2iRefImgInfo,
+        ipAdapterUrl: ipAdapterUrl,
+        ipAdapterRefImgInfo: ipAdapterRefImgInfo,
+        ipAdapterInfValue: ipAdapterInfValue/100,
         promptStrength: normalizedPromptStrength,
         openPoseUrl: openPoseUrl,
         openPoseRefImgInfo: openPoseRefImgInfo,

@@ -115,6 +115,7 @@ const InfluenceValueInputId = {
 
 const InfluenceRangeInputId = {
     IMG2IMG: 'ref-influence-range',
+    IPADAPTER: 'ipadapter-scale-range',
     OPENPOSE: 'openpose-scale-range',
     CANNY: 'canny-scale-range',
     DEPTH: 'depth-scale-range',

@@ -701,7 +701,7 @@ function imageToImageFormSectionHTML() {
 					</div>
 
 					<div class="hidden col-span-4 flex gap-x-2" id="influence-slider-container">
-						<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="100" class="slider flex-grow" autocompleted="">
+						<input type="range" id="${InfluenceRangeInputId.IMG2IMG}" min="0" max="100" class="slider flex-grow" autocompleted="">
 						<input type="number" id="${InfluenceValueInputId.IMG2IMG}" placeholder="${Img2ImgSettingValue.LOW}" min="0" max="100" value="${Img2ImgSettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
 					</div>
 
@@ -832,7 +832,7 @@ function ipAdapterFormSectionHTML() {
 					</div>
 
 					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
-						<input type="range" id="ref-influence-range" name="ref-influence-range" min="0" max="100" class="slider flex-grow" autocompleted="">
+						<input type="range" id="${InfluenceRangeInputId.IPADAPTER}" min="0" max="100" class="slider flex-grow" autocompleted="">
 						<input type="number" id="${InfluenceValueInputId.IPADAPTER}" placeholder="${IPAdapterSettingValue.LOW}" min="0" max="100" value="${IPAdapterSettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
 					</div>
 

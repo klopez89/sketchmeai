@@ -739,7 +739,7 @@ function imageToImageFormSectionHTML() {
 							<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Inpainting Mask</label>
 
 							<div class="flex gap-2">
-								<button id="clear-ref-button" mode="i2i-mode" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+								<button id="clear-ref-button" mode="${RefImageMode.MASK}" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
 									<i class="fa-solid fa-trash text-gray-500 text-xs md:text-2xl lg:text-xs" aria-hidden="true"></i>
 								</button>
 										

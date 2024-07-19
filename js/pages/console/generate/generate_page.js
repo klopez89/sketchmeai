@@ -1702,7 +1702,9 @@ function clearRefImgElement(event) {
     let refImgMode = clearRefImgButton.getAttribute('mode');
     let refImgButton = referenceImgButtonElements(refImgMode)[0];
 
-    attemptToCloseRefImgSection(refImgMode);
+    if (refImgMode != RefImageMode.MASK) {
+        attemptToCloseRefImgSection(refImgMode);
+    }
 
     let singleRefImg = refImgButton.querySelector('img');
     singleRefImg.src = '';

@@ -1486,6 +1486,8 @@ function userWantsToEnterRefImgUrl() {
 
 function configureRefImageButtons() {
     let refImgButtonElements = referenceImgButtonElements(RefImageMode.ALL);
+    let maskRefImgButtonElement = referenceImgButtonElements(RefImageMode.MASK)[0];
+    refImgButtonElements.append(maskRefImgButtonElement);
     for(let i = 0; i < refImgButtonElements.length; i++) {
         let refImgButton = refImgButtonElements[i];
         console.log('the ref img button is: ', refImgButton);

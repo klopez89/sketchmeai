@@ -14,7 +14,7 @@ let selectedRefImgModes = [];
 addImageGrid();
 addBaseGenMenu();
 configureGenerateForm();
-configureRefImageButton();
+configureRefImageButtons();
 moveForm();
 configureInfiniteScroll();
 setupAccordion();
@@ -22,11 +22,11 @@ showBasicExamplesButton();
 configurePromptInputPlaceholder(); 
 addBottomGenerationMenu();
 configureShareButton();
-configureRefImageFields(RefImageMode.IMG2IMG);
-configureRefImageFields(RefImageMode.IPADAPTER);
-configureRefImageFields(RefImageMode.OPENPOSE);
-configureRefImageFields(RefImageMode.CANNY);
-configureRefImageFields(RefImageMode.DEPTH);
+configureRefImageInfluenceFields(RefImageMode.IMG2IMG);
+configureRefImageInfluenceFields(RefImageMode.IPADAPTER);
+configureRefImageInfluenceFields(RefImageMode.OPENPOSE);
+configureRefImageInfluenceFields(RefImageMode.CANNY);
+configureRefImageInfluenceFields(RefImageMode.DEPTH);
 configurePersonLoraFields();
 updateAysToggle(false);
 
@@ -822,6 +822,8 @@ function copyPromptInfoFromGen(generation) {
 
 
     configureRefImgSection(generation.gen_recipe.img2img_signed_url,RefImageMode.IMG2IMG, generation.gen_recipe.prompt_strength);
+    // mask_signed_url
+    configureRefImgSection(generation.gen_recipe.mask_signed_url,RefImageMode.MASK);
     configureRefImgSection(generation.gen_recipe.ipadapter_signed_url,RefImageMode.IPADAPTER, generation.gen_recipe.ipadapter_scale);
     configureRefImgSection(generation.gen_recipe.openpose_signed_url,RefImageMode.OPENPOSE, generation.gen_recipe.openpose_scale, generation.gen_recipe.openpose_guidance_start, generation.gen_recipe.openpose_guidance_end);
     configureRefImgSection(generation.gen_recipe.canny_signed_url,RefImageMode.CANNY, generation.gen_recipe.canny_scale, generation.gen_recipe.canny_guidance_start, generation.gen_recipe.canny_guidance_end);
@@ -846,10 +848,14 @@ function copyPromptInfoFromGen(generation) {
 
 function configureRefImgSection(signed_url, refImgMode, infValue, startValue, endValue) {
     if (signed_url != undefined) {
-        insertImgUrlForRefImg(signed_url, refImgMode);
-        enterRefImgInfluenceValue(refImgMode, infValue);
-        alignInfluenceSettingToValue(refImgMode);
-        assignGuidanceValuesToRefImgSection(refImgMode, startValue, endValue);
+        if (refImgMode == RefImageMode.MASK) {
+            insertImgUrlForRefImg(signed_url, refImgMode);
+        } else {
+            insertImgUrlForRefImg(signed_url, refImgMode);
+            enterRefImgInfluenceValue(refImgMode, infValue);
+            alignInfluenceSettingToValue(refImgMode);
+            assignGuidanceValuesToRefImgSection(refImgMode, startValue, endValue);
+        }
     } else {
         let clearRefButton = document.querySelector(`#clear-ref-button[mode="${refImgMode}"]`);
         clearRefButton.click();
@@ -1172,6 +1178,9 @@ function generateButtonPressed(event) {
                 i2iRefImgInfo: promptValues.i2iRefImgInfo,
                 promptStrength: promptValues.promptStrength,
 
+                maskUrl: promptValues.maskUrl,
+                maskRefImgInfo: promptValues.maskRefImgInfo,
+
                 ipAdapterUrl: promptValues.ipAdapterUrl,
                 ipAdapterRefImgInfo: promptValues.ipAdapterRefImgInfo,
                 ipAdapterInfValue: promptValues.ipAdapterInfValue,
@@ -1475,7 +1484,7 @@ function userWantsToEnterRefImgUrl() {
     dismissEnterRefImgUrlModal();
 }
 
-function configureRefImageButton() {
+function configureRefImageButtons() {
     let refImgButtonElements = referenceImgButtonElements(RefImageMode.ALL);
     for(let i = 0; i < refImgButtonElements.length; i++) {
         let refImgButton = refImgButtonElements[i];
@@ -1643,6 +1652,8 @@ function referenceImgButtonElements(refImageMode) {
     var refImgButtonElements = [];
     if (refImageMode == RefImageMode.IMG2IMG) {
         refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.IMG2IMG));
+    } else if (refImageMode == RefImageMode.MASK) {
+        refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.MASK));
     } else if (refImageMode == RefImageMode.IPADAPTER) {
         refImgButtonElements.push(document.getElementById(RefImgModeImageButtonId.IPADAPTER));
     } else if (refImageMode == RefImageMode.OPENPOSE) {
@@ -1710,8 +1721,7 @@ function getRefImgSrc(refImgMode) {
 }
 
 function getUploadedRef(refImgMode) {
-    let i2iRefImgButton = referenceImgButtonElements(refImgMode)[0];
-	let singleRefImageButton = i2iRefImgButton;
+	let singleRefImageButton = referenceImgButtonElements(refImgMode)[0];
     // console.log('the single ref img button is: ', singleRefImageButton);
     let singleRefImg = singleRefImageButton.querySelector('img');
     let singleRefSrcUrl = singleRefImg.src;
@@ -1822,6 +1832,10 @@ function promptInputValues() {
         document.getElementById(InfluenceValueInputId.IMG2IMG).value = promptStrength;
     }
     let normalizedPromptStrength = 1 - promptStrength / 100;
+
+    // Mask image
+    let maskUrl = document.getElementById(RefImgUrlInputId.MASK).value;
+    let maskRefImgInfo = getUploadedRef(RefImageMode.MASK);
 
     // IPAdapter
     let ipAdapterUrl = document.getElementById(RefImgUrlInputId.IPADAPTER).value;
@@ -1957,6 +1971,10 @@ function promptInputValues() {
         seed: seed,
         img2imgUrl: i2iUrl,
         i2iRefImgInfo: i2iRefImgInfo,
+        img2imgUrl: i2iUrl,
+        i2iRefImgInfo: i2iRefImgInfo,
+        maskUrl: maskUrl,
+        maskRefImgInfo: maskRefImgInfo,
         ipAdapterUrl: ipAdapterUrl,
         ipAdapterRefImgInfo: ipAdapterRefImgInfo,
         ipAdapterInfValue: ipAdapterInfValue/100,

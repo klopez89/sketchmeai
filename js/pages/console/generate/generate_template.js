@@ -734,6 +734,69 @@ function imageToImageFormSectionHTML() {
 						</div>
 					</div>
 
+					<div class="col-span-full" id="mask-title">
+						<div class="flex items-center justify-between">									
+							<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Inpainting Mask</label>
+
+							<div class="flex gap-2">
+								<button id="clear-ref-button" mode="i2i-mode" title="Clear reference image" onclick="clearRefImgElement(event)" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center">
+									<i class="fa-solid fa-trash text-gray-500 text-xs md:text-2xl lg:text-xs" aria-hidden="true"></i>
+								</button>
+										
+								<div id="edit-ref-comp-menu" class="relative pointer-events-auto group" x-data="Components.menu({ open: false })" x-init="init()" @keydown.escape.stop="open = false; focusButton()">
+
+									<button type="button" class="w-7 h-7 md:w-14 md:h-14 lg:w-7 lg:h-7 bg-gray-200 hover:bg-gray-300 rounded-sm flex items-center justify-center" id="gen-ref-menu-button" onclick="genRefMenuShowing(event)" x-ref="button" @click="onButtonClick()" @keyup.space.prevent="onButtonEnter()" @keydown.enter.prevent="onButtonEnter()" aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()" @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()">
+										<i class="fa-solid fa-pen text-gray-500 text-xs md:text-2xl lg:text-xs" aria-hidden="true"></i>
+									</button>
+							
+									<div class="m-0 absolute right-0 z-10 mt-1 origin-top-right min-w-[15rem]">
+							
+										<div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="rounded-md bg-white py-1 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state." x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical" aria-labelledby="generation-menu-button" tabindex="-1" style="display: none;">
+										
+											<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); showRefImageUrlModal(event,'i2i-mode')">Enter Image URL</a>
+							
+											<a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-700" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); startRefUploadExperience(event)">Upload Image</a>
+							
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="col-span-full" id="mask-image">
+						<div id="ref-img-div-container" class="flex flex-col items-center justify-center pt-1 pb-2">
+
+							<div class="w-[8em] md:w-[16em] lg:w-[8em]">
+								<button id="mask-img-button" mode="mask-mode" class="relative flex flex-col items-center justify-center block h-[8em] md:h-[16em] lg:h-[8em] rounded-lg border-gray-300 px-12 py-6 text-center hover:border-gray-400 text-gray-300 hover:text-gray-400 border-2 md:border-4 lg:border-2 border-dashed">
+									
+									<img class="absolute w-full h-full rounded-lg object-cover hidden" src="" filename="" filetype="">
+
+									<div class="absolute bg-gray-200 h-full w-full hidden" id="upload-spinner">
+										<div class="flex flex-col h-full items-center justify-center">		
+											<p class="text-xs text-gray-500 break-words mb-2">Processing<br>Images</p>
+											<i id="upload-spinner" class="text-gray-500 fa fa-spinner fa-spin" aria-hidden="true"></i>
+										</div>
+									</div>
+
+									<div class="flex flex-col items-center">		
+										<i id="upload-icon" class="fa text-3xl md:text-6xl lg:text-3xl fa-images" aria-hidden="true"></i>
+										
+									</div>
+								</button>
+								<input id="localRefImgUploadInput" type="file" style="display:none;" multiple="" autocompleted="">
+								
+							</div>
+							
+						</div>
+						
+						<div class="mt-0">
+							<input type="text" id="mask-url" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+						</div>
+					</div>
+
 
 				</div>
 

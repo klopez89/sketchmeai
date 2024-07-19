@@ -50,6 +50,7 @@ const PromptStyle = {
 
 const RefImageMode = {
     IMG2IMG: 'i2i-mode',
+    MASK: 'mask-mode',
     IPADAPTER: 'ipadapter-mode',
     OPENPOSE: 'openpose-mode',
     CANNY: 'canny-mode',
@@ -131,6 +132,7 @@ const InfluenceTabSelectorId = {
 
 const RefImgUrlInputId = {
     IMG2IMG: 'i2i-url',
+    MASK: 'mask-url',
     IPADAPTER: 'ipadapter-url',
     OPENPOSE: 'openpose-url',
     CANNY: 'canny-url',
@@ -155,6 +157,7 @@ const RefImgModeInfoButtonId = {
 
 const RefImgModeImageButtonId = {
     IMG2IMG: 'i2i-img-button',
+    MASK: 'mask-img-button',
     IPADAPTER: 'ipadapter-img-button',
     OPENPOSE: 'openpose-img-button',
     CANNY: 'canny-img-button',

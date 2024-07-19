@@ -1,4 +1,4 @@
-function configureRefImageFields(refImgMode) {
+function configureRefImageInfluenceFields(refImgMode) {
     var inputFieldId = null;
     var rangeInputFieldId = null;
     if (refImgMode == RefImageMode.IMG2IMG) {

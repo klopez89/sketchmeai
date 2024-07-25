@@ -1177,6 +1177,7 @@ function generateButtonPressed(event) {
                 img2imgUrl: promptValues.img2imgUrl,
                 i2iRefImgInfo: promptValues.i2iRefImgInfo,
                 promptStrength: promptValues.promptStrength,
+                baseModel: promptValues.baseModel,
 
                 maskUrl: promptValues.maskUrl,
                 maskRefImgInfo: promptValues.maskRefImgInfo,
@@ -1696,6 +1697,14 @@ function referenceImgSectionButtons(refImageMode) {
     return refImgSectionButtons;
 }
 
+function getBaseModelSelectionId() {
+    let baseModelSelector = document.getElementById('base-model-selector');
+    if (baseModelSelector) {
+        return baseModelSelector.options[baseModelSelector.selectedIndex].id;
+    }
+    return 'sdxl';
+}
+
 function clearRefImgElement(event) {
     event.preventDefault();
     let clearRefImgButton = event.currentTarget;
@@ -1823,6 +1832,7 @@ function promptInputValues() {
     let negativePrompt = document.getElementById("neg-prompt").value;
     var gscale = document.getElementById('guidance-scale').value;
     let seed = document.getElementById('seed').value;
+    let baseModel = getBaseModelSelectionId();
 
     // Reference image for all modes
     // Image-to-image
@@ -2005,6 +2015,7 @@ function promptInputValues() {
         refine: 'no_refiner',
         highNoiseFrac: 0.9,
         shouldUseRandomSeedAcrossModels: shouldUseRandomSeedAcrossModels,
+        baseModel: baseModel,
         modelValues: modelValues,
         modelNames: modelNames,
         modelIds: modelIds,

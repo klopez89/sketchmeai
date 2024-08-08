@@ -825,6 +825,19 @@ function copyPromptInfoFromGen(generation) {
     // mask_signed_url
     configureRefImgSection(generation.gen_recipe.mask_signed_url,RefImageMode.MASK);
     configureRefImgSection(generation.gen_recipe.ipadapter_signed_url,RefImageMode.IPADAPTER, generation.gen_recipe.ipadapter_scale);
+    // configure IP adapter query
+    const presetSelector = document.getElementById('instruct-presets');
+    const instructTextarea = document.getElementById('instruct-query');
+    const ipadapterQuery = generation.gen_recipe.ipadapter_query;
+    const presetValues = Array.from(presetSelector.options).map(option => option.value);
+
+    if (!presetValues.includes(ipadapterQuery)) {
+        instructTextarea.value = ipadapterQuery;
+    } else {
+        instructTextarea.value = '';
+        presetSelector.value = ipadapterQuery;
+    }
+
     configureRefImgSection(generation.gen_recipe.openpose_signed_url,RefImageMode.OPENPOSE, generation.gen_recipe.openpose_scale, generation.gen_recipe.openpose_guidance_start, generation.gen_recipe.openpose_guidance_end);
     configureRefImgSection(generation.gen_recipe.canny_signed_url,RefImageMode.CANNY, generation.gen_recipe.canny_scale, generation.gen_recipe.canny_guidance_start, generation.gen_recipe.canny_guidance_end);
     configureRefImgSection(generation.gen_recipe.depth_signed_url,RefImageMode.DEPTH, generation.gen_recipe.depth_scale, generation.gen_recipe.depth_guidance_start, generation.gen_recipe.depth_guidance_end);
@@ -1186,6 +1199,7 @@ function generateButtonPressed(event) {
                 ipAdapterUrl: promptValues.ipAdapterUrl,
                 ipAdapterRefImgInfo: promptValues.ipAdapterRefImgInfo,
                 ipAdapterInfValue: promptValues.ipAdapterInfValue,
+                ipAdapterQuery: promptValues.ipAdapterQuery,
 
                 openPoseUrl: promptValues.openPoseUrl,
                 openPoseRefImgInfo: promptValues.openPoseRefImgInfo,
@@ -1859,6 +1873,14 @@ function promptInputValues() {
     if (ipAdapterInfValue == '') {
         ipAdapterInfValue = IPAdapterSettingValue.HIGH;
     }
+    let instructPreset = document.getElementById('instruct-presets').value;
+    let instructQuery = document.getElementById('instruct-query').value;
+    let finalInstructQuery;
+    if (!instructQuery) {
+        finalInstructQuery = instructPreset;
+    } else {
+        finalInstructQuery = instructQuery;
+    }
 
     // Openpose
     let openPoseUrl = document.getElementById(RefImgUrlInputId.OPENPOSE).value;
@@ -1993,6 +2015,7 @@ function promptInputValues() {
         ipAdapterUrl: ipAdapterUrl,
         ipAdapterRefImgInfo: ipAdapterRefImgInfo,
         ipAdapterInfValue: ipAdapterInfValue/100,
+        ipAdapterQuery: finalInstructQuery,
         promptStrength: normalizedPromptStrength,
         openPoseUrl: openPoseUrl,
         openPoseRefImgInfo: openPoseRefImgInfo,

@@ -820,10 +820,9 @@ function copyPromptInfoFromGen(generation) {
     document.getElementById('guidance-scale').value = generation.gen_recipe.guidance_scale;
     document.getElementById('seed').value = generation.gen_recipe.seed;
 
-
     configureRefImgSection(generation.gen_recipe.img2img_signed_url,RefImageMode.IMG2IMG, generation.gen_recipe.prompt_strength);
-    // mask_signed_url
-    configureRefImgSection(generation.gen_recipe.mask_signed_url,RefImageMode.MASK);
+    configureMaskRefImgSection(generation.gen_recipe.mask_signed_url, generation.gen_recipe.mask_blur, generation.gen_recipe.mask_padding_crop);
+    
     configureRefImgSection(generation.gen_recipe.ipadapter_signed_url,RefImageMode.IPADAPTER, generation.gen_recipe.ipadapter_scale);
     // configure IP adapter query
     const presetSelector = document.getElementById('instruct-presets');
@@ -857,6 +856,17 @@ function copyPromptInfoFromGen(generation) {
     attemptToShowPromptSettingsSection();
     alignPersonInfluenceSettingToValue();
     // alignAYSBasedOnRefImgMode();
+}
+
+function configureMaskRefImgSection(signed_url, mask_blur, mask_padding_crop) {
+    if (signed_url != undefined) {
+        insertImgUrlForRefImg(signed_url, RefImageMode.MASK);
+        document.getElementById('mask-blur').value = mask_blur;
+        document.getElementById('mask-padding-crop').value = mask_padding_crop;
+    } else {
+        let clearRefButton = document.querySelector('#clear-ref-button[mode="mask"]');
+        clearRefButton.click();
+    }
 }
 
 function configureRefImgSection(signed_url, refImgMode, infValue, startValue, endValue) {
@@ -1195,6 +1205,8 @@ function generateButtonPressed(event) {
 
                 maskUrl: promptValues.maskUrl,
                 maskRefImgInfo: promptValues.maskRefImgInfo,
+                maskBlur: promptValues.maskBlur,
+                maskPaddingCrop: promptValues.maskPaddingCrop,
 
                 ipAdapterUrl: promptValues.ipAdapterUrl,
                 ipAdapterRefImgInfo: promptValues.ipAdapterRefImgInfo,
@@ -1865,6 +1877,8 @@ function promptInputValues() {
     // Mask image
     let maskUrl = document.getElementById(RefImgUrlInputId.MASK).value;
     let maskRefImgInfo = getUploadedRef(RefImageMode.MASK);
+    let maskBlur = document.getElementById('mask-blur').value;
+    let maskPaddingCrop = document.getElementById('mask-padding-crop').value;
 
     // IPAdapter
     let ipAdapterUrl = document.getElementById(RefImgUrlInputId.IPADAPTER).value;
@@ -2012,6 +2026,8 @@ function promptInputValues() {
         i2iRefImgInfo: i2iRefImgInfo,
         maskUrl: maskUrl,
         maskRefImgInfo: maskRefImgInfo,
+        maskBlur: maskBlur,
+        maskPaddingCrop: maskPaddingCrop,
         ipAdapterUrl: ipAdapterUrl,
         ipAdapterRefImgInfo: ipAdapterRefImgInfo,
         ipAdapterInfValue: ipAdapterInfValue/100,

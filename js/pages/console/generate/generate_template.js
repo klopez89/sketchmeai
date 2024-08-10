@@ -799,6 +799,33 @@ function imageToImageFormSectionHTML() {
 						</div>
 					</div>
 
+					<div class="col-span-3" id="mask-blur-field-container">
+						<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Mask Blur, %</label>
+						
+						<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Mask Blur" data-te-content="Increasing the mask blur increases the amount of blur applied to the mask edges, softening the transition between the original image and inpaint area. A low or zero mask blur preserves the sharper edges of the mask." class="ml-2 text-gray-300" data-te-original-title="" title="">
+							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
+						</button>
+
+						<div class="mt-2">
+							<input type="number" id="mask-blur" placeholder="20" min="0" max="100" step="1" value="20" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							
+							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0 - 100</p>
+						</div>
+					</div>
+
+					<div class="col-span-3" id="mask-padding-crop-field-container">
+						<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Mask Padding Crop, px</label>
+						
+						<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Mask Blur" data-te-content="Mask padding crop can increase the inpainting image quality by cropping the masked area with some padding and itll also crop the same area from the original image. Both the image and mask are upscaled to a higher resolution for inpainting, and then overlaid on the original image." class="ml-2 text-gray-300" data-te-original-title="" title="">
+							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
+						</button>
+
+						<div class="mt-2">
+							<input type="number" id="mask-padding-crop" placeholder="0" min="0" max="150" step="1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							
+							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0 - 150</p>
+						</div>
+					</div>
 
 				</div>
 
@@ -937,10 +964,11 @@ function ipAdapterFormSectionHTML() {
 						</button>
 						<div class="mt-4 ml-2">
 
-							<label class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Presets:</label>
+							<label class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Presets</label>
 
 							<div class="mt-2 w-3/6">
 								<select id="instruct-presets" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 md:text-2xl lg:text-base shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
+									<option>use the style and composition</option>
 									<option>use the face</option>
 									<option>use the style</option>
 									<option>use the composition</option>
@@ -950,7 +978,7 @@ function ipAdapterFormSectionHTML() {
 								</select>
 							</div>
 
-							<label class="block mt-4 text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Custom Query:</label>
+							<label class="block mt-4 text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Custom Query</label>
 
 							<textarea id="instruct-query" rows="2" class="block mt-2 w-full h-16 md:h-28 lg:h-16 rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6"></textarea>
 						</div>

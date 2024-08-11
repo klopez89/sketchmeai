@@ -822,7 +822,7 @@ function copyPromptInfoFromGen(generation) {
 
     configureRefImgSection(generation.gen_recipe.img2img_signed_url,RefImageMode.IMG2IMG, generation.gen_recipe.prompt_strength);
     configureMaskRefImgSection(generation.gen_recipe.mask_signed_url, generation.gen_recipe.mask_blur, generation.gen_recipe.mask_padding_crop);
-    
+
     configureRefImgSection(generation.gen_recipe.ipadapter_signed_url,RefImageMode.IPADAPTER, generation.gen_recipe.ipadapter_scale);
     // configure IP adapter query
     const presetSelector = document.getElementById('instruct-presets');
@@ -864,7 +864,7 @@ function configureMaskRefImgSection(signed_url, mask_blur, mask_padding_crop) {
         document.getElementById('mask-blur').value = mask_blur;
         document.getElementById('mask-padding-crop').value = mask_padding_crop;
     } else {
-        let clearRefButton = document.querySelector('#clear-ref-button[mode="mask"]');
+        let clearRefButton = document.querySelector('#clear-ref-button[mode="mask-mode"]');
         clearRefButton.click();
     }
 }

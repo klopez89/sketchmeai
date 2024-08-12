@@ -376,6 +376,15 @@ function configureGenerateForm() {
         }
     });
 
+    // Enable pressing enter to trigger generation from ip-adapter instruct query
+    document.getElementById('instruct-query').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            let newEvent = new Event('submit', { bubbles: false });
+            genForm.dispatchEvent(newEvent);
+        }
+    });
+
     let denoisingStepsInput = document.getElementById('denoising-steps');
     denoisingStepsInput.addEventListener('input', function(event) {
         updateGenerationEstimateLabel();

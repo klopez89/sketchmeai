@@ -814,9 +814,9 @@ function imageToImageFormSectionHTML() {
 					</div>
 
 					<div class="col-span-3" id="mask-padding-crop-field-container">
-						<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Mask Padding Crop, px</label>
+						<label class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Padding Crop, px</label>
 						
-						<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Mask Blur" data-te-content="Mask padding crop can increase the inpainting image quality by cropping the masked area with some padding and itll also crop the same area from the original image. Both the image and mask are upscaled to a higher resolution for inpainting, and then overlaid on the original image." class="ml-2 text-gray-300" data-te-original-title="" title="">
+						<button onclick="event.preventDefault()" data-te-trigger="${info_interaction_type}" data-te-toggle="popover" data-te-title="Padding Crop" data-te-content="Padding crop can increase the inpainting image quality by cropping the masked area with some padding and itll also crop the same area from the original image. Both the image and mask are upscaled to a higher resolution for inpainting, and then overlaid on the original image." class="ml-2 text-gray-300" data-te-original-title="" title="">
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 

@@ -417,6 +417,8 @@ function configureGenerateForm() {
     let depthRefImgUrlInput = document.getElementById(RefImgUrlInputId.DEPTH);
     console.log('depthRefImgUrlInput: ', depthRefImgUrlInput);
     addDropListenerToRefImgUrlInput(depthRefImgUrlInput);
+
+    addChangeListenersForBaseModelSelector();
 }
 
 function addDropListenerToRefImgUrlInput(refImgUrlInput) {
@@ -983,6 +985,45 @@ function attemptToCloseRefImgSection(refImgMode) {
         refImgSectionButton.click();
     }
 }
+
+function configureGenFormForFlux() {
+    img2img_button = referenceImgSectionButtons(RefImageMode.IMG2IMG)[0];
+    img2img_parent = img2img_button.closest('.col-span-full');
+    ipadapter_button = referenceImgSectionButtons(RefImageMode.IPADAPTER)[0];
+    ipadapter_parent = ipadapter_button.closest('.col-span-full');
+    openpose_button = referenceImgSectionButtons(RefImageMode.OPENPOSE)[0];
+    openpose_parent = openpose_button.closest('.col-span-full');
+    canny_button = referenceImgSectionButtons(RefImageMode.CANNY)[0];
+    canny_parent = canny_button.closest('.col-span-full');
+    depth_button = referenceImgSectionButtons(RefImageMode.DEPTH)[0];
+    depth_parent = depth_button.closest('.col-span-full');
+
+    img2img_parent.classList.add('hidden');
+    ipadapter_parent.classList.add('hidden');
+    openpose_parent.classList.add('hidden');
+    canny_parent.classList.add('hidden');
+    depth_parent.classList.add('hidden');
+}
+
+function configureGenFormForSDXL() {
+    img2img_button = referenceImgSectionButtons(RefImageMode.IMG2IMG)[0];
+    img2img_parent = img2img_button.closest('.col-span-full');
+    ipadapter_button = referenceImgSectionButtons(RefImageMode.IPADAPTER)[0];
+    ipadapter_parent = ipadapter_button.closest('.col-span-full');
+    openpose_button = referenceImgSectionButtons(RefImageMode.OPENPOSE)[0];
+    openpose_parent = openpose_button.closest('.col-span-full');
+    canny_button = referenceImgSectionButtons(RefImageMode.CANNY)[0];
+    canny_parent = canny_button.closest('.col-span-full');
+    depth_button = referenceImgSectionButtons(RefImageMode.DEPTH)[0];
+    depth_parent = depth_button.closest('.col-span-full');
+
+    img2img_parent.classList.remove('hidden');
+    ipadapter_parent.classList.remove('hidden');
+    openpose_parent.classList.remove('hidden');
+    canny_parent.classList.remove('hidden');
+    depth_parent.classList.remove('hidden');
+}
+
 
 function attemptToShowPromptSettingsSection() {
     let promptSettingsSectionButton = document.getElementById('prompt-settings-section-button');
@@ -1740,6 +1781,18 @@ function getBaseModelSelectionId() {
     }
     return 'sdxl';
 }
+
+function addChangeListenersForBaseModelSelector() {
+    document.getElementById('base-model-selector').addEventListener('change', function() {
+        let selectedOptionId = getBaseModelSelectionId();
+        if (selectedOptionId === 'sdxl') {
+            configureGenFormForSDXL();
+        } else {
+            configureGenFormForFlux();
+        }
+    });
+}
+
 
 function clearRefImgElement(event) {
     event.preventDefault();

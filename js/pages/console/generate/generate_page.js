@@ -998,11 +998,22 @@ function configureGenFormForFlux() {
     depth_button = referenceImgSectionButtons(RefImageMode.DEPTH)[0];
     depth_parent = depth_button.closest('.col-span-full');
 
+    neg_prompt_container = document.getElementById('neg-prompt-field-container');
+    guidance_scale_container = document.getElementById('gs-field-container');
+    denoising_steps_container = document.getElementById('denoising-steps-field-container');
+
+    document.getElementById('guidance-scale').value = 0;
+    document.getElementById('denoising-steps').value = 4;
+
     img2img_parent.classList.add('hidden');
     ipadapter_parent.classList.add('hidden');
     openpose_parent.classList.add('hidden');
     canny_parent.classList.add('hidden');
     depth_parent.classList.add('hidden');
+
+    neg_prompt_container.classList.add('hidden');
+    guidance_scale_container.classList.add('hidden');
+    denoising_steps_container.classList.add('hidden');
 }
 
 function configureGenFormForSDXL() {
@@ -1017,11 +1028,22 @@ function configureGenFormForSDXL() {
     depth_button = referenceImgSectionButtons(RefImageMode.DEPTH)[0];
     depth_parent = depth_button.closest('.col-span-full');
 
+    neg_prompt_container = document.getElementById('neg-prompt-field-container');
+    guidance_scale_container = document.getElementById('gs-field-container');
+    denoising_steps_container = document.getElementById('denoising-steps-field-container');
+
+    document.getElementById('guidance-scale').value = 6;
+    document.getElementById('denoising-steps').value = 20;
+
     img2img_parent.classList.remove('hidden');
     ipadapter_parent.classList.remove('hidden');
     openpose_parent.classList.remove('hidden');
     canny_parent.classList.remove('hidden');
     depth_parent.classList.remove('hidden');
+
+    neg_prompt_container.classList.remove('hidden');
+    guidance_scale_container.classList.remove('hidden');
+    denoising_steps_container.classList.remove('hidden');
 }
 
 

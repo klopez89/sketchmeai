@@ -1534,7 +1534,7 @@ function basicGenerationSettingsHTML() {
 									<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
 								</div>
 						</div>
-						<div class="col-span-full" id="toggle-ays-field-container">
+						<div class="hidden col-span-full" id="toggle-ays-field-container">
 							<div class="flex items-center justify-between">
 								<span class="flex flex-grow flex-col mr-1 md:mr-3 lg:mr-1">
 									<span class="text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-900" id="availability-label">Use AYS</span>

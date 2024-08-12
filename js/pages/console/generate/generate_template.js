@@ -807,7 +807,7 @@ function imageToImageFormSectionHTML() {
 						</button>
 
 						<div class="mt-2">
-							<input type="number" id="mask-blur" placeholder="20" min="0" max="100" step="1" value="20" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							<input type="number" id="mask-blur" placeholder="0" min="0" max="100" step="1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 							
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0 - 100</p>
 						</div>
@@ -821,7 +821,7 @@ function imageToImageFormSectionHTML() {
 						</button>
 
 						<div class="mt-2">
-							<input type="number" id="mask-padding-crop" placeholder="0" min="0" max="150" step="1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							<input type="number" id="mask-padding-crop" placeholder="0" min="0" max="150" step="1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 							
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0 - 150</p>
 						</div>
@@ -914,7 +914,7 @@ function ipAdapterFormSectionHTML() {
 						</div>
 						
 						<div class="mt-0">
-							<input type="text" id="${RefImgUrlInputId.IPADAPTER}" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" autocomplete="off">
+							<input type="text" id="${RefImgUrlInputId.IPADAPTER}" class="hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm sm:leading-6" autocomplete="off">
 						</div>
 					</div>
 
@@ -967,7 +967,7 @@ function ipAdapterFormSectionHTML() {
 							<label class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Presets</label>
 
 							<div class="mt-2 w-3/6">
-								<select id="instruct-presets" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 md:text-2xl lg:text-base shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
+								<select id="instruct-presets" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 md:text-2xl lg:text-base shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 									<option>use the style and composition</option>
 									<option>use the face</option>
 									<option>use the style</option>
@@ -980,7 +980,7 @@ function ipAdapterFormSectionHTML() {
 
 							<label class="block mt-4 text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700">Custom Query</label>
 
-							<textarea id="instruct-query" rows="2" class="block mt-2 w-full h-16 md:h-28 lg:h-16 rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6"></textarea>
+							<textarea id="instruct-query" rows="2" class="block mt-2 w-full h-16 md:h-28 lg:h-16 rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6"></textarea>
 						</div>
 					</div>
 
@@ -1119,7 +1119,7 @@ function openPoseFormSectionHTML() {
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 						<div class="mt-2">
-							<input type="number" name="openpose-guidance-start" id="openpose-guidance-start" placeholder="0" min="0.0" max="1.0" step="0.1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							<input type="number" name="openpose-guidance-start" id="openpose-guidance-start" placeholder="0" min="0.0" max="1.0" step="0.1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.0 - 1.0</p>
 						</div>
 					</div>
@@ -1130,7 +1130,7 @@ function openPoseFormSectionHTML() {
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 						<div class="mt-2">
-							<input type="number" name="openpose-guidance-end" id="openpose-guidance-end" placeholder="1" min="0.1" max="1.0" step="0.1" value="1" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							<input type="number" name="openpose-guidance-end" id="openpose-guidance-end" placeholder="1" min="0.1" max="1.0" step="0.1" value="1" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.1 - 1.0</p>
 						</div>
 					</div>
@@ -1270,7 +1270,7 @@ function cannyFormSectionHTML() {
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 						<div class="mt-2">
-							<input type="number" name="canny-guidance-start" id="canny-guidance-start" placeholder="0" min="0.0" max="1.0" step="0.1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							<input type="number" name="canny-guidance-start" id="canny-guidance-start" placeholder="0" min="0.0" max="1.0" step="0.1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.0 - 1.0</p>
 						</div>
 					</div>
@@ -1281,7 +1281,7 @@ function cannyFormSectionHTML() {
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 						<div class="mt-2">
-							<input type="number" name="canny-guidance-end" id="canny-guidance-end" placeholder="1" min="0.1" max="1.0" step="0.1" value="1" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							<input type="number" name="canny-guidance-end" id="canny-guidance-end" placeholder="1" min="0.1" max="1.0" step="0.1" value="1" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.1 - 1.0</p>
 						</div>
 					</div>
@@ -1423,7 +1423,7 @@ function depthFormSectionHTML() {
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 						<div class="mt-2">
-							<input type="number" name="depth-guidance-start" id="depth-guidance-start" placeholder="0" min="0.0" max="1.0" step="0.1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							<input type="number" name="depth-guidance-start" id="depth-guidance-start" placeholder="0" min="0.0" max="1.0" step="0.1" value="0" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.0 - 1.0</p>
 						</div>
 					</div>
@@ -1434,7 +1434,7 @@ function depthFormSectionHTML() {
 							<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 						</button>
 						<div class="mt-2">
-							<input type="number" name="depth-guidance-end" id="depth-guidance-end" placeholder="1" min="0.1" max="1.0" step="0.1" value="1" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							<input type="number" name="depth-guidance-end" id="depth-guidance-end" placeholder="1" min="0.1" max="1.0" step="0.1" value="1" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0.0 - 1.0</p>
 						</div>
 					</div>
@@ -1479,7 +1479,7 @@ function basicGenerationSettingsHTML() {
 								<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
-								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full h-20 md:h-32 lg:h-20 rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6"></textarea>
+								<textarea id="neg-prompt" name="neg-prompt" rows="3" class="block w-full h-20 md:h-32 lg:h-20 rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6"></textarea>
 							</div>
 						</div>
 
@@ -1490,7 +1490,7 @@ function basicGenerationSettingsHTML() {
 								<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 							</button>
 							<div class="mt-2">
-							<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+							<input type="number" name="guidance-scale" id="guidance-scale" placeholder="6" min="1.0" max="20.0" step="0.1" value="6" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 							<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">1.0 - 20.0</p>
 							</div>
 						</div>
@@ -1510,7 +1510,7 @@ function basicGenerationSettingsHTML() {
 
 						<div class="col-span-3" id="gen-count-field-container">
 							<label for="gen-count" class="block text-sm md:text-2xl lg:text-sm font-medium leading-6 text-gray-700"># of Images</label><div class="mt-2">
-								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 md:text-2xl lg:text-base shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
+								<select id="gen-count" name="gen-count" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 md:text-2xl lg:text-sm shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -1530,7 +1530,7 @@ function basicGenerationSettingsHTML() {
 									<i class="fa-solid fa-circle-info md:text-2xl lg:text-base" aria-hidden="true"></i>
 								</button>
 								<div class="mt-2">
-									<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6">
+									<input type="number" disabled name="denoising-steps" id="denoising-steps" placeholder="20" min="4" max="500" value="20" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 									<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">4 - 100</p>
 								</div>
 						</div>

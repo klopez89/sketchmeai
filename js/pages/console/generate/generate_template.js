@@ -925,7 +925,7 @@ function ipAdapterFormSectionHTML() {
 
 					<div class="col-span-4 flex gap-x-2" id="influence-slider-container">
 						<input type="range" id="${InfluenceRangeInputId.IPADAPTER}" min="0" max="100" class="slider flex-grow" autocompleted="">
-						<input type="number" id="${InfluenceValueInputId.IPADAPTER}" placeholder="${IPAdapterSettingValue.LOW}" min="0" max="100" value="${IPAdapterSettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base leading-6">
+						<input type="number" id="${InfluenceValueInputId.IPADAPTER}" placeholder="${IPAdapterSettingValue.LOW}" min="0" max="100" value="${IPAdapterSettingValue.LOW}" class="block max-w-[4rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6">
 					</div>
 
 
@@ -1502,7 +1502,7 @@ function basicGenerationSettingsHTML() {
 								</button>
 							</div>
 							<div class="mt-2">
-								<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-base leading-6" placeholder="Random">
+								<input type="number" name="seed" id="seed" min="-1" max="4294967295" value="" class="block w-full rounded-md border-0 py-1.5 md:py-3 lg:py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black text-base md:text-2xl lg:text-sm leading-6" placeholder="Random">
 								<p class="text-right text-xs md:text-lg lg:text-xs text-gray-400 mt-1 ml-1">0 - 4294967295</p>
 							</div>
 						</div>

@@ -2518,8 +2518,8 @@ function updateGenerationEstimateLabel() {
 function updateCostLabelsForFlux(fluxPriceInfo) {
     let costPerImage = fluxPriceInfo['cost_per_image'];
     console.log('flux, cost per image is: ', costPerImage);
-    document.getElementById('generation-estimate-label').innerHTML = `~$${costPerImage}`
-    document.getElementById('secondary-gen-estimate-label').innerHTML = `~$${costPerImage}`
+    document.getElementById('generation-estimate-label').innerHTML = `~$${costPerImage} / image`;
+    document.getElementById('secondary-gen-estimate-label').innerHTML = `~$${costPerImage} / image`;
 }
 
 function updateCostLabelsForSDXL(sdxlPriceInfo) {
@@ -2528,11 +2528,11 @@ function updateCostLabelsForSDXL(sdxlPriceInfo) {
     let base_price_estimate = inf_price * inference_steps;
 
     if (previousModelSelectionId.includes('sdxl')) {
-        document.getElementById('generation-estimate-label').innerHTML = `~$${base_price_estimate}`
-        document.getElementById('secondary-gen-estimate-label').innerHTML = `~$${base_price_estimate}`
+        document.getElementById('generation-estimate-label').innerHTML = `~$${base_price_estimate}`;
+        document.getElementById('secondary-gen-estimate-label').innerHTML = `~$${base_price_estimate}`;
     } else {
-        let cold_boot_upcharge = basePrices['cold_boot_upcharge'];
-        let warmed_upcharge = basePrices['warmed_upcharge'];
+        let cold_boot_upcharge = sdxlPriceInfo['cold_boot_upcharge'];
+        let warmed_upcharge = sdxlPriceInfo['warmed_upcharge'];
         let estimatedColdPrice = base_price_estimate + cold_boot_upcharge;
         let estimatedWarmedPrice = base_price_estimate + warmed_upcharge;
         document.getElementById('generation-estimate-label').innerHTML = `~$${estimatedWarmedPrice.toFixed(2)} ($${estimatedColdPrice.toFixed(2)} from cold boot)`

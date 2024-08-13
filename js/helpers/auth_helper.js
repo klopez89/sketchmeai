@@ -44,10 +44,15 @@ function removeLastEditedCollection() {
     localStorage.removeItem('lastCollectionName');
 }
 
-// Base Prices functions
-function storeBasePrices(basePrices) {
-    localStorage.setItem('basePrices', JSON.stringify(basePrices));
+
+function storePriceInfo(priceInfo, priceInfoType) {
+    localStorage.setItem(priceInfoType, JSON.stringify(priceInfo));
 }
+
+function getPriceInfo(priceInfoType) {
+    return JSON.parse(localStorage.getItem(priceInfoType));
+}
+
 
 function getBasePrices() {
     return JSON.parse(localStorage.getItem('basePrices'));

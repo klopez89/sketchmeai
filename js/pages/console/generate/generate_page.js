@@ -651,7 +651,10 @@ function fetchWorkingModels(userRecId) {
                 alignPersonInfluenceSettingToValue();
             }
             console.log('the base prices dict is: ', data.base_prices);
-            storeBasePrices(data.base_prices);
+            
+            storePriceInfo(data.base_prices, PriceInfoTypes.SDXL);
+            storePriceInfo(data.flux_prices, PriceInfoTypes.FLUX);
+
             updateGenerationEstimateLabel();
         },
         error: function(error) {
@@ -1814,6 +1817,7 @@ function getBaseModelSelectionId() {
 
 function addChangeListenersForBaseModelSelector() {
     document.getElementById('base-model-selector').addEventListener('change', function() {
+        updateGenerationEstimateLabel();
         let selectedOptionId = getBaseModelSelectionId();
         if (selectedOptionId === 'sdxl') {
             configureGenFormForSDXL();
@@ -2494,11 +2498,32 @@ function goingToLightbox(event) {
 }
 
 function updateGenerationEstimateLabel() {
-    let basePrices = getBasePrices();
-    if (basePrices == null) {
-        return;
+    baseModelId = getBaseModelSelectionId();
+
+    if (baseModelId == 'sdxl') {
+        let sdxlPriceInfo = getPriceInfo(PriceInfoTypes.SDXL);
+        if (sdxlPriceInfo == null) {
+            return;
+        }
+        updateCostLabelsForSDXL(sdxlPriceInfo);
+    } else if (baseModelId == 'flux-schnell') {
+        let fluxPriceInfo = getPriceInfo(PriceInfoTypes.FLUX);
+        if (fluxPriceInfo == null) {
+            return;
+        }
+        updateCostLabelsForFlux(fluxPriceInfo);
     }
-    let inf_price = basePrices['inference_price'];
+}
+
+function updateCostLabelsForFlux(fluxPriceInfo) {
+    let costPerImage = fluxPriceInfo['cost_per_image'];
+    console.log('flux, cost per image is: ', costPerImage);
+    document.getElementById('generation-estimate-label').innerHTML = `~$${costPerImage}`
+    document.getElementById('secondary-gen-estimate-label').innerHTML = `~$${costPerImage}`
+}
+
+function updateCostLabelsForSDXL(sdxlPriceInfo) {
+    let inf_price = sdxlPriceInfo['inference_price'];
     let inference_steps = document.getElementById('denoising-steps').value;
     let base_price_estimate = inf_price * inference_steps;
 

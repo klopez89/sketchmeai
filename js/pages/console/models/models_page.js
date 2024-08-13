@@ -573,7 +573,7 @@ function updateTrainingCostEstimate() {
         estimatedCostDiv.innerHTML = 'Estimated cost: $0.90 (based on 3 images)<br>Estimated training time: 9 mins';
     } else {
         let maxTrainSteps = upload_count * 100;
-        let basePrices = getBasePrices();
+        let basePrices = getPriceInfo(PriceInfoTypes.SDXL);
         let trainingPrice = basePrices.training_price;
         let timestepEstimate = basePrices.timestep_estimate;
         let priceEstimate = trainingPrice * timestepEstimate * maxTrainSteps;

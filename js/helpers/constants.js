@@ -34,6 +34,11 @@ const CONSTANTS = (function() {
     }
 })();
 
+const PriceInfoTypes = {
+    SDXL: 'sdxl_price_info',
+    FLUX: 'flux_price_info',
+}
+
 const PredictionStatus = {
     IN_PROGRESS: 'in_progress',
     BEING_HANDLED: 'being_handled',

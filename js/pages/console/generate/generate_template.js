@@ -94,9 +94,11 @@ function baseGenMenuHTML() {
 			
 				<a href="#" class="block pl-3 pr-8 py-2 text-sm md:text-3xl lg:text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 0 }" role="menuitem" tabindex="-1" id="user-menu-item-0" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 0)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); useAsReferenceImagePressed(event)">Use as Reference</a>
 
-				<a href="#" class="block pl-3 pr-8 py-2 text-sm md:text-3xl lg:text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); copyPromptFromGenMenuPressed(event)">Copy Prompt</a>
+				<a href="#" class="block pl-3 pr-8 py-2 text-sm md:text-3xl lg:text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 1 }" role="menuitem" tabindex="-1" id="user-menu-item-1" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 1)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); upscaleImagePressed(event)">Upscale</a>
 
-				<a href="#" class="block pl-3 pr-8 py-2 text-sm md:text-3xl lg:text-sm leading-6 text-red-600 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 2 }" role="menuitem" tabindex="-1" id="user-menu-item-2" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 2)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); deleteButtonPressed(event)">Delete</a>
+				<a href="#" class="block pl-3 pr-8 py-2 text-sm md:text-3xl lg:text-sm leading-6 text-gray-700 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 2 }" role="menuitem" tabindex="-1" id="user-menu-item-2" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 2)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); copyPromptFromGenMenuPressed(event)">Copy Prompt</a>
+
+				<a href="#" class="block pl-3 pr-8 py-2 text-sm md:text-3xl lg:text-sm leading-6 text-red-600 border-gray-200 border-b" :class="{ 'bg-gray-50': activeIndex === 3 }" role="menuitem" tabindex="-1" id="user-menu-item-3" @mouseenter="onMouseEnter($event)" @mousemove="onMouseMove($event, 3)" @mouseleave="onMouseLeave($event)" @click="open = false; focusButton(); deleteButtonPressed(event)">Delete</a>
 
 			</div>
 		</div>

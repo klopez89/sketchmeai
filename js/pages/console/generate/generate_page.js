@@ -2383,6 +2383,17 @@ function useAsReferenceImagePressed(event) {
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
 }
 
+function upscaleImagePressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let genElement = event.target.closest('[generation-id]');
+    hideGenMenuShield(genElement);
+    let generationId = genElement.getAttribute('generation-id');
+    let imgElement = genElement.querySelector('img');
+    let imgSrc = imgElement.getAttribute('src');
+    console.log("Time to attempt a high-res upscale of the image with generationId: ", generationId);
+}
+
 function toggleRefImgModeSelection(refImgMode) {
     const index = selectedRefImgModes.indexOf(refImgMode);
     if (index > -1) {

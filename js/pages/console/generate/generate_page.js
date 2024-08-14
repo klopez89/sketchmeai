@@ -697,6 +697,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 return
             }
 
+
             generations.forEach(function(generation) {
                 
                 let new_grid_item_html = newGenItem_FromExistingGen(generation);
@@ -733,11 +734,10 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         configureCopyButton(generation, gen_element);
                         configureFavoriteButton(generation, gen_element);
                     } else if (generation.prediction_status === PredictionStatus.SUCCEEDED) {
-                        print('loading successful generation...', generation);
                         gen_element.querySelector('#gen-status').innerHTML = '';
                         gen_element.querySelector('img').classList.remove('hidden');
                         if (Object.keys(generation.upscale_result).length !== 0) {
-                            print('loading downscaled-upscale result...');
+                            console.log('loading downscaled-upscale result...');
                             loadGenImage(generation.upscale_result.downscaled_signed_url, gen_element);
                         } else {
                             loadGenImage(generation.signed_gen_url, gen_element);

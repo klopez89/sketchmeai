@@ -2460,6 +2460,13 @@ function kickoffUpscale(imgSrc) {
     let seed = Math.floor(Math.random() * 429496719);
     let sourceImageInfo = getImgInfoForUpscale(imgSrc);
 
+    let new_grid_item_html = newGenItem_FromNewGen(jsonObject.generationId);
+    let new_grid_item_div = configureGenDivForSelection(new_grid_item_html);
+
+    new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
+        new_grid_item_div.find('img').first().removeClass('hidden');
+    });
+
     let action = `${CONSTANTS.BACKEND_URL}upscale/new`
     $.ajax({
         type: 'POST',
@@ -2482,6 +2489,15 @@ function kickoffUpscale(imgSrc) {
         },
         error: function (data) {
             console.log('error from upscale endpoint is: ', data);
+            new_grid_item_div.fadeOut(function() {
+                new_grid_item_div.remove();
+            });
+            let responseText = data.responseText;
+            let statusCode = data.status;
+            console.log('The type of error for generate new endpoint is: ', responseText);
+            if (statusCode === 414) { // insufficient funds
+                showPaymentModal(true);
+            }
         }
     });
 

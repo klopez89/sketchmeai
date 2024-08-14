@@ -2459,8 +2459,9 @@ function kickoffUpscale(imgSrc) {
     let collectionId = getLastEditedCollectionInfo().collectionId;
     let seed = Math.floor(Math.random() * 429496719);
     let sourceImageInfo = getImgInfoForUpscale(imgSrc);
+    let generationId = generateId()
 
-    let new_grid_item_html = newGenItem_FromNewGen(jsonObject.generationId);
+    let new_grid_item_html = newGenItem_FromNewGen(generationId);
     let new_grid_item_div = configureGenDivForSelection(new_grid_item_html);
 
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
@@ -2473,7 +2474,7 @@ function kickoffUpscale(imgSrc) {
         url: action,
         data: JSON.stringify({
             userRecId: getUserRecId(),
-            generationId: generateId(),
+            generationId: generationId,
             seed: seed,
             sourceImageInfo: sourceImageInfo,
             modelName: "clarity_upscaler",

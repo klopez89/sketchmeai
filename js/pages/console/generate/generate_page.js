@@ -1438,6 +1438,57 @@ function cancelGeneration(predictionId, gen_element, generation) {
     });
 }
 
+function startListeningForUpscalingUpdates(userRecId, collectionId, generationId) {
+    console.log('startListeningForUpscalingUpdates started...');
+    let unsubscribe = db.collection('users').doc(userRecId)
+        .collection('collections').doc(collectionId)
+        .collection('generations').doc(generationId)
+        .onSnapshot((doc) => {
+            let generation_dict = doc.data();
+            if (!generation_dict) {
+                unsubscribe();
+                return;
+            }
+            let prediction_status = generation_dict['prediction_status'];
+            let upscale_result = generation_dict.hasOwnProperty('upscale_result') ? generation_dict['upscale_result'] : {};
+
+            // "upscale_result": {
+            //     "upscaled_blob_path": upscaled_blob_path,
+            //     "upscaled_signed_url": upscaled_signed_url,
+            //     "downscaled_blob_path": downscaled_blob_path,
+            //     "downscaled_signed_url": downscaled_signed_url
+
+            const gen_element = document.querySelector(`div[generation-id="${generationId}"]`);
+            generation_dict.rec_id = generationId;
+
+            if (prediction_status === PredictionStatus.IN_PROGRESS) {
+                gen_element.querySelector('#gen-status').innerHTML = '...queued';
+            } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
+                gen_element.querySelector('#gen-status').innerHTML = '...generating';
+            } else if (prediction_status === PredictionStatus.SUCCEEDED) {
+                gen_element.querySelector('#gen-loader').classList.add('hidden');
+                gen_element.querySelector('#gen-status').innerHTML = '';
+                let downscaled_signed_url = upscale_result.downscaled_signed_url;
+                loadGenImage(downscaled_signed_url, gen_element);
+                console.log('generation succeeded, and heres the gen dict for it: ', generation_dict);
+                configureFavoriteButton(generation_dict, gen_element);
+                unsubscribe(); // Stop listening for updates
+            } else if (prediction_status === PredictionStatus.FAILED) {
+                console.log('generation failed');
+                gen_element.querySelector('#gen-status').innerHTML = '';
+                loadGenImage(FAILED_IMG_URL, gen_element);
+                configureFavoriteButton(generation_dict, gen_element);
+                unsubscribe(); // Stop listening for updates
+            } else if (prediction_status === PredictionStatus.CANCELED) {
+                console.log('generation canceled');
+                gen_element.querySelector('#gen-status').innerHTML = '';
+                loadGenImage(CANCELED_IMG_URL, gen_element);
+                configureFavoriteButton(generation_dict, gen_element);
+                unsubscribe(); // Stop listening for updates
+            }
+    });
+}
+
 function startListeningForGenerationUpdates(userRecId, collectionId, generationId) {
     console.log('startListeningForGenerationUpdates');
     console.log(`userRecId: ${userRecId}, collectionId: ${collectionId}, generationId: ${generationId}`);
@@ -1876,6 +1927,15 @@ function getUploadedRef(refImgMode) {
         type: singleRefImg.getAttribute('fileType'),
     };
     return singleRefImgInfo;
+}
+
+function getImgInfoForUpscale(img_src) {
+    let upscaleSourceImgInfo = {
+        name: 'upscale-source-img',
+        data: img_src,
+        type: 'image/png',
+    };
+    return upscaleSourceImgInfo;
 }
 
 
@@ -2392,6 +2452,39 @@ function upscaleImagePressed(event) {
     let imgElement = genElement.querySelector('img');
     let imgSrc = imgElement.getAttribute('src');
     console.log("Time to attempt a high-res upscale of the image with generationId: ", generationId);
+    kickoffUpscale(imgSrc);
+}
+
+function kickoffUpscale(imgSrc) {
+    let collectionId = getLastEditedCollectionInfo().collectionId;
+    let seed = Math.floor(Math.random() * 429496719);
+    let sourceImageInfo = getImgInfoForUpscale(imgSrc);
+
+    let action = `${CONSTANTS.BACKEND_URL}upscale/new`
+    $.ajax({
+        type: 'POST',
+        url: action,
+        data: JSON.stringify({
+            userRecId: getUserRecId(),
+            generationId: generateId(),
+            seed: seed,
+            sourceImageInfo: sourceImageInfo,
+            modelName: "clarity_upscaler",
+            collectionId: collectionId
+        }),
+        contentType: "application/json",
+        dataType: 'json',
+        success: function (data) {
+            console.log('got success from upscale endpoint with data: ', data);
+            let collection_id = data.collection_id;
+            let generation_id = data.generation_id;
+            startListeningForUpscalingUpdates(getUserRecId(), collection_id, generation_id);
+        },
+        error: function (data) {
+            console.log('error from upscale endpoint is: ', data);
+        }
+    });
+
 }
 
 function toggleRefImgModeSelection(refImgMode) {

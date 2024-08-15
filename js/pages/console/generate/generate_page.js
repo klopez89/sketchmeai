@@ -740,6 +740,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         if (generation.upscale_result && Object.keys(generation.upscale_result).length > 0) {
                             console.log('loading downscaled-upscale result...');
                             loadGenImage(generation.upscale_result.downscaled_signed_url, gen_element);
+                            showDownloadUpscaledButton(gen_element);
                         } else {
                             loadGenImage(generation.signed_gen_url, gen_element);
                             configureCopyButton(generation, gen_element);
@@ -770,6 +771,14 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             console.error('Error in fetching generations:', error);
         }
     });
+}
+
+function showDownloadUpscaledButton(genElement) {
+    let downloadButton = genElement.querySelector('#download-full-scale');
+    if (downloadButton) {
+        downloadButton.classList.remove('hidden');
+        downloadButton.classList.add('block');
+    }
 }
 
 function loadGenImage(gen_url, new_grid_item_div) {
@@ -1493,6 +1502,7 @@ function startListeningForUpscalingUpdates(userRecId, collectionId, generationId
                 gen_element.querySelector('#gen-status').innerHTML = '';
                 let downscaled_signed_url = upscale_result.downscaled_signed_url;
                 loadGenImage(downscaled_signed_url, gen_element);
+                showDownloadUpscaledButton(gen_element);
                 console.log('generation succeeded, and heres the gen dict for it: ', generation_dict);
                 configureFavoriteButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
@@ -2465,6 +2475,13 @@ function useAsReferenceImagePressed(event) {
     let modal_title = 'Select reference mode';
     showImageRefModelSelectionModal(modal_title, imgSrc);
     console.log(`Image source URL for generationId ${generationId}: ${imgSrc}`);
+}
+
+function downloadFullUpscalePressed(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    let genElement = event.target.closest('[generation-id]');
+    hideGenMenuShield(genElement);
 }
 
 function upscaleImagePressed(event) {

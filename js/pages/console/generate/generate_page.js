@@ -776,10 +776,10 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 function showDownloadUpscaledButton(genElement) {
     let downloadButton = genElement.querySelector('#download-full-scale');
     console.log('downloadButton full scale button: ', downloadButton);
-    // if (downloadButton) {
-    //     downloadButton.classList.remove('hidden');
-    //     downloadButton.classList.add('block');
-    // }
+    if (downloadButton) {
+        downloadButton.classList.remove('hidden');
+        downloadButton.classList.add('block');
+    }
 }
 
 function loadGenImage(gen_url, new_grid_item_div) {

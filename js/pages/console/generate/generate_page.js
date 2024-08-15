@@ -736,7 +736,8 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                     } else if (generation.prediction_status === PredictionStatus.SUCCEEDED) {
                         gen_element.querySelector('#gen-status').innerHTML = '';
                         gen_element.querySelector('img').classList.remove('hidden');
-                        if (generation.upscale_result) {
+
+                        if (generation.upscale_result && Object.keys(generation.upscale_result).length > 0) {
                             console.log('loading downscaled-upscale result...');
                             loadGenImage(generation.upscale_result.downscaled_signed_url, gen_element);
                         } else {

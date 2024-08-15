@@ -834,8 +834,13 @@ function configureGenDivForSelection(div) {
 
 function selectBaseModel(base_model) {
     let base_model_selector = document.getElementById('base-model-selector');
-    base_model_selector.value = base_model;
-    base_model_selector.dispatchEvent(new Event('change'));
+    for (let option of base_model_selector.options) {
+        if (option.id === base_model) {
+            base_model_selector.value = option.value;
+            base_model_selector.dispatchEvent(new Event('change'));
+            break;
+        }
+    }
 }
 
 function copyPromptInfoFromGen(generation) {

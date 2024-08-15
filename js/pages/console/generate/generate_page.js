@@ -1572,6 +1572,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
 function configureCopyButton(gen_dict, gen_element) {
     gen_element.querySelector('#action-container').classList.remove('hidden');
     let copyButton = gen_element.querySelector('#copy-button');
+    copyButton.classList.add('lg:flex');
     copyButton.addEventListener('click', function(event) {
         shiftAwayFromPromptPlaceholderState();
         copyPromptInfoFromGen(gen_dict);

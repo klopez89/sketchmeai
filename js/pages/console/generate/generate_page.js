@@ -832,8 +832,18 @@ function configureGenDivForSelection(div) {
     return gen_div_element;
 }
 
+function selectBaseModel(base_model) {
+    let base_model_selector = document.getElementById('base-model-selector');
+    base_model_selector.value = base_model;
+    base_model_selector.dispatchEvent(new Event('change'));
+}
+
 function copyPromptInfoFromGen(generation) {
     console.log('the generation to be copied: ', generation);
+
+    let base_model_id = generation.base_model;
+    selectBaseModel(base_model_id);
+
     document.getElementById("prompt").innerHTML = generation.gen_recipe.user_facing_prompt || generation.gen_recipe.prompt;
     document.getElementById("neg-prompt").value = generation.gen_recipe.neg_prompt;
     document.getElementById('gen-count').value = 1;

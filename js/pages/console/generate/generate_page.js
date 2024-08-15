@@ -744,6 +744,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         } else {
                             loadGenImage(generation.signed_gen_url, gen_element);
                             configureCopyButton(generation, gen_element);
+                            hideDownloadUpscaledButton(gen_element);
                         }
                         
                         configureFavoriteButton(generation, gen_element);
@@ -779,6 +780,14 @@ function showDownloadUpscaledButton(genElement) {
     if (downloadButton) {
         downloadButton.classList.remove('hidden');
         downloadButton.classList.add('block');
+    }
+}
+
+function hideDownloadUpscaledButton(genElement) {
+    let downloadButton = genElement.querySelector('#download-full-scale');
+    if (downloadButton) {
+        downloadButton.classList.add('hidden');
+        downloadButton.classList.remove('block');
     }
 }
 

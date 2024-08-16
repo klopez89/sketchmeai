@@ -741,6 +741,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                             console.log('loading downscaled-upscale result...');
                             loadGenImage(generation.upscale_result.downscaled_signed_url, gen_element);
                             showDownloadUpscaledButton(gen_element);
+                            showUpscaledLabel(gen_element);
                         } else {
                             loadGenImage(generation.signed_gen_url, gen_element);
                             configureCopyButton(generation, gen_element);
@@ -788,6 +789,14 @@ function hideDownloadUpscaledButton(genElement) {
     if (downloadButton) {
         downloadButton.classList.add('hidden');
         downloadButton.classList.remove('block');
+    }
+}
+
+function showUpscaledLabel(genElement) {
+    let upscaledLabel = genElement.querySelector('#upscaled-label');
+
+    if (upscaledLabel) {
+        upscaledLabel.classList.remove('hidden');
     }
 }
 
@@ -1513,6 +1522,7 @@ function startListeningForUpscalingUpdates(userRecId, collectionId, generationId
                 let downscaled_signed_url = upscale_result.downscaled_signed_url;
                 loadGenImage(downscaled_signed_url, gen_element);
                 showDownloadUpscaledButton(gen_element);
+                showUpscaledLabel(gen_element);
                 console.log('generation succeeded, and heres the gen dict for it: ', generation_dict);
                 configureFavoriteButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates

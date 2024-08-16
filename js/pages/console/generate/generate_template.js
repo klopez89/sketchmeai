@@ -61,6 +61,10 @@ function newGridItemHTML(gen_id, gen_string="") {
 					</div>
 				</button>
 
+				<div id="upscaled-label" class="hidden absolute bottom-0 right-0 px-4 py-2 text-xs text-gray-300 bg-black bg-opacity-50 pointer-events-auto items-center justify-center">
+                    <p class="" aria-hidden="true">Upscaled</p>
+                </div>
+
             </div>
 
             <div id="gen-menu-shield" class="rounded-lg bg-gray-900 bg-opacity-50 absolute top-0 left-0 w-full h-full hidden" onclick="tappedGenMenuShield(event)"></div>

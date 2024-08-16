@@ -747,6 +747,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                             loadGenImage(generation.signed_gen_url, gen_element);
                             configureCopyButton(generation, gen_element);
                             hideDownloadUpscaledButton(gen_element);
+                            showCopyPromptButton(gen_element);
                         }
                         
                         configureFavoriteButton(generation, gen_element);
@@ -806,6 +807,14 @@ function hideCopyPromptButton(genElement) {
         copyPromptButton.classList.add('hidden');
     }
 }
+
+function showCopyPromptButton(genElement) {
+    let copyPromptButton = genElement.querySelector('#copy-prompt');
+    if (copyPromptButton) {
+        copyPromptButton.classList.remove('hidden');
+    }
+}
+
 
 function loadGenImage(gen_url, new_grid_item_div) {
     let genCompMenu = document.querySelector('#console-content .gen-comp-menu');

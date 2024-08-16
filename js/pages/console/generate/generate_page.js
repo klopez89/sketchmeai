@@ -742,6 +742,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                             loadGenImage(generation.upscale_result.downscaled_signed_url, gen_element);
                             showDownloadUpscaledButton(gen_element);
                             showUpscaledLabel(gen_element);
+                            attachFullUpscaledUrl(gen_element, generation.upscale_result.downscaled_signed_url);
                             hideCopyPromptButton(gen_element);
                         } else {
                             loadGenImage(generation.signed_gen_url, gen_element);
@@ -813,6 +814,10 @@ function showCopyPromptButton(genElement) {
     if (copyPromptButton) {
         copyPromptButton.classList.remove('hidden');
     }
+}
+
+function attachFullUpscaledUrl(genElement, upscaled_signed_url) {
+    genElement.setAttribute('upscaled-url', upscaled_signed_url);
 }
 
 
@@ -1540,6 +1545,7 @@ function startListeningForUpscalingUpdates(userRecId, collectionId, generationId
                 showDownloadUpscaledButton(gen_element);
                 showUpscaledLabel(gen_element);
                 hideCopyPromptButton(gen_element);
+                attachFullUpscaledUrl(gen_element, upscale_result.downscaled_signed_url);
                 console.log('generation succeeded, and heres the gen dict for it: ', generation_dict);
                 configureFavoriteButton(generation_dict, gen_element);
                 unsubscribe(); // Stop listening for updates
@@ -2519,6 +2525,12 @@ function downloadFullUpscalePressed(event) {
     event.stopPropagation();
     let genElement = event.target.closest('[generation-id]');
     hideGenMenuShield(genElement);
+    let upscaledSignedUrl = genElement.getAttribute('upscaled-url');
+    if (upscaledSignedUrl) {
+        window.open(upscaledSignedUrl, '_blank');
+    } else {
+        console.log('No upscaled URL found for this generation.');
+    }
 }
 
 function upscaleImagePressed(event) {

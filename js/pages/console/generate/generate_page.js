@@ -10,6 +10,7 @@ let isSelectable = false;
 let lastSelectedModelVersion = null;
 let boundaryWidth = 1024; // Tailwind's 'lg' breakpoint (use to be 768 for md). Increased to lg to accomodate for huge pixel phones like Samsung S23 Ultra w/ a 916px width.
 let selectedRefImgModes = [];
+var unsubscribeFromSDXLWarmingStateSnapshot = null;
 
 addImageGrid();
 addBaseGenMenu();
@@ -29,6 +30,7 @@ configureRefImageInfluenceFields(RefImageMode.CANNY);
 configureRefImageInfluenceFields(RefImageMode.DEPTH);
 configurePersonLoraFields();
 updateAysToggle(false);
+startListeningForSDXLServerWarmStatus();
 
 setInterval(function() {
     if (isPromptInputShowingPlaceholder()) {    
@@ -95,8 +97,33 @@ function moveForm() {
     selectModelWithVersion(lastSelectedModelVersion);
 }
 
-function showBasicExamplesButton() {
-    // document.getElementById('basic-examples-button').classList.remove('hidden');
+
+function startListeningForSDXLServerWarmStatus() {
+    console.log('startListeningForSDXLServerWarmStatus');
+
+    window.addEventListener('beforeunload', cleanupListeners);
+
+    unsubscribeFromSDXLWarmingStateSnapshot = db.collection('system').doc('warming_state')
+    .onSnapshot((doc) => {
+        if (doc.exists) {
+            let last_warmed = doc.data().last_warmed.toDate();
+            let now = new Date();
+            let timeDifference = (now - last_warmed) / 1000; // time difference in seconds
+            if (timeDifference < 45) {
+                console.log("Server was warmed less than 45 seconds ago.");
+            } else {
+                console.log("Server was warmed more than 45 seconds ago.");
+            }
+        } else {
+            console.log("No such document!");
+        }
+    });
+}
+
+function cleanupListeners() {
+    if (unsubscribeFromSDXLWarmingStateSnapshot) {
+        unsubscribeFromSDXLWarmingStateSnapshot();
+    }
 }
 
 function toggleImageSelectability() {

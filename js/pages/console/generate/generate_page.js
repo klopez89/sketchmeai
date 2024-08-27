@@ -736,6 +736,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
                     let is_an_upscale = generation.upscale_recipe != null;
+                    let is_using_flux = generation.base_model.includes('flux');
 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
                         gen_element.querySelector('#gen-status').innerHTML = '...queued';
@@ -746,7 +747,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         }
                     } else if (generation.prediction_status === PredictionStatus.BEING_HANDLED) {
 
-                        if (isSDXLServerWarm == false) {
+                        if (isSDXLServerWarm == false && is_using_flux == false) {
                             gen_element.querySelector('#gen-status').innerHTML = '...booting';
                         } else {
                             gen_element.querySelector('#gen-status').innerHTML = '...generating';
@@ -1612,6 +1613,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             }
             let prediction_status = generation_dict['prediction_status'];
             let signed_gen_url = generation_dict['signed_gen_url'];
+            let is_using_flux = getBaseModelSelectionId().includes('flux');
 
             const gen_element = document.querySelector(`div[generation-id="${generationId}"]`);
             generation_dict.rec_id = generationId;
@@ -1619,7 +1621,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             if (prediction_status === PredictionStatus.IN_PROGRESS) {
                 gen_element.querySelector('#gen-status').innerHTML = '...queued';
             } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
-                if (isSDXLServerWarm == false) {
+                if (isSDXLServerWarm == false && is_using_flux == false) {
                     gen_element.querySelector('#gen-status').innerHTML = '...booting';
                 } else {
                     gen_element.querySelector('#gen-status').innerHTML = '...generating';

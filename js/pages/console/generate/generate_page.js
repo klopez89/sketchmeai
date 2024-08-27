@@ -112,6 +112,12 @@ function startListeningForSDXLServerWarmStatus() {
             if (timeDifference < 45) {
                 console.log("Server was warmed less than 45 seconds ago.");
                 isSDXLServerWarm = true;
+                document.querySelectorAll('div[generation-id]').forEach(function(genElement) {
+                    let genStatusElement = genElement.querySelector('p#gen-status');
+                    if (genStatusElement && genStatusElement.innerHTML === '...booting') {
+                        genStatusElement.innerHTML = '...generating';
+                    }
+                });
             } else {
                 console.log("Server was warmed more than 45 seconds ago.");
                 isSDXLServerWarm = false;

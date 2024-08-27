@@ -729,10 +729,15 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
+                    let is_an_upscale = generation.upscale_recipe != null;
 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
                         gen_element.querySelector('#gen-status').innerHTML = '...queued';
-                        startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
+                        if (is_an_upscale) {
+                            startListeningForUpscalingUpdates(userRecId, collectionId, generation.rec_id);
+                        } else {
+                            startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
+                        }
                     } else if (generation.prediction_status === PredictionStatus.BEING_HANDLED) {
 
                         if (isSDXLServerWarm == false) {
@@ -741,14 +746,11 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                             gen_element.querySelector('#gen-status').innerHTML = '...generating';
                         }
                     
-                        let cancel_button = gen_element.querySelector('#cancel-button');
-                        cancel_button.addEventListener('click', function() {
-                            gen_element.querySelector('#gen-status').innerHTML = '...cancelling';
-                            cancelGeneration(generation.replicate_prediction_id, gen_element, generation);
-                            // cancel_button.classList.add('hidden');
-                        });
-                        // cancel_button.classList.remove('hidden');
-                        startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
+                        if (is_an_upscale) {
+                            startListeningForUpscalingUpdates(userRecId, collectionId, generation.rec_id);
+                        } else {
+                            startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
+                        }
                     } else if (generation.prediction_status === PredictionStatus.CANCELED) {
                         gen_element.querySelector('img').classList.remove('hidden');
                         gen_element.querySelector('#gen-status').innerHTML = '';
@@ -1628,6 +1630,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 console.log('generation succeeded, and heres the gen dict for it: ', generation_dict);
                 configureCopyButton(generation_dict, gen_element);
                 configureFavoriteButton(generation_dict, gen_element);
+                hideDownloadUpscaledButton(gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.FAILED) {
                 console.log('generation failed');

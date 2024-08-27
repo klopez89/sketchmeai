@@ -425,23 +425,18 @@ function configureGenerateForm() {
     });
 
     let i2iRefImgUrlInput = document.getElementById(RefImgUrlInputId.IMG2IMG);
-    console.log('i2iRefImgUrlInput: ', i2iRefImgUrlInput);
     addDropListenerToRefImgUrlInput(i2iRefImgUrlInput);
 
     let ipAdapterRefImgUrlInput = document.getElementById(RefImgUrlInputId.IPADAPTER);
-    console.log('ipAdapterRefImgUrlInput: ', ipAdapterRefImgUrlInput);
     addDropListenerToRefImgUrlInput(ipAdapterRefImgUrlInput);
 
     let openPoseRefImgUrlInput = document.getElementById(RefImgUrlInputId.OPENPOSE);
-    console.log('openPoseRefImgUrlInput: ', openPoseRefImgUrlInput);
     addDropListenerToRefImgUrlInput(openPoseRefImgUrlInput);
     
     let cannyRefImgUrlInput = document.getElementById(RefImgUrlInputId.CANNY);
-    console.log('cannyRefImgUrlInput: ', cannyRefImgUrlInput);
     addDropListenerToRefImgUrlInput(cannyRefImgUrlInput);
 
     let depthRefImgUrlInput = document.getElementById(RefImgUrlInputId.DEPTH);
-    console.log('depthRefImgUrlInput: ', depthRefImgUrlInput);
     addDropListenerToRefImgUrlInput(depthRefImgUrlInput);
 
     addChangeListenersForBaseModelSelector();
@@ -806,7 +801,6 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
 
 function showDownloadUpscaledButton(genElement) {
     let downloadButton = genElement.querySelector('#download-full-scale');
-    console.log('downloadButton full scale button: ', downloadButton);
     if (downloadButton) {
         downloadButton.classList.remove('hidden');
         downloadButton.classList.add('block');
@@ -1755,13 +1749,11 @@ function configureRefImageButtons() {
     refImgButtonElements.push(maskRefImgButtonElement);
     for(let i = 0; i < refImgButtonElements.length; i++) {
         let refImgButton = refImgButtonElements[i];
-        console.log('the ref img button is: ', refImgButton);
+   
         let refImgButtonMode = refImgButton.getAttribute('mode');
         let refImageUploadInput = refImgButton.nextElementSibling;
-        console.log('the ref image upload input is: ', refImageUploadInput, ' the ref img mode: ', refImgButtonMode);
 
         refImageUploadInput.addEventListener("change", () => {
-            console.log('Trigger change event of local upload input');
              const files = refImageUploadInput.files;
             handleRefImgFileUpload(files, refImgButton, refImgButtonMode);
             refImageUploadInput.value = '';

@@ -1631,6 +1631,7 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
                 configureCopyButton(generation_dict, gen_element);
                 configureFavoriteButton(generation_dict, gen_element);
                 hideDownloadUpscaledButton(gen_element);
+                showCopyPromptButton(gen_element);
                 unsubscribe(); // Stop listening for updates
             } else if (prediction_status === PredictionStatus.FAILED) {
                 console.log('generation failed');

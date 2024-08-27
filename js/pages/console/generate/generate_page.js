@@ -1616,12 +1616,15 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             const gen_element = document.querySelector(`div[generation-id="${generationId}"]`);
             generation_dict.rec_id = generationId;
 
-            if (isSDXLServerWarm === false) {
-                gen_element.querySelector('#gen-status').innerHTML = '...booting';
-            } else if (prediction_status === PredictionStatus.IN_PROGRESS) {
+            if (prediction_status === PredictionStatus.IN_PROGRESS) {
                 gen_element.querySelector('#gen-status').innerHTML = '...queued';
             } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
-                gen_element.querySelector('#gen-status').innerHTML = '...generating';
+                if (isSDXLServerWarm == false) {
+                    gen_element.querySelector('#gen-status').innerHTML = '...booting';
+                } else {
+                    gen_element.querySelector('#gen-status').innerHTML = '...generating';
+                }
+
                 let cancel_button = gen_element.querySelector('#cancel-button');
                 cancel_button.addEventListener('click', function() {
                     gen_element.querySelector('#gen-status').innerHTML = '...cancelling';

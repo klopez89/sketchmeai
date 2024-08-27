@@ -19,7 +19,6 @@ configureRefImageButtons();
 moveForm();
 configureInfiniteScroll();
 setupAccordion();
-showBasicExamplesButton();
 configurePromptInputPlaceholder(); 
 addBottomGenerationMenu();
 configureShareButton();

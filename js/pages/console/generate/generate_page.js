@@ -11,6 +11,7 @@ let lastSelectedModelVersion = null;
 let boundaryWidth = 1024; // Tailwind's 'lg' breakpoint (use to be 768 for md). Increased to lg to accomodate for huge pixel phones like Samsung S23 Ultra w/ a 916px width.
 let selectedRefImgModes = [];
 var unsubscribeFromSDXLWarmingStateSnapshot = null;
+var isSDXLServerWarm = false;
 
 addImageGrid();
 addBaseGenMenu();
@@ -110,8 +111,10 @@ function startListeningForSDXLServerWarmStatus() {
             let timeDifference = (now - last_warmed) / 1000; // time difference in seconds
             if (timeDifference < 45) {
                 console.log("Server was warmed less than 45 seconds ago.");
+                isSDXLServerWarm = true;
             } else {
                 console.log("Server was warmed more than 45 seconds ago.");
+                isSDXLServerWarm = false;
             }
         } else {
             console.log("No such document!");
@@ -652,7 +655,6 @@ function fetchWorkingModels(userRecId) {
                 });
 
                 let model_version = modelVersionInURL();
-                console.log('Model version in URL is:', model_version);
                 if (model_version != null) {
                     lastSelectedModelVersion = model_version;
                     selectModelWithVersion(lastSelectedModelVersion);
@@ -732,7 +734,12 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         gen_element.querySelector('#gen-status').innerHTML = '...queued';
                         startListeningForGenerationUpdates(userRecId, collectionId, generation.rec_id);
                     } else if (generation.prediction_status === PredictionStatus.BEING_HANDLED) {
-                        gen_element.querySelector('#gen-status').innerHTML = '...generating';
+
+                        if (isSDXLServerWarm == false) {
+                            gen_element.querySelector('#gen-status').innerHTML = '...booting';
+                        } else {
+                            gen_element.querySelector('#gen-status').innerHTML = '...generating';
+                        }
                     
                         let cancel_button = gen_element.querySelector('#cancel-button');
                         cancel_button.addEventListener('click', function() {
@@ -776,7 +783,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 });
             });
 
-            console.log('saving last doc id locally: ', lastDocId);
+            // console.log('saving last doc id locally: ', lastDocId);
             saveLastDocIdLocally(lastDocId);
             isCurrentlyPaginatingPrompts = false;
             $('#grid-loader').addClass('hidden');
@@ -1176,7 +1183,6 @@ function selectModelWithVersion(version) {
     }
 
     if (!selected) {
-        console.log('About to select the first lora person div in the grid');
         selectLoraPersonDiv(loraPersonDivs[0]);
     }
 }
@@ -1602,7 +1608,9 @@ function startListeningForGenerationUpdates(userRecId, collectionId, generationI
             const gen_element = document.querySelector(`div[generation-id="${generationId}"]`);
             generation_dict.rec_id = generationId;
 
-            if (prediction_status === PredictionStatus.IN_PROGRESS) {
+            if (isSDXLServerWarm === false) {
+                gen_element.querySelector('#gen-status').innerHTML = '...booting';
+            } else if (prediction_status === PredictionStatus.IN_PROGRESS) {
                 gen_element.querySelector('#gen-status').innerHTML = '...queued';
             } else if (prediction_status === PredictionStatus.BEING_HANDLED) {
                 gen_element.querySelector('#gen-status').innerHTML = '...generating';
@@ -2067,7 +2075,7 @@ function showInfiniteLoader() {
 }
 
 function saveLastDocIdLocally(last_doc_id) {
-    console.log('in saving of last doc id: ', last_doc_id);
+    // console.log('in saving of last doc id: ', last_doc_id);
     localStorage.setItem('last_doc_id', last_doc_id);
 }
   
@@ -2664,7 +2672,7 @@ function fireGenDeletion(generationIds, genElements) {
         contentType: "application/json",
         dataType: 'json',
         success: function (data) {
-            console.log('got success from delete gen endpoint for id: ', generationIds);
+            // console.log('got success from delete gen endpoint for id: ', generationIds);
             for (let genElement of genElements) {
                 removeGenItem(genElement);
             }
@@ -2680,12 +2688,12 @@ function fireGenDeletion(generationIds, genElements) {
 }
 
 function clickedOutsideOfGenMenu() {
-    console.log('clickedOutsideOfGenMenu was called');
+    // console.log('clickedOutsideOfGenMenu was called');
     closeAnyOpenGenMenus();
 }
 
 function clickedOnEmptyPartOfGrid() {
-    console.log('clickedOnEmptyPartOfGrid was called');
+    // console.log('clickedOnEmptyPartOfGrid was called');
     closeAnyOpenGenMenus();
 }
 

@@ -200,7 +200,7 @@ function updateShowPaymentButton(credit_balance) {
 
 
 function startListeningForCreditUpdates() {
-    console.log('startListeningForCreditUpdates');
+    // console.log('startListeningForCreditUpdates');
     let userRecId = getUserRecId();
 
     unsubscribeFromCreditSnapshot = db.collection('users').doc(userRecId)

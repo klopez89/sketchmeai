@@ -671,7 +671,7 @@ function fetchWorkingModels(userRecId) {
                 document.getElementById('person-lora-influence').value = PersonLoraSettingValue.HIGH;
                 alignPersonInfluenceSettingToValue();
             }
-            console.log('the base prices dict is: ', data.base_prices);
+            // console.log('the base prices dict is: ', data.base_prices);
             
             storePriceInfo(data.base_prices, PriceInfoTypes.SDXL);
             storePriceInfo(data.flux_prices, PriceInfoTypes.FLUX);
@@ -759,7 +759,6 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                         gen_element.querySelector('img').classList.remove('hidden');
 
                         if (generation.upscale_result && Object.keys(generation.upscale_result).length > 0) {
-                            console.log('loading downscaled-upscale result...');
                             loadGenImage(generation.upscale_result.downscaled_signed_url, gen_element);
                             showDownloadUpscaledButton(gen_element);
                             showUpscaledLabel(gen_element);

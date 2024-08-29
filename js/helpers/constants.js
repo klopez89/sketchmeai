@@ -51,6 +51,13 @@ const PromptStyle = {
     NONE: 'none',
     CELL_SHADING: 'cell_shading',
     PIXEL_ART: 'pixel_art',
+    ANIME: 'anime',
+    PHOTOGRAPHIC: 'photographic',
+    FANTASY: 'fantasy',
+    ANALOG_FILM: 'analog_film',
+    NEONPUNK: 'neonpunk',
+    LINE_ART: 'line_art',
+    CLAY_ART: 'clay_art',
 }
 
 const RefImageMode = {

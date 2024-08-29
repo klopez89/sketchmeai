@@ -345,6 +345,104 @@ function generate_form_html() {
 						</div>
 					</div>
 
+					<div prompt-style="${PromptStyle.ANIME}" class="relative cursor-pointer select-none" id="anime-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
+							<div class="aspect-[1/1] rounded-lg bg-white">
+								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Anime Style" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
+								<div id="selected-check" class="absolute top-0 right-0 p-2 hidden">
+									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
+								</div>
+								<div class="flex justify-left items-end h-full">
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Anime</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div prompt-style="${PromptStyle.PHOTOGRAPHIC}" class="relative cursor-pointer select-none" id="photographic-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
+							<div class="aspect-[1/1] rounded-lg bg-white">
+								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Photographic Style" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
+								<div id="selected-check" class="absolute top-0 right-0 p-2 hidden">
+									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
+								</div>
+								<div class="flex justify-left items-end h-full">
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Photographic</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div prompt-style="${PromptStyle.FANTASY}" class="relative cursor-pointer select-none" id="fantasy-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
+							<div class="aspect-[1/1] rounded-lg bg-white">
+								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Fantasy Style" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
+								<div id="selected-check" class="absolute top-0 right-0 p-2 hidden">
+									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
+								</div>
+								<div class="flex justify-left items-end h-full">
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Fantasy</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div prompt-style="${PromptStyle.ANALOG_FILM}" class="relative cursor-pointer select-none" id="analog-film-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
+							<div class="aspect-[1/1] rounded-lg bg-white">
+								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Analog Film Style" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
+								<div id="selected-check" class="absolute top-0 right-0 p-2 hidden">
+									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
+								</div>
+								<div class="flex justify-left items-end h-full">
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Analog Film</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div prompt-style="${PromptStyle.NEONPUNK}" class="relative cursor-pointer select-none" id="neonpunk-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
+							<div class="aspect-[1/1] rounded-lg bg-white">
+								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Neonpunk Style" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
+								<div id="selected-check" class="absolute top-0 right-0 p-2 hidden">
+									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
+								</div>
+								<div class="flex justify-left items-end h-full">
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Neonpunk</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div prompt-style="${PromptStyle.LINE_ART}" class="relative cursor-pointer select-none" id="line-art-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
+							<div class="aspect-[1/1] rounded-lg bg-white">
+								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Line Art Style" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
+								<div id="selected-check" class="absolute top-0 right-0 p-2 hidden">
+									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
+								</div>
+								<div class="flex justify-left items-end h-full">
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Line Art</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div prompt-style="${PromptStyle.CLAY_ART}" class="relative cursor-pointer select-none" id="clay-art-style-button" bgColor="#000" onclick="promptStylePressed(event)">
+						<div class="group w-32 h-32 md:w-56 md:h-56 lg:w-32 lg:h-32 block relative">
+							<div class="aspect-[1/1] rounded-lg bg-white">
+								<img src="https://storage.googleapis.com/sketchmeai-public/Prompt_Styles/pixel-art-320.png" alt="Clay Art Style" class="absolute inset-0 object-cover w-full h-full rounded-lg opacity-60">
+								<div id="selected-check" class="absolute top-0 right-0 p-2 hidden">
+									<i class="fas fa-check text-white md:text-2xl lg:text-base" aria-hidden="true"></i>
+								</div>
+								<div class="flex justify-left items-end h-full">
+									<p class="text-base md:${md_font_size} lg:text-base ml-3 mb-2 z-10" style="color: rgb(0, 0, 0);">Clay Art</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>

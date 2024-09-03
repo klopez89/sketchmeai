@@ -39,6 +39,11 @@ const PriceInfoTypes = {
     FLUX: 'flux_price_info',
 }
 
+const UpscaleType = {
+    STYLISTIC: 'stylistic',
+    REALISTIC: 'realistic',
+}
+
 const PredictionStatus = {
     IN_PROGRESS: 'in_progress',
     BEING_HANDLED: 'being_handled',

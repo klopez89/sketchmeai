@@ -2573,19 +2573,22 @@ function downloadFullUpscalePressed(event) {
     }
 }
 
-function upscaleImagePressed(event) {
+function upscaleImagePressed(event, upscaleType) {
+    let imgSrc = imgSourceFromUpscalePress(event);
+    kickoffUpscale(imgSrc, upscaleType);
+}
+
+function imgSourceFromUpscalePress(event) {
     event.preventDefault();
     event.stopPropagation();
     let genElement = event.target.closest('[generation-id]');
     hideGenMenuShield(genElement);
-    let generationId = genElement.getAttribute('generation-id');
     let imgElement = genElement.querySelector('img');
     let imgSrc = imgElement.getAttribute('src');
-    console.log("Time to attempt a high-res upscale of the image with generationId: ", generationId);
-    kickoffUpscale(imgSrc);
+    return imgSrc;
 }
 
-function kickoffUpscale(imgSrc) {
+function kickoffUpscale(imgSrc, upscaleType) {
     let collectionId = getLastEditedCollectionInfo().collectionId;
     let seed = Math.floor(Math.random() * 429496719);
     let sourceImageInfo = getImgInfoForUpscale(imgSrc);
@@ -2608,7 +2611,8 @@ function kickoffUpscale(imgSrc) {
             seed: seed,
             sourceImageInfo: sourceImageInfo,
             modelName: "clarity_upscaler",
-            collectionId: collectionId
+            collectionId: collectionId,
+            upscaleType: upscaleType,
         }),
         contentType: "application/json",
         dataType: 'json',

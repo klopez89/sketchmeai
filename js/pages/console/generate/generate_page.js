@@ -137,6 +137,17 @@ function cleanupListeners() {
 function toggleImageSelectability() {
     isSelectable = !isSelectable;
     const divs = document.querySelectorAll(".selectable");
+
+    const generationDivs = Array.from(divs).filter(div => {
+        const upscaledLabel = div.querySelector('#upscaled-label');
+        return upscaledLabel && upscaledLabel.classList.contains('hidden');
+    });
+
+    const upscaleDivs = Array.from(divs).filter(div => {
+        const upscaledLabel = div.querySelector('#upscaled-label');
+        return upscaledLabel && !upscaledLabel.classList.contains('hidden');
+    });
+
     const selectionBar = document.querySelector(".selection-bar");
     const selectToShareButton = document.querySelector(".select-to-share-button");
     const mobileMenu = document.getElementById('mobile-bottom-menu');
@@ -155,8 +166,12 @@ function toggleImageSelectability() {
         mobileMenu.classList.remove('hidden');
     }
     
-    divs.forEach(div => {
-      configureSelectableDiv(div);
+    generationDivs.forEach(div => {
+      configureSelectableDiv(div, true);
+    });
+
+    upscaleDivs.forEach(div => {
+        configureSelectableDiv(div, false);
     });
 
     updateShareButton();
@@ -178,15 +193,18 @@ function showMobileBottomGenMenu() {
     mobileBottomMenu.classList.remove('hidden');
 }
 
-function configureSelectableDiv(div) {
+function configureSelectableDiv(div, isGenerated) {
     const checkbox = div.querySelector(".checkbox");
     const selectionOverlay = div.querySelector(".selection-overlay");
     const floatingCopyButton = div.querySelector("#copy-button");
   
     if (isSelectable) {
         checkbox.classList.remove("hidden"); 
-        selectionOverlay.classList.remove("pointer-events-none");      
-        floatingCopyButton.classList.remove('lg:flex');
+        selectionOverlay.classList.remove("pointer-events-none");  
+
+        if (isGenerated) {
+            floatingCopyButton.classList.remove('lg:flex');
+        }
     } else {
         div.classList.remove("selected");
         checkbox.classList.add("hidden");
@@ -195,7 +213,10 @@ function configureSelectableDiv(div) {
         selectionOverlay.classList.add("pointer-events-none"); 
         const overlay_bg = div.querySelector(".overlay-bg");
         overlay_bg.classList.remove("bg-white", "opacity-50");
-        floatingCopyButton.classList.add('lg:flex');
+
+        if (isGenerated) {
+            floatingCopyButton.classList.add('lg:flex');
+        }
     }
 }
 
@@ -730,12 +751,12 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
             generations.forEach(function(generation) {
                 
                 let new_grid_item_html = newGenItem_FromExistingGen(generation);
-                let new_grid_item_div = configureGenDivForSelection(new_grid_item_html);
+                let is_an_upscale = generation.upscale_recipe != null;
+                let new_grid_item_div = configureGenDivForSelection(new_grid_item_html, !is_an_upscale);
                 new_grid_item_div.find('img').first().removeClass('hidden');
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
-                    let is_an_upscale = generation.upscale_recipe != null;
                     let is_using_flux = generation.base_model.includes('flux');
 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
@@ -877,14 +898,14 @@ function loadGenImage(gen_url, new_grid_item_div) {
     actualImage.src = gen_url;
 }
 
-function configureGenDivForSelection(div) {
+function configureGenDivForSelection(div, isGenerated) {
     // Get the nodes from the prompt div in order to stylize for selection state
     let nodes = $.parseHTML(div);
 
     // Style the prompt div 'dom element' for selection state
     if (isSelectable) {
         let domElement = nodes.find(node => node.nodeType === Node.ELEMENT_NODE);
-        configureSelectableDiv(domElement);
+        configureSelectableDiv(domElement, isGenerated);
     }
 
     let gen_div_element = $(nodes);
@@ -1440,7 +1461,7 @@ function fireGenerateCall(jsonObject, generateTarget) {
     console.log("fireGenerateCall, with jsonObject: ", jsonObject);
 
     let new_grid_item_html = newGenItem_FromNewGen(jsonObject.generationId);
-    let new_grid_item_div = configureGenDivForSelection(new_grid_item_html);
+    let new_grid_item_div = configureGenDivForSelection(new_grid_item_html, true);
 
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
         new_grid_item_div.find('img').first().removeClass('hidden');
@@ -2595,7 +2616,7 @@ function kickoffUpscale(imgSrc, upscaleType) {
     let generationId = generateId()
 
     let new_grid_item_html = newGenItem_FromNewGen(generationId);
-    let new_grid_item_div = configureGenDivForSelection(new_grid_item_html);
+    let new_grid_item_div = configureGenDivForSelection(new_grid_item_html, false);
 
     new_grid_item_div.hide().prependTo('#collection-grid').fadeIn(function() {
         new_grid_item_div.find('img').first().removeClass('hidden');

@@ -1218,6 +1218,9 @@ function selectModelWithVersion(version) {
 }
 
 function selectPromptStyle(prompt_style) {
+
+    console.log('the prompt style to select: ', prompt_style);
+
     let promptStyleGrid = document.getElementById('prompt-style-grid');
     deSelectAllPromptStylesOptions();
     let promptStyleDivs = promptStyleGrid.children;

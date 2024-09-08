@@ -181,7 +181,7 @@ function homePageHtml() {
 		</div>
 
 		<div id="console-screenshot-container" class="bg-gray-100">
-			<div class="mb-14 mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="my-24 mx-auto max-w-7xl px-6 lg:px-8">
 				<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_console_screenshot2.png" class="my-14 shadow-2xl">
 				<div class="text-center mt-8">
 					<button class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700">
@@ -197,7 +197,7 @@ function homePageHtml() {
 
 
 		<div id="faq-container" class="px-6 lg:px-8 bg-transparent">
-			<div class="my-24 mx-auto max-w-4xl divide-y divide-gray-900/10">
+			<div class="my-4 mx-auto max-w-4xl divide-y divide-gray-900/10">
 				<h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Frequently asked questions</h2>
 				<dl class="mt-10 space-y-6 divide-y divide-gray-900/10">
 					<div x-data="{ open: true }" class="pt-6">
@@ -321,7 +321,7 @@ function homePageHtml() {
 		</div>
 	  
 		<div id="roadmap" class="bg-gray-100">
-			<div class="my-4 mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="my-24 mx-auto max-w-7xl px-6 lg:px-8">
 				<div class="mx-auto max-w-2xl text-center mb-12">
 					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Roadmap</p>
 				</div>
@@ -368,10 +368,10 @@ function homePageHtml() {
 
 
 		<div id="${contactUsId}" class="bg-transparent border dark:border-white/10">
-			<div class="mt-24 mx-auto max-w-2xl text-center mb-12">
+			<div class="mt-4 mx-auto max-w-2xl text-center mb-12">
 					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">${contactFormTitle}</p>
 			</div>
-			<div class="mt-8 mb-24 mx-auto block max-w-md rounded-lg bg-transparent px-6 shadow-4 dark:bg-surface-dark">
+			<div class="mt-8 mb-4 mx-auto block max-w-md rounded-lg bg-transparent px-6 shadow-4 dark:bg-surface-dark">
 				<form id="contact-us-form">
 					<div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
 

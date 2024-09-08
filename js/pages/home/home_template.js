@@ -125,10 +125,25 @@ function homePageHtml() {
 			</div>
 		</div>
 
+		<div class="bg-gray-100" id="generateWithControl">
+			<div class="my-24 mx-auto max-w-7xl px-6 lg:px-8">
+				<div class="mx-auto max-w-2xl text-center">
+				<h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Generate with Control</h1>
+				</div>
+
+				<div class="my-10 mx-0 md:mx-16 lg:mx-10">
+					<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_09.24/homepage_generate_with_control.png" alt="Generation example" width="2432" height="1442" class="max-h-min">
+				</div>
+
+				<div class="mx-auto mt-12 max-w-2xl lg:max-w-4xl">
+					<p class="mt-6 text-lg leading-8 text-secondary text-justify">Use Flux to generate with prompt precision and then transform it to look like you! With control nets and IP-adapter, control the composition of generations while maintaining facial resemblance.</p>
+			</div>
+		</div>
+
 		<div class="bg-gray-100" id="howitworks">
 			<div class="my-24 mx-auto max-w-7xl px-6 lg:px-8">
 				<div class="mx-auto max-w-2xl text-center">
-				<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">What We Offer</p>
+				<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Features</p>
 				</div>
 				<div class="mx-auto mt-12 max-w-2xl lg:max-w-4xl">
 				<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">

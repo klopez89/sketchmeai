@@ -180,8 +180,26 @@ function homePageHtml() {
 			</div>
 		</div>
 
-		<div id="console-screenshot-container" class="mx-auto max-w-7xl px-6 lg:px-8 bg-gray-100">
-			<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_console_screenshot2.png" class="my-14 shadow-2xl">
+		<div id="console-screenshot-container" class="bg-gray-100">
+			<div class="mx-auto max-w-7xl px-6 lg:px-8">
+				<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_console_screenshot2.png" class="my-14 shadow-2xl">
+			</div>
+		</div>
+
+		<div class="bg-transparent" id="secondCallToAction">
+			<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			
+				<div class="text-center mt-8">
+					<button class="bg-black text-white font-bold py-2 px-4 rounded">
+						Start generating with AI
+					</button>
+					<div class="mt-4">
+						<label class="text-gray-800">Already have an account?</label>
+						<button class="text-blue-500 font-semibold ml-2">Login</button>
+					</div>
+				</div>
+				
+			</div>
 		</div>
 
 		<div id="faq-container" class="px-6 lg:px-8 bg-transparent">

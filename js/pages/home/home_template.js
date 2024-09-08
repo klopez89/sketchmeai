@@ -190,19 +190,19 @@ function homePageHtml() {
 			<div class="mx-auto max-w-7xl px-6 lg:px-8">
 			
 				<div class="text-center mt-8">
-					<button class="bg-black text-white font-bold py-2 px-4 rounded">
+					<button class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700">
 						Start generating with AI
 					</button>
 					<div class="mt-4">
 						<label class="text-gray-800">Already have an account?</label>
-						<button class="text-blue-500 font-semibold ml-2">Login</button>
+						<button class="text-blue-500 font-semibold ml-1">Login</button>
 					</div>
 				</div>
 				
 			</div>
 		</div>
 
-		<div id="faq-container" class="px-6 lg:px-8 bg-transparent">
+		<div id="faq-container" class="px-6 lg:px-8 bg-gray-100">
 			<div class="my-24 mx-auto max-w-4xl divide-y divide-gray-900/10">
 				<h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Frequently asked questions</h2>
 				<dl class="mt-10 space-y-6 divide-y divide-gray-900/10">
@@ -326,7 +326,7 @@ function homePageHtml() {
 			</div>
 		</div>
 	  
-		<div id="roadmap" class="bg-gray-100">
+		<div id="roadmap" class="bg-transparent">
 			<div class="my-4 mx-auto max-w-7xl px-6 lg:px-8">
 				<div class="mx-auto max-w-2xl text-center mb-12">
 					<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Roadmap</p>

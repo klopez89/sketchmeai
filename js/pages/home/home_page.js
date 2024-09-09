@@ -57,6 +57,18 @@ function configureContactUsForm() {
   });
 }
 
+function attemptToLogin() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in, redirect to the generation console
+      window.location.href = `https://${CONSTANTS.SITE_URL}/console/generate`;
+    } else {
+      // No user is signed in, redirect to the auth page
+      window.location.href = `https://${CONSTANTS.SITE_URL}/auth`;
+    }
+  });
+}
+
 function toggleContactFormButtonState() {
   let sendButtonText = document.querySelector('#contact-us-button p').innerHTML;
 	if (sendButtonText === 'Signed Up!') {

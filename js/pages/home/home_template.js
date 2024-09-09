@@ -125,7 +125,7 @@ function homePageHtml() {
 							<a href="${headerButtonUrl}" class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">${headerButtonTitle}</a>
 							<div class="mt-4">
 								<label class="text-gray-800">Already have an account?</label>
-								<button class="text-black font-semibold ml-1">Login</button>
+								<button class="text-black font-semibold ml-1" onclick="attemptToLogin()">Login</button>
 							</div>
 						</div>
 					</div>
@@ -223,7 +223,7 @@ function homePageHtml() {
 						</button>
 						<div class="mt-4">
 							<label class="text-gray-800">Already have an account?</label>
-							<button class="text-black font-semibold ml-1">Login</button>
+							<button class="text-black font-semibold ml-1" onclick="attemptToLogin()">Login</button>
 						</div>
 					</div>
 				</div>

@@ -22,7 +22,7 @@ function homePageHtml() {
 
 
 	let second_feature_title = 'Stable Diffusion + Flux';
-	let second_feature_body = "Generate with Stable Diffusion SDXL and Black Forest Labs' Flux-schnell model. Control the direction of your generations with ControlNets and IP-Adapter. With the state-of-the-art Flux, you can drive a great amount of control with just your prompt. Similar SDXL adapters will soon be available for Flux; unlocking greater precision!"
+	let second_feature_body = "Generate with Stable Diffusion SDXL and Black Forest Labs' Flux-schnell model. Control the direction of your generations with ControlNets and IP-Adapter. With the state-of-the-art Flux, you can drive a great amount of control with just your prompt. Similar SDXL adapters will soon be available for Flux."
 
 	let third_feature_title = 'Generation Console';
 	let third_feature_body = "Kick off as many image generations as you want while tweaking typical prompt settings like guidance scale, seed, image-to-image, and inpainting. You'll also find your trained models in this console; select one and include its name in your prompt text to generate images of the model's trained subject.";
@@ -34,10 +34,7 @@ function homePageHtml() {
 	let fifth_feature_title = 'ControlNets and IP-Adapter';
 	let fifth_feature_body = "ControlNets enable more control over the final output, utilizing techniques such as pose manipulation (OpenPose), edge detection (Canny), and depth mapping (Depth). IP-Adapter allows you to emulate the style, composition, or the face found in a reference image. In combination w/ a trained model, these tools make it possible to generate cool images that actually look like you!";
 
-	// Control Nets
-	// IP-Adapter
-	// Collections
-	//
+	
 
 	// let second_feature_title = 'Train';
 	// let second_feature_body = 'Kick off training your custom model  AI will train on the images you uploaded. The .';
@@ -48,17 +45,17 @@ function homePageHtml() {
 	// let fourth_feature_title = 'Receive';
 	// let fourth_feature_body = 'Once all images are generated, we will email you a link to your image set. From there, download, share, and use your new images!';
 
-	let timeline_b_title = 'Image Prompt Adapter';
-	let timeline_b_body = "The IP-adapter is an add-on for Stable Diffusion that transforms images into prompts. It empowers you to emulate the style, composition, or specific facial characteristics found in a reference image."
-	let timeline_b_date = 'June 2024';
+	let timeline_a_title = 'Flux Training';
+	let timeline_a_body = "With a trained Flux model, the quality and resemblance of your generations will be greatly improved in combination with the model's spectacular prompt adherence.";
+	let timeline_a_date = 'September 2024';
 
-	let timeline_c_title = 'ControlNet';
-	let timeline_c_body = "ControlNet brings a new level of precision to Stable Diffusion's image generation by conditioning input images and prompts. It will enable more control over the final output, utilizing techniques such as pose manipulation, edge detection, and depth mapping.";
-	let timeline_c_date = 'June 2024';
+	let timeline_b_title = 'Flux Adapters';
+	let timeline_b_body = "The same adapters used to drive control in SDXL (ControlNets and IP-Adapter) will be made available for Flux; unlocking greater precision!";
+	let timeline_b_date = 'October 2024';
 
-	let timeline_d_title = 'LoRA Mixing';
-	let timeline_d_body = "Each trained model is of a LoRA type, and by combining multiple LoRA you can merge multiple concepts together in new ways, ie. a LoRA of a particular style and a LoRA of your face.";
-	let timeline_d_date = 'July 2024';
+	let timeline_c_title = 'SDXL + Flux Styles';
+	let timeline_c_body = "With a trained style model (LoRa), you will be able to generate images that more precisely follows a particular style. The possibilities are endless when combining more than one style together!";
+	let timeline_c_date = 'November 2024';
 
 	
 	let contactFormTitle = 'Contact Us';
@@ -146,7 +143,7 @@ function homePageHtml() {
 				<h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Generate with Control</h1>
 				</div>
 
-				<div class="my-10 mx-0 md:mx-16 lg:mx-24">
+				<div class="mt-14 mb-12 mx-0 md:mx-16 lg:mx-24">
 					<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_09.24/homepage_generate_with_control.png" alt="Generation example" width="2432" height="1442" class="max-h-min">
 				</div>
 
@@ -161,8 +158,8 @@ function homePageHtml() {
 				<div class="mx-auto max-w-2xl text-center">
 				<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">SkechMeAi Features</p>
 				</div>
-				<div class="mx-auto mt-12 max-w-2xl lg:max-w-4xl">
-					<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+				<div class="mx-auto mt-14 max-w-2xl lg:max-w-4xl">
+					<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-12">
 						<div class="relative pl-16">
 							<dt class="text-base font-semibold leading-7 text-gray-800">
 								<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
@@ -236,7 +233,7 @@ function homePageHtml() {
 		<div id="faq-container" class="px-6 lg:px-8 bg-transparent">
 			<div class="my-4 mx-auto max-w-4xl divide-y divide-gray-900/10">
 				<h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl text-center">Frequently asked questions</h2>
-				<dl class="mt-10 space-y-6 divide-y divide-gray-900/10">
+				<dl class="mt-12 space-y-6 divide-y divide-gray-900/10">
 					<div x-data="{ open: true }" class="pt-6">
 						<dt>
 							<button type="button" x-description="Expand/collapse question button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
@@ -370,6 +367,17 @@ function homePageHtml() {
 								<svg viewBox="0 0 4 4" class="mr-4 h-1 w-1 flex-none" aria-hidden="true">
 								<circle cx="2" cy="2" r="2" fill="currentColor" />
 								</svg>
+								${timeline_a_date}
+								<div class="absolute -ml-2 h-px w-screen -translate-x-full bg-gray-900/10 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0" aria-hidden="true"></div>
+							</time>
+							<p class="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-800">${timeline_a_title}</p>
+							<p class="mt-1 text-base leading-7 text-gray-600">${timeline_a_body}</p>
+						</div>
+						<div>
+							<time class="flex items-center text-sm font-semibold leading-6 text-gray-500">
+								<svg viewBox="0 0 4 4" class="mr-4 h-1 w-1 flex-none" aria-hidden="true">
+								<circle cx="2" cy="2" r="2" fill="currentColor" />
+								</svg>
 								${timeline_b_date}
 								<div class="absolute -ml-2 h-px w-screen -translate-x-full bg-gray-900/10 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0" aria-hidden="true"></div>
 							</time>
@@ -384,19 +392,8 @@ function homePageHtml() {
 								${timeline_c_date}
 								<div class="absolute -ml-2 h-px w-screen -translate-x-full bg-gray-900/10 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0" aria-hidden="true"></div>
 							</time>
-							<p class="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-800">${timeline_c_title}</p>
+							<p class="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">${timeline_c_title}</p>
 							<p class="mt-1 text-base leading-7 text-gray-600">${timeline_c_body}</p>
-						</div>
-						<div>
-							<time class="flex items-center text-sm font-semibold leading-6 text-gray-500">
-								<svg viewBox="0 0 4 4" class="mr-4 h-1 w-1 flex-none" aria-hidden="true">
-								<circle cx="2" cy="2" r="2" fill="currentColor" />
-								</svg>
-								${timeline_d_date}
-								<div class="absolute -ml-2 h-px w-screen -translate-x-full bg-gray-900/10 sm:-ml-4 lg:static lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto lg:translate-x-0" aria-hidden="true"></div>
-							</time>
-							<p class="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">${timeline_d_title}</p>
-							<p class="mt-1 text-base leading-7 text-gray-600">${timeline_d_body}</p>
 						</div>
 					</div>
 				</div>

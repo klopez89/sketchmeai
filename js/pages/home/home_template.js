@@ -15,14 +15,20 @@ function homePageHtml() {
 	let headerSubtitle = 'With easy-to-use model training and image generation, SketchMeAi enables you to create new profile photos and more with AI technology. See how you can reimagine yourself.';
 
 	let first_feature_title = 'Model Training';
-	let first_feature_body = 'Upload 3 - 20 images of yourself or any other person and train your own AI to generate images. To improve quality of training, aim to include some variety of images, ie. face pic, face w/ torso, selfie, different lighting conditions.';
+	let first_feature_body = 'Upload 3 - 20 images of yourself and train your own AI model. For best training result, include a variety of images, ie. face pic, face w/ torso, selfie, different lighting conditions. Flux training coming soon!';
 
 	let second_feature_title = 'Generation Console';
 	let second_feature_body = 'Kick off as many image generations as you want while tinkering with typical prompt features like guidance scale, lora scale, and image-to-image. You can also fire off a generation for the same prompt across several trained models.';
 
 
-	let third_feature_title = 'Stable Diffusion Tech';
-	let third_feature_body = "Currently, our training and generation is powered by StabilityAI's Stable Diffusion SDXL. The technology has a lot of community support and add-ons that make this open-source tool powerful and versatile. We plan to bring those add-on features soon (<a href=\"#roadmap\" class=\"text-black\">see Roadmap</a>)."
+	let third_feature_title = 'Stable Diffusion + Flux';
+	let third_feature_body = "Generate images with both Stable Diffusion SDXL and Black Forest Labs' recent Flux model (schnell, for now). Currently, with the SDXL model you can control the direction of your generations with the use of adapters like ControlNets and IP-Adapter. With the state-of-the-art Flux, you can drive a significant amount of control with just your prompt. Soon, similar SDXL adapters will be available for Flux; unlocking a whole new level of precision!"
+
+
+	// Control Nets
+	// IP-Adapter
+	// Collections
+	//
 
 	// let second_feature_title = 'Train';
 	// let second_feature_body = 'Kick off training your custom model  AI will train on the images you uploaded. The .';

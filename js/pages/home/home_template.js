@@ -181,9 +181,9 @@ function homePageHtml() {
 		</div>
 
 		<div id="console-screenshot-container" class="bg-gray-100 py-24">
+			<h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl text-center">Powered by Stable Diffusion and Flux</h2>
+			<p class="mt-2 text-lg leading-8 text-secondary text-center mx-auto max-w-2xl lg:max-w-4xl italic">Training on Flux coming soon!</p>
 			<div class="flex flex-center">
-				<h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl text-center">Powered by Stable Diffusion and Flux</h2>
-				<p class="mt-2 text-lg leading-8 text-secondary text-center mx-auto max-w-2xl lg:max-w-4xl italic">Training on Flux coming soon!</p>
 				<div class="mx-auto max-w-7xl px-6 lg:px-8">
 					<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_09.24/desktop_hp_capture.gif" class="my-14 shadow-2xl" width="750" height="1442">
 					<div class="text-center mt-8">

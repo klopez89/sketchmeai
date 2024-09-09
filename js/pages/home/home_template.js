@@ -181,15 +181,17 @@ function homePageHtml() {
 		</div>
 
 		<div id="console-screenshot-container" class="bg-gray-100">
-			<div class="my-24 mx-auto max-w-7xl px-6 lg:px-8">
-				<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_09.24/desktop_hp_capture.gif" class="my-14 shadow-2xl">
-				<div class="text-center mt-8">
-					<button class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700">
-						Start generating with AI
-					</button>
-					<div class="mt-4">
-						<label class="text-gray-800">Already have an account?</label>
-						<button class="text-black font-semibold ml-1">Login</button>
+			<div class="flex flex-center">
+				<div class="my-24 mx-auto max-w-7xl px-6 lg:px-8">
+					<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_09.24/desktop_hp_capture.gif" class="my-14 shadow-2xl" width="1000" height="1442">
+					<div class="text-center mt-8">
+						<button class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700">
+							Start generating with AI
+						</button>
+						<div class="mt-4">
+							<label class="text-gray-800">Already have an account?</label>
+							<button class="text-black font-semibold ml-1">Login</button>
+						</div>
 					</div>
 				</div>
 			</div>

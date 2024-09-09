@@ -130,7 +130,7 @@ function homePageHtml() {
 						</div>
 					</div>
 					<div class="mt-4 flow-root sm:mt-4">
-						<div class="my-10 mx-0 md:mx-16 lg:mx-10">
+						<div class="mt-6 mb-4 mx-0 md:mx-16 lg:mx-10">
 							<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_09.24/homepage_hero_09.24.png" alt="App screenshot" width="2432" height="1442" class="max-h-min">
 						</div>
 					</div>

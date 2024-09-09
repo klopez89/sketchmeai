@@ -452,7 +452,7 @@ function homePageHtml() {
 
 		<footer class="bg-gray-100">
 			<div class="text-center pt-4">
-				<a href="#hphero" class="text-gray-800">Back to top ^</a>
+				<a href="#hphero" class="text-gray-500">Back to top ^</a>
 			</div>
 			<div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
 				<div class="flex justify-center space-x-6 md:order-2">

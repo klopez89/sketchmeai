@@ -252,7 +252,7 @@ function homePageHtml() {
 						</dt>
 						<dd class="mt-2 pr-12" id="faq-0" x-show="open" style="display: none;">
 							<p class="text-base leading-7 text-gray-600">
-								Image generation and model training both require SketchMeAi credit to use; which can be purchased via Stripe. Cost of generation and training depends on denoising steps and amount of training data, respectively. On average, generation is ~$0.04/image and training a model is ~$0.90/training (on 3 images).
+								Image generation and model training both require SketchMeAi credit to use; which can be purchased via Stripe. For SDXL, cost of generation and training depends on denoising steps and amount of training data, respectively. Where on average, SDXL generation is ~$0.04/image and training a model is ~$0.90/training (on 3 images). For Flux (schnell), cost of generation is simply $0.008/image.
 							</p>
 						</dd>
 
@@ -260,7 +260,7 @@ function homePageHtml() {
 							<dt>
 								<button type="button" x-description="Expand/collapse question button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
 									<span class="text-base font-semibold leading-7">
-										How long does it take to train a model?
+										How long does it take to train a model? (SDXL)
 									</span>
 									<span class="ml-6 flex h-7 items-center">
 										<svg x-description="Icon when question is collapsed." x-state:on="Item expanded" x-state:off="Item collapsed" class="h-6 w-6" :class="{ 'hidden': open }" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -274,7 +274,7 @@ function homePageHtml() {
 							</dt>
 							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
 								<p class="text-base leading-7 text-gray-600">
-									Training a custom SDXL model typically takes 25-30 minutes, based on 10 starting images. We'll send you an email to notify you when your model is complete.
+									Training a custom SDXL model typically takes 25-30 minutes, based on 10 starting images. We'll send you an email to notify you when your model is complete and a link taking you to the generation console with the new model selected.
 								</p>
 							</dd>
 						</div>
@@ -297,7 +297,7 @@ function homePageHtml() {
 							</dt>
 							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
 								<p class="text-base leading-7 text-gray-600">
-									Image generation takes as little as 10-15 seconds, depending on the number of denoising steps. However, custom models first need to be loaded onto the servers, which can take a couple of minutes; this is called cold booting. Once your model has cold booted, it will remain "warm" on the server for approximately one minute before the cache is cleared and the model needs to be re-booted. We factor this start-up time into the image cost for cold boots.
+									On SDXL, a simple image takes as little as 10-15 seconds at 20 denoising steps, and closer to 35-55s when using any of the adapters. However, our custom SDXL server first needs to be spun up for use, which can take ~2 minutes; this is called cold booting. Once our server has cold booted or whenever a generation is made, the server will remain "warm" for about 5 minutes; no longer needing to wait for a cold boot. This auto-warming mechanism was introduced in September 2024.
 								</p>
 							</dd>
 						</div>
@@ -320,7 +320,7 @@ function homePageHtml() {
 							</dt>
 							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
 								<p class="text-base leading-7 text-gray-600">
-									If for whatever reason, you decide to cancel a training before it has completed, you will only be charged against the active training time. For example, when kicking off a training, the total estimated cost will be deducted from your credit balance and if you cancel mid-training, the unused portion of that cost will be credited back to your account automatically. Image generations currently cannot be canceled or refunded.
+									If for whatever reason, you decide to cancel a training before it has completed, you will only be charged against the active training time. For example, when kicking off a training, the total estimated cost will be deducted from your credit balance and if you cancel mid-training, the unused portion of that cost will be credited back to your account automatically. Image generations cannot be canceled or refunded.
 								</p>
 							</dd>
 						</div>
@@ -343,13 +343,13 @@ function homePageHtml() {
 							</dt>
 							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
 								<p class="text-base leading-7 text-gray-600">
-									Resemblance to your training data depends on a number of factors. The first and most impactful is the quality of your training data; high quality images with varied angles and lighting tend to lead to a well-trained model with respect to resemblance. Prompt settings, particularly Lora Scale and Guidance Scale, can also be adjusted to improve resemblance. We've provided default values which worked well for us, but you may need to play around with these settings to yield the best results for your models and prompts. The number of denoising steps can influence the resemblance and detail of your generated image, but note that increasing denoising steps will increase generation cost. <a class="text-black underline" href="${CONSTANTS.BASE_URL}/prompt-examples/basic">Basic Prompt Examples</a>
+									Resemblance to your training data depends on a number of factors. The first and most impactful is the quality of your training data; high quality images with varied angles and good lighting means better resemblance in your results. Prompt settings, like lora scale and guidance scale, can be adjusted to improve resemblance. Our default values usually work well for us, but you may need to play around with the settings to yield the best results for your models and prompts. The number of denoising steps can influence the resemblance and detail of your generated image, but note that increasing denoising steps will increase generation cost. Lastly, another way to drive resemblance is to use IP-Adapter with a closeup face picture as the reference image and set to 'use the face'. Once you generate an image that good resemblance, you can use that image w/ one or more controlnets to drive resemblance even further.
 								</p>
 							</dd>
 						</div>
 
 					</div>
-					<div class="text-sm leading-7 mt-12">Have more questions? Send me a message using the contact form below.</div>
+					<div class="text-sm leading-7 mt-12">Have more questions? Send us a message using the contact form below.</div>
 				</dl>
 			</div>
 		</div>

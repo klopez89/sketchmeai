@@ -14,16 +14,25 @@ function homePageHtml() {
 	let headerTitle = 'Need a new<br>profile pic?<br>Let <b>AI</b> help';
 	let headerSubtitle = 'With easy-to-use model training and image generation, SketchMeAi enables you to create new profile photos and more with AI technology. See how you can reimagine yourself.';
 
+
+	
+
 	let first_feature_title = 'Model Training';
 	let first_feature_body = 'Upload 3 - 20 images of yourself and train your own AI model. For best training result, include a variety of images, ie. face pic, face w/ torso, selfie, different lighting conditions. Flux training coming soon!';
 
-	let second_feature_title = 'Generation Console';
-	let second_feature_body = 'Kick off as many image generations as you want while tinkering with typical prompt features like guidance scale, lora scale, and image-to-image. You can also fire off a generation for the same prompt across several trained models.';
+
+	let second_feature_title = 'Stable Diffusion + Flux';
+	let second_feature_body = "Generate with Stable Diffusion SDXL and Black Forest Labs' Flux-schnell model. Control the direction of your generations with ControlNets and IP-Adapter. With the state-of-the-art Flux, you can drive a great amount of control with just your prompt. Similar SDXL adapters will soon be available for Flux; unlocking greater precision!"
+
+	let third_feature_title = 'Generation Console';
+	let third_feature_body = "Kick off as many image generations as you want while tweaking typical prompt settings like guidance scale, seed, image-to-image, and inpainting. You'll also find your trained models in this console; select one and include its name in your prompt text to generate images of the model's trained subject.";
 
 
-	let third_feature_title = 'Stable Diffusion + Flux';
-	let third_feature_body = "Generate with Stable Diffusion SDXL and Black Forest Labs' Flux-schnell model. With SDXL, control the direction of your generations with ControlNets and IP-Adapter. With the state-of-the-art Flux, you can drive a great amount of control with just your prompt. Similar SDXL adapters will soon be available for Flux; unlocking greater precision!"
+	let fourth_feature_title = 'Collections';
+	let fourth_feature_body = "Each generation is saved in a collection. You can create a new collection, rename it, and navigate between collections. Within a collection, you can favorite the ones you love and select the ones you want to delete or share with friends.";
 
+	let fifth_feature_title = 'ControlNets and IP-Adapter';
+	let fifth_feature_body = "ControlNets enable more control over the final output, utilizing techniques such as pose manipulation (OpenPose), edge detection (Canny), and depth mapping (Depth). IP-Adapter allows you to emulate the style, composition, or the face found in a reference image. In combination w/ a trained model, these tools make it possible to generate cool images that actually look like you!";
 
 	// Control Nets
 	// IP-Adapter
@@ -153,35 +162,53 @@ function homePageHtml() {
 				<p class="mt-2 text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Features</p>
 				</div>
 				<div class="mx-auto mt-12 max-w-2xl lg:max-w-4xl">
-				<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-					<div class="relative pl-16">
-						<dt class="text-base font-semibold leading-7 text-gray-800">
-							<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
-								<p class="font-semibold text-2xl text-white">1</p>
-							</div>
-							${first_feature_title}
-						</dt>
-						<dd class="mt-2 text-base leading-7 text-gray-600">${first_feature_body}</dd>
-					</div>
-					<div class="relative pl-16">
-						<dt class="text-base font-semibold leading-7 text-gray-800">
-							<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
-								<p class="font-semibold text-2xl text-white">2</p>
-							</div>
-							${second_feature_title}
-						</dt>
-						<dd class="mt-2 text-base leading-7 text-gray-600">${second_feature_body}</dd>
-					</div>
-					<div class="relative pl-16">
-						<dt class="text-base font-semibold leading-7 text-gray-800">
-							<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
-								<p class="font-semibold text-2xl text-white">3</p>
-							</div>
-							${third_feature_title}
-						</dt>
-						<dd class="mt-2 text-base leading-7 text-gray-600">${third_feature_body}</dd>
-					</div>
-				</dl>
+					<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+						<div class="relative pl-16">
+							<dt class="text-base font-semibold leading-7 text-gray-800">
+								<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+									<p class="font-semibold text-2xl text-white">1</p>
+								</div>
+								${first_feature_title}
+							</dt>
+							<dd class="mt-2 text-base leading-7 text-gray-600">${first_feature_body}</dd>
+						</div>
+						<div class="relative pl-16">
+							<dt class="text-base font-semibold leading-7 text-gray-800">
+								<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+									<p class="font-semibold text-2xl text-white">2</p>
+								</div>
+								${second_feature_title}
+							</dt>
+							<dd class="mt-2 text-base leading-7 text-gray-600">${second_feature_body}</dd>
+						</div>
+						<div class="relative pl-16">
+							<dt class="text-base font-semibold leading-7 text-gray-800">
+								<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+									<p class="font-semibold text-2xl text-white">3</p>
+								</div>
+								${third_feature_title}
+							</dt>
+							<dd class="mt-2 text-base leading-7 text-gray-600">${third_feature_body}</dd>
+						</div>
+						<div class="relative pl-16">
+							<dt class="text-base font-semibold leading-7 text-gray-800">
+								<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+									<p class="font-semibold text-2xl text-white">3</p>
+								</div>
+								${fourth_feature_title}
+							</dt>
+							<dd class="mt-2 text-base leading-7 text-gray-600">${fourth_feature_body}</dd>
+						</div>
+						<div class="relative pl-16">
+							<dt class="text-base font-semibold leading-7 text-gray-800">
+								<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+									<p class="font-semibold text-2xl text-white">3</p>
+								</div>
+								${fifth_feature_title}
+							</dt>
+							<dd class="mt-2 text-base leading-7 text-gray-600">${fifth_feature_body}</dd>
+						</div>
+					</dl>
 				</div>
 			</div>
 		</div>

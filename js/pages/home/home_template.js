@@ -2,7 +2,7 @@
 
 function homePageHtml() {
 
-	let headerButtonTitle = 'Get Started';
+	let headerButtonTitle = 'Start generating with AI';
 	let headerButtonUrl = `https://${CONSTANTS.SITE_URL}/auth`;
 	let contactUsId = 'contact-form-section';
 
@@ -11,11 +11,9 @@ function homePageHtml() {
 // Old Title: Explore what you can create with AI
 // Old Subtitle: Harness the power of AI with easy-to-use model training and image generation. Manipulate prompt parameters to craft any image you can dream of. Unveil the potential of AI to capture your artistic flair, generating images that resonate with your aesthetic.
 
-	let headerTitle = 'Need a new<br>profile pic?<br>Let <b>AI</b> help';
-	let headerSubtitle = 'With easy-to-use model training and image generation, SketchMeAi enables you to create new profile photos and more with AI technology. See how you can reimagine yourself.';
+	let headerTitle = 'Reimagine<br>Yourself';
+	let headerSubtitle = 'Go beyond a camera photo, and reimagine how you present to the online world. SketchMeAi uses the latest open-source tech to help you easily train a model and generate unique self portraits in endless styles.';
 
-
-	
 
 	let first_feature_title = 'Model Training';
 	let first_feature_body = 'Upload 3 - 20 images of yourself and train your own AI model. For best training result, include a variety of images, ie. face pic, face w/ torso, selfie, different lighting conditions. Flux training coming soon!';
@@ -123,9 +121,12 @@ function homePageHtml() {
 						<p id="dev-log-str"></p>
 						<h1 class="text-4xl tracking-tight text-gray-900 sm:text-6xl">${headerTitle}</h1>
 						<p class="mt-6 text-lg leading-8 text-secondary text-justify">${headerSubtitle}</p>
-						<div class="mt-10 flex items-center justify-center gap-x-6">
+						<div class="mt-10 flex flex-col items-start justify-left gap-x-6">
 							<a href="${headerButtonUrl}" class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">${headerButtonTitle}</a>
-							<a href="#howitworks" class="text-lg leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+							<div class="mt-4">
+								<label class="text-gray-800">Already have an account?</label>
+								<button class="text-black font-semibold ml-1">Login</button>
+							</div>
 						</div>
 					</div>
 					<div class="mt-4 flow-root sm:mt-4">
@@ -297,7 +298,7 @@ function homePageHtml() {
 							</dt>
 							<dd class="mt-2 pr-12" id="faq-0" x-show="open">
 								<p class="text-base leading-7 text-gray-600">
-									On SDXL, a simple image takes as little as 10-15 seconds at 20 denoising steps, and closer to 35-55s when using any of the adapters. However, our custom SDXL server first needs to be spun up for use, which can take ~2 minutes; this is called cold booting. Once our server has cold booted or whenever a generation is made, the server will remain "warm" for about 5 minutes; no longer needing to wait for a cold boot. This auto-warming mechanism was introduced in September 2024.
+									On SDXL, a simple image takes as little as 10-15 seconds at 20 denoising steps, and closer to 35-55s when using any of the adapters. However, our custom SDXL server first needs to be spun up for use, which can take ~2 minutes; this is called cold booting. Once our server has cold booted or whenever a generation is made, the server will remain "warm" for about 5 minutes; no longer needing to wait for a cold boot. This auto-warming mechanism was introduced in September 2024. Flux generations are much faster, taking only 2-3 seconds per image and doesn't require any cold booting.
 								</p>
 							</dd>
 						</div>

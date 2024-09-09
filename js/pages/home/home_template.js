@@ -180,9 +180,11 @@ function homePageHtml() {
 			</div>
 		</div>
 
-		<div id="console-screenshot-container" class="bg-gray-100">
+		<div id="console-screenshot-container" class="bg-gray-100 py-24">
 			<div class="flex flex-center">
-				<div class="my-24 mx-auto max-w-7xl px-6 lg:px-8">
+				<h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl text-center">Powered by Stable Diffusion and Flux</h2>
+				<p class="mt-2 text-lg leading-8 text-secondary text-center mx-auto max-w-2xl lg:max-w-4xl italic">Training on Flux coming soon!</p>
+				<div class="mx-auto max-w-7xl px-6 lg:px-8">
 					<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_09.24/desktop_hp_capture.gif" class="my-14 shadow-2xl" width="750" height="1442">
 					<div class="text-center mt-8">
 						<button class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700">
@@ -200,7 +202,7 @@ function homePageHtml() {
 
 		<div id="faq-container" class="px-6 lg:px-8 bg-transparent">
 			<div class="my-4 mx-auto max-w-4xl divide-y divide-gray-900/10">
-				<h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl">Frequently asked questions</h2>
+				<h2 class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl text-center">Frequently asked questions</h2>
 				<dl class="mt-10 space-y-6 divide-y divide-gray-900/10">
 					<div x-data="{ open: true }" class="pt-6">
 						<dt>

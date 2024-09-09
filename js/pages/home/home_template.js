@@ -22,7 +22,7 @@ function homePageHtml() {
 
 
 	let third_feature_title = 'Stable Diffusion + Flux';
-	let third_feature_body = "Generate images with both Stable Diffusion SDXL and Black Forest Labs' recent Flux model (schnell, for now). Currently, with the SDXL model you can control the direction of your generations with the use of adapters like ControlNets and IP-Adapter. With the state-of-the-art Flux, you can drive a significant amount of control with just your prompt. Soon, similar SDXL adapters will be available for Flux; unlocking a whole new level of precision!"
+	let third_feature_body = "Generate with Stable Diffusion SDXL and Black Forest Labs' Flux-schnell model. With SDXL, control the direction of your generations with ControlNets and IP-Adapter. With the state-of-the-art Flux, you can drive a great amount of control with just your prompt. Similar SDXL adapters will soon be available for Flux; unlocking greater precision!"
 
 
 	// Control Nets

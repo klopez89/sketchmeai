@@ -29,10 +29,13 @@ function homePageHtml() {
 	let fourth_feature_title = 'Collections';
 	let fourth_feature_body = "Each generation is saved in a collection. You can create a new collection, rename it, and navigate between collections. Within a collection, you can favorite the ones you love and select the ones you want to delete or share with friends.";
 
+
 	let fifth_feature_title = 'ControlNets and IP-Adapter';
 	let fifth_feature_body = "ControlNets enable more control over the final output, utilizing techniques such as pose manipulation (OpenPose), edge detection (Canny), and depth mapping (Depth). IP-Adapter allows you to emulate the style, composition, or the face found in a reference image. In combination w/ a trained model, these tools make it possible to generate cool images that actually look like you!";
 
-	
+
+	let sixth_feature_title = 'Upscaler';
+	let sixth_feature_body = "Any image you generate can be upscaled to 2x its original size. You can use the realistic upscale for more photorealistic images. To slightly enhance + sharpen image details use the stylistic upscale. Both will preserve resemblance of the original image.";
 
 	// let second_feature_title = 'Train';
 	// let second_feature_body = 'Kick off training your custom model  AI will train on the images you uploaded. The .';
@@ -205,6 +208,15 @@ function homePageHtml() {
 								${fifth_feature_title}
 							</dt>
 							<dd class="mt-2 text-base leading-7 text-gray-600">${fifth_feature_body}</dd>
+						</div>
+						<div class="relative pl-16">
+							<dt class="text-base font-semibold leading-7 text-gray-800">
+								<div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+									<p class="font-semibold text-2xl text-white">5</p>
+								</div>
+								${sixth_feature_title}
+							</dt>
+							<dd class="mt-2 text-base leading-7 text-gray-600">${sixth_feature_body}</dd>
 						</div>
 					</dl>
 				</div>

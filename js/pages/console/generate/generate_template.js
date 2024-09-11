@@ -300,7 +300,7 @@ function generate_form_html() {
 			</div>
 			<div id="prompt-style-container" class="col-span-full pt-1">
 				<div class="flex px-4 md:px-6 lg:px-4 pb-1 text-sm md:text-2xl lg:text-sm">
-					<label class="leading-6 text-gray-700 pb-1">Style:&nbsp;</label>
+					<label class="leading-6 text-gray-700 pb-1">Prompt Style:&nbsp;</label>
 					<label id="selected-prompt-style-label" class="leading-6 text-gray-900">Comic</label>
 				</div>
 

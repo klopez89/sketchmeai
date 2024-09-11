@@ -757,7 +757,7 @@ function fetchGenerations(userRecId, collectionId, lastDocId) {
                 new_grid_item_div.hide().appendTo('#collection-grid').fadeIn(function() {
 
                     let gen_element = document.querySelector(`div[generation-id="${generation.rec_id}"]`);
-                    let is_using_flux = generation.base_model.includes('flux');
+                    let is_using_flux = generation.base_model ? generation.base_model.includes('flux') : false;
 
                     if (generation.prediction_status === PredictionStatus.IN_PROGRESS) {
                         gen_element.querySelector('#gen-status').innerHTML = '...queued';

@@ -412,7 +412,7 @@
                 controls.target.copy(orb.position);
                 camera.position.copy(orb.position);
                 // Adjust camera to look up at 45 degrees in a random direction
-                const phi = THREE.Math.degToRad(45);
+                const phi = THREE.MathUtils.degToRad(45);
                 const theta = Math.random() * Math.PI * 2;
                 const radius = 5;
                 camera.position.x += radius * Math.sin(phi) * Math.cos(theta);

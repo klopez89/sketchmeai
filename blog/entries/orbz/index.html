@@ -71,9 +71,10 @@
     </div>
     <div id="cursorIcon"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/controls/OrbitControls.js"></script>
-    <script>
+    <script type="module">
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js';
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/controls/OrbitControls.js';
+
         let scene, camera, renderer, controls;
         let orb, stars = [];
         let raycaster = new THREE.Raycaster();
@@ -111,10 +112,10 @@
             document.body.appendChild(renderer.domElement);
 
             // Controls
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls = new OrbitControls(camera, renderer.domElement);
             controls.enablePan = false;
             controls.enableZoom = false;
-            controls.enableRotate = false;
+            controls.enableRotate = true; // Allow initial rotation
 
             // Light
             const light = new THREE.AmbientLight(0xffffff, 1);
@@ -171,13 +172,27 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
+        let clickCount = 0;
+        let clickTimeout;
+
         function onMouseDown(event) {
             if (isGameOver) return;
-            if (isPanning) {
-                isPanning = false;
-                controls.enabled = false;
-                cursorIcon.style.display = 'none';
-                startCharging();
+            clickCount++;
+            if (clickCount === 1) {
+                clickTimeout = setTimeout(() => {
+                    clickCount = 0;
+                }, 300);
+            } else if (clickCount === 2) {
+                clearTimeout(clickTimeout);
+                clickCount = 0;
+                if (isPanning) {
+                    isPanning = false;
+                    controls.enabled = false;
+                    cursorIcon.style.display = 'none';
+                    startCharging();
+                } else if (isCharging) {
+                    shootOrb();
+                }
             }
         }
 
@@ -205,9 +220,6 @@
                 }
                 strengthBar.style.width = (strength * 100) + '%';
             }, 16);
-
-            window.addEventListener('mousedown', shootOrb, false);
-            window.addEventListener('touchstart', shootOrb, false);
         }
 
         function shootOrb() {
@@ -215,9 +227,8 @@
             isCharging = false;
             strengthMeter.style.display = 'none';
             clearInterval(strengthInterval);
-            window.removeEventListener('mousedown', shootOrb, false);
-            window.removeEventListener('touchstart', shootOrb, false);
 
+            orb.userData = orb.userData || {};
             orb.userData.velocity = chargeDirection.clone().multiplyScalar(strength * 2);
             controls.enabled = true;
             controls.target.copy(orb.position);
@@ -227,7 +238,7 @@
 
         function gameLogic() {
             // Update Orb Position
-            if (orb.userData.velocity) {
+            if (orb.userData && orb.userData.velocity) {
                 orb.position.add(orb.userData.velocity);
                 orb.userData.velocity.multiplyScalar(0.99); // Friction
                 if (orb.userData.velocity.length() < 0.01) {
@@ -240,7 +251,7 @@
             }
 
             // Update Camera
-            if (!isPanning && orb.userData.velocity) {
+            if (!isPanning && orb.userData && orb.userData.velocity) {
                 controls.target.lerp(orb.position, 0.05);
                 controls.update();
             }

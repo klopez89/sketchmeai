@@ -86,8 +86,6 @@
 
         let scene, camera, renderer, controls;
         let orb, stars = [];
-        let raycaster = new THREE.Raycaster();
-        let mouse = new THREE.Vector2();
         let isPanning = true;
         let isCharging = false;
         let chargeDirection = new THREE.Vector3();
@@ -106,6 +104,11 @@
         const strengthBar = document.getElementById('strengthBar');
         const cursorIcon = document.getElementById('cursorIcon');
 
+        const stageBounds = new THREE.Box3(
+            new THREE.Vector3(-50, 0, -50),
+            new THREE.Vector3(50, 50, 50)
+        );
+
         init();
         animate();
 
@@ -113,7 +116,8 @@
             // Scene and Camera
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-            camera.position.z = 50;
+            camera.position.set(-30, 30, -30); // Start outside the orb
+            camera.lookAt(0, 0, 0);
 
             // Renderer
             renderer = new THREE.WebGLRenderer();
@@ -124,17 +128,24 @@
             controls = new OrbitControls(camera, renderer.domElement);
             controls.enablePan = false;
             controls.enableZoom = false;
-            controls.enableRotate = true; // Allow initial rotation
+            controls.enableRotate = true;
 
             // Light
-            const light = new THREE.AmbientLight(0xffffff, 1);
-            scene.add(light);
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+            directionalLight.position.set(50, 50, 50);
+            scene.add(directionalLight);
 
             // Orb (Player)
             const geometry = new THREE.SphereGeometry(1, 32, 32);
-            const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+            const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
             orb = new THREE.Mesh(geometry, material);
+            orb.position.set(0, 1, 0); // Start on the floor
             scene.add(orb);
+
+            // Stage Walls
+            createStage();
 
             // Stars
             createStars();
@@ -147,7 +158,49 @@
             // Game Loop
             gameInterval = setInterval(gameLogic, 16);
             timerInterval = setInterval(updateTimer, 1000);
+
+            // Show cursor icon
             cursorIcon.style.display = 'block';
+        }
+
+        function createStage() {
+            const wallMaterial = new THREE.MeshBasicMaterial({ color: 0x90ee90, side: THREE.BackSide });
+
+            const floorGeometry = new THREE.PlaneGeometry(100, 100);
+            const floor = new THREE.Mesh(floorGeometry, wallMaterial);
+            floor.rotation.x = -Math.PI / 2;
+            floor.position.y = 0;
+            scene.add(floor);
+
+            const ceiling = new THREE.Mesh(floorGeometry, wallMaterial);
+            ceiling.rotation.x = Math.PI / 2;
+            ceiling.position.y = 50;
+            scene.add(ceiling);
+
+            const wallGeometry = new THREE.PlaneGeometry(100, 50);
+
+            const wall1 = new THREE.Mesh(wallGeometry, wallMaterial);
+            wall1.position.z = -50;
+            wall1.position.y = 25;
+            scene.add(wall1);
+
+            const wall2 = new THREE.Mesh(wallGeometry, wallMaterial);
+            wall2.rotation.y = Math.PI;
+            wall2.position.z = 50;
+            wall2.position.y = 25;
+            scene.add(wall2);
+
+            const wall3 = new THREE.Mesh(wallGeometry, wallMaterial);
+            wall3.rotation.y = -Math.PI / 2;
+            wall3.position.x = -50;
+            wall3.position.y = 25;
+            scene.add(wall3);
+
+            const wall4 = new THREE.Mesh(wallGeometry, wallMaterial);
+            wall4.rotation.y = Math.PI / 2;
+            wall4.position.x = 50;
+            wall4.position.y = 25;
+            scene.add(wall4);
         }
 
         function createStars() {
@@ -166,9 +219,9 @@
                 const star = new THREE.Mesh(starGeometry, material);
                 star.userData = { points: points[colorIndex], collected: false };
                 star.position.set(
-                    (Math.random() - 0.5) * 100,
-                    (Math.random() - 0.5) * 100,
-                    (Math.random() - 0.5) * 100
+                    (Math.random() - 0.5) * 90,
+                    Math.random() * 48 + 1, // y between 1 and 49
+                    (Math.random() - 0.5) * 90
                 );
                 scene.add(star);
                 stars.push(star);
@@ -240,9 +293,8 @@
             orb.userData = orb.userData || {};
             orb.userData.velocity = chargeDirection.clone().multiplyScalar(strength * 2);
             controls.enabled = true;
-            controls.target.copy(orb.position);
-            controls.update();
             consecutiveHits = 0;
+            orb.visible = true; // Show orb when moving
         }
 
         function gameLogic() {
@@ -250,19 +302,39 @@
             if (orb.userData && orb.userData.velocity) {
                 orb.position.add(orb.userData.velocity);
                 orb.userData.velocity.multiplyScalar(0.99); // Friction
+
+                // Check for wall collisions
+                if (orb.position.x - 1 < -50) {
+                    orb.position.x = -50 + 1;
+                    orb.userData.velocity.x *= -1;
+                } else if (orb.position.x + 1 > 50) {
+                    orb.position.x = 50 - 1;
+                    orb.userData.velocity.x *= -1;
+                }
+                if (orb.position.y - 1 < 0) {
+                    orb.position.y = 0 + 1;
+                    orb.userData.velocity.y *= -1;
+                } else if (orb.position.y + 1 > 50) {
+                    orb.position.y = 50 - 1;
+                    orb.userData.velocity.y *= -1;
+                }
+                if (orb.position.z - 1 < -50) {
+                    orb.position.z = -50 + 1;
+                    orb.userData.velocity.z *= -1;
+                } else if (orb.position.z + 1 > 50) {
+                    orb.position.z = 50 - 1;
+                    orb.userData.velocity.z *= -1;
+                }
+
                 if (orb.userData.velocity.length() < 0.01) {
                     orb.userData.velocity = null;
                     isPanning = true;
                     cursorIcon.style.display = 'block';
+                    orb.visible = false; // Hide orb when at rest
                 }
+
                 // Check Collisions
                 checkCollisions();
-            }
-
-            // Update Camera
-            if (!isPanning && orb.userData && orb.userData.velocity) {
-                controls.target.lerp(orb.position, 0.05);
-                controls.update();
             }
         }
 
@@ -333,6 +405,21 @@
         function animate() {
             requestAnimationFrame(animate);
             renderer.render(scene, camera);
+
+            if (isPanning) {
+                orb.visible = false;
+                controls.enabled = true;
+                controls.target.copy(orb.position);
+                camera.position.copy(orb.position);
+                // Adjust camera to look up at 45 degrees in a random direction
+                const phi = THREE.Math.degToRad(45);
+                const theta = Math.random() * Math.PI * 2;
+                const radius = 5;
+                camera.position.x += radius * Math.sin(phi) * Math.cos(theta);
+                camera.position.y += radius * Math.cos(phi);
+                camera.position.z += radius * Math.sin(phi) * Math.sin(theta);
+                camera.lookAt(orb.position);
+            }
         }
     </script>
 </body>

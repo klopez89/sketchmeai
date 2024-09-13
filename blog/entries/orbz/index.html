@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Orb Shooting Game</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        #scoreboard {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            z-index: 1;
+        }
+        #timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            z-index: 1;
+        }
+        #restartButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+        }
+        #strengthMeter {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 20px;
+            background-color: gray;
+            display: none;
+        }
+        #strengthBar {
+            width: 0%;
+            height: 100%;
+            background-color: green;
+        }
+        #cursorIcon {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: url('https://i.imgur.com/5aN9D9e.png') no-repeat center center;
+            background-size: contain;
+            display: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="scoreboard">Score: 0</div>
+    <div id="timer">Time: 60</div>
+    <button id="restartButton">Restart Game</button>
+    <div id="strengthMeter">
+        <div id="strengthBar"></div>
+    </div>
+    <div id="cursorIcon"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        let scene, camera, renderer, controls;
+        let orb, stars = [];
+        let raycaster = new THREE.Raycaster();
+        let mouse = new THREE.Vector2();
+        let isPanning = true;
+        let isCharging = false;
+        let chargeDirection = new THREE.Vector3();
+        let strength = 0;
+        let strengthIncreasing = true;
+        let score = 0;
+        let consecutiveHits = 0;
+        let timer = 60;
+        let gameInterval, strengthInterval, timerInterval;
+        let isGameOver = false;
+
+        const scoreboard = document.getElementById('scoreboard');
+        const timerDisplay = document.getElementById('timer');
+        const restartButton = document.getElementById('restartButton');
+        const strengthMeter = document.getElementById('strengthMeter');
+        const strengthBar = document.getElementById('strengthBar');
+        const cursorIcon = document.getElementById('cursorIcon');
+
+        init();
+        animate();
+
+        function init() {
+            // Scene and Camera
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            camera.position.z = 50;
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            // Controls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enablePan = false;
+            controls.enableZoom = false;
+            controls.enableRotate = false;
+
+            // Light
+            const light = new THREE.AmbientLight(0xffffff, 1);
+            scene.add(light);
+
+            // Orb (Player)
+            const geometry = new THREE.SphereGeometry(1, 32, 32);
+            const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+            orb = new THREE.Mesh(geometry, material);
+            scene.add(orb);
+
+            // Stars
+            createStars();
+
+            // Event Listeners
+            window.addEventListener('resize', onWindowResize, false);
+            window.addEventListener('mousedown', onMouseDown, false);
+            window.addEventListener('touchstart', onTouchStart, false);
+
+            // Game Loop
+            gameInterval = setInterval(gameLogic, 16);
+            timerInterval = setInterval(updateTimer, 1000);
+            cursorIcon.style.display = 'block';
+        }
+
+        function createStars() {
+            const colors = [0xffff00, 0xffa500, 0xff0000, 0x800080];
+            const points = [100, 200, 300, 400];
+            const starGeometry = new THREE.SphereGeometry(0.5, 16, 16);
+
+            for (let i = 0; i < 60; i++) {
+                let colorIndex;
+                if (i < 30) colorIndex = 0;
+                else if (i < 45) colorIndex = 1;
+                else if (i < 55) colorIndex = 2;
+                else colorIndex = 3;
+
+                const material = new THREE.MeshStandardMaterial({ color: colors[colorIndex] });
+                const star = new THREE.Mesh(starGeometry, material);
+                star.userData = { points: points[colorIndex], collected: false };
+                star.position.set(
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100,
+                    (Math.random() - 0.5) * 100
+                );
+                scene.add(star);
+                stars.push(star);
+            }
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onMouseDown(event) {
+            if (isGameOver) return;
+            if (isPanning) {
+                isPanning = false;
+                controls.enabled = false;
+                cursorIcon.style.display = 'none';
+                startCharging();
+            }
+        }
+
+        function onTouchStart(event) {
+            onMouseDown(event);
+        }
+
+        function startCharging() {
+            isCharging = true;
+            strength = 0;
+            strengthIncreasing = true;
+            strengthMeter.style.display = 'block';
+
+            const direction = new THREE.Vector3();
+            camera.getWorldDirection(direction);
+            chargeDirection.copy(direction);
+
+            strengthInterval = setInterval(() => {
+                if (strengthIncreasing) {
+                    strength += 0.01;
+                    if (strength >= 1) strengthIncreasing = false;
+                } else {
+                    strength -= 0.01;
+                    if (strength <= 0) strengthIncreasing = true;
+                }
+                strengthBar.style.width = (strength * 100) + '%';
+            }, 16);
+
+            window.addEventListener('mousedown', shootOrb, false);
+            window.addEventListener('touchstart', shootOrb, false);
+        }
+
+        function shootOrb() {
+            if (!isCharging) return;
+            isCharging = false;
+            strengthMeter.style.display = 'none';
+            clearInterval(strengthInterval);
+            window.removeEventListener('mousedown', shootOrb, false);
+            window.removeEventListener('touchstart', shootOrb, false);
+
+            orb.userData.velocity = chargeDirection.clone().multiplyScalar(strength * 2);
+            controls.enabled = true;
+            controls.target.copy(orb.position);
+            controls.update();
+            consecutiveHits = 0;
+        }
+
+        function gameLogic() {
+            // Update Orb Position
+            if (orb.userData.velocity) {
+                orb.position.add(orb.userData.velocity);
+                orb.userData.velocity.multiplyScalar(0.99); // Friction
+                if (orb.userData.velocity.length() < 0.01) {
+                    orb.userData.velocity = null;
+                    isPanning = true;
+                    cursorIcon.style.display = 'block';
+                }
+                // Check Collisions
+                checkCollisions();
+            }
+
+            // Update Camera
+            if (!isPanning && orb.userData.velocity) {
+                controls.target.lerp(orb.position, 0.05);
+                controls.update();
+            }
+        }
+
+        function checkCollisions() {
+            for (let star of stars) {
+                if (star.userData.collected) continue;
+                const distance = orb.position.distanceTo(star.position);
+                if (distance < 1.5) {
+                    star.userData.collected = true;
+                    scene.remove(star);
+                    const points = star.userData.points;
+                    score += points;
+                    consecutiveHits += 1;
+                    if (consecutiveHits > 1) {
+                        const bonus = consecutiveHits * 100;
+                        score += bonus;
+                    }
+                    scoreboard.innerText = 'Score: ' + score;
+                    // Bounce Orb
+                    const normal = orb.position.clone().sub(star.position).normalize();
+                    orb.userData.velocity.reflect(normal);
+                }
+            }
+
+            // Check Game Over
+            if (timer <= 0 || stars.every(star => star.userData.collected)) {
+                endGame();
+            }
+        }
+
+        function updateTimer() {
+            if (isGameOver) return;
+            timer -= 1;
+            timerDisplay.innerText = 'Time: ' + timer;
+            if (timer <= 0) {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            isGameOver = true;
+            clearInterval(gameInterval);
+            clearInterval(timerInterval);
+            restartButton.style.display = 'block';
+            restartButton.onclick = restartGame;
+        }
+
+        function restartGame() {
+            // Reset Game State
+            scene.remove(orb);
+            for (let star of stars) {
+                scene.remove(star);
+            }
+            stars = [];
+            score = 0;
+            timer = 60;
+            isGameOver = false;
+            isPanning = true;
+            orb = null;
+
+            // Reinitialize
+            restartButton.style.display = 'none';
+            scoreboard.innerText = 'Score: 0';
+            timerDisplay.innerText = 'Time: 60';
+            init();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+</html>

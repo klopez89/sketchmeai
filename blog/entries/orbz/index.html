@@ -416,33 +416,42 @@
 
         function animate() {
             requestAnimationFrame(animate);
-            renderer.render(scene, camera);
+
+            if (controls.enabled) {
+                controls.update();
+            }
 
             if (isPanning) {
                 if (!cameraSetupForPanning) {
                     orb.visible = false;
                     controls.enabled = true;
                     controls.target.copy(orb.position);
-                    camera.position.copy(orb.position);
 
-                    // Adjust camera to look up at 45 degrees in a random direction
-                    const phi = THREE.MathUtils.degToRad(45);
-                    const theta = Math.random() * Math.PI * 2;
+                    // Position the camera above the orb, looking upwards
                     const radius = 5;
-                    camera.position.x += radius * Math.sin(phi) * Math.cos(theta);
-                    camera.position.y += radius * Math.cos(phi);
-                    camera.position.z += radius * Math.sin(phi) * Math.sin(theta);
+                    const phi = THREE.MathUtils.degToRad(135); // Camera above orb
+                    const theta = Math.random() * Math.PI * 2; // Random horizontal angle
+
+                    camera.position.x = orb.position.x + radius * Math.sin(phi) * Math.cos(theta);
+                    camera.position.y = orb.position.y + radius * Math.cos(phi);
+                    camera.position.z = orb.position.z + radius * Math.sin(phi) * Math.sin(theta);
+
                     camera.lookAt(orb.position);
+
+                    // Restrict vertical rotation to prevent looking down
+                    controls.minPolarAngle = Math.PI / 2; // 90 degrees
+                    controls.maxPolarAngle = Math.PI;     // 180 degrees
 
                     cameraSetupForPanning = true;
                 }
             } else {
+                // Reset controls when not panning
+                controls.minPolarAngle = 0;
+                controls.maxPolarAngle = Math.PI;
                 cameraSetupForPanning = false;
             }
 
-            if (controls.enabled) {
-                controls.update();
-            }
+            renderer.render(scene, camera);
         }
     </script>
 </body>

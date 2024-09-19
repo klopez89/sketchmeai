@@ -170,15 +170,20 @@
         }
 
         function createStage() {
-            const wallMaterial = new THREE.MeshBasicMaterial({ color: 0x90ee90, side: THREE.BackSide });
+            const wallMaterial = new THREE.MeshStandardMaterial({ color: 0x90ee90, side: THREE.BackSide });
+
+            // Floor material that only renders on the top side
+            const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x90ee90, side: THREE.FrontSide });
 
             const floorGeometry = new THREE.PlaneGeometry(100, 100);
-            const floor = new THREE.Mesh(floorGeometry, wallMaterial);
+            const floor = new THREE.Mesh(floorGeometry, floorMaterial);
             floor.rotation.x = -Math.PI / 2;
             floor.position.y = 0;
             scene.add(floor);
 
-            const ceiling = new THREE.Mesh(floorGeometry, wallMaterial);
+            // Ceiling (optional, in case you want to prevent seeing the top from below)
+            const ceilingMaterial = new THREE.MeshStandardMaterial({ color: 0x90ee90, side: THREE.BackSide });
+            const ceiling = new THREE.Mesh(floorGeometry, ceilingMaterial);
             ceiling.rotation.x = Math.PI / 2;
             ceiling.position.y = 50;
             scene.add(ceiling);

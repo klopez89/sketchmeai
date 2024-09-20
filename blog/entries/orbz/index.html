@@ -577,6 +577,16 @@
                 if (camera.position.distanceTo(desiredCameraPosition) < 0.1) {
                     camera.position.copy(desiredCameraPosition);
 
+                    // **Calculate and set controls.target to maintain camera orientation**
+                    const cameraDirection = new THREE.Vector3();
+                    camera.getWorldDirection(cameraDirection);
+                    const targetDistance = 100; // Adjust as needed
+                    const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+                    controls.target.copy(newControlsTarget);
+
+                    // **Update controls to sync internal state**
+                    controls.update();
+
                     cameraMode = CAMERA_MODE.PANNING;
                     controls.enabled = true;
 
@@ -591,7 +601,7 @@
                     isPanning = true;
                     isCharging = false;
 
-                    // Show cursor icon to indicate readiness for the next shot
+                    // Show cursor icon
                     cursorIcon.style.display = 'block';
                 }
             }

@@ -335,7 +335,18 @@
 
             // Switch camera mode
             cameraMode = CAMERA_MODE.STATIONARY;
+
+            // Re-enable controls
+            controls.enabled = true;
+
+            // Re-enable panning and zooming for STATIONARY mode
+            controls.enablePan = true;
+            controls.enableZoom = true;
+            controls.enableRotate = true;
+            controls.minDistance = 1;
+            controls.maxDistance = 100;
         }
+
 
         function gameLogic() {
             // Update Orb Position
@@ -377,6 +388,14 @@
 
                     // Reset flags
                     isPanning = false; // Not in panning mode until camera returns
+                }
+
+                // Switch to FOLLOWING mode if orb is beyond threshold
+                if (cameraMode === CAMERA_MODE.STATIONARY) {
+                    const distance = camera.position.distanceTo(orb.position);
+                    if (distance > 8) {
+                        cameraMode = CAMERA_MODE.FOLLOWING;
+                    }
                 }
 
                 // Check Collisions
@@ -483,9 +502,6 @@
         function animate() {
             requestAnimationFrame(animate);
 
-            // Update controls
-            controls.update();
-
             // Camera behavior based on cameraMode
             if (cameraMode === CAMERA_MODE.PANNING) {
                 // User can pan around the orb
@@ -517,47 +533,50 @@
                     controls.minPolarAngle = 0;
                     controls.maxPolarAngle = Math.PI;
 
+                    // Enable panning and zooming
+                    controls.enablePan = true;
+                    controls.enableZoom = true;
+                    controls.enableRotate = true;
+                    controls.minDistance = 1;
+                    controls.maxDistance = 100;
+
                     cameraSetupForPanning = true;
                 }
 
                 // Restrict panning during strength selection
                 controls.enabled = !isCharging;
 
+                controls.update();
+
             } else if (cameraMode === CAMERA_MODE.STATIONARY) {
                 // Camera remains in place while the orb moves
                 controls.enabled = true;
 
-                // Check distance between camera and orb
-                const distance = camera.position.distanceTo(orb.position);
-
-                if (distance > 8) {
-                    // Switch to FOLLOWING mode
-                    cameraMode = CAMERA_MODE.FOLLOWING;
-                }
+                controls.update();
 
             } else if (cameraMode === CAMERA_MODE.FOLLOWING) {
                 // Camera follows the orb
                 controls.enabled = true;
 
-                // Calculate desired camera position behind the orb
-                const cameraDistance = 5; // Adjust as needed
-                const cameraHeight = 2;   // Adjust as needed
+                // Disable panning and zooming
+                controls.enablePan = false;
+                controls.enableZoom = false;
+                controls.enableRotate = true;
 
-                // Get the direction opposite to the orb's velocity
-                const velocityDirection = orb.userData.velocity.clone().normalize();
+                const desiredDistance = 5; // Adjust as needed
+                controls.minDistance = controls.maxDistance = desiredDistance;
 
-                // Compute the camera offset
-                const cameraOffset = velocityDirection.clone().multiplyScalar(-cameraDistance);
-                cameraOffset.y += cameraHeight;
-
-                // Target camera position
-                const targetPosition = orb.position.clone().add(cameraOffset);
-
-                // Smooth camera movement
-                camera.position.lerp(targetPosition, 0.1);
-
-                // Keep the camera's target on the orb
+                // Update controls to focus on the orb
                 controls.target.copy(orb.position);
+
+                // Adjust camera position to maintain desired distance
+                const currentDistance = camera.position.distanceTo(orb.position);
+                if (Math.abs(currentDistance - desiredDistance) > 0.01) {
+                    const direction = camera.position.clone().sub(orb.position).normalize();
+                    camera.position.copy(orb.position).add(direction.multiplyScalar(desiredDistance));
+                }
+
+                controls.update();
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
                 // Camera returns to the initial position
@@ -568,19 +587,29 @@
                 controls.target.lerp(initialCameraTarget, 0.1);
 
                 // Check if the camera has returned
-                if (camera.position.distanceTo(initialCameraPosition) < 0.01 &&
-                    controls.target.distanceTo(initialCameraTarget) < 0.01) {
+                if (camera.position.distanceTo(initialCameraPosition) < 0.1 &&
+                    controls.target.distanceTo(initialCameraTarget) < 0.1) {
                     camera.position.copy(initialCameraPosition);
                     controls.target.copy(initialCameraTarget);
                     cameraMode = CAMERA_MODE.PANNING;
                     controls.enabled = true;
-                    isPanning = true;
+
+                    // Reset controls settings
+                    controls.enablePan = true;
+                    controls.enableZoom = true;
+                    controls.enableRotate = true;
+                    controls.minDistance = 1;
+                    controls.maxDistance = 100;
+
                     cameraSetupForPanning = false; // So that camera will be re-setup
                 }
+
+                controls.update();
             }
 
             renderer.render(scene, camera);
         }
+
 
     </script>
 </body>

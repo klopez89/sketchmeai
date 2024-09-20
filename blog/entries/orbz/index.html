@@ -273,6 +273,7 @@
 
         function onMouseDown(event) {
             if (isGameOver) return;
+
             clickCount++;
             if (clickCount === 1) {
                 clickTimeout = setTimeout(() => {
@@ -281,7 +282,8 @@
             } else if (clickCount === 2) {
                 clearTimeout(clickTimeout);
                 clickCount = 0;
-                if (isPanning) {
+
+                if (isPanning && !isCharging) {
                     isPanning = false;
                     controls.enabled = false;
                     cursorIcon.style.display = 'none';
@@ -291,6 +293,7 @@
                 }
             }
         }
+
 
         function onTouchStart(event) {
             onMouseDown(event);
@@ -326,6 +329,10 @@
             strengthMeter.style.display = 'none';
             clearInterval(strengthInterval);
 
+            // Clear any pending click timeouts
+            clearTimeout(clickTimeout);
+            clickCount = 0;
+
             orb.userData = orb.userData || {};
             orb.userData.velocity = chargeDirection.clone().multiplyScalar(strength * 2);
             consecutiveHits = 0;
@@ -338,15 +345,7 @@
 
             // Re-enable controls
             controls.enabled = true;
-
-            // Re-enable panning and zooming for STATIONARY mode
-            controls.enablePan = true;
-            controls.enableZoom = true;
-            controls.enableRotate = true;
-            controls.minDistance = 1;
-            controls.maxDistance = 100;
         }
-
 
         function gameLogic() {
             // Update Orb Position
@@ -602,6 +601,12 @@
                     controls.maxDistance = 100;
 
                     cameraSetupForPanning = false; // So that camera will be re-setup
+
+                    // **Reset isPanning to true**
+                    isPanning = true;
+
+                    // **Ensure isCharging is false**
+                    isCharging = false;
                 }
 
                 controls.update();

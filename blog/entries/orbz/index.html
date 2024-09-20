@@ -93,9 +93,7 @@
         };
 
         let cameraMode = CAMERA_MODE.PANNING;
-
-        const initialCameraPosition = new THREE.Vector3();
-        const initialCameraTarget = new THREE.Vector3();
+        const cameraQuaternion = new THREE.Quaternion();
 
         let scene, camera, renderer, controls;
         let orb, stars = [];
@@ -376,7 +374,10 @@
                 if (orb.userData.velocity.length() < 0.01) {
                     orb.userData.velocity = null;
 
-                    // Start returning camera to initial position
+                    // Store the camera's orientation
+                    cameraQuaternion.copy(camera.quaternion);
+
+                    // Start returning camera to position above the orb
                     cameraMode = CAMERA_MODE.RETURNING;
 
                     cursorIcon.style.display = 'block';
@@ -486,10 +487,6 @@
             camera.position.set(0, 6, 0); // Position above the orb
             camera.lookAt(orb.position);
 
-            // Store initial camera position and target
-            initialCameraPosition.copy(camera.position);
-            initialCameraTarget.copy(orb.position);
-
             // Enable controls
             controls.enabled = true;
 
@@ -511,6 +508,10 @@
 
             // Camera behavior based on cameraMode
             if (cameraMode === CAMERA_MODE.PANNING) {
+                // Hide the orb during aim selection
+                orb.visible = false;
+
+
                 // User can pan around the orb
                 // Restrict panning during strength selection
                 controls.enabled = !isCharging;
@@ -518,12 +519,16 @@
                 controls.update();
 
             } else if (cameraMode === CAMERA_MODE.STATIONARY) {
+                orb.visible = true;
+
                 // Camera remains in place while the orb moves
                 controls.enabled = true;
 
                 controls.update();
 
             } else if (cameraMode === CAMERA_MODE.FOLLOWING) {
+                orb.visible = true;
+
                 // Camera follows the orb
                 controls.enabled = true;
 
@@ -548,7 +553,9 @@
                 controls.update();
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
-                // Camera returns to the a position above the orb
+                orb.visible = true;
+
+                // Camera returns to a position above the orb
                 controls.enabled = false;
 
                 // Calculate desired camera position above the orb
@@ -558,11 +565,13 @@
                     orb.position.y + radius,
                     orb.position.z
                 );
-
+                
                 // Smoothly interpolate camera position back to desired position
                 camera.position.lerp(desiredCameraPosition, 0.1);
 
-                // Maintain the camera's orientation by not changing controls.target
+                // Maintain the camera's orientation
+                camera.quaternion.copy(cameraQuaternion);
+
 
                 // Check if the camera has returned
                 if (camera.position.distanceTo(desiredCameraPosition) < 0.1) {
@@ -585,8 +594,6 @@
                     // Show cursor icon to indicate readiness for the next shot
                     cursorIcon.style.display = 'block';
                 }
-
-                controls.update();
             }
 
             renderer.render(scene, camera);

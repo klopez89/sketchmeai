@@ -85,6 +85,18 @@
         import * as THREE from 'three';
         import { OrbitControls } from 'https://unpkg.com/three@0.152.2/examples/jsm/controls/OrbitControls.js';
 
+        const CAMERA_MODE = {
+            PANNING: 'panning',
+            STATIONARY: 'stationary',
+            FOLLOWING: 'following',
+            RETURNING: 'returning',
+        };
+
+        let cameraMode = CAMERA_MODE.PANNING;
+
+        const initialCameraPosition = new THREE.Vector3();
+        const initialCameraTarget = new THREE.Vector3();
+
         let scene, camera, renderer, controls;
         let orb, stars = [];
         let isPanning = true;
@@ -141,9 +153,6 @@
             // Controls
             if (!controls) {
                 controls = new OrbitControls(camera, renderer.domElement);
-                controls.enablePan = false;
-                controls.enableZoom = false;
-                controls.enableRotate = true;
 
                 controls.enablePan = true;
                 controls.enableZoom = true;
@@ -297,6 +306,8 @@
             camera.getWorldDirection(direction);
             chargeDirection.copy(direction);
 
+            controls.enabled = false; // Disable controls during charging
+
             strengthInterval = setInterval(() => {
                 if (strengthIncreasing) {
                     strength += 0.01;
@@ -317,11 +328,13 @@
 
             orb.userData = orb.userData || {};
             orb.userData.velocity = chargeDirection.clone().multiplyScalar(strength * 2);
-            controls.enabled = true;
             consecutiveHits = 0;
             orb.visible = true; // Show orb when moving
 
             cameraSetupForPanning = false; // Reset camera setup flag
+
+            // Switch camera mode
+            cameraMode = CAMERA_MODE.STATIONARY;
         }
 
         function gameLogic() {
@@ -355,11 +368,15 @@
 
                 if (orb.userData.velocity.length() < 0.01) {
                     orb.userData.velocity = null;
-                    isPanning = true;
+
+                    // Start returning camera to initial position
+                    cameraMode = CAMERA_MODE.RETURNING;
+
                     cursorIcon.style.display = 'block';
                     orb.visible = false; // Hide orb when at rest
 
-                    cameraSetupForPanning = false; // Reset camera setup flag
+                    // Reset flags
+                    isPanning = false; // Not in panning mode until camera returns
                 }
 
                 // Check Collisions
@@ -469,10 +486,13 @@
             // Update controls
             controls.update();
 
-            if (isPanning) {
-                // Shooting state
+            // Camera behavior based on cameraMode
+            if (cameraMode === CAMERA_MODE.PANNING) {
+                // User can pan around the orb
                 if (!cameraSetupForPanning) {
                     orb.visible = false;
+
+                    // Set up camera position and target
                     controls.target.copy(orb.position);
 
                     // Position the camera above the orb
@@ -486,16 +506,40 @@
 
                     camera.lookAt(orb.position);
 
+                    // Store initial camera position and target
+                    initialCameraPosition.copy(camera.position);
+                    initialCameraTarget.copy(controls.target);
+
+                    // Enable controls
+                    controls.enabled = true;
+
                     // Remove vertical rotation restrictions
                     controls.minPolarAngle = 0;
                     controls.maxPolarAngle = Math.PI;
 
                     cameraSetupForPanning = true;
                 }
-            } else if (orb.userData && orb.userData.velocity) {
-                // Orb is moving
 
+                // Restrict panning during strength selection
+                controls.enabled = !isCharging;
+
+            } else if (cameraMode === CAMERA_MODE.STATIONARY) {
+                // Camera remains in place while the orb moves
+                controls.enabled = true;
+
+                // Check distance between camera and orb
+                const distance = camera.position.distanceTo(orb.position);
+
+                if (distance > 8) {
+                    // Switch to FOLLOWING mode
+                    cameraMode = CAMERA_MODE.FOLLOWING;
+                }
+
+            } else if (cameraMode === CAMERA_MODE.FOLLOWING) {
                 // Camera follows the orb
+                controls.enabled = true;
+
+                // Calculate desired camera position behind the orb
                 const cameraDistance = 5; // Adjust as needed
                 const cameraHeight = 2;   // Adjust as needed
 
@@ -512,10 +556,27 @@
                 // Smooth camera movement
                 camera.position.lerp(targetPosition, 0.1);
 
-                // User can control the camera orientation
-            } else {
-                // Orb is stationary but not in panning state
-                // Optionally, maintain camera position
+                // Keep the camera's target on the orb
+                controls.target.copy(orb.position);
+
+            } else if (cameraMode === CAMERA_MODE.RETURNING) {
+                // Camera returns to the initial position
+                controls.enabled = false;
+
+                // Smoothly interpolate camera position and target back to initial
+                camera.position.lerp(initialCameraPosition, 0.1);
+                controls.target.lerp(initialCameraTarget, 0.1);
+
+                // Check if the camera has returned
+                if (camera.position.distanceTo(initialCameraPosition) < 0.01 &&
+                    controls.target.distanceTo(initialCameraTarget) < 0.01) {
+                    camera.position.copy(initialCameraPosition);
+                    controls.target.copy(initialCameraTarget);
+                    cameraMode = CAMERA_MODE.PANNING;
+                    controls.enabled = true;
+                    isPanning = true;
+                    cameraSetupForPanning = false; // So that camera will be re-setup
+                }
             }
 
             renderer.render(scene, camera);

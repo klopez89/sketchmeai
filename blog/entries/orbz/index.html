@@ -548,7 +548,7 @@
                 controls.update();
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
-                // Camera returns to the initial position
+                // Camera returns to the a position above the orb
                 controls.enabled = false;
 
                 // Calculate desired camera position above the orb
@@ -565,8 +565,8 @@
                 // Maintain the camera's orientation by not changing controls.target
 
                 // Check if the camera has returned
-                if (camera.position.distanceTo(initialCameraPosition) < 0.1) {
-                    camera.position.copy(initialCameraPosition);
+                if (camera.position.distanceTo(desiredCameraPosition) < 0.1) {
+                    camera.position.copy(desiredCameraPosition);
 
                     cameraMode = CAMERA_MODE.PANNING;
                     controls.enabled = true;
@@ -581,6 +581,9 @@
                     // Reset flags
                     isPanning = true;
                     isCharging = false;
+
+                    // Show cursor icon to indicate readiness for the next shot
+                    cursorIcon.style.display = 'block';
                 }
 
                 controls.update();

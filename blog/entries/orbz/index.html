@@ -157,11 +157,11 @@
             directionalLight.position.set(50, 50, 50);
             scene.add(directionalLight);
 
-                // Create Stage if not already created
-                if (!init.stageCreated) {
-                    createStage();
-                    init.stageCreated = true;
-                }
+            // Create Stage if not already created
+            if (!init.stageCreated) {
+                createStage();
+                init.stageCreated = true;
+            }
 
             // Event Listeners
             if (!init.eventListenersAdded) {

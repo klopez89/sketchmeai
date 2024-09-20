@@ -144,6 +144,16 @@
                 controls.enablePan = false;
                 controls.enableZoom = false;
                 controls.enableRotate = true;
+
+                controls.enablePan = true;
+                controls.enableZoom = true;
+                controls.enableRotate = true;
+
+                controls.minDistance = 1;
+                controls.maxDistance = 100;
+
+                controls.minPolarAngle = 0; // Allow looking up
+                controls.maxPolarAngle = Math.PI; // Allow looking down
             }
 
             // Light
@@ -310,6 +320,8 @@
             controls.enabled = true;
             consecutiveHits = 0;
             orb.visible = true; // Show orb when moving
+
+            cameraSetupForPanning = false; // Reset camera setup flag
         }
 
         function gameLogic() {
@@ -346,7 +358,8 @@
                     isPanning = true;
                     cursorIcon.style.display = 'block';
                     orb.visible = false; // Hide orb when at rest
-                    controls.enabled = true; // Re-enable controls
+
+                    cameraSetupForPanning = false; // Reset camera setup flag
                 }
 
                 // Check Collisions
@@ -450,24 +463,22 @@
             timerInterval = setInterval(updateTimer, 1000);
         }
 
-
         function animate() {
             requestAnimationFrame(animate);
 
-            if (controls.enabled) {
-                controls.update();
-            }
+            // Update controls
+            controls.update();
 
             if (isPanning) {
+                // Shooting state
                 if (!cameraSetupForPanning) {
                     orb.visible = false;
-                    controls.enabled = true;
                     controls.target.copy(orb.position);
 
-                    // Position the camera above the orb, looking upwards
+                    // Position the camera above the orb
                     const radius = 5;
-                    const phi = THREE.MathUtils.degToRad(135); // Camera above orb
-                    const theta = Math.random() * Math.PI * 2; // Random horizontal angle
+                    const phi = THREE.MathUtils.degToRad(45); // Angle above the orb
+                    const theta = Math.random() * Math.PI * 2;
 
                     camera.position.x = orb.position.x + radius * Math.sin(phi) * Math.cos(theta);
                     camera.position.y = orb.position.y + radius * Math.cos(phi);
@@ -475,21 +486,41 @@
 
                     camera.lookAt(orb.position);
 
-                    // Restrict vertical rotation to prevent looking down
-                    controls.minPolarAngle = Math.PI / 2; // 90 degrees
-                    controls.maxPolarAngle = Math.PI;     // 180 degrees
+                    // Remove vertical rotation restrictions
+                    controls.minPolarAngle = 0;
+                    controls.maxPolarAngle = Math.PI;
 
                     cameraSetupForPanning = true;
                 }
+            } else if (orb.userData && orb.userData.velocity) {
+                // Orb is moving
+
+                // Camera follows the orb
+                const cameraDistance = 5; // Adjust as needed
+                const cameraHeight = 2;   // Adjust as needed
+
+                // Get the direction opposite to the orb's velocity
+                const velocityDirection = orb.userData.velocity.clone().normalize();
+
+                // Compute the camera offset
+                const cameraOffset = velocityDirection.clone().multiplyScalar(-cameraDistance);
+                cameraOffset.y += cameraHeight;
+
+                // Target camera position
+                const targetPosition = orb.position.clone().add(cameraOffset);
+
+                // Smooth camera movement
+                camera.position.lerp(targetPosition, 0.1);
+
+                // User can control the camera orientation
             } else {
-                // Reset controls when not panning
-                controls.minPolarAngle = 0;
-                controls.maxPolarAngle = Math.PI;
-                cameraSetupForPanning = false;
+                // Orb is stationary but not in panning state
+                // Optionally, maintain camera position
             }
 
             renderer.render(scene, camera);
         }
+
     </script>
 </body>
 </html>

@@ -581,15 +581,19 @@
                 // Camera returns to the initial position
                 controls.enabled = false;
 
-                // Smoothly interpolate camera position and target back to initial
+                // Smoothly interpolate camera position back to initial position
                 camera.position.lerp(initialCameraPosition, 0.1);
-                controls.target.lerp(initialCameraTarget, 0.1);
+
+                // Maintain the camera's orientation by keeping the current target
+                // Do not change controls.target during the return
 
                 // Check if the camera has returned
-                if (camera.position.distanceTo(initialCameraPosition) < 0.1 &&
-                    controls.target.distanceTo(initialCameraTarget) < 0.1) {
+                if (camera.position.distanceTo(initialCameraPosition) < 0.1) {
                     camera.position.copy(initialCameraPosition);
-                    controls.target.copy(initialCameraTarget);
+
+                    // **Now update the controls target to the orb's position**
+                    controls.target.copy(orb.position);
+
                     cameraMode = CAMERA_MODE.PANNING;
                     controls.enabled = true;
 
@@ -602,10 +606,10 @@
 
                     cameraSetupForPanning = false; // So that camera will be re-setup
 
-                    // **Reset isPanning to true**
+                    // Reset isPanning to true
                     isPanning = true;
 
-                    // **Ensure isCharging is false**
+                    // Ensure isCharging is false
                     isCharging = false;
                 }
 

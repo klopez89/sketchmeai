@@ -650,30 +650,28 @@
                 if (camera.position.distanceTo(desiredCameraPosition) < 0.1) {
                     camera.position.copy(desiredCameraPosition);
 
-                    // Maintain the camera's orientation
-                    camera.quaternion.copy(cameraQuaternion);
 
-                    // **Calculate the camera's current viewing direction**
-                    const cameraDirection = new THREE.Vector3();
-                    camera.getWorldDirection(cameraDirection);
+                    // Set controls.target to the orb's position
+                    controls.target.copy(orb.position);
 
-                    // **Set controls.target along the camera's viewing direction**
-                    const targetDistance = 0.01; // Adjust as needed
-                    const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    controls.target.copy(newControlsTarget);
+                    // Make the camera look at the orb
+                    camera.lookAt(orb.position);
 
-                    // **Update controls to synchronize internal state**
+                    // Update controls to synchronize internal state
                     controls.update();
 
+                    // Transition to PANNING mode
                     cameraMode = CAMERA_MODE.PANNING;
                     controls.enabled = true;
 
-                    // Reset controls settings
+                    // Reset controls settings as needed
                     controls.enablePan = true;
                     controls.enableZoom = true;
                     controls.enableRotate = true;
-                    controls.minDistance = 1;
-                    controls.maxDistance = 100;
+                    controls.minDistance = 1;   // Adjust as needed
+                    controls.maxDistance = 200; // Adjust as needed
+                    controls.minPolarAngle = 0;
+                    controls.maxPolarAngle = Math.PI;
 
                     // Reset flags
                     isPanning = true;
@@ -681,6 +679,38 @@
 
                     // Show cursor icon
                     cursorIcon.style.display = 'block';
+
+                    // // Maintain the camera's orientation
+                    // camera.quaternion.copy(cameraQuaternion);
+
+                    // // **Calculate the camera's current viewing direction**
+                    // const cameraDirection = new THREE.Vector3();
+                    // camera.getWorldDirection(cameraDirection);
+
+                    // // **Set controls.target along the camera's viewing direction**
+                    // const targetDistance = 0.01; // Adjust as needed
+                    // const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+                    // controls.target.copy(newControlsTarget);
+
+                    // // **Update controls to synchronize internal state**
+                    // controls.update();
+
+                    // cameraMode = CAMERA_MODE.PANNING;
+                    // controls.enabled = true;
+
+                    // // Reset controls settings
+                    // controls.enablePan = true;
+                    // controls.enableZoom = true;
+                    // controls.enableRotate = true;
+                    // controls.minDistance = 1;
+                    // controls.maxDistance = 100;
+
+                    // // Reset flags
+                    // isPanning = true;
+                    // isCharging = false;
+
+                    // // Show cursor icon
+                    // cursorIcon.style.display = 'block';
                 }
             }
 

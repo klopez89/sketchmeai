@@ -626,7 +626,7 @@
                 controls.update();
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
-                orb.visible = true;
+                // orb.visible = true;
 
                 // Camera returns to a position above the orb
                 controls.enabled = false;
@@ -658,7 +658,7 @@
                     camera.getWorldDirection(cameraDirection);
 
                     // **Set controls.target along the camera's viewing direction**
-                    const targetDistance = 5; // Adjust as needed
+                    const targetDistance = 0.1; // Adjust as needed
                     const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
                     controls.target.copy(newControlsTarget);
 

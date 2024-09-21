@@ -639,7 +639,7 @@
                 );
                 
                 // Smoothly interpolate camera position back to desired position
-                camera.position.lerp(desiredCameraPosition, 0);
+                camera.position.lerp(desiredCameraPosition, 0.1);
 
                 // Maintain the camera's orientation
                 camera.quaternion.copy(cameraQuaternion);

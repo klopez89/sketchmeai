@@ -628,7 +628,6 @@
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
                 // orb.visible = true;
 
-                // Camera returns to a position above the orb
                 controls.enabled = false;
 
                 // Calculate desired camera position above the orb
@@ -640,7 +639,7 @@
                 );
                 
                 // Smoothly interpolate camera position back to desired position
-                camera.position.lerp(desiredCameraPosition, 0.1);
+                camera.position.lerp(desiredCameraPosition, 0);
 
                 // Maintain the camera's orientation
                 camera.quaternion.copy(cameraQuaternion);
@@ -650,16 +649,16 @@
 
 
                 if (cameraDistanceToDestination < 0.1) {
-                    camera.position.copy(desiredCameraPosition);
+                    // camera.position.copy(desiredCameraPosition);
 
                     // Make the camera look at the orb
-                    camera.lookAt(orb.position);
+                    // camera.lookAt(orb.position);
 
                     // Set controls target to the orb's position
-                    controls.target.copy(orb.position);
+                    // controls.target.copy(orb.position);
 
                     // Update controls to synchronize internal state
-                    controls.update();
+                    // controls.update();
 
                     // Transition to PANNING mode
                     cameraMode = CAMERA_MODE.PANNING;

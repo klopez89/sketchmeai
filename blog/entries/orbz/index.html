@@ -209,7 +209,7 @@
             ceilingGeometry.rotateX(Math.PI); // Flip the geometry to invert normals
             const ceilingMaterial = new THREE.MeshStandardMaterial({
                 color: 0xff00ff, // Magenta color for the ceiling
-                side: THREE.FrontSide, // Render only the bottom face (after flipping normals)
+                side: THREE.Backside, // Render only the bottom face (after flipping normals)
             });
             const ceiling = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
             ceiling.rotation.x = Math.PI / 2;
@@ -243,7 +243,7 @@
             // Wall 3 (Left Wall)
             const wall3Material = new THREE.MeshStandardMaterial({
                 color: 0x0000ff, // Blue color
-                side: THREE.FrontSide,
+                side: THREE.BackSide,
             });
             const wall3 = new THREE.Mesh(wallGeometry, wall3Material);
             wall3.rotation.y = -Math.PI / 2;
@@ -254,7 +254,7 @@
             // Wall 4 (Right Wall)
             const wall4Material = new THREE.MeshStandardMaterial({
                 color: 0xffff00, // Yellow color
-                side: THREE.FrontSide,
+                side: THREE.BackSide,
             });
             const wall4 = new THREE.Mesh(wallGeometry, wall4Material);
             wall4.rotation.y = Math.PI / 2;

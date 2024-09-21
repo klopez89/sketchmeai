@@ -640,31 +640,12 @@
                 );
                 
                 // Smoothly interpolate camera position back to desired position
-                camera.position.lerp(desiredCameraPosition, 0.1);
+                camera.position.lerp(desiredCameraPosition, 0);
 
                 // Maintain the camera's orientation
                 camera.quaternion.copy(cameraQuaternion);
 
-
-                // Check if the camera has returned
                 if (camera.position.distanceTo(desiredCameraPosition) < 0.1) {
-                    camera.position.copy(desiredCameraPosition);
-
-                    // Maintain the camera's orientation
-                    camera.quaternion.copy(cameraQuaternion);
-
-                    // **Calculate the camera's current viewing direction**
-                    const cameraDirection = new THREE.Vector3();
-                    camera.getWorldDirection(cameraDirection);
-
-                    // **Set controls.target along the camera's viewing direction**
-                    const targetDistance = 0.01; // Adjust as needed
-                    const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    controls.target.copy(newControlsTarget);
-
-                    // **Update controls to synchronize internal state**
-                    controls.update();
-
                     cameraMode = CAMERA_MODE.PANNING;
                     controls.enabled = true;
 
@@ -682,6 +663,44 @@
                     // Show cursor icon
                     cursorIcon.style.display = 'block';
                 }
+
+
+                // Check if the camera has returned
+                // if (camera.position.distanceTo(desiredCameraPosition) < 0.1) {
+                //     camera.position.copy(desiredCameraPosition);
+
+                //     // Maintain the camera's orientation
+                //     camera.quaternion.copy(cameraQuaternion);
+
+                //     // **Calculate the camera's current viewing direction**
+                //     const cameraDirection = new THREE.Vector3();
+                //     camera.getWorldDirection(cameraDirection);
+
+                //     // **Set controls.target along the camera's viewing direction**
+                //     const targetDistance = 0.01; // Adjust as needed
+                //     const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+                //     controls.target.copy(newControlsTarget);
+
+                //     // **Update controls to synchronize internal state**
+                //     controls.update();
+
+                //     cameraMode = CAMERA_MODE.PANNING;
+                //     controls.enabled = true;
+
+                //     // Reset controls settings
+                //     controls.enablePan = true;
+                //     controls.enableZoom = true;
+                //     controls.enableRotate = true;
+                //     controls.minDistance = 1;
+                //     controls.maxDistance = 100;
+
+                //     // Reset flags
+                //     isPanning = true;
+                //     isCharging = false;
+
+                //     // Show cursor icon
+                //     cursorIcon.style.display = 'block';
+                // }
             }
 
             renderer.render(scene, camera);

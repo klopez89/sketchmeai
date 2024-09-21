@@ -532,10 +532,6 @@
             // Recreate stars
             createStars();
 
-            // Calculate the center of the stage programmatically
-            const stageCenter = new THREE.Vector3();
-            stageBounds.getCenter(stageCenter);
-
             // Reset camera position and orientation
             camera.position.set(
                 orb.position.x,
@@ -544,19 +540,29 @@
             );
             camera.lookAt(stageCenter);
 
+            // **Calculate the camera's current viewing direction**
+            const cameraDirection = new THREE.Vector3();
+            camera.getWorldDirection(cameraDirection);
+
+            // **Set controls.target along the camera's viewing direction, slightly ahead of the camera**
+            const targetDistance = 0.1; // Small distance to avoid issues
+            const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+            controls.target.copy(newControlsTarget);
+
+            // **Update controls to synchronize internal state**
+            controls.update();
+
             // Enable controls
             controls.enabled = true;
 
             // Reset controls settings
-            controls.target.copy(stageCenter);
             controls.enablePan = true;
             controls.enableZoom = true;
             controls.enableRotate = true;
-            controls.minDistance = 1;
-            controls.maxDistance = 200;
+            controls.minDistance = 0.1;
+            controls.maxDistance = 1000;
             controls.minPolarAngle = 0;
             controls.maxPolarAngle = Math.PI;
-            controls.update(); // Apply the new target
 
             // Restart intervals
             gameInterval = setInterval(gameLogic, 16);

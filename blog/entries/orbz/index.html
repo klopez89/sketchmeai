@@ -653,17 +653,17 @@
                     // Maintain the camera's orientation
                     camera.quaternion.copy(cameraQuaternion);
 
-                    // // **Calculate the camera's current viewing direction**
-                    // const cameraDirection = new THREE.Vector3();
-                    // camera.getWorldDirection(cameraDirection);
+                    // **Calculate the camera's current viewing direction**
+                    const cameraDirection = new THREE.Vector3();
+                    camera.getWorldDirection(cameraDirection);
 
-                    // // **Set controls.target along the camera's viewing direction**
-                    // const targetDistance = 0.1; // Adjust as needed
-                    // const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    // controls.target.copy(newControlsTarget);
+                    // **Set controls.target along the camera's viewing direction**
+                    const targetDistance = 0.01; // Adjust as needed
+                    const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+                    controls.target.copy(newControlsTarget);
 
-                    // // **Update controls to synchronize internal state**
-                    // controls.update();
+                    // **Update controls to synchronize internal state**
+                    controls.update();
 
                     cameraMode = CAMERA_MODE.PANNING;
                     controls.enabled = true;

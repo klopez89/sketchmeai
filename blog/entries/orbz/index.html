@@ -632,7 +632,7 @@
                 controls.enabled = false;
 
                 // Calculate desired camera position above the orb
-                const radius = 5;
+                const radius = 0;
                 const desiredCameraPosition = new THREE.Vector3(
                     orb.position.x,
                     orb.position.y + radius,
@@ -658,7 +658,7 @@
                     camera.getWorldDirection(cameraDirection);
 
                     // **Set controls.target along the camera's viewing direction**
-                    const targetDistance = 5; // Adjust as needed
+                    const targetDistance = 0; // Adjust as needed
                     const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
                     controls.target.copy(newControlsTarget);
 

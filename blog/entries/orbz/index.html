@@ -503,7 +503,30 @@
             const geometry = new THREE.SphereGeometry(1, 32, 32);
             const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
             orb = new THREE.Mesh(geometry, material);
-            orb.position.set(0, 1, 0); // Start on the floor
+
+            // Calculate the padding and stage bounds
+            const padding = 5;
+
+            const minX = stageBounds.min.x + padding; // -50 + 5 = -45
+            const maxX = stageBounds.max.x - padding; // 50 - 5 = 45
+            const minZ = stageBounds.min.z + padding; // -50 + 5 = -45
+            const maxZ = stageBounds.max.z - padding; // 50 - 5 = 45
+            const yPosition = 1; // On the floor
+
+            // Define the four corners
+            const corners = [
+                new THREE.Vector3(minX, yPosition, minZ), // Corner 1
+                new THREE.Vector3(minX, yPosition, maxZ), // Corner 2
+                new THREE.Vector3(maxX, yPosition, minZ), // Corner 3
+                new THREE.Vector3(maxX, yPosition, maxZ), // Corner 4
+            ];
+
+            // Randomly select a corner
+            const randomIndex = Math.floor(Math.random() * 4); // 0 to 3
+            const startingPosition = corners[randomIndex];
+
+            // Set the orb's position to the selected corner
+            orb.position.copy(startingPosition);
             scene.add(orb);
 
             // Recreate stars

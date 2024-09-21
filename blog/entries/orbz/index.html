@@ -577,10 +577,19 @@
                 if (camera.position.distanceTo(desiredCameraPosition) < 0.1) {
                     camera.position.copy(desiredCameraPosition);
 
-                    // Set controls.target to the camera's current position
-                    controls.target.copy(camera.position);
+                    // Maintain the camera's orientation
+                    camera.quaternion.copy(cameraQuaternion);
 
-                    // Update controls to synchronize internal state
+                    // **Calculate the camera's current viewing direction**
+                    const cameraDirection = new THREE.Vector3();
+                    camera.getWorldDirection(cameraDirection);
+
+                    // **Set controls.target along the camera's viewing direction**
+                    const targetDistance = 10; // Adjust as needed
+                    const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+                    controls.target.copy(newControlsTarget);
+
+                    // **Update controls to synchronize internal state**
                     controls.update();
 
                     cameraMode = CAMERA_MODE.PANNING;

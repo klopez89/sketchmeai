@@ -193,17 +193,11 @@
         }
 
         function createStage() {
-            const wallMaterial = new THREE.MeshStandardMaterial({
-            color: 0x90ee90,
-            side: THREE.FrontSide, // Render the inner faces of the walls
-            });
-
             // Floor
             const floorGeometry = new THREE.PlaneGeometry(100, 100);
-            // No need to flip the floor normals if they are correct
             const floorMaterial = new THREE.MeshStandardMaterial({
-            color: 0x90ee90,
-            side: THREE.FrontSide, // Render only the top face
+                color: 0x00ffff, // Cyan color for the floor
+                side: THREE.FrontSide, // Render only the top face
             });
             const floor = new THREE.Mesh(floorGeometry, floorMaterial);
             floor.rotation.x = -Math.PI / 2;
@@ -214,41 +208,60 @@
             const ceilingGeometry = new THREE.PlaneGeometry(100, 100);
             ceilingGeometry.rotateX(Math.PI); // Flip the geometry to invert normals
             const ceilingMaterial = new THREE.MeshStandardMaterial({
-            color: 0x90ee90,
-            side: THREE.FrontSide, // Render only the bottom face (after flipping normals)
+                color: 0xff00ff, // Magenta color for the ceiling
+                side: THREE.FrontSide, // Render only the bottom face (after flipping normals)
             });
             const ceiling = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
             ceiling.rotation.x = Math.PI / 2;
             ceiling.position.y = 50;
             scene.add(ceiling);
 
-            // Walls (no change needed)
+            // Walls
             const wallGeometry = new THREE.PlaneGeometry(100, 50);
 
-            const wall1 = new THREE.Mesh(wallGeometry, wallMaterial);
+            // Wall 1 (Front Wall)
+            const wall1Material = new THREE.MeshStandardMaterial({
+                color: 0xff0000, // Red color
+                side: THREE.FrontSide,
+            });
+            const wall1 = new THREE.Mesh(wallGeometry, wall1Material);
             wall1.position.z = -50;
             wall1.position.y = 25;
             scene.add(wall1);
 
-            const wall2 = new THREE.Mesh(wallGeometry, wallMaterial);
+            // Wall 2 (Back Wall)
+            const wall2Material = new THREE.MeshStandardMaterial({
+                color: 0x00ff00, // Green color
+                side: THREE.FrontSide,
+            });
+            const wall2 = new THREE.Mesh(wallGeometry, wall2Material);
             wall2.rotation.y = Math.PI;
             wall2.position.z = 50;
             wall2.position.y = 25;
             scene.add(wall2);
 
-            const wall3 = new THREE.Mesh(wallGeometry, wallMaterial);
+            // Wall 3 (Left Wall)
+            const wall3Material = new THREE.MeshStandardMaterial({
+                color: 0x0000ff, // Blue color
+                side: THREE.FrontSide,
+            });
+            const wall3 = new THREE.Mesh(wallGeometry, wall3Material);
             wall3.rotation.y = -Math.PI / 2;
             wall3.position.x = -50;
             wall3.position.y = 25;
             scene.add(wall3);
 
-            const wall4 = new THREE.Mesh(wallGeometry, wallMaterial);
+            // Wall 4 (Right Wall)
+            const wall4Material = new THREE.MeshStandardMaterial({
+                color: 0xffff00, // Yellow color
+                side: THREE.FrontSide,
+            });
+            const wall4 = new THREE.Mesh(wallGeometry, wall4Material);
             wall4.rotation.y = Math.PI / 2;
             wall4.position.x = 50;
             wall4.position.y = 25;
             scene.add(wall4);
         }
-
 
         function createStars() {
             const colors = [0xffff00, 0xffa500, 0xff0000, 0x800080];

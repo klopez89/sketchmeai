@@ -509,25 +509,37 @@
             // Recreate stars
             createStars();
 
+            // Calculate the center of the stage programmatically
+            const stageCenter = new THREE.Vector3();
+            stageBounds.getCenter(stageCenter);
+
             // Reset camera position and orientation
-            camera.position.set(0, 6, 0); // Position above the orb
-            camera.lookAt(orb.position);
+            camera.position.set(
+                orb.position.x,
+                orb.position.y + 5, // Position above the orb by 5 units
+                orb.position.z
+            );
+            camera.lookAt(stageCenter);
 
             // Enable controls
             controls.enabled = true;
 
             // Reset controls settings
-            controls.target.copy(orb.position);
+            controls.target.copy(stageCenter);
             controls.enablePan = true;
             controls.enableZoom = true;
             controls.enableRotate = true;
             controls.minDistance = 1;
-            controls.maxDistance = 100;
+            controls.maxDistance = 200;
+            controls.minPolarAngle = 0;
+            controls.maxPolarAngle = Math.PI;
+            controls.update(); // Apply the new target
 
             // Restart intervals
             gameInterval = setInterval(gameLogic, 16);
             timerInterval = setInterval(updateTimer, 1000);
         }
+
 
         function animate() {
             requestAnimationFrame(animate);

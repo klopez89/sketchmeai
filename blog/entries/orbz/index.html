@@ -538,18 +538,24 @@
                 orb.position.y + 5, // Position above the orb by 5 units
                 orb.position.z
             );
+
+            // Calculate the center of the stage programmatically
+            const stageCenter = new THREE.Vector3();
+            stageBounds.getCenter(stageCenter);
+
+            // Make the camera look at the stage center
             camera.lookAt(stageCenter);
 
-            // **Calculate the camera's current viewing direction**
+            // Calculate the camera's current viewing direction
             const cameraDirection = new THREE.Vector3();
             camera.getWorldDirection(cameraDirection);
 
-            // **Set controls.target along the camera's viewing direction, slightly ahead of the camera**
-            const targetDistance = 0.1; // Small distance to avoid issues
-            const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-            controls.target.copy(newControlsTarget);
+            // Set controls.target along the camera's viewing direction
+            const targetDistance = 0.1; // Adjust as needed
+            const controlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+            controls.target.copy(controlsTarget);
 
-            // **Update controls to synchronize internal state**
+            // Update controls to synchronize internal state
             controls.update();
 
             // Enable controls
@@ -560,7 +566,7 @@
             controls.enableZoom = true;
             controls.enableRotate = true;
             controls.minDistance = 0.1;
-            controls.maxDistance = 1000;
+            controls.maxDistance = 200;
             controls.minPolarAngle = 0;
             controls.maxPolarAngle = Math.PI;
 

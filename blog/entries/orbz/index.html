@@ -601,7 +601,6 @@
 
             } else if (cameraMode === CAMERA_MODE.FOLLOWING) {
                 orb.visible = true;
-                cameraQuaternion = camera.quaternion.clone();
 
                 // Camera follows the orb
                 controls.enabled = true;
@@ -651,51 +650,30 @@
                 if (camera.position.distanceTo(desiredCameraPosition) < 0.1) {
                     camera.position.copy(desiredCameraPosition);
 
-                    // Restore the camera's orientation
+                    // Maintain the camera's orientation
                     camera.quaternion.copy(cameraQuaternion);
 
-                    // Calculate the camera's current viewing direction
+                    // **Calculate the camera's current viewing direction**
                     const cameraDirection = new THREE.Vector3();
                     camera.getWorldDirection(cameraDirection);
 
-                    // Set controls.target along the camera's viewing direction
-                    const targetDistance = 10; // Adjust as needed
-                    const controlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    controls.target.copy(controlsTarget);
+                    // **Set controls.target along the camera's viewing direction**
+                    const targetDistance = 0.01; // Adjust as needed
+                    const newControlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+                    controls.target.copy(newControlsTarget);
 
-                    // Compute offset from target to camera position
-                    const offset = new THREE.Vector3();
-                    offset.copy(camera.position).sub(controls.target);
-
-                    // Create a new Spherical instance
-                    const spherical = new THREE.Spherical();
-                    spherical.setFromVector3(offset);
-
-                    // Update the controls' internal spherical state
-                    controls.spherical.radius = spherical.radius;
-                    controls.spherical.theta = spherical.theta;
-                    controls.spherical.phi = spherical.phi;
-
-                    // If using damping, update the target spherical as well
-                    controls.sphericalTarget.radius = spherical.radius;
-                    controls.sphericalTarget.theta = spherical.theta;
-                    controls.sphericalTarget.phi = spherical.phi;
-
-                    // Update controls to synchronize internal state
+                    // **Update controls to synchronize internal state**
                     controls.update();
 
-                    // Transition to PANNING mode
                     cameraMode = CAMERA_MODE.PANNING;
                     controls.enabled = true;
 
-                    // Set controls settings as needed
+                    // Reset controls settings
                     controls.enablePan = true;
                     controls.enableZoom = true;
                     controls.enableRotate = true;
                     controls.minDistance = 1;
-                    controls.maxDistance = 200;
-                    controls.minPolarAngle = 0;
-                    controls.maxPolarAngle = Math.PI;
+                    controls.maxDistance = 100;
 
                     // Reset flags
                     isPanning = true;
@@ -703,8 +681,6 @@
 
                     // Show cursor icon
                     cursorIcon.style.display = 'block';
-
-                    
                 }
             }
 

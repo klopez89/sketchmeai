@@ -633,7 +633,7 @@
                 // controls.minDistance = controls.maxDistance = desiredDistance;
 
                 // Update controls to focus on the orb
-                // controls.target.copy(orb.position);
+                controls.target.copy(orb.position);
 
                 // Adjust camera position to maintain desired distance
                 const currentDistance = camera.position.distanceTo(orb.position);
@@ -664,7 +664,7 @@
                 // console.log('camera position to destination distance: ', cameraDistanceToDestination);
 
 
-                if (cameraDistanceToDestination < 0.005) {
+                if (cameraDistanceToDestination < 0.001) {
                     // Transition to PANNING mode
                     cameraMode = CAMERA_MODE.PANNING;
 

@@ -569,6 +569,15 @@
             timerInterval = setInterval(updateTimer, 1000);
         }
 
+        function logCameraStats() {
+            console.log('Camera Stats:');
+            console.log('Position:', camera.position.toArray().map(v => v.toFixed(2)));
+            console.log('Rotation:', camera.rotation.toArray().map(v => v.toFixed(2)));
+            if (camera.zoom) {
+                console.log('Zoom:', camera.zoom.toFixed(2));
+            }
+            console.log('-------------------');
+        }
 
         function animate() {
             requestAnimationFrame(animate);
@@ -677,6 +686,9 @@
                 }
 
             }
+
+            // Log camera stats
+            logCameraStats();
 
             renderer.render(scene, camera);
         }

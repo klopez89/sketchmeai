@@ -403,6 +403,8 @@
 
                 console.log('orb velocity:', orb.userData.velocity.length());
                 if (orb.userData.velocity.length() < 0.01) {
+                    // Update orb's final position
+                    orb.position.add(orb.userData.velocity);
                     orb.userData.velocity = null;
 
                     // Store the camera's orientation

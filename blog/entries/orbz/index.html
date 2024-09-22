@@ -641,30 +641,13 @@
                 // Smoothly interpolate camera position back to desired position
                 camera.position.lerp(desiredCameraPosition, 0.1);
 
-                // // Maintain the camera's orientation
-                // camera.quaternion.copy(cameraQuaternion);
-
                 const cameraDistanceToDestination = camera.position.distanceTo(desiredCameraPosition);
                 console.log('camera position to destination distance: ', cameraDistanceToDestination);
 
 
                 if (cameraDistanceToDestination < 0.1) {
-                    // camera.position.copy(desiredCameraPosition);
-
-                    // Make the camera look at the orb
-                    // camera.lookAt(orb.position);
-
-                    // Set controls target to the orb's position
-                    // controls.target.copy(orb.position);
-
-                    // Update controls to synchronize internal state
-                    // controls.update();
-
                     // Transition to PANNING mode
                     cameraMode = CAMERA_MODE.PANNING;
-                    // controls.update();
-                    // controls.enabled = true;
-                    // controls.update();
 
                     // Reset flags
                     isPanning = true;
@@ -672,26 +655,14 @@
 
                     // Show cursor icon
                     cursorIcon.style.display = 'block';
+
+                    // Re-enable controls
+                    controls.enabled = true;
+
+                    // **Add these lines to synchronize controls**
+                    controls.target.copy(orb.position); // Set the target to the orb's position
+                    controls.update(); // Update controls to synchronize internal state
                 }
-
-
-                // if (cameraDistanceToDestination < 0.1) {
-
-                //     camera.position.copy(desiredCameraPosition);
-                //     camera.quaternion.copy(cameraQuaternion);
-
-                //     cameraMode = CAMERA_MODE.PANNING;
-                //     controls.enabled = true;
-
-                //     controls.update();
-
-                //     // Reset flags
-                //     isPanning = true;
-                //     isCharging = false;
-
-                //     // Show cursor icon
-                //     cursorIcon.style.display = 'block';
-                // }
             }
 
             renderer.render(scene, camera);

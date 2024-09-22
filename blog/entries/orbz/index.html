@@ -677,11 +677,12 @@
 
                     // Re-enable controls and synchronize and
                     // Update the OrbitControls' internal state
+                    console.log('desiredCameraPosition when going to panning from resturning:', desiredCameraPosition);
                     controls.enabled = true;
                     const cameraDirection = new THREE.Vector3();
                     camera.getWorldDirection(cameraDirection);
                     const targetDistance = 0.1; // Adjust this value as needed
-                    controls.target.copy(orb.position).add(cameraDirection.multiplyScalar(targetDistance));
+                    controls.target.copy(camera.target)
                     controls.object.position.copy(camera.position);
                     controls.update();
                 }
@@ -691,6 +692,7 @@
 
             renderer.render(scene, camera);
 
+            console.log('orb position:', orb.position.toArray().map(v => Number(v).toFixed(2)));
             // Log camera stats
             // logCameraChanges();
         }

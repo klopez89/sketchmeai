@@ -403,11 +403,7 @@
 
                 console.log('orb velocity:', orb.userData.velocity.length());
                 if (orb.userData.velocity.length() < 0.01) {
-                    // Explicitly set velocity to zero
-                    // orb.userData.velocity.set(0, 0, 0);
-
-                    // // Update orb's final position
-                    // orb.position.add(orb.userData.velocity);
+                    orb.userData.velocity = null;
 
                     // Store the camera's orientation
                     cameraQuaternion.copy(camera.quaternion);
@@ -679,24 +675,11 @@
 
                     // Re-enable controls and synchronize
                     controls.enabled = true;
+                    controls.target.copy(orb.position);
 
                     // Update the OrbitControls' internal state
-                    // controls.target.copy(orb.position);
-                    // controls.object.position.copy(camera.position);
-
-                    // Access the internal variables (may need to modify OrbitControls to expose these)
-                    // controls.spherical.copy(spherical);
-                    // controls.sphericalDelta.set(0, 0, 0);
-                    // controls.scale = 1;
-                    // controls.panOffset.set(0, 0, 0);
-                    // controls.zoomChanged = false;
-
-                    // Update last position and quaternion
-                    // controls.lastPosition.copy(camera.position);
-                    // controls.lastQuaternion.copy(camera.quaternion);
-
-                    // Now call controls.update()
-                    controls.update();
+                    controls.target.copy(orb.position);
+                    controls.object.position.copy(camera.position);
                 }
 
             }

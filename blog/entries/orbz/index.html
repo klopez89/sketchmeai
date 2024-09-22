@@ -663,6 +663,7 @@
 
                 if (cameraDistanceToDestination < 0.005) {
                     // Transition to PANNING mode
+                    camera.position.copy(orb.position);
                     cameraMode = CAMERA_MODE.PANNING;
 
                     // Reset flags
@@ -675,14 +676,6 @@
                     // Re-enable controls and synchronize
                     controls.enabled = true;
                     controls.target.copy(orb.position);
-
-                    // **Synchronize OrbitControls' internal state**
-                    const offset = new THREE.Vector3();
-                    offset.copy(camera.position).sub(controls.target);
-
-                    // Create a new Spherical instance
-                    const spherical = new THREE.Spherical();
-                    spherical.setFromVector3(offset);
 
                     // Update the OrbitControls' internal state
                     controls.target.copy(orb.position);

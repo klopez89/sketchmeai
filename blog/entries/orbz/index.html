@@ -95,7 +95,7 @@
         let cameraMode = CAMERA_MODE.PANNING;
         const cameraQuaternion = new THREE.Quaternion();
 
-        let scene, camera, renderer, controls;
+        let scene, camera, renderer, controls, lastPosition, lastRotation, lastZoom;
         let orb, stars = [];
         let isPanning = true;
         let isCharging = false;
@@ -138,6 +138,10 @@
                 camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
                 camera.position.set(-30, 30, -30); // Start outside the orb
                 camera.lookAt(0, 0, 0);
+
+                lastPosition = new THREE.Vector3();
+                lastRotation = new THREE.Euler();
+                lastZoom = camera.zoom;
             }
 
             // Renderer
@@ -568,10 +572,6 @@
             gameInterval = setInterval(gameLogic, 16);
             timerInterval = setInterval(updateTimer, 1000);
         }
-
-        let lastPosition = new THREE.Vector3();
-        let lastRotation = new THREE.Euler();
-        let lastZoom = camera.zoom;
 
         function logCameraChanges() {
             const positionChanged = !camera.position.equals(lastPosition);

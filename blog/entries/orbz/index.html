@@ -682,6 +682,8 @@
                     // Update the OrbitControls' internal state
                     controls.target.copy(orb.position);
                     controls.object.position.copy(camera.position);
+
+                    controls.update();
                 }
 
             }

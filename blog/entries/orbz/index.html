@@ -675,17 +675,15 @@
                     // Show cursor icon
                     cursorIcon.style.display = 'block';
 
-                    // Re-enable controls and synchronize
+                    // Re-enable controls and synchronize and
+                    // Update the OrbitControls' internal state
                     controls.enabled = true;
                     controls.target.copy(orb.position);
+                    controls.object.position.copy(orb.position);
 
-                    // Update the OrbitControls' internal state
-                    controls.target.copy(orb.position);
-                    controls.object.position.copy(camera.position);
-
-                    controls.update();
                 }
 
+                controls.update();
             }
 
             renderer.render(scene, camera);

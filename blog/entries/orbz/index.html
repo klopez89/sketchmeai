@@ -680,7 +680,7 @@
                     controls.enabled = true;
                     const cameraDirection = new THREE.Vector3();
                     camera.getWorldDirection(cameraDirection);
-                    const targetDistance = 5; // Adjust this value as needed
+                    const targetDistance = 0.1; // Adjust this value as needed
                     controls.target.copy(orb.position).add(cameraDirection.multiplyScalar(targetDistance));
                     controls.object.position.copy(camera.position);
                     controls.update();

@@ -634,7 +634,7 @@
                 console.log('camera position to destination distance: ', cameraDistanceToDestination);
 
 
-                if (cameraDistanceToDestination == 0) {
+                if (cameraDistanceToDestination < 0.005) {
                     // Transition to PANNING mode
                     cameraMode = CAMERA_MODE.PANNING;
 

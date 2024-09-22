@@ -678,9 +678,12 @@
                     // Re-enable controls and synchronize and
                     // Update the OrbitControls' internal state
                     controls.enabled = true;
-                    controls.target.copy(orb.position);
-                    controls.object.position.copy(orb.position);
-
+                    const cameraDirection = new THREE.Vector3();
+                    camera.getWorldDirection(cameraDirection);
+                    const targetDistance = 5; // Adjust this value as needed
+                    controls.target.copy(orb.position).add(cameraDirection.multiplyScalar(targetDistance));
+                    controls.object.position.copy(camera.position);
+                    
                 }
 
                 controls.update();

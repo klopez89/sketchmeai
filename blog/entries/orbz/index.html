@@ -681,14 +681,14 @@
                     console.log('desiredCameraPosition when going to panning from resturning:', desiredCameraPosition);
                     controls.enabled = true;
                     
-                    // Calculate the camera's current viewing direction
-                    const cameraDirection = new THREE.Vector3();
-                    camera.getWorldDirection(cameraDirection);
+                    // // Calculate the camera's current viewing direction
+                    // const cameraDirection = new THREE.Vector3();
+                    // camera.getWorldDirection(cameraDirection);
 
-                    // Set controls.target along the camera's viewing direction
-                    const targetDistance = 0.1; // Adjust as needed
-                    const controlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    controls.target.copy(controlsTarget);
+                    // // Set controls.target along the camera's viewing direction
+                    // const targetDistance = 0.1; // Adjust as needed
+                    // const controlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+                    // controls.target.copy(controlsTarget);
 
                     // controls.object.position.copy(camera.position);
                     // controls.update();

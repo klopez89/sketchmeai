@@ -645,13 +645,37 @@
                     // Show cursor icon
                     cursorIcon.style.display = 'block';
 
-                    // Re-enable controls
+                    // Re-enable controls and synchronize
                     controls.enabled = true;
+                    controls.target.copy(orb.position);
 
-                    // **Add these lines to synchronize controls**
-                    controls.target.copy(orb.position); // Set the target to the orb's position
-                    controls.update(); // Update controls to synchronize internal state
+                    // **Synchronize OrbitControls' internal state**
+                    const offset = new THREE.Vector3();
+                    offset.copy(camera.position).sub(controls.target);
+
+                    // Create a new Spherical instance
+                    const spherical = new THREE.Spherical();
+                    spherical.setFromVector3(offset);
+
+                    // Update the OrbitControls' internal state
+                    controls.target.copy(orb.position);
+                    controls.object.position.copy(camera.position);
+
+                    // Access the internal variables (may need to modify OrbitControls to expose these)
+                    controls.spherical.copy(spherical);
+                    controls.sphericalDelta.set(0, 0, 0);
+                    controls.scale = 1;
+                    controls.panOffset.set(0, 0, 0);
+                    controls.zoomChanged = false;
+
+                    // Update last position and quaternion
+                    controls.lastPosition.copy(camera.position);
+                    controls.lastQuaternion.copy(camera.quaternion);
+
+                    // Now call controls.update()
+                    controls.update();
                 }
+
             }
 
             renderer.render(scene, camera);

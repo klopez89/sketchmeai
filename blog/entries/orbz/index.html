@@ -156,7 +156,7 @@
                 controls.enableRotate = true;
 
                 controls.minDistance = 1;
-                controls.maxDistance = 100;
+                controls.maxDistance = 200;
 
                 controls.minPolarAngle = 0; // Allow looking up
                 controls.maxPolarAngle = Math.PI; // Allow looking down
@@ -562,13 +562,7 @@
             controls.enabled = true;
 
             // Reset controls settings
-            controls.enablePan = true;
             controls.enableZoom = true;
-            controls.enableRotate = true;
-            controls.minDistance = 0.1;
-            controls.maxDistance = 200;
-            controls.minPolarAngle = 0;
-            controls.maxPolarAngle = Math.PI;
 
             // Restart intervals
             gameInterval = setInterval(gameLogic, 16);
@@ -605,13 +599,8 @@
                 // Camera follows the orb
                 controls.enabled = true;
 
-                // Disable panning and zooming
-                controls.enablePan = false;
-                controls.enableZoom = false;
-                controls.enableRotate = true;
-
                 const desiredDistance = 5; // Adjust as needed
-                controls.minDistance = controls.maxDistance = desiredDistance;
+                // controls.minDistance = controls.maxDistance = desiredDistance;
 
                 // Update controls to focus on the orb
                 controls.target.copy(orb.position);

@@ -619,22 +619,22 @@
 
                 controls.enabled = false;
 
-                // Calculate desired camera position above the orb
+                // Calculate desired camera position
                 const radius = 0;
                 const desiredCameraPosition = new THREE.Vector3(
                     orb.position.x,
-                    orb.position.y + radius,
+                    orb.position.y,
                     orb.position.z
                 );
                 
                 // Smoothly interpolate camera position back to desired position
-                camera.position.lerp(desiredCameraPosition, 0);
+                camera.position.lerp(desiredCameraPosition, 0.1);
 
                 const cameraDistanceToDestination = camera.position.distanceTo(desiredCameraPosition);
                 console.log('camera position to destination distance: ', cameraDistanceToDestination);
 
 
-                if (cameraDistanceToDestination < 0.1) {
+                if (cameraDistanceToDestination == 0) {
                     // Transition to PANNING mode
                     cameraMode = CAMERA_MODE.PANNING;
 

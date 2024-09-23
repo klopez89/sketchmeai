@@ -606,14 +606,13 @@
             // Camera behavior based on cameraMode
             if (cameraMode === CAMERA_MODE.PANNING) {
                 // Hide the orb during aim selection
-                // orb.visible = true;
-
+                orb.visible = true;
 
                 // User can pan around the orb
                 // Restrict panning during strength selection
-                // controls.enabled = !isCharging;
+                controls.enabled = !isCharging;
 
-                // controls.update();
+                controls.update();
                 renderer.render(scene, camera);
                 if (!camera_last_position || !camera.position.equals(camera_last_position)) {
                         console.log('in panning cameraMode: ', cameraMode, ', camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));

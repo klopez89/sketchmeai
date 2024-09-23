@@ -407,11 +407,13 @@
                     console.log('orb has stopped moving');
 
                     // Change orb color to orange
-                    orb.material.color.setHex(0xFFA500);
-                    // Update orb's final position
-                    orb.position.add(orb.userData.velocity);
                     orb.userData.velocity = null;
-                    controls.target.copy(orb.position);
+
+                    // Get the orb's world position
+                    const worldPosition = new THREE.Vector3();
+                    orb.getWorldPosition(worldPosition);
+
+                    controls.target.copy(worldPosition);
                     controls.update();
 
 

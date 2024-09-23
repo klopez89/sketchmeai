@@ -657,7 +657,7 @@
                 controls.target.copy(orbWorldPosition);
 
                 // Adjust camera position to maintain desired distance
-                const currentDistance = camera.position.distanceTo(orb.position);
+                const currentDistance = camera.position.distanceTo(orbWorldPosition);
                 console.log('currentDistance:', currentDistance, ', and difference is: ', Math.abs(currentDistance - desiredDistance)); 
                 
                 if (Math.abs(currentDistance - desiredDistance) > 0.01) {
@@ -667,15 +667,8 @@
                     offset.copy(cameraDirection).multiplyScalar(-desiredDistance);
                     const desiredPosition = orbWorldPosition.clone().add(offset);
 
-                    // camera.position.copy(desiredPosition);
+                    camera.position.copy(desiredPosition);
 
-                    // Only interpolate if the orb is moving significantly
-                    if (orb.userData && orb.userData.velocity && orb.userData.velocity.length() > 0.001) {
-                        camera.position.lerp(desiredPosition, 0.1);
-                    } else {
-                        console.log('orb nearly stationary, camera not interpolating');
-                    }
-                    
                 }
 
                 controls.update();

@@ -406,8 +406,10 @@
                 if (orb.userData.velocity.length() < 0.01) {
                     console.log('orb has stopped moving');
                     // Update orb's final position
-                    orb.position.add(orb.userData.velocity);
+                    
                     orb.userData.velocity = null;
+                    // Change orb color to light gray
+                    orb.material.color.setHex(0xD3D3D3);
 
                     // Store the camera's orientation
                     cameraQuaternion.copy(camera.quaternion);

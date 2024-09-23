@@ -93,7 +93,7 @@
         };
 
         let cameraMode = CAMERA_MODE.PANNING;
-        const cameraQuaternion = new THREE.Quaternion();
+
 
         let scene, camera, renderer, controls, lastPosition, lastRotation, lastZoom, orb_last_position, camera_last_position;
         let orb_position_upon_stop_detection;
@@ -405,14 +405,15 @@
                 console.log('orb velocity:', orb.userData.velocity.length());
                 if (orb.userData.velocity.length() < 0.01) {
                     console.log('orb has stopped moving');
-                    // Update orb's final position
-                    
-                    orb.userData.velocity = null;
-                    // Change orb color to light gray
-                    orb.material.color.setHex(0xD3D3D3);
 
-                    // Store the camera's orientation
-                    cameraQuaternion.copy(camera.quaternion);
+                    // Change orb color to orange
+                    orb.material.color.setHex(0xFFA500);
+                    // Update orb's final position
+                    orb.position.add(orb.userData.velocity);
+                    orb.userData.velocity = null;
+                    controls.target.copy(orb.position);
+                    controls.update();
+
 
                     // Start returning camera to position above the orb
                     cameraMode = CAMERA_MODE.RETURNING;

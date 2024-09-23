@@ -657,15 +657,18 @@
                 // Adjust camera position to maintain desired distance
                 const currentDistance = camera.position.distanceTo(orb.position);
                 console.log('currentDistance:', currentDistance); 
+                
                 if (Math.abs(currentDistance - desiredDistance) > 0.01) {
-                    
-                    const offset = new THREE.Vector3();
-                    const cameraDirection = new THREE.Vector3();
-                    camera.getWorldDirection(cameraDirection);
-                    offset.copy(cameraDirection).multiplyScalar(-desiredDistance);
-                    const desiredPosition = orbWorldPosition.clone().add(offset);
+                
+                    if (currentDistance > 5.015) {
+                        const offset = new THREE.Vector3();
+                        const cameraDirection = new THREE.Vector3();
+                        camera.getWorldDirection(cameraDirection);
+                        offset.copy(cameraDirection).multiplyScalar(-desiredDistance);
+                        const desiredPosition = orbWorldPosition.clone().add(offset);
 
-                    camera.position.copy(desiredPosition);
+                        camera.position.copy(desiredPosition);
+                    }
                 }
 
                 controls.update();

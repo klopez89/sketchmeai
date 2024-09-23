@@ -663,7 +663,7 @@
                 if (Math.abs(currentDistance - desiredDistance) > 0.01) {
                     const cameraToOrb = orbWorldPosition.clone().sub(camera.position).normalize();
                     const newPosition = orbWorldPosition.clone().sub(cameraToOrb.multiplyScalar(desiredDistance));
-                    camera.position.lerp(newPosition, 0.1); // Smooth transition
+                    camera.position.copy(newPosition);
                 }
 
                 // // Get the orb's world position
@@ -688,7 +688,7 @@
 
                 // }
 
-                // controls.update();
+                controls.update();
                 // renderer.render(scene, camera);
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {

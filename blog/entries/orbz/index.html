@@ -647,12 +647,22 @@
                 // Update controls to focus on the orb
                 controls.target.copy(orb.position);
 
-                // Adjust camera position to maintain desired distance
-                const currentDistance = camera.position.distanceTo(orb.position);
-                if (Math.abs(currentDistance - desiredDistance) > 0.01) {
-                    const direction = camera.position.clone().sub(orb.position).normalize();
-                    camera.position.copy(orb.position).add(direction.multiplyScalar(desiredDistance));
-                }
+                // // Adjust camera position to maintain desired distance
+                // const currentDistance = camera.position.distanceTo(orb.position);
+                // if (Math.abs(currentDistance - desiredDistance) > 0.01) {
+                //     const direction = camera.position.clone().sub(orb.position).normalize();
+                //     camera.position.copy(orb.position).add(direction.multiplyScalar(desiredDistance));
+                // }
+
+                // Calculate the desired camera position based on its current orientation
+                const offset = new THREE.Vector3();
+                const cameraDirection = new THREE.Vector3();
+                camera.getWorldDirection(cameraDirection);
+                offset.copy(cameraDirection).multiplyScalar(-desiredDistance);
+                const desiredPosition = orb.position.clone().add(offset);
+
+                // Smoothly interpolate to the desired position
+                camera.position.lerp(desiredPosition, 0.1);
 
                 controls.update();
                 // renderer.render(scene, camera);

@@ -612,8 +612,8 @@
                 // Restrict panning during strength selection
                 controls.enabled = !isCharging;
 
-                controls.update();
-                // renderer.render(scene, camera);
+                // controls.update();
+                renderer.render(scene, camera);
                 if (!camera_last_position || !camera.position.equals(camera_last_position)) {
                         console.log('in panning cameraMode: ', cameraMode, ', camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
                         camera_last_position = camera.position.clone();

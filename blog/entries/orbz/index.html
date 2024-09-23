@@ -676,12 +676,14 @@
                 
                 // Smoothly interpolate camera position back to desired position
                 camera.position.lerp(desiredCameraPosition, 0.1);
-                controls.target.copy(orb.position);
-                controls.update();
+                // controls.target.copy(orb.position);
+                // controls.update();
 
                 const cameraDistanceToDestination = camera.position.distanceTo(desiredCameraPosition);
                 console.log('camera position to destination distance: ', cameraDistanceToDestination);
 
+                controls.target.copy(orb.position);
+                controls.update();
 
                 if (cameraDistanceToDestination < 0.001) {
                     // Transition to PANNING mode

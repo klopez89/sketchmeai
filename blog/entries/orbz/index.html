@@ -694,9 +694,9 @@
                     camera.getWorldDirection(cameraDirection);
 
                     // Set controls.target along the camera's viewing direction
-                    const targetDistance = 0.001; // Adjust as needed
-                    const controlsTarget = orb.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    controls.target.copy(controlsTarget);
+                    // const targetDistance = 0; // Adjust as needed
+                    // const controlsTarget = orb.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+                    controls.target.copy(orb.position);
                     // camera.position.set(
                     //     orb.position.x,
                     //     orb.position.y, // Position above the orb by 5 units
@@ -717,7 +717,7 @@
                         camera_last_position = camera.position.clone();
                     }
                 } else {
-                    controls.update();
+                    // controls.update();
                     renderer.render(scene, camera);
                 }
             }

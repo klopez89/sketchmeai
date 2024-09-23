@@ -674,6 +674,8 @@
 
                 if (cameraDistanceToDestination < 0.001) {
                     // Transition to PANNING mode
+                    // Stop lerping and move camera directly to orb position
+                    camera.position.copy(orb.position);
                     cameraMode = CAMERA_MODE.PANNING;
 
                     // Reset flags

@@ -686,7 +686,7 @@
                     camera.getWorldDirection(cameraDirection);
 
                     // Set controls.target along the camera's viewing direction
-                    const targetDistance = 1; // Adjust as needed
+                    const targetDistance = 5; // Adjust as needed
                     const controlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
                     controls.target.copy(controlsTarget);
 

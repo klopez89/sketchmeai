@@ -653,7 +653,7 @@
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
                 // orb.visible = true;
 
-                controls.enabled = false;
+                controls.enabled = true;
 
                 // Calculate desired camera position
                 const radius = 0;
@@ -695,7 +695,11 @@
                     // const targetDistance = 0; // Adjust as needed
                     // const controlsTarget = orb.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
                     controls.target.copy(orb.position);
-                    camera.target.copy(orb.position);
+                    camera.position.set(
+                        orb.position.x,
+                        orb.position.y, // Position above the orb by 5 units
+                        orb.position.z
+                    );
 
                     // controls.object.position.copy(camera.position);
                     // Set the orb's position to match the camera's position
@@ -708,9 +712,10 @@
                         console.log('just changed from returning to panning, and now camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
                         camera_last_position = camera.position.clone();
                     }
+                } else {
+                    controls.update();
+                    renderer.render(scene, camera);
                 }
-
-                renderer.render(scene, camera);
             }
 
             

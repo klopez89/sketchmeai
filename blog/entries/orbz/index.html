@@ -656,7 +656,7 @@
 
                 // Adjust camera position to maintain desired distance
                 const currentDistance = camera.position.distanceTo(orb.position);
-                console.log('currentDistance:', currentDistance); 
+                console.log('currentDistance:', currentDistance, ', and difference is: ', Math.abs(currentDistance - desiredDistance)); 
                 
                 if (Math.abs(currentDistance - desiredDistance) > 0.01) {
                 

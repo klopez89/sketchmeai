@@ -660,7 +660,7 @@
                 
                 if (Math.abs(currentDistance - desiredDistance) > 0.01) {
                 
-                    if (orb.userData.velocity.length() > 0.01) {
+                    if (currentDistance > 5.01) {
                         const offset = new THREE.Vector3();
                         const cameraDirection = new THREE.Vector3();
                         camera.getWorldDirection(cameraDirection);

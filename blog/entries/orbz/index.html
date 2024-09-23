@@ -95,7 +95,7 @@
         let cameraMode = CAMERA_MODE.PANNING;
         const cameraQuaternion = new THREE.Quaternion();
 
-        let scene, camera, renderer, controls, lastPosition, lastRotation, lastZoom, orb_last_position;
+        let scene, camera, renderer, controls, lastPosition, lastRotation, lastZoom, orb_last_position, camera_last_position;
         let orb, stars = [];
         let isPanning = true;
         let isCharging = false;
@@ -702,8 +702,13 @@
             renderer.render(scene, camera);
 
             if (!orb_last_position || !orb.position.equals(orb_last_position)) {
-                console.log('orb position has changed to:', orb.position.toArray().map(v => Number(v).toFixed(2)));
+                console.log('during cameraMode: ', cameraMode, ', orb position has changed to:', orb.position.toArray().map(v => Number(v).toFixed(2)));
                 orb_last_position = orb.position.clone();
+            }
+
+            if (!camera_last_position || !camera.position.equals(camera_last_position)) {
+                console.log('during cameraMode: ', cameraMode, ', camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
+                camera_last_position = camera.position.clone();
             }
             // Log camera stats
             // logCameraChanges();

@@ -667,7 +667,14 @@
                     offset.copy(cameraDirection).multiplyScalar(-desiredDistance);
                     const desiredPosition = orbWorldPosition.clone().add(offset);
 
-                    camera.position.copy(desiredPosition);
+                    // camera.position.copy(desiredPosition);
+
+                    // Only interpolate if the orb is moving significantly
+                    if (orb.userData && orb.userData.velocity && orb.userData.velocity.length() > 0.001) {
+                        camera.position.lerp(desiredPosition, 0.1);
+                    } else {
+                        console.log('orb nearly stationary, camera not interpolating');
+                    }
                     
                 }
 

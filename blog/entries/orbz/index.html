@@ -656,6 +656,7 @@
 
                 // Adjust camera position to maintain desired distance
                 const currentDistance = camera.position.distanceTo(orb.position);
+                console.log('currentDistance:', currentDistance); 
                 if (Math.abs(currentDistance - desiredDistance) > 0.01) {
                     
                     const offset = new THREE.Vector3();

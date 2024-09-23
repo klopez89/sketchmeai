@@ -606,7 +606,7 @@
             // Camera behavior based on cameraMode
             if (cameraMode === CAMERA_MODE.PANNING) {
                 // Hide the orb during aim selection
-                orb.visible = true;
+                // orb.visible = true;
 
 
                 // User can pan around the orb
@@ -614,6 +614,11 @@
                 // controls.enabled = !isCharging;
 
                 // controls.update();
+                renderer.render(scene, camera);
+                if (!camera_last_position || !camera.position.equals(camera_last_position)) {
+                        console.log('in panning cameraMode: ', cameraMode, ', camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
+                        camera_last_position = camera.position.clone();
+                }
 
             } else if (cameraMode === CAMERA_MODE.STATIONARY) {
                 orb.visible = true;
@@ -622,6 +627,7 @@
                 controls.enabled = true;
 
                 controls.update();
+                renderer.render(scene, camera);
 
             } else if (cameraMode === CAMERA_MODE.FOLLOWING) {
                 orb.visible = true;
@@ -643,6 +649,7 @@
                 }
 
                 controls.update();
+                renderer.render(scene, camera);
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
                 // orb.visible = true;
@@ -694,22 +701,26 @@
                     // Set the orb's position to match the camera's position
                     // orb.position.copy(camera.position);
                     controls.update();
+
+                    renderer.render(scene, camera);
+
+                    if (!camera_last_position || !camera.position.equals(camera_last_position)) {
+                        console.log('just changed from returning to panning, and now camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
+                        camera_last_position = camera.position.clone();
+                    }
                 }
 
                 
             }
 
-            renderer.render(scene, camera);
+            
 
             if (!orb_last_position || !orb.position.equals(orb_last_position)) {
                 console.log('during cameraMode: ', cameraMode, ', orb position has changed to:', orb.position.toArray().map(v => Number(v).toFixed(2)));
                 orb_last_position = orb.position.clone();
             }
 
-            if (!camera_last_position || !camera.position.equals(camera_last_position)) {
-                console.log('during cameraMode: ', cameraMode, ', camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
-                camera_last_position = camera.position.clone();
-            }
+            
             // Log camera stats
             // logCameraChanges();
         }

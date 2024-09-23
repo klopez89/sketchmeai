@@ -676,15 +676,15 @@
                     // Transition to PANNING mode
                     // Stop lerping and move camera directly to orb position
                     camera.position.copy(orb.position);
-                    // Calculate a look-at point in front of the orb
-                    const lookAtPoint = new THREE.Vector3(
-                        orb.position.x,
-                        orb.position.y,
-                        orb.position.z + 1 // Look at a point 1 unit in front of the orb
-                    );
+                    // // Calculate a look-at point in front of the orb
+                    // const lookAtPoint = new THREE.Vector3(
+                    //     orb.position.x,
+                    //     orb.position.y,
+                    //     orb.position.z + 1 // Look at a point 1 unit in front of the orb
+                    // );
 
-                    // Make the camera look at this point
-                    camera.lookAt(lookAtPoint);
+                    // // Make the camera look at this point
+                    // camera.lookAt(lookAtPoint);
 
                     cameraMode = CAMERA_MODE.PANNING;
 
@@ -704,6 +704,8 @@
                     // Calculate the camera's current viewing direction
                     const cameraDirection = new THREE.Vector3();
                     camera.getWorldDirection(cameraDirection);
+                    // // Make the camera look at this point
+                    camera.lookAt(cameraDirection);
 
                     // Set controls.target along the camera's viewing direction
                     // const targetDistance = 0; // Adjust as needed

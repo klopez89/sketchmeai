@@ -676,6 +676,16 @@
                     // Transition to PANNING mode
                     // Stop lerping and move camera directly to orb position
                     camera.position.copy(orb.position);
+                    // Calculate a look-at point in front of the orb
+                    const lookAtPoint = new THREE.Vector3(
+                        orb.position.x,
+                        orb.position.y,
+                        orb.position.z + 1 // Look at a point 1 unit in front of the orb
+                    );
+
+                    // Make the camera look at this point
+                    camera.lookAt(lookAtPoint);
+
                     cameraMode = CAMERA_MODE.PANNING;
 
                     // Reset flags

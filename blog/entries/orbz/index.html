@@ -711,7 +711,14 @@
                     // Set controls.target along the camera's viewing direction
                     // const targetDistance = 0; // Adjust as needed
                     // const controlsTarget = orb.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    controls.target.copy(orb.position);
+                    // controls.target.copy(orb.position);
+
+
+
+                    const targetDistance = 0.1; // Adjust as needed
+                    const controlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+                    controls.target.copy(controlsTarget);
+
                     // camera.position.set(
                     //     orb.position.x,
                     //     orb.position.y, // Position above the orb by 5 units

@@ -670,6 +670,10 @@
 
                 controls.enabled = true;
 
+                if (!orb_position_upon_stop_detection) {
+                    orb_position_upon_stop_detection = orb.position.clone();
+                }
+
                 // Calculate desired camera position
                 const radius = 0;
                 const desiredCameraPosition = new THREE.Vector3(
@@ -678,12 +682,16 @@
                     orb.position.z
                 );
 
-                if (!orb_position_upon_stop_detection) {
-                    orb_position_upon_stop_detection = orb.position.clone();
-                }
+                const offset = new THREE.Vector3();
+                const cameraDirection = new THREE.Vector3();
+                camera.getWorldDirection(cameraDirection);
+                offset.copy(cameraDirection).multiplyScalar(1);
+                const desiredPosition = orb.position.clone().add(offset);
+
+               
                 
                 // Smoothly interpolate camera position back to desired position
-                camera.position.lerp(desiredCameraPosition, 0.1);
+                camera.position.lerp(desiredPosition, 0.1);
                 // controls.target.copy(orb.position);
                 // controls.update();
 

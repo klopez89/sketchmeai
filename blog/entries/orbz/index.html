@@ -604,11 +604,7 @@
 
         function animate() {
             requestAnimationFrame(animate);
-            // Render the scene only once in the animate function
-            if (!animate.hasRendered) {
-                renderer.render(scene, camera);
-                animate.hasRendered = true;
-            }
+            
 
             // Camera behavior based on cameraMode
             if (cameraMode === CAMERA_MODE.PANNING) {
@@ -633,7 +629,7 @@
                 controls.enabled = true;
 
                 controls.update();
-                renderer.render(scene, camera);
+                // renderer.render(scene, camera);
 
             } else if (cameraMode === CAMERA_MODE.FOLLOWING) {
                 orb.visible = true;
@@ -655,7 +651,7 @@
                 }
 
                 controls.update();
-                renderer.render(scene, camera);
+                // renderer.render(scene, camera);
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
                 // orb.visible = true;
@@ -737,7 +733,7 @@
                     }
                 } else {
                     // controls.update();
-                    renderer.render(scene, camera);
+                    // renderer.render(scene, camera);
                 }
             }
 
@@ -748,6 +744,11 @@
                 orb_last_position = orb.position.clone();
             }
 
+            // Render the scene only once in the animate function
+            if (!animate.hasRendered) {
+                renderer.render(scene, camera);
+                animate.hasRendered = true;
+            }
             
             // Log camera stats
             // logCameraChanges();

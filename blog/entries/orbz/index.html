@@ -746,6 +746,7 @@
 
             // Render the scene only once in the animate function
             if (!animate.hasRendered) {
+                console.log('rendering scene');
                 renderer.render(scene, camera);
                 animate.hasRendered = true;
             }

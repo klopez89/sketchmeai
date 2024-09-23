@@ -403,7 +403,7 @@
                 }
 
                 console.log('orb velocity:', orb.userData.velocity.length());
-                if (orb.userData.velocity.length() < 0.001) {
+                if (orb.userData.velocity.length() < 0.01) {
                     console.log('orb has stopped moving');
 
                     // Change orb color to orange
@@ -660,7 +660,7 @@
                 
                 if (Math.abs(currentDistance - desiredDistance) > 0.01) {
                 
-                    if (currentDistance > 5.015) {
+                    if (orb.userData.velocity.length() > 0.01) {
                         const offset = new THREE.Vector3();
                         const cameraDirection = new THREE.Vector3();
                         camera.getWorldDirection(cameraDirection);

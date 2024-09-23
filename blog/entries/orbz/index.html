@@ -647,20 +647,22 @@
                 const desiredDistance = 5; // Adjust as needed
                 // controls.minDistance = controls.maxDistance = desiredDistance;
 
+                // Get the orb's world position
+                const orbWorldPosition = new THREE.Vector3();
+                orb.getWorldPosition(orbWorldPosition);
+
                 // Update controls to focus on the orb
-                controls.target.copy(orb.position);
+                controls.target.copy(orbWorldPosition);
 
                 // Adjust camera position to maintain desired distance
                 const currentDistance = camera.position.distanceTo(orb.position);
                 if (Math.abs(currentDistance - desiredDistance) > 0.01) {
-                    const direction = camera.position.clone().sub(orb.position).normalize();
-
-
+                    
                     const offset = new THREE.Vector3();
                     const cameraDirection = new THREE.Vector3();
                     camera.getWorldDirection(cameraDirection);
                     offset.copy(cameraDirection).multiplyScalar(-desiredDistance);
-                    const desiredPosition = orb.position.clone().add(offset);
+                    const desiredPosition = orbWorldPosition.clone().add(offset);
 
                     camera.position.copy(desiredPosition);
                 }
@@ -685,43 +687,19 @@
                     orb.position.z
                 );
 
-                // const offset = new THREE.Vector3();
-                // const cameraDirection = new THREE.Vector3();
-                // camera.getWorldDirection(cameraDirection);
-                // offset.copy(cameraDirection).multiplyScalar(1);
-                // const desiredPosition = orb.position.clone().add(offset);
-
-               
-                
                 // Smoothly interpolate camera position back to desired position
                 camera.position.lerp(desiredCameraPosition, 0.1);
                 // controls.target.copy(orb.position);
                 // controls.update();
 
                 const cameraDistanceToDestination = camera.position.distanceTo(desiredCameraPosition);
-                console.log('camera position to destination distance: ', cameraDistanceToDestination);
 
                 controls.target.copy(orb.position);
                 controls.update();
 
                 if (cameraDistanceToDestination < 0.91) {
                     // Transition to PANNING mode
-                    // Stop lerping and move camera directly to orb position
-                    // camera.position.copy(orb.position);
-                    // // Calculate a look-at point in front of the orb
-                    // const lookAtPoint = new THREE.Vector3(
-                    //     orb.position.x,
-                    //     orb.position.y,
-                    //     orb.position.z + 1 // Look at a point 1 unit in front of the orb
-                    // );
-
-                    // // Make the camera look at this point
-                    // camera.lookAt(lookAtPoint);
-
                     // Print the current orb position and the orb_position_upon_stop_detection
-                    console.log('Current orb position:', orb.position, 'Orb position upon stop detection:', orb_position_upon_stop_detection);
-
-                    
                     cameraMode = CAMERA_MODE.PANNING;
 
                     // Reset flags
@@ -730,52 +708,12 @@
 
                     // Show cursor icon
                     cursorIcon.style.display = 'block';
-                    // controls.update();
-
-                    // Re-enable controls and synchronize and
-                    // Update the OrbitControls' internal state
-                    console.log('desiredCameraPosition when going to panning from resturning:', desiredCameraPosition);
-                    // controls.enabled = true;
-                    
-                    // Calculate the camera's current viewing direction
-                    const cameraDirection = new THREE.Vector3();
-                    camera.getWorldDirection(cameraDirection);
-                    // // Make the camera look at this point
-                    // camera.lookAt(cameraDirection);
-
-                    // Set controls.target along the camera's viewing direction
-                    // const targetDistance = 0.0001; // Adjust as needed
-                    // const controlsTarget = orb.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    // controls.target.copy(orb.position);
-
-
-
-                    // const targetDistance = 0; // Adjust as needed
-                    // const controlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    // controls.target.copy(controlsTarget);
-
-                    // camera.position.set(
-                    //     orb.position.x,
-                    //     orb.position.y, // Position above the orb by 5 units
-                    //     orb.position.z
-                    // );
-
                     orb.visible = false;
-
-                    // controls.object.position.copy(camera.position);
-                    // Set the orb's position to match the camera's position
-                    // orb.position.copy(camera.position);
-                    // controls.update();
-
-                    // renderer.render(scene, camera);
 
                     if (!camera_last_position || !camera.position.equals(camera_last_position)) {
                         console.log('just changed from returning to panning, and now camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
                         camera_last_position = camera.position.clone();
                     }
-                } else {
-                    // controls.update();
-                    // renderer.render(scene, camera);
                 }
             }
 

@@ -96,6 +96,7 @@
         const cameraQuaternion = new THREE.Quaternion();
 
         let scene, camera, renderer, controls, lastPosition, lastRotation, lastZoom, orb_last_position, camera_last_position;
+        let orb_position_upon_stop_detection;
         let orb, stars = [];
         let isPanning = true;
         let isCharging = false;
@@ -403,6 +404,7 @@
 
                 console.log('orb velocity:', orb.userData.velocity.length());
                 if (orb.userData.velocity.length() < 0.01) {
+                    console.log('orb has stopped moving');
                     // Update orb's final position
                     // orb.position.add(orb.userData.velocity);
                     orb.userData.velocity = null;
@@ -665,6 +667,10 @@
                     orb.position.y,
                     orb.position.z
                 );
+
+                if (!orb_position_upon_stop_detection) {
+                    orb_position_upon_stop_detection = orb.position.clone();
+                }
                 
                 // Smoothly interpolate camera position back to desired position
                 camera.position.lerp(desiredCameraPosition, 0.1);
@@ -687,6 +693,10 @@
                     // // Make the camera look at this point
                     // camera.lookAt(lookAtPoint);
 
+                    // Print the current orb position and the orb_position_upon_stop_detection
+                    console.log('Current orb position:', orb.position, 'Orb position upon stop detection:', orb_position_upon_stop_detection);
+
+                    
                     cameraMode = CAMERA_MODE.PANNING;
 
                     // Reset flags
@@ -711,13 +721,13 @@
                     // Set controls.target along the camera's viewing direction
                     // const targetDistance = 0; // Adjust as needed
                     // const controlsTarget = orb.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    // controls.target.copy(orb.position);
+                    controls.target.copy(orb.position);
 
 
 
-                    const targetDistance = 0; // Adjust as needed
-                    const controlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
-                    controls.target.copy(controlsTarget);
+                    // const targetDistance = 0; // Adjust as needed
+                    // const controlsTarget = camera.position.clone().add(cameraDirection.multiplyScalar(targetDistance));
+                    // controls.target.copy(controlsTarget);
 
                     // camera.position.set(
                     //     orb.position.x,

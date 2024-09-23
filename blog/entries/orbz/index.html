@@ -610,6 +610,8 @@
 
             // Camera behavior based on cameraMode
             if (cameraMode === CAMERA_MODE.PANNING) {
+
+                console.log('in panning cameraMode: ', cameraMode);
                 // Hide the orb during aim selection
                 orb.visible = false;
 
@@ -712,7 +714,7 @@
                     // Re-enable controls and synchronize and
                     // Update the OrbitControls' internal state
                     console.log('desiredCameraPosition when going to panning from resturning:', desiredCameraPosition);
-                    controls.enabled = true;
+                    // controls.enabled = true;
                     
                     // Calculate the camera's current viewing direction
                     const cameraDirection = new THREE.Vector3();

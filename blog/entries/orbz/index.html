@@ -675,6 +675,7 @@
                 // Smoothly interpolate camera position back to desired position
                 camera.position.lerp(desiredCameraPosition, 0.1);
                 controls.target.copy(orb.position);
+                controls.update();
 
                 const cameraDistanceToDestination = camera.position.distanceTo(desiredCameraPosition);
                 // console.log('camera position to destination distance: ', cameraDistanceToDestination);

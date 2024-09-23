@@ -604,6 +604,11 @@
 
         function animate() {
             requestAnimationFrame(animate);
+            // Render the scene only once in the animate function
+            if (!animate.hasRendered) {
+                renderer.render(scene, camera);
+                animate.hasRendered = true;
+            }
 
             // Camera behavior based on cameraMode
             if (cameraMode === CAMERA_MODE.PANNING) {

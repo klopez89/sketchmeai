@@ -659,16 +659,14 @@
                 console.log('currentDistance:', currentDistance, ', and difference is: ', Math.abs(currentDistance - desiredDistance)); 
                 
                 if (Math.abs(currentDistance - desiredDistance) > 0.01) {
-                
-                    if (orb.userData.velocity.length() > 0.015) {
-                        const offset = new THREE.Vector3();
-                        const cameraDirection = new THREE.Vector3();
-                        camera.getWorldDirection(cameraDirection);
-                        offset.copy(cameraDirection).multiplyScalar(-desiredDistance);
-                        const desiredPosition = orbWorldPosition.clone().add(offset);
+                    const offset = new THREE.Vector3();
+                    const cameraDirection = new THREE.Vector3();
+                    camera.getWorldDirection(cameraDirection);
+                    offset.copy(cameraDirection).multiplyScalar(-desiredDistance);
+                    const desiredPosition = orbWorldPosition.clone().add(offset);
 
-                        camera.position.copy(desiredPosition);
-                    }
+                    camera.position.copy(desiredPosition);
+                    
                 }
 
                 controls.update();

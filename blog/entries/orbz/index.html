@@ -656,15 +656,30 @@
                 // Update controls to focus on the orb
                 controls.target.copy(orbWorldPosition);
 
-                // Calculate current distance
-                const currentDistance = camera.position.distanceTo(orbWorldPosition);
 
-                // Only adjust the distance, not the direction
-                if (Math.abs(currentDistance - desiredDistance) > 0.01) {
-                    const cameraToOrb = orbWorldPosition.clone().sub(camera.position).normalize();
-                    const newPosition = orbWorldPosition.clone().sub(cameraToOrb.multiplyScalar(desiredDistance));
-                    camera.position.copy(newPosition);
-                }
+                // Calculate the current offset from the orb
+                const offset = camera.position.clone().sub(orbWorldPosition);
+
+                // Normalize the offset and scale it to the desired distance
+                offset.normalize().multiplyScalar(desiredDistance);
+
+                // Calculate the new camera position
+                const newCameraPosition = orbWorldPosition.clone().add(offset);
+                camera.position.copy(newCameraPosition);
+
+
+                // // Calculate current distance
+                // const currentDistance = camera.position.distanceTo(orbWorldPosition);
+
+
+
+
+                // // Only adjust the distance, not the direction
+                // if (Math.abs(currentDistance - desiredDistance) > 0.01) {
+                //     const cameraToOrb = orbWorldPosition.clone().sub(camera.position).normalize();
+                //     const newPosition = orbWorldPosition.clone().sub(cameraToOrb.multiplyScalar(desiredDistance));
+                //     camera.position.copy(newPosition);
+                // }
 
                 // // Get the orb's world position
                 // const orbWorldPosition = new THREE.Vector3();
@@ -688,7 +703,7 @@
 
                 // }
 
-                // controls.update();
+                controls.update();
                 // renderer.render(scene, camera);
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {

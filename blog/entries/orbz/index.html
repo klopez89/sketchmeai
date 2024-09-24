@@ -111,10 +111,11 @@
         let clickCount = 0;
         let clickTimeout;
         let orbTrackingDistance = 8;
+        
 
         const GRAVITY = 1.8; // m/s^2, adjust as needed
         const FLOOR_Y = 1; // Assuming the floor is at y=1
-
+        const SHOOTING_SPEED = 2.5;
 
         const scoreboard = document.getElementById('scoreboard');
         const timerDisplay = document.getElementById('timer');
@@ -366,7 +367,7 @@
             clickCount = 0;
 
             orb.userData = orb.userData || {};
-            orb.userData.velocity = chargeDirection.clone().multiplyScalar(strength * 4);
+            orb.userData.velocity = chargeDirection.clone().multiplyScalar(strength * SHOOTING_SPEED);
             consecutiveHits = 0;
             orb.visible = true; // Show orb when moving
 

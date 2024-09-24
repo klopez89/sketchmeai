@@ -384,39 +384,45 @@
                 // Apply gravity
                 orb.userData.velocity.y -= GRAVITY * 0.016; // 0.016 is roughly 1/60, assuming 60 FPS
 
-                orb.position.add(orb.userData.velocity);
+                // Update position based on velocity
+                orb.position.x += orb.userData.velocity.x * 0.016;
+                orb.position.y += orb.userData.velocity.y * 0.016;
+                orb.position.z += orb.userData.velocity.z * 0.016;
                 
-                // Apply friction (horizontal only)
-                orb.userData.velocity.x *= 0.99;
-                orb.userData.velocity.z *= 0.99;
+                // Apply air resistance (affects all directions)
+                const airResistance = 0.99;
+                orb.userData.velocity.multiplyScalar(airResistance);
 
                 // Check for floor collision
                 if (orb.position.y - 1 < FLOOR_Y) { // 1 is the orb's radius
                     orb.position.y = FLOOR_Y + 1;
                     // Bounce with some energy loss
-                    orb.userData.velocity.y *= -0.8;
+                    orb.userData.velocity.y *= -0.7;
+                    // Apply some friction to horizontal velocity on bounce
+                    orb.userData.velocity.x *= 0.9;
+                    orb.userData.velocity.z *= 0.9;
                 }
 
-                // Check for wall collisions (keep your existing code)
+                // Check for wall collisions
                 if (orb.position.x - 1 < -50) {
                     orb.position.x = -50 + 1;
-                    orb.userData.velocity.x *= -1;
+                    orb.userData.velocity.x *= -0.9;
                 } else if (orb.position.x + 1 > 50) {
                     orb.position.x = 50 - 1;
-                    orb.userData.velocity.x *= -1;
+                    orb.userData.velocity.x *= -0.9;
                 }
                 if (orb.position.z - 1 < -50) {
                     orb.position.z = -50 + 1;
-                    orb.userData.velocity.z *= -1;
+                    orb.userData.velocity.z *= -0.9;
                 } else if (orb.position.z + 1 > 50) {
                     orb.position.z = 50 - 1;
-                    orb.userData.velocity.z *= -1;
+                    orb.userData.velocity.z *= -0.9;
                 }
 
                 // Check if orb has stopped moving
-                const someYVelocity = Math.abs(orb.userData.velocity.y);
-                console.log('orb velocity length: ', orb.userData.velocity.length(),`, someYVelocity: ${someYVelocity}`);
-                if (orb.userData.velocity.length() < 0.07 && Math.abs(orb.position.y - (FLOOR_Y + 1)) < 0.01) {
+                const velocityMagnitude = orb.userData.velocity.length();
+                console.log('orb velocity magnitude: ', velocityMagnitude);
+                if (velocityMagnitude < 0.05 && Math.abs(orb.position.y - (FLOOR_Y + 1)) < 0.01) {
                     console.log('orb has stopped moving');
                     orb.userData.velocity = null;
 

@@ -386,7 +386,8 @@
 
                 // Update position based on velocity
                 console.log('orb velocity: ', orb.userData.velocity);
-                orb.position.add(orb.userData.velocity.clone().multiplyScalar(0.016));
+                // orb.position.add(orb.userData.velocity.clone().multiplyScalar(0.016));
+                orb.position.add(orb.userData.velocity);
 
                 // Apply friction to the X and Z axes only (no friction on Y axis to simulate realistic vertical motion)
                 orb.userData.velocity.x *= 0.99; // Horizontal friction

@@ -633,12 +633,8 @@
 
             } else if (cameraMode === CAMERA_MODE.STATIONARY) {
                 orb.visible = true;
-
-                // Camera remains in place while the orb moves
                 controls.enabled = true;
-
                 controls.update();
-                // renderer.render(scene, camera);
 
             } else if (cameraMode === CAMERA_MODE.FOLLOWING) {
                 orb.visible = true;
@@ -646,10 +642,8 @@
                 // Camera follows the orb
                 controls.enabled = true;
 
-                const desiredDistance = 5; // Adjust as needed
-                // controls.minDistance = controls.maxDistance = desiredDistance;
-
-
+                const desiredDistance = 8; // Adjust as needed
+               
                 const orbWorldPosition = new THREE.Vector3();
                 orb.getWorldPosition(orbWorldPosition);
 
@@ -666,44 +660,7 @@
                 // Update the controls target to the orb's position
                 controls.target.copy(orbWorldPosition);
 
-
-                // // Calculate current distance
-                // const currentDistance = camera.position.distanceTo(orbWorldPosition);
-
-
-
-
-                // // Only adjust the distance, not the direction
-                // if (Math.abs(currentDistance - desiredDistance) > 0.01) {
-                //     const cameraToOrb = orbWorldPosition.clone().sub(camera.position).normalize();
-                //     const newPosition = orbWorldPosition.clone().sub(cameraToOrb.multiplyScalar(desiredDistance));
-                //     camera.position.copy(newPosition);
-                // }
-
-                // // Get the orb's world position
-                // const orbWorldPosition = new THREE.Vector3();
-                // orb.getWorldPosition(orbWorldPosition);
-
-                // // Update controls to focus on the orb
-                // controls.target.copy(orbWorldPosition);
-
-                // // Adjust camera position to maintain desired distance
-                // const currentDistance = camera.position.distanceTo(orbWorldPosition);
-                // console.log('currentDistance:', currentDistance, ', and difference is: ', Math.abs(currentDistance - desiredDistance)); 
-                
-                // if (Math.abs(currentDistance - desiredDistance) > 0.01) {
-                //     const offset = new THREE.Vector3();
-                //     const cameraDirection = new THREE.Vector3();
-                //     camera.getWorldDirection(cameraDirection);
-                //     offset.copy(cameraDirection).multiplyScalar(-desiredDistance);
-                //     const desiredPosition = orbWorldPosition.clone().add(offset);
-
-                //     camera.position.copy(desiredPosition);
-
-                // }
-
                 controls.update();
-                // renderer.render(scene, camera);
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
                 // orb.visible = true;
@@ -724,9 +681,7 @@
 
                 // Smoothly interpolate camera position back to desired position
                 camera.position.lerp(desiredCameraPosition, 0.1);
-                // controls.target.copy(orb.position);
-                // controls.update();
-
+               
                 const cameraDistanceToDestination = camera.position.distanceTo(desiredCameraPosition);
 
                 controls.target.copy(orb.position);
@@ -734,7 +689,6 @@
 
                 if (cameraDistanceToDestination < 0.91) {
                     // Transition to PANNING mode
-                    // Print the current orb position and the orb_position_upon_stop_detection
                     cameraMode = CAMERA_MODE.PANNING;
 
                     // Reset flags
@@ -759,13 +713,7 @@
                 orb_last_position = orb.position.clone();
             }
 
-            // Render the scene only once in the animate function
-
             renderer.render(scene, camera);
-   
-            
-            // Log camera stats
-            // logCameraChanges();
         }
 
 

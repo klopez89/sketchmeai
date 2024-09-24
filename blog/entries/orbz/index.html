@@ -393,7 +393,7 @@
 
                 // Check for floor collision
                 console.log('orb position y: ', orb.position.y);
-                if (orb.position.y - 0.5 <= FLOOR_Y) { // 1 is the orb's radius
+                if (orb.position.y - 1 <= FLOOR_Y) { // 1 is the orb's radius
                     orb.position.y = FLOOR_Y + 1;
                     // Bounce with some energy loss
                     orb.userData.velocity.y *= -0.7; // Reverse the Y velocity and reduce it for energy loss
@@ -530,7 +530,7 @@
             const maxX = stageBounds.max.x - padding; // 50 - 5 = 45
             const minZ = stageBounds.min.z + padding; // -50 + 5 = -45
             const maxZ = stageBounds.max.z - padding; // 50 - 5 = 45
-            const yPosition = 1; // On the floor
+            const yPosition = 5; // On the floor
 
             // Define the four corners
             const corners = [

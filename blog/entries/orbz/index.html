@@ -385,6 +385,7 @@
                 orb.userData.velocity.y -= GRAVITY * 0.016; // Simulate gravity over time (0.016 ~ 1/60, for 60 FPS)
 
                 // Update position based on velocity
+                console.log('orb velocity: ', orb.userData.velocity);
                 orb.position.add(orb.userData.velocity.clone().multiplyScalar(0.016));
 
                 // Apply friction to the X and Z axes only (no friction on Y axis to simulate realistic vertical motion)

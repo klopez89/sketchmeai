@@ -423,6 +423,8 @@
 
                 // Check if orb has stopped moving
                 const velocityMagnitude = orb.userData.velocity.length();
+                const verticalPositionCalc = Math.abs(orb.position.y - (FLOOR_Y + 1));
+                console.log(`Velocity magnitude: ${velocityMagnitude}, Vertical position calculation: ${verticalPositionCalc}`);
                 if (velocityMagnitude < 0.01 && Math.abs(orb.position.y - (FLOOR_Y + 1)) < 0.01) {
                     console.log('Orb has stopped moving');
                     orb.userData.velocity = null; // Stop the orb

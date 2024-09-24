@@ -219,7 +219,7 @@
 
             // Ceiling
             const ceilingGeometry = new THREE.PlaneGeometry(stageSize.x, stageSize.z);
-            ceilingGeometry.rotateX(Math.PI);
+            ceilingGeometry.rotateX(Math.PI / 2);
             const ceilingMaterial = new THREE.MeshStandardMaterial({
                 color: 0xff00ff,
                 side: THREE.BackSide,

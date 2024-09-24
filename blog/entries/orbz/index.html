@@ -110,6 +110,7 @@
         let isGameOver = false;
         let clickCount = 0;
         let clickTimeout;
+        let orbTrackingDistance = 8;
 
 
         const scoreboard = document.getElementById('scoreboard');
@@ -430,7 +431,7 @@
                 // Switch to FOLLOWING mode if orb is beyond threshold
                 if (cameraMode === CAMERA_MODE.STATIONARY) {
                     const distance = camera.position.distanceTo(orb.position);
-                    if (distance > 8) {
+                    if (distance > orbTrackingDistance) {
                         cameraMode = CAMERA_MODE.FOLLOWING;
                     }
                 }
@@ -641,8 +642,6 @@
 
                 // Camera follows the orb
                 controls.enabled = true;
-
-                const desiredDistance = 8; // Adjust as needed
                
                 const orbWorldPosition = new THREE.Vector3();
                 orb.getWorldPosition(orbWorldPosition);
@@ -652,7 +651,7 @@
                 camera.getWorldDirection(cameraDirection);
 
                 // Calculate the new camera position
-                const newCameraPosition = orbWorldPosition.clone().sub(cameraDirection.multiplyScalar(desiredDistance));
+                const newCameraPosition = orbWorldPosition.clone().sub(cameraDirection.multiplyScalar(orbTrackingDistance));
 
                 // Smoothly move the camera towards the new position
                 camera.position.copy(newCameraPosition);

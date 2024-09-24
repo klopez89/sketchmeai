@@ -390,8 +390,8 @@
                 orb.position.add(orb.userData.velocity);
 
                 // Apply friction to the X and Z axes only (no friction on Y axis to simulate realistic vertical motion)
-                orb.userData.velocity.x *= 0.95; // Horizontal friction
-                orb.userData.velocity.z *= 0.95; // Horizontal friction
+                orb.userData.velocity.x *= 0.99; // Horizontal friction
+                orb.userData.velocity.z *= 0.99; // Horizontal friction
 
                 // Check for floor collision
                 console.log('orb position y: ', orb.position.y);

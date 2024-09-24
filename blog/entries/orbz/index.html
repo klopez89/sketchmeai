@@ -111,9 +111,6 @@
         let clickCount = 0;
         let clickTimeout;
         let orbTrackingDistance = 8;
-        let lastMouseX = 0;
-        let lastMouseY = 0;
-        let spherical = new THREE.Spherical();
 
 
         const scoreboard = document.getElementById('scoreboard');
@@ -194,7 +191,6 @@
                 window.addEventListener('resize', onWindowResize, false);
                 window.addEventListener('mousedown', onMouseDown, false);
                 window.addEventListener('touchstart', onTouchStart, false);
-                window.addEventListener('mousemove', onMouseMove, false);
                 init.eventListenersAdded = true;
             }
 
@@ -302,27 +298,6 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        function onMouseMove(event) {
-            const deltaX = event.clientX - lastMouseX;
-            const deltaY = event.clientY - lastMouseY;
-            lastMouseX = event.clientX;
-            lastMouseY = event.clientY;
-
-            if (cameraMode === CAMERA_MODE.PANNING) {
-                const rotationSpeed = 0.005; // Adjust for sensitivity
-                spherical.setFromVector3(camera.position.sub(orb.position));
-                
-                spherical.theta -= deltaX * rotationSpeed;
-                spherical.phi -= deltaY * rotationSpeed;
-                
-                // Clamp phi to avoid flipping
-                spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi));
-                
-                camera.position.setFromSpherical(spherical).add(orb.position);
-                camera.lookAt(orb.position);
-            }
         }
 
         function onMouseDown(event) {
@@ -637,33 +612,16 @@
 
         function animate() {
             requestAnimationFrame(animate);
-            
-
             // Camera behavior based on cameraMode
             if (cameraMode === CAMERA_MODE.PANNING) {
 
                 console.log('in panning cameraMode: ', cameraMode);
-                // Hide the orb during aim selection
+                
                 orb.visible = false;
 
-                // User can pan around the orb
-                // Restrict panning during strength selection
                 controls.enabled = !isCharging;
-                // const rotationSpeed = 0.2; // Adjust this value to change sensitivity
-                // const targetRotationY = mouseX * Math.PI * rotationSpeed;
-                // const targetRotationX = mouseY * Math.PI * rotationSpeed;
-
-                // // Apply rotation to camera
-                // camera.position.x = Math.sin(targetRotationY) * orbTrackingDistance;
-                // camera.position.z = Math.cos(targetRotationY) * orbTrackingDistance;
-                // camera.position.y = Math.sin(targetRotationX) * orbTrackingDistance + orb.position.y;
-
-                // Make camera look at orb
-                // camera.lookAt(orb.position);
-
-
-                controls.update();
-                // renderer.render(scene, camera);
+                
+      
                 if (!camera_last_position || !camera.position.equals(camera_last_position)) {
                         console.log('in panning cameraMode: ', cameraMode, ', camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
                         camera_last_position = camera.position.clone();
@@ -672,7 +630,6 @@
             } else if (cameraMode === CAMERA_MODE.STATIONARY) {
                 orb.visible = true;
                 controls.enabled = true;
-                controls.update();
 
             } else if (cameraMode === CAMERA_MODE.FOLLOWING) {
                 orb.visible = true;
@@ -695,8 +652,6 @@
 
                 // Update the controls target to the orb's position
                 controls.target.copy(orbWorldPosition);
-
-                controls.update();
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
                 // orb.visible = true;
@@ -721,7 +676,7 @@
                 const cameraDistanceToDestination = camera.position.distanceTo(desiredCameraPosition);
 
                 controls.target.copy(orb.position);
-                controls.update();
+                
 
                 if (cameraDistanceToDestination < 0.91) {
                     // Transition to PANNING mode
@@ -749,6 +704,7 @@
                 orb_last_position = orb.position.clone();
             }
 
+            controls.update();
             renderer.render(scene, camera);
         }
 

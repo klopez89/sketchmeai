@@ -642,10 +642,8 @@
                 camera.position.y = Math.sin(targetRotationX) * orbTrackingDistance + orb.position.y;
 
                 // Make camera look at orb
-                camera.lookAt(orb.position);
+                // camera.lookAt(orb.position);
 
-                // Update controls target
-                controls.target.copy(orb.position);
 
                 controls.update();
                 // renderer.render(scene, camera);

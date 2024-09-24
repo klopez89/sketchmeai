@@ -534,11 +534,11 @@
             // Calculate the padding and stage bounds
             const padding = 5;
 
-            const minX = stageBounds.min.x + padding; // -50 + 5 = -45
-            const maxX = stageBounds.max.x - padding; // 50 - 5 = 45
-            const minZ = stageBounds.min.z + padding; // -50 + 5 = -45
-            const maxZ = stageBounds.max.z - padding; // 50 - 5 = 45
-            const yPosition = 5; // Just above the floor
+            const minX = stageBounds.min.x + padding;
+            const maxX = stageBounds.max.x - padding;
+            const minZ = stageBounds.min.z + padding;
+            const maxZ = stageBounds.max.z - padding;
+            const yPosition = stageBounds.min.y + padding; // Just above the floor
 
             // Define the four corners
             const corners = [
@@ -562,7 +562,7 @@
             // Reset camera position and orientation
             camera.position.set(
                 orb.position.x,
-                orb.position.y + 0, // Position above the orb by 5 units
+                orb.position.y,
                 orb.position.z
             );
 

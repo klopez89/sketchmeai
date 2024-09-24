@@ -398,7 +398,7 @@
                 if (orb.position.y - 1 <= FLOOR_Y) { // 1 is the orb's radius
                     orb.position.y = FLOOR_Y + 1;
                     // Bounce with some energy loss
-                    orb.userData.velocity.y *= -0.7; // Reverse the Y velocity and reduce it for energy loss
+                    orb.userData.velocity.y *= -0.5; // Reverse the Y velocity and reduce it for energy loss
                     // Apply friction to horizontal velocity upon bouncing
                     // orb.userData.velocity.x *= 0.9;
                     // orb.userData.velocity.z *= 0.9;

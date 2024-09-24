@@ -399,29 +399,29 @@
                 }
 
                 // Check for ceiling collision
-                if (orb.position.y + 1 >= 50) { // 50 is the ceiling height, 1 is the orb's radius
-                    orb.position.y = 50 - 1;
+                if (orb.position.y + 1 >= stageBounds.max.y) {
+                    orb.position.y = stageBounds.max.y - 1;
                     // Bounce off the ceiling with some energy loss
-                    orb.userData.velocity.y *= -0.5; // Reverse the Y velocity and reduce it for energy loss
+                    orb.userData.velocity.y *= -0.5;
                     // Apply slight friction to horizontal velocity upon ceiling collision
                     orb.userData.velocity.x *= 0.99;
                     orb.userData.velocity.z *= 0.99;
                 }
 
                 // Check for wall collisions (X and Z axes)
-                if (orb.position.x - 1 < -50) {
-                    orb.position.x = -50 + 1;
+                if (orb.position.x - 1 < stageBounds.min.x) {
+                    orb.position.x = stageBounds.min.x + 1;
                     orb.userData.velocity.x *= -1; // Reverse the X velocity when hitting the left wall
-                } else if (orb.position.x + 1 > 50) {
-                    orb.position.x = 50 - 1;
+                } else if (orb.position.x + 1 > stageBounds.max.x) {
+                    orb.position.x = stageBounds.max.x - 1;
                     orb.userData.velocity.x *= -1; // Reverse the X velocity when hitting the right wall
                 }
 
-                if (orb.position.z - 1 < -50) {
-                    orb.position.z = -50 + 1;
+                if (orb.position.z - 1 < stageBounds.min.z) {
+                    orb.position.z = stageBounds.min.z + 1;
                     orb.userData.velocity.z *= -1; // Reverse the Z velocity when hitting the back wall
-                } else if (orb.position.z + 1 > 50) {
-                    orb.position.z = 50 - 1;
+                } else if (orb.position.z + 1 > stageBounds.max.z) {
+                    orb.position.z = stageBounds.max.z - 1;
                     orb.userData.velocity.z *= -1; // Reverse the Z velocity when hitting the front wall
                 }
 

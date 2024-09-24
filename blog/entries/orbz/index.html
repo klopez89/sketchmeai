@@ -112,6 +112,9 @@
         let clickTimeout;
         let orbTrackingDistance = 8;
 
+        const GRAVITY = 9.8; // m/s^2, adjust as needed
+        const FLOOR_Y = 1; // Assuming the floor is at y=1
+
 
         const scoreboard = document.getElementById('scoreboard');
         const timerDisplay = document.getElementById('timer');
@@ -374,26 +377,33 @@
             controls.enabled = true;
         }
 
+
         function gameLogic() {
             // Update Orb Position
             if (orb.userData && orb.userData.velocity) {
-                orb.position.add(orb.userData.velocity);
-                orb.userData.velocity.multiplyScalar(0.99); // Friction
+                // Apply gravity
+                orb.userData.velocity.y -= GRAVITY * 0.016; // 0.016 is roughly 1/60, assuming 60 FPS
 
-                // Check for wall collisions
+                orb.position.add(orb.userData.velocity);
+                
+                // Apply friction (horizontal only)
+                orb.userData.velocity.x *= 0.99;
+                orb.userData.velocity.z *= 0.99;
+
+                // Check for floor collision
+                if (orb.position.y - 1 < FLOOR_Y) { // 1 is the orb's radius
+                    orb.position.y = FLOOR_Y + 1;
+                    // Bounce with some energy loss
+                    orb.userData.velocity.y *= -0.8;
+                }
+
+                // Check for wall collisions (keep your existing code)
                 if (orb.position.x - 1 < -50) {
                     orb.position.x = -50 + 1;
                     orb.userData.velocity.x *= -1;
                 } else if (orb.position.x + 1 > 50) {
                     orb.position.x = 50 - 1;
                     orb.userData.velocity.x *= -1;
-                }
-                if (orb.position.y - 1 < 0) {
-                    orb.position.y = 0 + 1;
-                    orb.userData.velocity.y *= -1;
-                } else if (orb.position.y + 1 > 50) {
-                    orb.position.y = 50 - 1;
-                    orb.userData.velocity.y *= -1;
                 }
                 if (orb.position.z - 1 < -50) {
                     orb.position.z = -50 + 1;
@@ -403,11 +413,9 @@
                     orb.userData.velocity.z *= -1;
                 }
 
-                console.log('orb velocity:', orb.userData.velocity.length());
-                if (orb.userData.velocity.length() < 0.01) {
+                // Check if orb has stopped moving
+                if (orb.userData.velocity.length() < 0.01 && Math.abs(orb.position.y - (FLOOR_Y + 1)) < 0.01) {
                     console.log('orb has stopped moving');
-
-                    // Change orb color to orange
                     orb.userData.velocity = null;
 
                     // Get the orb's world position
@@ -416,7 +424,6 @@
 
                     controls.target.copy(worldPosition);
                     controls.update();
-
 
                     // Start returning camera to position above the orb
                     cameraMode = CAMERA_MODE.RETURNING;

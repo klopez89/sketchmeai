@@ -111,6 +111,8 @@
         let clickCount = 0;
         let clickTimeout;
         let orbTrackingDistance = 8;
+        let mouseX = 0;
+        let mouseY = 0;
 
 
         const scoreboard = document.getElementById('scoreboard');
@@ -191,6 +193,7 @@
                 window.addEventListener('resize', onWindowResize, false);
                 window.addEventListener('mousedown', onMouseDown, false);
                 window.addEventListener('touchstart', onTouchStart, false);
+                window.addEventListener('mousemove', onMouseMove, false);
                 init.eventListenersAdded = true;
             }
 
@@ -298,6 +301,11 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onMouseMove(event) {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
         }
 
         function onMouseDown(event) {
@@ -624,6 +632,20 @@
                 // User can pan around the orb
                 // Restrict panning during strength selection
                 controls.enabled = !isCharging;
+                const rotationSpeed = 0.05; // Adjust this value to change sensitivity
+                const targetRotationY = mouseX * Math.PI * rotationSpeed;
+                const targetRotationX = mouseY * Math.PI * rotationSpeed;
+
+                // Apply rotation to camera
+                camera.position.x = Math.sin(targetRotationY) * orbTrackingDistance;
+                camera.position.z = Math.cos(targetRotationY) * orbTrackingDistance;
+                camera.position.y = Math.sin(targetRotationX) * orbTrackingDistance + orb.position.y;
+
+                // Make camera look at orb
+                camera.lookAt(orb.position);
+
+                // Update controls target
+                controls.target.copy(orb.position);
 
                 controls.update();
                 // renderer.render(scene, camera);

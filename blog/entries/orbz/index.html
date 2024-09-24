@@ -111,8 +111,9 @@
         let clickCount = 0;
         let clickTimeout;
         let orbTrackingDistance = 8;
-        let mouseX = 0;
-        let mouseY = 0;
+        let lastMouseX = 0;
+        let lastMouseY = 0;
+        let spherical = new THREE.Spherical();
 
 
         const scoreboard = document.getElementById('scoreboard');
@@ -304,8 +305,24 @@
         }
 
         function onMouseMove(event) {
-            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            const deltaX = event.clientX - lastMouseX;
+            const deltaY = event.clientY - lastMouseY;
+            lastMouseX = event.clientX;
+            lastMouseY = event.clientY;
+
+            if (cameraMode === CAMERA_MODE.PANNING) {
+                const rotationSpeed = 0.005; // Adjust for sensitivity
+                spherical.setFromVector3(camera.position.sub(orb.position));
+                
+                spherical.theta -= deltaX * rotationSpeed;
+                spherical.phi -= deltaY * rotationSpeed;
+                
+                // Clamp phi to avoid flipping
+                spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi));
+                
+                camera.position.setFromSpherical(spherical).add(orb.position);
+                camera.lookAt(orb.position);
+            }
         }
 
         function onMouseDown(event) {
@@ -632,14 +649,14 @@
                 // User can pan around the orb
                 // Restrict panning during strength selection
                 controls.enabled = !isCharging;
-                const rotationSpeed = 0.2; // Adjust this value to change sensitivity
-                const targetRotationY = mouseX * Math.PI * rotationSpeed;
-                const targetRotationX = mouseY * Math.PI * rotationSpeed;
+                // const rotationSpeed = 0.2; // Adjust this value to change sensitivity
+                // const targetRotationY = mouseX * Math.PI * rotationSpeed;
+                // const targetRotationX = mouseY * Math.PI * rotationSpeed;
 
-                // Apply rotation to camera
-                camera.position.x = Math.sin(targetRotationY) * orbTrackingDistance;
-                camera.position.z = Math.cos(targetRotationY) * orbTrackingDistance;
-                camera.position.y = Math.sin(targetRotationX) * orbTrackingDistance + orb.position.y;
+                // // Apply rotation to camera
+                // camera.position.x = Math.sin(targetRotationY) * orbTrackingDistance;
+                // camera.position.z = Math.cos(targetRotationY) * orbTrackingDistance;
+                // camera.position.y = Math.sin(targetRotationX) * orbTrackingDistance + orb.position.y;
 
                 // Make camera look at orb
                 // camera.lookAt(orb.position);

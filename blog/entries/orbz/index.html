@@ -533,7 +533,7 @@
             strengthMeter.style.display = 'none';
 
             // Recreate orb
-            const geometry = new THREE.SphereGeometry(1, 32, 32);
+            const geometry = new THREE.SphereGeometry(0.5, 32, 32);
             const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
             orb = new THREE.Mesh(geometry, material);
 

@@ -414,6 +414,7 @@
                 }
 
                 // Check if orb has stopped moving
+                console.log('orb velocity length: ', orb.userData.velocity.length());
                 if (orb.userData.velocity.length() < 0.01) {
                     console.log('orb has stopped moving');
                     orb.userData.velocity = null;

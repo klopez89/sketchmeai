@@ -392,6 +392,7 @@
                 orb.userData.velocity.z *= 0.99; // Horizontal friction
 
                 // Check for floor collision
+                console.log('orb position y: ', orb.position.y);
                 if (orb.position.y - 1 <= FLOOR_Y) { // 1 is the orb's radius
                     orb.position.y = FLOOR_Y + 1;
                     // Bounce with some energy loss

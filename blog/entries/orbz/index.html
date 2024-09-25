@@ -684,6 +684,10 @@
 
                 // Calculate the new camera position
                 const newCameraPosition = orbWorldPosition.clone().sub(cameraDirection.multiplyScalar(orbTrackingDistance));
+                // Ensure the camera doesn't go below the floor
+                if (newCameraPosition.y < orbRadius) {
+                    newCameraPosition.y = orbRadius;
+                }
 
                 // Smoothly move the camera towards the new position
                 camera.position.copy(newCameraPosition);

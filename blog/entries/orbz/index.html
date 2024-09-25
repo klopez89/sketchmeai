@@ -690,7 +690,7 @@
                 }
 
                 // Smoothly move the camera towards the new position
-                camera.position.copy(newCameraPosition);
+                camera.position.lerp(newCameraPosition, 0.1);
 
                 // Update the controls target to the orb's position
                 controls.target.copy(orbWorldPosition);

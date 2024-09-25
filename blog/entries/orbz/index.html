@@ -84,6 +84,7 @@
     <script type="module">
         import * as THREE from 'three';
         import { OrbitControls } from 'https://unpkg.com/three@0.152.2/examples/jsm/controls/OrbitControls.js';
+        import { PCFSoftShadowMap } from 'three';
 
         const CAMERA_MODE = {
             PANNING: 'panning',
@@ -173,15 +174,35 @@
             }
 
             // Light
+            // Enable shadow rendering
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = PCFSoftShadowMap;
+
             // Remove existing lights
             const existingLights = scene.children.filter(child => child.isLight);
             existingLights.forEach(light => scene.remove(light));
 
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            // Add ambient light
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
             scene.add(ambientLight);
 
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
-            directionalLight.position.set(50, 50, 50);
+            // Add directional light for shadows
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
+            const stageCenter = new THREE.Vector3();
+            stageBounds.getCenter(stageCenter);
+            const stageSize = new THREE.Vector3();
+            stageBounds.getSize(stageSize);
+
+            directionalLight.position.set(stageCenter.x, stageBounds.max.y + 50, stageCenter.z); // Position light above the stage
+            directionalLight.castShadow = true;
+            directionalLight.shadow.mapSize.width = Math.pow(2, Math.ceil(Math.log2(stageSize.x)));
+            directionalLight.shadow.mapSize.height = Math.pow(2, Math.ceil(Math.log2(stageSize.z)));
+            directionalLight.shadow.camera.near = 0.5;
+            directionalLight.shadow.camera.far = stageSize.y + 100;
+            directionalLight.shadow.camera.left = -stageSize.x / 2;
+            directionalLight.shadow.camera.right = stageSize.x / 2;
+            directionalLight.shadow.camera.top = stageSize.z / 2;
+            directionalLight.shadow.camera.bottom = -stageSize.z / 2;
             scene.add(directionalLight);
 
             // Create Stage if not already created
@@ -215,6 +236,7 @@
             const floor = new THREE.Mesh(floorGeometry, floorMaterial);
             floor.rotation.x = -Math.PI / 2;
             floor.position.y = stageBounds.min.y;
+            floor.receiveShadow = true;
             scene.add(floor);
 
             // Ceiling
@@ -286,6 +308,7 @@
                     Math.random() * 48 + 1, // y between 1 and 49
                     (Math.random() - 0.5) * 90
                 );
+                star.castShadow = true;
                 scene.add(star);
                 stars.push(star);
             }
@@ -530,6 +553,7 @@
             const geometry = new THREE.SphereGeometry(0.5, 32, 32);
             const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
             orb = new THREE.Mesh(geometry, material);
+            orb.castShadow = true;
 
             // Calculate the padding and stage bounds
             const padding = 5;

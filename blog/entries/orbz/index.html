@@ -413,7 +413,7 @@
                 // Check for floor collision
                 console.log('orb position y: ', orb.position.y);
                 if (orb.position.y - 1 <= FLOOR_Y) { // 1 is the orb's radius
-                    orb.position.y = 0;
+                    orb.position.y = 0.5;
                     // Bounce with some energy loss
                     orb.userData.velocity.y *= -0.5; // Reverse the Y velocity and reduce it for energy loss
                     // Apply friction to horizontal velocity upon bouncing
@@ -452,7 +452,7 @@
                 const velocityMagnitude = orb.userData.velocity.length();
                 const verticalPositionCalc = Math.abs(orb.position.y - (FLOOR_Y + 1));
                 console.log(`Velocity magnitude: ${velocityMagnitude}, Vertical position calculation: ${verticalPositionCalc}`, `y position: ${orb.position.y}`);
-                if (velocityMagnitude < 0.05 && Math.abs(orb.position.y) < 0.02) {
+                if (velocityMagnitude < 0.05 && Math.abs(orb.position.y) < 0.51) {
                     console.log('Orb has stopped moving');
                     orb.userData.velocity = null; // Stop the orb
 

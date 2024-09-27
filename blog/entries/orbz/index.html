@@ -61,6 +61,58 @@
             display: none;
             z-index: 1;
         }
+
+        #settingsButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #settingsModal {
+            display: none;
+            position: fixed;
+            z-index: 3;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .setting-row {
+            margin-bottom: 10px;
+        }
+
+        .setting-row label {
+            display: inline-block;
+            width: 200px;
+        }
     </style>
 </head>
 <body>
@@ -71,6 +123,43 @@
         <div id="strengthBar"></div>
     </div>
     <div id="cursorIcon"></div>
+
+    <button id="settingsButton">Settings</button>
+    <div id="settingsModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Game Settings</h2>
+            <div class="setting-row">
+                <label for="orbTrackingDistance">Orb Tracking Distance:</label>
+                <input type="number" id="orbTrackingDistance" step="0.1">
+            </div>
+            <div class="setting-row">
+                <label for="orbRadius">Orb Radius:</label>
+                <input type="number" id="orbRadius" step="0.1">
+            </div>
+            <div class="setting-row">
+                <label for="airFriction">Air Friction:</label>
+                <input type="number" id="airFriction" step="0.01" min="0" max="1">
+            </div>
+            <div class="setting-row">
+                <label for="verticalBounceFriction">Vertical Bounce Friction:</label>
+                <input type="number" id="verticalBounceFriction" step="0.01" min="0" max="1">
+            </div>
+            <div class="setting-row">
+                <label for="horizontalBounceFriction">Horizontal Bounce Friction:</label>
+                <input type="number" id="horizontalBounceFriction" step="0.01" min="0" max="1">
+            </div>
+            <div class="setting-row">
+                <label for="timer">Timer (seconds):</label>
+                <input type="number" id="timer" step="1" min="1">
+            </div>
+            <div class="setting-row">
+                <label for="shootingSpeed">Shooting Speed:</label>
+                <input type="number" id="shootingSpeed" step="0.1">
+            </div>
+            <button id="saveSettings">Save Settings</button>
+        </div>
+    </div>
 
     <!-- Import Map -->
     <script type="importmap">
@@ -113,11 +202,14 @@
         let clickTimeout;
         let orbTrackingDistance = 8;
         let orbRadius = 1;
-        
+        let airFriction = 0.99;
+        let verticalBounceFriction = 0.5;
+        let horizontalBounceFriction = 0.9;
+
+        let SHOOTING_SPEED = 2.5;
 
         const GRAVITY = 1.0; // m/s^2, adjust as needed
         const FLOOR_Y = 1; // Assuming the floor is at y=1
-        const SHOOTING_SPEED = 2.5;
 
         const scoreboard = document.getElementById('scoreboard');
         const timerDisplay = document.getElementById('timer');
@@ -125,6 +217,11 @@
         const strengthMeter = document.getElementById('strengthMeter');
         const strengthBar = document.getElementById('strengthBar');
         const cursorIcon = document.getElementById('cursorIcon');
+        const settingsButton = document.getElementById('settingsButton');
+        const settingsModal = document.getElementById('settingsModal');
+        const closeButton = settingsModal.querySelector('.close');
+        const saveSettingsButton = document.getElementById('saveSettings');
+
 
         const stageBounds = new THREE.Box3(
             new THREE.Vector3(-150, 0, -150),  // Tripled from (-50, 0, -50)
@@ -217,6 +314,27 @@
                 window.addEventListener('resize', onWindowResize, false);
                 window.addEventListener('mousedown', onMouseDown, false);
                 window.addEventListener('touchstart', onTouchStart, false);
+
+                settingsButton.onclick = () => {
+                    settingsModal.style.display = 'block';
+                    updateSettingsInputs();
+                };
+
+                closeButton.onclick = () => {
+                    settingsModal.style.display = 'none';
+                };
+
+                window.onclick = (event) => {
+                    if (event.target == settingsModal) {
+                        settingsModal.style.display = 'none';
+                    }
+                };
+
+                saveSettingsButton.onclick = () => {
+                    saveSettings();
+                    settingsModal.style.display = 'none';
+                };
+
                 init.eventListenersAdded = true;
             }
 
@@ -315,10 +433,47 @@
             }
         }
 
+        function updateSettingsInputs() {
+            document.getElementById('orbTrackingDistance').value = orbTrackingDistance;
+            document.getElementById('orbRadius').value = orbRadius;
+            document.getElementById('airFriction').value = airFriction;
+            document.getElementById('verticalBounceFriction').value = verticalBounceFriction;
+            document.getElementById('horizontalBounceFriction').value = horizontalBounceFriction;
+            document.getElementById('timer').value = timer;
+            document.getElementById('shootingSpeed').value = SHOOTING_SPEED;
+        }
+
+        function saveSettings() {
+            orbTrackingDistance = parseFloat(document.getElementById('orbTrackingDistance').value);
+            orbRadius = parseFloat(document.getElementById('orbRadius').value);
+            airFriction = parseFloat(document.getElementById('airFriction').value);
+            verticalBounceFriction = parseFloat(document.getElementById('verticalBounceFriction').value);
+            horizontalBounceFriction = parseFloat(document.getElementById('horizontalBounceFriction').value);
+            timer = parseInt(document.getElementById('timer').value);
+            SHOOTING_SPEED = parseFloat(document.getElementById('shootingSpeed').value);
+
+            // Update the game state with new settings
+            updateGameWithNewSettings();
+        }
+
         function onWindowResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function updateGameWithNewSettings() {
+            // Update orb geometry
+            const newGeometry = new THREE.SphereGeometry(orbRadius, 32, 32);
+            orb.geometry.dispose();
+            orb.geometry = newGeometry;
+
+            // Update timer display
+            timerDisplay.innerText = 'Time: ' + timer;
+
+            // Other variables (orbTrackingDistance, airFriction, verticalBounceFriction, 
+            // horizontalBounceFriction, SHOOTING_SPEED) will be used automatically 
+            // in the game logic as they are referenced directly.
         }
 
         function onMouseDown(event) {
@@ -408,28 +563,28 @@
                 orb.position.add(orb.userData.velocity);
 
                 // Apply friction to the X and Z axes only (no friction on Y axis to simulate realistic vertical motion)
-                orb.userData.velocity.x *= 0.99; // Horizontal friction
-                orb.userData.velocity.z *= 0.99; // Horizontal friction
+                orb.userData.velocity.x *= airFriction; // Horizontal friction
+                orb.userData.velocity.z *= airFriction; // Horizontal friction
 
                 // Check for floor collision
                 console.log('orb position y: ', orb.position.y);
-                if (orb.position.y - orbRadius <= 0.01) { // 1 is the orb's radius
+                if (orb.position.y - orbRadius <= 0.01) {
                     orb.position.y = orbRadius;
                     // Bounce with some energy loss
-                    orb.userData.velocity.y *= -0.5; // Reverse the Y velocity and reduce it for energy loss
+                    orb.userData.velocity.y *= -verticalBounceFriction; // Reverse the Y velocity and reduce it for energy loss
                     // Apply friction to horizontal velocity upon bouncing
-                    orb.userData.velocity.x *= 0.9;
-                    orb.userData.velocity.z *= 0.9;
+                    orb.userData.velocity.x *= horizontalBounceFriction;
+                    orb.userData.velocity.z *= horizontalBounceFriction;
                 }
 
                 // Check for ceiling collision
                 if (orb.position.y + orbRadius >= stageBounds.max.y) {
                     orb.position.y = stageBounds.max.y - orbRadius;
                     // Bounce off the ceiling with some energy loss
-                    orb.userData.velocity.y *= -0.5;
+                    orb.userData.velocity.y *= -verticalBounceFriction;
                     // Apply slight friction to horizontal velocity upon ceiling collision
-                    orb.userData.velocity.x *= 0.99;
-                    orb.userData.velocity.z *= 0.99;
+                    orb.userData.velocity.x *= horizontalBounceFriction;
+                    orb.userData.velocity.z *= horizontalBounceFriction;
                 }
 
                 // Check for wall collisions (X and Z axes)
@@ -451,8 +606,7 @@
 
                 // Check if orb has stopped moving
                 const velocityMagnitude = orb.userData.velocity.length();
-                const verticalPositionCalc = Math.abs(orb.position.y - (FLOOR_Y + 1));
-                console.log(`Velocity magnitude: ${velocityMagnitude}, Vertical position calculation: ${verticalPositionCalc}`, `y position: ${orb.position.y}`);
+                console.log(`Velocity magnitude: ${velocityMagnitude}`, `y position: ${orb.position.y}`);
                 if (velocityMagnitude < 0.05 && Math.abs(orb.position.y) < orbRadius + 0.01) {
                     console.log('Orb has stopped moving');
                     orb.userData.velocity = null; // Stop the orb

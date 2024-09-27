@@ -696,7 +696,7 @@
                 controls.target.copy(orbWorldPosition);
 
             } else if (cameraMode === CAMERA_MODE.RETURNING) {
-                // orb.visible = true;
+                orb.visible = true;
 
                 controls.enabled = true;
 
@@ -705,7 +705,6 @@
                 }
 
                 // Calculate desired camera position
-                const radius = 0;
                 const desiredCameraPosition = new THREE.Vector3(
                     orb.position.x,
                     orb.position.y,

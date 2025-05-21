@@ -14,14 +14,15 @@
             font-size: 18px;
             z-index: 1;
         }
-        #timer {
+        #timerDisplay {
             position: absolute;
             top: 10px;
-            right: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
             color: white;
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-            z-index: 1;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         #restartButton {
             position: absolute;
@@ -92,7 +93,7 @@
         }
 
         .close {
-            color: #aaa;
+            color: #2694e2;
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -117,7 +118,7 @@
 </head>
 <body>
     <div id="scoreboard">Score: 0</div>
-    <div id="timer">Time: 60</div>
+    <div id="timerDisplay">Time: 60</div>
     <button id="restartButton">Restart Game</button>
     <div id="strengthMeter">
         <div id="strengthBar"></div>
@@ -157,6 +158,14 @@
                 <label for="shootingSpeed">Shooting Speed:</label>
                 <input type="number" id="shootingSpeed" step="0.1">
             </div>
+            <div class="setting-row">
+                <label for="shootingSpeed">Shooting Speed:</label>
+                <input type="number" id="shootingSpeed" step="0.1">
+            </div>
+            <div class="setting-row">
+                <label for="gravityFactor">Gravity Factor:</label>
+                <input type="number" id="gravityFactor" step="0.001" min="0">
+            </div>
             <button id="saveSettings">Save Settings</button>
         </div>
     </div>
@@ -174,6 +183,8 @@
         import * as THREE from 'three';
         import { OrbitControls } from 'https://unpkg.com/three@0.152.2/examples/jsm/controls/OrbitControls.js';
         import { PCFSoftShadowMap } from 'three';
+        import { LineBasicMaterial, BufferGeometry, Line, ShaderMaterial, Vector3 } from 'three';
+
 
         const CAMERA_MODE = {
             PANNING: 'panning',
@@ -207,12 +218,20 @@
         let horizontalBounceFriction = 0.9;
 
         let SHOOTING_SPEED = 2.5;
+        let gravity_factor = 0.016;
+
+        // shooting path trail
+        let pathTrail;
+        let pathPoints = [];
+        const MAX_TRAIL_POINTS = 100;
+        let trailFading = false;
+        let trailVisible = false;
 
         const GRAVITY = 1.0; // m/s^2, adjust as needed
         const FLOOR_Y = 1; // Assuming the floor is at y=1
 
         const scoreboard = document.getElementById('scoreboard');
-        const timerDisplay = document.getElementById('timer');
+        const timerDisplay = document.getElementById('timerDisplay');
         const restartButton = document.getElementById('restartButton');
         const strengthMeter = document.getElementById('strengthMeter');
         const strengthBar = document.getElementById('strengthBar');
@@ -340,6 +359,7 @@
 
             // Show cursor icon
             cursorIcon.style.display = 'block';
+            createPathTrail();
         }
 
         function createStage() {
@@ -350,7 +370,7 @@
             const floorGeometry = new THREE.PlaneGeometry(stageSize.x, stageSize.z);
             const floorMaterial = new THREE.MeshStandardMaterial({
                 color: 0x00ffff,
-                side: THREE.DoubleSide,
+                side: THREE.FrontSide,
             });
             const floor = new THREE.Mesh(floorGeometry, floorMaterial);
             floor.rotation.x = -Math.PI / 2;
@@ -441,6 +461,7 @@
             document.getElementById('horizontalBounceFriction').value = horizontalBounceFriction;
             document.getElementById('timer').value = timer;
             document.getElementById('shootingSpeed').value = SHOOTING_SPEED;
+            document.getElementById('gravityFactor').value = gravity_factor;
         }
 
         function saveSettings() {
@@ -451,6 +472,7 @@
             horizontalBounceFriction = parseFloat(document.getElementById('horizontalBounceFriction').value);
             timer = parseInt(document.getElementById('timer').value);
             SHOOTING_SPEED = parseFloat(document.getElementById('shootingSpeed').value);
+            gravity_factor = parseFloat(document.getElementById('gravityFactor').value);
 
             // Update the game state with new settings
             updateGameWithNewSettings();
@@ -464,9 +486,9 @@
 
         function updateGameWithNewSettings() {
             // Update orb geometry
-            // const newGeometry = new THREE.SphereGeometry(orbRadius, 32, 32);
-            // orb.geometry.dispose();
-            // orb.geometry = newGeometry;
+            const newGeometry = new THREE.SphereGeometry(orbRadius, 32, 32);
+            orb.geometry.dispose();
+            orb.geometry = newGeometry;
 
             // Update timer display
             timerDisplay.innerText = 'Time: ' + timer;
@@ -478,25 +500,27 @@
 
         function onMouseDown(event) {
             if (isGameOver) return;
-
-            clickCount++;
-            if (clickCount === 1) {
-                clickTimeout = setTimeout(() => {
+       
+            if (isPanning && !isCharging) {
+                clickCount++;
+            
+                if (clickCount === 1) {
+                    clickTimeout = setTimeout(() => {
+                        clickCount = 0;
+                    }, 300); // 300ms window for double-click
+                } else if (clickCount === 2) {
+                    clearTimeout(clickTimeout);
                     clickCount = 0;
-                }, 300);
-            } else if (clickCount === 2) {
-                clearTimeout(clickTimeout);
-                clickCount = 0;
-
-                if (isPanning && !isCharging) {
                     isPanning = false;
                     controls.enabled = false;
-                    cursorIcon.style.display = 'none';
                     startCharging();
-                } else if (isCharging) {
-                    shootOrb();
                 }
+            } else if (isCharging) {
+                shootOrb();
             }
+
+            
+            
         }
 
 
@@ -509,7 +533,7 @@
             strength = 0;
             strengthIncreasing = true;
             strengthMeter.style.display = 'block';
-
+            
             const direction = new THREE.Vector3();
             camera.getWorldDirection(direction);
             chargeDirection.copy(direction);
@@ -532,11 +556,16 @@
             if (!isCharging) return;
             isCharging = false;
             strengthMeter.style.display = 'none';
+            cursorIcon.style.display = 'none';
+
             clearInterval(strengthInterval);
 
             // Clear any pending click timeouts
             clearTimeout(clickTimeout);
             clickCount = 0;
+
+            resetTrail();
+            showTrail();
 
             orb.userData = orb.userData || {};
             orb.userData.velocity = chargeDirection.clone().multiplyScalar(strength * SHOOTING_SPEED);
@@ -554,21 +583,28 @@
         function gameLogic() {
             // Update Orb Position
             if (orb.userData && orb.userData.velocity) {
+                
+                if (!trailVisible) {
+                    showTrail();
+                }
+
                 // Apply gravity to the Y velocity
-                orb.userData.velocity.y -= GRAVITY * 0.016; // Simulate gravity over time (0.016 ~ 1/60, for 60 FPS)
+                orb.userData.velocity.y -= GRAVITY * gravity_factor;
 
                 // Update position based on velocity
-                console.log('orb velocity: ', orb.userData.velocity);
-                // orb.position.add(orb.userData.velocity.clone().multiplyScalar(0.016));
+                // console.log('orb velocity: ', orb.userData.velocity);
                 orb.position.add(orb.userData.velocity);
 
                 // Apply friction to the X and Z axes only (no friction on Y axis to simulate realistic vertical motion)
                 orb.userData.velocity.x *= airFriction; // Horizontal friction
                 orb.userData.velocity.z *= airFriction; // Horizontal friction
 
+                updatePathTrail();
+
                 // Check for floor collision
-                console.log('orb position y: ', orb.position.y);
+                // console.log('orb position y: ', orb.position.y);
                 if (orb.position.y - orbRadius <= 0.01) {
+                    startTrailFading();
                     orb.position.y = orbRadius;
                     // Bounce with some energy loss
                     orb.userData.velocity.y *= -verticalBounceFriction; // Reverse the Y velocity and reduce it for energy loss
@@ -579,6 +615,7 @@
 
                 // Check for ceiling collision
                 if (orb.position.y + orbRadius >= stageBounds.max.y) {
+                    startTrailFading();
                     orb.position.y = stageBounds.max.y - orbRadius;
                     // Bounce off the ceiling with some energy loss
                     orb.userData.velocity.y *= -verticalBounceFriction;
@@ -589,6 +626,7 @@
 
                 // Check for wall collisions (X and Z axes)
                 if (orb.position.x - orbRadius < stageBounds.min.x) {
+                    startTrailFading();
                     orb.position.x = stageBounds.min.x + orbRadius;
                     orb.userData.velocity.x *= -1; // Reverse the X velocity when hitting the left wall
                 } else if (orb.position.x + orbRadius > stageBounds.max.x) {
@@ -597,18 +635,21 @@
                 }
 
                 if (orb.position.z - orbRadius < stageBounds.min.z) {
+                    startTrailFading();
                     orb.position.z = stageBounds.min.z + orbRadius;
                     orb.userData.velocity.z *= -1; // Reverse the Z velocity when hitting the back wall
                 } else if (orb.position.z + orbRadius > stageBounds.max.z) {
+                    startTrailFading();
                     orb.position.z = stageBounds.max.z - orbRadius;
                     orb.userData.velocity.z *= -1; // Reverse the Z velocity when hitting the front wall
                 }
 
                 // Check if orb has stopped moving
                 const velocityMagnitude = orb.userData.velocity.length();
-                console.log(`Velocity magnitude: ${velocityMagnitude}`, `y position: ${orb.position.y}`);
+                // console.log(`Velocity magnitude: ${velocityMagnitude}`, `y position: ${orb.position.y}`);
                 if (velocityMagnitude < 0.05 && Math.abs(orb.position.y) < orbRadius + 0.01) {
-                    console.log('Orb has stopped moving');
+                    // console.log('Orb has stopped moving');
+                    // hideTrail();
                     orb.userData.velocity = null; // Stop the orb
 
                     // Reset camera to follow mode and handle other logic
@@ -674,6 +715,9 @@
             if (strengthInterval) clearInterval(strengthInterval);
             restartButton.style.display = 'block';
             restartButton.onclick = restartGame;
+            cursorIcon.style.display = 'none';
+            strengthMeter.style.display = 'none';
+            orb.visible = false;
         }
 
         function restartGame() {
@@ -705,7 +749,7 @@
             strengthMeter.style.display = 'none';
 
             // Recreate orb
-            const geometry = new THREE.SphereGeometry(0.5, 32, 32);
+            const geometry = new THREE.SphereGeometry(orbRadius, 32, 32);
             const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
             orb = new THREE.Mesh(geometry, material);
             orb.castShadow = true;
@@ -735,6 +779,7 @@
             orb.position.copy(startingPosition);
             orb.visible = false;
             scene.add(orb);
+            resetTrail();
 
             // Recreate stars
             createStars();
@@ -779,43 +824,39 @@
         }
 
         function logCameraChanges() {
-            const positionChanged = !camera.position.equals(lastPosition);
-            const rotationChanged = !camera.rotation.equals(lastRotation);
-            const zoomChanged = camera.zoom !== lastZoom;
+            // const positionChanged = !camera.position.equals(lastPosition);
+            // const rotationChanged = !camera.rotation.equals(lastRotation);
+            // const zoomChanged = camera.zoom !== lastZoom;
 
-            if (positionChanged || rotationChanged || zoomChanged) {
-                console.log('Camera Changed:');
-                if (positionChanged) {
-                    console.log('New Position:', camera.position.toArray().map(v => Number(v).toFixed(2)));
-                }
-                if (rotationChanged) {
-                    console.log('New Rotation:', camera.rotation.toArray().slice(0, 3).map(v => Number(v).toFixed(2)));
-                }
-                if (zoomChanged && camera.zoom !== undefined) {
-                    console.log('New Zoom:', Number(camera.zoom).toFixed(2));
-                }
-                console.log('-------------------');
+            // if (positionChanged || rotationChanged || zoomChanged) {
+            //     console.log('Camera Changed:');
+            //     if (positionChanged) {
+            //         console.log('New Position:', camera.position.toArray().map(v => Number(v).toFixed(2)));
+            //     }
+            //     if (rotationChanged) {
+            //         console.log('New Rotation:', camera.rotation.toArray().slice(0, 3).map(v => Number(v).toFixed(2)));
+            //     }
+            //     if (zoomChanged && camera.zoom !== undefined) {
+            //         console.log('New Zoom:', Number(camera.zoom).toFixed(2));
+            //     }
+            //     console.log('-------------------');
 
-                lastPosition.copy(camera.position);
-                lastRotation.copy(camera.rotation);
-                lastZoom = camera.zoom;
-            }
+            //     lastPosition.copy(camera.position);
+            //     lastRotation.copy(camera.rotation);
+            //     lastZoom = camera.zoom;
+            // }
         }
 
         function animate() {
             requestAnimationFrame(animate);
             // Camera behavior based on cameraMode
             if (cameraMode === CAMERA_MODE.PANNING) {
-
-                console.log('in panning cameraMode: ', cameraMode);
                 
                 orb.visible = false;
-
                 controls.enabled = !isCharging;
-                
       
                 if (!camera_last_position || !camera.position.equals(camera_last_position)) {
-                        console.log('in panning cameraMode: ', cameraMode, ', camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
+                        // console.log('in panning cameraMode: ', cameraMode, ', camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
                         camera_last_position = camera.position.clone();
                 }
 
@@ -886,7 +927,6 @@
                     orb.visible = false;
 
                     if (!camera_last_position || !camera.position.equals(camera_last_position)) {
-                        console.log('just changed from returning to panning, and now camera position has changed to:', camera.position.toArray().map(v => Number(v).toFixed(2)));
                         camera_last_position = camera.position.clone();
                     }
                 }
@@ -895,7 +935,7 @@
             
 
             if (!orb_last_position || !orb.position.equals(orb_last_position)) {
-                console.log('during cameraMode: ', cameraMode, ', orb position has changed to:', orb.position.toArray().map(v => Number(v).toFixed(2)));
+                // console.log('during cameraMode: ', cameraMode, ', orb position has changed to:', orb.position.toArray().map(v => Number(v).toFixed(2)));
                 orb_last_position = orb.position.clone();
             }
 
@@ -903,6 +943,112 @@
             renderer.render(scene, camera);
         }
 
+        function createPathTrail() {
+            const trailGeometry = new BufferGeometry();
+            const trailMaterial = new ShaderMaterial({
+                uniforms: {
+                    color: { value: new THREE.Color(0xff00ff) },
+                    opacity: { value: 0.5 },
+                    fadeStart: { value: 0.0 }
+                },
+                vertexShader: `
+                    attribute float alpha;
+                    varying float vAlpha;
+                    void main() {
+                        vAlpha = alpha;
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    uniform vec3 color;
+                    uniform float opacity;
+                    uniform float fadeStart;
+                    varying float vAlpha;
+                    void main() {
+                        float fadeAlpha = smoothstep(fadeStart, 1.0, vAlpha);
+                        gl_FragColor = vec4(color, opacity * fadeAlpha);
+                    }
+                `,
+                transparent: true,
+                depthWrite: false
+            });
+
+            pathTrail = new Line(trailGeometry, trailMaterial);
+            scene.add(pathTrail);
+            // pathTrail.visible = false; 
+        }
+
+        function updatePathTrail() {
+            // console.log('in updatePathTrail');
+            if (!pathTrail || !trailVisible) return;
+            console.log('actually calculating pathTrail');
+
+            if (pathPoints.length < 2) {
+                pathPoints.push(orb.position.clone());
+                pathPoints.push(orb.position.clone().add(orb.userData.velocity.clone().normalize()));
+            }
+
+            pathPoints.push(orb.position.clone());
+            if (pathPoints.length > MAX_TRAIL_POINTS) {
+                pathPoints.shift();
+            }
+
+            const positions = new Float32Array(pathPoints.length * 3);
+            const alphas = new Float32Array(pathPoints.length);
+
+            for (let i = 0; i < pathPoints.length; i++) {
+                positions[i * 3] = pathPoints[i].x;
+                positions[i * 3 + 1] = pathPoints[i].y;
+                positions[i * 3 + 2] = pathPoints[i].z;
+                alphas[i] = 1.0;
+            }
+            // i / (pathPoints.length - 1)
+
+            console.log('length of positions: ', positions.length);
+            pathTrail.geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            pathTrail.geometry.setAttribute('alpha', new THREE.BufferAttribute(alphas, 1));
+
+
+            pathTrail.geometry.attributes.position.needsUpdate = true;
+            pathTrail.geometry.attributes.alpha.needsUpdate = true;
+
+            if (trailFading) {
+                const fadeStart = pathTrail.material.uniforms.fadeStart.value;
+                pathTrail.material.uniforms.fadeStart.value = Math.min(fadeStart + 0.01, 1.0);
+                if (fadeStart >= 1.0) {
+                    hideTrail();
+                }
+            }
+
+        }
+
+        function startTrailFading() {
+            trailFading = true;
+        }
+
+        function resetTrail() {
+            if (pathTrail) {
+                pathTrail.material.uniforms.fadeStart.value = 0.0;
+                pathTrail.visible = false;
+                trailVisible = false;
+                pathPoints = [];
+                trailFading = false;
+            }
+        }
+
+        function showTrail() {
+            if (pathTrail) {
+                pathTrail.visible = true;
+                trailVisible = true;
+            }
+        }
+
+        function hideTrail() {
+            if (pathTrail) {
+                pathTrail.visible = false;
+                trailVisible = false;
+            }
+        }
 
     </script>
 </body>

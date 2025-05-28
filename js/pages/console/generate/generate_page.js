@@ -1151,6 +1151,40 @@ function configureGenFormForFlux() {
     denoising_steps_container.classList.add('hidden');
 }
 
+function configureGenFormForFluxDev() {
+    img2img_button = referenceImgSectionButtons(RefImageMode.IMG2IMG)[0];
+    img2img_parent = img2img_button.closest('.col-span-full');
+    ipadapter_button = referenceImgSectionButtons(RefImageMode.IPADAPTER)[0];
+    ipadapter_parent = ipadapter_button.closest('.col-span-full');
+    openpose_button = referenceImgSectionButtons(RefImageMode.OPENPOSE)[0];
+    openpose_parent = openpose_button.closest('.col-span-full');
+    canny_button = referenceImgSectionButtons(RefImageMode.CANNY)[0];
+    canny_parent = canny_button.closest('.col-span-full');
+    depth_button = referenceImgSectionButtons(RefImageMode.DEPTH)[0];
+    depth_parent = depth_button.closest('.col-span-full');
+
+    // person_lora_container = document.getElementById('lora-component-container');
+    // person_lora_inf_container = document.getElementById('person-influence-setting-selector-container');
+    neg_prompt_container = document.getElementById('neg-prompt-field-container');
+    // guidance_scale_container = document.getElementById('gs-field-container');
+    // denoising_steps_container = document.getElementById('denoising-steps-field-container');
+
+    document.getElementById('guidance-scale').value = 3;
+    document.getElementById('denoising-steps').value = 28;
+
+    img2img_parent.classList.add('hidden');
+    ipadapter_parent.classList.add('hidden');
+    openpose_parent.classList.add('hidden');
+    canny_parent.classList.add('hidden');
+    depth_parent.classList.add('hidden');
+
+    // person_lora_container.classList.add('hidden');
+    // person_lora_inf_container.classList.add('hidden');
+    neg_prompt_container.classList.add('hidden');
+    // guidance_scale_container.classList.add('hidden');
+    // denoising_steps_container.classList.add('hidden');
+}
+
 function configureGenFormForSDXL() {
     img2img_button = referenceImgSectionButtons(RefImageMode.IMG2IMG)[0];
     img2img_parent = img2img_button.closest('.col-span-full');
@@ -2013,6 +2047,8 @@ function addChangeListenersForBaseModelSelector() {
         let selectedOptionId = getBaseModelSelectionId();
         if (selectedOptionId === 'sdxl') {
             configureGenFormForSDXL();
+        } else if (selectedOptionId === 'flux-dev') {
+            configureGenFormForFluxDev();
         } else {
             configureGenFormForFlux();
         }

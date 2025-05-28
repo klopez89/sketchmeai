@@ -1163,11 +1163,11 @@ function configureGenFormForFluxDev() {
     depth_button = referenceImgSectionButtons(RefImageMode.DEPTH)[0];
     depth_parent = depth_button.closest('.col-span-full');
 
-    // person_lora_container = document.getElementById('lora-component-container');
-    // person_lora_inf_container = document.getElementById('person-influence-setting-selector-container');
+    person_lora_container = document.getElementById('lora-component-container');
+    person_lora_inf_container = document.getElementById('person-influence-setting-selector-container');
     neg_prompt_container = document.getElementById('neg-prompt-field-container');
-    // guidance_scale_container = document.getElementById('gs-field-container');
-    // denoising_steps_container = document.getElementById('denoising-steps-field-container');
+    guidance_scale_container = document.getElementById('gs-field-container');
+    denoising_steps_container = document.getElementById('denoising-steps-field-container');
 
     document.getElementById('guidance-scale').value = 3;
     document.getElementById('denoising-steps').value = 28;
@@ -1178,11 +1178,11 @@ function configureGenFormForFluxDev() {
     canny_parent.classList.add('hidden');
     depth_parent.classList.add('hidden');
 
-    // person_lora_container.classList.add('hidden');
-    // person_lora_inf_container.classList.add('hidden');
+    person_lora_container.classList.remove('hidden');
+    person_lora_inf_container.classList.remove('hidden');
     neg_prompt_container.classList.add('hidden');
-    // guidance_scale_container.classList.add('hidden');
-    // denoising_steps_container.classList.add('hidden');
+    guidance_scale_container.classList.remove('hidden');
+    denoising_steps_container.classList.remove('hidden');
 }
 
 function configureGenFormForSDXL() {

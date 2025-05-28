@@ -685,22 +685,14 @@ function fetchWorkingModels(userRecId) {
                 if (model_version != null) {
                     lastSelectedModelVersion = model_version;
                     selectModelWithVersion(lastSelectedModelVersion);
-                } else {
-                    // let firstModelName = models[0].name;
-                    // let long_version = models[0].version;
-                    // let short_version = long_version.includes(':') ? long_version.split(':')[1] : long_version;
-                    // console.log('short version of first model: ', short_version);
-                    // let promptDiv = document.getElementById('prompt');
-                    // promptDiv.textContent = generatePrompt(firstModelName);
-                    // lastSelectedModelVersion = short_version;
-                    // selectModelWithVersion(short_version);
-                    // promptDiv.blur();
                 }
                 document.getElementById('person-lora-influence-range').value = PersonLoraSettingValue.HIGH;
                 document.getElementById('person-lora-influence').value = PersonLoraSettingValue.HIGH;
                 alignPersonInfluenceSettingToValue();
+                
+                // Initially filter models based on current base model
+                filterModelsByBaseModel(getBaseModelSelectionId());
             }
-            // console.log('the base prices dict is: ', data.base_prices);
             
             storePriceInfo(data.base_prices, PriceInfoTypes.SDXL);
             storePriceInfo(data.flux_prices, PriceInfoTypes.FLUX);
@@ -710,6 +702,53 @@ function fetchWorkingModels(userRecId) {
         error: function(error) {
             console.error('Error in fetching working trained models:', error);
         }
+    });
+}
+
+function filterModelsByBaseModel(baseModelId) {
+    const loraPersonGrid = document.getElementById('lora-person-grid');
+    const loraPersonDivs = loraPersonGrid.children;
+    
+    Array.from(loraPersonDivs).forEach(div => {
+        if (div.id === 'no-lora-person-button') {
+            div.style.display = 'block'; // Always show the "None" option
+            return;
+        }
+        
+        const modelName = div.getAttribute('model') || '';
+        if (baseModelId === 'flux-dev') {
+            // Show only flux models for flux-dev
+            div.style.display = modelName.includes('flux-trainings') ? 'block' : 'none';
+        } else if (baseModelId === 'sdxl') {
+            // Show only non-flux models for SDXL
+            div.style.display = !modelName.includes('flux-trainings') ? 'block' : 'none';
+        } else {
+            div.style.display = 'none'; // Hide all models for other base models
+        }
+    });
+    
+    // Select "None" option if current selection becomes hidden
+    const selectedDiv = loraPersonGrid.querySelector('.selected');
+    if (selectedDiv && selectedDiv.style.display === 'none') {
+        deSelectAllLoraPersonOptions();
+        const noLoraPersonDiv = document.getElementById('no-lora-person-button');
+        selectLoraPersonDiv(noLoraPersonDiv);
+    }
+}
+
+function addChangeListenersForBaseModelSelector() {
+    configureGenFormForFluxDev();
+    document.getElementById('base-model-selector').addEventListener('change', function() {
+        updateGenerationEstimateLabel();
+        let selectedOptionId = getBaseModelSelectionId();
+        if (selectedOptionId === 'sdxl') {
+            configureGenFormForSDXL();
+        } else if (selectedOptionId === 'flux-dev') {
+            configureGenFormForFluxDev();
+        } else {
+            configureGenFormForFlux();
+        }
+        filterModelsByBaseModel(selectedOptionId);
     });
 }
 
@@ -1417,12 +1456,12 @@ function generateButtonPressed(event) {
             console.log('The new personalized prompt is: ', personalizedPrompt);
 
             if (trainingSubject == 'person') {
-                if (!personalizedPrompt.includes(`a ${instanceKey}`) && personalizedPrompt.includes(`${instanceKey}`)) {
-                    personalizedPrompt = personalizedPrompt.replace(instanceKey, `a ${instanceKey}`);
-                }
-                if (!personalizedPrompt.includes(`${instanceKey} ${genderType}`) && personalizedPrompt.includes(`${instanceKey}`)) {
-                    personalizedPrompt = personalizedPrompt.replace(instanceKey, `${instanceKey} ${genderType}`);
-                }
+                // if (!personalizedPrompt.includes(`a ${instanceKey}`) && personalizedPrompt.includes(`${instanceKey}`)) {
+                //     personalizedPrompt = personalizedPrompt.replace(instanceKey, `a ${instanceKey}`);
+                // }
+                // if (!personalizedPrompt.includes(`${instanceKey} ${genderType}`) && personalizedPrompt.includes(`${instanceKey}`)) {
+                //     personalizedPrompt = personalizedPrompt.replace(instanceKey, `${instanceKey} ${genderType}`);
+                // }
             } else if (trainingSubject == null) {
                 personalizedPrompt = personalizedPrompt.replace(instanceKey, 'person');
             }
@@ -2040,22 +2079,6 @@ function getBaseModelSelectionId() {
     }
     return 'sdxl';
 }
-
-function addChangeListenersForBaseModelSelector() {
-    configureGenFormForFluxDev();
-    document.getElementById('base-model-selector').addEventListener('change', function() {
-        updateGenerationEstimateLabel();
-        let selectedOptionId = getBaseModelSelectionId();
-        if (selectedOptionId === 'sdxl') {
-            configureGenFormForSDXL();
-        } else if (selectedOptionId === 'flux-dev') {
-            configureGenFormForFluxDev();
-        } else {
-            configureGenFormForFlux();
-        }
-    });
-}
-
 
 function clearRefImgElement(event) {
     event.preventDefault();

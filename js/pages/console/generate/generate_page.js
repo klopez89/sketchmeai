@@ -2042,6 +2042,7 @@ function getBaseModelSelectionId() {
 }
 
 function addChangeListenersForBaseModelSelector() {
+    configureGenFormForFluxDev();
     document.getElementById('base-model-selector').addEventListener('change', function() {
         updateGenerationEstimateLabel();
         let selectedOptionId = getBaseModelSelectionId();

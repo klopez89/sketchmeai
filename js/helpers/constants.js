@@ -19,7 +19,7 @@ const CONSTANTS = (function() {
         return {
             SITE_URL: 'sketchme.ai',
             BASE_BUNDLE_PRICE_ID: 'price_1NxM0bKaOW6JyAnBPWwV11Vk', // from klopez@sketchme.ai
-            BACKEND_URL: 'https://sketchmeaibackend-sxgjpzid6q-uk.a.run.app/',
+            BACKEND_URL: 'https://api.sketchme.ai/api/og/',
             FIREBASE_CONFIG: {
                 apiKey: "AIzaSyDpEQogWUN3p_TZGS6fcrzB9fdgMVrhnOk",
                 authDomain: "sketchmeai-8cd03.firebaseapp.com",

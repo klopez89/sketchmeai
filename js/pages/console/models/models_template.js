@@ -36,8 +36,8 @@ function dummyGridHTML() {
             </button>
 
             <button id="reload-new-model-form" class="hidden" onclick="attemptToReloadSaveNewModelFormData()"></button>
-            <h2 class="mb-1 text-gray-900 text-2xl">Train New Person Model</h2>
-            <p class="mb-8 text-gray-500 text-sm">using Flux[dev]</p>
+            <h2 class="mb-1 text-gray-900 text-2xl">Train New Model</h2>
+            <p class="mb-8 text-gray-500 text-sm">of a person using Flux[dev]</p>
             <form id="new-form" autocomplete="off">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                     <div class="col-span-2" id="name-field-container">

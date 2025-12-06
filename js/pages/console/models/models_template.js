@@ -36,7 +36,8 @@ function dummyGridHTML() {
             </button>
 
             <button id="reload-new-model-form" class="hidden" onclick="attemptToReloadSaveNewModelFormData()"></button>
-            <h2 class="mb-5 text-gray-900 text-2xl">New Custom Model</h2>
+            <h2 class="mb-1 text-gray-900 text-2xl">Train New Person Model</h2>
+            <p class="mb-5 text-gray-500 text-sm italic">using Flux[dev]</p>
             <form id="new-form" autocomplete="off">
                 <div class="mt-0 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                     <div class="col-span-2" id="name-field-container">
@@ -48,14 +49,15 @@ function dummyGridHTML() {
                             <input type="text" name="model-name" id="model-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
                         </div>
                     </div>
-                    <div class="col-span-2" id="model-list-container">
-                        <label for="model-selection" class="block text-sm font-medium leading-6 text-gray-900">Model</label><div class="mt-2">
-                        <select id="model-selection" name="model-selection" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-                            <option>Flux[dev]</option>
-                        </select>
+                    <div class="col-span-2 hidden" id="model-list-container">
+                        <label for="model-selection" class="block text-sm font-medium leading-6 text-gray-900">Model</label>
+                        <div class="mt-2">
+                            <select id="model-selection" name="model-selection" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+                                <option>Flux[dev]</option>
+                            </select>
+                        </div>
                     </div>
-                    </div>
-                    <div class="col-span-2" id="preset-list-container">
+                    <div class="col-span-2 hidden" id="preset-list-container">
                         <label for="training-subject" class="block text-sm font-medium leading-6 text-gray-900">Training Subject</label><div class="mt-2">
                             <select id="training-subject" name="training-subject" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
                                 <!-- <option selected="" disabled="">Select an option</option> -->
@@ -225,14 +227,15 @@ function dummyGridHTML() {
                                             </div>
                                         </div>
                                 </div>
-                                <div class="col-span-2" id="gradient-checkpoint-field-container"><div class="relative flex gap-x-3">
+                                <div class="col-span-2" id="gradient-checkpoint-field-container">
+                                    <div class="relative flex gap-x-3">
                                         <div class="flex h-6 items-center">
                                             <input id="gradient-checkpoint" name="gradient-checkpoint" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-black" checked>
-                                            </div>
-                                            <div class="text-sm leading-6">
-                                                <p class="text-gray-500">Gradient checkpointing</p>
-                                            </div>
                                         </div>
+                                        <div class="text-sm leading-6">
+                                            <p class="text-gray-500">Gradient checkpointing</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-span-2" id="8bit-adam-field-container"><div class="relative flex gap-x-3">
                                         <div class="flex h-6 items-center">

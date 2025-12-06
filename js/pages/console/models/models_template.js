@@ -50,7 +50,7 @@ function dummyGridHTML() {
                     </div><div class="col-span-2" id="model-list-container">
                         <label for="model-selection" class="block text-sm font-medium leading-6 text-gray-900">Model</label><div class="mt-2">
                             <select id="model-selection" name="model-selection" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
-                                <option>SDXL</option>
+                                <option>Flux[dev]</option>
                             </select>
                         </div>
                     </div>

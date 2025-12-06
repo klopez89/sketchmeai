@@ -771,7 +771,7 @@ async function attemptToReloadSaveNewModelFormData() {
 
 function grabTrainingData() {
     let modelName = document.getElementById('model-name').value;
-    let modelSelection = 'Flux[dev]';
+    let modelSelection = document.getElementById('model-selection').value;
     let trainingSubject = document.getElementById('training-subject').value;
     let objectName = document.getElementById('object-name').value;
     let tokenString = document.getElementById('token-string').value;
@@ -835,7 +835,7 @@ function grabTrainingData() {
 
 function personTrainingPreset() {
     return {
-    "model-selection": "SDXL",
+    "model-selection": "Flux[dev]",
     "token-string": "zxc",
     "seed": "0",
     "resolution": "1024",

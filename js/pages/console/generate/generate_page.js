@@ -1452,7 +1452,8 @@ function generateButtonPressed(event) {
             }
 
             const modelNameRegex = new RegExp(`\\btzk\\b`, 'g');
-            let personalizedPrompt = modelNameRegex.test(prompt) ? prompt.replace(modelNameRegex, instanceKey) : prompt;
+            const triggerText = instanceKey + ' ' + genderType;
+            let personalizedPrompt = modelNameRegex.test(prompt) ? prompt.replace(modelNameRegex, triggerText) : prompt;
             console.log('The new personalized prompt is: ', personalizedPrompt);
 
             if (trainingSubject == 'person') {

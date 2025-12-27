@@ -215,7 +215,7 @@ function generate_form_html() {
 			<div class="px-0 pb-0 grid grid-cols-6 gap-x-5 gap-y-0 sm:grid-cols-6">
 				
 				<div class="col-span-2 flex items-center pl-4" id="mode-title-container">
-					<label class="text-sm font-medium leading-6 text-gray-700">Base Model</label>
+					<label class="text-sm font-medium leading-6 text-gray-700">Jonathan Hi Dude!</label>
 				</div>
 				<div class="col-span-4 pr-4" id="base-model-selector-container">
 					<select id="base-model-selector" name="base-model" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">

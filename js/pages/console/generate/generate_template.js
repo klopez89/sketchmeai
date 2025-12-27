@@ -220,8 +220,6 @@ function generate_form_html() {
 				<div class="col-span-4 pr-4" id="base-model-selector-container">
 					<select id="base-model-selector" name="base-model" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
 						<option selected id="flux-dev" instkey="zxc" modelname="flux-dev">Flux [dev]</option>	
-						<option id="flux-schnell" instkey="zxc" modelname="flux-schnell" model="black-forest-labs/flux-schnell" version="123456">Flux [schnell]</option>
-						<option id="sdxl" instkey="zxc" modelname="sdxl" model="stability-ai/sdxl" version="39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b">SDXL</option>
 					</select>
 				</div>
 				<div id="lora-component-container" class="col-span-full pt-2">

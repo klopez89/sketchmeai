@@ -22,22 +22,22 @@ function configureAllComparisonSliders() {
 }
 
 function addAysLoraComparisons() {
-    let blue_before = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_non_ays.png";
-    let blue_after = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_ays.png";
+    let blue_before = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/blue_jacket_non_ays.png";
+    let blue_after = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/blue_jacket_ays.png";
 
-    let black_before = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/black_jacket_non_ays.png";
-    let black_after = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/black_jacket_ays.png";
+    let black_before = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/black_jacket_non_ays.png";
+    let black_after = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/black_jacket_ays.png";
 
-    let red_before = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/red_jacket_non_ays.png";
-    let red_after = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/red_jacket_ays.png";
+    let red_before = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/red_jacket_non_ays.png";
+    let red_after = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/red_jacket_ays.png";
 
-    let green_before = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/green_jacket_non_ays.png";
-    let green_after = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/green_jacket_ays_img2img.png";
-    // green img2img src: https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/green_jacket_ays_img2img.png
+    let green_before = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/green_jacket_non_ays.png";
+    let green_after = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/green_jacket_ays_img2img.png";
+    // green img2img src: https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/green_jacket_ays_img2img.png
 
-    let orange_before = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/orange_jacket_non_ays.png";
-    let orange_after = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/orange_jacket_ays_img2img.png";
-    // onrage non-ays img2img src: https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/orange_jacket_non_ays_img2img.png
+    let orange_before = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/orange_jacket_non_ays.png";
+    let orange_after = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/orange_jacket_ays_img2img.png";
+    // onrage non-ays img2img src: https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/orange_jacket_non_ays_img2img.png
 
     let blue_comp_html = comparisonElementHTML(blue_before, blue_after);
     let blue_comp_div = $($.parseHTML(blue_comp_html));
@@ -62,23 +62,23 @@ function addAysLoraComparisons() {
 }
 
 function addAysTestComparisons() {
-    let ays_1_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-reg-1.png";
-    let ays_1 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-1.png";
+    let ays_1_reg = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-reg-1.png";
+    let ays_1 = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-1.png";
 
-    let ays_2_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-reg-2.png";
-    let ays_2 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-2.png";
+    let ays_2_reg = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-reg-2.png";
+    let ays_2 = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-2.png";
 
-    let ays_3_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-reg-3.png";
-    let ays_3 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-3.png";
+    let ays_3_reg = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-reg-3.png";
+    let ays_3 = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-3.png";
 
-    let ays_4_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-reg-4.png";
-    let ays_4 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-4.png";
+    let ays_4_reg = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-reg-4.png";
+    let ays_4 = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-4.png";
 
-    let ays_5_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-reg-5.png";
-    let ays_5 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-5.png";
+    let ays_5_reg = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-reg-5.png";
+    let ays_5 = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-5.png";
 
-    let ays_6_reg = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-reg-6.png";
-    let ays_6 = "https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/ays-6.png";
+    let ays_6_reg = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-reg-6.png";
+    let ays_6 = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/ays-6.png";
 
     let ays_1_comp_html = comparisonElementHTML(ays_1_reg, ays_1);
     let ays_1_comp_div = $($.parseHTML(ays_1_comp_html));

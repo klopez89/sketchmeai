@@ -37,13 +37,13 @@ function comparisonElementHTML(before_img_src, after_img_src) {
             <div class="image-container">
                 <img
                     class="image-before slider-image"
-                    src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blank_sq_1024.png"
+                    src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/blank_sq_1024.png"
                     true_src="${before_img_src}"
                     alt="Before, non ays image"
                 />
                 <img
                     class="image-after slider-image"
-                    src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blank_sq_1024.png"
+                    src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/blank_sq_1024.png"
                     true_src="${after_img_src}"
                     alt="Afer, ays image"
                 />

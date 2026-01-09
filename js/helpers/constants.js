@@ -181,8 +181,8 @@ const RefImgModeImageButtonId = {
     DEPTH: 'depth-img-button',
 }
 
-const FAILED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/failed_img.png"
-const CANCELED_IMG_URL = "https://storage.googleapis.com/sketchmeai-public/sketchmeai_utility_imgs/canceled_img.png"
+const FAILED_IMG_URL = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/sketchmeai_utility_imgs/failed_img.png"
+const CANCELED_IMG_URL = "https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/sketchmeai_utility_imgs/canceled_img.png"
 
 function hasDevSubdomain() {
     var url = window.location.href;

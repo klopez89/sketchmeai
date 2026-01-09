@@ -78,7 +78,7 @@ function homePageHtml() {
 			<nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
 				<div class="flex lg:flex-1">
 					<a href="#" class="-m-1.5 p-1.5 flex items-center">
-						<img class="h-8 w-auto pr-2" src="https://storage.googleapis.com/sketchmeai-public/branding/sketchmeai%20logo%403x.png" alt=""><span class="font-medium text-xl pt-1 hidden md:block">SketchMeAi</span>
+						<img class="h-8 w-auto pr-2" src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/branding/sketchmeai%20logo%403x.png" alt=""><span class="font-medium text-xl pt-1 hidden md:block">SketchMeAi</span>
 					</a>
 				</div>
 
@@ -92,7 +92,7 @@ function homePageHtml() {
 				<div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
 				<div class="flex items-center justify-between">
 					<a href="#" class="-m-1.5 p-1.5 flex items-center">
-						<img class="h-8 w-auto pr-2" src="https://storage.googleapis.com/sketchmeai-public/branding/sketchmeai%20logo%403x.png" alt=""><span class="font-medium text-xl pt-1">SketchMeAi</span>
+						<img class="h-8 w-auto pr-2" src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/branding/sketchmeai%20logo%403x.png" alt=""><span class="font-medium text-xl pt-1">SketchMeAi</span>
 					</a>
 					<button type="button" id="closeMenuButton" class="-m-2.5 rounded-md p-2.5 text-gray-800">
 					<span class="sr-only">Close menu</span>
@@ -134,7 +134,7 @@ function homePageHtml() {
 					</div>
 					<div class="mt-4 flow-root sm:mt-4">
 						<div class="mt-6 mb-4 mx-0 md:mx-16 lg:mx-10">
-							<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_09.24/homepage_hero_09.24.png" alt="App screenshot" width="2432" height="1442" class="max-h-min">
+							<img src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/branding/homepage_09.24/homepage_hero_09.24.png" alt="App screenshot" width="2432" height="1442" class="max-h-min">
 						</div>
 					</div>
 				</div>
@@ -148,7 +148,7 @@ function homePageHtml() {
 				</div>
 
 				<div class="mt-14 mb-12 mx-0 md:mx-16 lg:mx-24">
-					<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_09.24/homepage_generate_with_control.png" alt="Generation example" width="2432" height="1442" class="max-h-min">
+					<img src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/branding/homepage_09.24/homepage_generate_with_control.png" alt="Generation example" width="2432" height="1442" class="max-h-min">
 				</div>
 
 				<div class="mx-auto max-w-2xl lg:max-w-4xl">
@@ -228,7 +228,7 @@ function homePageHtml() {
 			<p class="mt-2 text-lg leading-8 text-secondary text-center mx-auto max-w-2xl lg:max-w-4xl italic">Training on Flux coming soon!</p>
 			<div class="flex flex-center">
 				<div class="mx-auto max-w-7xl px-6 lg:px-8">
-					<img src="https://storage.googleapis.com/sketchmeai-public/branding/homepage_09.24/desktop_hp_capture.gif" class="mt-12 mb-14 shadow-2xl" width="750" height="1442">
+					<img src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/branding/homepage_09.24/desktop_hp_capture.gif" class="mt-12 mb-14 shadow-2xl" width="750" height="1442">
 					<div class="text-center mt-8">
 						<button class="rounded-md bg-black px-8 py-2.5 text-lg text-white shadow-sm hover:bg-gray-700">
 							Start generating with AI

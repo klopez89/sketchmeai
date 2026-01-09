@@ -20,7 +20,7 @@ function blogListGridHTML() {
     <div id="blog-grid" class="grid grid-cols-2 gap-4">
         <div class="flex flex-col items-start space-y-4 group cursor-pointer" onclick="window.location.href='https://${CONSTANTS.SITE_URL}/blog/entries/post1'">
             <div class="aspect-w-1 aspect-h-1 w-full">
-                <img src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_1imgs/blog_post1_img39.png" alt="Blog Post 2 Thumbnail" class="object-cover">
+                <img src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_1imgs/blog_post1_img39.png" alt="Blog Post 2 Thumbnail" class="object-cover">
             </div>
             <div>
                 <h2 class="text-xl font-bold group-hover:underline">Getting Started with SketchMeAi: Model Training and Generation Basics</h2>
@@ -30,7 +30,7 @@ function blogListGridHTML() {
 
         <div class="flex flex-col items-start space-y-4 group cursor-pointer" onclick="window.location.href='https://${CONSTANTS.SITE_URL}/blog/entries/post2'">
             <div class="aspect-w-1 aspect-h-1 w-full">
-                <img src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_2imgs/blog_post_2_thumbnail.jpeg" alt="Blog Post 2 Thumbnail" class="object-cover">
+                <img src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_2imgs/blog_post_2_thumbnail.jpeg" alt="Blog Post 2 Thumbnail" class="object-cover">
             </div>
             <div>
                 <h2 class="text-xl font-bold group-hover:underline">Organize Your Generations with Collections</h2>
@@ -46,8 +46,8 @@ function blogListGridHTML() {
                     <div class="comp-container" style="--position: 48%;">
 
                         <div class="image-container">
-                            <img class="image-before slider-image" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blank_sq_1024.png" true_src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_non_ays.png" alt="Before, non ays image for post 3">
-                            <img class="image-after slider-image" src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blank_sq_1024.png" true_src="https://storage.googleapis.com/sketchmeai-public/Blog/blog_post_3imgs/blue_jacket_ays.png" alt="Afer, ays image for post 3">
+                            <img class="image-before slider-image" src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/blank_sq_1024.png" true_src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/blue_jacket_non_ays.png" alt="Before, non ays image for post 3">
+                            <img class="image-after slider-image" src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/blank_sq_1024.png" true_src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/Blog/blog_post_3imgs/blue_jacket_ays.png" alt="Afer, ays image for post 3">
                         </div>
                         
                         <input type="range" min="0" max="100" value="50" aria-label="Percentage of before photo shown" class="slider" autocompleted="">

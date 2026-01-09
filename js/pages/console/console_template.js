@@ -33,7 +33,7 @@ function consoleHtml() {
             <!-- Sidebar component, swap this element with another sidebar if you like -->
             <div class="flex grow flex-col gap-y-5 md:gap-y-12 lg:gap-y-5 overflow-y-auto bg-black px-6 md:px-10 lg:px-6 pb-4 pt-20 md:pt-32 lg:pt-0">
                 <div class="flex h-16 shrink-0 items-center cursor-pointer" onclick="navigationToHomePage()">
-                <img class="h-8 md:h-14 lg:h-8 w-auto" src="https://storage.googleapis.com/sketchmeai-public/branding/white_sketchmeai_logo.png" alt="Your Company">
+                <img class="h-8 md:h-14 lg:h-8 w-auto" src="https://pub-515ea4d2307c4282b7ff5952c242b7da.r2.dev/branding/white_sketchmeai_logo.png" alt="Your Company">
                 </div>
                 <nav class="flex flex-1 flex-col">
                 <ul id="page-list" role="list" class="flex flex-1 flex-col gap-y-7">
